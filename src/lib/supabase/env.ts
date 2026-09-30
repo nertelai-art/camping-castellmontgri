@@ -2,7 +2,8 @@ import { z } from "zod";
 
 // Variables públiques: arriben al navegador. La protecció de les dades és RLS, no el secret de la clau.
 const schema = z.object({
-  NEXT_PUBLIC_SUPABASE_URL: z.url(),
+  // Accepta també l'adreça copiada amb «/rest/v1/» al final i la deixa en la base del projecte.
+  NEXT_PUBLIC_SUPABASE_URL: z.url().transform((u) => u.replace(/\/rest\/v1\/?$/, "")),
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1),
 });
 

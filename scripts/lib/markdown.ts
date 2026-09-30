@@ -129,3 +129,9 @@ export function parseSize(value: string | number | null | undefined): number | n
   const n = Number.parseFloat(String(value).replace(",", "."));
   return Number.isFinite(n) && n > 0 ? n : null;
 }
+
+/** Píxels de la il·lustració → percentatge (2 decimals), que és com es guarden els punts del plànol. */
+export function toPercent(value: number, size: number): number {
+  if (value < 0 || value > size) throw new Error(`Coordenada fora del plànol: ${value} de ${size}`);
+  return Math.round((value / size) * 10000) / 100;
+}

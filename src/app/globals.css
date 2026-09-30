@@ -1,32 +1,221 @@
 @import "tailwindcss";
 
-/* Tokens de marca del web actual: oliva #485328, crema #F7F0D3, terracota #CA5732/#BA380C. */
+/*
+ * Sistema de disseny — «guia de natura».
+ * Colors del web actual: oliva #485328 (logo), crema #F7F0D3, terracota #CA5732 / #BA380C.
+ * Paper crema amb gra, tinta oliva, accents terracota, fotos grans i numeració de secció.
+ */
+
 :root {
-  --color-bg: #f7f0d3;
-  --color-surface: #ffffff;
-  --color-ink: #1f2a17;
-  --color-muted: #5c6652;
-  --color-line: #d9dccd;
-  --color-primary: #485328;
-  --color-accent: #ba380c;
+  --paper: #f7f0d3;
+  --paper-2: #efe5bf;
+  --card: #fbf7e6;
+  --ink: #232a14;
+  --olive: #485328;
+  --olive-2: #5f6d36;
+  --muted: #5d6247;
+  --line: #d8cea3;
+  --terra: #ba380c;
+  --terra-2: #ca5732;
+  --sea: #1d6f86;
+  --on-dark: #f7f0d3;
+  --blush: #fff4f0;
+  /* Franges de color amb text clar: iguals en tots dos temes perquè el contrast no canviï. */
+  --band-olive: #3e4822;
+  --band-terra: #a8330b;
+  --band-sea: #0f4c5c;
+  --foam: #bfe4ee;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #141a0f;
-    --color-surface: #1d2616;
-    --color-ink: #eef0e6;
-    --color-muted: #a9b29c;
-    --color-line: #34402a;
-    --color-primary: #c9d77a;
-    --color-accent: #e07a55;
+  :root:not([data-theme="light"]) {
+    --paper: #161b0d;
+    --paper-2: #1d2412;
+    --card: #20281a;
+    --ink: #efe8cc;
+    --olive: #c3cf8b;
+    --olive-2: #a9b772;
+    --muted: #b3b193;
+    --line: #37402a;
+    --terra: #ec8a5f;
+    --terra-2: #f09a74;
+    --sea: #7cc3d6;
+    --on-dark: #f7f0d3;
+    --blush: #231a12;
     color-scheme: dark;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-olive: var(--olive);
+  --color-olive-2: var(--olive-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-terra: var(--terra);
+  --color-terra-2: var(--terra-2);
+  --color-sea: var(--sea);
+  --color-on-dark: var(--on-dark);
+  --color-blush: var(--blush);
+  --color-band-olive: var(--band-olive);
+  --color-band-terra: var(--band-terra);
+  --color-band-sea: var(--band-sea);
+  --color-foam: var(--foam);
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
-  background: var(--color-bg);
-  color: var(--color-ink);
-  font-family: ui-sans-serif, system-ui, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Gra de paper com a textura de fons (no una capa fixa amb mix-blend: obligaria a recompondre
+   tota la pàgina a cada fotograma de scroll). Les franges de color el tapen, i és el que volem. */
+body {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.14 0 0 0 0 0.16 0 0 0 0 0.08 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Moviment ───────────────────────────────────────────────────────────────
+ * Tot en CSS i només si l'usuari no demana moviment reduït. Les animacions grans
+ * (escenes 3D) arriben a la fase 4.
+ */
+/* Tampoc opacitat 0 aquí: el titular del hero pot ser l'element LCP. */
+@keyframes rise {
+  from {
+    opacity: 0.15;
+    transform: translateY(1.25rem);
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(0, 0, 0) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 120ms + 150ms);
+  }
+
+  .ken-burns {
+    transform: scale(1.02);
+    animation: drift 18s ease-out both;
+  }
+
+}
+
+/* Revelat en entrar a la vista: RevealOnScroll (IntersectionObserver) hi posa .is-shown.
+   Sense JS o amb moviment reduït, el contingut és visible des del principi. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .reveal {
+    transition: translate 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  /* Només desplaçament, sense transparència: un element transparent no compta per al LCP
+     i l'auditoria de contrast el veuria esvaït. */
+  .reveal:not(.is-shown) {
+    translate: 0 2rem;
+  }
+}
+
+/* Seccions sota el plec: el navegador no en calcula l'estil ni les pinta fins que s'hi acosta.
+   L'alçada aproximada evita que la barra de scroll salti. */
+.cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}
+
+/* Reflexos d'aigua a la secció de piscines: dues capes de llum que es desplacen amb transform
+   (composició a la GPU, sense JS). Amb moviment reduït, quiets. */
+.caustics::before,
+.caustics::after {
+  content: "";
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  background-image:
+    radial-gradient(closest-side, rgb(191 228 238 / 0.55), transparent 70%),
+    radial-gradient(closest-side, rgb(255 255 255 / 0.35), transparent 65%);
+  background-size:
+    180px 120px,
+    260px 190px;
+  background-position:
+    0 0,
+    90px 60px;
+}
+
+.caustics::after {
+  background-size:
+    230px 150px,
+    150px 110px;
+  opacity: 0.8;
+}
+
+@keyframes caustics-a {
+  to {
+    transform: translate3d(6%, 4%, 0) rotate(2deg);
+  }
+}
+
+@keyframes caustics-b {
+  to {
+    transform: translate3d(-5%, 6%, 0) rotate(-3deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .caustics::before {
+    animation: caustics-a 11s ease-in-out infinite alternate;
+  }
+
+  .caustics::after {
+    animation: caustics-b 14s ease-in-out infinite alternate;
+  }
+}
+
+/* Tira horitzontal amb scroll-snap (galeries, targetes). */
+.snap-strip {
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.snap-strip > * {
+  scroll-snap-align: start;
+}
+
+dialog::backdrop {
+  background: rgb(22 27 13 / 0.7);
+  backdrop-filter: blur(4px);
 }

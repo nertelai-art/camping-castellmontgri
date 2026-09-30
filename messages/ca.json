@@ -7,14 +7,115 @@
     "entertainment": "Animació",
     "surroundings": "Entorn",
     "contact": "Contacte",
-    "book": "Reservar"
+    "book": "Reservar",
+    "menu": "Menú",
+    "close": "Tancar",
+    "language": "Idioma",
+    "skip": "Salta al contingut",
+    "clientArea": "Àrea de clients"
   },
-  "skeleton": {
-    "notice": "Web nova en construcció · dades reals de Supabase"
+  "hero": {
+    "season": "Temporada",
+    "discover": "Descobreix el càmping",
+    "from": "Del {open} al {close}",
+    "sceneDescription": "Animació: el plànol il·lustrat del càmping s'ajeu com si fos el terra i la càmera hi vola per damunt mentre hi cauen els punts de les piscines, els restaurants i les zones de lleure."
+  },
+  "facts": {
+    "accommodations": "allotjaments",
+    "restaurants": "restaurants i bars",
+    "services": "serveis",
+    "activities": "activitats d'animació"
+  },
+  "accommodation": {
+    "eyebrow": "On dormir",
+    "all": "Tots",
+    "guests": "Persones",
+    "guestsAny": "Qualsevol",
+    "guestsMin": "{count}+",
+    "empty": "Cap allotjament amb aquests filtres.",
+    "details": "Veure'l",
+    "people": "{count} pers.",
+    "size": "{value} m²",
+    "bedrooms": "{count, plural, one {# habitació} other {# habitacions}}",
+    "bathrooms": "{count, plural, one {# bany} other {# banys}}",
+    "airConditioning": "Aire condicionat",
+    "accessible": "Adaptat PMR",
+    "equipment": "Què hi trobaràs",
+    "gallery": "Fotos de {name}",
+    "photo": "Foto {index} de {total}",
+    "count": "{count, plural, one {# allotjament} other {# allotjaments}}"
+  },
+  "gastronomy": {
+    "eyebrow": "Menjar i beure",
+    "zone": {
+      "ombra": "Zona Ombra",
+      "panorama": "Zona Panorama"
+    },
+    "hours": "Horari",
+    "menu": "Veure la carta",
+    "sceneDescription": "Animació: una paella s'omple d'arròs, gambes i musclos; un con de gelat s'omple de boles que es fonen; i un got es va omplint de refresc amb glaçons i llimona.",
+    "steps": {
+      "food": "Per menjar",
+      "icecream": "Gelats",
+      "drinks": "Per beure"
+    }
+  },
+  "pools": {
+    "eyebrow": "Aigua i sol"
+  },
+  "services": {
+    "eyebrow": "Tot a mà"
+  },
+  "entertainment": {
+    "eyebrow": "Per a tota la família",
+    "audience": {
+      "children": "Infantil",
+      "family": "Família",
+      "adult": "Adults"
+    }
+  },
+  "surroundings": {
+    "eyebrow": "L'Empordà i la Costa Brava"
+  },
+  "map": {
+    "eyebrow": "El càmping",
+    "filters": "Filtra el plànol",
+    "viewer": "Plànol interactiu del càmping",
+    "hint": "Arrossega per moure't · pessiga, Ctrl + roda o + i − per ampliar",
+    "zoomIn": "Amplia",
+    "zoomOut": "Redueix",
+    "reset": "Veure'l sencer",
+    "fullscreen": "Pantalla completa",
+    "exitFullscreen": "Surt de pantalla completa",
+    "back": "Tots els llocs",
+    "places": "{count, plural, one {# lloc} other {# llocs}}",
+    "seeAccommodation": "Veure els allotjaments",
+    "showOnMap": "Veure al plànol",
+    "kinds": {
+      "all": "Tot",
+      "accommodation": "Allotjament",
+      "food": "Menjar i beure",
+      "pool": "Piscines",
+      "leisure": "Lleure i esport",
+      "service": "Serveis",
+      "landmark": "Llocs d'interès"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Opinions",
+    "title": "Què diuen de nosaltres",
+    "via": "a {source}"
+  },
+  "footer": {
+    "contact": "Contacte",
+    "howToGet": "Com arribar-hi",
+    "season": "Temporada",
+    "license": "Registre de turisme",
+    "rights": "Tots els drets reservats.",
+    "notice": "Web nova en construcció"
   },
   "units": {
     "people": "{count} pers.",
-    "bedrooms": "{count, plural, one {# hab.} other {# hab.}}",
-    "accommodations": "{count, plural, one {# allotjament} other {# allotjaments}}"
+    "bedrooms": "{count, plural, one {# hab.} other {# hab.}}"
   }
 }

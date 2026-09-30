@@ -189,13 +189,13 @@ isOneToOne: false
                   ]
                 },"map_points": {
                   Row: {
-                    "accommodation_category_key": string | null,"activity_id": string | null,"id": string,"kind": string,"restaurant_id": string | null,"service_id": string | null,"sort_order": number,"status": Database["public"]['Enums']["publish_status"],"updated_at": string,"x": number,"y": number
+                    "accommodation_category_key": string | null,"accommodation_id": string | null,"activity_id": string | null,"id": string,"kind": string,"restaurant_id": string | null,"service_id": string | null,"sort_order": number,"status": Database["public"]['Enums']["publish_status"],"updated_at": string,"x": number,"y": number
                   }
                   Insert: {
-                    "accommodation_category_key"?: string | null,"activity_id"?: string | null,"id"?: string,"kind": string,"restaurant_id"?: string | null,"service_id"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string,"x": number,"y": number
+                    "accommodation_category_key"?: string | null,"accommodation_id"?: string | null,"activity_id"?: string | null,"id"?: string,"kind": string,"restaurant_id"?: string | null,"service_id"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string,"x": number,"y": number
                   }
                   Update: {
-                    "accommodation_category_key"?: string | null,"activity_id"?: string | null,"id"?: string,"kind"?: string,"restaurant_id"?: string | null,"service_id"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string,"x"?: number,"y"?: number
+                    "accommodation_category_key"?: string | null,"accommodation_id"?: string | null,"activity_id"?: string | null,"id"?: string,"kind"?: string,"restaurant_id"?: string | null,"service_id"?: string | null,"sort_order"?: number,"status"?: Database["public"]['Enums']["publish_status"],"updated_at"?: string,"x"?: number,"y"?: number
                   }
                   Relationships: [
                     {
@@ -204,6 +204,12 @@ isOneToOne: false
 isOneToOne: false
       referencedRelation: "accommodation_categories"
       referencedColumns: ["key"]
+    },{
+      foreignKeyName: "map_points_accommodation_id_fkey"
+      columns: ["accommodation_id"]
+isOneToOne: false
+      referencedRelation: "accommodations"
+      referencedColumns: ["id"]
     },{
       foreignKeyName: "map_points_activity_id_fkey"
       columns: ["activity_id"]

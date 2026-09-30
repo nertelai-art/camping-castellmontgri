@@ -1,6 +1,6 @@
 # Roadmap — Natura Village Castell Montgrí
 
-> Estat: **fase 1 feta en local i a Supabase remot** (esquema, RLS, seed, lectura, Sentry). Pendent: seed remot i projecte Vercel. Actualitzat el 30/09/2026.
+> Estat: **fases 1 a 4 fetes** (plataforma de contingut, landing, plànol interactiu i animacions). Pendent: seed al Supabase remot, projecte Vercel i mesura de rendiment en preproducció. Actualitzat el 30/09/2026.
 
 ## 1. Què fem
 
@@ -89,7 +89,7 @@ Tot amb `status` (`draft` | `published`), `sort_order` i `updated_at`.
 | `services` | icona, imatge, punt al plànol | nom, descripció, horari |
 | `restaurants` | zona (Ombra/Panorama), horari, portada | nom, descripció, carta (PDF a Storage) |
 | `activities` | públic (nens/família/adults), zona, horari, portada | nom, descripció |
-| `map_points` | x, y (% sobre el plànol), tipus, entitat enllaçada | etiqueta |
+| `map_points` | x, y (% sobre el plànol), tipus, servei / restaurant / activitat / allotjament / categoria enllaçats | etiqueta |
 | `testimonials` | autor, font, idioma original, nota | — (es mostren en l'idioma original) |
 | `media` | camí a Storage, amplada, alçada, blurhash, focus | text alternatiu |
 | `profiles` | usuari, rol (`admin` \| `editor`) | — |
@@ -134,21 +134,31 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ⏳ **Projecte Vercel**: el connector no té permís per crear-lo; es fa des del tauler.
 - **Acabat quan:** la home de l'esquelet mostra dades reals de Supabase en els 5 idiomes. ✅ en local.
 
-### Fase 2 — Sistema de disseny i landing estàtica
-- Tipografia, colors i components a partir de la marca (logo, verd oliva, llima).
-- Totes les seccions de la landing muntades amb dades reals, **sense** animacions grans.
-- SEO: metadades per idioma, `hreflang`, sitemap, dades estructurades (`Campground`), redireccions des de les URL antigues.
-- **Acabat quan:** Lighthouse ≥ 95 en mòbil i totes les seccions funcionen en 5 idiomes.
+### Fase 2 — Sistema de disseny i landing estàtica ✅ (amb la mesura de rendiment pendent)
+- ✅ Direcció visual «guia de natura»: paper crema amb gra, tinta oliva, accents terracota, numeració de secció i la carena del Montgrí amb el castell com a signatura. Fraunces (titulars) + Lato (la del web actual). Tema clar i fosc; les franges de color mantenen el contrast en tots dos.
+- ✅ Landing sencera amb dades reals en 5 idiomes: hero (foto aèria real), benvinguda amb xifres comptades del contingut, allotjaments (pestanyes, filtre per persones, fitxa amb galeria i equipament), plànol, gastronomia per zones, piscines i tobogans, serveis desplegables, animació per públics, entorn, opinions i peu amb contacte i acreditacions.
+- ✅ SEO: títol i descripció per idioma, canònica, `hreflang` + `x-default`, Open Graph, `sitemap.xml`, `robots.txt` (les previsualitzacions no s'indexen) i JSON-LD `Campground`.
+- ✅ Accessibilitat: Lighthouse 100 (contrast, `lang` a les opinions, diàleg amb focus i Escape, menú mòbil sense JS, enllaç «salta al contingut»).
+- ✅ Rendiment: Sentry del navegador diferit, tipografies de 320 KB a 89 KB, seccions sota el plec amb `content-visibility`, cap animació que bloquegi el LCP.
+- ⏳ **Lighthouse ≥ 95 a mòbil**: en local surt entre 75 i 83, amb una variació enorme (la mateixa build ha donat 27 i 80). La mesura bona es fa amb PageSpeed sobre una previsualització de Vercel.
+- ➡️ Redireccions 301 de les URL antigues: passen a la fase 6, quan existeixin les pàgines de destí.
 
-### Fase 3 — Plànol interactiu
-- Visor amb zoom/arrossegament (tàctil inclòs), punts, zones, filtres i fitxa lateral.
-- Enllaços creuats: allotjament → «veure al plànol»; servei → punt.
-- **Acabat quan:** es pot trobar qualsevol servei o allotjament des del plànol en mòbil.
+### Fase 3 — Plànol interactiu ✅
+- ✅ Visor propi (sense dependències): arrossegar, pessigar, Ctrl + roda, doble clic, teclat (fletxes, + i −), pantalla completa i «veure'l sencer». El plànol a resolució completa (3000 px) només es baixa quan s'amplia.
+- ✅ 49 punts col·locats llegint la il·lustració 2026 (`scripts/content/map-points.json`, en píxels del plànol), enllaçats a serveis, restaurants, activitats, allotjaments i categories. Els que no tenen fitxa (aparcament, església, mirador, parc natural…) porten etiqueta pròpia en 5 idiomes.
+- ✅ Filtres per tipus (allotjament, menjar i beure, piscines, lleure i esport, serveis, llocs d'interès), llista accessible de tots els llocs i fitxa lateral amb foto, horari i descripció.
+- ✅ «Veure al plànol» des dels restaurants, els serveis i la fitxa de cada allotjament (les tres parcel·les porten a la seva zona concreta).
+- ⚠️ Sense punt, perquè no se sap on són: *Take Away Ombra* (comparteix icona amb la pizzeria), el Kids Club, la zona de glamping i les tendes. La heladería Ombra està posada a la icona de cafeteria més propera a la piscina Ombra: cal confirmar-ho amb el càmping.
 
-### Fase 4 — Animacions
-- Hero, gastronomia (plat, gelat…), piscines, serveis, xifres.
-- Tot amb alternativa per a `prefers-reduced-motion` i sense perjudicar el LCP.
-- **Acabat quan:** 60 fps en un mòbil mitjà i LCP < 2,5 s.
+### Fase 4 — Animacions ✅ (mesura de rendiment pendent en preproducció)
+- ✅ Skill `scroll-3d-scenes` aplicada tal com diu: hooks de la plantilla, fases en un fitxer sense three.js amb proves, `frameloop="demand"`, `damp` amb delta limitat, instàncies, atzar amb llavor, materials estables des del primer fotograma, ombra pintada una vegada i `dpr` adaptatiu.
+- ✅ **Hero, «vol» sobre el plànol**: la foto aèria real és el primer fotograma (i el LCP). Amb el scroll el plànol puja com una targeta, s'ajeu i esdevé el terra (amb un prat al voltant perquè el paisatge no s'acabi), la càmera hi vola per damunt i hi cauen els punts de piscines, restaurants i lleure; al final, invitació a obrir el plànol. A mòbil la càmera baixa més perquè el plànol ompli la pantalla.
+- ✅ **Gastronomia**: paella que s'omple (arròs, gambes, musclos, pèsols i llimona que cauen amb rebot), gelat amb tres boles que es fonen i regalimen, i got que s'omple de refresc amb glaçons, palla i llimona. Tot modelat per codi. Els passos del costat llisten els restaurants reals agrupats per menjar, gelats i beure.
+- ✅ **Piscines**: reflexos d'aigua en CSS pur (capes de llum amb `transform`).
+- ✅ Sense WebGL o amb moviment reduït: hero amb la foto i gastronomia amb la foto de la secció, sense seccions altes.
+- ✅ Rendiment de càrrega: three.js (~250 KB gzip) es baixa a la **primera interacció** en el hero i en acostar-se a la secció en la gastronomia. Carregat «en ociós» encara entrava dins la finestra de càrrega (TBT 1,3-3,7 s a Lighthouse mòbil).
+- ✅ Verificat amb Chrome sense cap (playwright-core fora del projecte) a 0/25/50/75/100 % de cada escena, escriptori i mòbil: sense errors, fotogrames p50 16,7 ms (60 fps). El p95 a escriptori no és representatiu: sense GPU, el WebGL es pinta per CPU (SwiftShader).
+- ⏳ Mesura real (GPU i xarxa) a una previsualització de Vercel i a un mòbil de veritat.
 
 ### Fase 5 — Panell d'administració
 - `/admin` amb inici de sessió, rols i registre de canvis.
