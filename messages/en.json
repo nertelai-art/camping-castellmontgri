@@ -1,5 +1,121 @@
 {
-  "meta": { "title": "Natura Village Castell Montgrí · Camping & Bungalows in L'Estartit", "description": "Family campsite in L'Estartit, Costa Brava: mobile homes, glamping, pitches, pools and water slides next to the Montgrí Natural Park." },
-  "nav": { "accommodation": "Accommodation", "map": "Site map", "gastronomy": "Food & drink", "services": "Services", "entertainment": "Entertainment", "surroundings": "Surroundings", "contact": "Contact", "book": "Book now" },
-  "skeleton": { "notice": "New website under construction", "sections": "Planned sections" }
+  "nav": {
+    "accommodation": "Accommodation",
+    "map": "Site map",
+    "gastronomy": "Food & drink",
+    "services": "Services",
+    "entertainment": "Entertainment",
+    "surroundings": "Surroundings",
+    "contact": "Contact",
+    "book": "Book now",
+    "menu": "Menu",
+    "close": "Close",
+    "language": "Language",
+    "skip": "Skip to content",
+    "clientArea": "Guest area"
+  },
+  "hero": {
+    "season": "Season",
+    "discover": "Explore the campsite",
+    "from": "{open} – {close}",
+    "sceneDescription": "Animation: the illustrated campsite map lies down like the ground and the camera flies over it while markers drop onto the pools, restaurants and leisure areas."
+  },
+  "facts": {
+    "accommodations": "places to stay",
+    "restaurants": "restaurants and bars",
+    "services": "services",
+    "activities": "entertainment activities"
+  },
+  "accommodation": {
+    "eyebrow": "Where to stay",
+    "all": "All",
+    "guests": "Guests",
+    "guestsAny": "Any",
+    "guestsMin": "{count}+",
+    "empty": "No accommodation matches these filters.",
+    "details": "View",
+    "people": "{count} guests",
+    "size": "{value} m²",
+    "bedrooms": "{count, plural, one {# bedroom} other {# bedrooms}}",
+    "bathrooms": "{count, plural, one {# bathroom} other {# bathrooms}}",
+    "airConditioning": "Air conditioning",
+    "accessible": "Wheelchair accessible",
+    "equipment": "What's inside",
+    "gallery": "Photos of {name}",
+    "photo": "Photo {index} of {total}",
+    "count": "{count, plural, one {# unit} other {# units}}"
+  },
+  "gastronomy": {
+    "eyebrow": "Eat and drink",
+    "zone": {
+      "ombra": "Ombra area",
+      "panorama": "Panorama area"
+    },
+    "hours": "Opening hours",
+    "menu": "See the menu",
+    "sceneDescription": "Animation: a paella pan fills with rice, prawns and mussels; an ice-cream cone is topped with scoops that melt; and a glass fills with a drink, ice cubes and lemon.",
+    "steps": {
+      "food": "To eat",
+      "icecream": "Ice cream",
+      "drinks": "To drink"
+    }
+  },
+  "pools": {
+    "eyebrow": "Water and sun"
+  },
+  "services": {
+    "eyebrow": "Everything at hand"
+  },
+  "entertainment": {
+    "eyebrow": "For the whole family",
+    "audience": {
+      "children": "Kids",
+      "family": "Family",
+      "adult": "Adults"
+    }
+  },
+  "surroundings": {
+    "eyebrow": "Empordà and the Costa Brava"
+  },
+  "map": {
+    "eyebrow": "The campsite",
+    "filters": "Filter the map",
+    "viewer": "Interactive campsite map",
+    "hint": "Drag to move · pinch, Ctrl + scroll or + and − to zoom",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Show whole map",
+    "fullscreen": "Full screen",
+    "exitFullscreen": "Exit full screen",
+    "back": "All places",
+    "places": "{count, plural, one {# place} other {# places}}",
+    "seeAccommodation": "See the accommodation",
+    "showOnMap": "Show on map",
+    "kinds": {
+      "all": "All",
+      "accommodation": "Accommodation",
+      "food": "Food & drink",
+      "pool": "Pools",
+      "leisure": "Leisure & sport",
+      "service": "Services",
+      "landmark": "Points of interest"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Reviews",
+    "title": "What our guests say",
+    "via": "on {source}"
+  },
+  "footer": {
+    "contact": "Contact",
+    "howToGet": "Getting here",
+    "season": "Season",
+    "license": "Tourism register",
+    "rights": "All rights reserved.",
+    "notice": "New website under construction"
+  },
+  "units": {
+    "people": "{count} guests",
+    "bedrooms": "{count, plural, one {# bedroom} other {# bedrooms}}"
+  }
 }

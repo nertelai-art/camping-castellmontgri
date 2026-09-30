@@ -33,7 +33,33 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   L'admin escriu amb la sessió de l'usuari; RLS ho restringeix per rol.
 - La clau secreta de Supabase només en scripts de servidor (seed, migració).
   Supabase només s'importa des de `src/lib/supabase/`: és la seva frontera.
-- Després de desar a l'admin es revalida per etiqueta (`revalidateTag`), no per temps.
+- Cada lectura queda a la caché de Next amb dues etiquetes: `content` i el nom de la taula
+  consultada (`sections`, `accommodations`…). Les traduccions i galeries van dins la consulta
+  del pare: en desar `section_translations` s'invalida `sections`. `/api/revalidate` expira
+  de seguida (`{ expire: 0 }`), no per temps.
+- Les funcions de rol (`is_editor`, `is_admin`) viuen a l'esquema `private`, fora de l'API.
+- Les polítiques RLS tenen proves pgTAP a `supabase/tests/`. Qualsevol canvi de polítiques
+  hi afegeix el seu cas.
+
+## Supabase: local i remot
+
+- Local amb Docker: `pnpm exec supabase start` (ports 556xx, per no xocar amb altres projectes).
+  `pnpm db:reset` aplica les migracions, `pnpm seed` hi carrega el contingut, `pnpm db:test` passa les proves RLS.
+- Remot: projecte «Camping Castell montgri» (ref `rfgmpwefytrksswrcuvm`, París), a l'organització de
+  la CLI de Supabase de l'usuari. La CLI ja hi està enllaçada: migracions amb
+  `pnpm exec supabase db push --linked` (primer `--dry-run`) i seed amb `pnpm seed` (claus a `.env.local`).
+- El projecte `ddnfdulaxrnmapxbsugn` (organització Demos_Nertel, el del connector MCP) va ser el primer
+  intent i ja no s'usa.
+- Una migració nova = un fitxer nou. Mai s'edita una migració ja aplicada al remot.
+
+## Plànol interactiu
+
+- Els punts són a `map_points` en % de la il·lustració. La font inicial és
+  `scripts/content/map-points.json`, en píxels del plànol (3000×1845): més fàcil de revisar.
+- Per comprovar-ne la posició sense navegador: dibuixar-los sobre el plànol amb sharp (crop +
+  composite) i mirar-ho ampliat.
+- La geometria del visor (límits, zoom al voltant d'un punt, centrar) és a `src/lib/map/viewport.ts`
+  amb proves. «Veure al plànol» fa servir un esdeveniment de finestra (`src/lib/map/events.ts`).
 
 ## Material de referència
 
@@ -45,13 +71,50 @@ client es pugen a Supabase Storage amb el script de seed.
 
 - `pnpm check` (typecheck + lint + tests) i `gitleaks` al hook de pre-push
   (`.githooks/`, s'activa sol amb `pnpm install`).
-- La CI només fa `pnpm build`.
-- Branca d'integració: `developer`. Preproducció = previsualitzacions de Vercel.
-  **Producció només quan ho digui l'usuari, cada vegada.**
+- La CI fa `pnpm build` (contra el Supabase de preproducció, amb variables de repo públiques)
+  i, si canvia `supabase/`, les proves RLS contra un Postgres de debò.
+## Branques i desplegament
+
+- `main` = producció. A Vercel és la branca de producció (cada commit a `main` desplega a
+  producció). Protegida a GitHub: només per PR, sense `--force` ni esborrat.
+  **Hi arriba només quan l'usuari ho diu, cada vegada**, per PR des de `developer`.
+- `developer` = integració, on es fusionen les PR (merge commit). Protegida contra `--force` i esborrat.
+- `feature/<nom>` = feina en curs. Surten de `developer` (o d'una altra `feature/` si van apilades)
+  i s'hi tornen per PR. Cada push a una `feature/` té la seva previsualització a Vercel.
+- **No reanomenis una branca que tingui una PR oberta**: GitHub tanca la PR i no es pot reobrir.
+- Projecte Vercel: `camping-castellmontgri` (equip `nertelai-7298s-projects`). Els builds llegeixen
+  els valors públics de `.env.production` (URL i clau publicable de Supabase, DSN de Sentry).
+
+## Disseny
+
+- Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
+  franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
+  fosc: si no, el text crema perd contrast.
+- Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
+  cursiva són desenes de KB que endarrereixen el LCP a mòbil.
+- Les seccions sota el plec porten `.cv` (`content-visibility: auto`).
 
 ## Animacions
+
+Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
+rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
+
+- Escenes a `src/components/scene/`: `HeroShowcase` + `HeroScene` (vol sobre el plànol) i
+  `FoodShowcase` + `FoodScene` (paella, gelat, copa). Fases a `phases.ts`, amb proves.
+- three.js no ha d'entrar a la càrrega inicial: el hero el carrega a la **primera interacció**
+  (`interaction.ts`); en ociós encara disparava el TBT. Fins que l'escena és a punt, la foto tapa.
+- Textures d'imatges de Storage: a través de l'optimitzador de Next (`/_next/image?...&w=2048&q=75`),
+  mateix origen. Next 16 només accepta la qualitat 75 si no se'n configuren més.
+- Vidre sobre canvas transparent: material transparent, no `transmission` (sortia blanc).
+- Per revisar les escenes sense el panell (quan està amagat, `requestAnimationFrame` no corre):
+  Chrome sense cap amb playwright-core i captures al 0/25/50/75/100 %.
 
 - Respectar sempre `prefers-reduced-motion`: cada animació ha de tenir un estat
   final estàtic correcte.
 - Les animacions de scroll no poden bloquejar el LCP: el hero es pinta primer i
   l'animació s'hi afegeix després.
+- Res d'`opacity: 0` en elements visibles a la càrrega (no compten per al LCP i l'auditoria de
+  contrast els veu esvaïts). `.reveal` només desplaça.
+- Res d'`animation-timeline: view()` (el panell de previsualització deixa de pintar) ni de capes
+  fixes a pantalla completa amb `mix-blend-mode` (recomposició a cada fotograma de scroll).
+- Sentry del navegador es carrega quan el navegador està ociós (`instrumentation-client.ts`).

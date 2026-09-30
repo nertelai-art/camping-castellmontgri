@@ -1,5 +1,121 @@
 {
-  "meta": { "title": "Natura Village Castell Montgrí · Camping & Bungalows in L'Estartit", "description": "Familiecamping in L'Estartit, Costa Brava: stacaravans, glamping, kampeerplaatsen, zwembaden en glijbanen naast het Natuurpark Montgrí." },
-  "nav": { "accommodation": "Accommodaties", "map": "Plattegrond", "gastronomy": "Eten & drinken", "services": "Voorzieningen", "entertainment": "Animatie", "surroundings": "Omgeving", "contact": "Contact", "book": "Reserveren" },
-  "skeleton": { "notice": "Nieuwe website in aanbouw", "sections": "Geplande secties" }
+  "nav": {
+    "accommodation": "Accommodaties",
+    "map": "Plattegrond",
+    "gastronomy": "Eten & drinken",
+    "services": "Voorzieningen",
+    "entertainment": "Animatie",
+    "surroundings": "Omgeving",
+    "contact": "Contact",
+    "book": "Reserveren",
+    "menu": "Menu",
+    "close": "Sluiten",
+    "language": "Taal",
+    "skip": "Naar de inhoud",
+    "clientArea": "Gastenportaal"
+  },
+  "hero": {
+    "season": "Seizoen",
+    "discover": "Ontdek de camping",
+    "from": "{open} – {close}",
+    "sceneDescription": "Animatie: de getekende plattegrond van de camping gaat liggen als de grond en de camera vliegt eroverheen terwijl er markeringen vallen op de zwembaden, restaurants en speelplekken."
+  },
+  "facts": {
+    "accommodations": "accommodaties",
+    "restaurants": "restaurants en bars",
+    "services": "voorzieningen",
+    "activities": "animatieactiviteiten"
+  },
+  "accommodation": {
+    "eyebrow": "Waar slapen",
+    "all": "Alle",
+    "guests": "Personen",
+    "guestsAny": "Alle",
+    "guestsMin": "{count}+",
+    "empty": "Geen accommodatie met deze filters.",
+    "details": "Bekijken",
+    "people": "{count} pers.",
+    "size": "{value} m²",
+    "bedrooms": "{count, plural, one {# slaapkamer} other {# slaapkamers}}",
+    "bathrooms": "{count, plural, one {# badkamer} other {# badkamers}}",
+    "airConditioning": "Airconditioning",
+    "accessible": "Rolstoeltoegankelijk",
+    "equipment": "Wat vind je er",
+    "gallery": "Foto's van {name}",
+    "photo": "Foto {index} van {total}",
+    "count": "{count, plural, one {# accommodatie} other {# accommodaties}}"
+  },
+  "gastronomy": {
+    "eyebrow": "Eten en drinken",
+    "zone": {
+      "ombra": "Zone Ombra",
+      "panorama": "Zone Panorama"
+    },
+    "hours": "Openingstijden",
+    "menu": "Bekijk de kaart",
+    "sceneDescription": "Animatie: een paellapan vult zich met rijst, garnalen en mosselen; een hoorntje krijgt bolletjes ijs die smelten; en een glas loopt vol met frisdrank, ijsblokjes en citroen.",
+    "steps": {
+      "food": "Om te eten",
+      "icecream": "IJs",
+      "drinks": "Om te drinken"
+    }
+  },
+  "pools": {
+    "eyebrow": "Water en zon"
+  },
+  "services": {
+    "eyebrow": "Alles bij de hand"
+  },
+  "entertainment": {
+    "eyebrow": "Voor het hele gezin",
+    "audience": {
+      "children": "Kinderen",
+      "family": "Gezin",
+      "adult": "Volwassenen"
+    }
+  },
+  "surroundings": {
+    "eyebrow": "De Empordà en de Costa Brava"
+  },
+  "map": {
+    "eyebrow": "De camping",
+    "filters": "Filter de plattegrond",
+    "viewer": "Interactieve plattegrond van de camping",
+    "hint": "Sleep om te bewegen · knijp, Ctrl + scroll of + en − om te zoomen",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "reset": "Hele plattegrond",
+    "fullscreen": "Volledig scherm",
+    "exitFullscreen": "Volledig scherm sluiten",
+    "back": "Alle plekken",
+    "places": "{count, plural, one {# plek} other {# plekken}}",
+    "seeAccommodation": "Bekijk de accommodaties",
+    "showOnMap": "Toon op de plattegrond",
+    "kinds": {
+      "all": "Alles",
+      "accommodation": "Accommodatie",
+      "food": "Eten & drinken",
+      "pool": "Zwembaden",
+      "leisure": "Vrije tijd & sport",
+      "service": "Voorzieningen",
+      "landmark": "Bezienswaardigheden"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Beoordelingen",
+    "title": "Wat onze gasten zeggen",
+    "via": "op {source}"
+  },
+  "footer": {
+    "contact": "Contact",
+    "howToGet": "Route",
+    "season": "Seizoen",
+    "license": "Toerismeregister",
+    "rights": "Alle rechten voorbehouden.",
+    "notice": "Nieuwe website in aanbouw"
+  },
+  "units": {
+    "people": "{count} pers.",
+    "bedrooms": "{count, plural, one {# slaapk.} other {# slaapk.}}"
+  }
 }

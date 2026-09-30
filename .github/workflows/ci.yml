@@ -12,11 +12,16 @@ concurrency:
 
 permissions:
   contents: read
+  pull-requests: read # paths-filter llegeix els fitxers canviats de la PR
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      # Valors públics (arriben al navegador): URL i clau publicable del Supabase de preproducció.
+      NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
     steps:
       - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
@@ -27,3 +32,29 @@ jobs:
       - run: pnpm install --frozen-lockfile
       # typecheck/lint/tests ja han passat al pre-push; aquí només el que no es pot fer de fiar en local.
       - run: pnpm build
+
+  database:
+    # Migracions + proves RLS (pgTAP) contra un Postgres de debò. Només si canvia l'esquema.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            db:
+              - 'supabase/**'
+      - if: steps.changes.outputs.db == 'true'
+        uses: pnpm/action-setup@v4
+      - if: steps.changes.outputs.db == 'true'
+        uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - if: steps.changes.outputs.db == 'true'
+        run: pnpm install --frozen-lockfile
+      - if: steps.changes.outputs.db == 'true'
+        run: pnpm exec supabase db start
+      - if: steps.changes.outputs.db == 'true'
+        run: pnpm db:test

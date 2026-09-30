@@ -1,5 +1,121 @@
 {
-  "meta": { "title": "Natura Village Castell Montgrí · Camping & Bungalows à L'Estartit", "description": "Camping familial à L'Estartit, Costa Brava : mobil-homes, glamping, emplacements, piscines et toboggans près du Parc Naturel du Montgrí." },
-  "nav": { "accommodation": "Hébergement", "map": "Plan", "gastronomy": "Gastronomie", "services": "Services", "entertainment": "Animation", "surroundings": "Environs", "contact": "Contact", "book": "Réserver" },
-  "skeleton": { "notice": "Nouveau site en construction", "sections": "Sections prévues" }
+  "nav": {
+    "accommodation": "Hébergement",
+    "map": "Plan",
+    "gastronomy": "Gastronomie",
+    "services": "Services",
+    "entertainment": "Animation",
+    "surroundings": "Environs",
+    "contact": "Contact",
+    "book": "Réserver",
+    "menu": "Menu",
+    "close": "Fermer",
+    "language": "Langue",
+    "skip": "Aller au contenu",
+    "clientArea": "Espace client"
+  },
+  "hero": {
+    "season": "Saison",
+    "discover": "Découvrir le camping",
+    "from": "Du {open} au {close}",
+    "sceneDescription": "Animation : le plan illustré du camping se couche comme un sol et la caméra le survole pendant que tombent les repères des piscines, des restaurants et des espaces de loisirs."
+  },
+  "facts": {
+    "accommodations": "hébergements",
+    "restaurants": "restaurants et bars",
+    "services": "services",
+    "activities": "activités d'animation"
+  },
+  "accommodation": {
+    "eyebrow": "Où dormir",
+    "all": "Tous",
+    "guests": "Personnes",
+    "guestsAny": "Indifférent",
+    "guestsMin": "{count}+",
+    "empty": "Aucun hébergement avec ces filtres.",
+    "details": "Voir",
+    "people": "{count} pers.",
+    "size": "{value} m²",
+    "bedrooms": "{count, plural, one {# chambre} other {# chambres}}",
+    "bathrooms": "{count, plural, one {# salle de bain} other {# salles de bain}}",
+    "airConditioning": "Climatisation",
+    "accessible": "Accessible PMR",
+    "equipment": "Équipements",
+    "gallery": "Photos de {name}",
+    "photo": "Photo {index} sur {total}",
+    "count": "{count, plural, one {# hébergement} other {# hébergements}}"
+  },
+  "gastronomy": {
+    "eyebrow": "Manger et boire",
+    "zone": {
+      "ombra": "Zone Ombra",
+      "panorama": "Zone Panorama"
+    },
+    "hours": "Horaires",
+    "menu": "Voir la carte",
+    "sceneDescription": "Animation : une paella se remplit de riz, de crevettes et de moules ; un cornet se remplit de boules de glace qui fondent ; et un verre se remplit de boisson avec des glaçons et du citron.",
+    "steps": {
+      "food": "Pour manger",
+      "icecream": "Glaces",
+      "drinks": "Pour boire"
+    }
+  },
+  "pools": {
+    "eyebrow": "Eau et soleil"
+  },
+  "services": {
+    "eyebrow": "Tout à portée de main"
+  },
+  "entertainment": {
+    "eyebrow": "Pour toute la famille",
+    "audience": {
+      "children": "Enfants",
+      "family": "Famille",
+      "adult": "Adultes"
+    }
+  },
+  "surroundings": {
+    "eyebrow": "L'Empordà et la Costa Brava"
+  },
+  "map": {
+    "eyebrow": "Le camping",
+    "filters": "Filtrer le plan",
+    "viewer": "Plan interactif du camping",
+    "hint": "Faites glisser pour vous déplacer · pincez, Ctrl + molette ou + et − pour zoomer",
+    "zoomIn": "Zoomer",
+    "zoomOut": "Dézoomer",
+    "reset": "Voir tout le plan",
+    "fullscreen": "Plein écran",
+    "exitFullscreen": "Quitter le plein écran",
+    "back": "Tous les lieux",
+    "places": "{count, plural, one {# lieu} other {# lieux}}",
+    "seeAccommodation": "Voir les hébergements",
+    "showOnMap": "Voir sur le plan",
+    "kinds": {
+      "all": "Tout",
+      "accommodation": "Hébergement",
+      "food": "Manger et boire",
+      "pool": "Piscines",
+      "leisure": "Loisirs et sport",
+      "service": "Services",
+      "landmark": "Lieux d'intérêt"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Avis",
+    "title": "Ce qu'ils disent de nous",
+    "via": "sur {source}"
+  },
+  "footer": {
+    "contact": "Contact",
+    "howToGet": "Comment venir",
+    "season": "Saison",
+    "license": "Registre du tourisme",
+    "rights": "Tous droits réservés.",
+    "notice": "Nouveau site en construction"
+  },
+  "units": {
+    "people": "{count} pers.",
+    "bedrooms": "{count, plural, one {# ch.} other {# ch.}}"
+  }
 }
