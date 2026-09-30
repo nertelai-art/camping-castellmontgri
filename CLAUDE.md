@@ -65,6 +65,15 @@ client es pugen a Supabase Storage amb el script de seed.
 - Branca d'integració: `developer`. Preproducció = previsualitzacions de Vercel.
   **Producció només quan ho digui l'usuari, cada vegada.**
 
+## Disseny
+
+- Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
+  franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
+  fosc: si no, el text crema perd contrast.
+- Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
+  cursiva són desenes de KB que endarrereixen el LCP a mòbil.
+- Les seccions sota el plec porten `.cv` (`content-visibility: auto`).
+
 ## Animacions
 
 Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
@@ -74,3 +83,8 @@ rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
   final estàtic correcte.
 - Les animacions de scroll no poden bloquejar el LCP: el hero es pinta primer i
   l'animació s'hi afegeix després.
+- Res d'`opacity: 0` en elements visibles a la càrrega (no compten per al LCP i l'auditoria de
+  contrast els veu esvaïts). `.reveal` només desplaça.
+- Res d'`animation-timeline: view()` (el panell de previsualització deixa de pintar) ni de capes
+  fixes a pantalla completa amb `mix-blend-mode` (recomposició a cada fotograma de scroll).
+- Sentry del navegador es carrega quan el navegador està ociós (`instrumentation-client.ts`).

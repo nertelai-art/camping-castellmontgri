@@ -1,20 +1,15 @@
 {
-  "nav": {
-    "accommodation": "Accommodaties",
-    "map": "Plattegrond",
-    "gastronomy": "Eten & drinken",
-    "services": "Voorzieningen",
-    "entertainment": "Animatie",
-    "surroundings": "Omgeving",
-    "contact": "Contact",
-    "book": "Reserveren"
-  },
-  "skeleton": {
-    "notice": "Nieuwe website in aanbouw · echte gegevens uit Supabase"
-  },
-  "units": {
-    "people": "{count} pers.",
-    "bedrooms": "{count, plural, one {# slaapk.} other {# slaapk.}}",
-    "accommodations": "{count, plural, one {# accommodatie} other {# accommodaties}}"
-  }
+  "nav": { "accommodation": "Accommodaties", "map": "Plattegrond", "gastronomy": "Eten & drinken", "services": "Voorzieningen", "entertainment": "Animatie", "surroundings": "Omgeving", "contact": "Contact", "book": "Reserveren", "menu": "Menu", "close": "Sluiten", "language": "Taal", "skip": "Naar de inhoud", "clientArea": "Gastenportaal" },
+  "hero": { "season": "Seizoen", "discover": "Ontdek de camping", "from": "{open} – {close}" },
+  "facts": { "accommodations": "accommodaties", "restaurants": "restaurants en bars", "services": "voorzieningen", "activities": "animatieactiviteiten" },
+  "accommodation": { "eyebrow": "Waar slapen", "all": "Alle", "guests": "Personen", "guestsAny": "Alle", "guestsMin": "{count}+", "empty": "Geen accommodatie met deze filters.", "details": "Bekijken", "people": "{count} pers.", "size": "{value} m²", "bedrooms": "{count, plural, one {# slaapkamer} other {# slaapkamers}}", "bathrooms": "{count, plural, one {# badkamer} other {# badkamers}}", "airConditioning": "Airconditioning", "accessible": "Rolstoeltoegankelijk", "equipment": "Wat vind je er", "gallery": "Foto's van {name}", "photo": "Foto {index} van {total}", "count": "{count, plural, one {# accommodatie} other {# accommodaties}}" },
+  "gastronomy": { "eyebrow": "Eten en drinken", "zone": { "ombra": "Zone Ombra", "panorama": "Zone Panorama" }, "hours": "Openingstijden", "menu": "Bekijk de kaart" },
+  "pools": { "eyebrow": "Water en zon" },
+  "services": { "eyebrow": "Alles bij de hand" },
+  "entertainment": { "eyebrow": "Voor het hele gezin", "audience": { "children": "Kinderen", "family": "Gezin", "adult": "Volwassenen" } },
+  "surroundings": { "eyebrow": "De Empordà en de Costa Brava" },
+  "map": { "eyebrow": "De camping", "soon": "Interactieve plattegrond binnenkort", "open": "Open de plattegrond groot" },
+  "testimonials": { "eyebrow": "Beoordelingen", "title": "Wat onze gasten zeggen", "via": "op {source}" },
+  "footer": { "contact": "Contact", "howToGet": "Route", "season": "Seizoen", "license": "Toerismeregister", "rights": "Alle rechten voorbehouden.", "notice": "Nieuwe website in aanbouw" },
+  "units": { "people": "{count} pers.", "bedrooms": "{count, plural, one {# slaapk.} other {# slaapk.}}" }
 }

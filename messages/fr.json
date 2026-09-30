@@ -1,20 +1,15 @@
 {
-  "nav": {
-    "accommodation": "Hébergement",
-    "map": "Plan",
-    "gastronomy": "Gastronomie",
-    "services": "Services",
-    "entertainment": "Animation",
-    "surroundings": "Environs",
-    "contact": "Contact",
-    "book": "Réserver"
-  },
-  "skeleton": {
-    "notice": "Nouveau site en construction · données réelles de Supabase"
-  },
-  "units": {
-    "people": "{count} pers.",
-    "bedrooms": "{count, plural, one {# ch.} other {# ch.}}",
-    "accommodations": "{count, plural, one {# hébergement} other {# hébergements}}"
-  }
+  "nav": { "accommodation": "Hébergement", "map": "Plan", "gastronomy": "Gastronomie", "services": "Services", "entertainment": "Animation", "surroundings": "Environs", "contact": "Contact", "book": "Réserver", "menu": "Menu", "close": "Fermer", "language": "Langue", "skip": "Aller au contenu", "clientArea": "Espace client" },
+  "hero": { "season": "Saison", "discover": "Découvrir le camping", "from": "Du {open} au {close}" },
+  "facts": { "accommodations": "hébergements", "restaurants": "restaurants et bars", "services": "services", "activities": "activités d'animation" },
+  "accommodation": { "eyebrow": "Où dormir", "all": "Tous", "guests": "Personnes", "guestsAny": "Indifférent", "guestsMin": "{count}+", "empty": "Aucun hébergement avec ces filtres.", "details": "Voir", "people": "{count} pers.", "size": "{value} m²", "bedrooms": "{count, plural, one {# chambre} other {# chambres}}", "bathrooms": "{count, plural, one {# salle de bain} other {# salles de bain}}", "airConditioning": "Climatisation", "accessible": "Accessible PMR", "equipment": "Équipements", "gallery": "Photos de {name}", "photo": "Photo {index} sur {total}", "count": "{count, plural, one {# hébergement} other {# hébergements}}" },
+  "gastronomy": { "eyebrow": "Manger et boire", "zone": { "ombra": "Zone Ombra", "panorama": "Zone Panorama" }, "hours": "Horaires", "menu": "Voir la carte" },
+  "pools": { "eyebrow": "Eau et soleil" },
+  "services": { "eyebrow": "Tout à portée de main" },
+  "entertainment": { "eyebrow": "Pour toute la famille", "audience": { "children": "Enfants", "family": "Famille", "adult": "Adultes" } },
+  "surroundings": { "eyebrow": "L'Empordà et la Costa Brava" },
+  "map": { "eyebrow": "Le camping", "soon": "Plan interactif très bientôt", "open": "Ouvrir le plan en grand" },
+  "testimonials": { "eyebrow": "Avis", "title": "Ce qu'ils disent de nous", "via": "sur {source}" },
+  "footer": { "contact": "Contact", "howToGet": "Comment venir", "season": "Saison", "license": "Registre du tourisme", "rights": "Tous droits réservés.", "notice": "Nouveau site en construction" },
+  "units": { "people": "{count} pers.", "bedrooms": "{count, plural, one {# ch.} other {# ch.}}" }
 }

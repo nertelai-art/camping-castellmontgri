@@ -73,7 +73,8 @@ async function uploadMedia() {
         // Els originals del web fan fins a 6000 px: es reduïen a 2400 px, prou per a pantalles retina.
         const image = sharp(body).rotate();
         const meta = await image.metadata();
-        if ((meta.width ?? 0) > MAX_WIDTH || body.length > 700_000) {
+        // El plànol es queda a resolució original: el visor interactiu (fase 3) hi fa zoom.
+        if (entry.category !== "plan" && ((meta.width ?? 0) > MAX_WIDTH || body.length > 700_000)) {
           body = await image.resize({ width: MAX_WIDTH, withoutEnlargement: true }).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
           contentType = "image/jpeg";
           path = path.replace(/\.(png|jpe?g|webp)$/i, ".jpg");
@@ -167,14 +168,16 @@ async function seedSettings() {
 
 // ─── 3. Seccions de la landing (blocs de la home antiga, en ordre) ───────────
 const SECTIONS: { key: string; blockIndex: number; image: string }[] = [
-  { key: "welcome", blockIndex: 0, image: "camping-montgri-0451-desk" },
-  { key: "accommodation", blockIndex: 1, image: "banner-mobilehome" },
+  { key: "welcome", blockIndex: 0, image: "img-8754" },
+  { key: "accommodation", blockIndex: 1, image: "2g8a2072" },
   { key: "gastronomy", blockIndex: 2, image: "banner-gastronomia-65ef" },
   { key: "services", blockIndex: 3, image: "banner-instalacions-65ef" },
   { key: "surroundings", blockIndex: 4, image: "banner-entorn-65ef" },
   { key: "entertainment", blockIndex: 5, image: "banner-animacio-65ef" },
-  { key: "accommodation-intro", blockIndex: 7, image: "camping-montgri-2100-desktop" },
+  { key: "accommodation-intro", blockIndex: 7, image: "2g8a2147-copia-669f802d66e0" },
 ];
+
+type NewSection = { image: string } & Record<Locale, { title: string; body: string; cta_label: string }>;
 
 async function seedSections() {
   for (const [order, s] of SECTIONS.entries()) {
@@ -196,7 +199,18 @@ async function seedSections() {
       );
     }
   }
-  console.log(`✓ ${SECTIONS.length} seccions`);
+  // Seccions noves sense equivalent al web antic (hero, plànol): textos a scripts/content/new-sections.json.
+  const extra = JSON.parse(await readFile("scripts/content/new-sections.json", "utf8")) as Record<string, NewSection | string>;
+  const extraKeys = Object.keys(extra).filter((k) => !k.startsWith("_"));
+  for (const key of extraKeys) {
+    const s = extra[key] as NewSection;
+    const order = key === "hero" ? -10 : 15;
+    check(await db.from("sections").upsert({ key, sort_order: order, media_id: mediaLike(s.image) }), `section ${key}`);
+    for (const locale of LOCALES) {
+      check(await db.from("section_translations").upsert({ section_key: key, locale, ...s[locale] }), `section_translations ${key}/${locale}`);
+    }
+  }
+  console.log(`✓ ${SECTIONS.length + extraKeys.length} seccions`);
 }
 
 // ─── 4. Allotjaments ─────────────────────────────────────────────────────────
@@ -300,6 +314,9 @@ type Service = { id: string; titleByLang: Record<Locale, string>; textByLang: Re
 const slugify = (s: string) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
+// El web antic no traduïa alguns títols a l'anglès («PUNTO DE CARGA»): slug fix per a aquests.
+const SERVICE_SLUGS: Record<string, string> = { s21: "ev-charging", s18: "fridge-rental" };
+
 async function seedServices() {
   const list = await json<Service[]>("content/services.json");
   for (const [order, s] of list.entries()) {
@@ -308,7 +325,7 @@ async function seedServices() {
         .from("services")
         .upsert(
           {
-            slug: slugify(s.titleByLang.en),
+            slug: SERVICE_SLUGS[s.id] ?? slugify(s.titleByLang.en),
             legacy_anchor: s.id,
             icon_media_id: mediaId(s.icon),
             media_id: mediaId(s.image),
@@ -466,4 +483,16 @@ await seedAccommodations();
 await seedServices();
 await seedVenues();
 await seedTestimonials();
+
+// La web té el contingut a la caché de Next per etiquetes: si hi ha una web engegada, se li diu que
+// l'invalidi (si no, continuaria servint el contingut d'abans del seed).
+const revalidateUrl = process.env.REVALIDATE_URL;
+if (revalidateUrl && process.env.REVALIDATE_SECRET) {
+  const res = await fetch(revalidateUrl, {
+    method: "POST",
+    headers: { "content-type": "application/json", "x-revalidate-secret": process.env.REVALIDATE_SECRET },
+    body: "{}",
+  }).catch((error: Error) => ({ ok: false, status: error.message }));
+  console.log(res.ok ? "✓ caché de la web invalidada" : `⚠ no s'ha pogut invalidar la caché (${res.status})`);
+}
 console.log("✔ Seed complet");

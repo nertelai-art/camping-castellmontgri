@@ -1,6 +1,6 @@
 # Roadmap — Natura Village Castell Montgrí
 
-> Estat: **fase 1 feta en local i a Supabase remot** (esquema, RLS, seed, lectura, Sentry). Pendent: seed remot i projecte Vercel. Actualitzat el 30/09/2026.
+> Estat: **fases 1 i 2 fetes** (plataforma de contingut i landing). Pendent: seed al Supabase remot, projecte Vercel i mesura de rendiment en preproducció. Actualitzat el 30/09/2026.
 
 ## 1. Què fem
 
@@ -134,11 +134,14 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ⏳ **Projecte Vercel**: el connector no té permís per crear-lo; es fa des del tauler.
 - **Acabat quan:** la home de l'esquelet mostra dades reals de Supabase en els 5 idiomes. ✅ en local.
 
-### Fase 2 — Sistema de disseny i landing estàtica
-- Tipografia, colors i components a partir de la marca (logo, verd oliva, llima).
-- Totes les seccions de la landing muntades amb dades reals, **sense** animacions grans.
-- SEO: metadades per idioma, `hreflang`, sitemap, dades estructurades (`Campground`), redireccions des de les URL antigues.
-- **Acabat quan:** Lighthouse ≥ 95 en mòbil i totes les seccions funcionen en 5 idiomes.
+### Fase 2 — Sistema de disseny i landing estàtica ✅ (amb la mesura de rendiment pendent)
+- ✅ Direcció visual «guia de natura»: paper crema amb gra, tinta oliva, accents terracota, numeració de secció i la carena del Montgrí amb el castell com a signatura. Fraunces (titulars) + Lato (la del web actual). Tema clar i fosc; les franges de color mantenen el contrast en tots dos.
+- ✅ Landing sencera amb dades reals en 5 idiomes: hero (foto aèria real), benvinguda amb xifres comptades del contingut, allotjaments (pestanyes, filtre per persones, fitxa amb galeria i equipament), plànol, gastronomia per zones, piscines i tobogans, serveis desplegables, animació per públics, entorn, opinions i peu amb contacte i acreditacions.
+- ✅ SEO: títol i descripció per idioma, canònica, `hreflang` + `x-default`, Open Graph, `sitemap.xml`, `robots.txt` (les previsualitzacions no s'indexen) i JSON-LD `Campground`.
+- ✅ Accessibilitat: Lighthouse 100 (contrast, `lang` a les opinions, diàleg amb focus i Escape, menú mòbil sense JS, enllaç «salta al contingut»).
+- ✅ Rendiment: Sentry del navegador diferit, tipografies de 320 KB a 89 KB, seccions sota el plec amb `content-visibility`, cap animació que bloquegi el LCP.
+- ⏳ **Lighthouse ≥ 95 a mòbil**: en local surt entre 75 i 83, amb una variació enorme (la mateixa build ha donat 27 i 80). La mesura bona es fa amb PageSpeed sobre una previsualització de Vercel.
+- ➡️ Redireccions 301 de les URL antigues: passen a la fase 6, quan existeixin les pàgines de destí.
 
 ### Fase 3 — Plànol interactiu
 - Visor amb zoom/arrossegament (tàctil inclòs), punts, zones, filtres i fitxa lateral.

@@ -1,20 +1,15 @@
 {
-  "nav": {
-    "accommodation": "Allotjament",
-    "map": "Plànol",
-    "gastronomy": "Gastronomia",
-    "services": "Serveis",
-    "entertainment": "Animació",
-    "surroundings": "Entorn",
-    "contact": "Contacte",
-    "book": "Reservar"
-  },
-  "skeleton": {
-    "notice": "Web nova en construcció · dades reals de Supabase"
-  },
-  "units": {
-    "people": "{count} pers.",
-    "bedrooms": "{count, plural, one {# hab.} other {# hab.}}",
-    "accommodations": "{count, plural, one {# allotjament} other {# allotjaments}}"
-  }
+  "nav": { "accommodation": "Allotjament", "map": "Plànol", "gastronomy": "Gastronomia", "services": "Serveis", "entertainment": "Animació", "surroundings": "Entorn", "contact": "Contacte", "book": "Reservar", "menu": "Menú", "close": "Tancar", "language": "Idioma", "skip": "Salta al contingut", "clientArea": "Àrea de clients" },
+  "hero": { "season": "Temporada", "discover": "Descobreix el càmping", "from": "Del {open} al {close}" },
+  "facts": { "accommodations": "allotjaments", "restaurants": "restaurants i bars", "services": "serveis", "activities": "activitats d'animació" },
+  "accommodation": { "eyebrow": "On dormir", "all": "Tots", "guests": "Persones", "guestsAny": "Qualsevol", "guestsMin": "{count}+", "empty": "Cap allotjament amb aquests filtres.", "details": "Veure'l", "people": "{count} pers.", "size": "{value} m²", "bedrooms": "{count, plural, one {# habitació} other {# habitacions}}", "bathrooms": "{count, plural, one {# bany} other {# banys}}", "airConditioning": "Aire condicionat", "accessible": "Adaptat PMR", "equipment": "Què hi trobaràs", "gallery": "Fotos de {name}", "photo": "Foto {index} de {total}", "count": "{count, plural, one {# allotjament} other {# allotjaments}}" },
+  "gastronomy": { "eyebrow": "Menjar i beure", "zone": { "ombra": "Zona Ombra", "panorama": "Zona Panorama" }, "hours": "Horari", "menu": "Veure la carta" },
+  "pools": { "eyebrow": "Aigua i sol" },
+  "services": { "eyebrow": "Tot a mà" },
+  "entertainment": { "eyebrow": "Per a tota la família", "audience": { "children": "Infantil", "family": "Família", "adult": "Adults" } },
+  "surroundings": { "eyebrow": "L'Empordà i la Costa Brava" },
+  "map": { "eyebrow": "El càmping", "soon": "Plànol interactiu molt aviat", "open": "Obre el plànol en gran" },
+  "testimonials": { "eyebrow": "Opinions", "title": "Què diuen de nosaltres", "via": "a {source}" },
+  "footer": { "contact": "Contacte", "howToGet": "Com arribar-hi", "season": "Temporada", "license": "Registre de turisme", "rights": "Tots els drets reservats.", "notice": "Web nova en construcció" },
+  "units": { "people": "{count} pers.", "bedrooms": "{count, plural, one {# hab.} other {# hab.}}" }
 }
