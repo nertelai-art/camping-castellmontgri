@@ -20,7 +20,8 @@ const MAX_WIDTH = 2400;
 
 const envFile = process.argv[2] ?? ".env.local";
 process.loadEnvFile(envFile);
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+// Accepta també l'adreça copiada amb «/rest/v1/» al final (és la de l'API REST, no la del projecte).
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/rest\/v1\/?$/, "");
 const secret = process.env.SUPABASE_SECRET_KEY;
 if (!url || !secret) throw new Error(`Falten NEXT_PUBLIC_SUPABASE_URL o SUPABASE_SECRET_KEY a ${envFile}`);
 

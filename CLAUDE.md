@@ -45,9 +45,11 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 
 - Local amb Docker: `pnpm exec supabase start` (ports 556xx, per no xocar amb altres projectes).
   `pnpm db:reset` aplica les migracions, `pnpm seed` hi carrega el contingut, `pnpm db:test` passa les proves RLS.
-- Remot: projecte `camping-castellmontgri` (ref `ddnfdulaxrnmapxbsugn`, París). Les migracions s'hi
-  apliquen amb el mateix SQL que hi ha a `supabase/migrations/`, i s'hi fa el seed amb
-  `pnpm seed .env.preview` (fitxer local amb la clau secreta, fora del git).
+- Remot: projecte «Camping Castell montgri» (ref `rfgmpwefytrksswrcuvm`, París), a l'organització de
+  la CLI de Supabase de l'usuari. La CLI ja hi està enllaçada: migracions amb
+  `pnpm exec supabase db push --linked` (primer `--dry-run`) i seed amb `pnpm seed` (claus a `.env.local`).
+- El projecte `ddnfdulaxrnmapxbsugn` (organització Demos_Nertel, el del connector MCP) va ser el primer
+  intent i ja no s'usa.
 - Una migració nova = un fitxer nou. Mai s'edita una migració ja aplicada al remot.
 
 ## Plànol interactiu
