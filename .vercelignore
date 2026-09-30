@@ -1,0 +1,10 @@
+# Què NO puja a Vercel en desplegar des de la CLI
+.env
+.env.*
+!.env.example
+reference/
+node_modules/
+.next/
+supabase/.temp/
+supabase/.branches/
+coverage/
