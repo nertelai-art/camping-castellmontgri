@@ -2,11 +2,22 @@ import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import type { Restaurant, Section } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
+import { ShowOnMapButton } from "./show-on-map-button";
 
 const ZONES = ["ombra", "panorama"] as const;
 
 /** Gastronomia (fase 2: estàtica). A la fase 4 hi entren les escenes 3D del plat i el gelat. */
-export async function Gastronomy({ section, restaurants, index }: { section: Section; restaurants: Restaurant[]; index: number }) {
+export async function Gastronomy({
+  section,
+  restaurants,
+  onMap,
+  index,
+}: {
+  section: Section;
+  restaurants: Restaurant[];
+  onMap: Set<string>;
+  index: number;
+}) {
   const t = await getTranslations("gastronomy");
   return (
     <section aria-labelledby="gastronomy-title" className="cv bg-blush py-24 text-ink lg:py-32">
@@ -43,11 +54,14 @@ export async function Gastronomy({ section, restaurants, index }: { section: Sec
                           {r.hours}
                         </p>
                       )}
-                      {r.menuUrl && (
-                        <a href={r.menuUrl} target="_blank" rel="noopener" className="mt-auto pt-2 text-sm font-bold text-terra hover:underline">
-                          {t("menu")} ↗
-                        </a>
-                      )}
+                      <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-2 text-terra">
+                        {r.menuUrl && (
+                          <a href={r.menuUrl} target="_blank" rel="noopener" className="text-sm font-bold hover:underline">
+                            {t("menu")} ↗
+                          </a>
+                        )}
+                        {onMap.has(`restaurant:${r.slug}`) && <ShowOnMapButton target={{ type: "restaurant", slug: r.slug }} />}
+                      </div>
                     </div>
                   </li>
                 ))}

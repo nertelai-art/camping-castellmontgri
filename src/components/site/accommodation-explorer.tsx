@@ -4,13 +4,26 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useId, useMemo, useRef, useState } from "react";
 import { RichText } from "@/components/rich-text";
-import type { Accommodation, AccommodationCategory } from "@/lib/supabase/content";
+import { ShowOnMapButton } from "./show-on-map-button";
+import type { Accommodation, AccommodationCategory, MapTarget } from "@/lib/supabase/content";
 
 const GUEST_STEPS = [2, 4, 5, 6] as const;
 
-type Props = { categories: AccommodationCategory[]; bookingUrl: string | null };
+type Props = {
+  categories: AccommodationCategory[];
+  bookingUrl: string | null;
+  /** Claus `accommodation:<slug>` i `category:<clau>` que tenen punt al plànol. */
+  onMap: string[];
+};
 
-export function AccommodationExplorer({ categories, bookingUrl }: Props) {
+/** On porta «Veure al plànol»: l'allotjament concret si té punt propi, si no la seva categoria. */
+function mapTargetFor(a: Accommodation, onMap: string[]): MapTarget | null {
+  if (onMap.includes(`accommodation:${a.slug}`)) return { type: "accommodation", slug: a.slug };
+  if (onMap.includes(`category:${a.category}`)) return { type: "category", slug: a.category };
+  return null;
+}
+
+export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) {
   const t = useTranslations("accommodation");
   const tNav = useTranslations("nav");
   const [category, setCategory] = useState<string>("all");
@@ -170,11 +183,17 @@ export function AccommodationExplorer({ categories, bookingUrl }: Props) {
               )}
             </div>
 
-            {bookingUrl && (
-              <div className="sticky bottom-0 flex justify-end border-t border-line bg-paper/95 px-5 py-4 backdrop-blur sm:px-8">
-                <a href={bookingUrl} target="_blank" rel="noopener" className="rounded-full bg-terra px-6 py-3 font-bold text-paper hover:bg-terra-2">
-                  {tNav("book")}
-                </a>
+            {(bookingUrl || mapTargetFor(open, onMap)) && (
+              <div className="sticky bottom-0 flex flex-wrap items-center justify-end gap-4 border-t border-line bg-paper/95 px-5 py-4 sm:px-8">
+                {mapTargetFor(open, onMap) && (
+                  // Primer es tanca la fitxa (és modal) perquè el plànol quedi a la vista.
+                  <ShowOnMapButton target={mapTargetFor(open, onMap)!} beforeShow={() => dialog.current?.close()} className="text-olive" />
+                )}
+                {bookingUrl && (
+                  <a href={bookingUrl} target="_blank" rel="noopener" className="rounded-full bg-terra px-6 py-3 font-bold text-paper hover:bg-terra-2">
+                    {tNav("book")}
+                  </a>
+                )}
               </div>
             )}
           </article>

@@ -241,3 +241,40 @@ export async function getMediaByFolder(folder: string, locale: Locale) {
     .map((m) => toMedia(m, locale))
     .filter((m): m is MediaRef => m !== null);
 }
+
+// ─── Plànol ───────────────────────────────────────────────────────────────────
+export type MapTarget = { type: "service" | "restaurant" | "activity" | "accommodation" | "category"; slug: string };
+
+export async function getMapPoints(locale: Locale) {
+  const result = await contentClient()
+    .from("map_points")
+    .select(
+      `id, kind, x, y, accommodation_category_key,
+       service:services(slug), restaurant:restaurants(slug), activity:activities(slug), accommodation:accommodations(slug),
+       map_point_translations(locale, label)`,
+    )
+    .in("map_point_translations.locale", localesFor(locale))
+    .order("sort_order");
+  return unwrap(result, "el plànol").map((p) => {
+    const target: MapTarget | null = p.service
+      ? { type: "service", slug: p.service.slug }
+      : p.restaurant
+        ? { type: "restaurant", slug: p.restaurant.slug }
+        : p.activity
+          ? { type: "activity", slug: p.activity.slug }
+          : p.accommodation
+            ? { type: "accommodation", slug: p.accommodation.slug }
+            : p.accommodation_category_key
+            ? { type: "category", slug: p.accommodation_category_key }
+            : null;
+    return {
+      id: p.id,
+      kind: p.kind,
+      x: Number(p.x),
+      y: Number(p.y),
+      label: pickTranslation(p.map_point_translations, locale)?.label ?? "",
+      target,
+    };
+  });
+}
+export type MapPoint = Awaited<ReturnType<typeof getMapPoints>>[number];

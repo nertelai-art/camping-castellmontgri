@@ -50,6 +50,15 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   `pnpm seed .env.preview` (fitxer local amb la clau secreta, fora del git).
 - Una migració nova = un fitxer nou. Mai s'edita una migració ja aplicada al remot.
 
+## Plànol interactiu
+
+- Els punts són a `map_points` en % de la il·lustració. La font inicial és
+  `scripts/content/map-points.json`, en píxels del plànol (3000×1845): més fàcil de revisar.
+- Per comprovar-ne la posició sense navegador: dibuixar-los sobre el plànol amb sharp (crop +
+  composite) i mirar-ho ampliat.
+- La geometria del visor (límits, zoom al voltant d'un punt, centrar) és a `src/lib/map/viewport.ts`
+  amb proves. «Veure al plànol» fa servir un esdeveniment de finestra (`src/lib/map/events.ts`).
+
 ## Material de referència
 
 `reference/` conté el contingut extret del web actual (textos en 5 idiomes,

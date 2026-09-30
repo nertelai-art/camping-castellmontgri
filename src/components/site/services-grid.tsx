@@ -3,9 +3,20 @@ import { MediaImage } from "@/components/media-image";
 import { RichText } from "@/components/rich-text";
 import type { Section, Service } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
+import { ShowOnMapButton } from "./show-on-map-button";
 
 /** Serveis: graella d'icones; cada un es desplega (details) per llegir-ne el detall sense sortir de la pàgina. */
-export async function ServicesGrid({ section, services, index }: { section: Section; services: Service[]; index: number }) {
+export async function ServicesGrid({
+  section,
+  services,
+  onMap,
+  index,
+}: {
+  section: Section;
+  services: Service[];
+  onMap: Set<string>;
+  index: number;
+}) {
   const t = await getTranslations("services");
   return (
     <section aria-labelledby="services-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
@@ -26,7 +37,8 @@ export async function ServicesGrid({ section, services, index }: { section: Sect
                     +
                   </span>
                 </summary>
-                {s.description && <RichText text={s.description} className="grid gap-3 px-4 pb-5 text-sm leading-relaxed text-muted [&_strong]:text-ink" />}
+                {s.description && <RichText text={s.description} className="grid gap-3 px-4 pb-3 text-sm leading-relaxed text-muted [&_strong]:text-ink" />}
+                {onMap.has(`service:${s.slug}`) && <ShowOnMapButton target={{ type: "service", slug: s.slug }} className="mx-4 mb-4 text-terra" />}
               </details>
             </li>
           ))}
