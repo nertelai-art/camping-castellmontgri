@@ -13,8 +13,14 @@ Cal Node 22 i pnpm 10 (la versió exacta surt de `packageManager`).
 ```bash
 pnpm install --frozen-lockfile
 cp .env.example .env.local
+pnpm exec supabase start
+pnpm db:reset
+pnpm seed
 pnpm dev
 ```
+
+`supabase start` necessita Docker i imprimeix les claus locals per posar a `.env.local`.
+El seed llegeix `reference/images/`, que no és al git: cal haver-lo generat abans (vegeu `reference/`).
 
 `pnpm install` activa el hook de pre-push (`.githooks/pre-push`): typecheck,
 lint, tests i `gitleaks`.
@@ -24,6 +30,10 @@ lint, tests i `gitleaks`.
 | `pnpm dev` | Servidor de desenvolupament |
 | `pnpm check` | typecheck + lint + tests |
 | `pnpm build` | Build de producció (el que fa la CI) |
+| `pnpm db:reset` | Refà la base local amb les migracions |
+| `pnpm db:test` | Proves RLS (pgTAP) contra la base local |
+| `pnpm db:types` | Regenera els tipus de TypeScript a partir de l'esquema |
+| `pnpm seed [fitxer .env]` | Carrega el contingut del web antic (per defecte, `.env.local`) |
 
 ## Problemes coneguts
 

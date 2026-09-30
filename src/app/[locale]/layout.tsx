@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { getSiteSettings } from "@/lib/supabase/content";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -11,13 +12,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "meta" });
+  if (!hasLocale(routing.locales, locale)) return {};
+  const { seo } = await getSiteSettings(locale);
   return {
-    title: t("title"),
-    description: t("description"),
-    alternates: {
-      languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])),
-    },
+    title: seo.title,
+    description: seo.description,
+    alternates: { languages: Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])) },
   };
 }
 

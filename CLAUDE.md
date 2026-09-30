@@ -33,7 +33,22 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   L'admin escriu amb la sessió de l'usuari; RLS ho restringeix per rol.
 - La clau secreta de Supabase només en scripts de servidor (seed, migració).
   Supabase només s'importa des de `src/lib/supabase/`: és la seva frontera.
-- Després de desar a l'admin es revalida per etiqueta (`revalidateTag`), no per temps.
+- Cada lectura queda a la caché de Next amb dues etiquetes: `content` i el nom de la taula
+  consultada (`sections`, `accommodations`…). Les traduccions i galeries van dins la consulta
+  del pare: en desar `section_translations` s'invalida `sections`. `/api/revalidate` expira
+  de seguida (`{ expire: 0 }`), no per temps.
+- Les funcions de rol (`is_editor`, `is_admin`) viuen a l'esquema `private`, fora de l'API.
+- Les polítiques RLS tenen proves pgTAP a `supabase/tests/`. Qualsevol canvi de polítiques
+  hi afegeix el seu cas.
+
+## Supabase: local i remot
+
+- Local amb Docker: `pnpm exec supabase start` (ports 556xx, per no xocar amb altres projectes).
+  `pnpm db:reset` aplica les migracions, `pnpm seed` hi carrega el contingut, `pnpm db:test` passa les proves RLS.
+- Remot: projecte `camping-castellmontgri` (ref `ddnfdulaxrnmapxbsugn`, París). Les migracions s'hi
+  apliquen amb el mateix SQL que hi ha a `supabase/migrations/`, i s'hi fa el seed amb
+  `pnpm seed .env.preview` (fitxer local amb la clau secreta, fora del git).
+- Una migració nova = un fitxer nou. Mai s'edita una migració ja aplicada al remot.
 
 ## Material de referència
 
@@ -45,11 +60,15 @@ client es pugen a Supabase Storage amb el script de seed.
 
 - `pnpm check` (typecheck + lint + tests) i `gitleaks` al hook de pre-push
   (`.githooks/`, s'activa sol amb `pnpm install`).
-- La CI només fa `pnpm build`.
+- La CI fa `pnpm build` (contra el Supabase de preproducció, amb variables de repo públiques)
+  i, si canvia `supabase/`, les proves RLS contra un Postgres de debò.
 - Branca d'integració: `developer`. Preproducció = previsualitzacions de Vercel.
   **Producció només quan ho digui l'usuari, cada vegada.**
 
 ## Animacions
+
+Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
+rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
 
 - Respectar sempre `prefers-reduced-motion`: cada animació ha de tenir un estat
   final estàtic correcte.

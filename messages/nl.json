@@ -1,5 +1,20 @@
 {
-  "meta": { "title": "Natura Village Castell Montgrí · Camping & Bungalows in L'Estartit", "description": "Familiecamping in L'Estartit, Costa Brava: stacaravans, glamping, kampeerplaatsen, zwembaden en glijbanen naast het Natuurpark Montgrí." },
-  "nav": { "accommodation": "Accommodaties", "map": "Plattegrond", "gastronomy": "Eten & drinken", "services": "Voorzieningen", "entertainment": "Animatie", "surroundings": "Omgeving", "contact": "Contact", "book": "Reserveren" },
-  "skeleton": { "notice": "Nieuwe website in aanbouw", "sections": "Geplande secties" }
+  "nav": {
+    "accommodation": "Accommodaties",
+    "map": "Plattegrond",
+    "gastronomy": "Eten & drinken",
+    "services": "Voorzieningen",
+    "entertainment": "Animatie",
+    "surroundings": "Omgeving",
+    "contact": "Contact",
+    "book": "Reserveren"
+  },
+  "skeleton": {
+    "notice": "Nieuwe website in aanbouw · echte gegevens uit Supabase"
+  },
+  "units": {
+    "people": "{count} pers.",
+    "bedrooms": "{count, plural, one {# slaapk.} other {# slaapk.}}",
+    "accommodations": "{count, plural, one {# accommodatie} other {# accommodaties}}"
+  }
 }

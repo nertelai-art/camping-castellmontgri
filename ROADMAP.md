@@ -1,6 +1,6 @@
 # Roadmap — Natura Village Castell Montgrí
 
-> Estat: **fase 0 feta** (repo, esquelet, idiomes, portes). Actualitzat el 30/09/2026.
+> Estat: **fase 1 feta en local i a Supabase remot** (esquema, RLS, seed, lectura, Sentry). Pendent: seed remot i projecte Vercel. Actualitzat el 30/09/2026.
 
 ## 1. Què fem
 
@@ -49,10 +49,12 @@ Extret a `reference/content/` (70 pàgines × 5 idiomes + JSON estructurats) i
 | Dades | Supabase: Postgres + Auth + Storage | Un sol proveïdor per contingut, usuaris i imatges |
 | Hosting | Vercel | Previsualització per PR; producció només a mà |
 | Errors | **Sentry, sí** | Un panell d'admin sense monitoratge falla en silenci; el pla gratuït n'hi ha prou |
-| Reserves | **Mantenim Thelis** | La landing hi envia amb dates i tipus d'allotjament preomplerts; zero risc sobre la facturació |
+| Reserves | **Mantenim Thelis, sense integrar de moment** | Botó cap al motor actual. L'enllaç amb paràmetres (dates, tipus) queda per més endavant |
 | Repo | Públic, `nertelai-art/camping-castellmontgri` | Web de màrqueting; cap secret al codi. Les fotos del client no van al git |
-| Animació | Motion (UI) + GSAP ScrollTrigger (scroll) + Lenis (scroll suau) | Motion per a micro-interaccions, GSAP per a seqüències llargues lligades al scroll |
-| Animacions il·lustrades | Rive (preferit) o Lottie | Plat → menjar, gelat que es fon… Són fitxers que el client pot substituir des de l'admin |
+| Animació | Motion per a micro-interaccions + **escenes 3D guiades pel scroll** (skill `scroll-3d-scenes`: three.js + React Three Fiber) | Mètode ja provat: `frameloop="demand"`, `damp`, instàncies, atzar amb llavor, reserva estàtica i `reduced-motion` |
+| Gastronomia animada | **Modelada per codi** (plat, gelat, copa amb `LatheGeometry`), no Rive/Lottie | No cal il·lustrador, surt nítid a qualsevol mida i no pesa. Els textos i fotos continuen sortint de l'admin |
+| Vídeo aeri | **No n'hi ha: el fem amb el plànol** | Escena 3D: la il·lustració del plànol (3000×1845) com a terreny inclinat, la càmera hi baixa amb el scroll i s'hi aixequen els punts clau |
+| Marca | **No hi ha manual**: es deriva del web actual | Oliva, crema, terracota i Lato; el logo SVG ja és a Storage |
 
 ## 4. Arquitectura
 
@@ -83,28 +85,25 @@ Tot amb `status` (`draft` | `published`), `sort_order` i `updated_at`.
 | `site_settings` (1 fila) | telèfons, correus, adreça, coordenades, temporada (dates), IRTC, xarxes, URL Thelis, URL portal | eslògan, avís de temporada, SEO per defecte |
 | `sections` | clau (`hero`, `gastronomy`…), visible, ordre, imatge/vídeo, animació | títol, subtítol, cos (text ric), CTA |
 | `accommodation_categories` | clau, icona, ordre | nom, descripció |
-| `accommodations` | categoria, capacitat mín/màx, m², habitacions, banys, PMR, mascotes, codi Thelis, galeria | nom, descripció, equipament |
-| `amenities` + `accommodation_amenities` | icona | nom |
+| `accommodations` | categoria, capacitat, m², habitacions, banys, aire condicionat, PMR, categoria de Thelis, portada, galeria (`accommodation_media`) | nom, descripció, equipament (llista) |
 | `services` | icona, imatge, punt al plànol | nom, descripció, horari |
-| `restaurants` | imatges, carta (PDF), animació, punt al plànol | nom, descripció, horari |
+| `restaurants` | zona (Ombra/Panorama), horari, portada | nom, descripció, carta (PDF a Storage) |
+| `activities` | públic (nens/família/adults), zona, horari, portada | nom, descripció |
 | `map_points` | x, y (% sobre el plànol), tipus, entitat enllaçada | etiqueta |
-| `map_zones` | polígon (SVG path), tipus de parcel·la | nom |
-| `testimonials` | autor, font, nota, data | text |
-| `offers` | dates de validesa, imatge, codi | títol, text |
-| `events` | data, imatge | títol, text |
+| `testimonials` | autor, font, idioma original, nota | — (es mostren en l'idioma original) |
 | `media` | camí a Storage, amplada, alçada, blurhash, focus | text alternatiu |
 | `profiles` | usuari, rol (`admin` \| `editor`) | — |
-| `audit_log` | qui, què, quan, abans/després | — |
+| `offers`, `events`, `audit_log` | — | Es creen quan es facin les seves seccions (ofertes ara és buit) i l'admin (fase 5) |
 
 ## 6. Seccions de la landing
 
 | # | Secció | Idea | Editable |
 |---|---|---|---|
-| 1 | **Hero** | Vídeo aeri a pantalla completa → el logotip es «dibuixa»; buscador de dates/persones que envia a Thelis | vídeo, títol, CTA |
+| 1 | **Hero** | «Vol aeri» 3D sobre el plànol il·lustrat (no hi ha vídeo de dron): la càmera baixa des de dalt fins al càmping i el logotip es «dibuixa»; botó «Reservar» cap a Thelis | imatge del plànol, títol, CTA |
 | 2 | **Benvinguda** | Text curt amb xifres animades (hectàrees, piscines, anys) | tot |
 | 3 | **Plànol interactiu** | El plànol il·lustrat amb zoom i arrossegament; punts per a cada servei i zones per tipus de parcel·la. Clic → fitxa lateral amb fotos, text i «Com arribar-hi dins el càmping». Filtres (piscines, restauració, allotjaments…) | punts, zones i fitxes |
 | 4 | **Allotjament** | Selector per categoria amb pestanyes animades; targetes amb galeria, icones de capacitat/m²/habitacions; filtres per persones, PMR, mascotes; comparador de fins a 3; «veure'l al plànol»; «reservar» preomplert | tot |
-| 5 | **Gastronomia** | Seqüències lligades al scroll: el plat buit s'omple, el gelat es fon, la copa es serveix. Una per restaurant | textos, fotos, animació (fitxer Rive/Lottie) |
+| 5 | **Gastronomia** | Escenes 3D lligades al scroll: el plat buit s'omple, el gelat es fon, la copa es serveix. Modelades per codi | textos, fotos, escena triada per restaurant |
 | 6 | **Piscines i tobogans** | Efecte d'aigua (shader lleuger o vídeo) amb capes en paral·laxi | tot |
 | 7 | **Serveis** | Graella d'icones que s'animen en entrar; clic → detall i punt al plànol | tot |
 | 8 | **Animació i esdeveniments** | Calendari de la temporada; carrusel d'activitats per edats | tot |
@@ -123,12 +122,17 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - Hook de pre-push (typecheck, lint, tests, gitleaks) i CI de build amb `concurrency`.
 - Contingut del web actual extret a `reference/`.
 
-### Fase 1 — Dades i plataforma
-- Projecte Supabase (preproducció) + esquema de la secció 5 amb migracions i RLS.
-- Tipus generats de l'esquema; capa de lectura a `src/lib/supabase/`.
-- **Seed** des de `reference/`: tots els textos en 5 idiomes i totes les imatges a Storage.
-- Revalidació per etiqueta. Sentry. Projecte Vercel amb previsualitzacions.
-- **Acabat quan:** la home de l'esquelet mostra dades reals de Supabase en els 5 idiomes.
+### Fase 1 — Dades i plataforma ✅ (amb dos pendents)
+- ✅ Supabase local (Docker) i remot `camping-castellmontgri` (París, pla gratuït).
+- ✅ Esquema amb migracions (`supabase/migrations/`), RLS i proves pgTAP (`pnpm db:test`, 12 proves).
+- ✅ Tipus generats de l'esquema (`pnpm db:types`); lectura a `src/lib/supabase/content.ts`.
+- ✅ Seed idempotent des de `reference/` (`pnpm seed`): 316 imatges reduïdes a 2400 px (~110 MB), 26 allotjaments, 19 serveis, 12 restaurants, 13 activitats, 7 seccions i 5 opinions, tot en 5 idiomes.
+- ✅ Revalidació per etiqueta de taula (`/api/revalidate`, expiració immediata).
+- ✅ Sentry (`nertel/camping-castellmontgri`, regió UE), desactivat si no hi ha DSN.
+- ✅ Fronteres de proveïdor vigilades per ESLint.
+- ⏳ **Seed al Supabase remot**: cal la clau secreta del projecte.
+- ⏳ **Projecte Vercel**: el connector no té permís per crear-lo; es fa des del tauler.
+- **Acabat quan:** la home de l'esquelet mostra dades reals de Supabase en els 5 idiomes. ✅ en local.
 
 ### Fase 2 — Sistema de disseny i landing estàtica
 - Tipografia, colors i components a partir de la marca (logo, verd oliva, llima).
@@ -161,11 +165,11 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 
 ## 8. Què cal demanar al client
 
-1. **Plànol en vector** (AI/SVG/PDF) del dibuixant: amb el JPG només podem posar punts; amb el vector, cada parcel·la i zona pot ser clicable.
-2. **Manual de marca**: tipografies, colors, usos del logo.
-3. **Vídeo aeri / dron** i fotos recents d'alta resolució (les del web són reduïdes).
-4. **Il·lustracions per a gastronomia** (o pressupost per encarregar-les): les animacions de plat/gelat necessiten un estil il·lustrat coherent amb el plànol.
-5. **Thelis**: documentació dels paràmetres d'enllaç (dates, persones, tipus) i si hi ha API de disponibilitat/preus.
+1. **Plànol en vector** (AI/SVG/PDF) del dibuixant: amb el JPG (el que fem servir) només podem posar punts; amb el vector, cada parcel·la seria clicable.
+2. ~~Manual de marca~~ — no n'hi ha; es deriva del web.
+3. ~~Vídeo aeri~~ — no n'hi ha; el «vol» es fa en 3D sobre el plànol.
+4. ~~Il·lustracions de gastronomia~~ — es modelen per codi.
+5. **Thelis**: aparcat de moment.
 6. Qui editarà el contingut i quants usuaris; quins idiomes tradueixen ells.
 7. Accés a Search Console i Analytics actuals, per no perdre posicionament.
 8. Domini i DNS: qui els gestiona.
@@ -179,3 +183,4 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 | Perdre SEO en canviar de web | Mateixos prefixos d'idioma, mapa de redireccions 301 de totes les URL antigues |
 | Imatges del client molt grans | Optimització automàtica a la pujada; `next/image` amb mides responsives |
 | Dependència de Thelis | L'enllaç viu a `src/lib/booking/`; canviar de motor és tocar un fitxer |
+| Textos del web antic amb errors | El seed els copia tal qual: el títol «Encuentra tu alojamiento perfecto» surt en castellà a `ca` (també al web antic); 3 opinions (COVID, queixes) entren com a esborrany. Es revisen a l'admin |
