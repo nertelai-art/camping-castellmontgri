@@ -9,6 +9,7 @@ export async function Pools({ pools, slides, index }: { pools: Service; slides?:
   return (
     <section aria-labelledby="pools-title" className="cv relative isolate overflow-hidden bg-band-sea py-24 text-on-dark lg:py-36">
       {pools.media && <MediaImage media={pools.media} fill sizes="100vw" className="-z-10 object-cover" />}
+      <div aria-hidden="true" className="caustics absolute inset-0 -z-10 overflow-hidden" />
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(8_45_56/.85)_0%,rgb(8_45_56/.55)_50%,rgb(8_45_56/.1)_100%)]" />
       <div id="pools" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="reveal max-w-xl">

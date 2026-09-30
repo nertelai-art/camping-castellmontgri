@@ -11,7 +11,7 @@ import { readFile } from "node:fs/promises";
 import { basename, extname, join } from "node:path";
 import sharp from "sharp";
 import type { Database } from "../src/lib/supabase/database.types.ts";
-import { parseBlocks, parseFrontmatter, parseSize, parseTestimonials, sentenceCase, titleCase } from "./lib/markdown.ts";
+import { parseBlocks, parseFrontmatter, parseSize, parseTestimonials, sentenceCase, titleCase, toPercent } from "./lib/markdown.ts";
 
 type Locale = Database["public"]["Enums"]["locale"];
 const LOCALES: Locale[] = ["es", "ca", "fr", "en", "nl"];
@@ -20,7 +20,8 @@ const MAX_WIDTH = 2400;
 
 const envFile = process.argv[2] ?? ".env.local";
 process.loadEnvFile(envFile);
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+// Accepta també l'adreça copiada amb «/rest/v1/» al final (és la de l'API REST, no la del projecte).
+const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/rest\/v1\/?$/, "");
 const secret = process.env.SUPABASE_SECRET_KEY;
 if (!url || !secret) throw new Error(`Falten NEXT_PUBLIC_SUPABASE_URL o SUPABASE_SECRET_KEY a ${envFile}`);
 
@@ -476,6 +477,76 @@ async function seedTestimonials() {
   console.log(`✓ ${list.length} opinions (${PUBLISHED_TESTIMONIALS.size} publicades)`);
 }
 
+// ─── 8. Punts del plànol ─────────────────────────────────────────────────────
+type MapPointSeed = {
+  kind: string;
+  x: number;
+  y: number;
+  service?: string;
+  restaurant?: string;
+  activity?: string;
+  accommodation?: string;
+  category?: string;
+  label?: Record<Locale, string>;
+};
+
+async function seedMapPoints() {
+  const file = JSON.parse(await readFile("scripts/content/map-points.json", "utf8")) as {
+    image: { width: number; height: number };
+    points: MapPointSeed[];
+  };
+  // Noms de cada entitat per idioma: l'etiqueta del punt és el nom del que assenyala, si no en té una de pròpia.
+  type Named = { id: string; slug: string; names: { locale: Locale; name: string }[] };
+  const bySlug = (rows: Named[]) => new Map(rows.map((r) => [r.slug, r]));
+  const [services, restaurants, activities, accommodations, categories] = await Promise.all([
+    db.from("services").select("id, slug, names:service_translations(locale, name)").then((r) => bySlug(check(r, "serveis"))),
+    db.from("restaurants").select("id, slug, names:restaurant_translations(locale, name)").then((r) => bySlug(check(r, "restaurants"))),
+    db.from("activities").select("id, slug, names:activity_translations(locale, name)").then((r) => bySlug(check(r, "activitats"))),
+    db.from("accommodations").select("id, slug, names:accommodation_translations(locale, name)").then((r) => bySlug(check(r, "allotjaments"))),
+    db.from("accommodation_category_translations").select("category_key, locale, name").then((r) => check(r, "categories")),
+  ]);
+
+  check(await db.from("map_points").delete().not("id", "is", null), "map_points");
+  for (const [order, p] of file.points.entries()) {
+    const linked =
+      (p.service && services.get(p.service)) ||
+      (p.restaurant && restaurants.get(p.restaurant)) ||
+      (p.activity && activities.get(p.activity)) ||
+      (p.accommodation && accommodations.get(p.accommodation)) ||
+      null;
+    const ref = p.service ?? p.restaurant ?? p.activity ?? p.accommodation;
+    if (ref && !linked) throw new Error(`Punt ${order}: no existeix ${ref}`);
+    const row = check(
+      await db
+        .from("map_points")
+        .insert({
+          kind: p.kind,
+          x: toPercent(p.x, file.image.width),
+          y: toPercent(p.y, file.image.height),
+          service_id: p.service ? linked!.id : null,
+          restaurant_id: p.restaurant ? linked!.id : null,
+          activity_id: p.activity ? linked!.id : null,
+          accommodation_id: p.accommodation ? linked!.id : null,
+          accommodation_category_key: p.category ?? null,
+          sort_order: order * 10,
+          status: "published",
+        })
+        .select("id")
+        .single(),
+      `punt ${order}`,
+    );
+    for (const locale of LOCALES) {
+      const label =
+        p.label?.[locale] ??
+        linked?.names.find((n) => n.locale === locale)?.name ??
+        categories.find((c) => c.category_key === p.category && c.locale === locale)?.name;
+      if (!label) throw new Error(`Punt ${order}: sense etiqueta en ${locale}`);
+      check(await db.from("map_point_translations").insert({ map_point_id: row.id, locale, label }), `etiqueta ${order}/${locale}`);
+    }
+  }
+  console.log(`✓ ${file.points.length} punts al plànol`);
+}
+
 await uploadMedia();
 await seedSettings();
 await seedSections();
@@ -483,6 +554,7 @@ await seedAccommodations();
 await seedServices();
 await seedVenues();
 await seedTestimonials();
+await seedMapPoints();
 
 // La web té el contingut a la caché de Next per etiquetes: si hi ha una web engegada, se li diu que
 // l'invalidi (si no, continuaria servint el contingut d'abans del seed).

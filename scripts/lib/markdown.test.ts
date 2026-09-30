@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseBlocks, parseFrontmatter, parseSize, parseTestimonials, sentenceCase, tidy, titleCase } from "./markdown";
+import { parseBlocks, parseFrontmatter, parseSize, parseTestimonials, sentenceCase, tidy, titleCase, toPercent } from "./markdown";
 
 const md = `---
 key: home
@@ -71,5 +71,11 @@ describe("markdown de referència", () => {
     expect(parseSize("12.5")).toBe(12.5);
     expect(parseSize("")).toBeNull();
     expect(parseSize(null)).toBeNull();
+  });
+
+  it("passa les coordenades del plànol a percentatge", () => {
+    expect(toPercent(1500, 3000)).toBe(50);
+    expect(toPercent(1339, 1845)).toBe(72.57);
+    expect(() => toPercent(3100, 3000)).toThrow(/fora del plànol/);
   });
 });

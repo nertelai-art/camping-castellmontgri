@@ -1,24 +1,51 @@
 import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
+import { FoodShowcase, type FoodStepContent } from "@/components/scene/FoodShowcase";
 import type { Restaurant, Section } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
+import { ShowOnMapButton } from "./show-on-map-button";
 
 const ZONES = ["ombra", "panorama"] as const;
 
+// Cada restaurant va al pas de l'escena que li toca (paella, gelat o copa) segons què és.
+const ICECREAM = /helad|gelat|glacier|ice-cream/;
+const DRINKS = /^bar-|barra|pub|disco|lera|cafeteria/;
+function stepFor(slug: string): 0 | 1 | 2 {
+  if (ICECREAM.test(slug)) return 1;
+  if (DRINKS.test(slug)) return 2;
+  return 0;
+}
+
 /** Gastronomia (fase 2: estàtica). A la fase 4 hi entren les escenes 3D del plat i el gelat. */
-export async function Gastronomy({ section, restaurants, index }: { section: Section; restaurants: Restaurant[]; index: number }) {
+export async function Gastronomy({
+  section,
+  restaurants,
+  onMap,
+  index,
+}: {
+  section: Section;
+  restaurants: Restaurant[];
+  onMap: Set<string>;
+  index: number;
+}) {
   const t = await getTranslations("gastronomy");
+  const steps: FoodStepContent[] = (["food", "icecream", "drinks"] as const).map((key, i) => ({
+    title: t(`steps.${key}`),
+    places: restaurants.filter((r) => stepFor(r.slug) === i).map((r) => r.name),
+  }));
   return (
-    <section aria-labelledby="gastronomy-title" className="cv bg-blush py-24 text-ink lg:py-32">
-      <div id="gastronomy" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-end gap-10 lg:grid-cols-2">
-          <SectionHeading id="gastronomy-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
-          {section.media && (
-            <div className="reveal relative aspect-[5/4] overflow-hidden rounded-[2rem] lg:-mb-6 lg:rotate-2">
-              <MediaImage media={section.media} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
-            </div>
-          )}
-        </div>
+    <section aria-labelledby="gastronomy-title" className="bg-blush py-24 text-ink lg:py-32">
+      <div id="gastronomy">
+        <FoodShowcase
+          heading={
+            <SectionHeading id="gastronomy-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
+          }
+          steps={steps}
+          fallback={section.media}
+          srDescription={t("sceneDescription")}
+        />
+      </div>
+      <div className="cv mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {ZONES.map((zone) => {
           const items = restaurants.filter((r) => r.zone === zone);
@@ -43,11 +70,14 @@ export async function Gastronomy({ section, restaurants, index }: { section: Sec
                           {r.hours}
                         </p>
                       )}
-                      {r.menuUrl && (
-                        <a href={r.menuUrl} target="_blank" rel="noopener" className="mt-auto pt-2 text-sm font-bold text-terra hover:underline">
-                          {t("menu")} ↗
-                        </a>
-                      )}
+                      <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-2 text-terra">
+                        {r.menuUrl && (
+                          <a href={r.menuUrl} target="_blank" rel="noopener" className="text-sm font-bold hover:underline">
+                            {t("menu")} ↗
+                          </a>
+                        )}
+                        {onMap.has(`restaurant:${r.slug}`) && <ShowOnMapButton target={{ type: "restaurant", slug: r.slug }} />}
+                      </div>
                     </div>
                   </li>
                 ))}

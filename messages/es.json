@@ -1,15 +1,121 @@
 {
-  "nav": { "accommodation": "Alojamiento", "map": "Plano", "gastronomy": "Gastronomía", "services": "Servicios", "entertainment": "Animación", "surroundings": "Entorno", "contact": "Contacto", "book": "Reservar", "menu": "Menú", "close": "Cerrar", "language": "Idioma", "skip": "Saltar al contenido", "clientArea": "Área de clientes" },
-  "hero": { "season": "Temporada", "discover": "Descubre el camping", "from": "Del {open} al {close}" },
-  "facts": { "accommodations": "alojamientos", "restaurants": "restaurantes y bares", "services": "servicios", "activities": "actividades de animación" },
-  "accommodation": { "eyebrow": "Dónde dormir", "all": "Todos", "guests": "Personas", "guestsAny": "Cualquiera", "guestsMin": "{count}+", "empty": "Ningún alojamiento con estos filtros.", "details": "Verlo", "people": "{count} pers.", "size": "{value} m²", "bedrooms": "{count, plural, one {# habitación} other {# habitaciones}}", "bathrooms": "{count, plural, one {# baño} other {# baños}}", "airConditioning": "Aire acondicionado", "accessible": "Adaptado PMR", "equipment": "Qué encontrarás", "gallery": "Fotos de {name}", "photo": "Foto {index} de {total}", "count": "{count, plural, one {# alojamiento} other {# alojamientos}}" },
-  "gastronomy": { "eyebrow": "Comer y beber", "zone": { "ombra": "Zona Ombra", "panorama": "Zona Panorama" }, "hours": "Horario", "menu": "Ver la carta" },
-  "pools": { "eyebrow": "Agua y sol" },
-  "services": { "eyebrow": "Todo a mano" },
-  "entertainment": { "eyebrow": "Para toda la familia", "audience": { "children": "Infantil", "family": "Familia", "adult": "Adultos" } },
-  "surroundings": { "eyebrow": "El Empordà y la Costa Brava" },
-  "map": { "eyebrow": "El camping", "soon": "Plano interactivo muy pronto", "open": "Abrir el plano en grande" },
-  "testimonials": { "eyebrow": "Opiniones", "title": "Qué dicen de nosotros", "via": "en {source}" },
-  "footer": { "contact": "Contacto", "howToGet": "Cómo llegar", "season": "Temporada", "license": "Registro de turismo", "rights": "Todos los derechos reservados.", "notice": "Web nueva en construcción" },
-  "units": { "people": "{count} pers.", "bedrooms": "{count, plural, one {# hab.} other {# hab.}}" }
+  "nav": {
+    "accommodation": "Alojamiento",
+    "map": "Plano",
+    "gastronomy": "Gastronomía",
+    "services": "Servicios",
+    "entertainment": "Animación",
+    "surroundings": "Entorno",
+    "contact": "Contacto",
+    "book": "Reservar",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "language": "Idioma",
+    "skip": "Saltar al contenido",
+    "clientArea": "Área de clientes"
+  },
+  "hero": {
+    "season": "Temporada",
+    "discover": "Descubre el camping",
+    "from": "Del {open} al {close}",
+    "sceneDescription": "Animación: el plano ilustrado del camping se tumba como si fuera el suelo y la cámara vuela por encima mientras caen los puntos de las piscinas, los restaurantes y las zonas de ocio."
+  },
+  "facts": {
+    "accommodations": "alojamientos",
+    "restaurants": "restaurantes y bares",
+    "services": "servicios",
+    "activities": "actividades de animación"
+  },
+  "accommodation": {
+    "eyebrow": "Dónde dormir",
+    "all": "Todos",
+    "guests": "Personas",
+    "guestsAny": "Cualquiera",
+    "guestsMin": "{count}+",
+    "empty": "Ningún alojamiento con estos filtros.",
+    "details": "Verlo",
+    "people": "{count} pers.",
+    "size": "{value} m²",
+    "bedrooms": "{count, plural, one {# habitación} other {# habitaciones}}",
+    "bathrooms": "{count, plural, one {# baño} other {# baños}}",
+    "airConditioning": "Aire acondicionado",
+    "accessible": "Adaptado PMR",
+    "equipment": "Qué encontrarás",
+    "gallery": "Fotos de {name}",
+    "photo": "Foto {index} de {total}",
+    "count": "{count, plural, one {# alojamiento} other {# alojamientos}}"
+  },
+  "gastronomy": {
+    "eyebrow": "Comer y beber",
+    "zone": {
+      "ombra": "Zona Ombra",
+      "panorama": "Zona Panorama"
+    },
+    "hours": "Horario",
+    "menu": "Ver la carta",
+    "sceneDescription": "Animación: una paella se llena de arroz, gambas y mejillones; un cucurucho se llena de bolas de helado que se derriten; y un vaso se llena de refresco con cubitos y limón.",
+    "steps": {
+      "food": "Para comer",
+      "icecream": "Helados",
+      "drinks": "Para beber"
+    }
+  },
+  "pools": {
+    "eyebrow": "Agua y sol"
+  },
+  "services": {
+    "eyebrow": "Todo a mano"
+  },
+  "entertainment": {
+    "eyebrow": "Para toda la familia",
+    "audience": {
+      "children": "Infantil",
+      "family": "Familia",
+      "adult": "Adultos"
+    }
+  },
+  "surroundings": {
+    "eyebrow": "El Empordà y la Costa Brava"
+  },
+  "map": {
+    "eyebrow": "El camping",
+    "filters": "Filtra el plano",
+    "viewer": "Plano interactivo del camping",
+    "hint": "Arrastra para moverte · pellizca, Ctrl + rueda o + y − para ampliar",
+    "zoomIn": "Ampliar",
+    "zoomOut": "Reducir",
+    "reset": "Verlo entero",
+    "fullscreen": "Pantalla completa",
+    "exitFullscreen": "Salir de pantalla completa",
+    "back": "Todos los lugares",
+    "places": "{count, plural, one {# lugar} other {# lugares}}",
+    "seeAccommodation": "Ver los alojamientos",
+    "showOnMap": "Ver en el plano",
+    "kinds": {
+      "all": "Todo",
+      "accommodation": "Alojamiento",
+      "food": "Comer y beber",
+      "pool": "Piscinas",
+      "leisure": "Ocio y deporte",
+      "service": "Servicios",
+      "landmark": "Lugares de interés"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Opiniones",
+    "title": "Qué dicen de nosotros",
+    "via": "en {source}"
+  },
+  "footer": {
+    "contact": "Contacto",
+    "howToGet": "Cómo llegar",
+    "season": "Temporada",
+    "license": "Registro de turismo",
+    "rights": "Todos los derechos reservados.",
+    "notice": "Web nueva en construcción"
+  },
+  "units": {
+    "people": "{count} pers.",
+    "bedrooms": "{count, plural, one {# hab.} other {# hab.}}"
+  }
 }
