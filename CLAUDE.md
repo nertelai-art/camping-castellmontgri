@@ -73,8 +73,17 @@ client es pugen a Supabase Storage amb el script de seed.
   (`.githooks/`, s'activa sol amb `pnpm install`).
 - La CI fa `pnpm build` (contra el Supabase de preproducció, amb variables de repo públiques)
   i, si canvia `supabase/`, les proves RLS contra un Postgres de debò.
-- Branca d'integració: `developer`. Preproducció = previsualitzacions de Vercel.
-  **Producció només quan ho digui l'usuari, cada vegada.**
+## Branques i desplegament
+
+- `main` = producció. A Vercel és la branca de producció (cada commit a `main` desplega a
+  producció). Protegida a GitHub: només per PR, sense `--force` ni esborrat.
+  **Hi arriba només quan l'usuari ho diu, cada vegada**, per PR des de `developer`.
+- `developer` = integració, on es fusionen les PR (merge commit). Protegida contra `--force` i esborrat.
+- `feature/<nom>` = feina en curs. Surten de `developer` (o d'una altra `feature/` si van apilades)
+  i s'hi tornen per PR. Cada push a una `feature/` té la seva previsualització a Vercel.
+- **No reanomenis una branca que tingui una PR oberta**: GitHub tanca la PR i no es pot reobrir.
+- Projecte Vercel: `camping-castellmontgri` (equip `nertelai-7298s-projects`). Els builds llegeixen
+  els valors públics de `.env.production` (URL i clau publicable de Supabase, DSN de Sentry).
 
 ## Disseny
 
