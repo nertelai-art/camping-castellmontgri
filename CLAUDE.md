@@ -88,6 +88,16 @@ client es pugen a Supabase Storage amb el script de seed.
 Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
 rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
 
+- Escenes a `src/components/scene/`: `HeroShowcase` + `HeroScene` (vol sobre el plànol) i
+  `FoodShowcase` + `FoodScene` (paella, gelat, copa). Fases a `phases.ts`, amb proves.
+- three.js no ha d'entrar a la càrrega inicial: el hero el carrega a la **primera interacció**
+  (`interaction.ts`); en ociós encara disparava el TBT. Fins que l'escena és a punt, la foto tapa.
+- Textures d'imatges de Storage: a través de l'optimitzador de Next (`/_next/image?...&w=2048&q=75`),
+  mateix origen. Next 16 només accepta la qualitat 75 si no se'n configuren més.
+- Vidre sobre canvas transparent: material transparent, no `transmission` (sortia blanc).
+- Per revisar les escenes sense el panell (quan està amagat, `requestAnimationFrame` no corre):
+  Chrome sense cap amb playwright-core i captures al 0/25/50/75/100 %.
+
 - Respectar sempre `prefers-reduced-motion`: cada animació ha de tenir un estat
   final estàtic correcte.
 - Les animacions de scroll no poden bloquejar el LCP: el hero es pinta primer i

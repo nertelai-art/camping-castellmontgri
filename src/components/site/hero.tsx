@@ -1,83 +1,60 @@
 import { getTranslations } from "next-intl/server";
-import { Fragment } from "react";
-import { MediaImage } from "@/components/media-image";
-import { RichText } from "@/components/rich-text";
+import { HeroShowcase } from "@/components/scene/HeroShowcase";
 import { formatDayMonth } from "@/lib/content/format";
-import type { Section, SiteSettings } from "@/lib/supabase/content";
-import { MontgriLine } from "./montgri-line";
+import { kindColor } from "@/lib/map/kinds";
+import type { MapPoint, Section, SiteSettings } from "@/lib/supabase/content";
+
+// Punts que cauen al plànol del hero: els llocs que més es busquen (no tots, que seria soroll).
+const HERO_KINDS = new Set(["pool", "food", "leisure"]);
 
 /**
- * Hero provisional (fase 2): la foto aèria real del càmping. A la fase 4 s'hi posa el «vol» 3D
- * sobre el plànol il·lustrat; aquest estat és també la reserva sense WebGL o amb moviment reduït.
+ * Hero: foto aèria real com a primer fotograma i, amb el scroll, el «vol» 3D sobre el plànol il·lustrat.
+ * Textos i dades surten de l'admin; aquí només es preparen per al component de client.
  */
-export async function Hero({ section, settings, locale }: { section: Section; settings: SiteSettings; locale: string }) {
+export async function Hero({
+  section,
+  mapSection,
+  mapPoints,
+  settings,
+  locale,
+}: {
+  section: Section;
+  mapSection: Section | undefined;
+  mapPoints: MapPoint[];
+  settings: SiteSettings;
+  locale: string;
+}) {
   const t = await getTranslations("hero");
   const tNav = await getTranslations("nav");
-  const words = section.title.split(" ");
+  const plan = mapSection?.media ?? null;
+
+  const season =
+    settings.season.open && settings.season.close ? (
+      <p
+        className="rise grid size-28 rotate-6 place-content-center rounded-full border-2 border-dashed border-on-dark/70 bg-band-terra/90 p-3 text-center text-[0.68rem] font-bold uppercase leading-tight tracking-wider shadow-lg sm:size-36 sm:text-xs"
+        style={{ ["--i" as string]: 4 }}
+      >
+        <span className="font-display text-2xl normal-case tracking-normal sm:text-3xl">{settings.season.open.slice(0, 4)}</span>
+        {t("season")}
+        <span className="mt-1 font-normal normal-case tracking-normal">
+          {t("from", { open: formatDayMonth(settings.season.open, locale), close: formatDayMonth(settings.season.close, locale) })}
+        </span>
+      </p>
+    ) : null;
 
   return (
-    <section aria-labelledby="hero-title" className="relative px-3 pt-3 sm:px-4 sm:pt-4">
-      <div className="relative isolate flex min-h-[calc(100svh-5.5rem)] flex-col justify-end overflow-hidden rounded-[2rem] bg-band-olive text-on-dark lg:rounded-[2.5rem]">
-        {section.media && (
-          <MediaImage
-            media={section.media}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="ken-burns -z-10 object-cover"
-          />
-        )}
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(22_27_13/.15)_0%,rgb(22_27_13/.05)_35%,rgb(22_27_13/.78)_100%)]" />
-
-        {settings.season.open && settings.season.close && (
-          <div className="rise absolute right-4 top-4 sm:right-8 sm:top-8" style={{ ["--i" as string]: 4 }}>
-            <p className="grid size-28 rotate-6 place-content-center rounded-full border-2 border-dashed border-on-dark/70 bg-band-terra/90 p-3 text-center text-[0.68rem] font-bold uppercase leading-tight tracking-wider shadow-lg sm:size-36 sm:text-xs">
-              <span className="font-display text-2xl normal-case tracking-normal sm:text-3xl">{settings.season.open.slice(0, 4)}</span>
-              {t("season")}
-              <span className="mt-1 font-normal normal-case tracking-normal">
-                {t("from", {
-                  open: formatDayMonth(settings.season.open, locale),
-                  close: formatDayMonth(settings.season.close, locale),
-                })}
-              </span>
-            </p>
-          </div>
-        )}
-
-        <div className="relative px-5 pb-10 sm:px-10 sm:pb-14 lg:px-16 lg:pb-20">
-          <h1 id="hero-title" className="font-display max-w-5xl text-[clamp(2.75rem,8vw,7.5rem)] leading-[0.92]">
-            {words.map((word, i) => (
-              <Fragment key={i}>
-                <span className="rise inline-block" style={{ ["--i" as string]: i }}>
-                  {word}
-                </span>
-                {i < words.length - 1 && " "}
-              </Fragment>
-            ))}
-          </h1>
-          <div className="rise mt-6 max-w-xl text-lg text-on-dark/90 sm:text-xl" style={{ ["--i" as string]: words.length }}>
-            <RichText text={section.body} />
-          </div>
-          <div className="rise mt-8 flex flex-wrap items-center gap-4" style={{ ["--i" as string]: words.length + 1 }}>
-            {settings.bookingUrl && (
-              <a
-                href={settings.bookingUrl}
-                target="_blank"
-                rel="noopener"
-                className="rounded-full bg-band-terra px-7 py-3.5 font-bold text-on-dark transition hover:brightness-110"
-              >
-                {section.ctaLabel ?? tNav("book")}
-              </a>
-            )}
-            <a href="#welcome" className="group inline-flex items-center gap-2 font-bold text-on-dark">
-              {t("discover")}
-              <span aria-hidden="true" className="transition group-hover:translate-y-1">↓</span>
-            </a>
-          </div>
-        </div>
-        <MontgriLine className="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full text-on-dark/60 sm:h-24" />
-      </div>
-    </section>
+    <HeroShowcase
+      poster={section.media}
+      title={section.title}
+      body={section.body}
+      primaryCta={settings.bookingUrl ? { href: settings.bookingUrl, label: section.ctaLabel ?? tNav("book") } : null}
+      discoverLabel={t("discover")}
+      season={season}
+      map={mapSection ? { title: mapSection.title, body: mapSection.body, ctaLabel: mapSection.ctaLabel ?? tNav("map") } : null}
+      // Textura de 2048 px servida per l'optimitzador de Next (mateix origen, sense problemes de CORS).
+      textureSrc={plan ? `/_next/image?url=${encodeURIComponent(plan.src)}&w=2048&q=75` : null}
+      pins={mapPoints.filter((p) => HERO_KINDS.has(p.kind)).map((p) => ({ x: p.x, y: p.y, color: kindColor(p.kind) }))}
+      srDescription={t("sceneDescription")}
+    />
   );
 }

@@ -5,24 +5,12 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { RichText } from "@/components/rich-text";
 import { MAP_FOCUS_EVENT, targetKey } from "@/lib/map/events";
+import { KIND_COLOR, MAP_KINDS as KINDS, type MapKind as Kind } from "@/lib/map/kinds";
 import { centerOn, clampView, zoomAt, type View } from "@/lib/map/viewport";
 import type { MapPoint, MapTarget } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
 
 export type Place = { name: string; description: string | null; hours: string | null; image: MediaRef | null };
-
-const KINDS = ["accommodation", "food", "pool", "leisure", "service", "landmark"] as const;
-type Kind = (typeof KINDS)[number];
-
-// Color de cada tipus de punt (tokens de globals.css).
-const KIND_COLOR: Record<Kind, string> = {
-  accommodation: "var(--band-olive)",
-  food: "var(--band-terra)",
-  pool: "var(--band-sea)",
-  leisure: "#b0418a",
-  service: "#2f5d8a",
-  landmark: "#6b5a2e",
-};
 
 type Props = { image: MediaRef; points: MapPoint[]; places: Record<string, Place> };
 
@@ -229,7 +217,7 @@ export function MapExplorer({ image, points, places }: Props) {
                 onClick={() => !gesture.current.moved && focus(p)}
                 aria-label={p.label}
                 aria-pressed={p.id === selectedId}
-                className="group absolute z-10 -translate-x-1/2 -translate-y-1/2 [scale:calc(1/var(--z))]"
+                className="group absolute z-10 grid size-6 -translate-x-1/2 -translate-y-1/2 place-items-center [scale:calc(1/var(--z))]"
                 style={{ left: `${p.x}%`, top: `${p.y}%` }}
               >
                 <span

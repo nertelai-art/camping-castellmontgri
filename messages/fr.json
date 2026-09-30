@@ -17,7 +17,8 @@
   "hero": {
     "season": "Saison",
     "discover": "Découvrir le camping",
-    "from": "Du {open} au {close}"
+    "from": "Du {open} au {close}",
+    "sceneDescription": "Animation : le plan illustré du camping se couche comme un sol et la caméra le survole pendant que tombent les repères des piscines, des restaurants et des espaces de loisirs."
   },
   "facts": {
     "accommodations": "hébergements",
@@ -51,7 +52,13 @@
       "panorama": "Zone Panorama"
     },
     "hours": "Horaires",
-    "menu": "Voir la carte"
+    "menu": "Voir la carte",
+    "sceneDescription": "Animation : une paella se remplit de riz, de crevettes et de moules ; un cornet se remplit de boules de glace qui fondent ; et un verre se remplit de boisson avec des glaçons et du citron.",
+    "steps": {
+      "food": "Pour manger",
+      "icecream": "Glaces",
+      "drinks": "Pour boire"
+    }
   },
   "pools": {
     "eyebrow": "Eau et soleil"

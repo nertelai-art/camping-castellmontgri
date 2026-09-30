@@ -17,7 +17,8 @@
   "hero": {
     "season": "Seizoen",
     "discover": "Ontdek de camping",
-    "from": "{open} – {close}"
+    "from": "{open} – {close}",
+    "sceneDescription": "Animatie: de getekende plattegrond van de camping gaat liggen als de grond en de camera vliegt eroverheen terwijl er markeringen vallen op de zwembaden, restaurants en speelplekken."
   },
   "facts": {
     "accommodations": "accommodaties",
@@ -51,7 +52,13 @@
       "panorama": "Zone Panorama"
     },
     "hours": "Openingstijden",
-    "menu": "Bekijk de kaart"
+    "menu": "Bekijk de kaart",
+    "sceneDescription": "Animatie: een paellapan vult zich met rijst, garnalen en mosselen; een hoorntje krijgt bolletjes ijs die smelten; en een glas loopt vol met frisdrank, ijsblokjes en citroen.",
+    "steps": {
+      "food": "Om te eten",
+      "icecream": "IJs",
+      "drinks": "Om te drinken"
+    }
   },
   "pools": {
     "eyebrow": "Water en zon"
