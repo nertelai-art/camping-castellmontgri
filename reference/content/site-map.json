@@ -1,0 +1,2028 @@
+[
+  {
+    "key": "home",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es",
+      "title": "Camping L'Estartit vacaciones familiares :: Camping Castell Montgrí",
+      "metaDescription": "El Càmping Castell Montgrí en L Estartit es ideal para unas vacaciones familiares inolvidables. Vive en contacto directo con la naturaleza y crea recuerdos duraderos."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca",
+      "title": "CAMPING CASTELL MONTGRÍ :: Camping Castell Montgrí",
+      "metaDescription": "El Càmping Castell Montgrí a L'Estartit és ideal per a unes vacances familiars inoblidables. Viu en contacte directe amb la natura i crea records duradors."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr",
+      "title": "CAMPING CASTELL MONTGRÍ :: Camping Castell Montgrí",
+      "metaDescription": "Le Camping Castell Montgrí à L'Estartit est idéal pour des vacances en famille inoubliables. Vivez en contact direct avec la nature et créez des souvenirs impérissables."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en",
+      "title": "CAMPING CASTELL MONTGRÍ :: Camping Castell Montgrí",
+      "metaDescription": "The Càmping Castell Montgrí in L'Estartit is ideal for an unforgettable family holiday. Live in direct contact with nature and create lasting memories."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl",
+      "title": "CAMPING CASTELL MONTGRÍ :: Camping Castell Montgrí",
+      "metaDescription": "Ontdek de perfecte balans tussen kwaliteit en comfort in onze gevarieerde accommodaties, strategisch verdeeld op onze camping in l'Estartit. Van de klassieke, tot in detail uitgeruste bungalows tot de moderne Glamping-tenten: wij bieden mogelijkheden voor elke smaak. Daarnaast hebben we een groot kampeerterrein, ideaal voor recreatieve voertuigen en tenten. Dompel jezelf onder in een unieke ervaring waarbij elk hoekje is ontworpen om je een onvergetelijk verblijf vol comfort te bezorgen. IRTC KG-000086"
+    }
+  },
+  {
+    "key": "alojamientos",
+    "group": "accommodation-category",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos",
+      "title": "ANIMACIÓN SIN LÍMITES :: Camping Castell Montgrí",
+      "metaDescription": "aaaaa"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments",
+      "title": "Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement",
+      "title": "Hebergement :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation",
+      "title": "Accommodations :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie",
+      "title": "Accomodaties :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "mobile-home",
+    "group": "accommodation-category",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mobile-home",
+      "title": "Allotjaments Mobile Home :: Camping Castell Montgrí",
+      "metaDescription": "Descubre nuestros bungalows en Girona con calidad y confort. Equipados con atención al detalle en nuestro camping en l’Estartit"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mobile-home",
+      "title": "Allotjaments Mobile Home :: Camping Castell Montgrí",
+      "metaDescription": "Descobreix els nostres bungalous a Girona amb qualitat i confort. Equipats amb atenció al detall al nostre càmping a l'Estartit"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mobile-home",
+      "title": "Allotjaments Mobile Home :: Camping Castell Montgrí",
+      "metaDescription": "Découvrez nos bungalows à Gérone avec qualité et confort. Equipés avec le souci du détail dans notre camping à l'Estartit"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mobile-home",
+      "title": "Mobile Home Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Discover our bungalows in Girona with quality and comfort. Equipped with attention to detail at our campsite in l'Estartit"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mobile-home",
+      "title": "Allotjaments Mobile Home :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "glamping",
+    "group": "accommodation-category",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/glamping",
+      "title": "Alojamientos Glamping :: Camping Castell Montgrí",
+      "metaDescription": "Descubre nuestros Glampings en Girona con calidad y confort. Equipados con atención al detalle en nuestro camping en l’Estartit"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/glamping",
+      "title": "Allotjaments Glamping :: Camping Castell Montgrí",
+      "metaDescription": "Descobreix els nostres glampings a Girona amb qualitat i confort. Equipats amb atenció al detall al nostre càmping a l'Estartit"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/glamping",
+      "title": "Allotjaments Glamping :: Camping Castell Montgrí",
+      "metaDescription": "Découvrez nos glampings à Gérone avec qualité et confort. Equipés avec le souci du détail dans notre camping à l'Estartit"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/glamping",
+      "title": "Glamping Accomodations :: Camping Castell Montgrí",
+      "metaDescription": "Discover our glampings in Girona with quality and comfort. Equipped with attention to detail at our campsite in l'Estartit"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/glamping",
+      "title": "Allotjaments Glamping :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "tiendas",
+    "group": "accommodation-category",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/tiendas",
+      "title": "Alojamientos Tiendas :: Camping Castell Montgrí",
+      "metaDescription": "Encuentra tiendas de campaña para familias en nuestro camping en l’Estartit. Disfruta de comodidad y calidad en tus vacaciones al aire libre."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tendes",
+      "title": "Allotjaments Tendes :: Camping Castell Montgrí",
+      "metaDescription": "Troba tendes de campanya per a famílies al nostre càmping a l'Estartit. Gaudeix de comoditat i qualitat a les teves vacances a l'aire lliure."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/tents",
+      "title": "Allotjaments Tendes :: Camping Castell Montgrí",
+      "metaDescription": "Trouvez des tentes de camping pour les familles dans notre camping à l'Estartit. Profitez du confort et de la qualité pendant vos vacances en plein air."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/tents",
+      "title": "Tents Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Find tents for families at our campsite in l'Estartit. Enjoy comfort and quality on your outdoor vacation."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tents",
+      "title": "Allotjaments Tendes :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "parcelas",
+    "group": "accommodation-category",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcelas",
+      "title": "Alojamientos Parcelas :: Camping Castell Montgrí",
+      "metaDescription": "Todas nuestras parcelas disponen de conexión eléctrica. La diferencia está en la potencia, que varía en función del tipo de parcela alquilada."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parceles",
+      "title": "Allotjaments Parceles :: Camping Castell Montgrí",
+      "metaDescription": "Totes les nostres parcel·les disposen de connexió elèctrica. La diferència rau en la potència, que varia en funció del tipus de parcel·la llogada."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/emplacements",
+      "title": "Allotjaments Parceles :: Camping Castell Montgrí",
+      "metaDescription": "Tous nos terrains disposent d'un branchement électrique. La différence se situe au niveau de la puissance, qui varie en fonction du type de terrain louée."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/pitches",
+      "title": "Plots Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "All our plots have electrical connection. The difference is in the power, which varies depending on the type of rented plot."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/plaatsen",
+      "title": "Allotjaments Parceles :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restauracion",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion",
+      "title": "Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": "Disfruta de una experiencia culinaria única en nuestro camping con restaurante. Saborea platos deliciosos mientras disfrutas del entorno natural y las actividades al aire libre."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio",
+      "title": "Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": "Gaudeix d'una experiència culinària única al nostre càmping amb restaurant. Assaboriu plats deliciosos mentre gaudiu de l'entorn natural i les activitats a l'aire lliure."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration",
+      "title": "Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": "Vivez une expérience culinaire unique dans notre camping avec restaurant. Savourez de délicieux plats tout en profitant du cadre naturel et des activités de plein air."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration",
+      "title": "Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": "Enjoy a unique culinary experience at our campsite with restaurant. Savor delicious dishes while enjoying the natural environment and outdoor activities."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie",
+      "title": "Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "servicios",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/servicios",
+      "title": "Instalaciones y servicios :: Camping Castell Montgrí",
+      "metaDescription": "Descansa tranquilo en nuestro camping con servicio médico. Contamos con personal especializado para atender cualquier emergencia, brindándote seguridad y tranquilidad durante tus vacaciones."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/serveis",
+      "title": "Instal·lacions i serveis :: Camping Castell Montgrí",
+      "metaDescription": "Descansa tranquil al nostre càmping amb servei mèdic. Comptem amb personal especialitzat per atendre qualsevol emergència, brindant-te seguretat i tranquil·litat durant les teves vacances."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/services",
+      "title": "Installations et services :: Camping Castell Montgrí",
+      "metaDescription": "Reposez-vous dans notre camping avec service médical. Nous disposons d'un personnel spécialisé pour répondre à toute urgence, vous offrant sécurité et tranquillité pendant vos vacances."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/services",
+      "title": "Facilities and services :: Camping Castell Montgrí",
+      "metaDescription": "Rest easy in our campsite with medical service. We have specialized personnel to attend to any emergency, providing you with security and peace of mind during your vacation."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/diensten",
+      "title": "Faciliteiten en diensten :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animacion",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion",
+      "title": "Animación :: Camping Castell Montgrí",
+      "metaDescription": "Encuentra el lugar perfecto para unas vacaciones familiares en nuestro camping. Con actividades para todas las edades y alojamientos cómodos, ¡crea recuerdos duraderos con tus seres queridos!"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio",
+      "title": "ANIMACIÓ SENSE LÍMITS :: Camping Castell Montgrí",
+      "metaDescription": "Troba el lloc perfecte per a unes vacances familiars al nostre càmping. Amb activitats per a totes les edats i allotjaments còmodes, crea records duradors amb els teus éssers estimats!"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation",
+      "title": "ANIMATION SANS LIMITES :: Camping Castell Montgrí",
+      "metaDescription": "Trouvez l'endroit idéal pour des vacances en famille dans notre camping. Avec des activités pour tous les âges et des hébergements confortables, créez des souvenirs impérissables avec vos proches !"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation",
+      "title": "ANIMATION WITHOUT LIMITS :: Camping Castell Montgrí",
+      "metaDescription": "Find the perfect place for a family vacation at our campsite. With activities for all ages and comfortable accommodations, create lasting memories with your loved ones!"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie",
+      "title": "ANIMATIE ZONDER GRENZEN :: Camping Castell Montgrí",
+      "metaDescription": "Geniet van eindeloos entertainment op onze camping, waar plezier en vreugde samenvloeien. Ons animatieteam heeft een spannend aanbod aan activiteiten voor alle leeftijden voorbereid. Van interactieve spelletjes en sport tot thema-avonden en liveshows, er is voor ieder wat wils. Doe mee, maak nieuwe vrienden en creëer onvergetelijke herinneringen tijdens uw verblijf bij ons. Het animatieprogramma op onze camping is erop gericht om u te laten lachen en volop te genieten!"
+    }
+  },
+  {
+    "key": "eventos",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/eventos",
+      "title": "Eventos y grupos :: Camping Castell Montgrí",
+      "metaDescription": "En un rincón de la Costa Brava, tenemos la combinación perfecta para tu evento: un entorno natural privilegiado y más de 50 años de experiencia en el sector. Para nosotros, tu idea es lo más importante, y trabajaremos juntos para que tus expectativas se cumplan."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/events",
+      "title": "Events i grups :: Camping Castell Montgrí",
+      "metaDescription": "En un racó de la Costa Brava, tenim la combinació perfecta per al teu esdeveniment: un entorn natural privilegiat i més de 50 anys d’experiència en el sector. Per a nosaltres, la teva idea és el més important, i treballarem junts perquè les teves expectatives es compleixin."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/evenements",
+      "title": "Événements et groupes :: Camping Castell Montgrí",
+      "metaDescription": "Dans un coin de la Costa Brava, nous avons la combinaison parfaite pour votre événement : un cadre naturel privilégié et plus de 50 ans d’expérience dans le secteur. Pour nous, votre idée est la plus importante, et nous travaillerons ensemble pour que vos attentes soient satisfaites."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/events",
+      "title": "Events and groups :: Camping Castell Montgrí",
+      "metaDescription": "In a corner of the Costa Brava, we have the perfect combination for your event: a privileged natural setting and over 50 years of experience in the industry. For us, your idea is the most important thing, and we’ll work together to make sure your expectations are met."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/evenementen",
+      "title": "Evenementen en Groepen :: Camping Castell Montgrí",
+      "metaDescription": "Aan de Costa Brava bieden wij de perfecte combinatie voor uw evenement: een bevoorrechte natuurlijke omgeving en meer dan 50 jaar ervaring in de branche. Voor ons is uw idee het allerbelangrijkste en we werken samen om ervoor te zorgen dat aan uw verwachtingen wordt voldaan."
+    }
+  },
+  {
+    "key": "entorno",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/entorno",
+      "title": "CONOCE LA COSTA BRAVA :: Camping Castell Montgrí",
+      "metaDescription": "Un paraíso natural en el Empordà con nuestro camping. Disfruta de la tranquilidad, actividades al aire libre y una experiencia única en contacto con la naturaleza."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/entorn",
+      "title": "CONEIX LA COSTA BRAVA :: Camping Castell Montgrí",
+      "metaDescription": "Un paradís natural a l'Empordà amb el nostre càmping. Gaudeix de la tranquil·litat, activitats a l'aire lliure i una experiència única en contacte amb la natura."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/environnement",
+      "title": "FAITES CONNAISSANCE SUR LA COSTA BRAVA :: Camping Castell Montgrí",
+      "metaDescription": "Un paradis naturel dans l'Empordà avec notre camping. Profitez de la tranquillité, des activités de plein air et d'une expérience unique au contact de la nature."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/environment",
+      "title": "GET TO KNOW THE COSTA BRAVA :: Camping Castell Montgrí",
+      "metaDescription": "A natural paradise in the Empordà with our campsite. Enjoy the tranquility, outdoor activities and a unique experience in contact with nature."
+    },
+    "nl": null
+  },
+  {
+    "key": "mh-medes",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-medes",
+      "title": "MH MEDES :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los MH Medes son el alojamiento perfecto para quienes buscan comodidad y funcionalidad durante su estancia en el camping. Estas mobile homes cuentan con una sala de estar acogedora, un comedor y una cocina equipada con cocina de gas, microondas y nevera. Disponen de tres habitaciones: dos con camas individuales y una con cama de matrimonio. Además, tienen un baño completo con ducha, lavabo y un WC independiente para mayor conveniencia. El exterior es igualmente impresionante, con una gran terraza de madera que incluye una mesa y sillas, dos hamacas y un toldo para disfrutar de momentos de relax al aire libre. Algunas de estas mobile homes están situadas en la parte alta del camping, cerca de la piscina de Panorama, mientras que otras se encuentran en la parte baja, cerca de la piscina de Oasis. Extras contratables: toallas (precio: 7€+25€ depósito/pack ) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-medes",
+      "title": "MH MEDES :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els MH Medes són l'allotjament perfecte per als qui busquen comoditat i funcionalitat durant la seva estada en el càmping. Aquestes mobile homes compten amb una sala d'estar acollidora, un menjador i una cuina equipada amb cuina de gas, microones i nevera. Disposen de tres habitacions: dos amb llits individuals i una amb llit de matrimoni. A més, tenen un bany complet amb dutxa, lavabo i un WC independent per a major conveniència. L'exterior és igualment impressionant, amb una gran terrassa de fusta que inclou una taula i cadires, dues hamaques i un tendal per a gaudir de moments de relax a l'aire lliure. Algunes d'aquestes mobile homes estan situades en la part alta del càmping, prop de la piscina de Panorama, mentre que unes altres es troben en la part baixa, prop de la piscina d'Oasis. Extres contractables: tovalloles (preu: 7€+25€ depòsit/pack ) i barbacoa No s'admeten tendes complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-medes",
+      "title": "MH MEDES :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Les MH Medes sont l'hébergement parfait pour ceux qui recherchent confort et fonctionnalité pendant leur séjour en camping. Ces mobil-homes disposent d'un salon confortable, d'une salle à manger et d'une cuisine équipée avec une cuisinière à gaz, un micro-ondes et un réfrigérateur. Ils ont trois chambres : deux avec des lits simples et une avec un lit double. De plus, ils comprennent une salle de bain complète avec une douche, un lavabo et des toilettes séparées pour plus de commodité. L'extérieur est tout aussi impressionnant, avec une grande terrasse en bois comprenant une table et des chaises, deux hamacs et un auvent pour profiter de moments de détente en plein air. Certains de ces mobil-homes sont situés dans la partie haute du camping, près de la piscine de Panorama, tandis que d'autres se trouvent dans la partie basse, près de la piscine de Oasis. Extras disponibles : serviettes (prix: 7 € + 25 € de consigne per paquet ) et barbecue Les tentes supplémentaires et les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-medes",
+      "title": "MH MEDES :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The MH Medes are the perfect accommodation for those seeking comfort and functionality during their camping stay. These mobile homes feature a cozy living room, a dining area, and a kitchen equipped with a gas stove, microwave, and refrigerator. They have three bedrooms: two with single beds and one with a double bed. Additionally, they have a full bathroom with a shower, sink, and a separate WC for added convenience. The exterior is equally impressive, with a large wooden terrace that includes a table and chairs, two hammocks, and an awning to enjoy relaxing moments outdoors. Some of these mobile homes are located in the upper part of the campsite, near the Panorama pool, while others are in the lower part, near the Oasis pool. Extras available: towels (price: €7 + €25 deposit/pack) and barbecue No additional tents or pets are allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-medes",
+      "title": "MH MEDES :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De MH Medes zijn de perfecte accommodatie voor degenen die comfort en functionaliteit zoeken tijdens hun verblijf op de camping. Deze stacaravans beschikken over een gezellige woonkamer, een eetkamer en een keuken uitgerust met een gasfornuis, magnetron en koelkast. Ze hebben drie slaapkamers: twee met eenpersoonsbedden en één met een tweepersoonsbed. Daarnaast hebben ze een volledige badkamer met een douche, wastafel en een apart toilet voor extra gemak. Het exterieur is even indrukwekkend, met een groot houten terras met een tafel en stoelen, twee hangmatten en een zonnescherm om te genieten van ontspannen momenten buiten. Sommige van deze stacaravans bevinden zich in het hogere deel van de camping, nabij het Panorama zwembad, terwijl andere zich in het lagere deel bevinden, nabij het Oasis zwembad. Beschikbare extra's: handdoeken (prijs €7 + €25 statiegeld per pak ) en barbecue Geen extra tenten of huisdieren toegestaan."
+    }
+  },
+  {
+    "key": "mh-montgri",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-montgri",
+      "title": "MH MONTGRÍ :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los MH Montgrí son una opción ideal para aquellos que buscan una estancia cómoda y bien equipada en el camping. Estos alojamientos cuentan con una acogedora sala de estar, un comedor y una cocina equipada con cocina de gas y nevera. Disponen de tres habitaciones: dos con camas individuales y una con cama de matrimonio, ofreciendo un espacio adecuado para familias o grupos pequeños. El baño incluye una ducha, lavabo y WC, proporcionando todas las comodidades necesarias. En el exterior, los MH Montgrí cuentan con una pequeña terraza con mesa y sillas, perfecta para disfrutar de comidas al aire libre o momentos de relax. Estos alojamientos están situados en la parte baja del camping, en la zona amarilla, lo que facilita el acceso a las instalaciones y servicios del camping. Extras contratables: toallas (precio 7 €+ 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-montgri",
+      "title": "MH MONTGRÍ :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els MH Montgrí són una opció ideal per a aquells que busquen una estada còmoda i ben equipada en el càmping. Aquests allotjaments compten amb una acollidora sala d'estar, un menjador i una cuina equipada amb cuina de gas i nevera. Disposen de tres habitacions: dos amb llits individuals i una amb llit de matrimoni, oferint un espai adequat per a famílies o grups petits. El bany inclou una dutxa, lavabo i WC, proporcionant totes les comoditats necessàries. En l'exterior, els MH Montgrí compten amb una petita terrassa amb taula i cadires, perfecta per a gaudir de menjars a l'aire lliure o moments de relax. Aquests allotjaments estan situats en la part baixa del càmping, en la zona groga, la qual cosa facilita l'accés a les instal·lacions i serveis del càmping. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per paquet ) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-montgri",
+      "title": "MH MONTGRÍ :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Les MH Montgrí sont une option idéale pour ceux qui recherchent un séjour confortable et bien équipé au camping. Ces hébergements comprennent un salon confortable, une salle à manger et une cuisine équipée d'une cuisinière à gaz et d'un réfrigérateur. Ils disposent de trois chambres : deux avec des lits simples et une avec un lit double, offrant un espace adapté aux familles ou aux petits groupes. La salle de bain comprend une douche, un lavabo et des toilettes, offrant toutes les commodités nécessaires. À l'extérieur, les MH Montgrí disposent d'une petite terrasse avec une table et des chaises, parfaite pour profiter des repas en plein air ou des moments de détente. Ces logements sont situés dans la partie basse du camping, dans la zone jaune, ce qui facilite l'accès aux installations et aux services du camping. Extras disponibles : serviettes (prix 7 €+ 25 € de consigne remboursable per pack) et barbecue Aucune tente supplémentaire ni animal n'est autorisé."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-montgri",
+      "title": "MH MONTGRÍ :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The MH Montgrí are an ideal option for those seeking a comfortable and well-equipped stay at the campsite. These accommodations feature a cozy living room, a dining area, and a kitchen equipped with a gas stove and refrigerator. They have three bedrooms: two with single beds and one with a double bed, providing suitable space for families or small groups. The bathroom includes a shower, sink, and toilet, offering all necessary amenities. Outside, the MH Montgrí have a small terrace with a table and chairs, perfect for enjoying outdoor meals or relaxing moments. These accommodations are located in the lower part of the campsite, in the yellow zone, which makes access to the campsite facilities and services easy. Available extras: towels (price €7 + €25 refundable deposit per pack) and barbecue No additional tents or pets allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-montgri",
+      "title": "MH MONTGRÍ :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De MH Montgrí zijn een ideale optie voor degenen die op zoek zijn naar een comfortabel en goed uitgerust verblijf op de camping. Deze accommodaties hebben een gezellige woonkamer, een eetgedeelte en een keuken met een gasfornuis en koelkast. Ze hebben drie slaapkamers: twee met eenpersoonsbedden en een met een tweepersoonsbed, wat voldoende ruimte biedt voor gezinnen of kleine groepen. De badkamer is voorzien van een douche, wastafel en toilet, met alle benodigde voorzieningen. Buiten hebben de MH Montgrí een klein terras met een tafel en stoelen, ideaal om buiten te eten of te ontspannen. Deze accommodaties bevinden zich in het lagere deel van de camping, in de gele zone, wat toegang biedt tot de faciliteiten en diensten van de camping. Beschikbare extra's: handdoeken (prijs €7 + €25 statiegeld per pak ) en barbecue Geen extra tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "mh-ter",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-ter",
+      "title": "MH TER :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los MH Ter ofrecen una experiencia de alojamiento cómoda y funcional para familias y grupos pequeños. Consta de una habitación con cama de matrimonio (135×190), una habitación con dos camas individuales (80×190), y una habitación con litera para niños menores de 16 años (60×180). El alojamiento también incluye un baño completo con ducha y WC para mayor comodidad. La cocina está completamente equipada con horno, nevera espaciosa (145×55) y utensilios de cocina, perfecta para preparar comidas caseras durante la estancia. Estos alojamientos están diseñados para proporcionar todo lo necesario para una estancia confortable y están ubicados en diferentes zonas del camping para adaptarse a las preferencias de los huéspedes. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-ter",
+      "title": "MH TER :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els MH Ter ofereixen una experiència d'allotjament còmoda i funcional per a famílies i grups petits. Consta d'una habitació amb llit de matrimoni (135×190), una habitació amb dos llits individuals (80×190), i una habitació amb llitera per a nens menors de 16 anys (60×180). L'allotjament també inclou un bany complet amb dutxa i WC per a major comoditat. La cuina està completament equipada amb forn, nevera espaiosa (145×55) i utensilis de cuina, perfecta per a preparar menjars casolans durant l'estada. Aquests allotjaments estan dissenyats per a proporcionar tot el necessari per a una estada confortable i estan situats en diferents zones del càmping per a adaptar-se a les preferències dels hostes. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-ter",
+      "title": "MH TER :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Les MH Ter offrent une expérience d'hébergement confortable et fonctionnelle pour les familles et les petits groupes. Ils comprennent une chambre avec un lit double (135×190), une chambre avec deux lits simples (80×190), et une chambre avec des lits superposés pour les enfants de moins de 16 ans (60×180). L'hébergement comprend également une salle de bain complète avec douche et WC pour plus de confort. La cuisine est entièrement équipée avec un four, un réfrigérateur spacieux (145×55), et des ustensiles de cuisine, parfaits pour préparer des repas maison pendant votre séjour. Ces logements sont conçus pour offrir tout le nécessaire pour un séjour confortable et sont situés dans différentes zones du camping pour répondre aux préférences des clients. Extras facultatifs : serviettes (prix 7 € + 25 € de consigne remboursable per pack) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-ter",
+      "title": "MH TER :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The MH Ter offers a comfortable and functional accommodation experience for families and small groups. It consists of a room with a double bed (135×190), a room with two single beds (80×190), and one bedroom with bunk beds for children under 16 (60×180). The accommodation also includes a full bathroom with shower and WC for added convenience. The kitchen is fully equipped with an oven, spacious refrigerator (145×55), and cooking utensils, perfect for preparing homemade meals during your stay. These accommodations are designed to provide everything necessary for a comfortable stay and are located in different areas of the campground to suit guests' preferences. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or pets are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-ter",
+      "title": "MH TER :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De MH Ter bieden een comfortabele en functionele accommodatie-ervaring voor families en kleine groepen. Ze bestaan uit een kamer met een tweepersoonsbed (135×190), een kamer met twee eenpersoonsbedden (80×190), en een kamer met een stapelbed voor kinderen onder de 16 jaar (60×180). De accommodatie beschikt ook over een complete badkamer met douche en WC voor extra comfort. De keuken is volledig uitgerust met een oven, ruime koelkast (145×55), en keukengerei, ideaal voor het bereiden van zelfgemaakte maaltijden tijdens uw verblijf. Deze accommodaties zijn ontworpen om alles te bieden wat nodig is voor een comfortabel verblijf en zijn gelegen in verschillende gebieden van de camping om tegemoet te komen aan de voorkeuren van de gasten. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak ) en barbecue Extra tenten of huisdieren zijn niet toegestaan"
+    }
+  },
+  {
+    "key": "mh-rocamora-6",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-rocamora-6",
+      "title": "MH ROCAMAURA – 6 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Comodidad y funcionalidad para toda la familia Un alojamiento pensado para quienes buscan confort en un entorno acogedor. Ideal para hasta 6 personas, Rocamaura combina funcionalidad y calidez, convirtiéndose en el refugio perfecto para unas vacaciones inolvidables. En el salón, un cómodo sofá cama invita al descanso tras un día de actividades, creando un ambiente relajante y familiar. La cocina, equipada con fogones de gas y una nevera, te permite preparar tus propias comidas con total libertad. Dispone de dos dormitorios, uno con una cama de matrimonio, amplio y tranquilo. Y Otro con literas, perfecto para los más pequeños o grupos reducidos. El baño, de estilo moderno, cuenta con ducha, lavabo e inodoro, ofreciendo toda la comodidad que necesitas. Disfruta de una estancia práctica y confortable, rodeado de naturaleza y con todas las facilidades al alcance de tu mano."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-rocamora-6",
+      "title": "MH ROCAMAURA – 6 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Confort i funcionalitat per a tota la família Un allotjament pensat per a qui busca confort en un entorn acollidor. Ideal per a fins a 6 persones, Rocamaura combina funcionalitat i calidesa, convertint-se en el refugi perfecte per a unes vacances inoblidables. Al saló, un confortable sofà llit convida a desconnectar després d’un dia d’activitats, creant una atmosfera relaxant i familiar. La cuina, equipada amb fogons de gas i nevera, et permet preparar els teus propis menjars amb total llibertat. L’allotjament disposa de dos dormitoris: un amb llit doble, ampli i tranquil; l’altre amb lliteres, perfecte per a nens o grups petits. El bany, de disseny modern, compta amb dutxa, rentamans i vàter, i ofereix tot el confort necessari. Gaudeix d’una estada pràctica i confortable, envoltat de natura i amb totes les facilitats a l’abast."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-rocamora-6",
+      "title": "MH ROCAMAURA – 6 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "L'hébergement Rocamaura, idéal pour jusqu'à 6 personnes, est un choix parfait pour les familles et les groupes. Il dispose d'une chambre principale avec un lit double (135×190 cm) et de deux chambres supplémentaires, chacune avec deux lits simples (80×190 cm). La salle de bain comprend une douche, et les toilettes sont séparées pour plus de commodité. Le salon et la salle à manger offrent un espace confortable pour se détendre et partager des repas. La cuisine est bien équipée avec une cuisinière à gaz, un réfrigérateur (145×55 cm), une cafetière électrique et tous les ustensiles nécessaires pour cuisiner. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable par pack), kit bébé et barbecue Aucune tente supplémentaire ni animal de compagnie autorisé"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-rocamora-6",
+      "title": "MH ROCAMAURA – 6 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Rocamaura accommodation, ideal for up to 6 people, is a perfect choice for families and groups. It features a master bedroom with a double bed (135×190 cm), and two additional bedrooms, each with two single beds (80×190 cm). The bathroom includes a shower, and the WC is separate for added convenience. The living room and dining area provide a cozy space to relax and share meals. The kitchen is well-equipped with a gas stove, a refrigerator (145×55 cm), an electric coffee maker, and all the necessary cooking utensils. Available extras: towels (price 7 € + 25 € de deposit per pack) baby kit, and barbecue No additional tents or pets allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-rocamora-6",
+      "title": "MH ROCAMAURA – 6 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De accommodatie Rocamaura, ideaal voor maximaal 6 personen, is een perfecte keuze voor families en groepen. Het beschikt over een hoofdslaapkamer met een tweepersoonsbed (135×190 cm) en twee extra slaapkamers, elk met twee eenpersoonsbedden (80×190 cm). De badkamer is voorzien van een douche, en het toilet is apart voor extra gemak. De woonkamer en eetkamer bieden een gezellige ruimte om te ontspannen en maaltijden te delen. De keuken is goed uitgerust met een gasfornuis, een koelkast (145×55 cm), een elektrische koffiemachine en alle benodigde kookgerei. Beschikbare extra's: handdoeken (prijs €7 + €25 statiegeld per pak), babykit en barbecue Geen extra tenten of huisdieren toegestaan."
+    }
+  },
+  {
+    "key": "mh-rocamora-4",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-rocamora-4",
+      "title": "MH ROCAMAURA – 4 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "El alojamiento Rocamaura, ideal para hasta 4 personas, proporciona un espacio acogedor y funcional para una estancia confortable. La sala de estar cuenta con un sofá cama, creando un ambiente relajante donde los huéspedes pueden descansar. La cocina está equipada con gas y una nevera. El alojamiento dispone de dos habitaciones: una con una cómoda cama de matrimonio y otra con literas, perfecta para familias con niños o grupos pequeños. El baño está bien distribuido, ofreciendo una ducha, un aseo y un WC para mayor comodidad. Además, Rocamaura cuenta con una encantadora terraza exterior equipada con mesa y sillas, proporcionando un espacio ideal para disfrutar de comidas al aire libre o simplemente relajarse. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack), kit bebé y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-rocamora-4",
+      "title": "MH ROCAMAURA – 4 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "L'allotjament Rocamaura, ideal per a fins a 4 persones, proporciona un espai acollidor i funcional per a una estada confortable. La sala d'estar compta amb un sofà llit, creant un ambient relaxant on els hostes poden descansar. La cuina està equipada amb gas i una nevera. L'allotjament disposa de dues habitacions: una amb un còmode llit de matrimoni i una altra amb lliteres, perfecta per a famílies amb nens o grups petits. El bany està ben distribuït, oferint una dutxa, un lavabo i un WC per a major comoditat. A més, Rocamaura compta amb una encantadora terrassa exterior equipada amb taula i cadires, proporcionant un espai ideal per a gaudir de menjars a l'aire lliure o simplement relaxar-se. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack), kit bebè i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-rocamora-4",
+      "title": "MH ROCAMAURA – 4 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "L'hébergement Rocamaura, idéal pour jusqu'à 4 personnes, offre un espace confortable et fonctionnel pour un séjour agréable. Le salon dispose d'un canapé-lit, créant une atmosphère relaxante où les invités peuvent se détendre. La cuisine est équipée d'une cuisinière à gaz et d'un réfrigérateur. L'hébergement comprend deux chambres : une avec un lit double confortable et une autre avec des lits superposés, parfaite pour les familles avec enfants ou les petits groupes. La salle de bain est bien agencée, offrant une douche, un lavabo et des toilettes pour plus de commodité. De plus, Rocamaura dispose d'une charmante terrasse extérieure équipée d'une table et de chaises, offrant un espace idéal pour profiter des repas en plein air ou simplement se détendre. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable par pack), kit bébé et barbecue Aucune tente supplémentaire ni animal de compagnie autorisé"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-rocamora-4",
+      "title": "MH ROCAMAURA – 4 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Rocamaura accommodation, ideal for up to 4 people, provides a cozy and functional space for a comfortable stay. The living room features a sofa bed, creating a relaxing atmosphere where guests can unwind. The kitchen is equipped with a gas stove and a refrigerator. The accommodation has two bedrooms: one with a comfortable double bed and another with bunk beds, perfect for families with children or small groups. The well-designed bathroom offers a shower, a washbasin, and a WC for added convenience. Additionally, Rocamaura boasts a charming outdoor terrace equipped with a table and chairs, providing an ideal space to enjoy outdoor meals or simply relax. Available extras: towels (price €7 + €25 refundable deposit per pack), baby kit, and barbecue No additional tents or pets allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-rocamora-4",
+      "title": "MH ROCAMAURA – 4 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De accommodatie Rocamaura, ideaal voor maximaal 4 personen, biedt een gezellige en functionele ruimte voor een comfortabel verblijf. De woonkamer beschikt over een slaapbank, waardoor er een ontspannen sfeer ontstaat waar gasten kunnen rusten. De keuken is uitgerust met een gasfornuis en een koelkast. Het verblijf heeft twee slaapkamers: één met een comfortabel tweepersoonsbed en een andere met een stapelbed, perfect voor gezinnen met kinderen of kleine groepen. De goed ontworpen badkamer biedt een douche, een wastafel en een toilet voor extra gemak. Daarnaast heeft Rocamaura een charmant buitenterras met een tafel en stoelen, ideaal om buiten te genieten van maaltijden of gewoon te ontspannen. Beschikbare extra's: handdoeken (prijs €7 + €25 statiegeld per pak), babykit en barbecue Geen extra tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "chalet-45",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-45",
+      "title": "CHALET 4/5 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los Chalets 4 son la elección perfecta para quienes buscan un alojamiento moderno y elegante en el camping. Destacan por su amplitud, diseño sofisticado y el cuidado en cada detalle. Cada chalet cuenta con un luminoso salón de diseño contemporáneo, un comedor espacioso y una cocina completamente equipada con cocina de gas, lavavajillas, microondas y nevera. Con dos amplias habitaciones (una con camas individuales y una con cama de matrimonio), y un baño completo, estos chalets están pensados para ofrecer la máxima comodidad y funcionalidad. Uno de sus mayores atractivos es su impresionante terraza de madera, que se integra a la perfección con el salón gracias a un amplio ventanal corredero. Esta conexión crea un espacio continuo que realza la sensación de amplitud y luminosidad, ideal para disfrutar tanto del interior como del exterior. La terraza está equipada con mesa, sillas y un toldo, proporcionando el entorno ideal para relajarse al aire libre."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-45",
+      "title": "CHALET 4/5 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Chalet 4 són l'opció perfecta per a aquells que busquen un allotjament modern i elegant al càmping. Destaquen per la seva amplitud, el disseny sofisticat i la cura de cada detall. Cada xalet compta amb un saló lluminós de disseny contemporani, un menjador espaiós i una cuina completament equipada amb cuina de gas, rentavaixelles, microones i nevera. Amb dues àmplies habitacions (una amb llits individuals i una amb llit de matrimoni), i un bany complet, aquests xalets estan pensats per oferir la màxima comoditat i funcionalitat. Un dels seus principals atractius és la seva impressionant terrassa de fusta, que s’integra perfectament amb la sala d'estar gràcies a un ampli finestral corredís. Aquesta connexió crea un espai continu que realça la sensació d’amplitud i lluminositat, ideal per gaudir tant de l’interior com de l’exterior. La terrassa està equipada amb taula, cadires i un tendal, proporcionant l’entorn perfecte per relaxar-se a l’aire lliure."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-45",
+      "title": "CHALET 4/5 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Le Chalet 4 est l'option parfaite pour ceux qui recherchent un hébergement moderne et élégant au camping. Ces chalets se distinguent par leur espace, leur design sophistiqué et l'attention portée à chaque détail. Chaque chalet dispose d'un salon lumineux au design contemporain, d'une grande salle à manger et d'une cuisine entièrement équipée avec une cuisinière à gaz, un lave-vaisselle, un micro-ondes et un réfrigérateur. Avec deux chambres spacieuses (une avec des lits simples et une avec un lit double), et une salle de bain complète, ces chalets sont conçus pour offrir un maximum de confort et de fonctionnalité. L'un de leurs principaux atouts est leur impressionnante terrasse en bois, qui s'intègre parfaitement au salon grâce à une grande baie vitrée coulissante. Cette connexion crée un espace continu qui met en valeur la sensation de luminosité et d'amplitude, idéal pour profiter à la fois de l'intérieur et de l'extérieur. La terrasse est équipée d'une table, de chaises et d'un auvent, offrant l'endroit parfait pour se détendre en plein air."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-45",
+      "title": "CHALET 4/5 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Chalet 4 is the perfect option for those seeking modern and elegant accommodation at the campsite. These chalets stand out for their spaciousness, sophisticated design, and attention to every detail. Each chalet features a bright living room with a contemporary design, a large dining area, and a fully equipped kitchen with a gas stove, dishwasher, microwave, and refrigerator. With two spacious bedrooms (one with single beds and one with a double bed), and a full bathroom, these chalets are designed to offer maximum comfort and functionality. One of their main attractions is the impressive wooden terrace, which seamlessly integrates with the living room through large sliding glass doors. This connection creates a continuous space that enhances the sense of openness and brightness, making it ideal for enjoying both indoors and outdoors. The terrace is equipped with a table, chairs, and an awning, providing the perfect environment for outdoor relaxation."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-45",
+      "title": "CHALET 4/5 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Chalet 4 is de perfecte optie voor wie op zoek is naar moderne en elegante accommodatie op de camping. Deze chalets vallen op door hun ruime indeling, verfijnd ontwerp en oog voor detail. Elk chalet beschikt over een lichte woonkamer met een eigentijds design, een ruime eetkamer en een volledig uitgeruste keuken met een gasfornuis, vaatwasser, magnetron en koelkast. Met twee ruime slaapkamers (één met eenpersoonsbedden, één met een tweepersoonsbed), en een complete badkamer, zijn deze chalets ontworpen voor maximaal comfort en functionaliteit. Een van de grootste troeven is het indrukwekkende houten terras dat naadloos aansluit op de woonkamer dankzij een grote schuifpui. Deze verbinding zorgt voor een doorlopend geheel dat de indruk van ruimte en licht versterkt, perfect om zowel binnen als buiten van te genieten. Het terras is uitgerust met een tafel, stoelen en een zonnescherm, wat de ideale omgeving biedt om buiten te ontspannen."
+    }
+  },
+  {
+    "key": "chalet-45-superior",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-45-superior",
+      "title": "CHALET 4/5 SUPERIOR :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los Chalets 4 Superior son la elección perfecta para quienes buscan un alojamiento moderno y elegante en el camping. Destacan por su amplitud, diseño sofisticado y el cuidado en cada detalle. Cada chalet cuenta con un luminoso salón de diseño contemporáneo, un comedor espacioso y una cocina completamente equipada con cocina de gas, lavavajillas, microondas y nevera. Con dos amplias habitaciones (una con camas individuales y una con cama de matrimonio), y un baño completo, estos chalets están pensados para ofrecer la máxima comodidad y funcionalidad. Uno de sus mayores atractivos es su impresionante terraza de madera, que se integra a la perfección con el salón gracias a un amplio ventanal corredero. Esta conexión crea un espacio continuo que realza la sensación de amplitud y luminosidad, ideal para disfrutar tanto del interior como del exterior. La terraza está equipada con mesa, sillas y un toldo, proporcionando el entorno ideal para relajarse al aire libre. Extras contratables : toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa Restricciones : no se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-45-superior",
+      "title": "CHALET 4/5 SUPERIOR :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Chalet 4 Superior són l'opció perfecta per a aquells que busquen un allotjament modern i elegant al càmping. Destaquen per la seva amplitud, el disseny sofisticat i la cura de cada detall. Cada xalet compta amb un saló lluminós de disseny contemporani, un menjador espaiós i una cuina completament equipada amb cuina de gas, rentavaixelles, microones i nevera. Amb dos àmplies habitacions (una amb llits individuals i una amb llit de matrimoni), i un bany complet, aquests xalets estan pensats per oferir la màxima comoditat i funcionalitat. Un dels seus principals atractius és la seva impressionant terrassa de fusta, que s’integra perfectament amb la sala d'estar gràcies a un ampli finestral corredís. Aquesta connexió crea un espai continu que realça la sensació d’amplitud i lluminositat, ideal per gaudir tant de l’interior com de l’exterior. La terrassa està equipada amb taula, cadires i un tendal, proporcionant l’entorn perfecte per relaxar-se a l’aire lliure. Extres contractables : tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa Restriccions : no s’admeten tendes complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-45-superior",
+      "title": "CHALET 4/5 SUPERIOR :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Le Chalet 4 Superior est l'option parfaite pour ceux qui recherchent un hébergement moderne et élégant au camping. Ces chalets se distinguent par leur espace, leur design sophistiqué et l'attention portée à chaque détail. Chaque chalet dispose d'un salon lumineux au design contemporain, d'une grande salle à manger et d'une cuisine entièrement équipée avec une cuisinière à gaz, un lave-vaisselle, un micro-ondes et un réfrigérateur. Avec deux chambres spacieuses (une avec des lits simples et une avec un lit double), et une salle de bain complète, ces chalets sont conçus pour offrir un maximum de confort et de fonctionnalité. L'un de leurs principaux atouts est leur impressionnante terrasse en bois, qui s'intègre parfaitement au salon grâce à une grande baie vitrée coulissante. Cette connexion crée un espace continu qui met en valeur la sensation de luminosité et d'amplitude, idéal pour profiter à la fois de l'intérieur et de l'extérieur. La terrasse est équipée d'une table, de chaises et d'un auvent, offrant l'endroit parfait pour se détendre en plein air. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable per pack) et barbecue Restrictions : les tentes supplémentaires et les animaux ne sont pas autorisés"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-45-superior",
+      "title": "CHALET 4/5 SUPERIOR :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Chalet 4 Superior is the perfect option for those seeking modern and elegant accommodation at the campsite. These chalets stand out for their spaciousness, sophisticated design, and attention to every detail. Each chalet features a bright living room with a contemporary design, a large dining area, and a fully equipped kitchen with a gas stove, dishwasher, microwave, and refrigerator. With two spacious bedrooms (one with single beds and one with a double bed), and a full bathroom, these chalets are designed to offer maximum comfort and functionality. One of their main attractions is the impressive wooden terrace, which seamlessly integrates with the living room through large sliding glass doors. This connection creates a continuous space that enhances the sense of openness and brightness, making it ideal for enjoying both indoors and outdoors. The terrace is equipped with a table, chairs, and an awning, providing the perfect environment for outdoor relaxation. Available extras : towels (price €7 + €25 refundable deposit per pack) and barbecue Restrictions : no additional tents or pets allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-45-superior",
+      "title": "CHALET 4/5 SUPERIOR :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Chalet 4 Superior is de perfecte optie voor wie op zoek is naar moderne en elegante accommodatie op de camping. Deze chalets vallen op door hun ruime indeling, verfijnd ontwerp en oog voor detail. Elk chalet beschikt over een lichte woonkamer met een eigentijds design, een ruime eetkamer en een volledig uitgeruste keuken met een gasfornuis, vaatwasser, magnetron en koelkast. Met twee ruime slaapkamers (één met eenpersoonsbedden en één met een tweepersoonsbed), en een complete badkamer, zijn deze chalets ontworpen voor maximaal comfort en functionaliteit. Een van de grootste troeven is het indrukwekkende houten terras, dat naadloos aansluit op de woonkamer dankzij een grote schuifpui. Deze verbinding zorgt voor een doorlopend geheel dat de indruk van ruimte en licht versterkt, perfect om zowel binnen als buiten van te genieten. Het terras is uitgerust met een tafel, stoelen en een zonnescherm, wat de ideale omgeving biedt om buiten te ontspannen. Beschikbare extra’s : handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Beperkingen : geen aanvullende tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "chalet-6",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-6",
+      "title": "CHALET 6 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los Chalets 6 son la elección perfecta para quienes buscan un alojamiento moderno y elegante en el camping. Destacan por su amplitud, diseño sofisticado y el cuidado en cada detalle. Cada chalet cuenta con un luminoso salón de diseño contemporáneo, un comedor espacioso y una cocina completamente equipada con cocina de gas, lavavajillas, microondas y nevera. Con tres amplias habitaciones (una con camas individuales, otra con litera y una con cama de matrimonio), y un baño completo, estos chalets están pensados para ofrecer la máxima comodidad y funcionalidad. Uno de sus mayores atractivos es su impresionante terraza de madera, que se integra a la perfección con el salón gracias a un amplio ventanal corredero. Esta conexión crea un espacio continuo que realza la sensación de amplitud y luminosidad, ideal para disfrutar tanto del interior como del exterior. La terraza está equipada con mesa, sillas y un toldo, proporcionando el entorno ideal para relajarse al aire libre. Extras contratables : toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa Restricciones : no se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-6",
+      "title": "CHALET 6 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Chalet 6 són l'opció perfecta per a aquells que busquen un allotjament modern i elegant al càmping. Destaquen per la seva amplitud, el disseny sofisticat i la cura de cada detall. Cada xalet compta amb un saló lluminós de disseny contemporani, un menjador espaiós i una cuina completament equipada amb cuina de gas, rentavaixelles, microones i nevera. Amb tres àmplies habitacions (una amb llits individuals, una altre amb llitera i una amb llit de matrimoni), i un bany complet, aquests xalets estan pensats per oferir la màxima comoditat i funcionalitat. Un dels seus principals atractius és la seva impressionant terrassa de fusta, que s’integra perfectament amb la sala d'estar gràcies a un ampli finestral corredís. Aquesta connexió crea un espai continu que realça la sensació d’amplitud i lluminositat, ideal per gaudir tant de l’interior com de l’exterior. La terrassa està equipada amb taula, cadires i un tendal, proporcionant l’entorn perfecte per relaxar-se a l’aire lliure. Extres contractables : tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa Restriccions : no s’admeten tendes complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-6",
+      "title": "CHALET 6 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Le Chalet 6 est l'option parfaite pour ceux qui recherchent un hébergement moderne et élégant au camping. Ces chalets se distinguent par leur espace, leur design sophistiqué et l'attention portée à chaque détail. Chaque chalet dispose d'un salon lumineux au design contemporain, d'une grande salle à manger et d'une cuisine entièrement équipée avec une cuisinière à gaz, un lave-vaisselle, un micro-ondes et un réfrigérateur. Avec trois chambres spacieuses (une avec des lits simples, une autre avec des lits superposés et une avec un lit double), et une salle de bain complète, ces chalets sont conçus pour offrir un maximum de confort et de fonctionnalité. L'un de leurs principaux atouts est leur impressionnante terrasse en bois, qui s'intègre parfaitement au salon grâce à une grande baie vitrée coulissante. Cette connexion crée un espace continu qui met en valeur la sensation de luminosité et d'amplitude, idéal pour profiter à la fois de l'intérieur et de l'extérieur. La terrasse est équipée d'une table, de chaises et d'un auvent, offrant l'endroit parfait pour se détendre en plein air. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable per pack) et barbecue Restrictions : les tentes supplémentaires et les animaux ne sont pas autorisés"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-6",
+      "title": "CHALET 6 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Chalet 6 is the perfect option for those seeking modern and elegant accommodation at the campsite. These chalets stand out for their spaciousness, sophisticated design, and attention to every detail. Each chalet features a bright living room with a contemporary design, a large dining area, and a fully equipped kitchen with a gas stove, dishwasher, microwave, and refrigerator. With three spacious bedrooms (one with single beds, another with bunk beds, and one with a double bed), and a full bathroom, these chalets are designed to offer maximum comfort and functionality. One of their main attractions is the impressive wooden terrace, which seamlessly integrates with the living room through large sliding glass doors. This connection creates a continuous space that enhances the sense of openness and brightness, making it ideal for enjoying both indoors and outdoors. The terrace is equipped with a table, chairs, and an awning, providing the perfect environment for outdoor relaxation. Available extras : towels (price €7 + €25 refundable deposit per pack) and barbecue Restrictions : no additional tents or pets allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-6",
+      "title": "CHALET 6 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Chalet 6 is de perfecte optie voor wie op zoek is naar moderne en elegante accommodatie op de camping. Deze chalets vallen op door hun ruime indeling, verfijnd ontwerp en oog voor detail. Elk chalet beschikt over een lichte woonkamer met een eigentijds design, een ruime eetkamer en een volledig uitgeruste keuken met een gasfornuis, vaatwasser, magnetron en koelkast. Met drie ruime slaapkamers (één met eenpersoonsbedden, één met een stapelbed en één met een tweepersoonsbed), en een complete badkamer, zijn deze chalets ontworpen voor maximaal comfort en functionaliteit. Een van de grootste troeven is het indrukwekkende houten terras, dat naadloos aansluit op de woonkamer dankzij een grote schuifpui. Deze verbinding zorgt voor een doorlopend geheel dat de indruk van ruimte en licht versterkt, perfect om zowel binnen als buiten van te genieten. Het terras is uitgerust met een tafel, stoelen en een zonnescherm, wat de ideale omgeving biedt om buiten te ontspannen. Beschikbare extra’s : handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Beperkingen : geen aanvullende tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "chalet-45-pmr",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-45-pmr",
+      "title": "CHALET 4/5 PMR :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "El Chalet 4 PMR es la versión adaptada para personas con movilidad reducida de nuestros alojamientos mas modernos y elegantes. Destacan por su amplitud, diseño sofisticado y el cuidado en cada detalle. Cada chalet cuenta con un luminoso salón de diseño contemporáneo, un comedor espacioso y una cocina completamente equipada con cocina de gas, lavavajillas, microondas y nevera. Con dos amplias habitaciones (una con camas individuales y una con cama de matrimonio), y un baño completo, estos chalets están pensados para ofrecer la máxima comodidad y funcionalidad. Uno de sus mayores atractivos es su impresionante terraza de madera, que se integra a la perfección con el salón gracias a un amplio ventanal corredero. Esta conexión crea un espacio continuo que realza la sensación de amplitud y luminosidad, ideal para disfrutar tanto del interior como del exterior. La terraza está equipada con mesa, sillas y un toldo, proporcionando el entorno ideal para relajarse al aire libre. Extras contratables : toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa Restricciones : no se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-45-pmr",
+      "title": "CHALET 4/5 PMR :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Chalet 4 PMR són la versió adaptada per persones amb movilitat reduïda dels nostres allotjaments més moderns i elegants. Destaquen per la seva amplitud, el disseny sofisticat i la cura de cada detall. Cada xalet compta amb un saló lluminós de disseny contemporani, un menjador espaiós i una cuina completament equipada amb cuina de gas, rentavaixelles, microones i nevera. Amb dos àmplies habitacions (una amb llits individuals i una amb llit de matrimoni), i un bany complet, aquests xalets estan pensats per oferir la màxima comoditat i funcionalitat. Un dels seus principals atractius és la seva impressionant terrassa de fusta, que s’integra perfectament amb la sala d'estar gràcies a un ampli finestral corredís. Aquesta connexió crea un espai continu que realça la sensació d’amplitud i lluminositat, ideal per gaudir tant de l’interior com de l’exterior. La terrassa està equipada amb taula, cadires i un tendal, proporcionant l’entorn perfecte per relaxar-se a l’aire lliure. Extres contractables : tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa Restriccions : no s’admeten tendes complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-45-pmr",
+      "title": "CHALET 4/5 PMR :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Le Chalet 4 PMR est la version adaptée aux personnes à mobilité réduite de nos hébergements les plus modernes et les plus élégants. Ils se distinguent par leur espace, leur design sophistiqué et leur souci du détail. Chaque chalet dispose d'un salon lumineux au design contemporain, d'une salle à manger spacieuse et d'une cuisine entièrement équipée avec gazinière, lave-vaisselle, micro-ondes et réfrigérateur. Avec deux chambres spacieuses (l'une avec des lits jumeaux et l'autre avec un lit double) et une salle de bains complète, ces chalets sont conçus pour offrir un maximum de confort et de fonctionnalité. L'un de leurs principaux attraits est leur impressionnante terrasse en bois, parfaitement intégrée à la salle de séjour grâce à une grande fenêtre coulissante. Cette connexion crée un espace continu qui renforce la sensation d'espace et de luminosité, idéal pour profiter à la fois de l'intérieur et de l'extérieur. La terrasse est équipée d'une table, de chaises et d'un auvent, ce qui permet de se détendre en plein air. Extras : serviettes (prix 7 € + 25 € de consigne remboursable per pack) et barbecue. Restrictions : les tentes supplémentaires et les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-45-pmr",
+      "title": "CHALET 4/5 PMR :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Chalet 4 PMR is the version adapted for people with reduced mobility of our most modern and elegant accommodation. They stand out for their spaciousness, sophisticated design and attention to detail. Each chalet has a bright living room with a contemporary design, a spacious dining room and a fully equipped kitchen with gas cooker, dishwasher, microwave and fridge. With two spacious bedrooms (one with twin beds and one with a double bed), and a full bathroom, these chalets are designed for maximum comfort and functionality. One of its main attractions is its impressive wooden terrace, which is perfectly integrated with the living room thanks to a large sliding window. This connection creates a continuous space that enhances the feeling of spaciousness and luminosity, ideal for enjoying both indoors and outdoors. The terrace is equipped with table, chairs and an awning, providing the ideal environment for relaxing outdoors. Extras: towels (price €7 + €25 refundable deposit per pack) and barbecue. Restrictions: additional tents and animals are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-45-pmr",
+      "title": "CHALET 4/5 PMR :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Chalet 4 PMR is de aangepaste versie voor mensen met beperkte mobiliteit van onze meest moderne en elegante accommodaties. Ze onderscheiden zich door hun ruimte, verfijnd design en aandacht voor detail. Elk chalet heeft een lichte woonkamer met een eigentijds design, een ruime eetkamer en een volledig uitgeruste keuken met gasfornuis, vaatwasser, magnetron en koelkast. Met twee ruime slaapkamers (een met twee eenpersoonsbedden en een met een tweepersoonsbed) en een complete badkamer zijn deze chalets ontworpen voor maximaal comfort en functionaliteit. Een van de belangrijkste attracties is het indrukwekkende houten terras, dat perfect geïntegreerd is met de woonkamer dankzij een groot schuifraam. Deze verbinding creëert een doorlopende ruimte die het gevoel van ruimtelijkheid en helderheid versterkt, ideaal om zowel binnen als buiten van te genieten. Het terras is uitgerust met tafel, stoelen en een zonnescherm en biedt de ideale omgeving om buiten te ontspannen. Extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue. Beperkingen: extra tenten en dieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "mh-padrosa-4",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-padrosa-4",
+      "title": "MH PEDROSA - 4 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "El alojamiento Padrosa, ideal para hasta 4 personas, proporciona un espacio acogedor y funcional para una estancia confortable. La sala de estar cuenta con un sofá, creando un ambiente relajante donde los huéspedes pueden descansar. La cocina está equipada con gas y una nevera. El alojamiento dispone de dos habitaciones: una con una cómoda cama de matrimonio y otra con dos camas individuales, perfecta para familias con niños o grupos pequeños. El baño está bien distribuido, ofreciendo una ducha, un aseo y un WC para mayor comodidad. Además, Padrosa cuenta con una encantadora terraza exterior equipada con mesa y sillas, proporcionando un espacio ideal para disfrutar de comidas al aire libre o simplemente relajarse. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack), kit bebé y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-padrosa-4",
+      "title": "MH PEDROSA - 4 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "L'allotjament Padrosa, ideal per a fins a 4 persones, proporciona un espai acollidor i funcional per a una estada confortable. La sala d'estar compta amb un sofà, creant un ambient relaxant on els hostes poden descansar. La cuina està equipada amb gas i una nevera. L'allotjament disposa de dues habitacions: una amb un còmode llit de matrimoni i una altra amb dos llits individuals, perfecta per a famílies amb nens o grups petits. El bany està ben distribuït, oferint una dutxa, un lavabo i un WC per a major comoditat. A més, Padrosa compta amb una encantadora terrassa exterior equipada amb taula i cadires, proporcionant un espai ideal per a gaudir de menjars a l'aire lliure o simplement relaxar-se. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack), kit bebè i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-padrosa-4",
+      "title": "MH PEDROSA - 4 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "L'hébergement Padrosa, idéal pour jusqu'à 4 personnes, offre un espace confortable et fonctionnel pour un séjour agréable. Le salon dispose d'un canapé, créant une atmosphère relaxante où les invités peuvent se détendre. La cuisine est équipée d'une cuisinière à gaz et d'un réfrigérateur. L'hébergement comprend deux chambres : une avec un lit double confortable et une autre avec des lits simples, parfaite pour les familles avec enfants ou les petits groupes. La salle de bain est bien agencée, offrant une douche, un lavabo et des toilettes pour plus de commodité. De plus, Padrosa dispose d'une charmante terrasse extérieure équipée d'une table et de chaises, offrant un espace idéal pour profiter des repas en plein air ou simplement se détendre. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable par pack), kit bébé et barbecue Aucune tente supplémentaire ni animal de compagnie autorisé"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-padrosa-4",
+      "title": "MH PEDROSA - 4 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Padrosa accommodation, ideal for up to 4 people, provides a cozy and functional space for a comfortable stay. The living room features a sofa, creating a relaxing atmosphere where guests can unwind. The kitchen is equipped with a gas stove and a refrigerator. The accommodation has two bedrooms: one with a comfortable double bed and another with two single beds, perfect for families with children or small groups. The well-designed bathroom offers a shower, a washbasin, and a WC for added convenience. Additionally, Padrosa boasts a charming outdoor terrace equipped with a table and chairs, providing an ideal space to enjoy outdoor meals or simply relax. Available extras: towels (price €7 + €25 refundable deposit per pack), baby kit, and barbecue No additional tents or pets allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-padrosa-4",
+      "title": "MH PEDROSA - 4 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De accommodatie Padrosa, ideaal voor maximaal 4 personen, biedt een gezellige en functionele ruimte voor een comfortabel verblijf. De woonkamer beschikt over een slaapbank, waardoor er een ontspannen sfeer ontstaat waar gasten kunnen rusten. De keuken is uitgerust met een gasfornuis en een koelkast. Het verblijf heeft twee slaapkamers: één met een comfortabel tweepersoonsbed en een andere met een stapelbed, perfect voor gezinnen met kinderen of kleine groepen. De goed ontworpen badkamer biedt een douche, een wastafel en een toilet voor extra gemak. Daarnaast heeft Padrosa een charmant buitenterras met een tafel en stoelen, ideaal om buiten te genieten van maaltijden of gewoon te ontspannen. Beschikbare extra's: handdoeken (prijs €7 + €25 statiegeld per pak), babykit en barbecue Geen extra tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "mh-padrosa-superior",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-padrosa-superior",
+      "title": "MH PEDROSA SUPERIOR :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "El alojamiento Padrosa Superior, ideal para hasta 4 personas, proporciona un espacio acogedor y funcional para una estancia confortable. La sala de estar cuenta con un sofá, creando un ambiente relajante donde los huéspedes pueden descansar. La cocina está equipada con gas y una nevera. El alojamiento dispone de dos habitaciones: una con una cómoda cama de matrimonio y otra con dos camas individuales, perfecta para familias con niños o grupos pequeños. El baño está bien distribuido, ofreciendo una ducha, un aseo y un WC para mayor comodidad. Como característica diferencial este alojamiento dispone de una sala de juegos para los mas pequeños. Además, Padrosa Superior cuenta con una encantadora terraza exterior equipada con mesa y sillas, proporcionando un espacio ideal para disfrutar de comidas al aire libre o simplemente relajarse. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack), kit bebé y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-padrosa-superior",
+      "title": "MH PEDROSA SUPERIOR :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "L'allotjament Padrosa Superior, ideal per a fins a 4 persones, proporciona un espai acollidor i funcional per a una estada confortable. La sala d'estar compta amb un sofà, creant un ambient relaxant on els hostes poden descansar. La cuina està equipada amb gas i una nevera. L'allotjament disposa de dues habitacions: una amb un còmode llit de matrimoni i una altra amb dos llits individuals, perfecta per a famílies amb nens o grups petits. El bany està ben distribuït, oferint una dutxa, un lavabo i un WC per a major comoditat. Com a punt diferencial, Padrosa Superior disposa de un espai de jocs pels més petits dins del propi MH. A més, Padrosa Superior compta amb una encantadora terrassa exterior equipada amb taula i cadires, proporcionant un espai ideal per a gaudir de menjars a l'aire lliure o simplement relaxar-se. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack), kit bebè i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-padrosa-superior",
+      "title": "MH PEDROSA SUPERIOR :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "L'hébergement Padrosa Superior , idéal pour jusqu'à 4 personnes, offre un espace confortable et fonctionnel pour un séjour agréable. Le salon dispose d'un canapé, créant une atmosphère relaxante où les invités peuvent se détendre. La cuisine est équipée d'une cuisinière à gaz et d'un réfrigérateur. L'hébergement comprend deux chambres : une avec un lit double confortable et une autre avec des lits simples, parfaite pour les familles avec enfants ou les petits groupes. La salle de bain est bien agencée, offrant une douche, un lavabo et des toilettes pour plus de commodité. Point différentiel, Padrosa Superior dispose d'une aire de jeux pour les plus jeunes dans le MH lui-même. De plus, le MH dispose d'une charmante terrasse extérieure équipée d'une table et de chaises, offrant un espace idéal pour profiter des repas en plein air ou simplement se détendre. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable par pack), kit bébé et barbecue Aucune tente supplémentaire ni animal de compagnie autorisé"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-padrosa-superior",
+      "title": "MH PEDROSA SUPERIOR :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Padrosa Superior accommodation, ideal for up to 4 people, provides a cozy and functional space for a comfortable stay. The living room features a sofa, creating a relaxing atmosphere where guests can unwind. The kitchen is equipped with a gas stove and a refrigerator. The accommodation has two bedrooms: one with a comfortable double bed and another with two single beds, perfect for families with children or small groups. The well-designed bathroom offers a shower, a washbasin, and a WC for added convenience. As a differential point, Padrosa Superior has a play area for the youngest children in the MH itself. Additionally, this MH boasts a charming outdoor terrace equipped with a table and chairs, providing an ideal space to enjoy outdoor meals or simply relax. Available extras: towels (price €7 + €25 refundable deposit per pack), baby kit, and barbecue No additional tents or pets allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-padrosa-superior",
+      "title": "MH PEDROSA SUPERIOR :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De accommodatie Padrosa Superior, ideaal voor maximaal 4 personen, biedt een gezellige en functionele ruimte voor een comfortabel verblijf. De woonkamer beschikt over een slaapbank, waardoor er een ontspannen sfeer ontstaat waar gasten kunnen rusten. De keuken is uitgerust met een gasfornuis en een koelkast. Het verblijf heeft twee slaapkamers: één met een comfortabel tweepersoonsbed en een andere met een stapelbed, perfect voor gezinnen met kinderen of kleine groepen. De goed ontworpen badkamer biedt een douche, een wastafel en een toilet voor extra gemak. Als differentieel punt heeft Padrosa Superior een speelruimte voor de allerkleinsten in de MH zelf. Daarnaast heeft Padrosa Superior een charmant buitenterras met een tafel en stoelen, ideaal om buiten te genieten van maaltijden of gewoon te ontspannen. Beschikbare extra's: handdoeken (prijs €7 + €25 statiegeld per pak), babykit en barbecue Geen extra tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "mh-ter-4",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-ter-4",
+      "title": "MH TER 4 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los MH Ter ofrecen una experiencia de alojamiento cómoda y funcional para familias y grupos pequeños. Consta de una habitación con cama de matrimonio (135×190) y una habitación con dos camas individuales (80×190). También dispone de sofá cama. El alojamiento también incluye un baño completo con ducha y WC para mayor comodidad. La cocina, nevera espaciosa (145×55) y utensilios de cocina, perfecta para preparar comidas caseras durante la estancia. Estos alojamientos están diseñados para proporcionar todo lo necesario para una estancia confortable y están ubicados en diferentes zonas del camping para adaptarse a las preferencias de los huéspedes. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-ter-4",
+      "title": "MH TER 4 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els MH Ter ofereixen una experiència d'allotjament còmoda i funcional per a famílies i grups petits. Consta d'una habitació amb llit de matrimoni (135×190), una habitació amb dos llits individuals (80×190) i un sofà llit. L'allotjament també inclou un bany complet amb dutxa i WC per a major comoditat. La cuina està completament equipada amb forn, nevera espaiosa (145×55) i utensilis de cuina, perfecta per a preparar menjars casolans durant l'estada. Aquests allotjaments estan dissenyats per a proporcionar tot el necessari per a una estada confortable i estan situats en diferents zones del càmping per a adaptar-se a les preferències dels hostes. Extres contractables: tovalloles (preu 7 €+ 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-ter-4",
+      "title": "MH TER 4 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Les MH Ter offrent une expérience d'hébergement confortable et fonctionnelle pour les familles et les petits groupes. Ils comprennent une chambre avec un lit double (135×190), et une chambre avec deux lits simples (80×190). Un canapé-lit est également disponible. L'hébergement comprend aussi une salle de bain complète avec douche et WC pour plus de confort. La cuisine est entièrement équipée avec un micro-ondes, un réfrigérateur spacieux (145×55), et des ustensiles de cuisine, parfaits pour préparer des repas maison pendant votre séjour. Ces logements sont conçus pour offrir tout le nécessaire pour un séjour confortable et sont situés dans différentes zones du camping pour répondre aux préférences des clients. Extras facultatifs : serviettes (prix 7 € + 25 € de consigne remboursable par pack) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-ter-4",
+      "title": "MH TER 4 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The MH Ter offers a comfortable and functional accommodation experience for families and small groups. It consists of a room with a double bed (135×190), and a room with two single beds (80×190). There is also a sofa bed available. The accommodation also includes a full bathroom with shower and WC for added convenience. The kitchen is fully equipped with microwave, spacious refrigerator (145×55), and cooking utensils, perfect for preparing homemade meals during your stay. These accommodations are designed to provide everything necessary for a comfortable stay and are located in different areas of the campground to suit guests' preferences. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or pets are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-ter-4",
+      "title": "MH TER 4 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De MH Ter bieden een comfortabele en functionele accommodatie-ervaring voor families en kleine groepen. Ze bestaan uit een kamer met een tweepersoonsbed (135×190), en een kamer met twee eenpersoonsbedden (70×190). Er is ook een slaapbank beschikbaar. De accommodatie beschikt ook over een complete badkamer met douche en WC voor extra comfort. De keuken is volledig uitgerust met een magnetron, ruime koelkast (145×55), en keukengerei, ideaal voor het bereiden van zelfgemaakte maaltijden tijdens uw verblijf. Deze accommodaties zijn ontworpen om alles te bieden wat nodig is voor een comfortabel verblijf en zijn gelegen in verschillende gebieden van de camping om tegemoet te komen aan de voorkeuren van de gasten. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of huisdieren zijn niet toegestaan"
+    }
+  },
+  {
+    "key": "chalet-56",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-56",
+      "title": "CHALET 5/6 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los Chalets 5/6 son la elección perfecta para quienes buscan un alojamiento moderno y elegante en el camping. Destacan por su amplitud, diseño sofisticado y el cuidado en cada detalle. Cada chalet cuenta con un luminoso salón de diseño contemporáneo, un comedor espacioso y una cocina completamente equipada con cocina de gas, lavavajillas, microondas y nevera. Con dos amplias habitaciones (una con tres camas individuales y una con cama de matrimonio), y un baño completo, estos chalets están pensados para ofrecer la máxima comodidad y funcionalidad. Uno de sus mayores atractivos es su impresionante terraza de madera, que se integra a la perfección con el salón gracias a un amplio ventanal corredero. Esta conexión crea un espacio continuo que realza la sensación de amplitud y luminosidad, ideal para disfrutar tanto del interior como del exterior. La terraza está equipada con mesa, sillas y un toldo, proporcionando el entorno ideal para relajarse al aire libre. Extras contratables : toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa Restricciones : no se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-56",
+      "title": "CHALET 5/6 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Chalet 5/6 són l'opció perfecta per a aquells que busquen un allotjament modern i elegant al càmping. Destaquen per la seva amplitud, el disseny sofisticat i la cura de cada detall. Cada xalet compta amb un saló lluminós de disseny contemporani, un menjador espaiós i una cuina completament equipada amb cuina de gas, rentavaixelles, microones i nevera. Amb dues àmplies habitacions (una amb tres llits individuals i una amb llit de matrimoni), i un bany complet, aquests xalets estan pensats per oferir la màxima comoditat i funcionalitat. Un dels seus principals atractius és la seva impressionant terrassa de fusta, que s’integra perfectament amb la sala d'estar gràcies a un ampli finestral corredís. Aquesta connexió crea un espai continu que realça la sensació d’amplitud i lluminositat, ideal per gaudir tant de l’interior com de l’exterior. La terrassa està equipada amb taula, cadires i un tendal, proporcionant l’entorn perfecte per relaxar-se a l’aire lliure. Extres contractables : tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa Restriccions : no s’admeten tendes complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-56",
+      "title": "CHALET 5/6 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Le Chalet 5/6 est l'option parfaite pour ceux qui recherchent un hébergement moderne et élégant au camping. Ces chalets se distinguent par leur espace, leur design sophistiqué et l'attention portée à chaque détail. Chaque chalet dispose d'un salon lumineux au design contemporain, d'une grande salle à manger et d'une cuisine entièrement équipée avec une cuisinière à gaz, un lave-vaisselle, un micro-ondes et un réfrigérateur. Avec deux chambres spacieuses (une avec trois lits simples et une avec un lit double), et une salle de bain complète, ces chalets sont conçus pour offrir un maximum de confort et de fonctionnalité. L'un de leurs principaux atouts est leur impressionnante terrasse en bois, qui s'intègre parfaitement au salon grâce à une grande baie vitrée coulissante. Cette connexion crée un espace continu qui met en valeur la sensation de luminosité et d'amplitude, idéal pour profiter à la fois de l'intérieur et de l'extérieur. La terrasse est équipée d'une table, de chaises et d'un auvent, offrant l'endroit parfait pour se détendre en plein air. Extras disponibles : serviettes (prix 7 € + 25 € de consigne remboursable par pack) et barbecue Restrictions : les tentes supplémentaires et les animaux ne sont pas autorisés"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-56",
+      "title": "CHALET 5/6 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Chalet 5/6 is the perfect option for those seeking modern and elegant accommodation at the campsite. These chalets stand out for their spaciousness, sophisticated design, and attention to every detail. Each chalet features a bright living room with a contemporary design, a large dining area, and a fully equipped kitchen with a gas stove, dishwasher, microwave, and refrigerator. With two spacious bedrooms (one with three single beds and one with a double bed), and a full bathroom, these chalets are designed to offer maximum comfort and functionality. One of their main attractions is the impressive wooden terrace, which seamlessly integrates with the living room through large sliding glass doors. This connection creates a continuous space that enhances the sense of openness and brightness, making it ideal for enjoying both indoors and outdoors. The terrace is equipped with a table, chairs, and an awning, providing the perfect environment for outdoor relaxation. Available extras : towels (price €7 + €25 refundable deposit per pack) and barbecue Restrictions : no additional tents or pets allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-56",
+      "title": "CHALET 5/6 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Chalet 5/6 is de perfecte optie voor wie op zoek is naar moderne en elegante accommodatie op de camping. Deze chalets vallen op door hun ruime indeling, verfijnd ontwerp en oog voor detail. Elk chalet beschikt over een lichte woonkamer met een eigentijds design, een ruime eetkamer en een volledig uitgeruste keuken met een gasfornuis, vaatwasser, magnetron en koelkast. Met twee ruime slaapkamers (één met drie eenpersoonsbedden en één met een tweepersoonsbed), en een complete badkamer, zijn deze chalets ontworpen voor maximaal comfort en functionaliteit. Een van de grootste troeven is het indrukwekkende houten terras, dat naadloos aansluit op de woonkamer dankzij een grote schuifpui. Deze verbinding zorgt voor een doorlopend geheel dat de indruk van ruimte en licht versterkt, perfect om zowel binnen als buiten van te genieten. Het terras is uitgerust met een tafel, stoelen en een zonnescherm, wat de ideale omgeving biedt om buiten te ontspannen. Beschikbare extra’s : handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Beperkingen : geen aanvullende tenten of huisdieren toegestaan"
+    }
+  },
+  {
+    "key": "mh-rocamaura-4-superior",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-rocamaura-4-superior",
+      "title": "MH ROCAMAURA 4 SUPERIOR :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Rocamaura 4 Superior tu refugio ideal para unas vacaciones tranquilas, cómodas y llenas de momentos especiales. Rocamaura 4 Superior te ofrece el lugar perfecto para disfrutar de unas vacaciones inolvidables. Con capacidad para hasta 4 personas, este alojamiento combina comodidad, estilo y funcionalidad para que te sientas como en casa desde el primer momento. El acogedor salón, equipado con un cómodo sofá, es el rincón ideal para relajarse después de un día de playa o de explorar los encantos de la zona. La cocina, totalmente equipada con fogones de gas y nevera, te permitirá preparar tus platos favoritos con facilidad. El apartamento dispone de dos dormitorios: uno con una cama de matrimonio y otro con dos camas individuales, perfectos para familias, parejas o grupos de amigos. El baño, moderno y práctico, incluye ducha, lavabo y WC para tu total comodidad. Disfruta del aire libre en su encantadora terraza, amueblada con mesa y sillas, donde podrás saborear tus comidas, tomar algo al atardecer o simplemente desconectar bajo el cielo mediterráneo."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-rocamaura-4-superior",
+      "title": "MH ROCAMAURA 4 SUPERIOR :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Rocamaura 4 Superior, el teu refugi ideal per a unes vacances tranquil·les, còmodes i plenes de moments especials. Rocamaura 4 Superior t’ofereix el lloc perfecte per gaudir d’unes vacances inoblidables. Amb capacitat per a fins a 4 persones, aquest allotjament combina comoditat, estil i funcionalitat perquè et sentis com a casa des del primer instant. La sala d’estar acollidora, equipada amb un sofà còmode, és l’espai ideal per relaxar-te després d’un dia de platja o d’explorar els encants de la zona. La cuina, totalment equipada amb fogons de gas i nevera, et permetrà preparar amb facilitat els teus plats preferits. L’apartament disposa de dues habitacions: una amb un llit de matrimoni i una altra amb dos llits individuals, perfectes per a famílies, parelles o petits grups d’amics. El bany, modern i pràctic, inclou dutxa, lavabo i WC per al màxim confort. Gaudeix de l’aire lliure a la seva encantadora terrassa, moblada amb taula i cadires, ideal per menjar a l’exterior, prendre alguna cosa al capvespre o simplement relaxar-te sota el cel mediterrani."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-rocamaura-4-superior",
+      "title": "MH ROCAMAURA 4 SUPERIOR :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Rocamaura 4 Superior, votre refuge idéal pour des vacances paisibles, confortables et pleines de moments inoubliables. Rocamaura 4 Superior vous offre l’endroit parfait pour profiter de vacances inoubliables. Pouvant accueillir jusqu’à 4 personnes, ce logement allie confort, style et fonctionnalité pour que vous vous sentiez comme chez vous dès votre arrivée. Le salon chaleureux, équipé d’un canapé confortable, est l’endroit idéal pour se détendre après une journée à la plage ou à la découverte des environs. La cuisine, entièrement équipée avec plaques de cuisson au gaz et réfrigérateur, vous permettra de préparer facilement vos plats préférés. L’appartement dispose de deux chambres : l’une avec un lit double et l’autre avec deux lits simples, parfaites pour les familles, les couples ou les petits groupes d’amis. La salle de bains moderne et pratique comprend une douche, un lavabo et des toilettes pour un confort optimal. Profitez de l’extérieur sur sa charmante terrasse meublée avec table et chaises, où vous pourrez savourer vos repas, prendre un verre au coucher du soleil ou simplement vous détendre sous le ciel méditerranéen."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-rocamaura-4-superior",
+      "title": "MH ROCAMAURA 4 SUPERIOR :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Rocamaura 4 Superior, uw ideale toevluchtsoord voor een rustige en comfortabele vakantie vol bijzondere momenten. Rocamaura 4 Superior biedt de perfecte plek om te genieten van een onvergetelijk verblijf. Deze accommodatie is geschikt voor maximaal 4 gasten en combineert comfort, stijl en functionaliteit, zodat u zich vanaf het eerste moment thuis voelt. De gezellige woonkamer met een comfortabele bank is de ideale plek om te ontspannen na een dag op het strand of een verkenningstocht door de omgeving. In de volledig uitgeruste keuken met gasfornuis en koelkast kunt u eenvoudig uw favoriete maaltijden bereiden. Het appartement beschikt over twee slaapkamers: één met een tweepersoonsbed en één met twee eenpersoonsbedden – ideaal voor gezinnen, stellen of kleine groepen vrienden. De moderne en praktische badkamer is voorzien van een douche, wastafel en toilet voor uw gemak. Geniet van het buitenleven op het charmante terras, ingericht met een tafel en stoelen – perfect om buiten te eten, ’s avonds een drankje te drinken of gewoon te ontspannen onder de mediterrane hemel."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-rocamaura-4-superior",
+      "title": "MH ROCAMAURA 4 SUPERIOR :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Rocamaura 4 Superior, uw ideale toevluchtsoord voor een rustige en comfortabele vakantie vol bijzondere momenten. Rocamaura 4 Superior biedt de perfecte plek om te genieten van een onvergetelijk verblijf. Deze accommodatie is geschikt voor maximaal 4 gasten en combineert comfort, stijl en functionaliteit, zodat u zich vanaf het eerste moment thuis voelt. De gezellige woonkamer met een comfortabele bank is de ideale plek om te ontspannen na een dag op het strand of een verkenningstocht door de omgeving. In de volledig uitgeruste keuken met gasfornuis en koelkast kunt u eenvoudig uw favoriete maaltijden bereiden. Het appartement beschikt over twee slaapkamers: één met een tweepersoonsbed en één met twee eenpersoonsbedden – ideaal voor gezinnen, stellen of kleine groepen vrienden. De moderne en praktische badkamer is voorzien van een douche, wastafel en toilet voor uw gemak. Geniet van het buitenleven op het charmante terras, ingericht met een tafel en stoelen – perfect om buiten te eten, ’s avonds een drankje te drinken of gewoon te ontspannen onder de mediterrane hemel."
+    }
+  },
+  {
+    "key": "village-45",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/village-45",
+      "title": "VILLAGE 4/5 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los Village 4/5 son una opción ideal para familias y parejas que buscan un alojamiento cómodo, acogedor y funcional dentro del camping. Pensados para disfrutar de una estancia relajada, ofrecen un espacio agradable y práctico, con todo lo necesario para sentirse como en casa durante las vacaciones. El alojamiento dispone de un salón-comedor luminoso y confortable, junto con una cocina equipada con cocina de gas, microondas y nevera, pensada para facilitar el día a día durante la estancia. Los Village 4/5 cuentan con dos habitaciones: una con cama de matrimonio y otra con dos camas individuales, además de un sofá cama en el salón, con capacidad para alojar hasta 5 personas. También disponen de un baño completo. En el exterior, cuentan con una agradable terraza equipada con mesa y sillas, un espacio ideal para desayunar, comer o simplemente relajarse y disfrutar del entorno del camping. Extras contratables : toallas (7 € + 25 € de depósito reembolsable por pack) y barbacoa. Restricciones : no se admiten tiendas complementarias ni animales."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/village-45",
+      "title": "VILLAGE 4/5 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Village 4/5 són una opció ideal per a famílies i parelles que busquen un allotjament còmode, acollidor i funcional dins del càmping. Pensats per gaudir d’una estada relaxada, ofereixen un espai pràctic i agradable, amb tot el necessari per sentir-se com a casa durant les vacances. L’allotjament disposa d’un saló-menjador lluminós i confortable, amb una cuina equipada amb cuina de gas, microones i nevera, pensada per facilitar el dia a dia durant l’estada. Els Village 4/5 compten amb dues habitacions: una amb llit de matrimoni i una altra amb dos llits individuals, a més d’un sofà llit al saló, amb capacitat per allotjar fins a 5 persones. També disposen d’un bany complet. A l’exterior, compten amb una agradable terrassa equipada amb taula i cadires, un espai ideal per esmorzar, dinar o simplement relaxar-se i gaudir de l’entorn del càmping. Extres contractables : tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa. Restriccions : no s’admeten tendes complementàries ni animals."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/village-45",
+      "title": "VILLAGE 4/5 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Les Village 4/5 sont une option idéale pour les familles et les couples à la recherche d’un hébergement confortable, accueillant et fonctionnel au sein du camping. Pensés pour vous offrir un séjour agréable et reposant, ils disposent de tout le nécessaire pour vous sentir comme chez vous pendant vos vacances. L’hébergement comprend un salon-séjour lumineux et confortable, ainsi qu’une cuisine équipée avec une plaque de cuisson au gaz, un micro-ondes et un réfrigérateur, pour vous offrir tout le confort nécessaire au quotidien. Les Village 4/5 disposent de deux chambres : une avec un lit double et une autre avec deux lits simples, ainsi que d’un canapé-lit dans le salon, permettant d’accueillir jusqu’à 5 personnes. Ils disposent également d’une salle de bains complète. À l’extérieur, une agréable terrasse équipée d’une table et de chaises vous permettra de prendre vos repas, de profiter du plein air ou tout simplement de vous détendre dans un cadre agréable. Options supplémentaires : serviettes (7 € + 25 € de caution remboursable par lot) et barbecue. Restrictions : les tentes supplémentaires et les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/village-45",
+      "title": "VILLAGE 4/5 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Village 4/5 is an ideal choice for families and couples looking for comfortable, welcoming and practical accommodation within the campsite. Designed for a relaxing stay, it offers a pleasant and functional space with everything you need to feel at home during your holiday. The accommodation features a bright and comfortable living and dining area, together with a well-equipped kitchen including a gas hob, microwave and fridge, making everyday life during your stay easy and convenient. The Village 4/5 has two bedrooms: one with a double bed and another with two single beds, as well as a sofa bed in the living room, accommodating up to 5 people. It also has a fully equipped bathroom. Outside, there is a pleasant terrace with a table and chairs, providing the perfect space for breakfast, lunch or simply relaxing and enjoying the campsite surroundings. Optional extras : towels (€7 + €25 refundable deposit per set) and barbecue. Restrictions : additional tents and pets are not permitted."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/village-45",
+      "title": "VILLAGE 4/5 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Village 4/5 zijn een ideale keuze voor gezinnen en koppels die op zoek zijn naar een comfortabele, gezellige en praktische accommodatie op de camping. Ze zijn ingericht voor een ontspannen verblijf en bieden alles wat u nodig heeft om zich tijdens uw vakantie thuis te voelen. De accommodatie beschikt over een lichte en comfortabele woon- en eetkamer, evenals een goed uitgeruste keuken met een gaskookplaat, magnetron en koelkast, zodat u tijdens uw verblijf van alle nodige gemakken kunt genieten. De Village 4/5 beschikken over twee slaapkamers: één met een tweepersoonsbed en één met twee eenpersoonsbedden. Daarnaast staat er in de woonkamer een slaapbank, waardoor de accommodatie geschikt is voor maximaal 5 personen. Er is ook een complete badkamer aanwezig. Buiten vindt u een aangenaam terras met een tafel en stoelen. De ideale plek om te ontbijten, te lunchen of gewoon te ontspannen en te genieten van de omgeving van de camping. Bij te boeken extra's : handdoeken (€7 + €25 borg per set, restitueerbaar) en barbecue. Beperkingen : extra tenten en huisdieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "village-6",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/village-6",
+      "title": "VILLAGE 6 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Los Village 6 son la elección perfecta para familias y grupos que buscan un alojamiento más espacioso y confortable dentro del camping. Con unos interiores cuidados, una distribución generosa y un ambiente acogedor, ofrecen una combinación ideal de comodidad, estilo y funcionalidad para disfrutar de unas vacaciones relajadas. El alojamiento dispone de un salón-comedor luminoso y acogedor, junto con una cocina completamente equipada con cocina de gas, microondas y nevera. Sus espacios amplios crean un entorno agradable para compartir momentos en familia o con amigos, tanto durante las comidas como en los momentos de descanso. Los Village 6 cuentan con tres habitaciones: una con cama de matrimonio y dos con dos camas individuales cada una, con capacidad para alojar cómodamente hasta 6 personas. También disponen de un baño completo. Uno de sus principales atractivos es su terraza exterior, equipada con mesa y sillas y concebida como una prolongación del espacio interior. Es el lugar perfecto para desayunar, disfrutar de una comida al aire libre o simplemente relajarse y disfrutar del entorno del camping. Extras contratables : toallas (7 € + 25 € de depósito reembolsable por pack) y barbacoa. Restricciones : no se admiten tiendas complementarias ni animales."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/village-6",
+      "title": "VILLAGE 6 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Els Village 6 són l’opció perfecta per a famílies i grups que busquen un allotjament més espaiós i confortable dins del càmping. Amb uns interiors cuidats, una distribució àmplia i un ambient acollidor, ofereixen una combinació ideal de comoditat, estil i funcionalitat per gaudir d’unes vacances relaxades. L’allotjament disposa d’un saló-menjador lluminós i acollidor, juntament amb una cuina completament equipada amb cuina de gas, microones i nevera. Els seus espais amplis creen un entorn agradable per compartir moments en família o amb amics, tant durant els àpats com en els moments de descans. Els Village 6 compten amb tres habitacions: una amb llit de matrimoni i dues amb dos llits individuals cadascuna, amb capacitat per allotjar còmodament fins a 6 persones. També disposen d’un bany complet. Un dels seus principals atractius és la seva terrassa exterior, equipada amb taula i cadires i concebuda com una prolongació de l’espai interior. És el lloc perfecte per esmorzar, gaudir d’un àpat a l’aire lliure o simplement relaxar-se i gaudir de l’entorn del càmping. Extres contractables : tovalloles (7 € + 25 € de dipòsit reemborsable per pack) i barbacoa. Restriccions : no s’admeten tendes complementàries ni animals."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/village-6",
+      "title": "VILLAGE 6 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Le Village 6 est le choix idéal pour les familles et les groupes à la recherche d’un hébergement plus spacieux et confortable au sein du camping. Avec ses espaces généreux, son intérieur soigné et son atmosphère chaleureuse, il offre un bel équilibre entre confort, style et fonctionnalité pour des vacances reposantes. L’hébergement dispose d’un salon-séjour lumineux et accueillant, ainsi que d’une cuisine entièrement équipée avec une plaque de cuisson au gaz, un micro-ondes et un réfrigérateur. Ses espaces généreux offrent un cadre agréable pour partager des moments en famille ou entre amis. Le Village 6 comprend trois chambres : une avec un lit double et deux avec deux lits simples chacune, permettant d’accueillir confortablement jusqu’à 6 personnes. Il dispose également d’une salle de bains complète. L’un de ses atouts est sa terrasse extérieure, équipée d’une table et de chaises et pensée comme un véritable prolongement de l’espace de vie. Elle constitue l’endroit idéal pour prendre le petit-déjeuner, partager un repas ou simplement se détendre tout en profitant de l’environnement du camping. Options supplémentaires : serviettes (7 € + 25 € de caution remboursable par lot) et barbecue. Restrictions : les tentes supplémentaires et les animaux ne sont pas autorisés"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/village-6",
+      "title": "VILLAGE 6 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Village 6 is the perfect choice for families and groups looking for a more spacious and comfortable accommodation experience at the campsite. With its carefully designed interiors, generous layout and inviting atmosphere, it offers an ideal combination of comfort, style and practicality for a relaxing holiday. The accommodation features a bright and welcoming living and dining area, together with a fully equipped kitchen including a gas hob, microwave and fridge. Its spacious layout provides a comfortable setting for spending time together, whether enjoying a meal or relaxing after a day at the campsite. The Village 6 offers three bedrooms: one with a double bed and two with two single beds each, comfortably accommodating up to 6 people. It also features a fully equipped bathroom. One of its highlights is the outdoor terrace, furnished with a table and chairs and designed as an extension of the living space. It is the perfect place to enjoy breakfast, share a meal or unwind while making the most of the campsite surroundings. Optional extras : towels (€7 + €25 refundable deposit per set) and barbecue. Restrictions : additional tents and pets are not permitted."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/village-6",
+      "title": "VILLAGE 6 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Village 6 is de perfecte keuze voor gezinnen en groepen die op zoek zijn naar een ruimere en comfortabelere accommodatie op de camping. Dankzij de verzorgde inrichting, royale indeling en aangename sfeer biedt deze accommodatie een mooie combinatie van comfort, stijl en functionaliteit voor een ontspannen vakantie. De accommodatie beschikt over een lichte en sfeervolle woon- en eetkamer, evenals een volledig uitgeruste keuken met een gaskookplaat, magnetron en koelkast. De ruime indeling zorgt voor een aangename plek om samen te genieten, te eten of na een dag op de camping heerlijk tot rust te komen. De Village 6 beschikt over drie slaapkamers: één met een tweepersoonsbed en twee met elk twee eenpersoonsbedden, waardoor er comfortabel plaats is voor maximaal 6 personen. Daarnaast is er een complete badkamer aanwezig. Een van de grote pluspunten is het ruime buitenterras, ingericht met een tafel en stoelen en ontworpen als een verlengstuk van de leefruimte. De ideale plek om te ontbijten, samen buiten te eten of gewoon heerlijk te ontspannen en te genieten van de omgeving van de camping. Bij te boeken extra's : handdoeken (€7 + €25 borg per set, restitueerbaar) en barbecue. Beperkingen : extra tenten en huisdieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "tienda-plis-plas",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/tienda-plis-plas",
+      "title": "TIENDA PLIS PLAS :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "¡Descubre el camping clásico con todas las comodidades modernas! Con nuestras tiendas de campaña Plis Plas, eliminamos el estrés del montaje y no solo eso, sino que es perfecto para quienes quieren probar el camping por primera vez y descubrir si de verdad les gusta. Cada tienda está equipada con dos cabinas, cada una con un colchón de (135×190), además de una barbacoa para disfrutar de deliciosas comidas bajo las estrellas y una mesa y sillas exteriores que aseguran que todas las comidas del día sean lo más cómodas posible. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y Fogón Camping Gas (Fianza 20€) No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tenda-plis-plas",
+      "title": "TENDA PLIS PLAS :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Descobreix el càmping clàssic amb totes les comoditats modernes! Amb les nostres tendes de campanya Plis Plas, eliminem l'estrès del muntatge i no només això, sinó que és perfecte per a aquells que volen provar el càmping per primera vegada i descobrir si realment els agrada. Cada tenda està equipada amb dues cabines, cadascuna amb un matalàs de (135×190), a més d'una barbacoa per gaudir de deliciosos menjars sota les estrelles i una taula i cadires exteriors que asseguren que tots els àpats del dia siguin tan còmodes com sigui possible. Extres disponibles: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i Camping gas (Fiança 20€) No s'admeten tendes addicionals ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/tente-plis-plas",
+      "title": "TENTE PLIS PLAS :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Découvrez le camping classique avec tout le confort moderne ! Avec nos tentes de camping Plis Plas, nous éliminons le stress du montage, et non seulement cela, c'est parfait pour ceux qui veulent essayer le camping pour la première fois et découvrir s'ils aiment vraiment ça. Chaque tente est équipée de deux cabines, chacune avec un lit (135×190), ainsi qu'une BBQ pour profiter de délicieux repas sous les étoiles et une table extérieure pour rendre tous les repas de la journée aussi confortables que possible. Extras disponibles à la location: serviettes (prix 7 € + 25 € de consigne remboursable par pack) et cuisinière Camping Gas (Caution 20€) Les tentes supplémentaires et les animaux ne sont pas acceptés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/tent-plis-plas",
+      "title": "TENT PLIS PLAS :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Discover classic camping with all the modern comforts! With our Plis Plas tents, we eliminate the stress of assembly, making it perfect for first-time campers to see if they truly enjoy it. Each tent is equipped with two cabins, each with a mattress (135×190), along with a BBQ for enjoying delicious meals under the stars. An outdoor table ensures that all meals of the day are as comfortable as possible. Extras available to hire: towels (price €7 + €25 refundable deposit per pack), and Camping Gas stove (Diposit 20€) Additional tents or animals are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tent-plis-plas",
+      "title": "TENT PLIS PLAS :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Ontdek de klassieke camping met alle moderne gemakken! Met onze Plis Plas tenten elimineren we de stress van het opzetten, perfect voor diegenen die voor het eerst willen kamperen en willen ontdekken of het echt iets voor hen is. Elke tent is uitgerust met twee cabines, elk met een bed (135×190), samen met een BBQ om heerlijke maaltijden onder de sterren te bereiden. Een buitentafel zorgt ervoor dat alle maaltijden van de dag zo comfortabel mogelijk zijn. Optionele extra's zijn: handdoeken (prijs €7 + €25 statiegeld per pak) en Camping Gas kooktoestel (Borg 20€) Extra tenten of dieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "nature-habitat",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/nature-habitat",
+      "title": "NATURE HABITAT :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Nature Habitat és l'opció ideal per als qui gaudeixen del càmping en tendes. A més de les facilitats habituals com una cuina equipada, aquestes ofereixen la conveniència de tenir un lavabo amb dutxa dins de la pròpia unitat. Cada Nature està dissenyada amb una habitació que compta amb llit doble, així com una altra amb una llitera i un llit individual, proporcionant un espai còmode per a tots els hostes. Extres contractables: tovalloles (precio 7 € + 25 € de depósito reembolsable por pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/nature-habitat",
+      "title": "NATURE HABITAT :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Nature Habitat és l'opció ideal per als qui gaudeixen del càmping en tendes. A més de les facilitats habituals com una cuina equipada, aquestes ofereixen la conveniència de tenir un lavabo amb dutxa dins de la pròpia unitat. Cada Nature està dissenyada amb una habitació que compta amb llit doble, així com una altra amb una llitera i un llit individual, proporcionant un espai còmode per a tots els hostes. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/nature-habitat",
+      "title": "NATURE HABITAT :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Nature Habitat est le choix idéal pour ceux qui apprécient le camping sous tente. En plus des équipements habituels comme une cuisine équipée, ces tentes offrent la commodité d'avoir un lavabo avec douche à l'intérieur de l'unité elle-même. Chaque Nature Habitat est conçue avec une chambre comprenant un lit double, ainsi qu'une autre avec un lit superposé et un lit simple, offrant un espace confortable pour tous les invités. Extras optionnels : serviettes (prix 7 € + 25 € de consigne remboursable per pack) et barbecue Aucune tente supplémentaire ou animal n'est admis"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/nature-habitat",
+      "title": "NATURE HABITAT :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Nature Habitat is the ideal choice for those who enjoy camping in tents. In addition to the usual amenities such as a equipped kitchen, these tents offer the convenience of having a sink with shower inside the unit itself. Each Nature Habitat is designed with a room featuring a double bed, as well as another with a bunk bed and a single bed, providing comfortable space for all guests. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or animals are not allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/nature-habitat",
+      "title": "NATURE HABITAT :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Nature Habitat is de ideale keuze voor degenen die genieten van kamperen in tenten. Naast de gebruikelijke voorzieningen zoals een uitgeruste keuken, bieden deze tenten het gemak van een wastafel met douche binnen de eenheid zelf. Elke Nature Habitat is ontworpen met een kamer met een tweepersoonsbed, evenals een andere met een stapelbed en een eenpersoonsbed, wat comfortabele ruimte biedt voor alle gasten. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of dieren zijn niet toegestaan"
+    }
+  },
+  {
+    "key": "tenda-mont-pla",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/tenda-mont-pla",
+      "title": "TENDA MONT PLA :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Mont Pla es una encantadora tienda que ofrece una experiencia única de alojamiento en medio de la naturaleza. Sus cómodas cabinas están diseñadas para brindar una estancia acogedora y relajante. La variedad de opciones de alojamiento incluye una cabina con cama de matrimonio (140×190, una cabina con litera (80×190) y otra con 2 camas individuales (80×190), proporcionando opciones flexibles para grupos de amigos o familias. La tienda Mont Pla cuenta con una cocina bien equipada, que incluye cocina de gas y una nevera espaciosa (85×50) y, para añadir un toque de comodidad, cuenta con un punto de agua con fuente. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tenda-mont-pla",
+      "title": "TENDA MONT PLA :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Mont Pla és una encantadora tenda que ofereix una experiència única d'allotjament enmig de la naturalesa. Les seves còmodes cabines estan dissenyades per a brindar una estada acollidora i relaxant. La varietat d'opcions d'allotjament inclou una cabina amb llit de matrimoni (140×190, una cabina amb llitera (80×190) i una altra amb 2 llits individuals (80×190), proporcionant opcions flexibles per a grups d'amics o famílies. La tenda Mont Pla compta amb una cuina ben equipada, que inclou cuina de gas i una nevera espaiosa (85×50) i, per a afegir un toc de comoditat, disposa d'un punt d'aigua amb font. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/tenda-mont-pla",
+      "title": "TENDA MONT PLA :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Mont Pla est une charmante tente qui offre une expérience d'hébergement unique au milieu de la nature. Ses cabines confortables sont conçues pour offrir un séjour douillet et relaxant. Les options d'hébergement comprennent une cabine avec un lit double (140×190), une cabine avec des lits superposés (80×190), et une autre avec 2 lits simples (80×190), offrant des choix flexibles pour les groupes d'amis ou les familles. La tente Mont Pla dispose d'une cuisine bien équipée avec une cuisinière à gaz et un réfrigérateur spacieux (85×50). Pour ajouter une touche de confort, elle comprend un point d'eau avec une fontaine. Options supplémentaires disponibles : serviettes (prix 7 €+ 25 € de consigne remboursable par pack) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/tenda-mont-pla",
+      "title": "TENDA MONT PLA :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Mont Pla is a charming tent that offers a unique lodging experience amidst nature. Its comfortable cabins are designed to provide a cozy and relaxing stay. Accommodation options include a cabin with a double bed (140×190), a cabin with bunk beds (80×190), and another with 2 single beds (80×190), offering flexible choices for groups of friends or families. Mont Pla tent features a well-equipped kitchen with a gas stove and a spacious fridge (85×50). To add a touch of convenience, it includes a water point with a fountain. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or animals are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tenda-mont-pla",
+      "title": "TENDA MONT PLA :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Mont Pla is een charmante tent die een unieke verblijfservaring biedt te midden van de natuur. De comfortabele kamers zijn ontworpen voor een gezellig en ontspannen verblijf. De accommodatieopties omvatten een kamer met een tweepersoonsbed (140×190), een kamer met een stapelbed (80×190), en nog een andere met 2 eenpersoonsbedden (80×190), waardoor er flexibele keuzes zijn voor groepen vrienden of families. De tent Mont Pla beschikt over een goed uitgeruste keuken met een gasfornuis en een ruime koelkast (85×50). Voor extra gemak is er een watervoorziening met een fontein. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of dieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "parcela-estandar",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcela-estandar",
+      "title": "PARCELA ESTÁNDAR :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Las parcelas estándar son perfectas para quienes disfrutan de la vida al aire libre y la experiencia auténtica de camping. Con una superficie de 70 metros cuadrados, cada una cuenta con acceso a un punto de agua y electricidad con una capacidad de 6 amperios, asegurando iluminación adecuada y la posibilidad de cargar dispositivos eléctricos. Están diseñadas para ofrecer comodidad y conveniencia, proporcionando espacio suficiente para alojar hasta 6 personas, ideal para grupos y familias."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parcela-estandard",
+      "title": "PARCEL·LA ESTÀNDARD :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Les parcel·les estàndard són perfectes per als qui gaudeixen de la vida a l'aire lliure i l'experiència autèntica de càmping. Amb una superfície de 70 metres quadrats, cadascuna compta amb accés a un punt d'aigua i electricitat amb una capacitat de 6 amperes, assegurant il·luminació adequada i la possibilitat de carregar dispositius elèctrics. Estan dissenyades per a oferir comoditat i conveniència, proporcionant espai suficient per a allotjar fins a 6 persones, ideal per a grups i famílies."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/terrrain-standard",
+      "title": "TERRAIN STANDARD :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Les emplacements standard sont parfaits pour ceux qui apprécient la vie en plein air et l'expérience authentique du camping. Avec une superficie de 70 mètres carrés, chacun dispose d'un accès à un point d'eau et à l'électricité avec une capacité de 6 ampères, assurant un éclairage adéquat et la possibilité de charger des appareils électriques. Ils sont conçus pour offrir confort et commodité, offrant suffisamment d'espace pour accueillir jusqu'à 6 personnes, idéal pour les groupes et les familles."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/standard-plot",
+      "title": "STANDARD PLOT :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Standard pitches are perfect for those who enjoy outdoor life and the authentic camping experience. With an area of 70 square meters, each one has access to a water point and electricity with a capacity of 6 amps, ensuring adequate lighting and the ability to charge electrical devices. They are designed to offer comfort and convenience, providing enough space to accommodate up to 6 people, ideal for groups and families."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/standaard-perceel",
+      "title": "STANDAARD PERCEEL :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De standaard kampeerplaatsen zijn perfect voor degenen die van het buitenleven en de authentieke kampeerervaring houden. Met een oppervlakte van 70 vierkante meter heeft elke kampeerplaats toegang tot een watervoorziening en elektriciteit met een capaciteit van 6 ampère, wat zorgt voor voldoende verlichting en de mogelijkheid om elektrische apparaten op te laden. Ze zijn ontworpen voor comfort en gemak, bieden voldoende ruimte voor maximaal 6 personen, ideaal voor groepen en families."
+    }
+  },
+  {
+    "key": "parcela-comodity",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcela-comodity",
+      "title": "PARCELA COMODITY :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "La parcela Comodity, de 90m², es ideal para aquellos que buscan espacio y comodidad durante su estancia en el camping. Cada parcela cuenta con acceso a agua y electricidad, con una capacidad eléctrica de 10 amperios, lo que garantiza una iluminación óptima y la posibilidad de cargar dispositivos eléctricos sin problemas. Diseñadas para alojar hasta 6 personas, son perfectas para grupos grandes y familias que desean disfrutar de todas las comodidades mientras se sumergen en la experiencia auténtica del camping al aire libre."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parcela-comodity",
+      "title": "PARCEL·LA COMODITY :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "La parcel·la Comodity, de 90m², és ideal per a aquells que busquen espai i comoditat durant la seva estada en el càmping. Cada parcel·la compta amb accés a aigua i electricitat, amb una capacitat elèctrica de 10 amperes, la qual cosa garanteix una il·luminació òptima i la possibilitat de carregar dispositius elèctrics sense problemes. Dissenyades per a allotjar fins a 6 persones, són perfectes per a grups grans i famílies que desitgen gaudir de totes les comoditats mentre se submergeixen en l'experiència autèntica del càmping a l'aire lliure."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/colis-comodity",
+      "title": "COLIS COMODITY :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "La parcelle Comodity, de 90m², est idéale pour ceux qui recherchent espace et confort lors de leur séjour en camping. Chaque parcelle dispose d'un accès à l'eau et à l'électricité, avec une capacité électrique de 10 ampères, garantissant un éclairage optimal et la possibilité de charger des appareils électriques sans problème. Conçues pour accueillir jusqu'à 6 personnes, elles sont parfaites pour les grands groupes et les familles souhaitant profiter de tout le confort tout en s'immergeant dans l'expérience authentique du camping en plein air."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/comodity-portion",
+      "title": "COMODITY PORTION :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Comodity pitch, measuring 90m², is ideal for those seeking space and comfort during their camping stay. Each pitch has access to water and electricity, with an electrical capacity of 10 amps, ensuring optimal lighting and the ability to charge electrical devices without issues. Designed to accommodate up to 6 people, they are perfect for large groups and families looking to enjoy all comforts while immersing themselves in the authentic outdoor camping experience."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/comodity-parcel",
+      "title": "COMODITY PARCEEL :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Comodity kampeerplaats, met een oppervlakte van 90m², is ideaal voor wie ruimte en comfort zoekt tijdens hun verblijf op de camping. Elke kampeerplaats heeft toegang tot water en elektriciteit, met een elektrische capaciteit van 10 ampère, wat zorgt voor optimale verlichting en de mogelijkheid om elektrische apparaten probleemloos op te laden. Ontworpen voor maximaal 6 personen, zijn ze perfect voor grote groepen en families die alle comfort willen ervaren terwijl ze genieten van de authentieke ervaring van kamperen in de buitenlucht."
+    }
+  },
+  {
+    "key": "parcela-comodity-plus",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcela-comodity-plus",
+      "title": "PARCELA COMODITY PLUS :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "La parcela Comodity Plus, que abarca 120m², ofrece un espacio generoso y confortable para quienes buscan una experiencia de camping sin igual. Cada parcela está equipada con acceso a agua y electricidad, con una capacidad eléctrica de 10 amperios para garantizar una iluminación adecuada y la capacidad de cargar dispositivos eléctricos sin inconvenientes. Diseñada para alojar hasta 8 personas, es perfecta para grupos numerosos y familias que desean disfrutar de todas las comodidades mientras se sumergen en la experiencia de camping."
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parcela-comodity-plus",
+      "title": "PARCEL·LA COMODITY PLUS :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "La parcel·la Comodity Plus, que abasta 120m², ofereix un espai generós i confortable per als qui busquen una experiència de càmping sense igual. Cada parcel·la està equipada amb accés a aigua i electricitat, amb una capacitat elèctrica de 10 amperes per a garantir una il·luminació adequada i la capacitat de carregar dispositius elèctrics sense inconvenients. Dissenyada per a allotjar fins a 8 persones, és perfecta per a grups nombrosos i famílies que desitgen gaudir de totes les comoditats mentre se submergeixen en l'experiència de càmping."
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/tterrain-comoditty-plus",
+      "title": "TERRAIN COMMODITY PLUS :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "La parcelle Comodity Plus, d'une superficie de 120m², offre un espace généreux et confortable pour ceux qui recherchent une expérience de camping inégalée. Chaque parcelle est équipée d'un accès à l'eau et à l'électricité, avec une capacité électrique de 10 ampères pour garantir un éclairage adéquat et la possibilité de charger des appareils électriques sans inconvénients. Conçue pour accueillir jusqu'à 8 personnes, elle est parfaite pour les groupes nombreux et les familles qui souhaitent profiter de tout le confort tout en s'immergeant dans l'expérience du camping."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/comodity-plus-plot",
+      "title": "COMMODITY PLUS PLOT :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "The Comodity Plus pitch, spanning 120m², offers generous and comfortable space for those seeking an unparalleled camping experience. Each pitch is equipped with access to water and electricity, with a 10-amp electrical capacity to ensure adequate lighting and the ability to charge electrical devices without inconvenience. Designed to accommodate up to 8 people, it is perfect for large groups and families who want to enjoy all the comforts while immersing themselves in the camping experience."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/comodity-plus-plot",
+      "title": "COMMODITY PLUS-PLOT :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "De Comodity Plus kampeerplaats, met een oppervlakte van 120m², biedt een ruime en comfortabele omgeving voor degenen die een ongeëvenaarde kampeerervaring zoeken. Elke kampeerplaats is uitgerust met toegang tot water en elektriciteit, met een elektrische capaciteit van 10 ampère om voldoende verlichting te garanderen en de mogelijkheid om elektrische apparaten zonder problemen op te laden. Ontworpen om tot 8 personen te huisvesten, is het perfect voor grote groepen en gezinnen die van alle gemakken willen genieten terwijl ze zich onderdompelen in de kampeerervaring."
+    }
+  },
+  {
+    "key": "condiciones-de-reservas",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/condiciones-de-reservas",
+      "title": "Condiciones de reserva :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/condicions-de-reserves",
+      "title": "Condicions de reserva :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/conditions-de-reservations",
+      "title": "Conditions de réservation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/booking-conditions",
+      "title": "Reservation conditions :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/reserveringsvoorwaarden",
+      "title": "Reserveringsvoorwaarden :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "preservacion-del-entorno",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/preservacion-del-entorno/",
+      "title": "Preservación del entorno :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/preservacio-de-lentorn",
+      "title": "Preservació de l'entorn :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/preservation-de-lenvironnement",
+      "title": "Préservation de l'environnement :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/environmentally-friendly",
+      "title": "Preservation of the environment :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/het-behoud-van-het-milieu",
+      "title": "Behoud van het milieu :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "trabaja-con-nosotros",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/trabaja-con-nosotros",
+      "title": "Trabaja con nosotros :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/treballa-amb-nosaltres",
+      "title": "Treballa amb nosaltres :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/travaille-avec-nous",
+      "title": "Travaille avec nous :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/work-with-us",
+      "title": "Work with Us :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/werk-met-ons",
+      "title": "Werk met ons :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "politica-de-privacidad",
+    "group": "legal",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/politica-de-privacidad",
+      "title": "Política de privacidad :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/politica-de-privacitat",
+      "title": "Politica de privacitat :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/politique-de-privacite",
+      "title": "Politique de confidentialité :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/privacy-policy",
+      "title": "Privacy policy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/privacybeleid",
+      "title": "Privacybeleid :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "politica-de-cookies",
+    "group": "legal",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/politica-de-cookies",
+      "title": "Política de cookies :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/politica-de-cookies",
+      "title": "Politica de cookies :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/politique-de-cookies",
+      "title": "Politique de cookies :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/cookie-policy",
+      "title": "Cookies policy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/cookie-policy",
+      "title": "Cookiebeleid :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "aviso-legal",
+    "group": "legal",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/aviso-legal",
+      "title": "Aviso legal :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/avis-legal",
+      "title": "Avis legal :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/avis-legal",
+      "title": "Mention légale :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/legal-notes",
+      "title": "Legal notice :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/wettelijke-waarschuwing",
+      "title": "Juridische mededeling :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "canal-de-denuncias",
+    "group": "legal",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/canal-de-denuncias",
+      "title": "Canal de denuncias :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/canal-de-denuncies",
+      "title": "Canal de denuncias :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/canal-de-reclamation",
+      "title": "Canal de denuncias :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/complaint-channel",
+      "title": "Canal de denuncias :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/klacht-kanaal",
+      "title": "Canal de denuncias :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-heladeria-mini-golf",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/heladeria-mini-golf",
+      "title": "HELADERÍA OMBRA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/gelateria-mini-golf",
+      "title": "GELATERIA OMBRA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/glacier-mini-golf",
+      "title": "GLACIER OMBRA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/mini-golf-ice-cream-parlor",
+      "title": "OMBRA ICE CREAM PARLOR :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/minigolf-ijssalon",
+      "title": "IJSSALON OMBRA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-restaurante-ombra",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/restaurante-ombra",
+      "title": "RESTAURANTE OMBRA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/restaurant-ombra",
+      "title": "RESTAURANT OMBRA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/restaurant-ombra",
+      "title": "RESTAURANT OMBRA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/ombra-restaurant",
+      "title": "OMBRA RESTAURANT :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/ombra-restaurant",
+      "title": "OMBRA-RESTAURANT :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-pizzeria",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/pizzeria",
+      "title": "PIZZERIA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/pizzeria",
+      "title": "PIZZERIA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/pizzeria",
+      "title": "PIZZERIA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/pizza-shop",
+      "title": "PIZZA SHOP :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/pizza-winkel",
+      "title": "PIZZA WINKEL :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-take-away-ombra",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/take-away-ombra",
+      "title": "TAKE AWAY OMBRA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/take-away-ombra",
+      "title": "TAKE AWAY OMBRA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/ombra-a-emporter",
+      "title": "OMBRA À EMPORTER :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/take-away-ombra",
+      "title": "TAKE AWAY OMBRA :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/neem-ombra-mee",
+      "title": "NEEM OMBRA MEE :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-cafeteria-creperie",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/cafeteria-creperie",
+      "title": "CAFETERÍA CREPERIE :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/cafeteria-creperie",
+      "title": "CAFETERIA CREPERIE :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/cafe-creperie",
+      "title": "CAFÉ CRÊPERIE :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/cafe-creperie",
+      "title": "CAFE CREPERIE :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/cafe-creperie",
+      "title": "CAFÉ CRÊPERIE :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-barra-heineken",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/barra-heineken",
+      "title": "BARRA HEINEKEN :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/barra-heineken",
+      "title": "BARRA HEINEKEN :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/barra-heineken",
+      "title": "BARRA HEINEKEN :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/bar-heineken",
+      "title": "BAR HEINEKEN :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/barra-heineken",
+      "title": "BARRA HEINEKEN :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-restaurante-grill",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/restaurante-grill",
+      "title": "RESTAURANTE GRILL :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/restaurant-grill",
+      "title": "RESTAURANT GRILL :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/restaurant-grill",
+      "title": "RESTAURANT GRILL :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/restaurant-grill",
+      "title": "RESTAURANT GRILL :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/restaurantgrill",
+      "title": "RESTAURANTGRILL :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-take-away-panorama",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/take-away-panorama",
+      "title": "TAKE AWAY PANORAMA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/take-away-panorama",
+      "title": "TAKE AWAY PANORAMA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/take-away-panorama",
+      "title": "TAKE AWAY PANORAMA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/take-away-panorama",
+      "title": "TAKE AWAY PANORAMA :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/take-away-panorama",
+      "title": "TAKE AWAY PANORAMA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-bar-panorama",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/bar-panorama",
+      "title": "BAR PANORAMA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/bar-panorama",
+      "title": "BAR PANORAMA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/bar-panorama",
+      "title": "BAR PANORAMA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/bar-panorama",
+      "title": "BAR PANORAMA :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/bar-panorama",
+      "title": "BAR PANORAMA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-heladeria-panorama",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/heladeria-panorama",
+      "title": "HELADERIA PANORAMA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/gelateria-panorama",
+      "title": "GELATERIA PANORAMA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/glacier-panorama",
+      "title": "GLACIER PANORAMA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/panorama-ice-cream-parlor",
+      "title": "PANORAMA ICE CREAM PARLOR :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/panorama-ijssalon",
+      "title": "PANORAMA-IJSSALON :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-the-seagull-discopub",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/the-seagull-discopub",
+      "title": "\"THE SEAGULL\" DISCO/PUB :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/the-seagull-discopub",
+      "title": "\"THE SEAGULL\" DISCO/PUB :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/the-seagull-discopub",
+      "title": "\"THE SEAGULL\" DISCO/PUB :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/the-seagull-discopub",
+      "title": "\"THE SEAGULL\" DISCO/PUB :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/the-seagull-discopub",
+      "title": "\"THE SEAGULL\" DISCO/PUB :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "restaurant-lera",
+    "group": "restaurant",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/restauracion/lera",
+      "title": "L'ERA :: Gastronomía :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/restauracio/lera",
+      "title": "L'ERA :: Gastronomia :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/restauration/lera",
+      "title": "L'ERA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/restoration/lera",
+      "title": "L'ERA :: Gastronomy :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/restauratie/lera",
+      "title": "L'ERA :: Gastronomie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-mini-club",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/mini-club",
+      "title": "KIDS CLUB :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/mini-club",
+      "title": "MINI CLUB :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/mini-club",
+      "title": "MINI CLUB :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/mini-club",
+      "title": "MINI CLUB :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/mini-club",
+      "title": "MINI CLUB :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-mini-disco",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/mini-disco",
+      "title": "MINI DISCO :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/mini-disco",
+      "title": "MINI DISCO :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/mini-discotheque",
+      "title": "MINI-DISCOTHÈQUE :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/mini-disco",
+      "title": "MINI DISCO :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/minidisco",
+      "title": "MINIDISCO :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-hinchables",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/hinchables",
+      "title": "HINCHABLES :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/inflables",
+      "title": "INFLABLES :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/gonflables",
+      "title": "GONFLABLES :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/inflatables",
+      "title": "INFLATABLES :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/opblaasbaar",
+      "title": "OPBLAASBAAR :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-aquagym",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/aquagym",
+      "title": "AQUAGYM :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/aquagym",
+      "title": "AQUAGYM :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/aquagym",
+      "title": "AQUAGYM :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/aquagym",
+      "title": "AQUAGYM :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/aquagym",
+      "title": "AQUAGYM :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-futbol",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/futbol",
+      "title": "FUTBOL :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/futbol",
+      "title": "FUTBOL :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/football",
+      "title": "FOOTBALL :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/football",
+      "title": "FOOTBALL :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/voetbal",
+      "title": "VOETBAL :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-balonesto",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/balonesto",
+      "title": "BALONCESTO :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/basket",
+      "title": "BASKET :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/basket-ball",
+      "title": "BASKET-BALL :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/basket",
+      "title": "BASKET :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/basketbal",
+      "title": "BASKETBAL :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-tenis",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/tenis",
+      "title": "TENIS :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/tenis",
+      "title": "TENIS :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/tennis",
+      "title": "TENNIS :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/tennis",
+      "title": "TENNIS :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/tennis",
+      "title": "TENNIS :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-waterpolo",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/waterpolo",
+      "title": "WATERPOLO :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/waterpolo",
+      "title": "WATERPOLO :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/water-polo",
+      "title": "WATER POLO :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/waterpolo",
+      "title": "WATERPOLO :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/water-polo",
+      "title": "WATER POLO :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-balonmano",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/balonmano",
+      "title": "BALONMANO :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/handbol",
+      "title": "HANDBOL :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/handball",
+      "title": "HANDBALL :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/handball",
+      "title": "HANDBALL :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/handbal",
+      "title": "HANDBAL :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-shows-nocturnos-panorama",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/shows-nocturnos-panorama",
+      "title": "SHOWS NOCTURNOS - PANORAMA :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/shows-nocturns-panorama",
+      "title": "SHOWS NOCTURNS – PANORAMA :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/spectacles-nocturnes-panorama",
+      "title": "SPECTACLES NOCTURNES – PANORAMA :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/night-shows-panorama",
+      "title": "NIGHT SHOWS – PANORAMA :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/nachtshows-panorama",
+      "title": "NACHTSHOWS – PANORAMA :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-pantalla-gigante",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/pantalla-gigante",
+      "title": "PANTALLA GIGANTE :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/pantalla-gegant",
+      "title": "PANTALLA GEGANT :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/ecran-geant",
+      "title": "ÉCRAN GÉANT :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/giant-screen",
+      "title": "GIANT SCREEN :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/gigantisch-scherm",
+      "title": "GIGANTISCH SCHERM :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-tiro-al-arco",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/tiro-al-arco",
+      "title": "TIRO AL ARCO :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/tir-a-larc",
+      "title": "TIR A L'ARC :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/tir-a-larc",
+      "title": "TIR À L'ARC :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/archery",
+      "title": "ARCHERY :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/boogschieten",
+      "title": "BOOGSCHIETEN :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "animation-petanca",
+    "group": "animation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/animacion/petanca",
+      "title": "PETANCA :: Animación :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/animacio/petanca",
+      "title": "PETANCA :: Animació :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/animation/petanque",
+      "title": "PÉTANQUE :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/animation/petanque",
+      "title": "PÉTANQUE :: Animation :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/animatie/petanque",
+      "title": "PETANQUE :: Animatie :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  },
+  {
+    "key": "glamping-emporda",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/glamping-emporda",
+      "title": "GLAMPING EMPORDÀ :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà está diseñado para ofrecer una experiencia excepcional que combina la aventura del camping con el confort. Cuenta con una cocina completamente equipada para preparar comidas deliciosas, un lavabo con ducha para refrescarse después de un día de actividades al aire libre, y un WC privado para mayor comodidad. Dentro del alojamiento, encontrarás una acogedora cama doble para descansar cómodamente, así como una habitación con litera donde la parte de abajo es una cama doble, ideal para familias o grupos pequeños. Este ambiente acogedor y bien equipado te permite disfrutar de la naturaleza sin renunciar a las comodidades modernas, haciendo del glamping una opción perfecta para escapadas memorables. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/glamping-emporda",
+      "title": "GLAMPING EMPORDÀ :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Glàmping Empordà està dissenyat per a oferir una experiència excepcional que combina l'aventura del càmping amb el confort. Compta amb una cuina completament equipada per a preparar menjars deliciosos, un lavabo amb dutxa per a refrescar-se després d'un dia d'activitats a l'aire lliure, i un WC privat per a major comoditat. Dins de l'allotjament, trobaràs un acollidor llit doble per a descansar còmodament, així com una habitació amb llitera on la part de baix és un llit doble, ideal per a famílies o grups petits. Aquest ambient acollidor i ben equipat permet gaudir de la naturalesa sense renunciar a les comoditats modernes, fent del glàmping una opció perfecta per a escapades memorables. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/glamping-emporda",
+      "title": "GLAMPING EMPORDÀ :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà est conçu pour offrir une expérience exceptionnelle qui combine l'aventure du camping avec le confort. Il dispose d'une cuisine entièrement équipée pour préparer de délicieux repas, d'un lavabo avec douche pour se rafraîchir après une journée d'activités en plein air, et d'un WC privé pour plus de confort. À l'intérieur de l'hébergement, vous trouverez un lit double confortable pour vous reposer, ainsi qu'une chambre avec des lits superposés où la partie inférieure est un lit double, idéal pour les familles ou les petits groupes. Cet environnement chaleureux et bien équipé vous permet de profiter de la nature sans renoncer au confort moderne, faisant du glamping un choix parfait pour des escapades mémorables. Extras optionnels : serviettes (prix 7 € + 25 € de consigne remboursable par pack) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/glamping-emporda",
+      "title": "GLAMPING EMPORDÀ :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà is designed to offer an exceptional experience that combines the adventure of camping with comfort. It features a fully equipped kitchen for preparing delicious meals, a sink with shower to freshen up after a day of outdoor activities, and a private toilet for added convenience. Inside the accommodation, you'll find a cozy double bed for comfortable rest, as well as a room with bunk beds where the lower part is a double bed, ideal for families or small groups. This cozy and well-equipped environment allows you to enjoy nature without sacrificing modern comforts, making glamping a perfect choice for memorable getaways. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or animals are not allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/glamping-emporda",
+      "title": "GLAMPING EMPORDÀ :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà is ontworpen om een uitzonderlijke ervaring te bieden die avontuurlijk kamperen combineert met comfort. Het beschikt over een volledig uitgeruste keuken om heerlijke maaltijden te bereiden, een wastafel met douche om op te frissen na een dag vol buitenactiviteiten, en een privétoilet voor extra gemak. Binnen de accommodatie vind je een gezellig tweepersoonsbed voor comfortabel rusten, evenals een kamer met een stapelbed waarbij het onderste bed een tweepersoonsbed is, ideaal voor gezinnen of kleine groepen. Deze gezellige en goed uitgeruste omgeving stelt je in staat om van de natuur te genieten zonder afstand te doen van moderne gemakken, waardoor glamping een perfecte keuze is voor gedenkwaardige uitstapjes. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of dieren zijn niet toegestaan"
+    }
+  },
+  {
+    "key": "montpla-blue",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/montpla-blue",
+      "title": "GLAMPING EMPORDÀ SUPERIOR :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà Superior está diseñado para ofrecer una experiencia excepcional que combina la aventura del camping con el confort. Cuenta con una cocina completamente equipada para preparar comidas deliciosas, un lavabo con ducha para refrescarse después de un día de actividades al aire libre, y un WC privado para mayor comodidad. Dentro del alojamiento, encontrarás una acogedora cama doble para descansar cómodamente, así como una habitación con dos camas individuales, ideal para familias o grupos pequeños. Este ambiente acogedor y bien equipado te permite disfrutar de la naturaleza sin renunciar a las comodidades modernas, haciendo del glamping una opción perfecta para escapadas memorables. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/montpla-blue",
+      "title": "GLAMPING EMPORDÀ SUPERIOR :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Glàmping Empordà Superior està dissenyat per a oferir una experiència excepcional que combina l'aventura del càmping amb el confort. Consta d'una cuina completament equipada per a preparar menjars deliciosos, un lavabo amb dutxa per a refrescar-se després d'un dia d'activitats a l'aire lliure, i un WC privat per a major comoditat. Dins de l'allotjament, trobaràs un acollidor llit doble per a descansar còmodament, així com una habitació amb dos llits individuals, ideal per a famílies o grups petits. Aquest ambient acollidor i ben equipat permet gaudir de la naturalesa sense renunciar a les comoditats modernes, fent del glàmping una opció perfecta per a escapades memorables. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/montpla-blue",
+      "title": "GLAMPING EMPORDÀ SUPERIOR :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà Superior est conçu pour offrir une expérience exceptionnelle qui combine l'aventure du camping avec le confort. Il dispose d'une cuisine entièrement équipée pour préparer de délicieux repas, d'un lavabo avec douche pour se rafraîchir après une journée d'activités en plein air, et d'un WC privé pour plus de confort. À l'intérieur de l'hébergement, vous trouverez un lit double confortable pour vous reposer, ainsi qu'une chambre avec deux lits simples, idéal pour les familles ou les petits groupes. Cet environnement chaleureux et bien équipé vous permet de profiter de la nature sans renoncer au confort moderne, faisant du glamping un choix parfait pour des escapades mémorables. Extras optionnels : serviettes (prix 7 € + 25 € de consigne remboursable par pack) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés"
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/montpla-blue",
+      "title": "GLAMPING EMPORDÀ SUPERIOR :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà Superior is designed to offer an exceptional experience that combines the adventure of camping with comfort. It features a fully equipped kitchen for preparing delicious meals, a sink with shower to freshen up after a day of outdoor activities, and a private toilet for added convenience. Inside the accommodation, you'll find a cozy double bed for comfortable rest, as well as a room with two single beds, ideal for families or small groups. This cozy and well-equipped environment allows you to enjoy nature without sacrificing modern comforts, making glamping a perfect choice for memorable getaways. Optional extras: towels (price €7+ €25 refundable deposit per pack) and barbecue Additional tents or animals are not allowed"
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/montpla-blue",
+      "title": "GLAMPING EMPORDÀ SUPERIOR :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Glamping Empordà Superior is ontworpen om een uitzonderlijke ervaring te bieden die avontuurlijk kamperen combineert met comfort. Het beschikt over een volledig uitgeruste keuken om heerlijke maaltijden te bereiden, een wastafel met douche om op te frissen na een dag vol buitenactiviteiten, en een privétoilet voor extra gemak. Binnen de accommodatie vind je een gezellig tweepersoonsbed voor comfortabel rusten, evenals een kamer met twee eenpersoonsbedden, ideaal voor gezinnen of kleine groepen. Deze gezellige en goed uitgeruste omgeving stelt je in staat om van de natuur te genieten zonder afstand te doen van moderne gemakken, waardoor glamping een perfecte keuze is voor gedenkwaardige uitstapjes. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of dieren zijn niet toegestaan"
+    }
+  },
+  {
+    "key": "new-glamping-2",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/new-glamping-2",
+      "title": "NEW GLAMPING – 2 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Para una escapada íntima diseñada para dos personas, nuestro nuevo glamping ofrece el escenario perfecto. La habitación cuenta con una amplia cama de matrimonio que ocupa el centro, creando un ambiente acogedor y relajante. En la terraza de madera, encontrarás dos cómodos asientos exteriores, ideales para disfrutar del aire fresco y las vistas circundantes. Este entorno permite desconectar completamente de la vida cotidiana y sumergirse en la tranquilidad del entorno natural. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/new-glamping-2",
+      "title": "NEW GLAMPING – 2 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Per a una escapada íntima dissenyada per a dues persones, el nostre nou glàmping ofereix l'escenari perfecte. L'habitació compta amb un ampli llit de matrimoni que ocupa el centre, creant un ambient acollidor i relaxant. A la terrassa de fusta, trobaràs dos còmodes seients exteriors, ideals per a gaudir de l'aire fresc i les vistes circumdants.Aquest entorn permet desconnectar completament de la vida quotidiana i submergir-se en la tranquil·litat de l'entorn natural. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten botigues complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/new-glamping-2",
+      "title": "NEW GLAMPING – 2 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Pour une escapade intime conçue pour deux personnes, notre nouveau glamping offre le cadre idéal. La chambre est équipée d'un grand lit double au centre, créant une atmosphère confortable et relaxante. Sur la terrasse en bois, vous trouverez deux sièges extérieurs confortables, parfaits pour profiter de l'air frais et des vues environnantes. Cet environnement permet une déconnexion totale de la vie quotidienne et une immersion dans la tranquillité du cadre naturel. Options supplémentaires disponibles : serviettes (7 € / paquet + 25 € de consigne remboursable) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/new-glamping-2",
+      "title": "NEW GLAMPING – 2 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "For an intimate getaway designed for two people, our new glamping offers the perfect setting. The room features a spacious double bed at its center, creating a cozy and relaxing atmosphere. On the wooden terrace, you'll find two comfortable outdoor seats, ideal for enjoying the fresh air and surrounding views. This environment allows for complete disconnection from everyday life and immersion into the tranquility of the natural surroundings. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or animals are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/new-glamping-2",
+      "title": "NEW GLAMPING – 2 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Voor een intiem uitje ontworpen voor twee personen, biedt onze nieuwe glamping de perfecte setting. De kamer is voorzien van een ruim tweepersoonsbed in het midden, wat een gezellige en ontspannen sfeer creëert. Op het houten terras vind je twee comfortabele buitenstoelen, ideaal om te genieten van de frisse lucht en het omringende uitzicht. Deze omgeving maakt volledige ontkoppeling van het dagelijks leven mogelijk en dompelt je onder in de rust van de natuurlijke omgeving. Optionele extra's beschikbaar: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of dieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "new-glamping-4",
+    "group": "accommodation",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/alojamientos/new-glamping-4",
+      "title": "NEW GLAMPING – 4 :: Alojamientos :: Camping Castell Montgrí",
+      "metaDescription": "Cada experiencia de glamping ofrece algo único, y nuestro nuevo glamping para 4 personas es ideal para familias en busca de tranquilidad. Está equipado con una habitación con cama doble, otra con litera y una cocina completamente equipada. En la terraza del glamping, podrás disfrutar de un entorno acogedor para comer, cenar o simplemente relajarte. Extras contratables: toallas (precio 7 € + 25 € de depósito reembolsable por pack) y barbacoa No se admiten tiendas complementarias ni animales"
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/allotjaments/new-glamping-4",
+      "title": "NEW GLAMPING – 4 :: Allotjaments :: Camping Castell Montgrí",
+      "metaDescription": "Cada experiència de glàmping ofereix una cosa única, i el nostre nou glàmping per a 4 persones és ideal per a famílies a la recerca de tranquil·litat. Està equipat amb una habitació amb llit doble, una altra amb llitera i una cuina completament equipada. A la terrassa del glàmping, podràs gaudir d'un entorn acollidor per a menjar, sopar o simplement relaxar-te. Extres contractables: tovalloles (preu 7 € + 25 € de dipòsit reemborsable per pack) i barbacoa No s'admeten tendes complementàries ni animals"
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/hebergement/new-glamping-4",
+      "title": "NEW GLAMPING – 4 :: Hébergements :: Camping Castell Montgrí",
+      "metaDescription": "Chaque expérience de glamping offre quelque chose d'unique, et notre nouveau glamping pour 4 personnes est idéal pour les familles en quête de tranquillité. Il est équipé d'une chambre avec un lit double, d'une autre avec des lits superposés, et d'une cuisine entièrement équipée. Sur la terrasse du glamping, vous pourrez profiter d'un environnement accueillant pour manger, dîner ou simplement vous détendre. Options supplémentaires disponibles : serviettes (prix 7 € + 25 € de consigne remboursable per pack) et barbecue Les tentes supplémentaires ou les animaux ne sont pas autorisés."
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/accommodation/new-glamping-4",
+      "title": "NEW GLAMPING – 4 :: Accommodations :: Camping Castell Montgrí",
+      "metaDescription": "Each glamping experience offers something unique, and our new glamping for 4 people is ideal for families seeking tranquility. It is equipped with one bedroom with a double bed, another with bunk beds, and a fully equipped kitchen. On the glamping terrace, you can enjoy a cozy environment for dining, having dinner, or simply relaxing. Optional extras: towels (price €7 + €25 refundable deposit per pack) and barbecue Additional tents or animals are not allowed."
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/accomodatie/new-glamping-4",
+      "title": "NEW GLAMPING – 4 :: Accommodaties :: Camping Castell Montgrí",
+      "metaDescription": "Elke glampingervaring biedt iets unieks, en onze nieuwe glamping voor 4 personen is ideaal voor gezinnen die op zoek zijn naar rust. Het is uitgerust met een slaapkamer met een tweepersoonsbed, een andere met een stapelbed en een volledig uitgeruste keuken. Op het terras van de glamping kunt u genieten van een gezellige omgeving om te eten, dineren of gewoon te ontspannen. Optionele extra's: handdoeken (prijs €7 + €25 statiegeld per pak) en barbecue Extra tenten of dieren zijn niet toegestaan."
+    }
+  },
+  {
+    "key": "comparar-alojamientos",
+    "group": "page",
+    "es": {
+      "url": "https://www.camping-castellmontgri.com/es/comparar-alojamientos",
+      "title": "Comparar alojamientos :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "ca": {
+      "url": "https://www.camping-castellmontgri.com/ca/comparar-allotjaments",
+      "title": "Comparar allotjaments :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "fr": {
+      "url": "https://www.camping-castellmontgri.com/fr/comparez-les-hebergements",
+      "title": "Comparez les hébergements :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "en": {
+      "url": "https://www.camping-castellmontgri.com/en/compare-accommodations",
+      "title": "Compare accommodations :: Camping Castell Montgrí",
+      "metaDescription": ""
+    },
+    "nl": {
+      "url": "https://www.camping-castellmontgri.com/nl/vergelijk-accommodaties",
+      "title": "Vergelijk accommodaties :: Camping Castell Montgrí",
+      "metaDescription": ""
+    }
+  }
+]

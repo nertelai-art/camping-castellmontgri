@@ -1,0 +1,667 @@
+[
+  {
+    "slug": "mini-club",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "children",
+      "sectionTitle": "NIÑOS"
+    },
+    "name": "KIDS CLUB",
+    "hours": "9:30H - 13h | 16 - 19h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/mini-club",
+        "name": "KIDS CLUB",
+        "hours": "9:30H - 13h | 16 - 19h",
+        "description": "En el Kids Club, cada semana ofrecemos un emocionante programa lleno de diversión y aprendizaje. Desde días temáticos y pintura facial hasta concursos de sueños, mini olimpiadas y manualidades creativas, tenemos actividades para todos los gustos. Nuestro objetivo es garantizar que los niños disfruten de una experiencia memorable llena de aventuras y nuevas amistades.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/mini-club",
+        "name": "MINI CLUB",
+        "hours": "9:30H - 13h | 16 - 19h",
+        "description": "Al Kids Club, cada setmana oferim un emocionant programa ple de diversió i aprenentatge. Des de dies temàtics i pintura facial fins a concursos de somnis, miniolimpíades i manualitats creatives, tenim activitats per a tots els gustos. El nostre objectiu és garantir que els nens gaudeixin d'una experiència memorable plena d'aventures i noves amistats.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/mini-club",
+        "name": "MINI CLUB",
+        "hours": "9:30H - 13h | 16 - 19h",
+        "description": "Au Kids Club, chaque semaine nous proposons un programme excitant plein de divertissement et d'apprentissage. Des journées à thème et de la peinture faciale aux concours de rêves, mini olympiades et activités manuelles créatives, nous avons des activités pour tous les goûts. Notre objectif est de garantir que les enfants vivent une expérience mémorable remplie d'aventures et de nouvelles amitiés.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/mini-club",
+        "name": "MINI CLUB",
+        "hours": "9:30H - 13h | 16 - 19h",
+        "description": "At the Kids Club, every week we offer an exciting program full of fun and learning. From themed days and face painting to dream contests, mini olympics, and creative crafts, we have activities for everyone. Our goal is to ensure that children enjoy a memorable experience filled with adventures and new friendships.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/mini-club",
+        "name": "MINI CLUB",
+        "hours": "9:30H - 13h | 16 - 19h",
+        "description": "In het Kids Club bieden we elke week een spannend programma vol plezier en leren aan. Van themadagen en gezichtsschildering tot droomwedstrijden, mini-olympiades en creatieve knutselactiviteiten, we hebben activiteiten voor iedereen. Ons doel is ervoor te zorgen dat kinderen genieten van een onvergetelijke ervaring vol avontuur en nieuwe vriendschappen.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/camping-montgri-0179-668299519fdc5440187592.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/camping-montgri-0179-668299519fdc5440187592.jpg",
+    "images": []
+  },
+  {
+    "slug": "mini-disco",
+    "zone": null,
+    "section": {
+      "sectionId": "children",
+      "sectionTitle": "NIÑOS"
+    },
+    "name": "MINI DISCO",
+    "hours": "20:00 - 20:30h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/mini-disco",
+        "name": "MINI DISCO",
+        "hours": "20:00 - 20:30h",
+        "description": "¡Bienvenidos a nuestra Mini Disco! Todos los días de 20:00 a 21:00, los más pequeños disfrutan de bailes y diversión al ritmo de la música de nuestro super DJ. Además, tanto pequeños como grandes se lo pasan de maravilla en este evento, donde a veces, nuestra mascota Monti hace una aparición sorpresa para alegrar aún más la noche de los niños en nuestro camping.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/mini-disco",
+        "name": "MINI DISCO",
+        "hours": "20:00 - 20:30h",
+        "description": "Benvinguts a la nostra Mini Disco! Tots els dies de 20:00 a 21:00, els més petits gaudeixen de balls i diversió al ritme de la música del nostre super DJ. A més, tant petits com grans s'ho passen d'allò més bé en aquest esdeveniment, on de vegades, la nostra mascota Monti fa una aparició sorpresa per alegrar encara més la nit dels nens al nostre càmping.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/mini-discotheque",
+        "name": "MINI-DISCOTHÈQUE",
+        "hours": "20:00 - 20:30h",
+        "description": "Bienvenue à notre Mini Disco ! Chaque jour de 20h00 à 21h00, les plus petits s'amusent à danser sur la musique de notre super DJ. De plus, petits et grands passent un excellent moment lors de cet événement, où parfois notre mascotte Monti fait une apparition surprise pour rendre la soirée des enfants encore plus joyeuse dans notre camping.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/mini-disco",
+        "name": "MINI DISCO",
+        "hours": "20:00 - 20:30h",
+        "description": "Welcome to our Mini Disco! Every day from 20:00 to 21:00, the little ones enjoy dancing and having fun to the music played by our super DJ. Moreover, both kids and adults have a great time at this event, where sometimes, our mascot Monti makes a surprise appearance to make the children's evening even more joyful at our campsite.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/minidisco",
+        "name": "MINIDISCO",
+        "hours": "20:00 - 20:30h",
+        "description": "Welkom bij onze Mini Disco! Elke dag van 20:00 tot 21:00 uur genieten de kleintjes van dansen en plezier op de muziek van onze super DJ. Bovendien hebben zowel kinderen als volwassenen een geweldige tijd op dit evenement, waar soms onze mascotte Monti een verrassingsoptreden geeft om de avond van de kinderen nog leuker te maken op onze camping.",
+        "menus": []
+      }
+    },
+    "bannerImage": null,
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/mini-disco-inici-65f9898a597a2178493097.jpeg",
+    "images": []
+  },
+  {
+    "slug": "hinchables",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "children",
+      "sectionTitle": "NIÑOS"
+    },
+    "name": "HINCHABLES",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/hinchables",
+        "name": "HINCHABLES",
+        "hours": null,
+        "description": "¡Únase a nosotros para disfrutar de nuestra emocionante actividad de los hinchables! Esta experiencia está diseñada para que tanto niños como adultos se sumerjan en la diversión al máximo. Imagine saltar y jugar en nuestros hinchables gigantes, garantizando risas y momentos inolvidables para todos. Estamos aquí para ofrecerle una experiencia llena de alegría y diversión.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/inflables",
+        "name": "INFLABLES",
+        "hours": null,
+        "description": "Uneix-te a nosaltres per gaudir de la nostra emocionant activitat dels inflables! Aquesta experiència està dissenyada perquè tant nens com adults s'immersin en la diversió al màxim. Imagina saltar i jugar en els nostres inflables gegants, garantint rialles i moments inoblidables per a tots. Estem aquí per oferir una experiència plena d'alegria i diversió.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/gonflables",
+        "name": "GONFLABLES",
+        "hours": null,
+        "description": "Rejoignez-nous pour profiter de notre activité passionnante de structures gonflables! Cette expérience est conçue pour que les enfants et les adultes s'immergent totalement dans le divertissement. Imaginez sauter et jouer sur nos structures gonflables géantes, garantissant rires et moments inoubliables pour tous. Nous sommes là pour vous offrir une expérience pleine de joie et de plaisir.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/inflatables",
+        "name": "INFLATABLES",
+        "hours": null,
+        "description": "Join us to enjoy our exciting inflatable activity! This experience is designed for both children and adults to immerse themselves in fun to the fullest. Imagine jumping and playing on our giant inflatables, ensuring laughs and unforgettable moments for everyone. We are here to offer you an experience full of joy and fun.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/opblaasbaar",
+        "name": "OPBLAASBAAR",
+        "hours": null,
+        "description": "Sluit je aan bij ons om te genieten van onze spannende activiteit met springkussens! Deze ervaring is ontworpen zodat zowel kinderen als volwassenen zich volledig kunnen onderdompelen in het plezier. Stel je voor dat je springt en speelt op onze gigantische springkussens, met lachen en onvergetelijke momenten voor iedereen gegarandeerd. We staan klaar om je een ervaring vol vreugde en plezier te bieden.",
+        "menus": []
+      }
+    },
+    "bannerImage": null,
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/2023-06-13-h-inflatables-9279-669e2a9f881ed256335339.jpg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/animation/s1140001-65fc4dbb6e74c229365147.jpg"
+    ]
+  },
+  {
+    "slug": "aquagym",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "adult",
+      "sectionTitle": "ADULTOS"
+    },
+    "name": "AQUAGYM",
+    "hours": "12h - 13h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/aquagym",
+        "name": "AQUAGYM",
+        "hours": "12h - 13h",
+        "description": "¡Únase a nuestra divertida actividad de aquagym! Disfrute de una refrescante sesión de ejercicio en la piscina, donde nuestro instructor le guiará a través de rutinas energéticas y divertidas. Ideal para todas las edades y niveles de condición física, el aquagym es una excelente manera de mantenerse activo mientras disfruta del agua. Venga y sienta los beneficios de un entrenamiento completo en un ambiente relajado y animado.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/aquagym",
+        "name": "AQUAGYM",
+        "hours": "12h - 13h",
+        "description": "Uneix-te a la nostra divertida activitat d'aquagym al càmping! Gaudeix d'una refrescant sessió d'exercici a la piscina, on el nostre instructor et guiarà a través de rutines enèrgiques i divertides. Ideal per a totes les edats i nivells de condició física, l'aquagym és una excel·lent manera de mantenir-se actiu mentre gaudeixes de l'aigua. Vine i sent els beneficis d'un entrenament complet en un ambient relaxat i animat.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/aquagym",
+        "name": "AQUAGYM",
+        "hours": "12h - 13h",
+        "description": "C'est l'une des activités les plus populaires qui se déroule à la piscine Panorma, trois fois par semaine.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/aquagym",
+        "name": "AQUAGYM",
+        "hours": "12h - 13h",
+        "description": "It is one of the most popular activities that takes place at the Panorma pool, three times a week.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/aquagym",
+        "name": "AQUAGYM",
+        "hours": "12h - 13h",
+        "description": "Het is een van de meest populaire activiteiten die drie keer per week plaatsvindt bij het Panoramazwembad.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/aquagym-65f978d564d1b731280846.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/aquagym-65f978d564d1b731280846.jpg",
+    "images": []
+  },
+  {
+    "slug": "futbol",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "adult",
+      "sectionTitle": "ADULTOS"
+    },
+    "name": "FUTBOL",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/futbol",
+        "name": "FUTBOL",
+        "hours": null,
+        "description": "Sabemos que el mundo está lleno de futbolistas, desde los más pequeños hasta los más mayores. Por ello, en nuestro programa de animación, hemos creado un espacio especial para todos aquellos niños y niñas, chicos y chicas que disfrutan de este apasionante deporte. Únase a nosotros para vivir la emoción del fútbol y disfrutar de partidos vibrantes.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/futbol",
+        "name": "FUTBOL",
+        "hours": null,
+        "description": "Sabem que el món està ple de futbolistes, des dels més petits fins als més grans. Per això, en el nostre programa d'animació, hem creat un espai especial per a tots aquells nens i nenes, nois i noies que gaudeixen d'aquest apassionant esport. Uneix-te a nosaltres per viure l'emoció del futbol i gaudir de partits vibrants.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/football",
+        "name": "FOOTBALL",
+        "hours": null,
+        "description": "Nous savons que le monde est rempli de footballeurs, des plus petits aux plus grands. C'est pourquoi, dans notre programme d'animation, nous avons créé un espace spécial pour tous les garçons et filles, enfants et adolescents qui aiment ce sport passionnant. Rejoignez-nous pour vivre l'émotion du football et profiter de matchs vibrants.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/football",
+        "name": "FOOTBALL",
+        "hours": null,
+        "description": "We know the world is full of footballers, from the youngest to the oldest. That’s why, in our entertainment program, we have created a special space for all the boys and girls, kids and teens who enjoy this exciting sport. Join us to experience the thrill of football and enjoy vibrant matches.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/voetbal",
+        "name": "VOETBAL",
+        "hours": null,
+        "description": "We weten dat de wereld vol zit met voetballers, van de jongste tot de oudste. Daarom hebben we in ons animatieprogramma een speciale ruimte gecreëerd voor alle jongens en meisjes, kinderen en tieners die van deze opwindende sport houden. Doe mee en beleef de spanning van voetbal en geniet van levendige wedstrijden.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/football-inici-65f976957a9b2952379666.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/football-inici-65f976957a9b2952379666.jpg",
+    "images": []
+  },
+  {
+    "slug": "balonesto",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "adult",
+      "sectionTitle": "ADULTOS"
+    },
+    "name": "BALONCESTO",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/balonesto",
+        "name": "BALONCESTO",
+        "hours": null,
+        "description": "Descubra nuestra emocionante actividad de baloncesto en el programa de animación del camping. Diseñada para jugadores de todas las edades y niveles, esta actividad ofrece la oportunidad perfecta para disfrutar de este dinámico deporte en un ambiente divertido y amigable.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/basket",
+        "name": "BASKET",
+        "hours": null,
+        "description": "Descobreixi la nostra emocionant activitat de bàsquet en el programa d'animació del càmping. Dissenyada per a jugadors de totes les edats i nivells, aquesta activitat ofereix l'oportunitat perfecta per gaudir d'aquest esport dinàmic en un ambient divertit i amigable.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/basket-ball",
+        "name": "BASKET-BALL",
+        "hours": null,
+        "description": "Découvrez notre activité de basketball passionnante dans le programme d'animation du camping. Conçue pour des joueurs de tous âges et niveaux, cette activité offre l'opportunité parfaite de profiter de ce sport dynamique dans une ambiance amusante et conviviale.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/basket",
+        "name": "BASKET",
+        "hours": null,
+        "description": "Discover our exciting basketball activity in the campsite's entertainment program. Designed for players of all ages and skill levels, this activity offers the perfect opportunity to enjoy this dynamic sport in a fun and friendly environment.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/basketbal",
+        "name": "BASKETBAL",
+        "hours": null,
+        "description": "Ontdek onze spannende basketbalactiviteit in het animatieprogramma van de camping. Ontworpen voor spelers van alle leeftijden en niveaus, biedt deze activiteit de perfecte gelegenheid om te genieten van deze dynamische sport in een leuke en vriendelijke omgeving.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/basketball-inici-65f9779dd67f7792075340.png",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/basketball-inici-65f9779dd67f7792075340.png",
+    "images": []
+  },
+  {
+    "slug": "tenis",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "adult",
+      "sectionTitle": "ADULTOS"
+    },
+    "name": "TENIS",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/tenis",
+        "name": "TENIS",
+        "hours": null,
+        "description": "Disfrute del tenis en nuestro programa de animación del camping. Para todas las edades y niveles, es perfecto para mejorar habilidades y divertirse en la cancha. Únase a nosotros para jugar, hacer amigos y disfrutar al aire libre.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/tenis",
+        "name": "TENIS",
+        "hours": null,
+        "description": "Gaudiu del tennis al nostre programa d'animació del càmping. Per a totes les edats i nivells, és perfecte per millorar habilitats i divertir-se a la pista. Uneix-te a nosaltres per jugar, fer amics i gaudir a l'aire lliure.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/tennis",
+        "name": "TENNIS",
+        "hours": null,
+        "description": "Profitez du tennis dans notre programme d'animation au camping. Adapté à tous les âges et niveaux de compétence, c'est parfait pour améliorer ses compétences et s'amuser sur le court. Rejoignez-nous pour jouer, se faire des amis et profiter des activités en plein air.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/tennis",
+        "name": "TENNIS",
+        "hours": null,
+        "description": "Enjoy tennis in our campsite's entertainment program. Suitable for all ages and skill levels, it's perfect for improving skills and having fun on the court. Join us to play, make friends, and enjoy outdoor activities.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/tennis",
+        "name": "TENNIS",
+        "hours": null,
+        "description": "Geniet van tennis in ons animatieprogramma op de camping. Geschikt voor alle leeftijden en vaardigheidsniveaus, perfect om vaardigheden te verbeteren en plezier te hebben op de baan. Doe mee om te spelen, nieuwe vrienden te maken en te genieten van buitenactiviteiten.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/tennis-inici-65f977f40048b762144407.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/tennis-inici-65f977f40048b762144407.jpeg",
+    "images": []
+  },
+  {
+    "slug": "waterpolo",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "adult",
+      "sectionTitle": "ADULTOS"
+    },
+    "name": "WATERPOLO",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/waterpolo",
+        "name": "WATERPOLO",
+        "hours": null,
+        "description": "¡Sumérjase en la diversión de nuestros torneos de waterpolo! Disfrute de emocionantes competencias donde equipos de todas las edades compiten con pasión. Tanto jugadores veteranos como aficionados vivirán aventuras acuáticas llenas de entusiasmo.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/waterpolo",
+        "name": "WATERPOLO",
+        "hours": null,
+        "description": "Submergeixi's en la diversió dels nostres tornejos de waterpolo! Gaudeixi de competicions emocionants on equips de totes les edats competeixen amb passió. Tant els jugadors veterans com els aficionats viuran aventures aquàtiques plenes d'entusiasme.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/water-polo",
+        "name": "WATER POLO",
+        "hours": null,
+        "description": "Plongez dans le plaisir de nos tournois de water-polo ! Profitez de compétitions passionnantes où des équipes de tous âges s'affrontent avec passion. Les joueurs vétérans comme les amateurs vivront des aventures aquatiques pleines d'enthousiasme.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/waterpolo",
+        "name": "WATERPOLO",
+        "hours": null,
+        "description": "Dive into the fun of our water polo tournaments! Enjoy thrilling competitions where teams of all ages compete with passion. Both veteran players and enthusiasts will experience exciting aquatic adventures.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/water-polo",
+        "name": "WATER POLO",
+        "hours": null,
+        "description": "Duik in het plezier van onze waterpolotoernooien! Geniet van spannende wedstrijden waarin teams van alle leeftijden met passie strijden. Zowel ervaren spelers als liefhebbers zullen spannende wateravonturen beleven.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/camping-montgri-1475-66504b4a289a8922768584.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/camping-montgri-1475-66504b4a289a8922768584.jpg",
+    "images": []
+  },
+  {
+    "slug": "balonmano",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "adult",
+      "sectionTitle": "ADULTOS"
+    },
+    "name": "BALONMANO",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/balonmano",
+        "name": "BALONMANO",
+        "hours": null,
+        "description": "En nuestra pista polivalente, nuestro equipo de animación organiza emocionantes torneos de balonmano para todas las edades. Le invitamos a participar en estas competiciones y a disfrutar de la pasión y el dinamismo del balonmano, compartiendo momentos inolvidables con jugadores de todos los niveles.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/handbol",
+        "name": "HANDBOL",
+        "hours": null,
+        "description": "A la pista polivalent, l'equip d'animació organitza emocionants tornejos de hanbol per a totes les edats. El convidem a participar en aquestes competicions i a gaudir de la passió i el dinamisme del hanbol, compartint moments inoblidables amb jugadors de tots els nivells.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/handball",
+        "name": "HANDBALL",
+        "hours": null,
+        "description": "Sur le terrain polyvalent, notre équipe d'animation organise des tournois de handball passionnants pour tous les âges. Nous vous invitons à participer à ces compétitions et à profiter de la passion et du dynamisme du handball, tout en partageant des moments inoubliables avec des joueurs de tous niveaux.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/handball",
+        "name": "HANDBALL",
+        "hours": null,
+        "description": "In the multipurpose court, our animation team organizes exciting handball tournaments for all ages. We invite you to join these competitions and enjoy the passion and dynamism of handball while sharing unforgettable moments with players of all levels.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/handbal",
+        "name": "HANDBAL",
+        "hours": null,
+        "description": "Op ons multifunctionele veld organiseert ons animatieteam spannende handbaltoernooien voor alle leeftijden. Wij nodigen u uit om deel te nemen aan deze competities en te genieten van de passie en dynamiek van handbal, terwijl u onvergetelijke momenten deelt met spelers van alle niveaus.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/handball-inici-65f9789e564e2521698986.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/handball-inici-65f9789e564e2521698986.jpeg",
+    "images": []
+  },
+  {
+    "slug": "shows-nocturnos-panorama",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "family",
+      "sectionTitle": "FAMILIA"
+    },
+    "name": "SHOWS NOCTURNOS - PANORAMA",
+    "hours": "21:30h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/shows-nocturnos-panorama",
+        "name": "SHOWS NOCTURNOS - PANORAMA",
+        "hours": "21:30h",
+        "description": "¡Descubre los emocionantes shows nocturnos de nuestro camping! Cada noche el escenario de Panorama cobra vida con espectáculos variados y emocionantes. Desde bandas de rock y pop, flamenco, acrobacias, magia, bailes y humor hasta divertidas sesiones de karaoke y el Montgrí Got Talent, cada noche ofrece una experiencia única. Sumérgete en el entretenimiento y disfruta de noches llenas de diversión y sorpresas para toda la familia.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/shows-nocturns-panorama",
+        "name": "SHOWS NOCTURNS – PANORAMA",
+        "hours": "21:30h",
+        "description": "Descobreix els emocionants espectacles nocturns del nostre càmping! Cada nit l'escenari de Panorama pren vida amb espectacles variats i emocionants. Des de bandes de rock i pop, flamenc, acrobàcies, màgia, balls i humor fins a divertides sessions de karaoke i el Montgrí Got Talent, cada nit ofereix una experiència única. Submergeix-te en l'entreteniment i gaudeix de nits plenes de diversió i sorpreses per a tota la família.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/spectacles-nocturnes-panorama",
+        "name": "SPECTACLES NOCTURNES – PANORAMA",
+        "hours": "21:30h",
+        "description": "Découvrez les spectacles nocturnes passionnants de notre camping ! Chaque soir la scène de Panorama s'anime avec des spectacles variés et captivants. De groupes de rock et pop, flamenco, acrobaties, magie, danse et humour à des sessions de karaoké amusantes et au Montgrí Got Talent, chaque soir offre une expérience unique. Plongez-vous dans le divertissement et profitez de soirées pleines de plaisir et de surprises pour toute la famille.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/night-shows-panorama",
+        "name": "NIGHT SHOWS – PANORAMA",
+        "hours": "21:30h",
+        "description": "Discover the exciting nightly shows at our campsite! Every night, the Panorama stage comes alive with varied and thrilling performances. From rock and pop bands, flamenco, acrobatics, magic, dance, and humor to fun karaoke sessions and Montgrí Got Talent, each night offers a unique experience. Immerse yourself in entertainment and enjoy evenings filled with fun and surprises for the whole family.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/nachtshows-panorama",
+        "name": "NACHTSHOWS – PANORAMA",
+        "hours": "21:30h",
+        "description": "Ontdek de spannende avondshows op onze camping! Elke avond komt het Panorama-podium tot leven met gevarieerde en opwindende optredens. Van rock- en popbands, flamenco, acrobatiek, magie, dans en humor tot leuke karaoke-sessies en Montgrí Got Talent, elke avond biedt een unieke ervaring. Laat je onderdompelen in entertainment en geniet van avonden vol plezier en verrassingen voor het hele gezin.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/shows-nocturns-panorama-65f98bd34b514057347943.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/shows-nocturns-panorama-65f98bd34b514057347943.jpeg",
+    "images": []
+  },
+  {
+    "slug": "pantalla-gigante",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "family",
+      "sectionTitle": "FAMILIA"
+    },
+    "name": "PANTALLA GIGANTE",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/pantalla-gigante",
+        "name": "PANTALLA GIGANTE",
+        "hours": null,
+        "description": "¡Disfrute de la emoción en nuestra pantalla gigante del camping! Aquí podrá deleitarse con películas o vibrar con los emocionantes eventos deportivos en vivo. Sumérjase en la experiencia cinematográfica al aire libre o celebre los momentos deportivos más destacados junto a amigos y familiares. Nuestra pantalla gigante ofrece entretenimiento para todos los gustos y edades, asegurando noches memorables y llenas de diversión en nuestro acogedor entorno.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/pantalla-gegant",
+        "name": "PANTALLA GEGANT",
+        "hours": null,
+        "description": "Gaudeix de l'emoció a la nostra pantalla gegant del càmping! Aquí podràs delectar-te amb pel·lícules o vibrar amb els emocionants esdeveniments esportius en directe. Submergeix-te en l'experiència cinematogràfica a l'aire lliure o celebra els moments esportius més destacats juntament amb amics i familiars. La nostra pantalla gegant ofereix entreteniment per a tots els gustos i edats, assegurant nits memorables i plenes de diversió en el nostre entorn acollidor.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/ecran-geant",
+        "name": "ÉCRAN GÉANT",
+        "hours": null,
+        "description": "Profitez de l'émotion sur notre écran géant au camping! Ici, vous pourrez vous délecter de films ou vibrer avec les événements sportifs en direct. Plongez-vous dans l'expérience cinématographique en plein air ou célébrez les moments sportifs les plus passionnants avec vos amis et votre famille. Notre écran géant offre un divertissement pour tous les goûts et tous les âges, garantissant des soirées mémorables et pleines de plaisir dans notre environnement convivial.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/giant-screen",
+        "name": "GIANT SCREEN",
+        "hours": null,
+        "description": "Enjoy the excitement on our giant screen at the campsite! Here you can delight in movies or thrill to live sports events. Immerse yourself in the outdoor cinematic experience or celebrate the most exciting sports moments with friends and family. Our giant screen offers entertainment for all tastes and ages, ensuring memorable and fun-filled nights in our cozy environment.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/gigantisch-scherm",
+        "name": "GIGANTISCH SCHERM",
+        "hours": null,
+        "description": "Geniet van de opwinding op ons gigantische scherm op de camping! Hier kun je genieten van films of live sportevenementen beleven. Dompel jezelf onder in de buitenbioscoopervaring of vier de meest opwindende sportmomenten met vrienden en familie. Ons gigantische scherm biedt entertainment voor alle smaken en leeftijden, en zorgt voor gedenkwaardige en plezierige avonden in onze gezellige omgeving.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/2023-06-17-ombra-bar-6697b3b1cd2d1919214022.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/2023-06-17-ombra-bar-6697b3b1cd2d1919214022.jpg",
+    "images": []
+  },
+  {
+    "slug": "tiro-al-arco",
+    "zone": null,
+    "section": {
+      "sectionId": "family",
+      "sectionTitle": "FAMILIA"
+    },
+    "name": "TIRO AL ARCO",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/tiro-al-arco",
+        "name": "TIRO AL ARCO",
+        "hours": null,
+        "description": "Sabemos que muchos de vosotros sois unos aventureros, por eso el equipo de animación os invita a disfrutar de una actividad que apasiona tanto a niños como adultos: el tiro con arco. ¿Quién sabe cuándo podría ser útil tener habilidades con un arco y flecha?",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/tir-a-larc",
+        "name": "TIR A L'ARC",
+        "hours": null,
+        "description": "Sabem que molts de vosaltres sou uns aventurers, per això l'equip d'animació us convida a gaudir d'una activitat que apassiona tant a nens com a adults: el tir amb arc. Qui sap quan podria ser útil tenir habilitats amb un arc i fletxa?",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/tir-a-larc",
+        "name": "TIR À L'ARC",
+        "hours": null,
+        "description": "Nous savons que beaucoup d'entre vous sont des aventuriers, c'est pourquoi l'équipe d'animation vous invite à profiter d'une activité qui plaît autant aux enfants qu'aux adultes : le tir à l'arc. Qui sait quand il pourrait être utile d'avoir des compétences avec un arc et des flèches ?",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/archery",
+        "name": "ARCHERY",
+        "hours": null,
+        "description": "We know that many of you are adventurers, so the entertainment team invites you to enjoy an activity that appeals to both children and adults: archery. Who knows when it might be useful to have skills with a bow and arrow?",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/boogschieten",
+        "name": "BOOGSCHIETEN",
+        "hours": null,
+        "description": "We weten dat velen van jullie avonturiers zijn, daarom nodigt het animatieteam jullie uit om te genieten van een activiteit die zowel kinderen als volwassenen aanspreekt: boogschieten. Wie weet wanneer het handig kan zijn om vaardigheden te hebben met een boog en pijl?",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/arco-inici-65f9780acb895945069680.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/arco-inici-65f9780acb895945069680.jpeg",
+    "images": []
+  },
+  {
+    "slug": "petanca",
+    "zone": null,
+    "section": {
+      "sectionId": "family",
+      "sectionTitle": "FAMILIA"
+    },
+    "name": "PETANCA",
+    "hours": null,
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/animacion/petanca",
+        "name": "PETANCA",
+        "hours": null,
+        "description": "En la zona de LA BASSA hay un espacio que permite, por su cuenta, jugar a la petanca. El equipo de animación organiza competiciones para todas las edades.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/animacio/petanca",
+        "name": "PETANCA",
+        "hours": null,
+        "description": "A la zona de LA BASSA hi ha un espai que permet, pel vostre compte, jugar a la petanca. L’ equip d’animació organitza competicions per a totes les edats.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/animation/petanque",
+        "name": "PÉTANQUE",
+        "hours": null,
+        "description": "Dans le quartier de LA BASSA il y a un espace où vous pouvez jouer seul à la pétanque. L'équipe d'animation organise des compétitions pour tous les âges.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/animation/petanque",
+        "name": "PÉTANQUE",
+        "hours": null,
+        "description": "In the LA BASSA area there is a space where you can play pétanque on your own. The animation team organizes competitions for all ages.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/animatie/petanque",
+        "name": "PETANQUE",
+        "hours": null,
+        "description": "In de ruimte LA BASSA is er een ruimte waar je zelfstandig jeu de boules kunt spelen. Het animatieteam organiseert wedstrijden voor alle leeftijden.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/animation/petanca-inici-65f97836af49e392476137.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/animation/petanca-inici-65f97836af49e392476137.jpeg",
+    "images": []
+  }
+]

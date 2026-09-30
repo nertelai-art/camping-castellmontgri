@@ -1,0 +1,742 @@
+{
+  "brand": {
+    "name": "Natura Village Montgrí",
+    "legalName": "Camping Castell Montgrí",
+    "logo": "https://www.camping-castellmontgri.com/assets/svg/logo_natura_village_montgri.svg",
+    "logoAlt": "Natura Village - Camping Castell Montgrí"
+  },
+  "address": {
+    "street": "Carretera de Torroella a l'Estartit, Km 4,7",
+    "locality": "L'Estartit",
+    "postalCode": "17258",
+    "region": "Girona",
+    "country": "ES",
+    "footerText": "L'Estartit / Carretera de Torroella a l’Estartit. Km 4,7 / 17258, Girona (Spain)"
+  },
+  "geo": {
+    "lat": 42.05114239637562,
+    "lng": 3.182700336143214
+  },
+  "googleMapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2962.6387475588954!2d3.1810212767943895!3d42.05092627122322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12ba5826027d2699%3A0x6cd43c9025a79f4a!2sC%C3%A0mping%20Castell%20Montgr%C3%AD!5e0!3m2!1sca!2ses!4v1710171205413!5m2!1sca!2ses",
+  "phones": [
+    {
+      "label": "Principal / reserves",
+      "display": "(+34) 972 751 630",
+      "e164": "+34972751630"
+    }
+  ],
+  "emails": {
+    "info": "info@camping-castellmontgri.com",
+    "reservations": "reserves@camping-castellmontgri.com",
+    "events": "eventos@grupmascort.com",
+    "jobs": "totsrrhh@camping-castellmontgri.com",
+    "whistleblowing": "denuncia@camping-castellmontgri.com"
+  },
+  "season": {
+    "year": 2026,
+    "open": "2026-04-27",
+    "close": "2026-09-27",
+    "textByLang": {
+      "es": "Temporada 2026: Del 27 de abril al 27 de septiembre",
+      "ca": "Temporada 2026: Del 27 d'abril al 27 de setembre",
+      "fr": "Saison 2026 : Du 27 avril au 27 septembre",
+      "en": "2026 season: April 27th to September 27th",
+      "nl": "Seizoen 2026: van 27 april tot 27 september"
+    }
+  },
+  "irtcLicence": "KG-000086",
+  "socialLinks": [],
+  "socialLinksNote": "El web no enllaça cap xarxa social (ni capçalera, ni peu, ni sameAs del JSON-LD). Només les metaetiquetes twitter:site/creator diuen \"@campingcastellmontrgi\" (amb errada; no verificat que existeixi).",
+  "reviewLinks": [
+    {
+      "name": "Zoover",
+      "url": "https://www.zoover.nl/spanje/catalonie-costa-brava-en-costa-dorada/lestartit/castell-montgri-glamping/camping"
+    },
+    {
+      "name": "Travelers choice - Tripadvisor",
+      "url": "https://www.tripadvisor.es/UserReviewEdit-g644326-d287393-Camping_Castell_Montgri-L_Estartit_Costa_Brava_Province_of_Girona_Catalonia.html"
+    },
+    {
+      "name": "ADAC",
+      "url": "https://www.pincamp.de/campingplaetze/camping-castell-montgri"
+    }
+  ],
+  "booking": {
+    "engine": "Thelis Resa (webcamp.fr)",
+    "bookingUrl": "https://thelisresa.webcamp.fr/?camping=castellmontgri17",
+    "campingId": "castellmontgri17",
+    "widgetScript": "https://thelisresa.webcamp.fr/ilib/v4/?categories&favorites&searchengine&simpleblock",
+    "widgetTags": [
+      "<thr-search-engine type=\"2\">",
+      "<thr-simpleblock categories=\"[N]\" show-picture=\"true\">"
+    ],
+    "note": "Els preus i la disponibilitat es pinten per JS amb aquest giny; no són a l’HTML. Vegeu thelisresaCategoryId a accommodations.json. També es carrega rsv4.masterasp.com/widget/v4/master_booking_plugin.js."
+  },
+  "clientPortal": {
+    "url": "https://portal.camping-castellmontgri.com/es",
+    "urlPattern": "https://portal.camping-castellmontgri.com/{lang}",
+    "label": "Área privada"
+  },
+  "sitePlan": {
+    "url": "https://www.camping-castellmontgri.com/assets/img/planol-camping-castell-montgri_2026.jpg",
+    "local": "reference/images/plan/planol-camping-castell-montgri_2026.jpg"
+  },
+  "video": {
+    "novedades": "https://vimeo.com/1138994048"
+  },
+  "accreditations": [
+    {
+      "name": "Generalitat de catalunya - Turisme",
+      "url": null,
+      "logo": "https://www.camping-castellmontgri.com/assets/img/accreditations/gencat.png"
+    },
+    {
+      "name": "Zoover",
+      "url": "https://www.zoover.nl/spanje/catalonie-costa-brava-en-costa-dorada/lestartit/castell-montgri-glamping/camping",
+      "logo": "https://www.camping-castellmontgri.com/assets/img/accreditations/zoover.png"
+    },
+    {
+      "name": "Travelers choice - Tripadvisor",
+      "url": "https://www.tripadvisor.es/UserReviewEdit-g644326-d287393-Camping_Castell_Montgri-L_Estartit_Costa_Brava_Province_of_Girona_Catalonia.html",
+      "logo": "https://www.camping-castellmontgri.com/assets/img/accreditations/trip_advisor.png"
+    },
+    {
+      "name": "Erkende Camping",
+      "url": null,
+      "logo": "https://www.camping-castellmontgri.com/assets/img/accreditations/erkend.png"
+    },
+    {
+      "name": "ADAC",
+      "url": "https://www.pincamp.de/campingplaetze/camping-castell-montgri",
+      "logo": "https://www.camping-castellmontgri.com/assets/img/accreditations/adac.png"
+    },
+    {
+      "name": "Anwb",
+      "url": null,
+      "logo": "https://www.camping-castellmontgri.com/assets/img/accreditations/anwb.png"
+    }
+  ],
+  "groupBrands": [
+    {
+      "name": "Camping Castell Montgrí",
+      "url": "https://www.camping-castellmontgri.com/",
+      "logo": "https://www.camping-castellmontgri.com/assets/svg/logo_natura_village_montgri.svg"
+    },
+    {
+      "name": "Camping Castell Mar",
+      "url": "https://www.camping-castellmar.com/",
+      "logo": "https://www.camping-castellmontgri.com/assets/svg/logo_natura_village_castellomar.svg"
+    },
+    {
+      "name": "Fundació Mascort",
+      "url": "https://www.fundaciomascort.com/",
+      "logo": "https://www.camping-castellmontgri.com/assets/img/logo_fundacio_mascort.png"
+    },
+    {
+      "name": "Grup Mascort",
+      "url": null,
+      "logo": "https://www.camping-castellmontgri.com/assets/img/logo_grup_mascort.png"
+    }
+  ],
+  "groupNote": "Grup Mascort és el grup propietari (logotip sense enllaç). Castellomar = Camping Castell Mar (camping-castellmar.com), marca germana «Natura Village Castellomar». La Fundació Mascort també surt al peu.",
+  "consentManager": "PDCC (pdcc.gdpr.es)",
+  "languages": [
+    "es",
+    "ca",
+    "fr",
+    "en",
+    "nl"
+  ],
+  "perLang": {
+    "es": {
+      "seasonText": "Temporada 2026: Del 27 de abril al 27 de septiembre",
+      "contactHeading": "CONTACTO",
+      "newsletterCta": "SUSCRÍBETE A LA NEWSLETTER",
+      "copyright": "Todos los derechos reservados. ©2026 Camping Castell Montgrí / IRTC KG-000086",
+      "footerLinks": [
+        {
+          "label": "Condiciones de reservas",
+          "url": "https://www.camping-castellmontgri.com/es/condiciones-de-reservas"
+        },
+        {
+          "label": "Preservación del entorno",
+          "url": "https://www.camping-castellmontgri.com/es/preservacion-del-entorno/"
+        },
+        {
+          "label": "Trabaja con nosotros",
+          "url": "https://www.camping-castellmontgri.com/es/trabaja-con-nosotros"
+        },
+        {
+          "label": "Plano",
+          "url": "https://www.camping-castellmontgri.com/assets/img/planol-camping-castell-montgri_2026.jpg?20240903"
+        }
+      ],
+      "legalLinks": [
+        {
+          "label": "Política de privacidad",
+          "url": "https://www.camping-castellmontgri.com/es/politica-de-privacidad"
+        },
+        {
+          "label": "Política de cookies",
+          "url": "https://www.camping-castellmontgri.com/es/politica-de-cookies"
+        },
+        {
+          "label": "Consentimiento",
+          "url": "(obre el modal de consentiment PDCC)"
+        },
+        {
+          "label": "Aviso legal",
+          "url": "https://www.camping-castellmontgri.com/es/aviso-legal"
+        },
+        {
+          "label": "Canal de denuncias",
+          "url": "https://www.camping-castellmontgri.com/es/canal-de-denuncias"
+        }
+      ],
+      "mainNav": [
+        {
+          "label": "Alojamientos",
+          "url": "https://www.camping-castellmontgri.com/es/alojamientos"
+        },
+        {
+          "label": "Mobile homes",
+          "url": "https://www.camping-castellmontgri.com/es/alojamientos/mobile-home"
+        },
+        {
+          "label": "Glamping",
+          "url": "https://www.camping-castellmontgri.com/es/alojamientos/glamping"
+        },
+        {
+          "label": "Tiendas",
+          "url": "https://www.camping-castellmontgri.com/es/alojamientos/tiendas"
+        },
+        {
+          "label": "Parcelas",
+          "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcelas"
+        },
+        {
+          "label": "Gastronomía",
+          "url": "https://www.camping-castellmontgri.com/es/restauracion"
+        },
+        {
+          "label": "Instalaciones",
+          "url": "https://www.camping-castellmontgri.com/es/servicios"
+        },
+        {
+          "label": "Animación",
+          "url": "https://www.camping-castellmontgri.com/es/animacion"
+        },
+        {
+          "label": "Eventos",
+          "url": "https://www.camping-castellmontgri.com/es/eventos"
+        },
+        {
+          "label": "Entorno",
+          "url": "https://www.camping-castellmontgri.com/es/entorno"
+        },
+        {
+          "label": "Reservar",
+          "url": "https://thelisresa.webcamp.fr/?camping=castellmontgri17"
+        }
+      ],
+      "headerButtons": [
+        "Mapa",
+        "Área privada"
+      ]
+    },
+    "ca": {
+      "seasonText": "Temporada 2026: Del 27 d'abril al 27 de setembre",
+      "contactHeading": "CONTACTE",
+      "newsletterCta": "SUBSCRIU-TE A LA NEWSLETTER",
+      "copyright": "Tots els drets reservats. ©2026 Camping Castell Montgrí / IRTC KG-000086",
+      "footerLinks": [
+        {
+          "label": "Condicions de reserves",
+          "url": "https://www.camping-castellmontgri.com/ca/condicions-de-reserves"
+        },
+        {
+          "label": "Preservació de l'entorn",
+          "url": "https://www.camping-castellmontgri.com/ca/preservacio-de-lentorn"
+        },
+        {
+          "label": "Treballa amb nosaltres",
+          "url": "https://www.camping-castellmontgri.com/ca/treballa-amb-nosaltres"
+        },
+        {
+          "label": "Plànol",
+          "url": "https://www.camping-castellmontgri.com/assets/img/planol-camping-castell-montgri_2026.jpg?20240903"
+        }
+      ],
+      "legalLinks": [
+        {
+          "label": "Política de privadesa",
+          "url": "https://www.camping-castellmontgri.com/ca/politica-de-privacitat"
+        },
+        {
+          "label": "Política de cookies",
+          "url": "https://www.camping-castellmontgri.com/ca/politica-de-cookies"
+        },
+        {
+          "label": "Consentiment",
+          "url": "(obre el modal de consentiment PDCC)"
+        },
+        {
+          "label": "Avís legal",
+          "url": "https://www.camping-castellmontgri.com/ca/avis-legal"
+        },
+        {
+          "label": "Canal de denúncies",
+          "url": "https://www.camping-castellmontgri.com/ca/canal-de-denuncies"
+        }
+      ],
+      "mainNav": [
+        {
+          "label": "Allotjaments",
+          "url": "https://www.camping-castellmontgri.com/ca/allotjaments"
+        },
+        {
+          "label": "Mobile homes",
+          "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mobile-home"
+        },
+        {
+          "label": "Glamping",
+          "url": "https://www.camping-castellmontgri.com/ca/allotjaments/glamping"
+        },
+        {
+          "label": "Tendes",
+          "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tendes"
+        },
+        {
+          "label": "Parcel·les",
+          "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parceles"
+        },
+        {
+          "label": "Gastronomia",
+          "url": "https://www.camping-castellmontgri.com/ca/restauracio"
+        },
+        {
+          "label": "Instal·lacions",
+          "url": "https://www.camping-castellmontgri.com/ca/serveis"
+        },
+        {
+          "label": "Animació",
+          "url": "https://www.camping-castellmontgri.com/ca/animacio"
+        },
+        {
+          "label": "Events",
+          "url": "https://www.camping-castellmontgri.com/ca/events"
+        },
+        {
+          "label": "Entorn",
+          "url": "https://www.camping-castellmontgri.com/ca/entorn"
+        },
+        {
+          "label": "Reservar",
+          "url": "https://thelisresa.webcamp.fr/?camping=castellmontgri17"
+        }
+      ],
+      "headerButtons": [
+        "Mapa",
+        "Àrea privada"
+      ]
+    },
+    "fr": {
+      "seasonText": "Saison 2026 : Du 27 avril au 27 septembre",
+      "contactHeading": "CONTACT",
+      "newsletterCta": "ABONNEZ-VOUS À LA NEWSLETTER",
+      "copyright": "Tous droits réservés. ©2026 Camping Castell Montgrí / IRTC KG-000086",
+      "footerLinks": [
+        {
+          "label": "Conditions de réservation",
+          "url": "https://www.camping-castellmontgri.com/fr/conditions-de-reservations"
+        },
+        {
+          "label": "Préservation de l'environnement",
+          "url": "https://www.camping-castellmontgri.com/fr/preservation-de-lenvironnement"
+        },
+        {
+          "label": "Travaille avec nous",
+          "url": "https://www.camping-castellmontgri.com/fr/travaille-avec-nous"
+        },
+        {
+          "label": "Plan",
+          "url": "https://www.camping-castellmontgri.com/assets/img/planol-camping-castell-montgri_2026.jpg?20240903"
+        }
+      ],
+      "legalLinks": [
+        {
+          "label": "Politique de confidentialité",
+          "url": "https://www.camping-castellmontgri.com/fr/politique-de-privacite"
+        },
+        {
+          "label": "Politique de cookies",
+          "url": "https://www.camping-castellmontgri.com/fr/politique-de-cookies"
+        },
+        {
+          "label": "Consentement",
+          "url": "(obre el modal de consentiment PDCC)"
+        },
+        {
+          "label": "Mentions légales",
+          "url": "https://www.camping-castellmontgri.com/fr/avis-legal"
+        },
+        {
+          "label": "Canal de réclamation",
+          "url": "https://www.camping-castellmontgri.com/fr/canal-de-reclamation"
+        }
+      ],
+      "mainNav": [
+        {
+          "label": "Hébergements",
+          "url": "https://www.camping-castellmontgri.com/fr/hebergement"
+        },
+        {
+          "label": "Mobile homes",
+          "url": "https://www.camping-castellmontgri.com/fr/hebergement/mobile-home"
+        },
+        {
+          "label": "Glamping",
+          "url": "https://www.camping-castellmontgri.com/fr/hebergement/glamping"
+        },
+        {
+          "label": "Tentes",
+          "url": "https://www.camping-castellmontgri.com/fr/hebergement/tents"
+        },
+        {
+          "label": "Emplacements",
+          "url": "https://www.camping-castellmontgri.com/fr/hebergement/emplacements"
+        },
+        {
+          "label": "Gastronomie",
+          "url": "https://www.camping-castellmontgri.com/fr/restauration"
+        },
+        {
+          "label": "Installations",
+          "url": "https://www.camping-castellmontgri.com/fr/services"
+        },
+        {
+          "label": "Animation",
+          "url": "https://www.camping-castellmontgri.com/fr/animation"
+        },
+        {
+          "label": "Événements",
+          "url": "https://www.camping-castellmontgri.com/fr/evenements"
+        },
+        {
+          "label": "Environnement",
+          "url": "https://www.camping-castellmontgri.com/fr/environnement"
+        },
+        {
+          "label": "Reservar",
+          "url": "https://thelisresa.webcamp.fr/?camping=castellmontgri17"
+        }
+      ],
+      "headerButtons": [
+        "Carte",
+        "Espace privé"
+      ]
+    },
+    "en": {
+      "seasonText": "2026 season: April 27th to September 27th",
+      "contactHeading": "CONTACT",
+      "newsletterCta": "SUBSCRIBE TO THE NEWSLETTER",
+      "copyright": "All rights reserved. ©2026 Camping Castell Montgrí / IRTC KG-000086",
+      "footerLinks": [
+        {
+          "label": "Reservation conditions",
+          "url": "https://www.camping-castellmontgri.com/en/booking-conditions"
+        },
+        {
+          "label": "Environment preservation",
+          "url": "https://www.camping-castellmontgri.com/en/environmentally-friendly"
+        },
+        {
+          "label": "Work with us",
+          "url": "https://www.camping-castellmontgri.com/en/work-with-us"
+        },
+        {
+          "label": "Map",
+          "url": "https://www.camping-castellmontgri.com/assets/img/planol-camping-castell-montgri_2026.jpg?20240903"
+        }
+      ],
+      "legalLinks": [
+        {
+          "label": "Privacy Policy",
+          "url": "https://www.camping-castellmontgri.com/en/privacy-policy"
+        },
+        {
+          "label": "Cookies policy",
+          "url": "https://www.camping-castellmontgri.com/en/cookie-policy"
+        },
+        {
+          "label": "Consent",
+          "url": "(obre el modal de consentiment PDCC)"
+        },
+        {
+          "label": "Legal note",
+          "url": "https://www.camping-castellmontgri.com/en/legal-notes"
+        },
+        {
+          "label": "Complaint channel",
+          "url": "https://www.camping-castellmontgri.com/en/complaint-channel"
+        }
+      ],
+      "mainNav": [
+        {
+          "label": "Accommodations",
+          "url": "https://www.camping-castellmontgri.com/en/accommodation"
+        },
+        {
+          "label": "Mobile homes",
+          "url": "https://www.camping-castellmontgri.com/en/accommodation/mobile-home"
+        },
+        {
+          "label": "Glamping",
+          "url": "https://www.camping-castellmontgri.com/en/accommodation/glamping"
+        },
+        {
+          "label": "Tents",
+          "url": "https://www.camping-castellmontgri.com/en/accommodation/tents"
+        },
+        {
+          "label": "Pitches",
+          "url": "https://www.camping-castellmontgri.com/en/accommodation/pitches"
+        },
+        {
+          "label": "Gastronomy",
+          "url": "https://www.camping-castellmontgri.com/en/restoration"
+        },
+        {
+          "label": "Facilities",
+          "url": "https://www.camping-castellmontgri.com/en/services"
+        },
+        {
+          "label": "Animation",
+          "url": "https://www.camping-castellmontgri.com/en/animation"
+        },
+        {
+          "label": "Events",
+          "url": "https://www.camping-castellmontgri.com/en/events"
+        },
+        {
+          "label": "Environment",
+          "url": "https://www.camping-castellmontgri.com/en/environment"
+        },
+        {
+          "label": "Booking",
+          "url": "https://thelisresa.webcamp.fr/?camping=castellmontgri17"
+        }
+      ],
+      "headerButtons": [
+        "Map",
+        "Private area"
+      ]
+    },
+    "nl": {
+      "seasonText": "Seizoen 2026: van 27 april tot 27 september",
+      "contactHeading": "CONTACT",
+      "newsletterCta": "ABONNEER U OP DE NIEUWSBRIEF",
+      "copyright": "Alle rechten voorbehouden. ©2026 Camping Castell Montgrí / IRTC KG-000086",
+      "footerLinks": [
+        {
+          "label": "Reserveringsvoorwaarden",
+          "url": "https://www.camping-castellmontgri.com/nl/reserveringsvoorwaarden"
+        },
+        {
+          "label": "Behoud van het milieu",
+          "url": "https://www.camping-castellmontgri.com/nl/het-behoud-van-het-milieu"
+        },
+        {
+          "label": "Werk met ons",
+          "url": "https://www.camping-castellmontgri.com/nl/werk-met-ons"
+        },
+        {
+          "label": "Plattegrond",
+          "url": "https://www.camping-castellmontgri.com/assets/img/planol-camping-castell-montgri_2026.jpg?20240903"
+        }
+      ],
+      "legalLinks": [
+        {
+          "label": "Privacybeleid",
+          "url": "https://www.camping-castellmontgri.com/nl/privacybeleid"
+        },
+        {
+          "label": "Cookiebeleid",
+          "url": "https://www.camping-castellmontgri.com/nl/cookie-policy"
+        },
+        {
+          "label": "Toestemming",
+          "url": "(obre el modal de consentiment PDCC)"
+        },
+        {
+          "label": "Juridische opmerking",
+          "url": "https://www.camping-castellmontgri.com/nl/wettelijke-waarschuwing"
+        },
+        {
+          "label": "Klacht kanaal",
+          "url": "https://www.camping-castellmontgri.com/nl/klacht-kanaal"
+        }
+      ],
+      "mainNav": [
+        {
+          "label": "Accommodaties",
+          "url": "https://www.camping-castellmontgri.com/nl/accomodatie"
+        },
+        {
+          "label": "Mobile homes",
+          "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mobile-home"
+        },
+        {
+          "label": "Glamping",
+          "url": "https://www.camping-castellmontgri.com/nl/accomodatie/glamping"
+        },
+        {
+          "label": "Tenten",
+          "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tents"
+        },
+        {
+          "label": "Kampeerplaatsen",
+          "url": "https://www.camping-castellmontgri.com/nl/accomodatie/plaatsen"
+        },
+        {
+          "label": "Gastronomie",
+          "url": "https://www.camping-castellmontgri.com/nl/restauratie"
+        },
+        {
+          "label": "Faciliteiten",
+          "url": "https://www.camping-castellmontgri.com/nl/diensten"
+        },
+        {
+          "label": "Animatie",
+          "url": "https://www.camping-castellmontgri.com/nl/animatie"
+        },
+        {
+          "label": "Evenementen",
+          "url": "https://www.camping-castellmontgri.com/nl/evenementen"
+        },
+        {
+          "label": "Omgeving",
+          "url": "https://www.camping-castellmontgri.com/en/omgeving"
+        },
+        {
+          "label": "Reserveren",
+          "url": "https://thelisresa.webcamp.fr/?camping=castellmontgri17"
+        }
+      ],
+      "headerButtons": [
+        "Kaart",
+        "Privégebied"
+      ]
+    }
+  },
+  "schemaOrg": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Camping Castell Montgrí",
+      "url": "https://www.camping-castellmontgri.com",
+      "logo": "https://www.camping-castellmontgri.com/assets/svg/logo_natura_village_montgri.svg?20251112",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+34972751630",
+        "contactType": "reservations",
+        "email": "reserves@camping-castellmontgri.com",
+        "availableLanguage": [
+          "Spanish",
+          "English",
+          "Catalan",
+          "French",
+          "Dutch"
+        ]
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Camping Castell Montgrí",
+      "url": "https://www.camping-castellmontgri.com",
+      "inLanguage": [
+        "es",
+        "en",
+        "ca",
+        "fr",
+        "nl"
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": [
+        "Campground",
+        "LodgingBusiness"
+      ],
+      "url": "https://www.camping-castellmontgri.com/es",
+      "description": "Camping y alojamiento turístico en la Costa Brava, en L'Estartit (Girona). Parcelas, bungalows, mobile homes y glamping con piscinas, restaurantes y actividades para toda la familia.",
+      "priceRange": "$$",
+      "logo": "https://www.camping-castellmontgri.com/assets/svg/logo_natura_village_montgri.svg?20251112",
+      "image": "https://www.camping-castellmontgri.com/assets/img/banner_camping_schema.jpg",
+      "name": "Camping Castell Montgrí",
+      "telephone": "+34972751630",
+      "email": "info@camping-castellmontgri.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Carretera de Torroella a l'Estartit, Km 4,7",
+        "addressLocality": "L'Estartit",
+        "addressRegion": "Girona",
+        "postalCode": "17258",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 42.05114239637562,
+        "longitude": 3.182700336143214
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Swimming Pool",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Restaurant",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free WiFi",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "24h Security",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Free Beach Bus",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Electric Car Charging",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Minigolf",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Tennis Courts",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Children Playground",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

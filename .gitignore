@@ -1,0 +1,31 @@
+# dependencies
+node_modules/
+
+# next
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# env — només .env.example va al repo
+.env
+.env.*
+!.env.example
+
+# vercel / sentry
+.vercel/
+.env.sentry-build-plugin
+
+# supabase local
+supabase/.branches/
+supabase/.temp/
+
+# material de referència del web antic: les imatges del client no van al git
+reference/images/
+
+# misc
+.DS_Store
+Thumbs.db
+coverage/
+playwright-report/
+test-results/

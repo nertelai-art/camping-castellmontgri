@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+/* Tokens de marca del web actual: oliva #485328, crema #F7F0D3, terracota #CA5732/#BA380C. */
+:root {
+  --color-bg: #f7f0d3;
+  --color-surface: #ffffff;
+  --color-ink: #1f2a17;
+  --color-muted: #5c6652;
+  --color-line: #d9dccd;
+  --color-primary: #485328;
+  --color-accent: #ba380c;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #141a0f;
+    --color-surface: #1d2616;
+    --color-ink: #eef0e6;
+    --color-muted: #a9b29c;
+    --color-line: #34402a;
+    --color-primary: #c9d77a;
+    --color-accent: #e07a55;
+    color-scheme: dark;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,0 +1,13 @@
+#!/bin/sh
+# Portes barates en local abans de pujar. La CI només fa el build.
+set -e
+
+echo "▶ typecheck · lint · tests"
+pnpm check
+
+if command -v gitleaks >/dev/null 2>&1; then
+  echo "▶ gitleaks"
+  gitleaks git --redact --no-banner .
+else
+  echo "⚠ gitleaks no instal·lat: no s'han cercat secrets (winget install gitleaks)"
+fi

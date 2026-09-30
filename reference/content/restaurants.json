@@ -1,0 +1,668 @@
+[
+  {
+    "slug": "heladeria-mini-golf",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "ombra",
+      "sectionTitle": "OMBRA"
+    },
+    "name": "HELADERÍA OMBRA",
+    "hours": "10:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/heladeria-mini-golf",
+        "name": "HELADERÍA OMBRA",
+        "hours": "10:00 - 23:00h",
+        "description": "En la heladería Ombra descubriréis el lugar ideal para disfrutar de un pequeño placer. Situada junto a la cafetería/crepería y la piscina Ombra, nuestra heladería os ofrece una amplia variedad de helados frescos y deliciosos, perfectos para refrescaros en los días más calurosos.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/gelateria-mini-golf",
+        "name": "GELATERIA OMBRA",
+        "hours": "10:00 - 23:00h",
+        "description": "A la gelateria Ombra descobrireu el lloc ideal per gaudir d'un petit plaer. Situada al costat de la cafeteria/creperia i la piscina Ombra, la nostra gelateria ofereix una àmplia varietat de gelats frescos i deliciosos, perfectes per refrescar-vos en els dies més calorosos.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/glacier-mini-golf",
+        "name": "GLACIER OMBRA",
+        "hours": "10:00 - 23:00h",
+        "description": "À la Glacier Ombra, vous découvrirez l'endroit idéal pour vous faire plaisir. Située à côté du café/crêperie et de la piscine Ombra, notre glacier propose une large variété de glaces fraîches et délicieuses, parfaites pour se rafraîchir lors des journées les plus chaudes.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/mini-golf-ice-cream-parlor",
+        "name": "OMBRA ICE CREAM PARLOR",
+        "hours": "10:00 - 23:00h",
+        "description": "At Ombra ice cream parlor you will discover the ideal place to indulge in a little pleasure. Located next to the café/creperie and the Ombra pool, our ice cream shop offers a wide variety of fresh and delicious ice creams, perfect for cooling off on the hottest days.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/minigolf-ijssalon",
+        "name": "IJSSALON OMBRA",
+        "hours": "10:00 - 23:00h",
+        "description": "Bij Heladería Ombra ontdek je de ideale plek om te genieten van een klein genot. Gelegen naast het café/creperie en het Ombra-zwembad, biedt onze ijssalon een breed scala aan verse en heerlijke ijsjes, perfect om af te koelen op de warmste dagen.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0935-6697a90127f64894037412.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0935-6697a90127f64894037412.jpg",
+    "images": []
+  },
+  {
+    "slug": "restaurante-ombra",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "ombra",
+      "sectionTitle": "OMBRA"
+    },
+    "name": "RESTAURANTE OMBRA",
+    "hours": "13:00 - 15:00h | 18:30 - 22:30h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/restaurante-ombra",
+        "name": "RESTAURANTE OMBRA",
+        "hours": "13:00 - 15:00h | 18:30 - 22:30h",
+        "description": "Descubra nuestro restaurante especializado en cocina mediterránea en el corazón de nuestro camping. Desde su acogedor ambiente hasta su variada carta, ofrecemos una experiencia culinaria que combina lo mejor de la cocina regional con opciones internacionales. Deléitese con nuestras exquisitas parrilladas de carne, pizzas artesanales, sabrosos arroces y pescados. Ya sea que busque una comida familiar, una cena romántica o simplemente disfrutar de una buena comida entre amigos, nuestro restaurante mediterráneo es el lugar perfecto para satisfacer todos sus antojos gastronómicos mientras disfruta de la tranquilidad y belleza natural que ofrece nuestro entorno.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/restaurant-ombra",
+        "name": "RESTAURANT OMBRA",
+        "hours": "13:00 - 15:00h | 18:30 - 22:30h",
+        "description": "Descobreixi el nostre restaurant especialitzat en cuina mediterrània al cor del nostre càmping. Des del seu ambient acollidor fins a la seva variada carta, oferim una experiència culinària que combina el millor de la cuina mediterrània. Gaudeixi de les nostres exquisides parrillades de carn, pizzes artesanals, sabrosos arrossos i marisc. Ja sigui que busqui un àpat familiar, un sopar romàntic o simplement gaudir d'una bona menjada entre amics, el nostre restaurant mediterrani és el lloc perfecte per satisfer tots els seus gustos gastronòmics mentre gaudeix de la tranquil·litat i bellesa natural que ofereix el nostre entorn.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/restaurant-ombra",
+        "name": "RESTAURANT OMBRA",
+        "hours": "13:00 - 15:00h | 18:30 - 22:30h",
+        "description": "Découvrez notre restaurant spécialisé dans la cuisine méditerranéenne au cœur de notre camping. De son ambiance chaleureuse à sa carte variée, nous offrons une expérience culinaire qui marie le meilleur de la cuisine méditerranéenne. Régalez-vous avec nos délicieuses grillades de viande, pizzas artisanales, savoureux plats de riz, Paella et poissons frais. Que vous recherchiez un repas en famille, un dîner romantique ou simplement partager un bon repas entre amis, notre restaurant méditerranéen est l'endroit idéal pour satisfaire toutes vos envies culinaires tout en profitant de la tranquillité et de la beauté naturelle de notre environnement.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/ombra-restaurant",
+        "name": "OMBRA RESTAURANT",
+        "hours": "13:00 - 15:00h | 18:30 - 22:30h",
+        "description": "Discover our restaurant specializing in Mediterranean cuisine in the heart of our camping site. From its cozy atmosphere to its varied menu, we offer a culinary experience that blends the best of mediterranean cuisine. Indulge in our exquisite grilled meats, artisan pizzas, flavorful rice dishes, Paella, and fresh fish. Whether you're looking for a family meal, a romantic dinner, or simply enjoying good food with friends, our Mediterranean restaurant is the perfect place to satisfy all your culinary cravings while enjoying the tranquility and natural beauty of our surroundings.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/ombra-restaurant",
+        "name": "OMBRA-RESTAURANT",
+        "hours": "13:00 - 15:00h | 18:30 - 22:30h",
+        "description": "Ontdek ons restaurant gespecialiseerd in mediterrane keuken in het hart van onze camping. Van de gezellige sfeer tot het gevarieerde menu, bieden wij een culinaire ervaring die het beste van de mediterrane. Geniet van onze heerlijke vleesgerechten van de grill, ambachtelijke pizza's, smaakvolle rijstgerechten, Paella en verse vis. Of u nu op zoek bent naar een familiediner, een romantisch diner of gewoon lekker eten met vrienden, ons mediterrane restaurant is de perfecte plek om al uw culinaire wensen te vervullen terwijl u geniet van de rust en natuurlijke schoonheid van onze omgeving.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0480-666187d36a643947614021.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0480-666187d36a643947614021.jpg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/restaurant-cuina-inter-5-65fc420a06edd924587902.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/home-page-ombra-65fc420a07448679587240.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/img-4537-65fc420a076cf440046449.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/img-4564-65fc420a078f5003757928.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/restaurant-cuina-iner-2-65fc420a07b0e033440180.jpg"
+    ]
+  },
+  {
+    "slug": "pizzeria",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "ombra",
+      "sectionTitle": "OMBRA"
+    },
+    "name": "PIZZERIA",
+    "hours": "12:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/pizzeria",
+        "name": "PIZZERIA",
+        "hours": "12:00 - 23:00h",
+        "description": "En nuestra pizzería, podrá disfrutar de una amplia variedad de ingredientes, además de ver cómo se elaboran nuestras pizzas en primera fila. Horneadas a la perfección, nuestras pizzas son un verdadero deleite en cualquier momento del día. Ya sea para recuperar fuerzas con un almuerzo delicioso antes de una tarde llena de diversión, o para cerrar el día con una cena especial, nuestras pizzas le dejarán con ganas de más.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/pizzeria",
+        "name": "PIZZERIA",
+        "hours": "12:00 - 23:00h",
+        "description": "A la nostra pizzeria, podrà gaudir d'una àmplia varietat d'ingredients, a més de veure com s'elaboren les nostres pizzes en primera fila. Fornejades a la perfecció, les nostres pizzes són un veritable delit en qualsevol moment del dia. Ja sigui per recuperar forces amb un dinar deliciós abans d'una tarda plena de diversió, o per tancar el dia amb un sopar especial, les nostres pizzes li deixaran amb ganes de més.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/pizzeria",
+        "name": "PIZZERIA",
+        "hours": "12:00 - 23:00h",
+        "description": "Dans notre pizzeria, vous pourrez profiter d'une grande variété d'ingrédients, et voir comment nos pizzas sont préparées en direct. Cuites à la perfection, nos pizzas sont un véritable délice à tout moment de la journée. Que ce soit pour reprendre des forces avec un déjeuner délicieux avant un après-midi plein de divertissement, ou pour terminer la journée avec un dîner spécial, nos pizzas vous laisseront en redemander.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/pizza-shop",
+        "name": "PIZZA SHOP",
+        "hours": "12:00 - 23:00h",
+        "description": "In our pizzeria, you can enjoy a wide variety of ingredients, as well as watch how our pizzas are made right before your eyes. Baked to perfection, our pizzas are a true delight at any time of the day. Whether you want to recharge with a delicious lunch before an afternoon full of fun, or end the day with a special dinner, our pizzas will leave you wanting more.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/pizza-winkel",
+        "name": "PIZZA WINKEL",
+        "hours": "12:00 - 23:00h",
+        "description": "In onze pizzeria kunt u genieten van een breed scala aan ingrediënten en bovendien zien hoe onze pizza's voor uw ogen worden bereid. Perfect gebakken, zijn onze pizza's op elk moment van de dag een waar genot. Of u nu wilt bijtanken met een heerlijke lunch voor een middag vol plezier, of de dag wilt afsluiten met een speciaal diner, onze pizza's zullen u doen verlangen naar meer.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0632-66504ae2ea06f745298007.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0632-66504ae2ea06f745298007.jpg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/370a4455-65fc424334e7b106770972.jpg"
+    ]
+  },
+  {
+    "slug": "take-away-ombra",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "ombra",
+      "sectionTitle": "OMBRA"
+    },
+    "name": "TAKE AWAY OMBRA",
+    "hours": "12:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/take-away-ombra",
+        "name": "TAKE AWAY OMBRA",
+        "hours": "12:00 - 23:00h",
+        "description": "Explora una variedad culinaria excepcional en nuestra zona de Take Away en Ombra, donde puedes disfrutar de una amplia gama de opciones gastronómicas. Desde platos típicos holandeses, sabores exóticos de la India y Asia, hasta clásicos como pizzas artesanales, hamburguesas, tiras de pollo y patatas deliciosas. Sea cual sea tu antojo del día, nuestro menú está diseñado para satisfacer todos los gustos de manera rápida y eficaz.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/take-away-ombra",
+        "name": "TAKE AWAY OMBRA",
+        "hours": "12:00 - 23:00h",
+        "description": "Explora una varietat culinària excepcional a la nostra zona de Take Away a Ombra, on pots gaudir d'una àmplia gamma d'opcions gastronòmiques. Des de plats típics holandesos, sabors exòtics de l'Índia i Àsia, fins a clàssics com ara pizzes artesanals, hamburgueses, tires de pollastre i patates delicioses. Sigui quin sigui el teu antull del dia, el nostre menú està dissenyat per satisfer tots els gustos de manera ràpida i eficaç.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/ombra-a-emporter",
+        "name": "OMBRA À EMPORTER",
+        "hours": "12:00 - 23:00h",
+        "description": "Découvrez une variété culinaire exceptionnelle dans notre zone Take Away à Ombra, où vous pouvez profiter d'une large gamme d'options gastronomiques. Des plats traditionnels néerlandais et des saveurs exotiques de l'Inde et de l'Asie aux classiques comme les pizzas artisanales, les hamburgers, les nuggets de poulet et les délicieuses pommes de terre. Quel que soit votre désir du jour, notre menu est conçu pour satisfaire tous les goûts de manière rapide et efficace.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/take-away-ombra",
+        "name": "TAKE AWAY OMBRA",
+        "hours": "12:00 - 23:00h",
+        "description": "Explore an exceptional culinary variety in our Take Away area at Ombra, where you can enjoy a wide range of gastronomic options. From traditional Dutch dishes and exotic flavors of India and Asia to classics like artisan pizzas, burgers, chicken strips, and delicious potatoes. Whatever your craving of the day, our menu is designed to satisfy all tastes quickly and efficiently.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/neem-ombra-mee",
+        "name": "NEEM OMBRA MEE",
+        "hours": "12:00 - 23:00h",
+        "description": "Verken een uitzonderlijke culinaire variëteit in onze Take Away zone in Ombra, waar u kunt genieten van een breed scala aan gastronomische opties. Van traditionele Nederlandse gerechten en exotische smaken uit India en Azië tot klassiekers zoals ambachtelijke pizza's, hamburgers, kipstrips en heerlijke aardappelen. Wat uw trek van de dag ook is, ons menu is ontworpen om snel en efficiënt aan alle smaken te voldoen.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/take-away-ombra-65f9a72ebc00f290407025.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/take-away-ombra-65f9a72ebc00f290407025.jpg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/370a4469-65fc425686dfb695012889.jpg"
+    ]
+  },
+  {
+    "slug": "cafeteria-creperie",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "ombra",
+      "sectionTitle": "OMBRA"
+    },
+    "name": "CAFETERÍA CREPERIE",
+    "hours": "7:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/cafeteria-creperie",
+        "name": "CAFETERÍA CREPERIE",
+        "hours": "7:00 - 23:00h",
+        "description": "Comience el día de la mejor manera en nuestra cafetería/crepería, donde ofrecemos una variedad de desayunos, crêpes, batidos, frutas frescas y smoothies. Podrá disfrutar de un delicioso desayuno y aprovechar durante todo el día para tomar un tentempié cuando lo desee.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/cafeteria-creperie",
+        "name": "CAFETERIA CREPERIE",
+        "hours": "7:00 - 23:00h",
+        "description": "Comenci el dia de la millor manera a la nostra cafeteria/creperia, on oferim una varietat d'esmorzars, crepes, batuts, fruites fresques i smoothies. Podrà gaudir d'un deliciós esmorzar i aprofitar durant tot el dia per prendre un entrepà quan ho desitgi.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/cafe-creperie",
+        "name": "CAFÉ CRÊPERIE",
+        "hours": "7:00 - 23:00h",
+        "description": "Commencez la journée de la meilleure façon dans notre café/crêperie, où nous proposons une variété de petits déjeuners, crêpes, smoothies, fruits frais et jus. Vous pourrez déguster un délicieux petit déjeuner et profiter de collations tout au long de la journée à votre convenance.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/cafe-creperie",
+        "name": "CAFE CREPERIE",
+        "hours": "7:00 - 23:00h",
+        "description": "Start your day the best way at our café/creperie, where we offer a variety of breakfasts, crêpes, smoothies, fresh fruits, and juices. You can enjoy a delicious breakfast and snack throughout the day whenever you like.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/cafe-creperie",
+        "name": "CAFÉ CRÊPERIE",
+        "hours": "7:00 - 23:00h",
+        "description": "Begin de dag op de beste manier in onze café/creperie, waar we een verscheidenheid aan ontbijt, crêpes, smoothies, vers fruit en sappen aanbieden. U kunt genieten van een heerlijk ontbijt en de hele dag door een snack nemen wanneer u maar wilt.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/creperia-inici-65f9a757cb30c213664708.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/creperia-inici-65f9a757cb30c213664708.jpeg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/croisant-1-65fc428a03d52890928884.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/croisant-2-65fc428a0404f585391926.jpg"
+    ]
+  },
+  {
+    "slug": "barra-heineken",
+    "zone": "Ombra",
+    "section": {
+      "sectionId": "ombra",
+      "sectionTitle": "OMBRA"
+    },
+    "name": "BARRA HEINEKEN",
+    "hours": "10:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/barra-heineken",
+        "name": "BARRA HEINEKEN",
+        "hours": "10:00 - 23:00h",
+        "description": "Junto a la pantalla gigante, encontrarán una amplia barra donde podrán disfrutar de cualquier refrigerio, ya sea mientras ven una película o al salir de la piscina de Ombra.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/barra-heineken",
+        "name": "BARRA HEINEKEN",
+        "hours": "10:00 - 23:00h",
+        "description": "Al costat de la pantalla gegant, trobareu una àmplia barra on podreu gaudir de qualsevol refrigeri, tant mentre mireu una pel·lícula com en sortir de la piscina d'Ombra.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/barra-heineken",
+        "name": "BARRA HEINEKEN",
+        "hours": "10:00 - 23:00h",
+        "description": "À côté de l'écran géant, vous trouverez un grand bar où vous pourrez savourer n'importe quel rafraîchissement, que ce soit en regardant un film ou en sortant de la piscine d'Ombra.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/bar-heineken",
+        "name": "BAR HEINEKEN",
+        "hours": "10:00 - 23:00h",
+        "description": "Next to the giant screen, you will find a large bar where you can enjoy any refreshment, whether while watching a movie or after leaving the Ombra pool.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/barra-heineken",
+        "name": "BARRA HEINEKEN",
+        "hours": "10:00 - 23:00h",
+        "description": "Naast het gigantische scherm vind je een grote bar waar je van elk drankje kunt genieten, zowel tijdens het kijken van een film als na het verlaten van het Ombra zwembad.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0255-6697a34230c8d467189692.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-0255-6697a34230c8d467189692.jpg",
+    "images": []
+  },
+  {
+    "slug": "restaurante-grill",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "panorama",
+      "sectionTitle": "PANORAMA"
+    },
+    "name": "RESTAURANTE GRILL",
+    "hours": "18:00 - 23:00h",
+    "menus": [
+      {
+        "title": "Menú",
+        "url": "https://www.camping-castellmontgri.com/uploads/docs/grill-castellano-holandes-660d71ae42ea7563942019.pdf"
+      }
+    ],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/restaurante-grill",
+        "name": "RESTAURANTE GRILL",
+        "hours": "18:00 - 23:00h",
+        "description": "Para los amantes del pescado y la carne a la parrilla, este restaurante es una auténtica joya. Con una amplia variedad de opciones, podréis disfrutar de una cena exquisita en la zona de Panorama, donde los sabores del pescado y la carne a la parrilla destacan en cada plato. Una experiencia culinaria que no debéis perderos.",
+        "menus": [
+          {
+            "title": "Menú",
+            "url": "https://www.camping-castellmontgri.com/uploads/docs/grill-castellano-holandes-660d71ae42ea7563942019.pdf"
+          }
+        ]
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/restaurant-grill",
+        "name": "RESTAURANT GRILL",
+        "hours": "18:00 - 23:00h",
+        "description": "Per als amants del peix i la carn a la brasa, aquest restaurant és una autèntica joia. Amb una àmplia varietat d'opcions, podreu gaudir d'un sopar exquisit a la zona de Panorama, on els sabors del peix i la carn a la brasa destaquen en cada plat. Una experiència culinària que no us podeu perdre.",
+        "menus": [
+          {
+            "title": "Menú",
+            "url": "https://www.camping-castellmontgri.com/uploads/docs/grill-castellano-holandes-660d71ae42ea7563942019.pdf"
+          }
+        ]
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/restaurant-grill",
+        "name": "RESTAURANT GRILL",
+        "hours": "18:00 - 23:00h",
+        "description": "Pour les amateurs de poisson et de viande grillée, ce restaurant est un véritable joyau. Avec une grande variété d'options, vous pourrez profiter d'un dîner exquis dans la zone de Panorama, où les saveurs du poisson et de la viande grillée se distinguent dans chaque plat. Une expérience culinaire à ne pas manquer.",
+        "menus": [
+          {
+            "title": "Menu",
+            "url": "https://www.camping-castellmontgri.com/uploads/docs/grill-castellano-holandes-660d71ae42ea7563942019.pdf"
+          }
+        ]
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/restaurant-grill",
+        "name": "RESTAURANT GRILL",
+        "hours": "18:00 - 23:00h",
+        "description": "For lovers of grilled fish and meat, this restaurant is a true gem. With a wide variety of options, you can enjoy an exquisite dinner in the Panorama area, where the flavors of grilled fish and meat stand out in every dish. A culinary experience you must not miss.",
+        "menus": [
+          {
+            "title": "Menu",
+            "url": "https://www.camping-castellmontgri.com/uploads/docs/grill-castellano-holandes-660d71ae42ea7563942019.pdf"
+          }
+        ]
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/restaurantgrill",
+        "name": "RESTAURANTGRILL",
+        "hours": "18:00 - 23:00h",
+        "description": "Voor liefhebbers van gegrilde vis en vlees is dit restaurant een echte parel. Met een ruime keuze aan opties kun je genieten van een heerlijk diner in de Panorama-zone, waar de smaken van gegrilde vis en vlees in elk gerecht naar voren komen. Een culinaire ervaring die je niet mag missen.",
+        "menus": [
+          {
+            "title": "Menu",
+            "url": "https://www.camping-castellmontgri.com/uploads/docs/grill-castellano-holandes-660d71ae42ea7563942019.pdf"
+          }
+        ]
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/grill-panorma1-6697c6bdcbe87166694286.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/grill-panorma1-6697c6bdcbe87166694286.jpg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/restaurant-grill-65fc40711f55d288924452.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/grill-panorama-5-65fc40712027a486246730.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/grill-panorama-4-65fc407120478225812752.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/grill-panorama-3-65fc40712065f551825755.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/grill-panorama-2-65fc407120840913612877.jpg"
+    ]
+  },
+  {
+    "slug": "take-away-panorama",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "panorama",
+      "sectionTitle": "PANORAMA"
+    },
+    "name": "TAKE AWAY PANORAMA",
+    "hours": "8:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/take-away-panorama",
+        "name": "TAKE AWAY PANORAMA",
+        "hours": "8:00 - 23:00h",
+        "description": "Descubre una oferta culinaria extraordinaria en nuestra zona de Take Away en Panorama. Ofrecemos una amplia variedad de opciones gastronómicas que van desde platos tradicionales holandeses y sabores exóticos de la India y Asia, hasta clásicos favoritos como pizzas artesanales, hamburguesas, tiras de pollo y deliciosas patatas. Sea cual sea su antojo del día, nuestro menú está diseñado para satisfacer todos los gustos de manera rápida y eficaz.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/take-away-panorama",
+        "name": "TAKE AWAY PANORAMA",
+        "hours": "8:00 - 23:00h",
+        "description": "Descobreixi una oferta culinària extraordinària a la nostra zona de Take Away a Panorama. Oferim una àmplia varietat d'opcions gastronòmiques que van des de plats tradicionals holandesos i sabors exòtics de l'Índia i Àsia, fins a clàssics favorits com pizzes artesanals, hamburgueses, tires de pollastre i patates delicioses. Sigui quin sigui el seu desig del dia, el nostre menú està dissenyat per satisfer tots els gustos de manera ràpida i eficaç.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/take-away-panorama",
+        "name": "TAKE AWAY PANORAMA",
+        "hours": "8:00 - 23:00h",
+        "description": "Découvrez une offre culinaire extraordinaire dans notre zone de Take Away à Panorama. Nous vous proposons une large variété d'options gastronomiques allant des plats traditionnels néerlandais et des saveurs exotiques de l'Inde et de l'Asie, aux classiques favoris tels que pizzas artisanales, hamburgers, lanières de poulet et délicieuses frites. Quel que soit votre envie du jour, notre menu est conçu pour satisfaire tous les goûts de manière rapide et efficace.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/take-away-panorama",
+        "name": "TAKE AWAY PANORAMA",
+        "hours": "8:00 - 23:00h",
+        "description": "Discover an extraordinary culinary offer in our Take Away area in Panorama. We offer a wide variety of gastronomic options ranging from traditional Dutch dishes and exotic flavors from India and Asia to classic favorites like artisanal pizzas, hamburgers, chicken strips, and delicious fries. Whatever your craving of the day, our menu is designed to satisfy all tastes quickly and efficiently.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/take-away-panorama",
+        "name": "TAKE AWAY PANORAMA",
+        "hours": "8:00 - 23:00h",
+        "description": "Ontdek een buitengewone culinaire aanbieding in onze Take Away-zone in Panorama. We bieden je een breed scala aan gastronomische opties, variërend van traditionele Nederlandse gerechten en exotische smaken uit India en Azië tot klassieke favorieten zoals ambachtelijke pizza's, hamburgers, kippenreepjes en heerlijke frietjes. Wat je trek van de dag ook is, ons menu is ontworpen om alle smaken snel en efficiënt te bevredigen.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/take-away-panorama-inici-65f9a143e8612291304414.jpeg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/take-away-panorama-inici-65f9a143e8612291304414.jpeg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/370a4469-65fc40d98761d549007256.jpg"
+    ]
+  },
+  {
+    "slug": "bar-panorama",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "panorama",
+      "sectionTitle": "PANORAMA"
+    },
+    "name": "BAR PANORAMA",
+    "hours": "10:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/bar-panorama",
+        "name": "BAR PANORAMA",
+        "hours": "10:00 - 23:00h",
+        "description": "Ubicado junto a la piscina más grande del camping, el Bar Panorama es el lugar ideal para que disfrute de un refresco después de un chapuzón o en cualquier momento del día. Relájese con una bebida y un tentempié mientras disfruta del ambiente animado y las vistas panorámicas.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/bar-panorama",
+        "name": "BAR PANORAMA",
+        "hours": "10:00 - 23:00h",
+        "description": "Ubicat al costat de la piscina més gran del càmping, el Bar Panorama és el lloc ideal perquè gaudeixi d'una beguda refrescant després d'un bany o en qualsevol moment del dia. Relaxi's amb una beguda i un refrigeri mentre gaudeix de l'ambient animat i les vistes panoràmiques.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/bar-panorama",
+        "name": "BAR PANORAMA",
+        "hours": "10:00 - 23:00h",
+        "description": "Situé à côté de la plus grande piscine du camping, le Bar Panorama est l'endroit idéal pour que vous puissiez profiter d'une boisson rafraîchissante après une baignade ou à tout moment de la journée. Détendez-vous avec une boisson et une collation tout en profitant de l'ambiance animée et des vues panoramiques.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/bar-panorama",
+        "name": "BAR PANORAMA",
+        "hours": "10:00 - 23:00h",
+        "description": "Located next to the largest pool in the campsite, Bar Panorama is the perfect place for you to enjoy a refreshing drink after a swim or at any time of the day. Relax with a drink and a snack while enjoying the lively atmosphere and panoramic views.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/bar-panorama",
+        "name": "BAR PANORAMA",
+        "hours": "10:00 - 23:00h",
+        "description": "Gelegen naast het grootste zwembad op de camping, is Bar Panorama de ideale plek voor u om te genieten van een verfrissend drankje na een duik of op elk moment van de dag. Ontspan met een drankje en een hapje terwijl u geniet van de levendige sfeer en het panoramische uitzicht.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-1797-6697a3c90f092100548239.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-1797-6697a3c90f092100548239.jpg",
+    "images": []
+  },
+  {
+    "slug": "heladeria-panorama",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "panorama",
+      "sectionTitle": "PANORAMA"
+    },
+    "name": "HELADERIA PANORAMA",
+    "hours": "9:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/heladeria-panorama",
+        "name": "HELADERIA PANORAMA",
+        "hours": "9:00 - 23:00h",
+        "description": "En la heladería Panorama encontraréis el lugar perfecto para deleitaros con un pequeño placer. Ubicada estratégicamente junto a la piscina, nuestra heladería ofrece una amplia selección de helados frescos y deliciosos, ideales para refrescaros en los días más calurosos del camping.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/gelateria-panorama",
+        "name": "GELATERIA PANORAMA",
+        "hours": "9:00 - 23:00h",
+        "description": "A la gelateria Panorama trobareu el lloc perfecte per deleitar-vos amb un petit plaer. Estratègicament situada al costat de la piscina, la nostra gelateria ofereix una àmplia selecció de gelats frescos i deliciosos, ideals per refrescar-vos en els dies més calorosos del càmping.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/glacier-panorama",
+        "name": "GLACIER PANORAMA",
+        "hours": "9:00 - 23:00h",
+        "description": "À la Glacier Panorama, vous trouverez l'endroit idéal pour vous délecter d'un petit plaisir. Stratégiquement située à côté de la piscine, notre glacier propose une large sélection de glaces fraîches et délicieuses, idéales pour vous rafraîchir pendant les journées les plus chaudes du camping.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/panorama-ice-cream-parlor",
+        "name": "PANORAMA ICE CREAM PARLOR",
+        "hours": "9:00 - 23:00h",
+        "description": "At Panorama ice cream parlor, you'll find the perfect spot to treat yourself to a little pleasure. Strategically located next to the pool, our ice cream shop offers a wide selection of fresh and delicious ice creams, ideal for cooling off on the hottest days of camping.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/panorama-ijssalon",
+        "name": "PANORAMA-IJSSALON",
+        "hours": "9:00 - 23:00h",
+        "description": "Bij Heladería Panorama vind je de perfecte plek om jezelf te trakteren op een klein genot. Strategisch gelegen naast het zwembad, biedt onze ijssalon een breed scala aan verse en heerlijke ijsjes, ideaal om af te koelen op de warmste dagen van de camping.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/gelateria-panorama-inici-65f9a6cbb3b20136449359.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/gelateria-panorama-inici-65f9a6cbb3b20136449359.jpg",
+    "images": []
+  },
+  {
+    "slug": "the-seagull-discopub",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "panorama",
+      "sectionTitle": "PANORAMA"
+    },
+    "name": "\"THE SEAGULL\" DISCO/PUB",
+    "hours": "23:00 - 3:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/the-seagull-discopub",
+        "name": "\"THE SEAGULL\" DISCO/PUB",
+        "hours": "23:00 - 3:00h",
+        "description": "Nuestra discoteca/pub es el lugar perfecto para aquellos clientes mayores de 18 años que buscan diversión nocturna. Ofrecemos una pequeña pista de baile y áreas de entretenimiento como dardos, billar y futbolín. Le invitamos a disfrutar de un ambiente animado y una experiencia nocturna inolvidable en nuestro establecimiento.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/the-seagull-discopub",
+        "name": "\"THE SEAGULL\" DISCO/PUB",
+        "hours": "23:00 - 3:00h",
+        "description": "La nostra discoteca/pub és el lloc perfecte per a aquells clients majors de 18 anys que busquen diversió nocturna. Oferim una petita pista de ball i àrees d'entreteniment com dards, billar i futbolí. Us convidem a gaudir d'un ambient animat i una experiència nocturna inoblidable al nostre establiment.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/the-seagull-discopub",
+        "name": "\"THE SEAGULL\" DISCO/PUB",
+        "hours": "23:00 - 3:00h",
+        "description": "Notre discothèque/pub est l'endroit idéal pour les clients de plus de 18 ans à la recherche de divertissements nocturnes. Nous proposons une petite piste de danse ainsi que des espaces de divertissement comme les fléchettes, le billard et le baby-foot. Nous vous invitons à profiter d'une ambiance animée et d'une expérience nocturne inoubliable dans notre établissement.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/the-seagull-discopub",
+        "name": "\"THE SEAGULL\" DISCO/PUB",
+        "hours": "23:00 - 3:00h",
+        "description": "Our nightclub/pub is the perfect place for those customers over 18 years old seeking nighttime fun. We offer a small dance floor and entertainment areas such as darts, pool, and foosball. We invite you to enjoy a lively atmosphere and an unforgettable nightlife experience at our establishment.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/the-seagull-discopub",
+        "name": "\"THE SEAGULL\" DISCO/PUB",
+        "hours": "23:00 - 3:00h",
+        "description": "Onze discotheek/pub is de perfecte plek voor klanten ouder dan 18 jaar die op zoek zijn naar avondplezier. We bieden een kleine dansvloer en entertainmentgebieden zoals darts, biljart en tafelvoetbal. We nodigen u uit om te genieten van een levendige sfeer en een onvergetelijke nachtelijke ervaring in ons etablissement.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-1956-6697a961e32e2815131484.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-1956-6697a961e32e2815131484.jpg",
+    "images": [
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/discoteca-684d3b95a47d6774560601.jpg",
+      "https://www.camping-castellmontgri.com/uploads/gastronomy/img-2376-684d3c58a127b337397450.jpg"
+    ]
+  },
+  {
+    "slug": "lera",
+    "zone": "Panorama",
+    "section": {
+      "sectionId": "panorama",
+      "sectionTitle": "PANORAMA"
+    },
+    "name": "L'ERA",
+    "hours": "9:00 - 23:00h",
+    "menus": [],
+    "byLang": {
+      "es": {
+        "url": "https://www.camping-castellmontgri.com/es/restauracion/lera",
+        "name": "L'ERA",
+        "hours": "9:00 - 23:00h",
+        "description": "Si busca un espacio de relajación dentro del camping, ha encontrado el lugar ideal. En l'Era ofrecemos crepes, tapas, bebidas y mucho más. Además, algunas noches hay espectáculos para que termine el día de la mejor manera posible.",
+        "menus": []
+      },
+      "ca": {
+        "url": "https://www.camping-castellmontgri.com/ca/restauracio/lera",
+        "name": "L'ERA",
+        "hours": "9:00 - 23:00h",
+        "description": "Si busca un espai de relaxació dins del càmping, ha trobat el lloc ideal. A l'Era oferim creps, tapes, begudes i molt més. A més, algunes nits hi ha espectacles per acabar el dia de la millor manera possible.",
+        "menus": []
+      },
+      "fr": {
+        "url": "https://www.camping-castellmontgri.com/fr/restauration/lera",
+        "name": "L'ERA",
+        "hours": "9:00 - 23:00h",
+        "description": "Si vous cherchez un espace de détente au sein du camping, vous avez trouvé l'endroit idéal. À l'Era, nous proposons des crêpes, des tapas, des boissons et bien plus encore. De plus, certaines soirées, il y a des spectacles pour terminer la journée de la meilleure manière possible.",
+        "menus": []
+      },
+      "en": {
+        "url": "https://www.camping-castellmontgri.com/en/restoration/lera",
+        "name": "L'ERA",
+        "hours": "9:00 - 23:00h",
+        "description": "If you are looking for a relaxation space within the campsite, you have found the ideal place. At l'Era, we offer crepes, tapas, drinks, and much more. Additionally, some nights there are shows to end the day in the best possible way.",
+        "menus": []
+      },
+      "nl": {
+        "url": "https://www.camping-castellmontgri.com/nl/restauratie/lera",
+        "name": "L'ERA",
+        "hours": "9:00 - 23:00h",
+        "description": "Als u op zoek bent naar een ontspanningsruimte binnen de camping, heeft u de ideale plek gevonden. Bij L'Era bieden we crêpes, tapas, drankjes en nog veel meer aan. Bovendien zijn er sommige avonden shows om de dag op de best mogelijke manier af te sluiten.",
+        "menus": []
+      }
+    },
+    "bannerImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-1701-6697a6254cc30878891059.jpg",
+    "listImage": "https://www.camping-castellmontgri.com/uploads/gastronomy/camping-montgri-1701-6697a6254cc30878891059.jpg",
+    "images": []
+  }
+]

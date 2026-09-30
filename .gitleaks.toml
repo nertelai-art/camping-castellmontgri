@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+# Fals positiu: l'slug d'un allotjament («chalet-45-pmr») després de «key:» sembla una clau.
+[[allowlists]]
+description = "slugs d'allotjament al material de referència"
+regexTarget = "line"
+regexes = ['''"?key"?:\s*"?chalet-45-pmr"?''']

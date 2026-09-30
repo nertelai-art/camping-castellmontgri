@@ -1,0 +1,493 @@
+[
+  {
+    "id": "s14",
+    "anchor": "#s14",
+    "title": "RECEPCIÓN",
+    "titleByLang": {
+      "es": "RECEPCIÓN",
+      "ca": "RECEPCIÓ",
+      "fr": "RÉCEPTION",
+      "en": "RECEPTION",
+      "nl": "RECEPTIE"
+    },
+    "textByLang": {
+      "es": "Nuestra recepción está abierta de **8:00 a 20:00** en temporada baja y de **8:00 a 22:00** en temporada alta, para ayudaros con todo lo que necesiten durante su estancia, desde dudas en relación a vuestras reservas hasta la gestión de taxis. Además, ofrecemos cajas de seguridad para asegurar vuestras pertenencias con tranquilidad. Estamos aquí para ayudaros en lo que sea necesario. ¡Esperamos que disfrutéis de vuestra aventura con nosotros!",
+      "ca": "La nostra recepció està oberta de **8:00 a 20:00** a temporada baixa i de **8:00 a 22:00** a temporada alta, per ajudar-vos amb tot el que necessiteu durant la vostra estada, des de dubtes relacionats amb les vostres reserves fins a la gestió de taxis. A més, oferim caixes de seguretat per assegurar les vostres pertinences amb tranquil·litat. Estem aquí per ajudar-vos en tot el que calgui. Esperem que gaudiu de la vostra aventura amb nosaltres!",
+      "fr": "Notre réception est ouverte de **8h00 à 20h00 en basse saison et de 8h00 à 22h00 en haute saison,** pour vous aider avec tout ce dont vous pourriez avoir besoin pendant votre séjour, que ce soit des questions concernant vos réservations ou l'organisation de taxis. De plus, nous proposons des coffres-forts pour sécuriser vos effets personnels en toute tranquillité. Nous sommes là pour vous aider en tout ce dont vous avez besoin. Nous espérons que vous apprécierez votre aventure avec nous!",
+      "en": "Our reception is open from **8:00 to 20:00** on low season and from **8:00 to 22:00** on high season, to assist you with anything you may need during your stay, from questions regarding your reservations to arranging taxis. Additionally, we offer safety deposit boxes to secure your belongings with peace of mind. We are here to help you with whatever you need. We hope you enjoy your adventure with us!",
+      "nl": "Onze receptie is geopend van **8:00 tot 20:00** om u te helpen met alles wat u nodig heeft tijdens uw verblijf, van vragen over uw reserveringen tot het regelen van taxi's. Daarnaast bieden wij kluisjes aan om uw bezittingen veilig op te bergen. Wij staan klaar om u te helpen met alles wat u nodig heeft. Wij hopen dat u geniet van uw avontuur bij ons!"
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-recepcio-69c3e12810d8b397102797.svg",
+    "iconLabel": "RECEPCIÓN",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-0053-6650430beadc6661727572.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s13",
+    "anchor": "#s13",
+    "title": "EXCURSIONES",
+    "titleByLang": {
+      "es": "EXCURSIONES",
+      "ca": "EXCURSIONS",
+      "fr": "EXCURSIONS",
+      "en": "EXCURSIONS",
+      "nl": "EXCURSIES"
+    },
+    "textByLang": {
+      "es": "Nuestra oficina de excursiones está abierta para recibiros **de 9:00 a 13:00** y de **16:00 a 20:00**, para ayudaros a planificar todas las emocionantes actividades que queráis hacer durante vuestra estancia. Desde reservar visitas a Barcelona hasta organizar actividades como snorkeling y kayak, estamos aquí para garantizar que sus vacaciones sean inolvidables. Nuestro equipo experto está a su disposición para ayudarlos a crear el plan de viaje perfecto",
+      "ca": "La nostra oficina d'excursions està oberta per rebre-us de **9:00 a 13:00** i de **16:00 a 20:00**, per ajudar-vos a planificar totes les emocionants activitats que vulgueu fer durant la vostra estada. Des de reservar visites a Barcelona fins a organitzar activitats com snorkel i caiac, estem aquí per garantir que les vostres vacances siguin inoblidables. El nostre equip expert està a la vostra disposició per ajudar-vos a crear el pla de viatge perfecte.",
+      "fr": "Notre bureau d'excursions est ouvert pour vous accueillir de **9h00 à 13h00** et de **16h00 à 20h00**, pour vous aider à planifier toutes les activités excitantes que vous souhaitez faire pendant votre séjour. De la réservation de visites à Barcelone à l'organisation d'activités telles que la plongée avec tuba et le kayak, nous sommes là pour garantir que vos vacances soient inoubliables. Notre équipe d'experts est à votre disposition pour vous aider à créer le plan de voyage parfait.",
+      "en": "Our excursion office is open to welcome you from **9:00 to 13:00** and from **16:00 to 20:00**, to assist you in planning all the exciting activities you wish to do during your stay. From booking visits to Barcelona to organizing activities such as snorkeling and kayaking, we are here to ensure that your holidays are unforgettable. Our expert team is at your disposal to help you create the perfect travel plan.",
+      "nl": "Ons excursiekantoor is geopend om u te verwelkomen van **9:00 tot 13:00** en van **16:00 tot 20:00**, om u te helpen bij het plannen van alle spannende activiteiten die u tijdens uw verblijf wilt doen. Van het boeken van bezoeken aan Barcelona tot het organiseren van activiteiten zoals snorkelen en kajakken, we zijn hier om ervoor te zorgen dat uw vakantie onvergetelijk wordt. Ons deskundige team staat tot uw beschikking om u te helpen het perfecte reisplan te maken."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-excursiones-69c3e0b1534d1681408574.svg",
+    "iconLabel": "EXCURSIONES",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-0168-6650436921ef6713902814.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s4",
+    "anchor": "#s4",
+    "title": "ZONAS LÚDICAS",
+    "titleByLang": {
+      "es": "ZONAS LÚDICAS",
+      "ca": "ZONES D'ESBARJO",
+      "fr": "AIRES DE JEUX",
+      "en": "PLAY AREAS",
+      "nl": "SPEELPLEKKEN"
+    },
+    "textByLang": {
+      "es": "¡Descubrid la diversión en cada rincón del camping! Desde encantadores parques infantiles hasta emocionantes canchas de fútbol, pistas de tenis y áreas multiusos, ¡tenemos algo para todos! Y no podemos olvidar mencionar nuestras áreas recreativas, donde podréis disfrutar de momentos llenos de entretenimiento.",
+      "ca": "Descobriu la diversió a cada racó del càmping! Des dels encantadors parcs infantils fins a les emocionants pistes de futbol, pistes de tenis i àrees multiús, tenim alguna cosa per a tots! I no podem oblidar de mencionar les nostres zones recreatives, on podreu gaudir de moments plens d'entreteniment.",
+      "fr": "Découvrez le plaisir à chaque coin du camping ! Des aires de jeux charmantes aux terrains de football palpitants, aux courts de tennis et aux espaces polyvalents, nous avons quelque chose pour tout le monde ! Et n'oublions pas de mentionner nos zones de loisirs, où vous pourrez profiter de moments remplis de divertissement.",
+      "en": "Discover the fun in every corner of the campsite! From charming playgrounds to thrilling soccer fields, tennis courts, and multipurpose areas, we have something for everyone! And let's not forget to mention our recreational areas, where you can enjoy moments filled with entertainment.",
+      "nl": "Ontdek het plezier in elke hoek van de camping! Van charmante speeltuinen tot spannende voetbalvelden, tennisbanen en multifunctionele ruimtes, we hebben voor elk wat wils! En laten we onze recreatiegebieden niet vergeten te vermelden, waar u kunt genieten van momenten vol entertainment."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-zona-ludica-69c3e0a57b729407647270.svg",
+    "iconLabel": "ZONAS LÚDICAS",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1973-665043e5d4a51635328444.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s3",
+    "anchor": "#s3",
+    "title": "SANITARIOS",
+    "titleByLang": {
+      "es": "SANITARIOS",
+      "ca": "SANITARIS",
+      "fr": "SANITAIRE",
+      "en": "SANITARY",
+      "nl": "SANITAIR"
+    },
+    "textByLang": {
+      "es": "En Castell Montgrí nos preocupamos por vuestra comodidad y bienestar. Por eso, hemos dividido nuestros cuatro bloques de baños en distintas áreas para garantizar su accesibilidad y conveniencia.",
+      "ca": "Al Castell Montgrí ens preocupem pel vostre confort i benestar. Per això, hem dividit els nostres quatre blocs de banys en diferents àrees per garantir la vostra accessibilitat i comoditat.",
+      "fr": "Au Castell Montgrí, nous nous soucions de votre confort et de votre bien-être. C'est pourquoi nous avons divisé nos quatre blocs sanitaires en différentes zones pour garantir votre accessibilité et votre commodité.",
+      "en": "At Castell Montgrí, we care about your comfort and well-being. That's why we have divided our four bathroom blocks into different areas to ensure accessibility and convenience.",
+      "nl": "Bij Castell Montgrí hechten we veel waarde aan jullie comfort en welzijn. Daarom hebben we onze vier badkamerblokken verdeeld over verschillende gebieden om toegankelijkheid en gemak te garanderen."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/s-dutxa-660440f546846014630046.svg",
+    "iconLabel": "SANITARIOS",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-2018-665044c857546477159957.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s7",
+    "anchor": "#s7",
+    "title": "PISCINAS",
+    "titleByLang": {
+      "es": "PISCINAS",
+      "ca": "PISCINES",
+      "fr": "PISCINES",
+      "en": "SWIMMING POOLS",
+      "nl": "SWEMBADEN"
+    },
+    "textByLang": {
+      "es": "Encontraréis dos piscinas principales: Panorama y Ombra. En **Panorama**, podréis sumergiros en la diversión con nuestras fiestas de espuma y pool parties, o simplemente relajaros tomando algo alrededor mientras disfrutáis del sol. Mientras tanto, en **Ombra**, podréis deslizaros por emocionantes toboganes y relajaros al mismo tiempo.\n\n**Horarios temporada alta:**\nPanorama - de 9:00 a 22:00\nOmbra - de 10:00 a 22:00\n\n**Horarios temporada baja:**\nPanorama - de 9:00 a 19:00\nOmbra - de 10:00 a 19:00",
+      "ca": "Trobareu dues piscines principals: Panorama i Ombra. A **Panorama**, podreu submergir-vos en la diversió amb les nostres festes d'escuma i pool parties, o simplement relaxar-vos prenent alguna cosa mentre gaudiu del sol. Mentrestant, a **Ombra**, podreu lliscar per emocionants tobogans i relaxar-vos a la gespa.\n\n**Horaris temporada alta**:\nPanorama - de 9:00 a 22:00\nOmbra - de 10:00 a 22:00\n\n**Horaris temporada baixa**:\nPanorama - de 9:00 a 19:00\nOmbra - de 10:00 a 19:00",
+      "fr": "Vous trouverez deux piscines principales: Panorama et Ombra. À **Panorama**, vous pourrez vous plonger dans le divertissement avec nos fêtes de mousse et pool parties, ou simplement vous détendre en prenant quelque chose tout en profitant du soleil. Pendant ce temps, à **Ombra**, vous pourrez glisser sur des toboggans excitants et vous détendre sur la pelouse.\n\n**Horaires haute saison:**\nPanorama - de 9h00 à 22h00\nOmbra - de 10h00 à 22h00\n\n**Horaires basse saison:**\nPanorama - de 9h00 à 19h00\nOmbra - de 10h00 à 19h00",
+      "en": "You will find two main pools: Panorama and Ombra. At **Panorama**, you can dive into entertainment with our foam parties and pool parties, or simply relax with a drink while enjoying the sun. Meanwhile, at **Ombra**, you can slide down exciting slides and unwind on the lawn.\n\n**Schedules high season:**\nPanorama - from 9:00 to 22:00\nOmbra - from 10:00 to 22:00\n\n**Schedules low season:**\nPanorama - from 9:00 to 19:00\nOmbra - from 10:00 to 19:00",
+      "nl": "U vindt twee hoofdzwembaden: Panorama en Ombra. In **Panorama** kunt u zich onderdompelen in entertainment met onze schuimfeesten en poolparty's, of gewoon ontspannen met een drankje terwijl u van de zon geniet. Ondertussen kunt u bij **Ombra** van opwindende glijbanen glijden en ontspannen op het grasveld.\n\n**Openingstijden hoogseizoen:**\nPanorama - van 9:00 tot 19:00\nOmbra - van 10:00 tot 19:00\n\n**Openingstijden laagseizoen:**\nPanorama - van 9:00 tot 19:00\nOmbra - van 10:00 tot 19:00"
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-piscinas-69c3e07e115dd585778805.svg",
+    "iconLabel": "PISCINAS",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1358-667c18e5e763f319118406.jpg",
+    "gallery": [
+      "https://www.camping-castellmontgri.com/uploads/service/noticia-4-interior-2-66a9f0fd0b324556467419.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/img-8487-66a9f0fcf322d288750401.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/img-0480-66a9f0fcf35fa468536399.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/img-5531-66a9f0fcf38d9110442218.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/whatsapp-image-2025-07-09-at-14-58-14-686e726240938925384308.jpeg"
+    ],
+    "links": []
+  },
+  {
+    "id": "s8",
+    "anchor": "#s8",
+    "title": "TOBOGANES",
+    "titleByLang": {
+      "es": "TOBOGANES",
+      "ca": "TOBOGANS",
+      "fr": "DIAPOSITIVES",
+      "en": "SLIDES",
+      "nl": "DIA'S"
+    },
+    "textByLang": {
+      "es": "En la piscina Ombra, sumergíos en la emoción de nuestros toboganes y vive un día repleto de diversión y entretenimiento. Desde descensos emocionantes hasta suaves deslizamientos, nuestros toboganes ofrecen una experiencia divertida para todas las edades.",
+      "ca": "A la piscina Ombra, submergiu-vos en l'emoció dels nostres tobogans i viu un dia ple de diversió i entreteniment. Des dels descensos emocionants fins als suaus lliscament, els nostres tobogans ofereixen una experiència divertida per a totes les edats.",
+      "fr": "À la piscine Ombra, plongez-vous dans l'excitation de nos toboggans et vivez une journée pleine de plaisir et de divertissement. Des descentes palpitantes aux glissades douces, nos toboggans offrent une expérience amusante pour tous les âges.",
+      "en": "At the Ombra pool, immerse yourself in the excitement of our slides and experience a day full of fun and entertainment. From thrilling descents to gentle slides, our slides offer a fun experience for all ages.",
+      "nl": "Bij het Ombra-zwembad, dompel je onder in de opwinding van onze glijbanen en beleef een dag vol plezier en entertainment. Van spannende afdalingen tot zachte glijbanen, onze glijbanen bieden een leuke ervaring voor alle leeftijden."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-tobogan-69c3e06f7c620402284337.svg",
+    "iconLabel": "TOBOGANES",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1636-665045c43ef86573168248.jpg",
+    "gallery": [
+      "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1636-66a9f0957ba65689922589.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/img-8487-66a9f0957c1f3281498746.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/img-3675-66a9f0957c466293821970.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1535-66a9f0957c707467357017.jpg",
+      "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1589-66a9f0957c996780112287.jpg"
+    ],
+    "links": []
+  },
+  {
+    "id": "s2",
+    "anchor": "#s2",
+    "title": "RESTAURANTES",
+    "titleByLang": {
+      "es": "RESTAURANTES",
+      "ca": "RESTAURANTS",
+      "fr": "RESTAURANTS",
+      "en": "RESTAURANTS",
+      "nl": "RESTAURANTS"
+    },
+    "textByLang": {
+      "es": "En nuestras zonas de restaurantes, encontraréis una amplia variedad de opciones para satisfacer vuestro apetito. Desde deliciosa comida mediterránea hasta pizzas recién horneadas, una zona de take away conveniente y acogedores snack bars, tenemos todo lo que necesitáis para llenar vuestro estómago durante vuestra estancia con nosotros. ¡Disfruta de una experiencia culinaria excepcional y descubre los sabores de nuestro camping!",
+      "ca": "A les nostres zones de restaurants, trobareu una àmplia varietat d'opcions per satisfer el vostre apetit. Des de deliciós menjar mediterrània fins a pizzes acabades de coure, una zona de take away convenient i acollidors snack bars, tenim tot el que necessiteu per omplir el vostre estómac durant la vostra estada amb nosaltres. Gaudeix d'una experiència culinària excepcional i descobreix els sabors del nostre càmping!",
+      "fr": "Dans nos zones de restauration, vous trouverez une grande variété d'options pour satisfaire votre appétit. De la délicieuse cuisine méditerranéenne aux pizzas fraîchement préparées, en passant par une zone de plats à emporter pratique et des bars à snacks confortables, nous avons tout ce dont vous avez besoin pour remplir votre estomac pendant votre séjour chez nous. Profitez d'une expérience culinaire exceptionnelle et découvrez les saveurs de notre camping !",
+      "en": "In our restaurant areas, you'll find a wide variety of options to satisfy your appetite. From delicious Mediterranean cuisine to freshly baked pizzas, a convenient take-away area, and cozy snack bars, we have everything you need to fill your stomach during your stay with us. Enjoy an exceptional culinary experience and discover the flavors of our campsite!",
+      "nl": "In onze restaurantgebieden vindt u een breed scala aan opties om uw eetlust te bevredigen. Van heerlijke mediterrane gerechten tot versgebakken pizza's, een handige afhaalzone en gezellige snackbarretjes, we hebben alles wat u nodig heeft om uw maag te vullen tijdens uw verblijf bij ons. Geniet van een uitzonderlijke culinaire ervaring en ontdek de smaken van onze camping!"
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-restaurants-69c3dffdb8b40567340685.svg",
+    "iconLabel": "RESTAURANTES",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-0451-6650472dc3c26730937754.jpg",
+    "gallery": [],
+    "links": [],
+    "linksTo": "https://www.camping-castellmontgri.com/es/restauracion"
+  },
+  {
+    "id": "s6",
+    "anchor": "#s6",
+    "title": "SUPERMERCADO",
+    "titleByLang": {
+      "es": "SUPERMERCADO",
+      "ca": "SUPERMERCAT",
+      "fr": "SUPERMARCHÉ",
+      "en": "SUPERMARKET",
+      "nl": "SUPERMARKT"
+    },
+    "textByLang": {
+      "es": "Aquí encontraréis una amplia variedad de productos para cubrir todas vuestras necesidades durante vuestra estancia. Desde alimentos básicos y bebidas hasta artículos de higiene y platos preparados, nuestro supermercado está completamente equipado para ofreceros la comodidad y el servicio que merecéis. ¡Disfrutad de una experiencia de compra cómoda y placentera sin tener que salir del camping!",
+      "ca": "Aquí trobareu una àmplia varietat de productes per cobrir totes les vostres necessitats durant l'estada. Des d'aliments bàsics i begudes fins a articles d'higiene i plats preparats, el nostre supermercat està completament equipat per oferir-vos la comoditat i el servei que mereixeu. Gaudiu d'una experiència de compra còmoda i plaent sense haver de sortir del càmping!",
+      "fr": "Vous trouverez ici une large gamme de produits pour répondre à tous vos besoins pendant votre séjour. Des aliments de base et des boissons aux articles d'hygiène et aux plats préparés, notre supermarché est entièrement équipé pour vous offrir le confort et le service que vous méritez. Profitez d'une expérience de shopping pratique et agréable sans avoir à quitter le camping !",
+      "en": "Here you will find a wide variety of products to meet all your needs during your stay. From basic foods and beverages to hygiene items and prepared dishes, our supermarket is fully equipped to offer you the comfort and service you deserve. Enjoy a convenient and pleasant shopping experience without having to leave the campsite!",
+      "nl": "Hier vindt u een breed scala aan producten om aan al uw behoeften tijdens uw verblijf te voldoen. Van basisvoedingsmiddelen en dranken tot hygiëneproducten en kant-en-klare gerechten, onze supermarkt is volledig uitgerust om u het comfort en de service te bieden die u verdient. Geniet van een handige en aangename winkelervaring zonder de camping te hoeven verlaten!"
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-supermercado-69c3dfec6a158002387295.svg",
+    "iconLabel": "SUPERMERCADO",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1064-6650476737622753992952.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s9",
+    "anchor": "#s9",
+    "title": "PUB",
+    "titleByLang": {
+      "es": "PUB",
+      "ca": "PUB",
+      "fr": "PUB",
+      "en": "PUB",
+      "nl": "PUB"
+    },
+    "textByLang": {
+      "es": "¡Nuestro pub es el lugar ideal para ponerle el broche de oro al día! Aquí podréis relajaros con amigos y darle un final perfecto a la jornada, con una gran variedad de bebidas que van desde cervezas hasta cócteles, todo en un ambiente súper acogedor.",
+      "ca": "El nostre pub és el lloc ideal per posar el colofó al dia! Aquí podreu relaxar-vos amb amics i donar un final perfecte a la jornada, amb una gran varietat de begudes que van des de cerveses fins a còctels, tot en un ambient súper acollidor.",
+      "fr": "Notre pub est l'endroit idéal pour terminer votre journée en beauté ! Ici, vous pourrez vous détendre avec des amis et clôturer votre journée de façon parfaite, avec une grande variété de boissons allant des bières aux cocktails, le tout dans une ambiance super confortable.",
+      "en": "Our pub is the perfect place to top off your day! Here, you can unwind with friends and wrap up your day perfectly, with a wide variety of drinks ranging from beers to cocktails, all in a super cozy atmosphere.",
+      "nl": "Onze pub is de perfecte plek om je dag af te sluiten! Hier kun je ontspannen met vrienden en je dag perfect afsluiten, met een breed scala aan drankjes, variërend van bieren tot cocktails, allemaal in een supergezellige sfeer."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-pub-69c3dfdf50105551161502.svg",
+    "iconLabel": "PUB",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-0265-6662cde09f16b544853476.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s12",
+    "anchor": "#s12",
+    "title": "ANIMACIÓN",
+    "titleByLang": {
+      "es": "ANIMACIÓN",
+      "ca": "ANIMACIÓ",
+      "fr": "ANIMATION",
+      "en": "ANIMATION",
+      "nl": "ANIMATIE"
+    },
+    "textByLang": {
+      "es": "Nuestro equipo de animadores está dedicado a proporcionar actividades emocionantes y entretenimiento para todas las edades. Desde juegos en la piscina hasta torneos deportivos y espectáculos nocturnos, hay algo para todos.",
+      "ca": "El nostre equip d'animadors està dedicat a proporcionar activitats emocionants i entreteniment per a totes les edats. Des de jocs a la piscina fins a tornejos esportius i espectacles nocturns, hi ha alguna cosa per a tothom.",
+      "fr": "Notre équipe d'animation est dédiée à fournir des activités passionnantes et du divertissement pour tous les âges. Des jeux de piscine aux tournois sportifs et aux spectacles du soir, il y en a pour tous les goûts.",
+      "en": "Our animation team is dedicated to providing exciting activities and entertainment for all ages. From pool games to sports tournaments and evening shows, there is something for everyone.",
+      "nl": "Ons animatieteam is toegewijd aan het bieden van spannende activiteiten en entertainment voor alle leeftijden. Van zwembadspelletjes tot sporttoernooien en avondshows, er is voor elk wat wils."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-animacio-un-69c3dfd258e3b413414884.svg",
+    "iconLabel": "ANIMACIÓN",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-2100-665047b5a030f623843457.jpg",
+    "gallery": [],
+    "links": [],
+    "linksTo": "https://www.camping-castellmontgri.com/es/animacion"
+  },
+  {
+    "id": "s15",
+    "anchor": "#s15",
+    "title": "TUMBONAS",
+    "titleByLang": {
+      "es": "TUMBONAS",
+      "ca": "TUMBONES",
+      "fr": "CHAISES LONGUES",
+      "en": "LOUNGERS",
+      "nl": "LIGSTOELEN"
+    },
+    "textByLang": {
+      "es": "Para vuestra comodidad y relax, ofrecemos tumbonas disponibles para alquilar por solo **4€ al día**. Desde las **10 de la mañana hasta las 18 horas**, podréis disfrutar del sol y la tranquilidad en nuestras cómodas tumbonas ubicadas en las áreas piscina. Sumergíos en la lectura de un buen libro, disfrutad de una siesta reparadora o simplemente relajaos bajo el cálido sol.",
+      "ca": "Per a la vostra comoditat i relaxació, oferim gandules disponibles per llogar per només **4€ al dia**. Des de les **10 del matí fins a les 18 hores**, podreu gaudir del sol i la tranquil·litat en les nostres còmodes gandules ubicades a les àrees de piscina. Submergiu-vos en la lectura d'un bon llibre, gaudiu d'una migdiada reparadora o simplement relaxeu-vos sota el càlid sol.",
+      "fr": "Pour votre confort et votre détente, nous proposons des chaises longues disponibles à la location pour seulement **4€ par jour**. De **10 heures du matin à 18 heures**, vous pourrez profiter du soleil et de la tranquillité sur nos confortables chaises longues situées dans nos espaces piscine. Plongez-vous dans la lecture d'un bon livre, profitez d'une sieste réparatrice ou tout simplement détendez-vous sous le chaud soleil.",
+      "en": "For your comfort and relaxation, we offer sun loungers available for rent for just **€4 per day**. From **10 in the morning until 6 in the afternoon**, you can enjoy the sun and tranquility on our comfortable sun loungers located in our pool areas. Immerse yourself in the reading of a good book, enjoy a restorative nap, or simply relax under the warm sun.",
+      "nl": "Voor uw comfort en ontspanning bieden wij ligstoelen te huur aan voor slechts **€4 per dag**. Van **10 uur 's ochtends tot 18 uur 's middags** kunt u genieten van de zon en de rust op onze comfortabele ligstoelen die zich bevinden in onze zwembadgebieden. Verdiep uzelf in het lezen van een goed boek, geniet van een verkwikkend dutje of ontspan gewoon onder de warme zon."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-tumbonas-69c3dfc43bc6c704265542.svg",
+    "iconLabel": "TUMBONAS",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/img-0476-6662d8319b07f416903976.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s16",
+    "anchor": "#s16",
+    "title": "BICICLETAS DE ALQUILER",
+    "titleByLang": {
+      "es": "BICICLETAS DE ALQUILER",
+      "ca": "LLOGUER DE BICICLETES",
+      "fr": "LOCATION DE VÉLOS",
+      "en": "BICYCLE RENTAL",
+      "nl": "FIETSVERHUUR"
+    },
+    "textByLang": {
+      "es": "Descubrid la belleza del entorno en dos ruedas con nuestro servicio de alquiler de bicicletas. En nuestra oficina de excursiones, podréis encontrar una variedad de opciones **desde 6€** para disfrutar de un agradable paseo. Pero eso no es todo, también ofrecemos alquiler por días e incluso semanas para que podáis explorar la zona a vuestro propio ritmo. Ya sea para una aventura de un día o para una exploración más prolongada, nuestras bicicletas están listas para llevaros a donde quieras ir.",
+      "ca": "Descobriu la bellesa de l'entorn en dues rodes amb el nostre servei de lloguer de bicicletes. A la nostra oficina d'excursions, podreu trobar una varietat d'opcions des de 6€ per gaudir d'un agradable passeig. Però això no és tot, també oferim lloguer per dies i fins i tot setmanes perquè pugueu explorar la zona al vostre propi ritme. Ja sigui per a una aventura d'un dia o per a una exploració més llarga, les nostres bicicletes estan preparades per dur-vos on vulgueu anar.",
+      "fr": "Découvrez la beauté des environs sur deux roues avec notre service de location de vélos. À notre bureau d'excursions, vous pouvez trouver une variété d'options **à partir de 6€** pour profiter d'une agréable balade. Mais ce n'est pas tout, nous proposons également des locations pour des jours et même des semaines afin que vous puissiez explorer la région à votre propre rythme. Que ce soit pour une aventure d'une journée ou une exploration prolongée, nos vélos sont prêts à vous emmener où vous voulez aller.",
+      "en": "Discover the beauty of the surroundings on two wheels with our bicycle rental service. At our excursion office, you can find a variety of options starting **from €6** to enjoy a pleasant ride. But that's not all, we also offer rentals for days and even weeks so you can explore the area at your own pace. Whether it's for a day adventure or an extended exploration, our bicycles are ready to take you wherever you want to go.",
+      "nl": "Ontdek de schoonheid van de omgeving op twee wielen met onze fietsverhuurservice. In ons excursiekantoor vind je een verscheidenheid aan opties **vanaf €6** om te genieten van een aangename rit. Maar dat is nog niet alles, we bieden ook verhuur aan voor dagen en zelfs weken, zodat je de omgeving op je eigen tempo kunt verkennen. Of het nu gaat om een dag avontuur of een langere verkenning, onze fietsen staan klaar om je overal naartoe te brengen waar je maar wilt gaan."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-bicicletas-69c3dfb6b8ad1306496800.svg",
+    "iconLabel": "BICICLETAS DE ALQUILER",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-0161-665048a402b4d120916931.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s18",
+    "anchor": "#s18",
+    "title": "NEVERAS DE ALQUILER",
+    "titleByLang": {
+      "es": "NEVERAS DE ALQUILER",
+      "ca": "LLOGUER DE NEVERES",
+      "fr": "LOCATION DE RÉFRIGÉRATEURS",
+      "en": "RENTAL OF REFRIGERATORS",
+      "nl": "KOELKAST HUREN"
+    },
+    "textByLang": {
+      "es": "Mantened vuestros alimentos y bebidas frescos durante toda vuestra estancia con nuestro servicio de alquiler de neveras. En colaboración con la empresa Rent It, ofrecemos la posibilidad de contratar una nevera y llevarla directamente a vuestra parcela sin ningún problema.",
+      "ca": "Manteniu els vostres aliments i begudes frescos durant tota la vostra estada amb el nostre servei de lloguer de neveres. En col·laboració amb l'empresa Rent It, oferim la possibilitat de contractar una nevera i portar-la directament a la vostra parcel·la sense cap problema.",
+      "fr": "Gardez vos aliments et boissons frais pendant tout votre séjour avec notre service de location de réfrigérateurs. En collaboration avec l'entreprise Rent It, nous offrons la possibilité de louer un réfrigérateur et de le faire livrer directement à votre emplacement sans aucun problème.",
+      "en": "Keep your food and beverages fresh throughout your stay with our refrigerator rental service. In collaboration with Rent It company, we offer the possibility to rent a refrigerator and have it delivered directly to your pitch without any hassle.",
+      "nl": "Houd je eten en drinken fris tijdens je hele verblijf met onze koelkastverhuurservice. In samenwerking met het bedrijf Rent It bieden we de mogelijkheid om een koelkast te huren en deze rechtstreeks naar je kampeerplaats te laten bezorgen zonder enig probleem."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-neveras-69c3dfaa470b6619954637.svg",
+    "iconLabel": "NEVERAS DE ALQUILER",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-0116-665048d73d27e420844014.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s19",
+    "anchor": "#s19",
+    "title": "BARBACOAS DE ALQUILER",
+    "titleByLang": {
+      "es": "BARBACOAS DE ALQUILER",
+      "ca": "LLOGUER DE BARBACOES",
+      "fr": "LOCATION DE BARBECUES",
+      "en": "BARBECUE RENTAL",
+      "nl": "BARBECUE VERHUUR"
+    },
+    "textByLang": {
+      "es": "Disfrutad de deliciosas barbacoas durante vuestra estancia con nuestro servicio de alquiler de barbacoas. Puedes reservarlas fácilmente a través de recepción por solo **15€/3 días** o **30€/una semana** completa. Preparad vuestros platos favoritos al aire libre y cread recuerdos inolvidables con amigos y familiares.",
+      "ca": "Gaudiu de delicioses barbacoes durant la vostra estada amb el nostre servei de lloguer de barbacoes. Podeu reservar-les fàcilment a través de recepció per només **15€/3 dies** o **30€/una setmana** completa. Prepareu els vostres plats favorits a l'aire lliure i creeu records inoblidables amb amics i familiars.",
+      "fr": "Profitez de délicieux barbecues pendant votre séjour avec notre service de location de barbecues. Vous pouvez facilement les réserver via la réception pour seulement **15€/3 jours** ou **30€/une semaine** complète. Préparez vos plats préférés en plein air et créez des souvenirs inoubliables avec vos amis et votre famille.",
+      "en": "Enjoy delicious barbecues during your stay with our barbecue rental service. You can easily book them through reception for just **€15/3 days** or **€30/a full week**. Prepare your favorite dishes outdoors and create unforgettable memories with friends and family.",
+      "nl": "Geniet van heerlijke barbecues tijdens jullie verblijf met onze barbecueverhuurservice. Je kunt ze eenvoudig boeken via de receptie voor slechts **€15/3 dagen** of **€30/een volledige week**. Bereid je favoriete gerechten buiten en creëer onvergetelijke herinneringen met vrienden en familie."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-bbq-69c3df9319568451551349.svg",
+    "iconLabel": "BARBACOAS DE ALQUILER",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/grill-panorama-2-6662e815a7f34223349034.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s5",
+    "anchor": "#s5",
+    "title": "LAVANDERIA",
+    "titleByLang": {
+      "es": "LAVANDERIA",
+      "ca": "SERVEI DE BUGADERIA",
+      "fr": "SERVICE DE BLANCHISSERIE",
+      "en": "LAUNDRY SERVICE",
+      "nl": "WASSERETTE"
+    },
+    "textByLang": {
+      "es": "Aprovechad nuestro servicio de lavandería para mantener vuestra ropa impecable durante la estancia. Podéis obtener tickets en recepción a un precio de **10€ por lavado y 7€ por secado**. Con el ticket en mano, dirigíos a la lavandería entre las **09:00 y las 13:00**, o de **16:00 a 20:00**, y nuestro equipo se encargará de todo. ¡Disfrutad de la comodidad y dejad que nos ocupemos de vuestra colada!",
+      "ca": "Aprofiteu el nostre servei de bugaderia per mantenir la vostra roba impecable durant l'estada. Podeu obtenir tiquets a recepció a un preu de **10€ per rentat i 7€ per assecat**. Amb el tiquet a la mà, dirigiu-vos a la bugaderia entre les **09:00 i les 13:00**, o de **16:00 a 20:00**, i el nostre equip s'encarregarà de tot. Gaudiu de la comoditat i deixeu que ens ocupem de la vostra bugada!",
+      "fr": "Profitez de notre service de blanchisserie pour garder vos vêtements impeccables pendant votre séjour. Vous pouvez obtenir des tickets à la réception au prix de **10€ par lavage et 7€ par séchage**. Avec le ticket en main, rendez-vous à la blanchisserie entre **09h00 et 13h00**, ou de **16h00 à 20h00**, et notre équipe s'occupera de tout. Profitez de la commodité et laissez-nous prendre soin de votre linge !",
+      "en": "Take advantage of our laundry service to keep your clothes impeccable during your stay. You can obtain tickets at reception for a price of **€10 per wash and €7 per dry**. With the ticket in hand, head to the laundry between **9:00 AM and 1:00 PM**, or from **4:00 PM to 8:00 PM**, and our team will take care of everything. Enjoy the convenience and let us handle your laundry!",
+      "nl": "Maak gebruik van onze wasserijservice om uw kleding tijdens uw verblijf onberispelijk te houden. U kunt tickets verkrijgen bij de receptie voor een prijs van **€10 per wasbeurt en €7 per droogbeurt**. Met het ticket in de hand kunt u naar de wasserij gaan tussen **09:00 en 13:00 uur** of van **16:00 tot 20:00 uur**, en ons team zal voor alles zorgen. Geniet van het gemak en laat ons uw wasgoed verzorgen!"
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-lavanderia-69c3df85b8051059990361.svg",
+    "iconLabel": "LAVANDERIA",
+    "image": null,
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s20",
+    "anchor": "#s20",
+    "title": "SEGURIDAD 24H",
+    "titleByLang": {
+      "es": "SEGURIDAD 24H",
+      "ca": "SEGURETAT 24H",
+      "fr": "SÉCURITÉ 24H",
+      "en": "24H SECURITY",
+      "nl": "24 UUR BEVEILIGING"
+    },
+    "textByLang": {
+      "es": "Disfrutad de vuestra estancia con total tranquilidad gracias a nuestro servicio de **seguridad 24 horas**. Tanto si os encontráis paseando por nuestras instalaciones como disfrutando de un baño, podéis relajaros sabiendo que contamos con vigilancia continua y **servicio de socorrismo** en todas nuestras piscinas.",
+      "ca": "Gaudiu de la vostra estada amb total tranquil·litat gràcies al nostre servei de **seguretat 24 hores**. Tant si us trobeu passejant per les nostres instal·lacions com gaudint d’un bany, podeu relaxar-vos sabent que comptem amb vigilància contínua i **servei de socorrisme** a totes les nostres piscines.",
+      "fr": "Profitez de votre séjour en toute tranquillité grâce à notre service de **sécurité 24 heures** sur 24. Que vous vous promeniez dans nos installations ou que vous profitiez d'une baignade, détendez-vous en sachant que nous assurons une surveillance continue et un **service de sauvetage** dans toutes nos piscines.",
+      "en": "Enjoy your stay with complete peace of mind thanks to our **24-hour security service**. Whether you're strolling through our facilities or enjoying a swim, you can relax knowing that we have continuous surveillance and **lifeguard service** at all our pools.",
+      "nl": "Geniet van uw verblijf met volledige gemoedsrust dankzij onze **24-uurs beveiligingsservice**. Of u nu wandelt door onze faciliteiten of geniet van een zwem, u kunt ontspannen in de wetenschap dat we continue toezicht en een **reddingsdienst hebben** bij al onze zwembaden."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-seguridad-69c3df6fb041f347537208.svg",
+    "iconLabel": "SEGURIDAD 24H",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/camping-montgri-1427-6650496922aef756864976.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s11",
+    "anchor": "#s11",
+    "title": "BUS A LA PLAYA",
+    "titleByLang": {
+      "es": "BUS A LA PLAYA",
+      "ca": "BUS A LA PLATJA",
+      "fr": "BUS POUR LA PLAGE",
+      "en": "BUS TO THE BEACH",
+      "nl": "BUSJE NAAR HET STRAND"
+    },
+    "textByLang": {
+      "es": "Descubríd nuestro servicio de autobús hacia la playa. Si preferís no andar, en temporada alta podéis aprovechar nuestro **autobús gratuito** que sale desde atrás de la recepción y os lleva en la playa del Estartit. Los autobuses salen cada media hora desde las **9:30 hasta las 17:30**. ¿Y para el retorno? Los horarios son los mismos, pero con una diferencia de 15 minutos.",
+      "ca": "Descobriu el nostre servei d'autobús cap a la platja. Si preferiu no caminar, en temporada alta podeu aprofitar el nostre **autobús gratuït** que surt des de darrere de la recepció i us porta a la platja de l'Estartit. Els autobusos surten cada mitja hora des de les **9:30 fins a les 17:30.** I per al retorn? Els horaris són els mateixos, però amb una diferència de 15 minuts.",
+      "fr": "Découvrez notre service de bus vers la plage. Si vous préférez ne pas marcher, pendant la haute saison, vous pouvez profiter de notre **bus gratuit** qui part de derrière la réception et vous emmène à la plage de l'Estartit. Les bus circulent toutes les demi-heures **de 9h30 à 17h30**. Et pour le retour ? Les horaires sont les mêmes, mais avec un écart de 15 minutes.",
+      "en": "Discover our beach bus service. If you prefer not to walk, during peak season you can take advantage of our **free bus** that departs from behind the reception and takes you to Estartit beach. Buses run every half hour **from 9:30 AM to 5:30 PM**. And for the return trip? The schedules are the same, but with a 15-minute difference.",
+      "nl": "Ontdek onze strandbusservice. Als u liever niet loopt, kunt u tijdens het hoogseizoen gebruik maken van onze **gratis bus** die vertrekt vanaf achter de receptie en u naar het strand van l'Estartit brengt. De bussen rijden elke half uur van **9:30 tot 17:30 uur**. En voor de terugreis? De tijden zijn hetzelfde, maar met een verschil van 15 minuten."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-bus-playa-69c3df25119b0179941100.svg",
+    "iconLabel": "BUS A LA PLAYA",
+    "image": "https://www.camping-castellmontgri.com/uploads/service/bus-platja-660d3d29a27e4709776168.jpg",
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s1",
+    "anchor": "#s1",
+    "title": "WIFI GRATUITO",
+    "titleByLang": {
+      "es": "WIFI GRATUITO",
+      "ca": "WIFI GRATUIT",
+      "fr": "WIFI GRATUIT",
+      "en": "FREE WI-FI",
+      "nl": "FREE WI-FI"
+    },
+    "textByLang": {
+      "es": "Hay acceso a **Wi-Fi gratuito** en todo el camping, sin embargo, cabe tener en cuenta que debido a la densidad de los árboles, hay áreas donde la señal puede ser más débil.",
+      "ca": "Hi ha accés a **Wi-Fi gratuït** a tot el càmping. Tanmateix, cal tenir en compte que, degut a la densitat dels arbres, hi ha zones on el senyal pot ser més dèbil.",
+      "fr": "Il y a un accès **Wi-Fi gratuit** dans tout le camping. Cependant, veuillez noter qu'en raison de la densité des arbres, il y a des zones où le signal peut être plus faible.",
+      "en": "There is **free Wi-Fi** access throughout the campsite. However, please note that due to the density of the trees, there are areas where the signal may be weaker.",
+      "nl": "Er is **gratis Wi-Fi** in het hele camping. Houd er echter rekening mee dat vanwege de dichtheid van de bomen er gebieden zijn waar het signaal zwakker kan zijn."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/web-icones-wifi-69c3df38ec96c924102928.svg",
+    "iconLabel": "WIFI GRATUITO",
+    "image": null,
+    "gallery": [],
+    "links": []
+  },
+  {
+    "id": "s21",
+    "anchor": "#s21",
+    "title": "PUNTO DE CARGA",
+    "titleByLang": {
+      "es": "PUNTO DE CARGA",
+      "ca": "PUNTO DE CARGA",
+      "fr": "PUNTO DE CARGA",
+      "en": "PUNTO DE CARGA",
+      "nl": "LAADPUNT"
+    },
+    "textByLang": {
+      "es": "Nos complace anunciar que nuestro camping dispone de un punto de carga para coches eléctricos. En nuestro compromiso por ser más sostenibles y facilitar las necesidades de nuestros clientes, se instaló esta estación de carga para que puedan disfrutar de sus vacaciones sin preocuparse por el nivel de batería de su vehículo.",
+      "ca": "Ens complau anunciar que el nostre càmping disposa d'un punt de càrrega per a cotxes elèctrics! En el nostre compromís per ser més sostenibles i facilitar les necessitats dels nostres clients, es va instal·lar aquesta estació de càrrega perquè pugui gaudir de les seves vacances sense preocupar-se pel nivell de bateria del seu vehicle.",
+      "fr": "Nous sommes heureux d'annoncer que notre camping dispose d'un point de recharge pour voitures électriques. Dans le cadre de notre engagement pour la durabilité et pour répondre aux besoins de nos clients, nous avons installé cette station de recharge afin que vous puissiez profiter de vos vacances sans vous soucier du niveau de batterie de votre véhicule.",
+      "en": "We are pleased to announce that our campsite has a charging point for electric cars. As part of our commitment to sustainability and meeting our customers' needs, we have installed this charging station so you can enjoy your vacation without worrying about your vehicle's battery level.",
+      "nl": "We zijn verheugd aan te kondigen dat onze camping een oplaadpunt voor elektrische auto’s beschikt. Als onderdeel van onze inzet voor duurzaamheid en het voldoen aan de behoeften van onze klanten, hebben we dit oplaadstation geïnstalleerd zodat u van uw vakantie kunt genieten zonder zich zorgen te maken over het batterijniveau van uw voertuig."
+    },
+    "icon": "https://www.camping-castellmontgri.com/uploads/service/diseno-sin-titulo-2-66a0d49a17bef099040220.png",
+    "iconLabel": "PUNTO DE CARGA",
+    "image": null,
+    "gallery": [],
+    "links": [
+      {
+        "text": "",
+        "url": "https://www.camping-castellmar.com/"
+      },
+      {
+        "text": "",
+        "url": "https://www.fundaciomascort.com/"
+      },
+      {
+        "text": "",
+        "url": "https://www.zoover.nl/spanje/catalonie-costa-brava-en-costa-dorada/lestartit/castell-montgri-glamping/camping"
+      },
+      {
+        "text": "",
+        "url": "https://www.tripadvisor.es/UserReviewEdit-g644326-d287393-Camping_Castell_Montgri-L_Estartit_Costa_Brava_Province_of_Girona_Catalonia.html"
+      },
+      {
+        "text": "",
+        "url": "https://www.pincamp.de/campingplaetze/camping-castell-montgri"
+      }
+    ]
+  }
+]

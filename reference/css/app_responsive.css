@@ -1,0 +1,549 @@
+@media screen and (max-width: 1400px){
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: calc(100% - 60px);
+    }
+
+}
+
+@media screen and (max-width: 1300px){
+    header > .container > nav {
+        display: none;
+    }
+
+    .servicesSliderItem .serviceIcon,
+    .eventsSliderItem .eventIcon{
+        width: 140px;
+        height: 140px;
+    }
+
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: calc(100% - 60px);
+    }
+
+    header ul.burgerLink {
+        padding: 3px 0 0 10px;
+    }
+
+    .hc-nav-trigger.hc-nav-1 {
+        display: block;
+    }
+    .hc-offcanvas-nav.hc-nav-1 {
+        display: block;
+    }
+
+    .switcherMenu .btnHeaderSmallWrapper {
+        display: none;
+    }
+
+    .hc-offcanvas-nav .btnHeaderSmall {
+        font-size: 14px;
+        display: inline-block;
+        padding:5px 10px;
+        margin:5px 0px;
+    }
+
+    .hc-offcanvas-nav a.booking {
+        background-color: #485328;
+        color: white;
+        border-radius: 50px;
+        text-decoration: none;
+        display: block;
+        padding: 5px 10px;
+        margin: 5px 20px;
+        text-align: center;
+    }
+
+    .hc-offcanvas-nav a.booking:hover {
+        background-color: #000000;
+    }
+
+
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+
+    #nav-accommodations button.nav-link {
+        font-size: 15px;
+        padding: 10px 25px;
+    }
+    #nav-accommodations button.nav-link img {
+        height: 30px;
+    }
+
+
+    .accommodationsList div.accommodationItem {
+        width: calc(50% - 20px);
+        margin: 0 10px 30px 10px;
+    }
+
+    .accommodationItem .buttons a {
+        font-size: 12px;
+        width: calc(50% - 5px);
+        padding: 10px;
+    }
+
+    .accommodationItem .specs img, .accommodationItem .specs svg {
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    .accommodationItem .specs span, .accommodationItem .specs span span {
+        font-size: 16px;
+    }
+
+    .accommodationDetail .gallery .galleryItem .icon svg,
+    .gastronomyDetail .gallery .galleryItem .icon svg {
+        width: 60px;
+     }
+
+    .minimalTopPage {
+        padding-top: 150px;
+        padding-bottom:20px;
+    }
+
+}
+
+
+
+@media screen and (max-width: 992px) {
+
+    .servicesList .serviceItem .container,
+    .servicesList .serviceItem:nth-of-type(odd) .container,
+    .servicesList .serviceItem:nth-of-type(even) .container,
+    .eventsList .eventItem .container,
+    .eventsList .eventItem:nth-of-type(odd) .container,
+    .eventsList .eventItem:nth-of-type(even) .container{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .servicesList .serviceItem .container > div,
+    .servicesList .serviceItem:nth-of-type(odd) .container > div,
+    .servicesList .serviceItem:nth-of-type(even) .container > div,
+    .eventsList .eventItem .container > div,
+    .eventsList .eventItem:nth-of-type(odd) .container > div,
+    .eventsList .eventItem:nth-of-type(even) .container > div{
+        width: 100%;
+        padding: 0;
+    }
+
+    .servicesList .serviceItem .container .image,
+    .servicesList .serviceItem:nth-of-type(odd) .container .image,
+    .servicesList .serviceItem:nth-of-type(even) .container .image,
+    .eventsList .eventItem .container .image,
+    .eventsList .eventItem:nth-of-type(odd) .container .image,
+    .eventsList .eventItem:nth-of-type(even) .container .image{
+        padding: 0;
+    }
+
+    .servicesList .serviceItem .container .text h2.title,
+    .eventsList .eventItem .container .text h2.title{
+        padding-top: 40px;
+    }
+
+    .homeTopSliderItem .info {
+        padding: 25px;
+        margin: 50px 50px 50px auto;
+        width: 100%;
+    }
+
+    #nav-accommodations {
+        display: none;
+    }
+
+    .findPerfect .bgMainColor.padded {
+        padding: 0;
+    }
+
+    .findPerfect #nav-tabContent .tab-pane {
+        display: block;
+        opacity: 1;
+        padding-bottom: 30px;
+    }
+
+    #nav-tabContent .tab-pane h2.title {
+        display: block;
+    }
+
+    #nav-tabContent .tab-pane:nth-of-type(even) {
+        background-color: #fff;
+    }
+
+
+    .slick-next {
+        right: 0;
+    }
+
+    .slick-prev {
+        left: 0;
+    }
+
+    .servicesSlider .slick-prev,
+    .servicesSlider .slick-next,
+    .eventsSlider .slick-prev,
+    .eventsSlider .slick-next,
+    .mobileHomeSlider .slick-prev,
+    .mobileHomeSlider .slick-next,
+    .tentHomeSlider .slick-prev,
+    .tentHomeSlider .slick-next,
+    .parcelasHomeSlider .slick-prev,
+    .parcelasHomeSlider .slick-next,
+    .testimonialHomeSlider .slick-prev,
+    .testimonialHomeSlider .slick-next,
+    .accommodationSlider .slick-prev,
+    .accommodationSlider .slick-next,
+    .servicesSlider .slick-prev:before,
+    .servicesSlider .slick-next:before,
+    .eventsSlider .slick-prev:before,
+    .eventsSlider .slick-next:before,
+    .mobileHomeSlider .slick-prev:before,
+    .mobileHomeSlider .slick-next:before,
+    .tentHomeSlider .slick-prev:before,
+    .tentHomeSlider .slick-next:before,
+    .parcelasHomeSlider .slick-prev:before,
+    .parcelasHomeSlider .slick-next:before,
+    .testimonialHomeSlider .slick-prev:before,
+    .testimonialHomeSlider .slick-next:before,
+    .accommodationSlider .slick-prev:before,
+    .accommodationSlider .slick-next:before {
+        width: 40px;
+        height: 40px;
+    }
+
+    #nav-tabContent .tab-pane:nth-of-type(even) .servicesSlider .slick-prev:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .servicesSlider .slick-next:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .eventsSlider .slick-prev:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .eventsSlider .slick-next:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .mobileHomeSlider .slick-prev:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .mobileHomeSlider .slick-next:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .tentHomeSlider .slick-prev:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .tentHomeSlider .slick-next:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .parcelasHomeSlider .slick-prev:before,
+    #nav-tabContent .tab-pane:nth-of-type(even) .parcelasHomeSlider .slick-next:before {
+        background-image: url(/assets/svg/arrow_green.svg);
+        width: 40px;
+        height: 40px;
+    }
+
+    #nav-tabContent #nav-ofertas {
+        display: none;
+    }
+
+    .footer h2.title {
+        text-align: center;
+    }
+
+    .footer .footerContact {
+        display: block;
+    }
+
+    .footer .footerContact > div {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    .newsletterLink {
+        width: 100%;
+        text-align: center;
+    }
+    .newsletterLink a {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footerContact .map {
+        width: 100%;
+        height: 60vh;
+        padding: 0;
+    }
+
+
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+
+    .gastronomyDetail .gallery {
+        margin: 10px 0;
+
+    }
+
+    .padded{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .paddedTop{
+        padding-top: 20px;
+    }
+
+    .paddedBottom{
+        padding-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h1.title {
+        padding: 20px 0 20px 0;
+    }
+
+    .accommodationDetail h1.title,
+    .gastronomyDetail h1.title,
+    .animationDetail h1.title,
+    h2.title {
+        text-align: center;
+    }
+
+    h2.title {
+        padding: 20px 0 20px 0;
+    }
+
+    p,
+    .textWrapper p,
+    .textWrapper div,
+    .textWrapper ul li,
+    .bookingForm .widgetBookingContainer button.searchButton,
+    div.testimonialHomeSliderItem h4{
+        font-size: 16px;
+    }
+
+    section.accommodationDetail h1 {
+        font-size: 20px;
+    }
+
+
+    .spec {
+        margin: 0 10px;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+    .gastronomyDetail .specs .spec,
+    .animationDetail .specs .spec {
+        font-size: 20px;
+    }
+
+
+    .specs img, .specs svg {
+        height: 25px;
+        margin-right: 5px;
+        margin-left: 10px;
+    }
+
+    a.spec.locationMapButton,
+    a.spec.menuButton,
+    .gastronomyDetail .specs .spec a.menuButton,
+    .gastronomyDetail .specs .spec a.spec.locationMapButton,
+    .gastronomyDetail a.spec.locationMapButton,
+    .gastronomyDetail .specs a.spec,
+    .animationDetail a.spec.locationMapButton {
+        font-size: 16px;
+        padding: 5px 20px;
+    }
+
+    a.spec.locationMapButton img,
+    a.spec.locationMapButton svg,
+    .gastronomyDetail .specs a.spec.locationMapButton img,
+    .gastronomyDetail .specs a.spec.locationMapButton svg {
+        height: 18px;
+    }
+
+
+    .gastronomyDetail .specs,
+    .animationDetail .specs {
+        display: block;
+    }
+
+    .specs .specsLeft,
+    .specs .specsRight {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+    }
+
+
+
+    a.compareButton {
+        font-size: 18px;
+        padding: 5px 30px;
+        margin: 30px auto 0 auto;
+    }
+
+    a.compareButton svg {
+        height: 20px;
+    }
+
+    .surroundItem .image,
+    .surroundItem:nth-of-type(even) .image {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .surroundItem .text,
+    .surroundItem:nth-of-type(even) .text {
+        margin: 0;
+    }
+
+
+    #widgetMobileBookingContainer {
+        display: none;
+    }
+
+    .slick-next {
+        right: 5px !important;
+    }
+
+    .slick-prev {
+        left: 5px !important;
+    }
+
+
+    .accommodationsList div.accommodationItem {
+        width: 100%;
+        margin: 0 10px 30px 10px;
+    }
+
+    .discoverLinks {
+        display: block;
+    }
+
+    .discoverLinks .discoverLinksColumn {
+        margin-right: 0;
+    }
+    .container, .container-sm {
+        max-width: calc(100% - 30px);
+    }
+
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttons .button {
+        margin: 0 5px 10px 5px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .buttons .button a {
+        padding: 3px 15px;
+        font-size: 14px;
+    }
+
+
+
+    .accommodationDetail .gallery .galleryItem .icon,
+    .gastronomyDetail .gallery .galleryItem .icon {
+        padding: 10px;
+    }
+
+    .accommodationDetail .gallery .galleryItem .icon svg,
+    .gastronomyDetail .gallery .galleryItem .icon svg {
+        width: 30px;
+    }
+
+    .animation .targets  {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .animation .targets a.targetItem {
+        width: 140px;
+        height: 140px;
+        margin: 0 10px 20px 10px;
+        padding: 11px;
+    }
+
+    .footerContact .newsletterLink a {
+        padding: 5px 20px;
+        font-size: 12px;
+    }
+
+    .minimalTopPage {
+        padding-top: 100px;
+        padding-bottom:20px;
+    }
+
+    .printDetailItemRow .container ul.specsAccommodation {
+        column-count: 3;
+    }
+
+    .printDetailItemRow .container ul.specsAccommodation li div {
+        display: block;
+    }
+
+}
+
+@media (max-width: 576px){
+
+    header .logo img {
+        width: 200px;
+    }
+
+    header .switcherMenu li {
+        padding: 0 5px;
+    }
+
+    header .container .logo a span {
+        display: none;
+    }
+
+    .animation .targets a.targetItem img {
+        width: 55% !important;
+    }
+    .animation .targets a.targetItem {
+       height: 140px !important;
+    }
+
+    .minimalTopPage {
+        padding-top: 50px;
+        padding-bottom:15px;
+    }
+
+    .printDetailItemRow .container ul.specsAccommodation {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 415px) {
+    .printDetailItemRow .container {
+        text-align: center;
+    }
+
+    .printDetailItemRow .container ul.specsAccommodation {
+        display: inline-block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        column-count: 1;
+    }
+}
