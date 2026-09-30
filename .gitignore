@@ -11,6 +11,8 @@ next-env.d.ts
 .env
 .env.*
 !.env.example
+# Només valors públics per als builds de Vercel (vegeu el fitxer)
+!.env.production
 
 # vercel / sentry
 .vercel/

@@ -1,0 +1,19 @@
+{
+  "_note": "Textos nous (no surten del web antic). Són el punt de partida: el càmping els edita des de l'admin.",
+  "hero": {
+    "image": "03-1-66c872ae",
+    "es": { "title": "Vacaciones entre el Montgrí y el mar", "body": "Camping y bungalows en L'Estartit, a los pies del Parque Natural del Montgrí, las Illes Medes y el Baix Ter.", "cta_label": "Reservar" },
+    "ca": { "title": "Vacances entre el Montgrí i el mar", "body": "Càmping i bungalows a l'Estartit, als peus del Parc Natural del Montgrí, les Illes Medes i el Baix Ter.", "cta_label": "Reservar" },
+    "fr": { "title": "Des vacances entre le Montgrí et la mer", "body": "Camping et bungalows à L'Estartit, au pied du Parc naturel du Montgrí, des îles Medes et du Baix Ter.", "cta_label": "Réserver" },
+    "en": { "title": "Holidays between the Montgrí and the sea", "body": "Camping and bungalows in L'Estartit, at the foot of the Montgrí, Medes Islands and Baix Ter Natural Park.", "cta_label": "Book now" },
+    "nl": { "title": "Vakantie tussen de Montgrí en de zee", "body": "Camping en bungalows in L'Estartit, aan de voet van het Natuurpark Montgrí, de Medes-eilanden en de Baix Ter.", "cta_label": "Reserveren" }
+  },
+  "map": {
+    "image": "planol-camping-castell-montgri_2026",
+    "es": { "title": "Todo el camping, en un plano", "body": "Piscinas, restaurantes, zonas de juego, supermercado y alojamientos, a pocos pasos unos de otros. Explora el plano y encuentra tu rincón.", "cta_label": "Ver el plano" },
+    "ca": { "title": "Tot el càmping, en un plànol", "body": "Piscines, restaurants, zones de joc, supermercat i allotjaments, a pocs passos els uns dels altres. Explora el plànol i troba el teu racó.", "cta_label": "Veure el plànol" },
+    "fr": { "title": "Tout le camping sur un plan", "body": "Piscines, restaurants, aires de jeux, supérette et hébergements, à quelques pas les uns des autres. Explorez le plan et trouvez votre coin.", "cta_label": "Voir le plan" },
+    "en": { "title": "The whole campsite on one map", "body": "Pools, restaurants, play areas, supermarket and accommodation, all a short walk apart. Explore the map and find your spot.", "cta_label": "View the map" },
+    "nl": { "title": "De hele camping op één plattegrond", "body": "Zwembaden, restaurants, speelplaatsen, supermarkt en accommodaties, allemaal op loopafstand. Verken de plattegrond en vind jouw plekje.", "cta_label": "Bekijk de plattegrond" }
+  }
+}

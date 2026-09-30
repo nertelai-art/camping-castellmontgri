@@ -6,3 +6,10 @@ useDefault = true
 description = "slugs d'allotjament al material de referència"
 regexTarget = "line"
 regexes = ['''"?key"?:\s*"?chalet-45-pmr"?''']
+
+# Les claus publicables de Supabase són públiques per disseny (arriben al navegador; la protecció és RLS).
+# Les secretes (sb_secret_…) continuen bloquejades.
+[[allowlists]]
+description = "claus publicables de Supabase"
+regexTarget = "match"
+regexes = ['''sb_publishable_[A-Za-z0-9_-]+''']
