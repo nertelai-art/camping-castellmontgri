@@ -78,7 +78,9 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       <CampgroundJsonLd settings={settings} url={`${siteUrl}/${locale}`} image={sections.hero?.media?.src} />
       <SiteHeader settings={settings} locale={locale} />
       <main id="main">
-        {sections.hero && <Hero section={sections.hero} settings={settings} locale={locale} />}
+        {sections.hero && (
+          <Hero section={sections.hero} mapSection={sections["map"]} mapPoints={mapPoints} settings={settings} locale={locale} />
+        )}
 
         {sections.welcome && (
           <Welcome

@@ -17,7 +17,8 @@
   "hero": {
     "season": "Season",
     "discover": "Explore the campsite",
-    "from": "{open} – {close}"
+    "from": "{open} – {close}",
+    "sceneDescription": "Animation: the illustrated campsite map lies down like the ground and the camera flies over it while markers drop onto the pools, restaurants and leisure areas."
   },
   "facts": {
     "accommodations": "places to stay",
@@ -51,7 +52,13 @@
       "panorama": "Panorama area"
     },
     "hours": "Opening hours",
-    "menu": "See the menu"
+    "menu": "See the menu",
+    "sceneDescription": "Animation: a paella pan fills with rice, prawns and mussels; an ice-cream cone is topped with scoops that melt; and a glass fills with a drink, ice cubes and lemon.",
+    "steps": {
+      "food": "To eat",
+      "icecream": "Ice cream",
+      "drinks": "To drink"
+    }
   },
   "pools": {
     "eyebrow": "Water and sun"

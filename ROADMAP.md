@@ -1,6 +1,6 @@
 # Roadmap — Natura Village Castell Montgrí
 
-> Estat: **fases 1, 2 i 3 fetes** (plataforma de contingut, landing i plànol interactiu). Pendent: seed al Supabase remot, projecte Vercel i mesura de rendiment en preproducció. Actualitzat el 30/09/2026.
+> Estat: **fases 1 a 4 fetes** (plataforma de contingut, landing, plànol interactiu i animacions). Pendent: seed al Supabase remot, projecte Vercel i mesura de rendiment en preproducció. Actualitzat el 30/09/2026.
 
 ## 1. Què fem
 
@@ -150,10 +150,15 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ «Veure al plànol» des dels restaurants, els serveis i la fitxa de cada allotjament (les tres parcel·les porten a la seva zona concreta).
 - ⚠️ Sense punt, perquè no se sap on són: *Take Away Ombra* (comparteix icona amb la pizzeria), el Kids Club, la zona de glamping i les tendes. La heladería Ombra està posada a la icona de cafeteria més propera a la piscina Ombra: cal confirmar-ho amb el càmping.
 
-### Fase 4 — Animacions
-- Hero, gastronomia (plat, gelat…), piscines, serveis, xifres.
-- Tot amb alternativa per a `prefers-reduced-motion` i sense perjudicar el LCP.
-- **Acabat quan:** 60 fps en un mòbil mitjà i LCP < 2,5 s.
+### Fase 4 — Animacions ✅ (mesura de rendiment pendent en preproducció)
+- ✅ Skill `scroll-3d-scenes` aplicada tal com diu: hooks de la plantilla, fases en un fitxer sense three.js amb proves, `frameloop="demand"`, `damp` amb delta limitat, instàncies, atzar amb llavor, materials estables des del primer fotograma, ombra pintada una vegada i `dpr` adaptatiu.
+- ✅ **Hero, «vol» sobre el plànol**: la foto aèria real és el primer fotograma (i el LCP). Amb el scroll el plànol puja com una targeta, s'ajeu i esdevé el terra (amb un prat al voltant perquè el paisatge no s'acabi), la càmera hi vola per damunt i hi cauen els punts de piscines, restaurants i lleure; al final, invitació a obrir el plànol. A mòbil la càmera baixa més perquè el plànol ompli la pantalla.
+- ✅ **Gastronomia**: paella que s'omple (arròs, gambes, musclos, pèsols i llimona que cauen amb rebot), gelat amb tres boles que es fonen i regalimen, i got que s'omple de refresc amb glaçons, palla i llimona. Tot modelat per codi. Els passos del costat llisten els restaurants reals agrupats per menjar, gelats i beure.
+- ✅ **Piscines**: reflexos d'aigua en CSS pur (capes de llum amb `transform`).
+- ✅ Sense WebGL o amb moviment reduït: hero amb la foto i gastronomia amb la foto de la secció, sense seccions altes.
+- ✅ Rendiment de càrrega: three.js (~250 KB gzip) es baixa a la **primera interacció** en el hero i en acostar-se a la secció en la gastronomia. Carregat «en ociós» encara entrava dins la finestra de càrrega (TBT 1,3-3,7 s a Lighthouse mòbil).
+- ✅ Verificat amb Chrome sense cap (playwright-core fora del projecte) a 0/25/50/75/100 % de cada escena, escriptori i mòbil: sense errors, fotogrames p50 16,7 ms (60 fps). El p95 a escriptori no és representatiu: sense GPU, el WebGL es pinta per CPU (SwiftShader).
+- ⏳ Mesura real (GPU i xarxa) a una previsualització de Vercel i a un mòbil de veritat.
 
 ### Fase 5 — Panell d'administració
 - `/admin` amb inici de sessió, rols i registre de canvis.

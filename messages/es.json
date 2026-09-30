@@ -17,7 +17,8 @@
   "hero": {
     "season": "Temporada",
     "discover": "Descubre el camping",
-    "from": "Del {open} al {close}"
+    "from": "Del {open} al {close}",
+    "sceneDescription": "Animación: el plano ilustrado del camping se tumba como si fuera el suelo y la cámara vuela por encima mientras caen los puntos de las piscinas, los restaurantes y las zonas de ocio."
   },
   "facts": {
     "accommodations": "alojamientos",
@@ -51,7 +52,13 @@
       "panorama": "Zona Panorama"
     },
     "hours": "Horario",
-    "menu": "Ver la carta"
+    "menu": "Ver la carta",
+    "sceneDescription": "Animación: una paella se llena de arroz, gambas y mejillones; un cucurucho se llena de bolas de helado que se derriten; y un vaso se llena de refresco con cubitos y limón.",
+    "steps": {
+      "food": "Para comer",
+      "icecream": "Helados",
+      "drinks": "Para beber"
+    }
   },
   "pools": {
     "eyebrow": "Agua y sol"
