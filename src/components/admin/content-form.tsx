@@ -6,7 +6,7 @@
 import { startTransition, useActionState, useEffect, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { MapPositionField } from "./map-position-field";
-import { SAVED_EVENT } from "./visual-shell";
+import { DRAFT_EVENT, LOCALE_EVENT, SAVED_EVENT, type DraftDetail } from "@/lib/admin/visual";
 import { fieldName, LOCALE_NAMES, LOCALES, type EntityConfig, type Locale, type Translations } from "@/lib/admin/entities";
 
 type Props = {
@@ -40,6 +40,12 @@ export function ContentForm({ action, text, base, initial }: Props) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         startTransition(() => submit(data));
+      }}
+      // L'editor visual va pintant a la web el que s'escriu, abans de desar.
+      onInput={(event) => {
+        const field = event.target;
+        if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) || !field.name || field.type === "checkbox") return;
+        window.dispatchEvent(new CustomEvent<DraftDetail>(DRAFT_EVENT, { detail: { name: field.name, value: field.value } }));
       }}
       className="mt-8 grid max-w-3xl gap-8"
     >
@@ -118,7 +124,10 @@ export function ContentForm({ action, text, base, initial }: Props) {
               id={`tab-${l}`}
               aria-selected={locale === l}
               aria-controls={`panel-${l}`}
-              onClick={() => setLocale(l)}
+              onClick={() => {
+                setLocale(l);
+                window.dispatchEvent(new CustomEvent<Locale>(LOCALE_EVENT, { detail: l }));
+              }}
               className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-base font-bold transition hover:border-olive aria-selected:border-olive aria-selected:bg-olive aria-selected:text-paper"
             >
               {LOCALE_NAMES[l]}

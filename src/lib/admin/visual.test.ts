@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { editMark, parseEditMark, targetFromPath, targetKind, visualHref } from "./visual";
+import { editMark, parseEditMark, parseFieldName, targetFromPath, targetKind, visualHref } from "./visual";
 
 describe("marques de l'editor visual", () => {
   it("llegeix l'entitat i la referència", () => {
@@ -33,6 +33,14 @@ describe("marques de l'editor visual", () => {
     expect(targetFromPath("/admin/visual/profiles/1")).toBeNull();
     expect(targetFromPath("/admin/visual/services/a/b")).toBeNull();
     expect(targetFromPath("/admin/visual/services/%E0%A4%A")).toBeNull();
+  });
+
+  it("separa l'idioma del camp en el nom d'un camp del formulari", () => {
+    expect(parseFieldName("ca.title")).toEqual({ locale: "ca", field: "title" });
+    expect(parseFieldName("nl.menu_url")).toEqual({ locale: "nl", field: "menu_url" });
+    expect(parseFieldName("hours")).toEqual({ locale: null, field: "hours" });
+    // un prefix que no és un idioma forma part del nom
+    expect(parseFieldName("de.title")).toEqual({ locale: null, field: "de.title" });
   });
 
   it("anomena el tipus de bloc", () => {

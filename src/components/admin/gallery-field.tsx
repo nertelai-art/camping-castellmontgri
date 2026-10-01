@@ -6,7 +6,7 @@
 import { useRef, useState, useTransition } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { toJpeg } from "./to-jpeg";
-import { SAVED_EVENT } from "./visual-shell";
+import { SAVED_EVENT } from "@/lib/admin/visual";
 
 type Props = {
   label: string;

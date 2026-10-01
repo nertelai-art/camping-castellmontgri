@@ -32,8 +32,8 @@ export async function Entertainment({ section, activities, index }: { section: S
                         {a.cover && <MediaImage media={a.cover} alt="" fill sizes="64px" className="object-cover" />}
                       </div>
                       <div>
-                        <p className="font-bold">{a.name}</p>
-                        {a.hours && <p className="text-sm text-on-dark">{a.hours}</p>}
+                        <p data-edit-field="name" className="font-bold">{a.name}</p>
+                        {a.hours && <p data-edit-field="hours" className="text-sm text-on-dark">{a.hours}</p>}
                       </div>
                     </li>
                   ))}

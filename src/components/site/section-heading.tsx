@@ -25,17 +25,18 @@ export function SectionHeading({ id, index, eyebrow, title, body, highlight, ton
         <span aria-hidden="true" className={`h-px w-8 ${dark ? "bg-on-dark/50" : "bg-terra/60"}`} />
         {eyebrow}
       </p>
-      <h2 id={id} className={`font-display mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? "text-on-dark" : "text-olive"}`}>
+      <h2 id={id} data-edit-field="title" className={`font-display mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? "text-on-dark" : "text-olive"}`}>
         {title}
       </h2>
       {body && (
         <RichText
+          field="body"
           text={body}
           className={`mt-6 grid gap-4 text-lg leading-relaxed ${dark ? "text-on-dark" : "text-muted"} ${align === "center" ? "mx-auto max-w-2xl" : ""}`}
         />
       )}
       {highlight && (
-        <p className={`font-display mt-5 text-xl ${dark ? "text-on-dark" : "text-terra"}`}>{highlight}</p>
+        <p data-edit-field="highlight" className={`font-display mt-5 text-xl ${dark ? "text-on-dark" : "text-terra"}`}>{highlight}</p>
       )}
     </header>
   );

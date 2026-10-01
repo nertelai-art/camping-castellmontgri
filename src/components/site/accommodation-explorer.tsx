@@ -122,7 +122,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-5">
-                    <span className="font-display text-2xl leading-tight text-olive transition-colors group-hover:text-terra">{a.name}</span>
+                    <span data-edit-field="name" className="font-display text-2xl leading-tight text-olive transition-colors group-hover:text-terra">{a.name}</span>
                     <Specs a={a} />
                   </div>
                 </button>
