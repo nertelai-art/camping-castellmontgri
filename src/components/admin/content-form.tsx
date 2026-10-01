@@ -54,6 +54,22 @@ export function ContentForm({ action, text, base, initial }: Props) {
             if (field.kind === "position") {
               return <MapPositionField key={field.name} label={field.label} help={field.help} initial={{ x: Number(initial.base.x), y: Number(initial.base.y) }} />;
             }
+            if (field.kind === "select") {
+              return (
+                <label key={field.name} className="block text-base font-bold">
+                  {field.label}
+                  <select name={field.name} defaultValue={String(value ?? "")} className={INPUT}>
+                    {field.optional && <option value="">Cap</option>}
+                    {field.options.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  {field.help && <span className={HELP}>{field.help}</span>}
+                </label>
+              );
+            }
             if (field.kind === "status") {
               return (
                 <label key={field.name} className="block text-base font-bold">

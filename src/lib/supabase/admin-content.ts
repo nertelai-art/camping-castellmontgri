@@ -1,6 +1,6 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
 
@@ -38,12 +38,11 @@ export type ContentListItem = { id: string; name: string; published: boolean; mi
 export async function listContent(entity: EntityName): Promise<ContentListItem[]> {
   const config: EntityConfig = ENTITIES[entity];
   const rows = await readRows(await db(), config);
-  const main = config.text[0]!.name;
   return rows.map((row) => {
     const translations = byLocale(row.translations);
     return {
       id: String(row[config.key]),
-      name: translations.ca?.[main] || translations.es?.[main] || String(row[config.key]),
+      name: displayName(config, translations, String(row[config.key])),
       published: "status" in row ? row.status === "published" : row.is_visible !== false,
       missing: missingLocales(config, translations),
     };
@@ -70,6 +69,28 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
     if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null };
   }
   return { id, base, translations: byLocale(row.translations), image };
+}
+
+/** Crea una fila nova, en esborrany i amb els valors per defecte de l'entitat. Retorna el seu identificador o l'error. */
+export async function createContent(entity: EntityName, slug: string): Promise<{ id: string } | { error: string }> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.create) return { error: "D'aquest contingut no se'n poden afegir." };
+  const supabase = await db();
+  const row = { ...config.create.defaults, ...(config.create.slug ? { slug } : {}), status: "draft" };
+  const { data, error } = await supabase.from(config.table).insert(row).select(config.key).single();
+  if (error) return { error: error.message };
+  return { id: String((data as unknown as Record<string, unknown>)[config.key]) };
+}
+
+/** Esborra una fila (les traduccions cauen amb ella). Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer. */
+export async function deleteContent(entity: EntityName, id: string): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.create) return "Aquest contingut no es pot esborrar.";
+  const supabase = await db();
+  const { data, error } = await supabase.from(config.table).delete().eq(config.key, id).select(config.key);
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per esborrar aquest contingut, o ja no existeix.";
+  return null;
 }
 
 /**
@@ -132,7 +153,7 @@ export async function countContent(entity: EntityName): Promise<number> {
 }
 
 // ─── Registre de canvis ───────────────────────────────────────────────────────
-export type ChangeAction = "text" | "image";
+export type ChangeAction = "text" | "image" | "create" | "delete";
 export type Change = { id: number; at: string; editor: string; entity: string; rowId: string; rowName: string; action: ChangeAction };
 
 /**

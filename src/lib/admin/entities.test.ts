@@ -69,10 +69,16 @@ describe("formulari de contingut", () => {
   });
 
   it("la posició d'un punt del mapa són dos números entre 0 i 100", () => {
-    const ok = parseContent(ENTITIES.map_points, form({ status: "published", x: "41.237", y: "63.5", "es.label": "Recepción" }));
-    expect(ok.ok && ok.value.base).toEqual({ x: 41.24, y: 63.5, status: "published" });
-    const bad = parseContent(ENTITIES.map_points, form({ status: "published", x: "120", "es.label": "Recepción" }));
+    const ok = parseContent(ENTITIES.map_points, form({ status: "published", x: "41.237", y: "63.5", kind: "food", icon: "", "es.label": "Recepción" }));
+    expect(ok.ok && ok.value.base).toEqual({ x: 41.24, y: 63.5, kind: "food", icon: null, status: "published" });
+    const bad = parseContent(ENTITIES.map_points, form({ status: "published", x: "120", kind: "food", icon: "pizza", "es.label": "Recepción" }));
     expect(bad).toEqual({ ok: false, errors: ["On és: la posició no és vàlida.", "On és: la posició no és vàlida."] });
+  });
+
+  it("una tria només accepta els valors de la llista; buida només si és opcional", () => {
+    const point = { status: "published", x: "1", y: "1", "es.label": "Bar" };
+    expect(parseContent(ENTITIES.map_points, form({ ...point, kind: "castle", icon: "pizza" }))).toEqual({ ok: false, errors: ["Tipus de lloc: valor desconegut."] });
+    expect(parseContent(ENTITIES.map_points, form({ ...point, kind: "", icon: "dragon" }))).toEqual({ ok: false, errors: ["Tipus de lloc: valor desconegut.", "Icona: valor desconegut."] });
   });
 
   it("una llista és una línia per element, sense línies buides", () => {
@@ -83,7 +89,8 @@ describe("formulari de contingut", () => {
   it("el nom d'un contingut: en català, si no en castellà, si no l'identificador; i el títol si només n'hi ha un", () => {
     expect(displayName(ENTITIES.services, { es: { name: "Recepción" }, ca: { name: "Recepció" } }, "id-1")).toBe("Recepció");
     expect(displayName(ENTITIES.services, { es: { name: "Recepción" }, ca: { name: "" } }, "id-1")).toBe("Recepción");
-    expect(displayName(ENTITIES.services, {}, "id-1")).toBe("id-1");
+    expect(displayName(ENTITIES.services, {}, "id-1")).toBe("Sense nom");
+    expect(displayName(ENTITIES.sections, {}, "pools")).toBe("pools");
     expect(displayName(ENTITIES.site_settings, { ca: { seo_title: "Càmping" } }, "true")).toBe("Dades generals");
   });
 

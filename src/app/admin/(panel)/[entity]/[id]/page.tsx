@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { replaceImageAction, saveContentAction } from "@/app/admin/actions";
+import { deleteContentAction, replaceImageAction, saveContentAction } from "@/app/admin/actions";
 import { ContentForm } from "@/components/admin/content-form";
+import { DeleteButton } from "@/components/admin/delete-button";
 import { ImageField } from "@/components/admin/image-field";
 import { displayName, ENTITIES, isEntity, type EntityConfig } from "@/lib/admin/entities";
 import { getContent } from "@/lib/supabase/admin-content";
@@ -32,6 +33,7 @@ export default async function ContentEditor({ params }: PageProps<"/admin/[entit
         base={config.base}
         initial={{ base: content.base, translations: content.translations }}
       />
+      {config.create && <DeleteButton action={deleteContentAction.bind(null, entity, id)} what={`aquest ${config.singular}`} />}
     </>
   );
 }

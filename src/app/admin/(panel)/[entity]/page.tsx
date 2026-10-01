@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ENTITIES, isEntity, LOCALE_NAMES, type EntityConfig } from "@/lib/admin/entities";
+import { createContentAction } from "@/app/admin/actions";
 import { listContent } from "@/lib/supabase/admin-content";
 
 export async function generateMetadata({ params }: PageProps<"/admin/[entity]">): Promise<Metadata> {
@@ -20,6 +21,13 @@ export default async function ContentList({ params }: PageProps<"/admin/[entity]
     <>
       <h1 className="font-display text-4xl text-olive">{config.title}</h1>
       <p className="mt-2 max-w-2xl text-lg text-muted">{config.description}</p>
+      {config.create && (
+        <form action={createContentAction.bind(null, entity)} className="mt-6">
+          <button type="submit" className="rounded-full bg-olive px-6 py-3 text-lg font-bold text-paper transition hover:brightness-110">
+            + Afegeix un {config.singular}
+          </button>
+        </form>
+      )}
       <ul className="mt-8 grid gap-2">
         {rows.map((row) => (
           <li key={row.id}>

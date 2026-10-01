@@ -184,7 +184,8 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ **5.3 Posició dels punts del mapa**: es mou un punt clicant o arrossegant sobre el mapa (i amb les fletxes).
 - ✅ **5.4 Fotos**: es canvia la foto principal de seccions, serveis, restaurants, animació, allotjaments i tipus.
 - ✅ **5.5 Registre de canvis**: qui ha canviat què i quan (`/admin/changes`); només s'hi pot afegir.
-- Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos, afegir i treure punts del mapa, opinions,
+- ✅ **5.6 Afegir i esborrar**: punts del mapa (amb tipus i icona), serveis, restaurants i activitats. Neixen en esborrany.
+- Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos, opinions,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.

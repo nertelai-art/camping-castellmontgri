@@ -1,6 +1,6 @@
 -- Proves de les polítiques del registre de canvis. Executar: pnpm db:test
 begin;
-select plan(8);
+select plan(10);
 
 insert into auth.users (id, email) values
   ('00000000-0000-0000-0000-0000000000e1', 'editor@test.local'),
@@ -32,9 +32,18 @@ select lives_ok(
   $$ insert into public.change_log (editor_name, entity, row_id, row_name, action) values ('Editor', 'services', 'x', 'Recepció', 'image') $$,
   'l''editor hi afegeix un canvi, signat per defecte amb el seu compte'
 );
+select throws_ok(
+  $$ insert into public.change_log (editor_name, entity, row_id, row_name, action) values ('Editor', 'services', 'x', 'Recepció', 'hack') $$,
+  '23514', null,
+  'una acció inventada no entra al registre'
+);
+select lives_ok(
+  $$ insert into public.change_log (editor_name, entity, row_id, row_name, action) values ('Editor', 'services', 'x', 'Recepció', 'delete') $$,
+  'crear i esborrar també s''hi apunten'
+);
 select results_eq(
-  $$ select count(*)::int from public.change_log $$,
-  $$ values (2) $$,
+  $$ select count(*)::int from public.change_log where row_id = 'x' $$,
+  $$ values (3) $$,
   'l''editor veu tots els canvis, també els dels altres'
 );
 select throws_ok(
@@ -46,7 +55,7 @@ select throws_ok(
 update public.change_log set editor_name = 'Reescrit';
 delete from public.change_log;
 reset role;
-select is((select count(*)::int from public.change_log), 2, 'ningú pot esborrar el registre des de l''API');
+select is((select count(*)::int from public.change_log where row_id = 'x'), 3, 'ningú pot esborrar el registre des de l''API');
 select is_empty($$ select 1 from public.change_log where editor_name = 'Reescrit' $$, 'ni reescriure''l');
 
 select * from finish();
