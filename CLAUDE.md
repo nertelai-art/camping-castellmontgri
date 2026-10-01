@@ -61,6 +61,11 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
 - **Galeria** (`GalleryField`, entitats amb `gallery`): cada acció (afegir, treure, moure) es desa a l'instant i refresca
   la pàgina del panell amb `revalidatePath`. Treure una foto de la galeria no esborra el fitxer de `media`.
+- **Editor visual** (`/admin/visual`, `VisualShell`): la web pública dins d'un iframe del mateix origen i l'editor al costat.
+  La web no carrega cap codi d'edició: només porta `data-edit="entitat:referència"` als blocs (la referència és la clau
+  de la secció o el `slug`; `resolveRef` en treu l'identificador). És el panell qui, des de fora, hi posa els ressaltats
+  i captura els clics. Els formularis avisen amb l'esdeveniment `admin:saved` i l'iframe es recarrega conservant el scroll.
+  Un bloc nou editable a la web = posar-li `data-edit`. `src/lib/admin/visual.ts` (amb proves) llegeix les marques.
 - **Afegir i esborrar**: només les entitats amb `create` a `entities.ts`. Una fila nova neix en esborrany amb els valors per
   defecte (i un `slug` generat si la taula en demana); esborrar demana dos clics. Totes dues coses queden al registre.
 - **Registre de canvis** (`change_log`, `/admin/changes`): l'apunta l'acció de servidor després de desar, amb la sessió de l'editor.
