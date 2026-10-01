@@ -1,0 +1,27 @@
+{
+  "_note": "Edificis grans del plànol, col·locats a mà llegint la il·lustració (píxels de 3000×1845): centre x/y, amplada w (eix x), fondària d (eix y), alçada h i gir rot en graus. `roof`: tile (teula), wood, grey, flat (terrat blanc). `no_trees`: rectangles [x0,y0,x1,y1] on el detector no ha de plantar arbres (camps d'esport, piscines).",
+  "buildings": [
+    { "name": "panorama-main", "x": 1055, "y": 762, "w": 118, "d": 62, "h": 30, "rot": 0, "roof": "tile" },
+    { "name": "panorama-wing", "x": 1008, "y": 905, "w": 56, "d": 46, "h": 26, "rot": 0, "roof": "wood" },
+    { "name": "panorama-pool-bar", "x": 1092, "y": 1024, "w": 26, "d": 26, "h": 16, "rot": 0, "roof": "wood" },
+    { "name": "ombra-west", "x": 1654, "y": 1215, "w": 92, "d": 110, "h": 34, "rot": 0, "roof": "tile" },
+    { "name": "ombra-mid", "x": 1738, "y": 1262, "w": 100, "d": 95, "h": 30, "rot": 0, "roof": "tile" },
+    { "name": "ombra-north", "x": 1825, "y": 1200, "w": 185, "d": 90, "h": 32, "rot": 0, "roof": "tile" },
+    { "name": "ombra-canopy", "x": 1852, "y": 1262, "w": 134, "d": 32, "h": 14, "rot": 0, "roof": "flat" },
+    { "name": "ombra-slides", "x": 1915, "y": 1330, "w": 34, "d": 34, "h": 44, "rot": 0, "roof": "wood" },
+    { "name": "sanitary-east", "x": 2162, "y": 1255, "w": 76, "d": 60, "h": 22, "rot": 0, "roof": "grey" },
+    { "name": "reception-west", "x": 2520, "y": 1357, "w": 95, "d": 115, "h": 30, "rot": 0, "roof": "tile" },
+    { "name": "reception-east", "x": 2612, "y": 1352, "w": 88, "d": 100, "h": 34, "rot": 0, "roof": "tile" },
+    { "name": "gatehouse", "x": 2615, "y": 1249, "w": 62, "d": 40, "h": 16, "rot": 0, "roof": "flat" },
+    { "name": "church", "x": 1133, "y": 1322, "w": 90, "d": 125, "h": 40, "rot": 0, "roof": "tile" },
+    { "name": "lera", "x": 1223, "y": 1238, "w": 24, "d": 20, "h": 14, "rot": 0, "roof": "wood" },
+    { "name": "sanitary-south", "x": 952, "y": 1494, "w": 120, "d": 62, "h": 24, "rot": 0, "roof": "tile" },
+    { "name": "sanitary-north", "x": 1675, "y": 808, "w": 96, "d": 50, "h": 20, "rot": 25, "roof": "grey" },
+    { "name": "west-arches", "x": 455, "y": 995, "w": 78, "d": 68, "h": 26, "rot": 0, "roof": "tile" },
+    { "name": "sanitary-west", "x": 745, "y": 1235, "w": 50, "d": 60, "h": 20, "rot": 0, "roof": "grey" }
+  ],
+  "no_trees": [
+    [1010, 648, 1204, 760],
+    [1180, 664, 1264, 876]
+  ]
+}
