@@ -7,7 +7,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { startTransition, useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { RichText } from "@/components/rich-text";
 import type { MapViewerHandle } from "@/components/scene/MapScene";
 import { WebGLBoundary } from "@/components/scene/webgl-boundary";
@@ -125,9 +125,18 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       shell.current.style.setProperty("--from-top", `${Math.max(0, r.top)}px`);
       shell.current.style.setProperty("--from-bottom", `${Math.max(0, window.innerHeight - r.bottom)}px`);
     }
-    setStarted(true);
-    setClosing(false);
-    setOpen(true);
+    // Obrir el mapa munta tota la columna i fa créixer el canvas (un fotograma de WebGL a pantalla completa): feina
+    // llarga. Es deixa per a després que el navegador hagi pintat la resposta al clic, i com a transició, perquè la
+    // interacció no s'hi esperi (l'INP d'aquest botó passava de 280 ms).
+    requestAnimationFrame(() =>
+      setTimeout(() =>
+        startTransition(() => {
+          setStarted(true);
+          setClosing(false);
+          setOpen(true);
+        }),
+      ),
+    );
   }, []);
 
   const closeMap = useCallback(() => {
