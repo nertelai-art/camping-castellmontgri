@@ -177,6 +177,10 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
   corregir, han de passar a la base de dades amb l'editor del mapa (fase 5).
 
 ### Fase 5 — Panell d'administració
+- ✅ **5.1 Fonaments**: inici de sessió, rols (RLS), menú i edició de textos en 5 idiomes de seccions, serveis,
+  restaurants i animació, amb avís del que falta traduir i publicat/esborrany. Els canvis es veuen a la web en desar.
+- Pendent: imatges (pujar, triar, retallar), allotjaments i configuració general, editor del mapa, opinions,
+  registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.
 - **Editor del plànol:** clicar sobre la il·lustració per col·locar o moure punts.
