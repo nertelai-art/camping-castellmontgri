@@ -191,6 +191,7 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
   la web es recarrega al mateix punt. Amb vista de mòbil, canvi d'idioma i mode «Navega».
 - ✅ **5.10 En viu**: a l'editor visual el text es veu a la web mentre s'escriu (títols, textos, noms, horaris), i la web
   canvia d'idioma amb la pestanya del formulari. No es desa res fins que es prem «Desa».
+- ✅ **5.11 Ordre de les llistes**: serveis, restaurants, activitats, allotjaments, tipus i opinions es reordenen amb fletxes.
 - Pendent: esborranys a la web de l'editor visual, punts del mapa a
   l'editor visual, retall i punt focal, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.

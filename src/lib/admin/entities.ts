@@ -52,6 +52,8 @@ export type EntityConfig = {
    * Amb `slug`, la taula demana un identificador de text únic i se'n genera un.
    */
   create?: { defaults: Record<string, string | number>; slug?: boolean };
+  /** L'ordre de la llista és el de la web (`sort_order`) i es pot canviar des del panell. */
+  sortable?: boolean;
   /** La foto principal: la columna de la taula base que apunta a `media`. */
   image?: { column: string; label: string };
   /** La galeria de fotos: la taula que lliga el contingut amb `media` (amb `media_id` i `sort_order`). */
@@ -138,6 +140,7 @@ export const ENTITIES = {
     singular: "servei",
     description: "Recepció, supermercat, piscines, bugaderia…",
     table: "services",
+    sortable: true,
     refColumn: "slug",
     create: { defaults: {}, slug: true },
     image: { column: "media_id", label: "Foto" },
@@ -156,6 +159,7 @@ export const ENTITIES = {
     singular: "local",
     description: "Cada restaurant, gelateria i bar, amb el seu horari i la carta.",
     table: "restaurants",
+    sortable: true,
     refColumn: "slug",
     create: { defaults: {}, slug: true },
     image: { column: "cover_media_id", label: "Foto" },
@@ -176,6 +180,7 @@ export const ENTITIES = {
     feminine: true,
     description: "Activitats per a infants, famílies i adults.",
     table: "activities",
+    sortable: true,
     refColumn: "slug",
     create: { defaults: {}, slug: true },
     image: { column: "cover_media_id", label: "Foto" },
@@ -194,6 +199,7 @@ export const ENTITIES = {
     singular: "allotjament",
     description: "Cada model de bungalow, mobil-home i parcel·la, amb les seves característiques.",
     table: "accommodations",
+    sortable: true,
     refColumn: "slug",
     image: { column: "cover_media_id", label: "Foto principal" },
     gallery: { table: "accommodation_media", foreignKey: "accommodation_id", label: "Galeria de fotos" },
@@ -222,6 +228,7 @@ export const ENTITIES = {
     singular: "tipus",
     description: "Els grups en què es presenten els allotjaments: bungalows, mobil-homes, parcel·les…",
     table: "accommodation_categories",
+    sortable: true,
     image: { column: "media_id", label: "Foto" },
     key: "key",
     translations: "accommodation_category_translations",
@@ -257,6 +264,7 @@ export const ENTITIES = {
     feminine: true,
     description: "El que diuen els clients. Cada opinió es mostra en l'idioma en què es va escriure.",
     table: "testimonials",
+    sortable: true,
     key: "id",
     translations: null,
     foreignKey: null,

@@ -1,6 +1,6 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { moveItem } from "@/lib/admin/gallery";
+import { moveItem, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
@@ -23,7 +23,7 @@ const byLocale = (rows: Record<string, unknown>[]): Partial<Translations> =>
 async function readRows(supabase: SupabaseClient, config: EntityConfig, id?: string): Promise<Row[]> {
   if (config.translations === null) {
     const query = supabase.from(config.table).select("*");
-    const { data, error } = await (id === undefined ? query.order("sort_order") : query.eq(config.key, id));
+    const { data, error } = await (id === undefined ? query.order("sort_order").order(config.key) : query.eq(config.key, id));
     if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
     return (data ?? []).map((row) => ({ ...row, translations: [] }));
   }
@@ -34,7 +34,7 @@ async function readRows(supabase: SupabaseClient, config: EntityConfig, id?: str
     return (base.data ?? []).map((row) => ({ ...row, translations: translations.data ?? [] }));
   }
   const query = supabase.from(config.table).select(`*, translations:${config.translations}(*)`);
-  const { data, error } = await (id === undefined ? query.order("sort_order") : query.eq(config.key, id));
+  const { data, error } = await (id === undefined ? query.order("sort_order").order(config.key) : query.eq(config.key, id));
   if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
   return data as unknown as Row[];
 }
@@ -254,4 +254,21 @@ export async function resolveRef(entity: EntityName, ref: string): Promise<strin
   if (!config.refColumn) return ref;
   const { data } = await (await db()).from(config.table).select(config.key).eq(config.refColumn, ref).maybeSingle();
   return data ? String((data as unknown as Record<string, unknown>)[config.key]) : null;
+}
+
+/** Puja o baixa un contingut un lloc dins la seva llista i deixa la llista numerada 0, 1, 2… */
+export async function moveContent(entity: EntityName, id: string, delta: 1 | -1): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.sortable) return "Aquesta llista no es pot reordenar.";
+  const supabase = await db();
+  // El mateix ordre que la llista del panell: per `sort_order` i, si empaten, per la clau.
+  const { data, error } = await supabase.from(config.table).select(`${config.key}, sort_order`).order("sort_order").order(config.key);
+  if (error) return error.message;
+  const rows = data as unknown as Record<string, unknown>[];
+  const ids = rows.map((row) => String(row[config.key]));
+  const changes = renumber(moveItem(ids, id, delta), new Map(rows.map((row) => [String(row[config.key]), row.sort_order as number])));
+  const results = await Promise.all(changes.map(({ item, sort_order }) => supabase.from(config.table).update({ sort_order }).eq(config.key, item).select(config.key)));
+  const failed = results.find((result) => result.error || !result.data?.length);
+  if (failed) return failed.error?.message ?? "No tens permís per reordenar aquesta llista.";
+  return null;
 }
