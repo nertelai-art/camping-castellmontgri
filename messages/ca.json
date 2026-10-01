@@ -84,18 +84,32 @@
     "zoomIn": "Amplia",
     "zoomOut": "Redueix",
     "reset": "Veure'l sencer",
-    "fullscreen": "Pantalla completa",
-    "exitFullscreen": "Surt de pantalla completa",
     "seeAccommodation": "Veure els allotjaments",
     "showOnMap": "Veure al mapa",
-    "hint3d": "Arrossega per moure't · botó dret per girar · Ctrl + roda per ampliar",
+    "hint3d": "Arrossega per moure't · roda per ampliar · botó dret per girar · passa per sobre d'una casa per veure'n el número",
     "rotate": "Gira el mapa",
-    "explore": "Toca per explorar el mapa",
-    "done": "Fet",
-    "close": "Tanca la fitxa",
+    "close": "Tanca",
     "loading": "Carregant el mapa…",
-    "legend": "Què hi ha al càmping",
-    "legendHelp": "Toca qualsevol lloc de la llista i el mapa t'hi porta.",
+    "title": "Mapa del càmping",
+    "open": "Explora el mapa",
+    "allPlaces": "Tots els llocs",
+    "search": {
+      "label": "Busca la teva parcel·la o allotjament",
+      "placeholder": "Número, p. ex. 254",
+      "submit": "Cerca",
+      "notFound": "No hi ha cap parcel·la ni allotjament amb el número {number}."
+    },
+    "plot": {
+      "pitch": "Parcel·la",
+      "lodging": "Allotjament",
+      "operator": "Operador turístic",
+      "legend": "Colors de la maqueta",
+      "about": {
+        "0": "Parcel·la d'acampada. El número és el que hi ha pintat a terra, al mapa i al càmping.",
+        "1": "Allotjament del càmping: bungalow o mobile home que es reserva directament amb nosaltres.",
+        "2": "Allotjament gestionat per un operador turístic. Si has reservat amb un operador, aquest és el número que t'han donat."
+      }
+    },
     "kinds": {
       "all": "Tot",
       "accommodation": "Allotjament",

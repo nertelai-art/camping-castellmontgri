@@ -84,18 +84,32 @@
     "zoomIn": "Ampliar",
     "zoomOut": "Reducir",
     "reset": "Verlo entero",
-    "fullscreen": "Pantalla completa",
-    "exitFullscreen": "Salir de pantalla completa",
     "seeAccommodation": "Ver los alojamientos",
     "showOnMap": "Ver en el mapa",
-    "hint3d": "Arrastra para moverte · botón derecho para girar · Ctrl + rueda para ampliar",
+    "hint3d": "Arrastra para moverte · rueda para ampliar · botón derecho para girar · pasa por encima de una casa para ver su número",
     "rotate": "Girar el mapa",
-    "explore": "Toca para explorar el mapa",
-    "done": "Hecho",
-    "close": "Cerrar la ficha",
+    "close": "Cerrar",
     "loading": "Cargando el mapa…",
-    "legend": "Qué hay en el camping",
-    "legendHelp": "Toca cualquier lugar de la lista y el mapa te lleva hasta él.",
+    "title": "Mapa del camping",
+    "open": "Explora el mapa",
+    "allPlaces": "Todos los lugares",
+    "search": {
+      "label": "Busca tu parcela o alojamiento",
+      "placeholder": "Número, p. ej. 254",
+      "submit": "Buscar",
+      "notFound": "No hay ninguna parcela ni alojamiento con el número {number}."
+    },
+    "plot": {
+      "pitch": "Parcela",
+      "lodging": "Alojamiento",
+      "operator": "Operador turístico",
+      "legend": "Colores de la maqueta",
+      "about": {
+        "0": "Parcela de acampada. El número es el que está pintado en el suelo, en el mapa y en el camping.",
+        "1": "Alojamiento del camping: bungalow o mobile home que se reserva directamente con nosotros.",
+        "2": "Alojamiento gestionado por un operador turístico. Si has reservado con un operador, este es el número que te han dado."
+      }
+    },
     "kinds": {
       "all": "Todo",
       "accommodation": "Alojamiento",

@@ -5,14 +5,23 @@
 import Image from "next/image";
 import { useCallback, useEffect, useImperativeHandle, useRef, useState, type CSSProperties, type Ref } from "react";
 import type { MapViewerHandle } from "@/components/scene/MapScene";
+import { findPlot, type MapPlot } from "@/lib/map/plots";
 import { centerOn, clampView, zoomAt, type View } from "@/lib/map/viewport";
 import type { MapPoint } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
 import { MapMarker } from "./map-marker";
 
-type Props = { image: MediaRef; points: MapPoint[]; selectedId: string | null; onSelect: (point: MapPoint) => void; handle: Ref<MapViewerHandle> };
+type Props = {
+  image: MediaRef;
+  points: MapPoint[];
+  selectedId: string | null;
+  onSelect: (point: MapPoint) => void;
+  selectedPlot: MapPlot | null;
+  plotNames: [string, string, string];
+  handle: Ref<MapViewerHandle>;
+};
 
-export function MapFlat({ image, points, selectedId, onSelect, handle }: Props) {
+export default function MapFlat({ image, points, selectedId, onSelect, selectedPlot, plotNames, handle }: Props) {
   const frame = useRef<HTMLDivElement>(null);
   const layer = useRef<HTMLDivElement>(null);
   const view = useRef<View>({ x: 0, y: 0, z: 1 });
@@ -46,6 +55,7 @@ export function MapFlat({ image, points, selectedId, onSelect, handle }: Props) 
     },
     rotateBy: () => {},
     reset: () => apply({ x: 0, y: 0, z: 1 }, true),
+    findPlot: (query) => findPlot(query),
   }));
 
   // En canviar la mida del marc (girar el mòbil, pantalla completa), la vista es reajusta.
@@ -137,6 +147,14 @@ export function MapFlat({ image, points, selectedId, onSelect, handle }: Props) 
             style={{ left: `${p.x}%`, top: `${p.y}%` }}
           />
         ))}
+        {selectedPlot && (
+          <p
+            className="pointer-events-none absolute z-30 origin-bottom -translate-x-1/2 -translate-y-full whitespace-nowrap rounded-full bg-terra px-3 py-1 text-sm font-bold text-white shadow-lg ring-2 ring-white [scale:calc(1/var(--z))]"
+            style={{ left: `${selectedPlot.x}%`, top: `${selectedPlot.y}%` }}
+          >
+            {plotNames[selectedPlot.kind]} {selectedPlot.n}
+          </p>
+        )}
       </div>
     </div>
   );

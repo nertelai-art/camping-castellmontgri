@@ -84,18 +84,32 @@
     "zoomIn": "Inzoomen",
     "zoomOut": "Uitzoomen",
     "reset": "Hele kaart",
-    "fullscreen": "Volledig scherm",
-    "exitFullscreen": "Volledig scherm sluiten",
     "seeAccommodation": "Bekijk de accommodaties",
     "showOnMap": "Toon op de kaart",
-    "hint3d": "Sleep om te bewegen · rechtermuisknop om te draaien · Ctrl + scroll om te zoomen",
+    "hint3d": "Sleep om te bewegen · scroll om te zoomen · rechtermuisknop om te draaien · beweeg over een huisje voor het nummer",
     "rotate": "Kaart draaien",
-    "explore": "Tik om de kaart te verkennen",
-    "done": "Klaar",
-    "close": "Kaartje sluiten",
+    "close": "Sluiten",
     "loading": "Kaart laden…",
-    "legend": "Wat er op de camping is",
-    "legendHelp": "Tik op een plek in de lijst en de kaart brengt je erheen.",
+    "title": "Kaart van de camping",
+    "open": "Verken de kaart",
+    "allPlaces": "Alle plekken",
+    "search": {
+      "label": "Zoek je plaats of accommodatie",
+      "placeholder": "Nummer, bijv. 254",
+      "submit": "Zoeken",
+      "notFound": "Er is geen plaats of accommodatie met nummer {number}."
+    },
+    "plot": {
+      "pitch": "Kampeerplaats",
+      "lodging": "Accommodatie",
+      "operator": "Touroperator",
+      "legend": "Kleuren van de maquette",
+      "about": {
+        "0": "Kampeerplaats. Het nummer is hetzelfde als op de grond, op de kaart en op de camping.",
+        "1": "Accommodatie van de camping: bungalow of stacaravan die je rechtstreeks bij ons boekt.",
+        "2": "Accommodatie van een touroperator. Heb je via een touroperator geboekt, dan is dit het nummer dat je hebt gekregen."
+      }
+    },
     "kinds": {
       "all": "Alles",
       "accommodation": "Accommodatie",

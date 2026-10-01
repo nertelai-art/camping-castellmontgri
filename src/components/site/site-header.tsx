@@ -22,10 +22,11 @@ function LanguageMenu({ locale, label, flags }: { locale: Locale; label: string;
     <details className="group/lang relative">
       <summary
         aria-label={`${label}: ${LANGUAGE_NAMES[locale]}`}
-        className="flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-line px-3 text-sm font-bold uppercase text-ink transition hover:border-olive [&::-webkit-details-marker]:hidden"
+        className="flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-line px-3 max-sm:gap-1 max-sm:px-2 text-sm font-bold uppercase text-ink transition hover:border-olive [&::-webkit-details-marker]:hidden"
       >
         <Flag media={flag(locale)} />
-        {locale}
+        {/* A mòbil només la bandera: amb el codi, la capçalera no hi cap i tota la pàgina s'eixampla. */}
+        <span className="max-sm:hidden">{locale}</span>
         <svg viewBox="0 0 24 24" className="size-4 text-muted transition group-open/lang:rotate-180" aria-hidden="true">
           <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -91,7 +92,7 @@ export async function SiteHeader({ settings, locale, flags }: { settings: SiteSe
           </ul>
         </nav>
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <LanguageMenu locale={locale} label={t("language")} flags={flags} />
           {book}
           {/* Menú mòbil sense JS: <details> és accessible amb teclat i lector de pantalla. */}

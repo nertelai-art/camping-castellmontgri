@@ -164,11 +164,14 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 
 - Selector d'idioma desplegable amb banderes; «Mapa» al menú.
 - El hero torna a ser una foto: el 3D passa a la secció del mapa.
-- Mapa en 3D: maqueta amb cada arbre i cada casa detectats a la il·lustració (`pnpm map:build`), marcadors amb
-  les icones de la llegenda del dibuix, fitxa amb text gran i llegenda fora del mapa.
+- Mapa en 3D: maqueta amb cada arbre, cada bungalow numerat (806) i els edificis grans, sobre el dibuix net.
+  És el fons de la secció i s'obre a pantalla completa amb cercador de parcel·la (966 números), filtres i fitxa.
+  Els números surten en acostar-s'hi i en passar-hi el ratolí.
 - Piscines i tobogans sense la foto borrosa.
 - Pendent: col·locar els punts que falten (Take Away Ombra, Kids Club, glamping, tendes) i afinar posicions
   des de l'editor del mapa (fase 5).
+- Pendent: els números de parcel·la i els edificis són fitxers del repositori; si el client els ha de poder
+  corregir, han de passar a la base de dades amb l'editor del mapa (fase 5).
 
 ### Fase 5 — Panell d'administració
 - `/admin` amb inici de sessió, rols i registre de canvis.

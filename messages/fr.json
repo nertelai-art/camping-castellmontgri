@@ -84,18 +84,32 @@
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
     "reset": "Voir toute la carte",
-    "fullscreen": "Plein écran",
-    "exitFullscreen": "Quitter le plein écran",
     "seeAccommodation": "Voir les hébergements",
     "showOnMap": "Voir sur la carte",
-    "hint3d": "Glissez pour vous déplacer · clic droit pour tourner · Ctrl + molette pour zoomer",
+    "hint3d": "Glissez pour vous déplacer · molette pour zoomer · clic droit pour tourner · survolez une maison pour voir son numéro",
     "rotate": "Tourner la carte",
-    "explore": "Touchez pour explorer la carte",
-    "done": "Terminé",
-    "close": "Fermer la fiche",
+    "close": "Fermer",
     "loading": "Chargement de la carte…",
-    "legend": "Ce que vous trouverez au camping",
-    "legendHelp": "Touchez un lieu de la liste et la carte vous y emmène.",
+    "title": "Carte du camping",
+    "open": "Explorer la carte",
+    "allPlaces": "Tous les lieux",
+    "search": {
+      "label": "Trouvez votre emplacement ou hébergement",
+      "placeholder": "Numéro, p. ex. 254",
+      "submit": "Chercher",
+      "notFound": "Aucun emplacement ni hébergement ne porte le numéro {number}."
+    },
+    "plot": {
+      "pitch": "Emplacement",
+      "lodging": "Hébergement",
+      "operator": "Tour-opérateur",
+      "legend": "Couleurs de la maquette",
+      "about": {
+        "0": "Emplacement de camping. Le numéro est celui peint au sol, sur la carte et au camping.",
+        "1": "Hébergement du camping : bungalow ou mobil-home à réserver directement auprès de nous.",
+        "2": "Hébergement géré par un tour-opérateur. Si vous avez réservé auprès d'un opérateur, c'est le numéro qu'il vous a donné."
+      }
+    },
     "kinds": {
       "all": "Tout",
       "accommodation": "Hébergement",

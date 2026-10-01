@@ -84,18 +84,32 @@
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
     "reset": "Show whole map",
-    "fullscreen": "Full screen",
-    "exitFullscreen": "Exit full screen",
     "seeAccommodation": "See the accommodation",
     "showOnMap": "Show on map",
-    "hint3d": "Drag to move · right button to rotate · Ctrl + scroll to zoom",
+    "hint3d": "Drag to move · scroll to zoom · right button to rotate · hover a house to see its number",
     "rotate": "Rotate the map",
-    "explore": "Tap to explore the map",
-    "done": "Done",
-    "close": "Close the card",
+    "close": "Close",
     "loading": "Loading the map…",
-    "legend": "What's on the campsite",
-    "legendHelp": "Tap any place in the list and the map takes you there.",
+    "title": "Campsite map",
+    "open": "Explore the map",
+    "allPlaces": "All places",
+    "search": {
+      "label": "Find your pitch or accommodation",
+      "placeholder": "Number, e.g. 254",
+      "submit": "Search",
+      "notFound": "There is no pitch or accommodation with number {number}."
+    },
+    "plot": {
+      "pitch": "Pitch",
+      "lodging": "Accommodation",
+      "operator": "Tour operator",
+      "legend": "Model colours",
+      "about": {
+        "0": "Camping pitch. The number is the one painted on the ground, on the map and on site.",
+        "1": "Campsite accommodation: a bungalow or mobile home booked directly with us.",
+        "2": "Accommodation run by a tour operator. If you booked through an operator, this is the number they gave you."
+      }
+    },
     "kinds": {
       "all": "All",
       "accommodation": "Accommodation",
