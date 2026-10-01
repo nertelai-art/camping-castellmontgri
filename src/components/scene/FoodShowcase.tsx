@@ -6,7 +6,7 @@
 // Sense 3D: tot es mou amb `transform`. Amb moviment reduït, cada pas ensenya les fotos dels seus locals, quietes.
 
 import Image from "next/image";
-import { useRef, type ReactNode } from "react";
+import { useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { MediaRef } from "@/lib/supabase/media";
 import { FOOD_PIECES } from "./food-pieces";
 import { cardPose, foodStep, MAX_CARDS, pieceTiming } from "./phases";
@@ -45,9 +45,16 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
   const table = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
   const animated = !useReducedMotion();
+  // L'animació es fa un sol cop. Quan s'ha vist sencera queda fixada al final (`locked`) i, tan bon punt la
+  // secció surt de pantalla per dalt, deixa de ser una secció alta amb scroll (`done`): en tornar enrere es
+  // troba la taula parada tal com va quedar, sense haver de desfer tot el recorregut.
+  const locked = useRef(false);
+  const heightBefore = useRef(0);
+  const [done, setDone] = useState(false);
+  const scrub = animated && !done;
 
-  useScrollProgress(section, (value) => {
-    if (!animated) return;
+  /** Pinta la taula i els passos tal com toquen a `value` (0-1) del recorregut. */
+  const paint = (value: number) => {
     const active = foodStep(value);
     list.current?.querySelectorAll<HTMLLIElement>(":scope > li").forEach((item, index) => {
       item.dataset.state = index < active ? "done" : index === active ? "active" : "todo";
@@ -62,30 +69,47 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
       card.style.opacity = pose.opacity.toFixed(3);
     });
     table.current?.querySelectorAll<HTMLElement>("[data-piece]").forEach((el) => {
-      const step = Number(el.dataset.step);
-      const order = Number(el.dataset.order);
-      Object.assign(el.style, pieceStyle(value, step, order));
+      Object.assign(el.style, pieceStyle(value, Number(el.dataset.step), Number(el.dataset.order)));
     });
+  };
+
+  useScrollProgress(section, (value) => {
+    if (!animated) return;
+    if (value >= 0.995) locked.current = true;
+    paint(locked.current ? 1 : value);
+    const el = section.current;
+    if (locked.current && !done && el && el.getBoundingClientRect().bottom <= 0) {
+      heightBefore.current = el.offsetHeight;
+      setDone(true);
+    }
   });
 
+  // En plegar la secció, tot el que hi ha a sota puja. Els navegadors amb ancoratge de scroll ho compensen
+  // sols; als que no en tenen (Safari), es corregeix a mà perquè la pàgina no faci un salt.
+  useLayoutEffect(() => {
+    if (!done || !section.current) return;
+    paint(1);
+    if (!CSS.supports("overflow-anchor", "auto")) window.scrollBy(0, section.current.offsetHeight - heightBefore.current);
+  }, [done]);
+
   return (
-    <div ref={section} className={animated ? "relative h-[320vh]" : "relative"}>
-      <div className={animated ? "sticky top-16 flex h-[calc(100svh-4rem)] items-center overflow-clip lg:top-20 lg:h-[calc(100svh-5rem)]" : ""}>
+    <div ref={section} className={scrub ? "relative h-[320vh]" : "relative"}>
+      <div className={scrub ? "sticky top-16 flex h-[calc(100svh-4rem)] items-center overflow-clip lg:top-20 lg:h-[calc(100svh-5rem)]" : ""}>
         <div
           className={`relative mx-auto w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid lg:grid-cols-[1fr_1.1fr] lg:items-center lg:px-8 ${
-            animated ? "flex h-full flex-col justify-center gap-4 lg:h-auto" : "grid"
+            scrub ? "flex h-full flex-col justify-center gap-4 lg:h-auto" : "grid"
           }`}
         >
           {/* A mòbil, dins la pantalla fixa només hi cap el titular i el pas actiu. */}
-          <div className={`relative z-10 ${animated ? "max-lg:[&_header>div]:hidden max-lg:[&_header>p:last-child]:hidden" : ""}`}>
+          <div className={`relative z-10 ${scrub ? "max-lg:[&_header>div]:hidden max-lg:[&_header>p:last-child]:hidden" : ""}`}>
             {heading}
             <ol ref={list} className="mt-6 grid gap-3 lg:mt-8">
               {steps.map((step, i) => (
                 <li
                   key={step.title}
-                  data-state={animated ? (i === 0 ? "active" : "todo") : "done"}
+                  data-state={!animated ? "done" : done ? (i === steps.length - 1 ? "active" : "done") : i === 0 ? "active" : "todo"}
                   className={`rounded-2xl border border-transparent p-4 transition duration-500 data-[state=active]:border-terra/30 data-[state=active]:bg-card data-[state=active]:shadow-[0_18px_40px_-28px_rgb(35_42_20/.6)] ${
-                    animated ? "max-lg:data-[state=done]:hidden max-lg:data-[state=todo]:hidden" : ""
+                    scrub ? "max-lg:data-[state=done]:hidden max-lg:data-[state=todo]:hidden" : ""
                   }`}
                 >
                   <p className="font-display text-2xl text-olive">{step.title}</p>
@@ -122,7 +146,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                     height={piece.size[1]}
                     unoptimized
                     className={`absolute h-auto max-w-none will-change-[transform,opacity] ${piece.shadow ? SHADOW[piece.shadow] : ""}`}
-                    style={{ width: `${piece.width}%`, zIndex: s * 20 + (piece.z ?? order), ...pieceStyle(0, s, order) }}
+                    style={{ width: `${piece.width}%`, zIndex: s * 20 + (piece.z ?? order), ...pieceStyle(done ? 1 : 0, s, order) }}
                   />
                 )),
               )}
@@ -130,7 +154,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                 // Les fotos dels locals només surten als passos que encara no tenen peces.
                 const photos = FOOD_PIECES[s]?.length ? [] : photosOf(step);
                 return photos.map((p, i) => {
-                  const pose = cardPose(0, s, i, photos.length);
+                  const pose = cardPose(done ? 1 : 0, s, i, photos.length);
                   return (
                     <figure
                       key={`${s}-${p.name}`}
@@ -161,7 +185,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
           )}
         </div>
 
-        {animated && (
+        {scrub && (
           <div className="absolute inset-x-0 bottom-0 h-1 bg-terra/10" aria-hidden="true">
             <div ref={bar} className="h-full origin-left scale-x-0 bg-terra" />
           </div>
