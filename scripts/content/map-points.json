@@ -1,5 +1,5 @@
 {
-  "_note": "Punts del plànol col·locats a mà llegint la il·lustració 2026 (planol-camping-castell-montgri_2026.jpg, 3000×1845). x/y en píxels de la imatge: el seed els passa a %. Primera versió: el càmping els corregirà des de l'editor del plànol (fase 5).",
+  "_note": "Punts del plànol col·locats a mà llegint la il·lustració 2026 (planol-camping-castell-montgri_2026.jpg, 3000×1845). x/y en píxels de la imatge: el seed els passa a %. Primera versió: el càmping els corregirà des de l'editor del plànol (fase 5). «icon» és la clau de la icona de la llegenda (src/lib/map/icons.ts); els allotjaments no en tenen.",
   "image": {
     "width": 3000,
     "height": 1845
@@ -9,61 +9,71 @@
       "kind": "service",
       "service": "reception",
       "x": 2655,
-      "y": 1339
+      "y": 1339,
+      "icon": "reception"
     },
     {
       "kind": "service",
       "service": "supermarket",
       "x": 1624,
-      "y": 1191
+      "y": 1191,
+      "icon": "supermarket"
     },
     {
       "kind": "service",
       "service": "laundry-service",
       "x": 2135,
-      "y": 1264
+      "y": 1264,
+      "icon": "laundry"
     },
     {
       "kind": "service",
       "service": "bicycle-rental",
       "x": 2427,
-      "y": 1236
+      "y": 1236,
+      "icon": "bikes"
     },
     {
       "kind": "service",
       "service": "bus-to-the-beach",
       "x": 2473,
-      "y": 1418
+      "y": 1418,
+      "icon": "bus"
     },
     {
       "kind": "service",
       "service": "ev-charging",
       "x": 979,
-      "y": 827
+      "y": 827,
+      "icon": "charging"
     },
     {
       "kind": "service",
       "service": "sanitary",
       "x": 733,
-      "y": 1228
+      "y": 1228,
+      "icon": "sanitary"
     },
     {
       "kind": "service",
       "service": "sanitary",
       "x": 961,
-      "y": 1484
+      "y": 1484,
+      "icon": "sanitary"
     },
     {
       "kind": "service",
       "service": "sanitary",
       "x": 1675,
-      "y": 795
+      "y": 795,
+      "icon": "sanitary"
     },
     {
       "kind": "service",
       "service": "sanitary",
       "x": 2173,
-      "y": 1245
+      "y": 1245,
+      "icon": "sanitary"
     },
     {
       "kind": "pool",
@@ -76,7 +86,8 @@
         "fr": "Piscine Panorama",
         "en": "Panorama pool",
         "nl": "Zwembad Panorama"
-      }
+      },
+      "icon": "pool"
     },
     {
       "kind": "pool",
@@ -89,7 +100,8 @@
         "fr": "Piscine Ombra et toboggans",
         "en": "Ombra pool and slides",
         "nl": "Zwembad Ombra en glijbanen"
-      }
+      },
+      "icon": "waterpark"
     },
     {
       "kind": "pool",
@@ -102,73 +114,85 @@
         "fr": "Piscine de la colline",
         "en": "Hilltop pool",
         "nl": "Zwembad op de heuvel"
-      }
+      },
+      "icon": "pool"
     },
     {
       "kind": "food",
       "restaurant": "restaurante-grill",
       "x": 1101,
-      "y": 786
+      "y": 786,
+      "icon": "grill"
     },
     {
       "kind": "food",
       "restaurant": "take-away-panorama",
       "x": 1103,
-      "y": 742
+      "y": 742,
+      "icon": "snackbar"
     },
     {
       "kind": "food",
       "restaurant": "bar-panorama",
       "x": 1092,
-      "y": 1010
+      "y": 1010,
+      "icon": "pub"
     },
     {
       "kind": "food",
       "restaurant": "heladeria-panorama",
       "x": 1017,
-      "y": 781
+      "y": 781,
+      "icon": "snacks"
     },
     {
       "kind": "food",
       "restaurant": "the-seagull-discopub",
       "x": 1016,
-      "y": 827
+      "y": 827,
+      "icon": "disco"
     },
     {
       "kind": "food",
       "restaurant": "lera",
       "x": 1224,
-      "y": 1225
+      "y": 1225,
+      "icon": "lera"
     },
     {
       "kind": "food",
       "restaurant": "restaurante-ombra",
       "x": 1777,
-      "y": 1233
+      "y": 1233,
+      "icon": "grill"
     },
     {
       "kind": "food",
       "restaurant": "pizzeria",
       "x": 1713,
-      "y": 1297
+      "y": 1297,
+      "icon": "pizza"
     },
     {
       "kind": "food",
       "restaurant": "cafeteria-creperie",
       "x": 1742,
-      "y": 1214
+      "y": 1214,
+      "icon": "cafe"
     },
     {
       "kind": "food",
       "restaurant": "barra-heineken",
       "x": 1808,
-      "y": 1211
+      "y": 1211,
+      "icon": "pub"
     },
     {
       "kind": "food",
       "restaurant": "heladeria-mini-golf",
       "x": 1888,
-      "y": 1263
+      "y": 1263,
+      "icon": "snacks"
     },
     {
       "kind": "leisure",
@@ -181,7 +205,8 @@
         "fr": "Animation Ombra",
         "en": "Ombra entertainment",
         "nl": "Animatie Ombra"
-      }
+      },
+      "icon": "animation"
     },
     {
       "kind": "leisure",
@@ -194,55 +219,64 @@
         "fr": "Scène d'animation",
         "en": "Entertainment stage",
         "nl": "Animatiepodium"
-      }
+      },
+      "icon": "animation"
     },
     {
       "kind": "leisure",
       "service": "play-areas",
       "x": 1972,
-      "y": 1175
+      "y": 1175,
+      "icon": "playground"
     },
     {
       "kind": "leisure",
       "service": "play-areas",
       "x": 1172,
-      "y": 1331
+      "y": 1331,
+      "icon": "playground"
     },
     {
       "kind": "leisure",
       "service": "play-areas",
       "x": 1029,
-      "y": 1512
+      "y": 1512,
+      "icon": "playground"
     },
     {
       "kind": "leisure",
       "activity": "futbol",
       "x": 1111,
-      "y": 687
+      "y": 687,
+      "icon": "football"
     },
     {
       "kind": "leisure",
       "activity": "balonesto",
       "x": 1216,
-      "y": 690
+      "y": 690,
+      "icon": "basket"
     },
     {
       "kind": "leisure",
       "activity": "tenis",
       "x": 1227,
-      "y": 803
+      "y": 803,
+      "icon": "tennis"
     },
     {
       "kind": "leisure",
       "activity": "tiro-al-arco",
       "x": 1231,
-      "y": 737
+      "y": 737,
+      "icon": "archery"
     },
     {
       "kind": "leisure",
       "activity": "petanca",
       "x": 1203,
-      "y": 1289
+      "y": 1289,
+      "icon": "petanca"
     },
     {
       "kind": "leisure",
@@ -254,7 +288,8 @@
         "fr": "Minigolf",
         "en": "Mini golf",
         "nl": "Minigolf"
-      }
+      },
+      "icon": "minigolf"
     },
     {
       "kind": "leisure",
@@ -266,7 +301,8 @@
         "fr": "Ping-pong",
         "en": "Table tennis",
         "nl": "Tafeltennis"
-      }
+      },
+      "icon": "pingpong"
     },
     {
       "kind": "leisure",
@@ -278,7 +314,8 @@
         "fr": "Salle de jeux",
         "en": "Games room",
         "nl": "Speelhal"
-      }
+      },
+      "icon": "arcade"
     },
     {
       "kind": "leisure",
@@ -290,7 +327,8 @@
         "fr": "Poneys",
         "en": "Ponies",
         "nl": "Pony's"
-      }
+      },
+      "icon": "ponies"
     },
     {
       "kind": "accommodation",
@@ -353,7 +391,8 @@
         "fr": "Parking",
         "en": "Car park",
         "nl": "Parkeerplaats"
-      }
+      },
+      "icon": "parking"
     },
     {
       "kind": "landmark",
@@ -365,7 +404,8 @@
         "fr": "Accueil tour-opérateurs",
         "en": "Tour operator reception",
         "nl": "Receptie touroperators"
-      }
+      },
+      "icon": "touroperator"
     },
     {
       "kind": "landmark",
@@ -377,7 +417,8 @@
         "fr": "Distributeur de billets",
         "en": "Cash machine",
         "nl": "Geldautomaat"
-      }
+      },
+      "icon": "atm"
     },
     {
       "kind": "landmark",
@@ -389,7 +430,8 @@
         "fr": "Église",
         "en": "Church",
         "nl": "Kerk"
-      }
+      },
+      "icon": "church"
     },
     {
       "kind": "landmark",
@@ -401,7 +443,8 @@
         "fr": "Belvédère",
         "en": "Viewpoint",
         "nl": "Uitkijkpunt"
-      }
+      },
+      "icon": "viewpoint"
     },
     {
       "kind": "landmark",
@@ -413,7 +456,8 @@
         "fr": "Parc naturel du Montgrí",
         "en": "Montgrí Natural Park",
         "nl": "Natuurpark Montgrí"
-      }
+      },
+      "icon": "naturalpark"
     }
   ]
 }
