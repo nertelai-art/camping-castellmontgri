@@ -66,11 +66,11 @@ export async function Gastronomy({
                       {r.cover && <MediaImage media={r.cover} fill sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 78vw" className="object-cover" />}
                     </div>
                     <div className="flex flex-1 flex-col gap-2 p-5">
-                      <h4 className="font-display text-2xl leading-tight text-olive">{r.name}</h4>
+                      <h4 data-edit-field="name" className="font-display text-2xl leading-tight text-olive">{r.name}</h4>
                       {r.hours && (
                         <p className="text-sm text-muted">
                           <span className="sr-only">{t("hours")}: </span>
-                          {r.hours}
+                          <span data-edit-field="hours">{r.hours}</span>
                         </p>
                       )}
                       <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-2 text-terra">

@@ -34,7 +34,7 @@ export async function Hero({ section, settings, locale }: { section: Section; se
         )}
 
         <div className="relative px-5 pb-10 sm:px-10 sm:pb-14 lg:px-16 lg:pb-20">
-          <h1 id="hero-title" className="font-display max-w-5xl text-[clamp(2.75rem,8vw,7.5rem)] leading-[0.92]">
+          <h1 id="hero-title" data-edit-field="title" className="font-display max-w-5xl text-[clamp(2.75rem,8vw,7.5rem)] leading-[0.92]">
             {words.map((word, i) => (
               <Fragment key={i}>
                 <span className="rise inline-block" style={{ ["--i" as string]: i }}>
@@ -45,7 +45,7 @@ export async function Hero({ section, settings, locale }: { section: Section; se
             ))}
           </h1>
           <div className="rise mt-6 max-w-xl text-lg text-on-dark/90 sm:text-xl" style={{ ["--i" as string]: words.length }}>
-            <RichText text={section.body} />
+            <RichText field="body" text={section.body} />
           </div>
           <div className="rise mt-8 flex flex-wrap items-center gap-4" style={{ ["--i" as string]: words.length + 1 }}>
             {settings.bookingUrl && (

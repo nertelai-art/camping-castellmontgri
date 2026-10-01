@@ -65,6 +65,8 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   La web no carrega cap codi d'edició: només porta `data-edit="entitat:referència"` als blocs (la referència és la clau
   de la secció o el `slug`; `resolveRef` en treu l'identificador). És el panell qui, des de fora, hi posa els ressaltats
   i captura els clics. Els formularis avisen amb l'esdeveniment `admin:saved` i l'iframe es recarrega conservant el scroll.
+  Dins d'un bloc, `data-edit-field="camp"` marca on es pinta cada camp mentre s'escriu (esdeveniment `admin:draft`;
+  `RichText` el posa amb la prop `field`). És només DOM de l'iframe: si es canvia de bloc sense desar, es recarrega.
   Un bloc nou editable a la web = posar-li `data-edit`. `src/lib/admin/visual.ts` (amb proves) llegeix les marques.
 - **Afegir i esborrar**: només les entitats amb `create` a `entities.ts`. Una fila nova neix en esborrany amb els valors per
   defecte (i un `slug` generat si la taula en demana); esborrar demana dos clics. Totes dues coses queden al registre.

@@ -27,8 +27,8 @@ export async function Pools({ pools, slides, onMap, index }: { pools: Service; s
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {blocks.map((s) => (
             <article key={s.slug} data-edit={`services:${s.slug}`} className="reveal rounded-[2rem] bg-[#0a3440]/70 p-7 ring-1 ring-on-dark/25 backdrop-blur-md lg:p-9">
-              <h3 className="font-display text-3xl text-foam">{s.name}</h3>
-              <RichText text={s.description} className="mt-4 grid gap-4 text-lg leading-relaxed text-on-dark [&_strong]:font-bold" />
+              <h3 data-edit-field="name" className="font-display text-3xl text-foam">{s.name}</h3>
+              <RichText field="description" text={s.description} className="mt-4 grid gap-4 text-lg leading-relaxed text-on-dark [&_strong]:font-bold" />
               {onMap.has(`service:${s.slug}`) && <ShowOnMapButton target={{ type: "service", slug: s.slug }} className="mt-6 text-base text-foam" />}
             </article>
           ))}

@@ -32,12 +32,12 @@ export async function ServicesGrid({
                   <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-paper-2 group-open:bg-card">
                     {s.icon && <MediaImage media={s.icon} alt="" className="size-8 dark:invert" />}
                   </span>
-                  <span className="flex-1 font-bold text-ink">{s.name}</span>
+                  <span data-edit-field="name" className="flex-1 font-bold text-ink">{s.name}</span>
                   <span aria-hidden="true" className="text-xl text-olive transition group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                {s.description && <RichText text={s.description} className="grid gap-3 px-4 pb-3 text-sm leading-relaxed text-muted [&_strong]:text-ink" />}
+                {s.description && <RichText field="description" text={s.description} className="grid gap-3 px-4 pb-3 text-sm leading-relaxed text-muted [&_strong]:text-ink" />}
                 {onMap.has(`service:${s.slug}`) && <ShowOnMapButton target={{ type: "service", slug: s.slug }} className="mx-4 mb-4 text-terra" />}
               </details>
             </li>

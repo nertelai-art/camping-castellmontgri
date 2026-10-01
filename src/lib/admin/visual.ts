@@ -2,7 +2,7 @@
 // les llegeix per saber què s'ha clicat. La referència és el que la web ja coneix de cada contingut (la clau d'una
 // secció, el `slug` d'un servei…), no l'identificador intern: el panell el resol en obrir l'editor.
 
-import { ENTITIES, isEntity, type EntityName } from "./entities";
+import { ENTITIES, isEntity, LOCALES, type EntityName, type Locale } from "./entities";
 
 export type EditTarget = { entity: EntityName; ref: string };
 
@@ -37,3 +37,19 @@ export const targetKind = (target: EditTarget) => {
   const { singular } = ENTITIES[target.entity];
   return singular.charAt(0).toUpperCase() + singular.slice(1);
 };
+
+/** Avisos entre els formularis del panell i l'editor visual (esdeveniments de finestra). */
+export const SAVED_EVENT = "admin:saved";
+export const DRAFT_EVENT = "admin:draft";
+export const LOCALE_EVENT = "admin:locale";
+export type DraftDetail = { name: string; value: string };
+
+/**
+ * Un camp del formulari, tal com es diu (`ca.title`, `hours`): de quin idioma és i quin camp del contingut.
+ * Sense idioma, el camp val per a tots.
+ */
+export function parseFieldName(name: string): { locale: Locale | null; field: string } {
+  const at = name.indexOf(".");
+  const prefix = name.slice(0, at);
+  return at > 0 && (LOCALES as readonly string[]).includes(prefix) ? { locale: prefix as Locale, field: name.slice(at + 1) } : { locale: null, field: name };
+}

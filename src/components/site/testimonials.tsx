@@ -25,7 +25,7 @@ export async function Testimonials({ testimonials, index }: { testimonials: Test
                   “
                 </span>
                 <blockquote lang={item.locale}>
-                  {item.title && <p className="font-display text-2xl text-olive">{item.title}</p>}
+                  {item.title && <p data-edit-field="title" className="font-display text-2xl text-olive">{item.title}</p>}
                   {paragraphs(item.quote).map((p, i) => (
                     <p key={i} className="mt-3 leading-relaxed text-muted">
                       {p}
@@ -33,7 +33,7 @@ export async function Testimonials({ testimonials, index }: { testimonials: Test
                   ))}
                 </blockquote>
                 <figcaption className="mt-6 text-sm font-bold text-ink">
-                  {item.author}
+                  <span data-edit-field="author">{item.author}</span>
                   {item.source && <span className="font-normal text-muted"> · {t("via", { source: item.source })}</span>}
                 </figcaption>
               </figure>
