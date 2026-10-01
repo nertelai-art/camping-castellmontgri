@@ -68,6 +68,9 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   Dins d'un bloc, `data-edit-field="camp"` marca on es pinta cada camp mentre s'escriu (esdeveniment `admin:draft`;
   `RichText` el posa amb la prop `field`). És només DOM de l'iframe: si es canvia de bloc sense desar, es recarrega.
   Un bloc nou editable a la web = posar-li `data-edit`. `src/lib/admin/visual.ts` (amb proves) llegeix les marques.
+- **Llistes** (`ContentTable`): una taula amb una columna per cada camp base curt (`tableColumns`); cada cel·la es desa sola
+  amb `updateFieldAction`, que valida amb les mateixes regles que el formulari (`parseBaseValue`) i només accepta columnes
+  que la taula ensenya. `groupBy` agrupa la llista (allotjaments per tipus) i llavors l'ordre es mou dins del grup.
 - **Afegir i esborrar**: només les entitats amb `create` a `entities.ts`. Una fila nova neix en esborrany amb els valors per
   defecte (i un `slug` generat si la taula en demana); esborrar demana dos clics. Totes dues coses queden al registre.
 - **Registre de canvis** (`change_log`, `/admin/changes`): l'apunta l'acció de servidor després de desar, amb la sessió de l'editor.

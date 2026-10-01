@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { displayName, ENTITIES, fieldName, LOCALES, missingLocales, parseContent, toList } from "./entities";
+import { displayName, ENTITIES, fieldName, LOCALES, missingLocales, parseBaseValue, parseContent, tableColumns, toList } from "./entities";
 
 const form = (entries: Record<string, string>) => {
   const data = new FormData();
@@ -89,6 +89,30 @@ describe("formulari de contingut", () => {
     expect(displayName(ENTITIES.testimonials, {}, "id-1", { author: "Marta" })).toBe("Marta");
     expect(displayName(ENTITIES.testimonials, {}, "id-1", { author: "" })).toBe("Sense nom");
     expect(missingLocales(ENTITIES.testimonials, {})).toEqual([]);
+  });
+
+  it("la taula ensenya els camps curts, no els textos llargs ni la posició", () => {
+    expect(tableColumns(ENTITIES.accommodations).map((f) => f.name)).toEqual(["capacity_max", "size_m2", "bedrooms", "bathrooms", "air_conditioning", "is_accessible", "status"]);
+    expect(tableColumns(ENTITIES.map_points).map((f) => f.name)).toEqual(["kind", "icon", "status"]);
+    expect(tableColumns(ENTITIES.testimonials).map((f) => f.name)).not.toContain("quote");
+  });
+
+  it("una cel·la de la taula es valida com el formulari, camp a camp", () => {
+    expect(parseBaseValue(ENTITIES.accommodations, "size_m2", "32,5")).toEqual({ ok: true, value: { size_m2: 32.5 } });
+    expect(parseBaseValue(ENTITIES.accommodations, "bedrooms", "")).toEqual({ ok: true, value: { bedrooms: null } });
+    expect(parseBaseValue(ENTITIES.accommodations, "air_conditioning", true)).toEqual({ ok: true, value: { air_conditioning: true } });
+    expect(parseBaseValue(ENTITIES.accommodations, "air_conditioning", false)).toEqual({ ok: true, value: { air_conditioning: false } });
+    expect(parseBaseValue(ENTITIES.accommodations, "status", "published")).toEqual({ ok: true, value: { status: "published" } });
+    expect(parseBaseValue(ENTITIES.accommodations, "capacity_max", "molts")).toEqual({ ok: false, errors: ["Persones (màxim): ha de ser un número sencer."] });
+    expect(parseBaseValue(ENTITIES.accommodations, "status", "archived")).toEqual({ ok: false, errors: ["Estat: valor desconegut."] });
+  });
+
+  it("des de la taula no es pot tocar una columna que no hi surt", () => {
+    const refused = { ok: false, errors: ["Aquest camp no es pot canviar des de la taula."] };
+    expect(parseBaseValue(ENTITIES.accommodations, "category_key", "x")).toEqual(refused);
+    expect(parseBaseValue(ENTITIES.accommodations, "id", "x")).toEqual(refused);
+    expect(parseBaseValue(ENTITIES.map_points, "x", "10")).toEqual(refused);
+    expect(parseBaseValue(ENTITIES.testimonials, "quote", "x")).toEqual(refused);
   });
 
   it("una llista és una línia per element, sense línies buides", () => {
