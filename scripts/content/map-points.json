@@ -1,5 +1,5 @@
 {
-  "_note": "Punts del plànol col·locats a mà llegint la il·lustració 2026 (planol-camping-castell-montgri_2026.jpg, 3000×1845). x/y en píxels de la imatge: el seed els passa a %. Primera versió: el càmping els corregirà des de l'editor del plànol (fase 5). «icon» és la clau de la icona de la llegenda (src/lib/map/icons.ts); els allotjaments no en tenen.",
+  "_note": "Punts del plànol col·locats a mà llegint la il·lustració 2026 (planol-camping-castell-montgri_2026.jpg, 3000×1845). x/y en píxels de la imatge: el seed els passa a %. Primera versió: el càmping els corregirà des de l'editor del plànol (fase 5). «icon» és la clau de la icona de la llegenda (src/lib/map/icons.ts); els allotjaments no en tenen. Els allotjaments del càmping no tenen punt: són les cases vermelles de la maqueta (map-plots.json); només les parcel·les tenen punt per tipus.",
   "image": {
     "width": 3000,
     "height": 1845
@@ -329,18 +329,6 @@
         "nl": "Pony's"
       },
       "icon": "ponies"
-    },
-    {
-      "kind": "accommodation",
-      "category": "mobile-home",
-      "x": 1270,
-      "y": 800
-    },
-    {
-      "kind": "accommodation",
-      "category": "mobile-home",
-      "x": 1760,
-      "y": 860
     },
     {
       "kind": "accommodation",

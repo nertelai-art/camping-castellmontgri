@@ -32,7 +32,6 @@
     "guestsAny": "Indifférent",
     "guestsMin": "{count}+",
     "empty": "Aucun hébergement avec ces filtres.",
-    "details": "Voir",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# chambre} other {# chambres}}",
@@ -109,6 +108,7 @@
       }
     },
     "onMapOnly": "Vous le trouverez indiqué sur la carte.",
+    "lodgingHint": "Les hébergements du camping sont les maisons au toit rouge. Survolez-les pour voir leur numéro, ou cherchez le vôtre.",
     "kinds": {
       "accommodation": "Hébergement",
       "food": "Manger et boire",

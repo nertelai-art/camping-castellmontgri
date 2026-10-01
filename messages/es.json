@@ -32,7 +32,6 @@
     "guestsAny": "Cualquiera",
     "guestsMin": "{count}+",
     "empty": "Ningún alojamiento con estos filtros.",
-    "details": "Verlo",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# habitación} other {# habitaciones}}",
@@ -109,6 +108,7 @@
       }
     },
     "onMapOnly": "Lo encontrarás marcado en el mapa.",
+    "lodgingHint": "Los alojamientos del camping son las casas de tejado rojo. Pasa por encima para ver su número, o busca el tuyo en el buscador.",
     "kinds": {
       "accommodation": "Alojamiento",
       "food": "Comer y beber",

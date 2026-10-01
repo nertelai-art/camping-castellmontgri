@@ -56,6 +56,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   const [plot, setPlot] = useState<MapPlot | null>(null);
   const [query, setQuery] = useState("");
   const [notFound, setNotFound] = useState<string | null>(null);
+  const [lodgingHint, setLodgingHint] = useState(false);
 
   const is3d = mode === "3d";
   const visible = useMemo(() => points.filter((p) => openKind === null || p.kind === openKind), [points, openKind]);
@@ -131,6 +132,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       setPlot(null);
       setNotFound(null);
       setOpenKind(null);
+      setLodgingHint(false);
       viewer.current?.reset();
       opener.current?.focus({ preventScroll: true });
     };
@@ -144,9 +146,14 @@ export function MapExplorer({ image, points, places, heading }: Props) {
     const onFocus = (e: Event) => {
       const target = (e as CustomEvent<MapTarget>).detail;
       const point = points.find((p) => p.target && targetKey(p.target) === targetKey(target));
-      if (!point) return;
       openMap();
-      select(point);
+      if (point) return select(point);
+      // Un model d'allotjament no té un lloc únic: s'ensenya tot el mapa i s'explica quines cases són les del càmping.
+      setSelectedId(null);
+      setPlot(null);
+      setOpenKind(null);
+      setLodgingHint(true);
+      viewer.current?.reset();
     };
     window.addEventListener(MAP_FOCUS_EVENT, onFocus);
     return () => window.removeEventListener(MAP_FOCUS_EVENT, onFocus);
@@ -288,6 +295,13 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                 </div>
               )}
             </form>
+
+            {lodgingHint && (
+              <p className="map-rise mt-4 flex gap-3 rounded-2xl bg-band-terra p-4 text-base leading-relaxed text-on-dark" style={rise(2)}>
+                <span aria-hidden="true" className="mt-1 size-4 shrink-0 rounded ring-2 ring-on-dark/70" style={{ background: PLOT_SWATCH[1] }} />
+                {t("lodgingHint")}
+              </p>
+            )}
 
             {/* Llocs: un desplegable per tipus. El que és obert és el que es veu al mapa. */}
             <div className="mt-4 grid gap-2">

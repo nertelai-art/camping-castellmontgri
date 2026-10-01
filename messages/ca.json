@@ -32,7 +32,6 @@
     "guestsAny": "Qualsevol",
     "guestsMin": "{count}+",
     "empty": "Cap allotjament amb aquests filtres.",
-    "details": "Veure'l",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# habitació} other {# habitacions}}",
@@ -109,6 +108,7 @@
       }
     },
     "onMapOnly": "El trobaràs marcat al mapa.",
+    "lodgingHint": "Els allotjaments del càmping són les cases de teulada vermella. Passa-hi per sobre per veure'n el número, o busca el teu al cercador.",
     "kinds": {
       "accommodation": "Allotjament",
       "food": "Menjar i beure",

@@ -32,7 +32,6 @@
     "guestsAny": "Any",
     "guestsMin": "{count}+",
     "empty": "No accommodation matches these filters.",
-    "details": "View",
     "people": "{count} guests",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# bedroom} other {# bedrooms}}",
@@ -109,6 +108,7 @@
       }
     },
     "onMapOnly": "You will find it marked on the map.",
+    "lodgingHint": "The campsite's own accommodation is the red-roofed houses. Hover over one to see its number, or search for yours.",
     "kinds": {
       "accommodation": "Accommodation",
       "food": "Food & drink",

@@ -32,7 +32,6 @@
     "guestsAny": "Alle",
     "guestsMin": "{count}+",
     "empty": "Geen accommodatie met deze filters.",
-    "details": "Bekijken",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# slaapkamer} other {# slaapkamers}}",
@@ -109,6 +108,7 @@
       }
     },
     "onMapOnly": "Je vindt het gemarkeerd op de kaart.",
+    "lodgingHint": "De accommodaties van de camping zijn de huisjes met een rood dak. Beweeg eroverheen voor het nummer, of zoek het jouwe.",
     "kinds": {
       "accommodation": "Accommodatie",
       "food": "Eten & drinken",
