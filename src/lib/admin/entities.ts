@@ -3,6 +3,8 @@
 // un camp editable és afegir-lo aquí.
 
 import { routing } from "@/i18n/routing";
+import { MAP_ICONS, type MapIcon } from "@/lib/map/icons";
+import { MAP_KINDS, type MapKind } from "@/lib/map/kinds";
 
 export const LOCALES = routing.locales;
 export type Locale = (typeof LOCALES)[number];
@@ -11,11 +13,13 @@ export const LOCALE_NAMES: Record<Locale, string> = { es: "Castellà", ca: "Cata
 /** `list`: una línia per element; es desa com a llista (text[]). */
 type TextField = { name: string; label: string; help?: string; required?: boolean; long?: boolean; list?: boolean };
 type BaseField =
-  | { name: string; label: string; help?: string; kind: "text"; required?: boolean }
-  | { name: string; label: string; help?: string; kind: "number"; decimal?: boolean }
+  | { name: string; label: string; help?: string; kind: "text"; required?: boolean; long?: boolean }
+  | { name: string; label: string; help?: string; kind: "number"; decimal?: boolean; min?: number; max?: number }
   | { name: string; label: string; help?: string; kind: "date" }
   /** Un punt sobre el mapa: ocupa les columnes `x` i `y` (en % de la il·lustració). */
   | { name: "x"; label: string; help?: string; kind: "position" }
+  /** Una tria d'una llista tancada. Amb `optional`, «cap» es desa com a sense valor. */
+  | { name: string; label: string; help?: string; kind: "select"; options: readonly { value: string; label: string }[]; optional?: boolean }
   | { name: string; label: string; help?: string; kind: "boolean" }
   | { name: string; label: string; help?: string; kind: "status" };
 
@@ -23,11 +27,16 @@ export type EntityConfig = {
   /** Com es diu al menú i als títols. */
   title: string;
   singular: string;
+  /** El nom és femení: «una activitat», «aquesta opinió». */
+  feminine?: boolean;
   description: string;
   table: string;
   /** Columna que identifica la fila (i que va a l'URL). */
   key: string;
-  translations: string;
+  /** Taula de traduccions. `null` si el contingut s'escriu en un sol idioma (les opinions) i tot són camps base. */
+  translations: string | null;
+  /** Sense traduccions, el camp base que fa de nom a les llistes. */
+  nameField?: string;
   /** Columna de la taula de traduccions que apunta a la base. `null` si la taula base només té una fila. */
   foreignKey: string | null;
   /** Si la taula només té una fila, el seu identificador: la llista hi porta directament. */
@@ -36,6 +45,11 @@ export type EntityConfig = {
   text: readonly TextField[];
   /** Camps que no depenen de l'idioma. */
   base: readonly BaseField[];
+  /**
+   * Si se'n poden afegir i esborrar des del panell: els valors amb què neix una fila nova (sempre en esborrany).
+   * Amb `slug`, la taula demana un identificador de text únic i se'n genera un.
+   */
+  create?: { defaults: Record<string, string | number>; slug?: boolean };
   /** La foto principal: la columna de la taula base que apunta a `media`. */
   image?: { column: string; label: string };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
@@ -44,12 +58,62 @@ export type EntityConfig = {
 
 const STATUS: BaseField = { name: "status", label: "Estat", kind: "status", help: "Només el que està publicat es veu a la web." };
 const HOURS: BaseField = { name: "hours", label: "Horari", kind: "text", help: "Tal com s'ha de veure, p. ex. «18:00 - 23:00h»." };
+const KIND_NAMES: Record<MapKind, string> = {
+  accommodation: "Allotjament",
+  food: "Menjar i beure",
+  pool: "Piscines",
+  leisure: "Lleure i esport",
+  service: "Servei",
+  landmark: "Lloc d'interès",
+};
+const ICON_NAMES: Record<MapIcon, string> = {
+  reception: "Recepció",
+  parking: "Aparcament",
+  bus: "Parada de bus",
+  charging: "Càrrega de vehicles",
+  animation: "Animació",
+  recycling: "Reciclatge",
+  emergency: "Emergències",
+  atm: "Caixer",
+  dump: "Buidatge d'autocaravanes",
+  carwash: "Rentat de cotxes",
+  church: "Església",
+  sanitary: "Sanitaris",
+  supermarket: "Supermercat",
+  laundry: "Bugaderia",
+  dishwashing: "Rentaplats",
+  disco: "Discoteca",
+  arcade: "Sala de jocs",
+  waterpark: "Parc aquàtic",
+  pool: "Piscina",
+  grill: "Grill",
+  cafe: "Cafeteria",
+  snackbar: "Snack-bar",
+  pub: "Pub",
+  lera: "L'Era",
+  snacks: "Menjar per emportar",
+  pizza: "Pizzeria",
+  ponies: "Ponis",
+  pingpong: "Ping-pong",
+  minigolf: "Minigolf",
+  tennis: "Tennis",
+  basket: "Bàsquet",
+  football: "Futbol",
+  playground: "Parc infantil",
+  petanca: "Petanca",
+  archery: "Tir amb arc",
+  bikes: "Bicicletes",
+  naturalpark: "Parc natural",
+  touroperator: "Operador turístic",
+  viewpoint: "Mirador",
+};
 const RICH = "Pots separar paràgrafs amb una línia en blanc i posar **negreta** entre dos asteriscs.";
 
 export const ENTITIES = {
   sections: {
     title: "Seccions de la portada",
     singular: "secció",
+    feminine: true,
     description: "Els títols i textos de cada bloc de la pàgina principal.",
     table: "sections",
     image: { column: "media_id", label: "Foto de la secció" },
@@ -70,6 +134,7 @@ export const ENTITIES = {
     singular: "servei",
     description: "Recepció, supermercat, piscines, bugaderia…",
     table: "services",
+    create: { defaults: {}, slug: true },
     image: { column: "media_id", label: "Foto" },
     key: "id",
     translations: "service_translations",
@@ -86,6 +151,7 @@ export const ENTITIES = {
     singular: "local",
     description: "Cada restaurant, gelateria i bar, amb el seu horari i la carta.",
     table: "restaurants",
+    create: { defaults: {}, slug: true },
     image: { column: "cover_media_id", label: "Foto" },
     key: "id",
     translations: "restaurant_translations",
@@ -101,8 +167,10 @@ export const ENTITIES = {
   activities: {
     title: "Animació",
     singular: "activitat",
+    feminine: true,
     description: "Activitats per a infants, famílies i adults.",
     table: "activities",
+    create: { defaults: {}, slug: true },
     image: { column: "cover_media_id", label: "Foto" },
     key: "id",
     translations: "activity_translations",
@@ -165,8 +233,37 @@ export const ENTITIES = {
     translations: "map_point_translations",
     foreignKey: "map_point_id",
     text: [{ name: "label", label: "Nom", required: true }],
-    base: [{ name: "x", label: "On és", kind: "position", help: "Clica sobre el mapa o arrossega el punt. Amb les fletxes del teclat s'afina." }, STATUS],
+    base: [
+      { name: "x", label: "On és", kind: "position", help: "Clica sobre el mapa o arrossega el punt. Amb les fletxes del teclat s'afina." },
+      { name: "kind", label: "Tipus de lloc", kind: "select", options: MAP_KINDS.map((value) => ({ value, label: KIND_NAMES[value] })), help: "Decideix el color del punt i a quin grup surt a la llista del mapa." },
+      { name: "icon", label: "Icona", kind: "select", optional: true, options: MAP_ICONS.map((value) => ({ value, label: ICON_NAMES[value] })), help: "Sense icona, el punt es pinta amb el color del tipus." },
+      STATUS,
+    ],
+    create: { defaults: { x: 50, y: 50, kind: "service" } },
     tags: ["map_points"],
+  },
+  testimonials: {
+    title: "Opinions",
+    singular: "opinió",
+    feminine: true,
+    description: "El que diuen els clients. Cada opinió es mostra en l'idioma en què es va escriure.",
+    table: "testimonials",
+    key: "id",
+    translations: null,
+    foreignKey: null,
+    nameField: "author",
+    text: [],
+    base: [
+      { name: "author", label: "Qui ho diu", kind: "text", required: true },
+      { name: "title", label: "Títol", kind: "text" },
+      { name: "quote", label: "Opinió", kind: "text", required: true, long: true },
+      { name: "rating", label: "Estrelles (1 a 5)", kind: "number", min: 1, max: 5 },
+      { name: "source", label: "D'on surt", kind: "text", help: "P. ex. «Google» o «Tripadvisor»." },
+      { name: "locale", label: "Idioma de l'opinió", kind: "select", options: LOCALES.map((value) => ({ value, label: LOCALE_NAMES[value] })) },
+      STATUS,
+    ],
+    create: { defaults: { author: "", quote: "", locale: "es" } },
+    tags: ["testimonials"],
   },
   site_settings: {
     title: "Dades generals",
@@ -240,7 +337,14 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
       if (raw === "") base[field.name] = null;
       else if (!Number.isFinite(value) || value < 0 || (!field.decimal && !Number.isInteger(value))) {
         errors.push(`${field.label}: ha de ser un número${field.decimal ? "" : " sencer"}.`);
+      } else if (value < (field.min ?? value) || value > (field.max ?? value)) {
+        errors.push(`${field.label}: ha de ser entre ${field.min} i ${field.max}.`);
       } else base[field.name] = value;
+    } else if (field.kind === "select") {
+      const value = text(field.name);
+      if (value === "" && field.optional) base[field.name] = null;
+      else if (!field.options.some((option) => option.value === value)) errors.push(`${field.label}: valor desconegut.`);
+      else base[field.name] = value;
     } else if (field.kind === "position") {
       for (const axis of ["x", "y"] as const) {
         const raw = text(axis);
@@ -263,7 +367,7 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
   }
 
   const translations = {} as Translations;
-  for (const locale of LOCALES) {
+  for (const locale of config.translations ? LOCALES : []) {
     const values: Record<string, string> = {};
     for (const field of config.text) values[field.name] = text(fieldName(locale, field.name));
     const empty = Object.values(values).every((v) => v === "");
@@ -281,16 +385,19 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
 
 /** Idiomes que encara no tenen el camp principal: es marquen al formulari i a les llistes. */
 /** Com es diu un contingut a les llistes i al registre: el camp principal en català o, si no, en castellà. */
-export function displayName(config: EntityConfig, translations: Partial<Translations>, fallback: string): string {
+export function displayName(config: EntityConfig, translations: Partial<Translations>, fallback: string, base: Record<string, unknown> = {}): string {
   if (config.single) return config.title;
+  if (config.nameField) return String(base[config.nameField] || "Sense nom");
   const main = config.text[0]!.name;
-  return translations.ca?.[main] || translations.es?.[main] || fallback;
+  // Un identificador generat (uuid) no diu res a ningú; una clau escrita a mà («hero», «pools») sí.
+  return translations.ca?.[main] || translations.es?.[main] || (config.key === "id" ? "Sense nom" : fallback);
 }
 
 /** Un camp de llista, tal com s'escriu al formulari (una línia per element), convertit en llista. */
 export const toList = (value: string) => value.split("\n").map((line) => line.trim()).filter(Boolean);
 
 export function missingLocales(config: EntityConfig, translations: Partial<Translations>): Locale[] {
+  if (!config.translations) return [];
   const main = config.text[0]!.name;
   return LOCALES.filter((locale) => !translations[locale]?.[main]);
 }
