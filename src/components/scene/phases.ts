@@ -1,5 +1,5 @@
-// Fases de les escenes guiades pel scroll (0-1). Sense three.js: l'HTML les llegeix per saber
-// quin pas està actiu, i les escenes 3D per saber què han de moure.
+// Fases de les animacions guiades pel scroll (0-1). Funcions pures: l'HTML les llegeix per saber quin pas
+// està actiu i on ha de ser cada peça en cada moment.
 
 export type Range = readonly [number, number];
 
@@ -8,29 +8,76 @@ export const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 export const range = (p: number, [a, b]: Range) => clamp01((p - a) / (b - a));
 
 export const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
-export const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-export function easeOutBounce(t: number) {
-  const n = 7.5625;
-  const d = 2.75;
-  if (t < 1 / d) return n * t * t;
-  if (t < 2 / d) return n * (t -= 1.5 / d) * t + 0.75;
-  if (t < 2.5 / d) return n * (t -= 2.25 / d) * t + 0.9375;
-  return n * (t -= 2.625 / d) * t + 0.984375;
-}
+export const easeInCubic = (t: number) => t * t * t;
 
-/** Gastronomia: tres objectes que entren i surten com en un carrusel. */
-export const FOOD_PHASES = {
-  paella: [0, 0.4],
-  icecream: [0.33, 0.72],
-  drink: [0.66, 1],
-} as const satisfies Record<string, Range>;
+/** Gastronomia: tres passos (menjar, gelats, beure). Cada pas ocupa un tram del scroll i se solapa amb el següent. */
+export const FOOD_PHASES = [
+  [0, 0.4],
+  [0.33, 0.72],
+  [0.66, 1],
+] as const satisfies readonly Range[];
 
-export const FOOD_STEPS = ["paella", "icecream", "drink"] as const;
-export type FoodStep = (typeof FOOD_STEPS)[number];
-
-/** Pas actiu de la gastronomia: el de la fase que ocupa el centre en aquell moment. */
+/** Pas actiu de la gastronomia: el que ocupa la taula en aquell moment. */
 export function foodStep(p: number): number {
   if (p < 0.365) return 0;
   if (p < 0.69) return 1;
   return 2;
+}
+
+/** On queda cada foto sobre la taula, segons quantes n'hi ha: centre (x, y) i amplada en % de la taula, i gir en graus. */
+const LAYOUTS: Record<number, readonly (readonly [number, number, number, number])[]> = {
+  1: [[50, 50, 62, -3]],
+  2: [
+    [35, 44, 50, -5],
+    [67, 60, 46, 4],
+  ],
+  3: [
+    [31, 38, 46, -5],
+    [69, 36, 40, 4],
+    [52, 70, 44, -2],
+  ],
+  4: [
+    [29, 33, 42, -5],
+    [71, 30, 38, 4],
+    [33, 72, 38, 3],
+    [70, 71, 42, -3],
+  ],
+};
+export const MAX_CARDS = 4;
+
+// Cada foto entra per un costat diferent, com qui para taula.
+const ENTRIES = [
+  [-55, -30, -22],
+  [55, -40, 20],
+  [-50, 45, 16],
+  [55, 40, -18],
+] as const;
+
+export type CardPose = { x: number; y: number; width: number; rotate: number; scale: number; opacity: number };
+
+/**
+ * Posició d'una foto de la gastronomia en un moment del scroll. `x`, `y` i `width` són % de la taula
+ * (x i y, el centre de la foto). Entra esglaonada al principi del seu pas (apareixent mentre s'acosta), s'hi
+ * queda, i marxa cap amunt esvaint-se quan comença el pas següent; l'últim pas no marxa.
+ */
+export function cardPose(progress: number, step: number, index: number, count: number): CardPose {
+  const layout = LAYOUTS[Math.min(MAX_CARDS, Math.max(1, count))]!;
+  const [x, y, width, rotate] = layout[index % layout.length]!;
+  const local = range(progress, FOOD_PHASES[step]!);
+  // El primer pas ja és a taula quan s'hi arriba: no s'ha d'esperar res per veure la primera foto.
+  const enterStart = step === 0 ? -1 : 0.05 + index * 0.07;
+  const entered = easeOutCubic(clamp01((local - enterStart) / 0.38));
+  const last = step === FOOD_PHASES.length - 1;
+  // Fins i tot l'última foto (índex 3) ha d'haver marxat del tot quan s'acaba el pas: 0,74 + 0,09 + 0,17 = 1.
+  const left = last ? 0 : easeInCubic(clamp01((local - (0.74 + index * 0.03)) / 0.17));
+  const [fromX, fromY, fromRotate] = ENTRIES[index % ENTRIES.length]!;
+  const away = 1 - entered;
+  return {
+    x: x + fromX * away,
+    y: y + fromY * away - 60 * left,
+    width,
+    rotate: rotate + fromRotate * away + 14 * left * (index % 2 ? 1 : -1),
+    scale: 0.7 + 0.3 * entered - 0.15 * left,
+    opacity: Math.min(1, entered * 1.6) * (1 - left),
+  };
 }
