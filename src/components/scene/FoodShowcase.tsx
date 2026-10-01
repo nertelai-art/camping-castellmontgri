@@ -1,13 +1,15 @@
 "use client";
 
-// Secció de gastronomia: text i passos a l'esquerra i, a la dreta, la «taula»: les fotos reals dels
-// restaurants, gelateries i bars del càmping s'hi van col·locant a mesura que es baixa (guiat pel scroll).
-// Sense 3D: són imatges que es mouen amb `transform`. Amb moviment reduït, cada pas ensenya les seves fotos quietes.
+// Secció de gastronomia: text i passos a l'esquerra i, a la dreta, la «taula», on cada plat es munta peça a
+// peça a mesura que es baixa (guiat pel scroll): la paella buida, l'arròs, el marisc; el cucurutxo i les boles.
+// Les peces són imatges retallades (food-pieces.ts). Un pas que encara no en té ensenya les fotos dels seus locals.
+// Sense 3D: tot es mou amb `transform`. Amb moviment reduït, cada pas ensenya les fotos dels seus locals, quietes.
 
 import Image from "next/image";
 import { useRef, type ReactNode } from "react";
 import type { MediaRef } from "@/lib/supabase/media";
-import { cardPose, foodStep, MAX_CARDS } from "./phases";
+import { FOOD_PIECES } from "./food-pieces";
+import { cardPose, foodStep, MAX_CARDS, pieceTiming } from "./phases";
 import { useReducedMotion, useScrollProgress } from "./scroll-scene";
 
 export type FoodStepContent = { title: string; places: { name: string; image: MediaRef | null }[] };
@@ -16,6 +18,21 @@ type Props = { heading: ReactNode; steps: FoodStepContent[]; srDescription: stri
 
 /** Les fotos que surten a taula a cada pas: les que tenen imatge, fins a `MAX_CARDS`. */
 const photosOf = (step: FoodStepContent) => step.places.filter((p): p is { name: string; image: MediaRef } => p.image !== null).slice(0, MAX_CARDS);
+
+/** Estil d'una peça en un moment del scroll: ve del seu origen girant i apareixent, i marxa cap amunt esvaint-se. */
+function pieceStyle(progress: number, step: number, order: number) {
+  const pieces = FOOD_PIECES[step]!;
+  const piece = pieces[order]!;
+  const { entered, left } = pieceTiming(progress, step, order, pieces.length);
+  const away = 1 - entered;
+  const [dx, dy, spin] = piece.from;
+  return {
+    left: `${(piece.x + dx * away).toFixed(2)}%`,
+    top: `${(piece.y + dy * away - 40 * left).toFixed(2)}%`,
+    transform: `translate(-50%, -50%) rotate(${((piece.rotate ?? 0) + spin * away).toFixed(2)}deg) scale(${(0.6 + 0.4 * entered - 0.2 * left).toFixed(3)})`,
+    opacity: (Math.min(1, entered * 1.8) * (1 - left)).toFixed(3),
+  };
+}
 
 export function FoodShowcase({ heading, steps, srDescription }: Props) {
   const section = useRef<HTMLDivElement>(null);
@@ -38,6 +55,11 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
       card.style.top = `${pose.y}%`;
       card.style.transform = `translate(-50%, -50%) rotate(${pose.rotate.toFixed(2)}deg) scale(${pose.scale.toFixed(3)})`;
       card.style.opacity = pose.opacity.toFixed(3);
+    });
+    table.current?.querySelectorAll<HTMLElement>("[data-piece]").forEach((el) => {
+      const step = Number(el.dataset.step);
+      const order = Number(el.dataset.order);
+      Object.assign(el.style, pieceStyle(value, step, order));
     });
   });
 
@@ -79,9 +101,29 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
 
           {/* La taula */}
           {animated && (
-            <div ref={table} aria-hidden="true" className="relative w-full max-lg:h-[40svh] lg:aspect-[5/4]">
+            <div aria-hidden="true" className="relative w-full max-lg:h-[40svh] lg:aspect-[5/4]">
+              {/* La taula fa sempre 5:4, perquè les peces (col·locades en %) encaixin igual a mòbil que a escriptori. */}
+              <div ref={table} className="absolute left-1/2 top-0 aspect-[5/4] h-full -translate-x-1/2 lg:inset-0 lg:h-auto lg:w-full lg:translate-x-0">
+              {FOOD_PIECES.map((pieces, s) =>
+                pieces.map((piece, order) => (
+                  <Image
+                    key={`${s}-${order}`}
+                    data-piece
+                    data-step={s}
+                    data-order={order}
+                    src={piece.src}
+                    alt=""
+                    width={piece.size[0]}
+                    height={piece.size[1]}
+                    unoptimized
+                    className="absolute h-auto max-w-none drop-shadow-[0_14px_14px_rgb(35_42_20/.28)] will-change-[transform,opacity]"
+                    style={{ width: `${piece.width}%`, zIndex: s * 20 + order, ...pieceStyle(0, s, order) }}
+                  />
+                )),
+              )}
               {steps.map((step, s) => {
-                const photos = photosOf(step);
+                // Les fotos dels locals només surten als passos que encara no tenen peces.
+                const photos = FOOD_PIECES[s]?.length ? [] : photosOf(step);
                 return photos.map((p, i) => {
                   const pose = cardPose(0, s, i, photos.length);
                   return (
@@ -98,7 +140,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                         top: `${pose.y}%`,
                         transform: `translate(-50%, -50%) rotate(${pose.rotate.toFixed(2)}deg) scale(${pose.scale.toFixed(3)})`,
                         opacity: pose.opacity,
-                        zIndex: s * MAX_CARDS + i,
+                        zIndex: s * 20 + i,
                       }}
                     >
                       <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-paper-2">
@@ -109,6 +151,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                   );
                 });
               })}
+              </div>
             </div>
           )}
         </div>

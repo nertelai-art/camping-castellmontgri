@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { cardPose, FOOD_PHASES, foodStep, range } from "./phases";
+import { FOOD_PIECES } from "./food-pieces";
+import { cardPose, FOOD_PHASES, foodStep, pieceTiming, range } from "./phases";
 
 describe("fases de les animacions", () => {
   it("el progrés local va de 0 a 1 i no se'n surt", () => {
@@ -57,3 +58,36 @@ describe("fotos de la gastronomia", () => {
     expect(new Set(places).size).toBe(4);
   });
 });
+
+describe("peces dels plats", () => {
+  it("la paella buida ja és a taula en arribar; la resta encara no", () => {
+    const count = FOOD_PIECES[0]!.length;
+    expect(pieceTiming(0, 0, 0, count).entered).toBe(1);
+    expect(pieceTiming(0, 0, count - 1, count).entered).toBe(0);
+  });
+
+  it("arriben en ordre i, a mig pas, el plat ja és sencer", () => {
+    const count = FOOD_PIECES[0]!.length;
+    const early = FOOD_PHASES[0][1] * 0.2;
+    expect(pieceTiming(early, 0, 1, count).entered).toBeGreaterThan(pieceTiming(early, 0, 6, count).entered);
+    const mid = FOOD_PHASES[0][1] * 0.78;
+    for (let i = 0; i < count; i++) expect(pieceTiming(mid, 0, i, count)).toEqual({ entered: 1, left: 0 });
+  });
+
+  it("al final del pas han marxat totes, tret de les de l'últim pas", () => {
+    expect(pieceTiming(FOOD_PHASES[0][1], 0, 3, 12).left).toBeCloseTo(1);
+    expect(pieceTiming(1, 2, 0, 3).left).toBe(0);
+  });
+
+  it("cada peça cau dins la taula i té una imatge amb mida", () => {
+    for (const piece of FOOD_PIECES.flat()) {
+      expect(piece.src).toMatch(/^\/food\/[a-z-]+\.webp$/);
+      expect(piece.x).toBeGreaterThan(0);
+      expect(piece.x).toBeLessThan(100);
+      expect(piece.y).toBeGreaterThan(0);
+      expect(piece.y).toBeLessThan(100);
+      expect(piece.size[0] * piece.size[1]).toBeGreaterThan(0);
+    }
+  });
+});
+

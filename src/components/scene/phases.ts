@@ -81,3 +81,21 @@ export function cardPose(progress: number, step: number, index: number, count: n
     opacity: Math.min(1, entered * 1.6) * (1 - left),
   };
 }
+
+export type PieceTiming = { entered: number; left: number };
+
+/**
+ * Quant ha arribat (`entered`, 0-1) i quant ha marxat (`left`, 0-1) la peça número `order` de les `count`
+ * que munten el plat d'un pas. Arriben una darrere l'altra durant la primera meitat del pas; la primera
+ * del primer pas ja hi és en arribar a la secció. Totes marxen alhora al final del pas, tret de l'últim.
+ */
+export function pieceTiming(progress: number, step: number, order: number, count: number): PieceTiming {
+  const local = range(progress, FOOD_PHASES[step]!);
+  const spread = 0.55 / Math.max(1, count);
+  const start = step === 0 && order === 0 ? -1 : 0.04 + order * spread;
+  const entered = easeOutCubic(clamp01((local - start) / 0.2));
+  const last = step === FOOD_PHASES.length - 1;
+  const left = last ? 0 : easeInCubic(clamp01((local - 0.82) / 0.18));
+  return { entered, left };
+}
+

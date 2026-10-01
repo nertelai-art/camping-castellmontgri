@@ -128,8 +128,14 @@ L'única escena 3D és la maqueta del mapa (skill `scroll-3d-scenes`: plantilles
 Res de vídeo ni de models externs si es pot modelar per codi.
 
 - `src/components/scene/`: `MapScene` (la maqueta) i `FoodShowcase` (gastronomia). La gastronomia **no és 3D**:
-  són les fotos reals dels restaurants que es col·loquen sobre la «taula» amb `transform` guiat pel scroll.
-  On és cada foto en cada moment surt de `cardPose` (`phases.ts`), amb proves.
+  cada plat es munta peça a peça amb `transform` guiat pel scroll (la paella buida, l'arròs, el marisc; el
+  cucurutxo i les boles). Les peces i on va cadascuna són a `food-pieces.ts`; quan arriba cadascuna, a
+  `pieceTiming` (`phases.ts`), amb proves. Un pas sense peces ensenya les fotos reals dels seus locals.
+- Les peces de menjar (`public/food/*.webp`) són **generades amb IA**, no fotos del càmping: les peticions són a
+  `scripts/content/food-pieces.prompts.json`, es generen amb la skill `generar-imatges` cap a
+  `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
+  Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
+  mensual de Hugging Face es va acabar a la desena imatge.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):
