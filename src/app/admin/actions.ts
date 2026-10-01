@@ -2,7 +2,7 @@
 
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { displayName, ENTITIES, isEntity, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
+import { displayName, ENTITIES, isEntity, parseBaseValue, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
 import { jpegSize, MAX_BYTES, MAX_SIDE } from "@/lib/admin/image";
 import {
   addToGallery,
@@ -175,6 +175,26 @@ export async function moveContentAction(entity: string, id: string, delta: 1 | -
   if (error) return { errors: [`No s'ha pogut reordenar: ${error}`] };
 
   const config: EntityConfig = ENTITIES[entity];
+  for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
+  revalidatePath("/admin", "layout");
+  return { savedAt: Date.now() };
+}
+
+/** Desa una sola cel·la de la taula (un camp que no depèn de l'idioma). */
+export async function updateFieldAction(entity: string, id: string, name: string, value: string | boolean): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+  if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
+  if (typeof value !== "string" && typeof value !== "boolean") return { errors: ["Valor desconegut."] };
+
+  const config: EntityConfig = ENTITIES[entity];
+  const parsed = parseBaseValue(config, name, value);
+  if (!parsed.ok) return { errors: parsed.errors };
+
+  const error = await saveContent(entity, id, { base: parsed.value, translations: {} as never });
+  if (error) return { errors: [`No s'ha pogut desar: ${error}`] };
+  await record(editor, entity, id, "text");
+
   for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
   revalidatePath("/admin", "layout");
   return { savedAt: Date.now() };

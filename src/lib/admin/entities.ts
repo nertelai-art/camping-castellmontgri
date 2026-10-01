@@ -12,7 +12,7 @@ export const LOCALE_NAMES: Record<Locale, string> = { es: "Castellà", ca: "Cata
 
 /** `list`: una línia per element; es desa com a llista (text[]). */
 type TextField = { name: string; label: string; help?: string; required?: boolean; long?: boolean; list?: boolean };
-type BaseField =
+export type BaseField =
   | { name: string; label: string; help?: string; kind: "text"; required?: boolean; long?: boolean }
   | { name: string; label: string; help?: string; kind: "number"; decimal?: boolean; min?: number; max?: number }
   | { name: string; label: string; help?: string; kind: "date" }
@@ -52,6 +52,8 @@ export type EntityConfig = {
    * Amb `slug`, la taula demana un identificador de text únic i se'n genera un.
    */
   create?: { defaults: Record<string, string | number>; slug?: boolean };
+  /** La llista es presenta agrupada per aquesta columna, amb el nom que té cada grup a l'altra entitat. */
+  groupBy?: { column: string; entity: string };
   /** L'ordre de la llista és el de la web (`sort_order`) i es pot canviar des del panell. */
   sortable?: boolean;
   /** La foto principal: la columna de la taula base que apunta a `media`. */
@@ -203,6 +205,7 @@ export const ENTITIES = {
     refColumn: "slug",
     image: { column: "cover_media_id", label: "Foto principal" },
     gallery: { table: "accommodation_media", foreignKey: "accommodation_id", label: "Galeria de fotos" },
+    groupBy: { column: "category_key", entity: "accommodation_categories" },
     key: "id",
     translations: "accommodation_translations",
     foreignKey: "accommodation_id",
@@ -330,7 +333,70 @@ export type ContentInput = { base: Record<string, string | boolean | number | nu
 /** Nom del camp del formulari per a un text en un idioma. */
 export const fieldName = (locale: Locale, field: string) => `${locale}.${field}`;
 
+const formText = (form: FormData) => (key: string) => String(form.get(key) ?? "").replace(/\r\n/g, "\n").trim();
+
+/** Els camps base que caben en una cel·la de la taula: tot menys els textos llargs i la posició al mapa. */
+export const tableColumns = (config: EntityConfig): BaseField[] => config.base.filter((field) => field.kind !== "position" && !(field.kind === "text" && field.long));
+
+/**
+ * Un sol camp base, tal com arriba d'una cel·la de la taula, validat amb les mateixes regles que el formulari.
+ * Només accepta camps que la taula ensenya.
+ */
+export function parseBaseValue(config: EntityConfig, name: string, value: string | boolean): { ok: true; value: ContentInput["base"] } | { ok: false; errors: string[] } {
+  const field = tableColumns(config).find((column) => column.name === name);
+  if (!field) return { ok: false, errors: ["Aquest camp no es pot canviar des de la taula."] };
+  const form = new FormData();
+  if (typeof value === "string") form.set(name, value);
+  else if (value) form.set(name, "on");
+  const base: ContentInput["base"] = {};
+  const errors: string[] = [];
+  parseBaseField(field, formText(form), form, base, errors);
+  return errors.length ? { ok: false, errors } : { ok: true, value: base };
+}
+
 export type ParseResult = { ok: true; value: ContentInput } | { ok: false; errors: string[] };
+
+/** Llegeix un camp base del formulari i el deixa a `base`, o n'apunta l'error. */
+function parseBaseField(field: BaseField, text: (key: string) => string, form: FormData, base: ContentInput["base"], errors: string[]) {
+  if (field.kind === "boolean") base[field.name] = form.get(field.name) === "on";
+  else if (field.kind === "status") {
+    const value = text(field.name);
+    if (value !== "draft" && value !== "published") errors.push(`${field.label}: valor desconegut.`);
+    else base[field.name] = value;
+  } else if (field.kind === "number") {
+    const raw = text(field.name).replace(",", ".");
+    const value = Number(raw);
+    if (raw === "") base[field.name] = null;
+    else if (!Number.isFinite(value) || value < 0 || (!field.decimal && !Number.isInteger(value))) {
+      errors.push(`${field.label}: ha de ser un número${field.decimal ? "" : " sencer"}.`);
+    } else if (value < (field.min ?? value) || value > (field.max ?? value)) {
+      errors.push(`${field.label}: ha de ser entre ${field.min} i ${field.max}.`);
+    } else base[field.name] = value;
+  } else if (field.kind === "select") {
+    const value = text(field.name);
+    if (value === "" && field.optional) base[field.name] = null;
+    else if (!field.options.some((option) => option.value === value)) errors.push(`${field.label}: valor desconegut.`);
+    else base[field.name] = value;
+  } else if (field.kind === "position") {
+    for (const axis of ["x", "y"] as const) {
+      const raw = text(axis);
+      const value = Number(raw);
+      if (raw === "" || !Number.isFinite(value) || value < 0 || value > 100) errors.push(`${field.label}: la posició no és vàlida.`);
+      else base[axis] = Math.round(value * 100) / 100;
+    }
+  } else if (field.kind === "date") {
+    const value = text(field.name);
+    if (value === "") base[field.name] = null;
+    else if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) errors.push(`${field.label}: la data no és vàlida.`);
+    else base[field.name] = value;
+  } else {
+    const value = text(field.name);
+    if (field.required && !value) errors.push(`Falta «${field.label}».`);
+    if (value && field.name.endsWith("_url") && !/^https?:\/\//.test(value)) errors.push(`«${field.label}» ha de començar per https://`);
+    if (value && field.name.startsWith("email_") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) errors.push(`«${field.label}» no sembla un correu.`);
+    base[field.name] = value;
+  }
+}
 
 /**
  * Llegeix el formulari d'una entitat. Un idioma es pot deixar buit del tot (no es tradueix encara),
@@ -339,49 +405,10 @@ export type ParseResult = { ok: true; value: ContentInput } | { ok: false; error
  */
 export function parseContent(config: EntityConfig, form: FormData): ParseResult {
   const errors: string[] = [];
-  const text = (key: string) => String(form.get(key) ?? "").replace(/\r\n/g, "\n").trim();
+  const text = formText(form);
 
   const base: ContentInput["base"] = {};
-  for (const field of config.base) {
-    if (field.kind === "boolean") base[field.name] = form.get(field.name) === "on";
-    else if (field.kind === "status") {
-      const value = text(field.name);
-      if (value !== "draft" && value !== "published") errors.push(`${field.label}: valor desconegut.`);
-      else base[field.name] = value;
-    } else if (field.kind === "number") {
-      const raw = text(field.name).replace(",", ".");
-      const value = Number(raw);
-      if (raw === "") base[field.name] = null;
-      else if (!Number.isFinite(value) || value < 0 || (!field.decimal && !Number.isInteger(value))) {
-        errors.push(`${field.label}: ha de ser un número${field.decimal ? "" : " sencer"}.`);
-      } else if (value < (field.min ?? value) || value > (field.max ?? value)) {
-        errors.push(`${field.label}: ha de ser entre ${field.min} i ${field.max}.`);
-      } else base[field.name] = value;
-    } else if (field.kind === "select") {
-      const value = text(field.name);
-      if (value === "" && field.optional) base[field.name] = null;
-      else if (!field.options.some((option) => option.value === value)) errors.push(`${field.label}: valor desconegut.`);
-      else base[field.name] = value;
-    } else if (field.kind === "position") {
-      for (const axis of ["x", "y"] as const) {
-        const raw = text(axis);
-        const value = Number(raw);
-        if (raw === "" || !Number.isFinite(value) || value < 0 || value > 100) errors.push(`${field.label}: la posició no és vàlida.`);
-        else base[axis] = Math.round(value * 100) / 100;
-      }
-    } else if (field.kind === "date") {
-      const value = text(field.name);
-      if (value === "") base[field.name] = null;
-      else if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(value))) errors.push(`${field.label}: la data no és vàlida.`);
-      else base[field.name] = value;
-    } else {
-      const value = text(field.name);
-      if (field.required && !value) errors.push(`Falta «${field.label}».`);
-      if (value && field.name.endsWith("_url") && !/^https?:\/\//.test(value)) errors.push(`«${field.label}» ha de començar per https://`);
-      if (value && field.name.startsWith("email_") && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) errors.push(`«${field.label}» no sembla un correu.`);
-      base[field.name] = value;
-    }
-  }
+  for (const field of config.base) parseBaseField(field, text, form, base, errors);
 
   const translations = {} as Translations;
   for (const locale of config.translations ? LOCALES : []) {
