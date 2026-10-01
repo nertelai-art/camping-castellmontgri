@@ -3,9 +3,10 @@
 // Formulari d'un contingut: els camps comuns a dalt i, a sota, els textos amb una pestanya per idioma.
 // Tots els idiomes són sempre al formulari (els que no es veuen, amagats): en desar s'envien tots.
 
-import { startTransition, useActionState, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { MapPositionField } from "./map-position-field";
+import { SAVED_EVENT } from "./visual-shell";
 import { fieldName, LOCALE_NAMES, LOCALES, type EntityConfig, type Locale, type Translations } from "@/lib/admin/entities";
 
 type Props = {
@@ -21,6 +22,10 @@ const HELP = "mt-1 block text-base font-normal text-muted";
 export function ContentForm({ action, text, base, initial }: Props) {
   const [state, submit, pending] = useActionState<FormState, FormData>(action, {});
   const [locale, setLocale] = useState<Locale>("ca");
+  // L'editor visual escolta aquest avís per tornar a carregar la web.
+  useEffect(() => {
+    if (state.savedAt) window.dispatchEvent(new Event(SAVED_EVENT));
+  }, [state.savedAt]);
   // Quins idiomes tenen el camp principal ple, per marcar les pestanyes. Es va actualitzant mentre s'escriu.
   const main = text[0]?.name ?? "";
   const [filled, setFilled] = useState<Record<Locale, boolean>>(

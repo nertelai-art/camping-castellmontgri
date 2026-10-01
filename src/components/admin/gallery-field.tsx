@@ -6,6 +6,7 @@
 import { useRef, useState, useTransition } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { toJpeg } from "./to-jpeg";
+import { SAVED_EVENT } from "./visual-shell";
 
 type Props = {
   label: string;
@@ -26,13 +27,14 @@ export function GalleryField({ label, items, add, remove, move }: Props) {
     startTransition(async () => {
       const state = await work();
       setMessage(state.errors ? { ok: false, text: state.errors.join(" ") } : { ok: true, text: done });
+      window.dispatchEvent(new Event(SAVED_EVENT));
     });
 
   return (
-    <section aria-label={label} className="mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
+    <section aria-label={label} className="@container mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
       <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-muted">{label}</h2>
       {items.length === 0 && <p className="mt-4 rounded-2xl border border-dashed border-line p-6 text-base text-muted">Encara no hi ha cap foto a la galeria.</p>}
-      <ol className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+      <ol className="mt-4 grid grid-cols-2 gap-3 @xl:grid-cols-3">
         {items.map((item, index) => (
           <li key={item.id} className="rounded-2xl border border-line bg-paper p-2">
             {/* eslint-disable-next-line @next/next/no-img-element -- miniatura del panell */}

@@ -38,7 +38,7 @@ export async function Gastronomy({
       .map((r) => ({ name: r.name, image: r.cover })),
   }));
   return (
-    <section aria-labelledby="gastronomy-title" className="bg-blush py-24 text-ink lg:py-32">
+    <section data-edit="sections:gastronomy" aria-labelledby="gastronomy-title" className="bg-blush py-24 text-ink lg:py-32">
       <div id="gastronomy">
         <FoodShowcase
           heading={
@@ -61,7 +61,7 @@ export async function Gastronomy({
               </h3>
               <ul className="snap-strip mt-6 auto-cols-[78%] gap-5 pb-4 sm:auto-cols-[45%] lg:auto-cols-[calc((100%-3.75rem)/4)]">
                 {items.map((r) => (
-                  <li key={r.slug} className="reveal flex flex-col overflow-hidden rounded-3xl bg-card shadow-[0_20px_40px_-30px_rgb(35_42_20/.6)]">
+                  <li key={r.slug} data-edit={`restaurants:${r.slug}`} className="reveal flex flex-col overflow-hidden rounded-3xl bg-card shadow-[0_20px_40px_-30px_rgb(35_42_20/.6)]">
                     <div className="relative aspect-square">
                       {r.cover && <MediaImage media={r.cover} fill sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 78vw" className="object-cover" />}
                     </div>

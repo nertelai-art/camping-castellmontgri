@@ -8,7 +8,15 @@ export default async function PanelHome() {
     <>
       <h1 className="font-display text-4xl text-olive">Què vols canviar?</h1>
       <p className="mt-2 max-w-2xl text-lg text-muted">Tria una part de la web. Els canvis es veuen a la web tan bon punt els deses.</p>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+      <Link
+        href="/admin/visual"
+        className="mt-8 block max-w-3xl rounded-3xl bg-band-olive p-7 text-on-dark transition hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-28px_rgb(35_42_20/.7)]"
+      >
+        <span className="font-display text-3xl">Edita sobre la web</span>
+        <span className="mt-1 block text-lg">Veus la web, cliques el que vols canviar i ho edites al costat. La manera més fàcil.</span>
+      </Link>
+      <h2 className="mt-10 text-sm font-bold uppercase tracking-[0.18em] text-muted">O tria-ho per llistes</h2>
+      <ul className="mt-4 grid gap-4 sm:grid-cols-2">
         {ENTITY_NAMES.map((name, i) => (
           <li key={name}>
             <Link

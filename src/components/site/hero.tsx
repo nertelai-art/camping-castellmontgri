@@ -13,7 +13,7 @@ export async function Hero({ section, settings, locale }: { section: Section; se
   const words = section.title.split(" ");
 
   return (
-    <section aria-labelledby="hero-title" className="relative px-3 pt-3 sm:px-4 sm:pt-4">
+    <section data-edit="sections:hero" aria-labelledby="hero-title" className="relative px-3 pt-3 sm:px-4 sm:pt-4">
       <div className="relative isolate flex min-h-[calc(100svh-5.5rem)] flex-col justify-end overflow-hidden rounded-[2rem] bg-band-olive text-on-dark lg:rounded-[2.5rem]">
         {section.media && (
           <MediaImage media={section.media} fill priority fetchPriority="high" sizes="100vw" className="ken-burns -z-10 object-cover" />

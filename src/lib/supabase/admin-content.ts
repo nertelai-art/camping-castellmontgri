@@ -247,3 +247,11 @@ export async function listChanges(limit = 100): Promise<Change[]> {
     action: row.action as ChangeAction,
   }));
 }
+
+/** L'identificador d'una fila a partir de la referència que en té la web pública (el `slug`, o la mateixa clau). */
+export async function resolveRef(entity: EntityName, ref: string): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.refColumn) return ref;
+  const { data } = await (await db()).from(config.table).select(config.key).eq(config.refColumn, ref).maybeSingle();
+  return data ? String((data as unknown as Record<string, unknown>)[config.key]) : null;
+}
