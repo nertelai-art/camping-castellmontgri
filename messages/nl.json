@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Accommodaties",
-    "map": "Plattegrond",
+    "map": "Kaart",
     "gastronomy": "Eten & drinken",
     "services": "Voorzieningen",
     "entertainment": "Animatie",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Seizoen",
     "discover": "Ontdek de camping",
-    "from": "{open} – {close}",
-    "sceneDescription": "Animatie: de getekende plattegrond van de camping gaat liggen als de grond en de camera vliegt eroverheen terwijl er markeringen vallen op de zwembaden, restaurants en speelplekken."
+    "from": "{open} – {close}"
   },
   "facts": {
     "accommodations": "accommodaties",
@@ -33,7 +32,6 @@
     "guestsAny": "Alle",
     "guestsMin": "{count}+",
     "empty": "Geen accommodatie met deze filters.",
-    "details": "Bekijken",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# slaapkamer} other {# slaapkamers}}",
@@ -53,7 +51,7 @@
     },
     "hours": "Openingstijden",
     "menu": "Bekijk de kaart",
-    "sceneDescription": "Animatie: een paellapan vult zich met rijst, garnalen en mosselen; een hoorntje krijgt bolletjes ijs die smelten; en een glas loopt vol met frisdrank, ijsblokjes en citroen.",
+    "sceneDescription": "Animatie: terwijl je scrolt wordt een paella opgebouwd (de lege pan, de rijst, garnalen, mosselen en citroen), daarna een hoorntje met twee bolletjes ijs en tot slot foto's van de bars van de camping.",
     "steps": {
       "food": "Om te eten",
       "icecream": "IJs",
@@ -79,20 +77,39 @@
   },
   "map": {
     "eyebrow": "De camping",
-    "filters": "Filter de plattegrond",
-    "viewer": "Interactieve plattegrond van de camping",
+    "viewer": "Interactieve 3D-kaart van de camping",
     "hint": "Sleep om te bewegen · knijp, Ctrl + scroll of + en − om te zoomen",
     "zoomIn": "Inzoomen",
     "zoomOut": "Uitzoomen",
-    "reset": "Hele plattegrond",
-    "fullscreen": "Volledig scherm",
-    "exitFullscreen": "Volledig scherm sluiten",
-    "back": "Alle plekken",
-    "places": "{count, plural, one {# plek} other {# plekken}}",
+    "reset": "Hele kaart",
     "seeAccommodation": "Bekijk de accommodaties",
-    "showOnMap": "Toon op de plattegrond",
+    "showOnMap": "Toon op de kaart",
+    "hint3d": "Sleep om te bewegen · scroll om te zoomen · rechtermuisknop om te draaien · beweeg over een huisje voor het nummer",
+    "rotate": "Kaart draaien",
+    "close": "Sluiten",
+    "loading": "Kaart laden…",
+    "title": "Kaart van de camping",
+    "open": "Verken de kaart",
+    "search": {
+      "label": "Zoek je plaats of accommodatie",
+      "placeholder": "Nummer, bijv. 254",
+      "submit": "Zoeken",
+      "notFound": "Er is geen plaats of accommodatie met nummer {number}."
+    },
+    "plot": {
+      "pitch": "Kampeerplaats",
+      "lodging": "Accommodatie",
+      "operator": "Touroperator",
+      "legend": "Kleuren van de maquette",
+      "about": {
+        "0": "Kampeerplaats. Het nummer is hetzelfde als op de grond, op de kaart en op de camping.",
+        "1": "Accommodatie van de camping: bungalow of stacaravan die je rechtstreeks bij ons boekt.",
+        "2": "Accommodatie van een touroperator. Heb je via een touroperator geboekt, dan is dit het nummer dat je hebt gekregen."
+      }
+    },
+    "onMapOnly": "Je vindt het gemarkeerd op de kaart.",
+    "lodgingHint": "De accommodaties van de camping zijn de huisjes met een rood dak. Beweeg eroverheen voor het nummer, of zoek het jouwe.",
     "kinds": {
-      "all": "Alles",
       "accommodation": "Accommodatie",
       "food": "Eten & drinken",
       "pool": "Zwembaden",

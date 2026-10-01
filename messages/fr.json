@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Hébergement",
-    "map": "Plan",
+    "map": "Carte",
     "gastronomy": "Gastronomie",
     "services": "Services",
     "entertainment": "Animation",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Saison",
     "discover": "Découvrir le camping",
-    "from": "Du {open} au {close}",
-    "sceneDescription": "Animation : le plan illustré du camping se couche comme un sol et la caméra le survole pendant que tombent les repères des piscines, des restaurants et des espaces de loisirs."
+    "from": "Du {open} au {close}"
   },
   "facts": {
     "accommodations": "hébergements",
@@ -33,7 +32,6 @@
     "guestsAny": "Indifférent",
     "guestsMin": "{count}+",
     "empty": "Aucun hébergement avec ces filtres.",
-    "details": "Voir",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# chambre} other {# chambres}}",
@@ -53,7 +51,7 @@
     },
     "hours": "Horaires",
     "menu": "Voir la carte",
-    "sceneDescription": "Animation : une paella se remplit de riz, de crevettes et de moules ; un cornet se remplit de boules de glace qui fondent ; et un verre se remplit de boisson avec des glaçons et du citron.",
+    "sceneDescription": "Animation : au fil du défilement, une paella se compose (la poêle vide, le riz, les gambas, les moules et le citron), puis un cornet avec deux boules de glace et, pour finir, les photos des bars du camping.",
     "steps": {
       "food": "Pour manger",
       "icecream": "Glaces",
@@ -79,20 +77,39 @@
   },
   "map": {
     "eyebrow": "Le camping",
-    "filters": "Filtrer le plan",
-    "viewer": "Plan interactif du camping",
+    "viewer": "Carte interactive du camping en 3D",
     "hint": "Faites glisser pour vous déplacer · pincez, Ctrl + molette ou + et − pour zoomer",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
-    "reset": "Voir tout le plan",
-    "fullscreen": "Plein écran",
-    "exitFullscreen": "Quitter le plein écran",
-    "back": "Tous les lieux",
-    "places": "{count, plural, one {# lieu} other {# lieux}}",
+    "reset": "Voir toute la carte",
     "seeAccommodation": "Voir les hébergements",
-    "showOnMap": "Voir sur le plan",
+    "showOnMap": "Voir sur la carte",
+    "hint3d": "Glissez pour vous déplacer · molette pour zoomer · clic droit pour tourner · survolez une maison pour voir son numéro",
+    "rotate": "Tourner la carte",
+    "close": "Fermer",
+    "loading": "Chargement de la carte…",
+    "title": "Carte du camping",
+    "open": "Explorer la carte",
+    "search": {
+      "label": "Trouvez votre emplacement ou hébergement",
+      "placeholder": "Numéro, p. ex. 254",
+      "submit": "Chercher",
+      "notFound": "Aucun emplacement ni hébergement ne porte le numéro {number}."
+    },
+    "plot": {
+      "pitch": "Emplacement",
+      "lodging": "Hébergement",
+      "operator": "Tour-opérateur",
+      "legend": "Couleurs de la maquette",
+      "about": {
+        "0": "Emplacement de camping. Le numéro est celui peint au sol, sur la carte et au camping.",
+        "1": "Hébergement du camping : bungalow ou mobil-home à réserver directement auprès de nous.",
+        "2": "Hébergement géré par un tour-opérateur. Si vous avez réservé auprès d'un opérateur, c'est le numéro qu'il vous a donné."
+      }
+    },
+    "onMapOnly": "Vous le trouverez indiqué sur la carte.",
+    "lodgingHint": "Les hébergements du camping sont les maisons au toit rouge. Survolez-les pour voir leur numéro, ou cherchez le vôtre.",
     "kinds": {
-      "all": "Tout",
       "accommodation": "Hébergement",
       "food": "Manger et boire",
       "pool": "Piscines",

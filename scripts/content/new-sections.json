@@ -10,10 +10,10 @@
   },
   "map": {
     "image": "planol-camping-castell-montgri_2026",
-    "es": { "title": "Todo el camping, en un plano", "body": "Piscinas, restaurantes, zonas de juego, supermercado y alojamientos, a pocos pasos unos de otros. Explora el plano y encuentra tu rincón.", "cta_label": "Ver el plano" },
-    "ca": { "title": "Tot el càmping, en un plànol", "body": "Piscines, restaurants, zones de joc, supermercat i allotjaments, a pocs passos els uns dels altres. Explora el plànol i troba el teu racó.", "cta_label": "Veure el plànol" },
-    "fr": { "title": "Tout le camping sur un plan", "body": "Piscines, restaurants, aires de jeux, supérette et hébergements, à quelques pas les uns des autres. Explorez le plan et trouvez votre coin.", "cta_label": "Voir le plan" },
-    "en": { "title": "The whole campsite on one map", "body": "Pools, restaurants, play areas, supermarket and accommodation, all a short walk apart. Explore the map and find your spot.", "cta_label": "View the map" },
-    "nl": { "title": "De hele camping op één plattegrond", "body": "Zwembaden, restaurants, speelplaatsen, supermarkt en accommodaties, allemaal op loopafstand. Verken de plattegrond en vind jouw plekje.", "cta_label": "Bekijk de plattegrond" }
+    "es": { "title": "Todo el camping, en un mapa", "body": "Piscinas, restaurantes, zonas de juego, supermercado y alojamientos, a pocos pasos unos de otros. Muévete por la maqueta, toca un icono y verás qué hay en cada sitio.", "cta_label": "Ver el mapa" },
+    "ca": { "title": "Tot el càmping, en un mapa", "body": "Piscines, restaurants, zones de joc, supermercat i allotjaments, a pocs passos els uns dels altres. Mou-te per la maqueta, toca una icona i veuràs què hi ha a cada lloc.", "cta_label": "Veure el mapa" },
+    "fr": { "title": "Tout le camping sur une carte", "body": "Piscines, restaurants, aires de jeux, supérette et hébergements, à quelques pas les uns des autres. Promenez-vous dans la maquette, touchez une icône et découvrez ce qui s'y trouve.", "cta_label": "Voir la carte" },
+    "en": { "title": "The whole campsite on one map", "body": "Pools, restaurants, play areas, supermarket and accommodation, all a short walk apart. Move around the model, tap an icon and see what is there.", "cta_label": "View the map" },
+    "nl": { "title": "De hele camping op één kaart", "body": "Zwembaden, restaurants, speelplaatsen, supermarkt en accommodaties, allemaal op loopafstand. Beweeg door de maquette, tik op een icoon en ontdek wat er te vinden is.", "cta_label": "Bekijk de kaart" }
   }
 }

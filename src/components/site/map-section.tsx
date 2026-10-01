@@ -3,7 +3,7 @@ import type { MapPoint, Section } from "@/lib/supabase/content";
 import { MapExplorer, type Place } from "./map-explorer";
 import { SectionHeading } from "./section-heading";
 
-/** Plànol interactiu: la il·lustració del càmping amb els punts de l'admin (taula map_points). */
+/** Mapa interactiu: la maqueta 3D del càmping de fons, amb els punts de l'admin (taula map_points). En clicar-hi s'obre gran. */
 export async function MapSection({
   section,
   points,
@@ -18,11 +18,14 @@ export async function MapSection({
   const t = await getTranslations("map");
   if (!section.media) return null;
   return (
-    <section aria-labelledby="map-title" className="bg-band-olive py-24 text-on-dark lg:py-32">
-      <div id="map" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading id="map-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} tone="dark" />
-        <MapExplorer image={section.media} points={points} places={places} />
-      </div>
+    // Sense `overflow`, `transform` ni `contain`: el mapa obert és `position: fixed` i ha de sortir de la secció.
+    <section id="map" aria-labelledby="map-title" className="bg-band-olive text-on-dark">
+      <MapExplorer
+        image={section.media}
+        points={points}
+        places={places}
+        heading={<SectionHeading id="map-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} tone="dark" />}
+      />
     </section>
   );
 }

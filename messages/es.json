@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Alojamiento",
-    "map": "Plano",
+    "map": "Mapa",
     "gastronomy": "Gastronomía",
     "services": "Servicios",
     "entertainment": "Animación",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Temporada",
     "discover": "Descubre el camping",
-    "from": "Del {open} al {close}",
-    "sceneDescription": "Animación: el plano ilustrado del camping se tumba como si fuera el suelo y la cámara vuela por encima mientras caen los puntos de las piscinas, los restaurantes y las zonas de ocio."
+    "from": "Del {open} al {close}"
   },
   "facts": {
     "accommodations": "alojamientos",
@@ -33,7 +32,6 @@
     "guestsAny": "Cualquiera",
     "guestsMin": "{count}+",
     "empty": "Ningún alojamiento con estos filtros.",
-    "details": "Verlo",
     "people": "{count} pers.",
     "size": "{value} m²",
     "bedrooms": "{count, plural, one {# habitación} other {# habitaciones}}",
@@ -53,7 +51,7 @@
     },
     "hours": "Horario",
     "menu": "Ver la carta",
-    "sceneDescription": "Animación: una paella se llena de arroz, gambas y mejillones; un cucurucho se llena de bolas de helado que se derriten; y un vaso se llena de refresco con cubitos y limón.",
+    "sceneDescription": "Animación: a medida que bajas se monta una paella (la paellera vacía, el arroz, las gambas, los mejillones y el limón), después un cucurucho con dos bolas de helado y, al final, las fotos de los bares del camping.",
     "steps": {
       "food": "Para comer",
       "icecream": "Helados",
@@ -79,20 +77,39 @@
   },
   "map": {
     "eyebrow": "El camping",
-    "filters": "Filtra el plano",
-    "viewer": "Plano interactivo del camping",
+    "viewer": "Mapa interactivo del camping en 3D",
     "hint": "Arrastra para moverte · pellizca, Ctrl + rueda o + y − para ampliar",
     "zoomIn": "Ampliar",
     "zoomOut": "Reducir",
     "reset": "Verlo entero",
-    "fullscreen": "Pantalla completa",
-    "exitFullscreen": "Salir de pantalla completa",
-    "back": "Todos los lugares",
-    "places": "{count, plural, one {# lugar} other {# lugares}}",
     "seeAccommodation": "Ver los alojamientos",
-    "showOnMap": "Ver en el plano",
+    "showOnMap": "Ver en el mapa",
+    "hint3d": "Arrastra para moverte · rueda para ampliar · botón derecho para girar · pasa por encima de una casa para ver su número",
+    "rotate": "Girar el mapa",
+    "close": "Cerrar",
+    "loading": "Cargando el mapa…",
+    "title": "Mapa del camping",
+    "open": "Explora el mapa",
+    "search": {
+      "label": "Busca tu parcela o alojamiento",
+      "placeholder": "Número, p. ej. 254",
+      "submit": "Buscar",
+      "notFound": "No hay ninguna parcela ni alojamiento con el número {number}."
+    },
+    "plot": {
+      "pitch": "Parcela",
+      "lodging": "Alojamiento",
+      "operator": "Operador turístico",
+      "legend": "Colores de la maqueta",
+      "about": {
+        "0": "Parcela de acampada. El número es el que está pintado en el suelo, en el mapa y en el camping.",
+        "1": "Alojamiento del camping: bungalow o mobile home que se reserva directamente con nosotros.",
+        "2": "Alojamiento gestionado por un operador turístico. Si has reservado con un operador, este es el número que te han dado."
+      }
+    },
+    "onMapOnly": "Lo encontrarás marcado en el mapa.",
+    "lodgingHint": "Los alojamientos del camping son las casas de tejado rojo. Pasa por encima para ver su número, o busca el tuyo en el buscador.",
     "kinds": {
-      "all": "Todo",
       "accommodation": "Alojamiento",
       "food": "Comer y beber",
       "pool": "Piscinas",

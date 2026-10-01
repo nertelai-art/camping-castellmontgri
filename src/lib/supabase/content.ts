@@ -1,6 +1,7 @@
 import "server-only";
 import type { Locale } from "@/i18n/routing";
 import { localesFor, pickTranslation } from "@/lib/content/translate";
+import { isMapIcon } from "@/lib/map/icons";
 import { mediaUrl, type MediaRef } from "./media";
 import { contentClient } from "./server";
 
@@ -249,7 +250,7 @@ export async function getMapPoints(locale: Locale) {
   const result = await contentClient()
     .from("map_points")
     .select(
-      `id, kind, x, y, accommodation_category_key,
+      `id, kind, x, y, icon, accommodation_category_key,
        service:services(slug), restaurant:restaurants(slug), activity:activities(slug), accommodation:accommodations(slug),
        map_point_translations(locale, label)`,
     )
@@ -272,6 +273,7 @@ export async function getMapPoints(locale: Locale) {
       kind: p.kind,
       x: Number(p.x),
       y: Number(p.y),
+      icon: isMapIcon(p.icon) ? p.icon : null,
       label: pickTranslation(p.map_point_translations, locale)?.label ?? "",
       target,
     };

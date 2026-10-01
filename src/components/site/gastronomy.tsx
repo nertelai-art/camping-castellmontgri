@@ -7,7 +7,7 @@ import { ShowOnMapButton } from "./show-on-map-button";
 
 const ZONES = ["ombra", "panorama"] as const;
 
-// Cada restaurant va al pas de l'escena que li toca (paella, gelat o copa) segons què és.
+// Cada restaurant va al pas que li toca (menjar, gelats o beure) segons què és.
 const ICECREAM = /helad|gelat|glacier|ice-cream/;
 const DRINKS = /^bar-|barra|pub|disco|lera|cafeteria/;
 function stepFor(slug: string): 0 | 1 | 2 {
@@ -16,7 +16,7 @@ function stepFor(slug: string): 0 | 1 | 2 {
   return 0;
 }
 
-/** Gastronomia (fase 2: estàtica). A la fase 4 hi entren les escenes 3D del plat i el gelat. */
+/** Gastronomia: la taula que es para amb les fotos dels restaurants (FoodShowcase) i, a sota, cada zona amb els seus locals. */
 export async function Gastronomy({
   section,
   restaurants,
@@ -29,9 +29,13 @@ export async function Gastronomy({
   index: number;
 }) {
   const t = await getTranslations("gastronomy");
+  // A cada pas, primer els llocs amb la foto més gran: són les que surten a taula.
   const steps: FoodStepContent[] = (["food", "icecream", "drinks"] as const).map((key, i) => ({
     title: t(`steps.${key}`),
-    places: restaurants.filter((r) => stepFor(r.slug) === i).map((r) => r.name),
+    places: restaurants
+      .filter((r) => stepFor(r.slug) === i)
+      .toSorted((a, b) => (b.cover?.width ?? 0) - (a.cover?.width ?? 0))
+      .map((r) => ({ name: r.name, image: r.cover })),
   }));
   return (
     <section aria-labelledby="gastronomy-title" className="bg-blush py-24 text-ink lg:py-32">
@@ -41,7 +45,6 @@ export async function Gastronomy({
             <SectionHeading id="gastronomy-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
           }
           steps={steps}
-          fallback={section.media}
           srDescription={t("sceneDescription")}
         />
       </div>

@@ -12,15 +12,17 @@ const GUEST_STEPS = [2, 4, 5, 6] as const;
 type Props = {
   categories: AccommodationCategory[];
   bookingUrl: string | null;
-  /** Claus `accommodation:<slug>` i `category:<clau>` que tenen punt al plànol. */
+  /** Claus `accommodation:<slug>` que tenen punt al mapa. */
   onMap: string[];
 };
 
-/** On porta «Veure al plànol»: l'allotjament concret si té punt propi, si no la seva categoria. */
-function mapTargetFor(a: Accommodation, onMap: string[]): MapTarget | null {
+/**
+ * On porta «Veure al mapa»: al punt de l'allotjament si en té (les parcel·les). Dels bungalows, mobile homes,
+ * tendes i glàmpings no se sap a quin número és cada model: el mapa s'obre ensenyant tots els del càmping.
+ */
+function mapTargetFor(a: Accommodation, onMap: string[]): MapTarget {
   if (onMap.includes(`accommodation:${a.slug}`)) return { type: "accommodation", slug: a.slug };
-  if (onMap.includes(`category:${a.category}`)) return { type: "category", slug: a.category };
-  return null;
+  return { type: "category", slug: a.category };
 }
 
 export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) {
@@ -94,7 +96,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
                 <button
                   type="button"
                   onClick={() => show(a)}
-                  className="group flex h-full w-full flex-col overflow-hidden rounded-3xl border border-line bg-card text-left transition hover:-translate-y-1 hover:shadow-[0_24px_40px_-24px_rgb(35_42_20/.5)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+                  className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-line bg-card text-left transition duration-300 hover:-translate-y-1.5 hover:border-olive hover:shadow-[0_28px_44px_-22px_rgb(35_42_20/.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
                 >
                   <div className="relative aspect-[4/3] overflow-hidden bg-paper-2">
                     {a.cover && (
@@ -109,13 +111,19 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
                     {a.isAccessible && (
                       <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-1 text-xs font-bold text-olive">{t("accessible")}</span>
                     )}
+                    {/* Senyal que la targeta s'obre: sempre visible (al mòbil no hi ha «passar per sobre») i s'encén amb el ratolí. */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-3 right-3 grid size-11 place-items-center rounded-full bg-paper text-olive shadow-lg transition duration-300 group-hover:scale-110 group-hover:bg-terra group-hover:text-paper"
+                    >
+                      <svg viewBox="0 0 24 24" className="size-5">
+                        <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                      </svg>
+                    </span>
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-5">
-                    <span className="font-display text-2xl leading-tight text-olive">{a.name}</span>
+                    <span className="font-display text-2xl leading-tight text-olive transition-colors group-hover:text-terra">{a.name}</span>
                     <Specs a={a} />
-                    <span className="mt-auto pt-3 text-sm font-bold text-terra">
-                      {t("details")} <span aria-hidden="true">→</span>
-                    </span>
                   </div>
                 </button>
               </li>
@@ -183,19 +191,15 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
               )}
             </div>
 
-            {(bookingUrl || mapTargetFor(open, onMap)) && (
-              <div className="sticky bottom-0 flex flex-wrap items-center justify-end gap-4 border-t border-line bg-paper/95 px-5 py-4 sm:px-8">
-                {mapTargetFor(open, onMap) && (
-                  // Primer es tanca la fitxa (és modal) perquè el plànol quedi a la vista.
-                  <ShowOnMapButton target={mapTargetFor(open, onMap)!} beforeShow={() => dialog.current?.close()} className="text-olive" />
-                )}
-                {bookingUrl && (
-                  <a href={bookingUrl} target="_blank" rel="noopener" className="rounded-full bg-terra px-6 py-3 font-bold text-paper hover:bg-terra-2">
-                    {tNav("book")}
-                  </a>
-                )}
-              </div>
-            )}
+            <div className="sticky bottom-0 flex flex-wrap items-center justify-end gap-4 border-t border-line bg-paper/95 px-5 py-4 sm:px-8">
+              {/* Primer es tanca la fitxa (és modal) perquè el mapa quedi a la vista. */}
+              <ShowOnMapButton target={mapTargetFor(open, onMap)} beforeShow={() => dialog.current?.close()} className="text-base text-olive" />
+              {bookingUrl && (
+                <a href={bookingUrl} target="_blank" rel="noopener" className="rounded-full bg-terra px-6 py-3 font-bold text-paper hover:bg-terra-2">
+                  {tNav("book")}
+                </a>
+              )}
+            </div>
           </article>
         )}
       </dialog>
@@ -203,22 +207,34 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
   );
 }
 
+// Icones de les dades (traç de 24 px): persones, superfície, habitacions, banys, aire condicionat i adaptat.
+const SPEC_ICON = {
+  people: "M16 19v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 17.5V19M10 10.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6M20 19v-1.5a3.5 3.5 0 0 0-2.6-3.4M15.5 4.7a3 3 0 0 1 0 5.6",
+  size: "M4 9V4h5M20 15v5h-5M4 4l6.5 6.5M20 20l-6.5-6.5M15 4h5v5M9 20H4v-5",
+  bedrooms: "M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 15h18M3 18v1.5M21 18v1.5M7 9V7.5A1.5 1.5 0 0 1 8.5 6h7A1.5 1.5 0 0 1 17 7.5V9",
+  bathrooms: "M4 12h16v2a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5v-2zM6 12V6.5A2.5 2.5 0 0 1 8.5 4c1.2 0 2.1.8 2.4 1.9M7 19l-1 2M17 19l1 2",
+  airConditioning: "M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5",
+  accessible: "M11 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M11 8v6h5l2.5 5M11 10.5h4M8 12.2A5 5 0 1 0 14.5 19",
+} as const;
+
 function Specs({ a, large = false }: { a: Accommodation; large?: boolean }) {
   const t = useTranslations("accommodation");
   const items = [
-    a.capacityMax && t("people", { count: a.capacityMax }),
-    a.sizeM2 && t("size", { value: a.sizeM2 }),
-    a.bedrooms ? t("bedrooms", { count: a.bedrooms }) : null,
-    large && a.bathrooms ? t("bathrooms", { count: a.bathrooms }) : null,
-    large && a.airConditioning ? t("airConditioning") : null,
-    large && a.isAccessible ? t("accessible") : null,
-  ].filter(Boolean);
+    a.capacityMax && { icon: "people", text: t("people", { count: a.capacityMax }) },
+    a.sizeM2 && { icon: "size", text: t("size", { value: a.sizeM2 }) },
+    a.bedrooms ? { icon: "bedrooms", text: t("bedrooms", { count: a.bedrooms }) } : null,
+    large && a.bathrooms ? { icon: "bathrooms", text: t("bathrooms", { count: a.bathrooms }) } : null,
+    large && a.airConditioning ? { icon: "airConditioning", text: t("airConditioning") } : null,
+    large && a.isAccessible ? { icon: "accessible", text: t("accessible") } : null,
+  ].filter((item): item is { icon: keyof typeof SPEC_ICON; text: string } => Boolean(item));
   return (
-    <ul className={`flex flex-wrap gap-x-3 gap-y-1 ${large ? "text-base font-bold text-ink" : "text-sm text-muted"}`}>
-      {items.map((item, i) => (
-        <li key={i} className="flex items-center gap-3">
-          {i > 0 && <span aria-hidden="true" className="size-1 rounded-full bg-line" />}
-          {item}
+    <ul className={`flex flex-wrap ${large ? "gap-x-5 gap-y-2 text-base font-bold text-ink" : "gap-x-4 gap-y-1.5 text-sm text-muted"}`}>
+      {items.map((item) => (
+        <li key={item.icon} className="flex items-center gap-1.5">
+          <svg viewBox="0 0 24 24" className={`shrink-0 text-olive ${large ? "size-5" : "size-[1.1rem]"}`} aria-hidden="true">
+            <path d={SPEC_ICON[item.icon]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          {item.text}
         </li>
       ))}
     </ul>

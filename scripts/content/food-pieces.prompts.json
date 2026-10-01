@@ -1,0 +1,20 @@
+{
+  "_note": "Peces de l'animació de gastronomia, generades amb IA (FLUX.1-schnell via Hugging Face, skill generar-imatges). No són fotos del càmping. Cada peça es genera sola sobre fons blanc i després se'n treu el fons (scripts/build-food-pieces.ts).",
+  "style": "Isolated on a plain pure white seamless background, soft even studio daylight, only a very faint soft shadow, single object perfectly centered and fully inside the frame with generous white margin around it. Photorealistic, sharp, appetizing commercial food photography.",
+  "pieces": {
+    "pan": "Top-down photograph, seen exactly from above, of one empty black steel paella pan with two side handles, clean and empty.",
+    "rice": "Top-down macro photograph of cooked saffron yellow paella rice with a few green peas and small pieces of red pepper, filling the entire frame edge to edge as a flat texture, evenly lit. No pan, no plate, no background visible.",
+    "prawn": "Top-down photograph of one single cooked whole red prawn with shell, curved, glossy.",
+    "mussel": "Top-down photograph of one single cooked open mussel in its dark blue-black shell with the orange meat visible.",
+    "lemon": "Top-down photograph of one single fresh lemon wedge, bright yellow.",
+    "parsley": "Top-down photograph of one small sprig of fresh green parsley leaves.",
+    "cone": "Side view photograph of one single empty crispy waffle ice cream cone standing upright, golden brown, pointing down, nothing inside.",
+    "scoop-pistachio": "Side view photograph of one single round scoop of pistachio ice cream, pastel green, with a slightly rough scooped texture.",
+    "scoop-strawberry": "Side view photograph of one single round scoop of strawberry ice cream, pink, with a slightly rough scooped texture.",
+    "scoop-chocolate": "Side view photograph of one single round scoop of dark chocolate ice cream, rich brown, with a slightly rough scooped texture.",
+    "cocktail": "Side view photograph of one tall highball glass filled with an orange spritz cocktail and ice cubes, vivid orange drink, glass standing upright, no garnish, no straw.",
+    "orange": "Front view photograph of one single round slice of fresh orange, cut crosswise, bright and juicy.",
+    "mint": "Top-down photograph of one small sprig of fresh green mint leaves.",
+    "straw": "Side view photograph of one single red and white striped paper drinking straw, straight, standing vertically."
+  }
+}
