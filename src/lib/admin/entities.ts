@@ -14,6 +14,8 @@ type BaseField =
   | { name: string; label: string; help?: string; kind: "text"; required?: boolean }
   | { name: string; label: string; help?: string; kind: "number"; decimal?: boolean }
   | { name: string; label: string; help?: string; kind: "date" }
+  /** Un punt sobre el mapa: ocupa les columnes `x` i `y` (en % de la il·lustració). */
+  | { name: "x"; label: string; help?: string; kind: "position" }
   | { name: string; label: string; help?: string; kind: "boolean" }
   | { name: string; label: string; help?: string; kind: "status" };
 
@@ -147,15 +149,15 @@ export const ENTITIES = {
     tags: ["accommodation_categories"],
   },
   map_points: {
-    title: "Noms del mapa",
+    title: "Punts del mapa",
     singular: "punt",
-    description: "El nom de cada punt del mapa i si s'hi veu. (La posició es canviarà des de l'editor del mapa.)",
+    description: "El nom de cada punt del mapa, on és i si s'hi veu.",
     table: "map_points",
     key: "id",
     translations: "map_point_translations",
     foreignKey: "map_point_id",
     text: [{ name: "label", label: "Nom", required: true }],
-    base: [STATUS],
+    base: [{ name: "x", label: "On és", kind: "position", help: "Clica sobre el mapa o arrossega el punt. Amb les fletxes del teclat s'afina." }, STATUS],
     tags: ["map_points"],
   },
   site_settings: {
@@ -231,6 +233,13 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
       else if (!Number.isFinite(value) || value < 0 || (!field.decimal && !Number.isInteger(value))) {
         errors.push(`${field.label}: ha de ser un número${field.decimal ? "" : " sencer"}.`);
       } else base[field.name] = value;
+    } else if (field.kind === "position") {
+      for (const axis of ["x", "y"] as const) {
+        const raw = text(axis);
+        const value = Number(raw);
+        if (raw === "" || !Number.isFinite(value) || value < 0 || value > 100) errors.push(`${field.label}: la posició no és vàlida.`);
+        else base[axis] = Math.round(value * 100) / 100;
+      }
     } else if (field.kind === "date") {
       const value = text(field.name);
       if (value === "") base[field.name] = null;

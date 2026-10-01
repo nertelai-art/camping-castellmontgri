@@ -59,6 +59,7 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
   for (const field of config.base) {
     const value = row[field.name];
     base[field.name] = field.kind === "boolean" ? value === true : asText(value);
+    if (field.kind === "position") base.y = asText(row.y);
   }
   return { id, base, translations: byLocale(row.translations) };
 }

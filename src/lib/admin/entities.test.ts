@@ -68,6 +68,13 @@ describe("formulari de contingut", () => {
     expect(ok.ok && [ok.value.base.email_info, ok.value.base.season_open, ok.value.base.season_close]).toEqual(["info@camping.test", "2027-03-27", null]);
   });
 
+  it("la posició d'un punt del mapa són dos números entre 0 i 100", () => {
+    const ok = parseContent(ENTITIES.map_points, form({ status: "published", x: "41.237", y: "63.5", "es.label": "Recepción" }));
+    expect(ok.ok && ok.value.base).toEqual({ x: 41.24, y: 63.5, status: "published" });
+    const bad = parseContent(ENTITIES.map_points, form({ status: "published", x: "120", "es.label": "Recepción" }));
+    expect(bad).toEqual({ ok: false, errors: ["On és: la posició no és vàlida.", "On és: la posició no és vàlida."] });
+  });
+
   it("una llista és una línia per element, sense línies buides", () => {
     expect(toList(" Terraza cubierta \n\nWifi\n  ")).toEqual(["Terraza cubierta", "Wifi"]);
     expect(toList("")).toEqual([]);
