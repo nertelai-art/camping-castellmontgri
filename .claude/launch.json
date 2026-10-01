@@ -18,6 +18,18 @@
       ],
       "port": 3100,
       "autoPort": true
+    },
+    {
+      "name": "web-local",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "local",
+        "next",
+        "start",
+        "-p",
+        "3200"
+      ],
+      "port": 3200
     }
   ]
 }

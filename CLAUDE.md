@@ -41,6 +41,30 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - Les polítiques RLS tenen proves pgTAP a `supabase/tests/`. Qualsevol canvi de polítiques
   hi afegeix el seu cas.
 
+## Panell d'administració (`/admin`)
+
+- Fora de `[locale]`, amb el seu document (`src/app/admin/layout.tsx`), en català i sense indexar.
+- **Sessió**: Supabase Auth amb correu i contrasenya, en galetes (`@supabase/ssr`). `src/proxy.ts` la refresca a
+  cada petició a `/admin`; qui pot entrar ho decideix el layout de `(panel)` amb `currentEditor()` (compte + fila a
+  `profiles`). Les accions de servidor ho tornen a comprovar: són endpoints públics.
+- **Escriptura**: amb la sessió de l'editor i la clau publicable; RLS és qui deixa escriure. Cap clau secreta al panell.
+- **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
+  la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
+- En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
+  per exemple, es llegeixen dins `accommodation_categories`): la web ho ensenya de seguida.
+- Tipus de camp: text, número, data, casella, estat i posició al mapa (`MapPositionField`, geometria a `src/lib/map/position.ts`) a la base; text curt, llarg i llista (una línia per element, `text[]`)
+  per idioma. `site_settings` és d'una sola fila (`single`) i les seves traduccions no tenen clau forana.
+- Els formularis s'envien a mà dins d'una transició, no amb `action={…}`: React buida el formulari en acabar una
+  acció i, amb un error de validació, es perdria el que s'ha escrit.
+- **Fotos** (`ImageField`, `replaceImageAction`): el navegador redueix la foto a 2400 px i la passa a JPEG abans d'enviar-la
+  (Vercel no accepta cossos de més de 4,5 MB); el servidor comprova que és un JPEG i en llegeix la mida de la capçalera
+  (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
+- **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`
+  li dona o li treu l'accés. No hi ha registre obert.
+- **Proves en local**: `pnpm exec supabase start`, `pnpm local pnpm seed`, `pnpm local node scripts/seed-local-editor.ts`
+  (usuari de prova, contrasenya a `.env.local-editor`), `pnpm local next build` i la previsualització `web-local` (port 3200).
+  `pnpm local <ordre>` executa qualsevol cosa contra el Supabase local sense tocar `.env.local`.
+
 ## Supabase: local i remot
 
 - Local amb Docker: `pnpm exec supabase start` (ports 556xx, per no xocar amb altres projectes).
