@@ -8,6 +8,8 @@ const supabase = new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? "http://127.0.0
 const localSupabase = ["127.0.0.1", "localhost"].includes(supabase.hostname);
 
 const nextConfig: NextConfig = {
+  // Les fotos del panell viatgen dins d'una acció de servidor (ja reduïdes pel navegador; el límit per defecte és 1 MB).
+  experimental: { serverActions: { bodySizeLimit: "4mb" } },
   images: {
     remotePatterns: [
       {

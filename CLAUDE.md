@@ -56,6 +56,9 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   per idioma. `site_settings` és d'una sola fila (`single`) i les seves traduccions no tenen clau forana.
 - Els formularis s'envien a mà dins d'una transició, no amb `action={…}`: React buida el formulari en acabar una
   acció i, amb un error de validació, es perdria el que s'ha escrit.
+- **Fotos** (`ImageField`, `replaceImageAction`): el navegador redueix la foto a 2400 px i la passa a JPEG abans d'enviar-la
+  (Vercel no accepta cossos de més de 4,5 MB); el servidor comprova que és un JPEG i en llegeix la mida de la capçalera
+  (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
 - **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`
   li dona o li treu l'accés. No hi ha registre obert.
 - **Proves en local**: `pnpm exec supabase start`, `pnpm local pnpm seed`, `pnpm local node scripts/seed-local-editor.ts`

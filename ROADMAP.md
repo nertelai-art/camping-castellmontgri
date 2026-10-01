@@ -182,7 +182,8 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ **5.2 Més contingut**: allotjaments (característiques i equipament), tipus d'allotjament, noms dels punts del mapa
   i dades generals (telèfon, correus, temporada, enllaços, textos per a Google).
 - ✅ **5.3 Posició dels punts del mapa**: es mou un punt clicant o arrossegant sobre el mapa (i amb les fletxes).
-- Pendent: imatges (pujar, triar, retallar), afegir i treure punts del mapa, opinions,
+- ✅ **5.4 Fotos**: es canvia la foto principal de seccions, serveis, restaurants, animació, allotjaments i tipus.
+- Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos, afegir i treure punts del mapa, opinions,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.

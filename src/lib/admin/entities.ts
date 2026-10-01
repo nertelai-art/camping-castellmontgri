@@ -36,6 +36,8 @@ export type EntityConfig = {
   text: readonly TextField[];
   /** Camps que no depenen de l'idioma. */
   base: readonly BaseField[];
+  /** La foto principal: la columna de la taula base que apunta a `media`. */
+  image?: { column: string; label: string };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
   tags: readonly string[];
 };
@@ -50,6 +52,7 @@ export const ENTITIES = {
     singular: "secció",
     description: "Els títols i textos de cada bloc de la pàgina principal.",
     table: "sections",
+    image: { column: "media_id", label: "Foto de la secció" },
     key: "key",
     translations: "section_translations",
     foreignKey: "section_key",
@@ -67,6 +70,7 @@ export const ENTITIES = {
     singular: "servei",
     description: "Recepció, supermercat, piscines, bugaderia…",
     table: "services",
+    image: { column: "media_id", label: "Foto" },
     key: "id",
     translations: "service_translations",
     foreignKey: "service_id",
@@ -82,6 +86,7 @@ export const ENTITIES = {
     singular: "local",
     description: "Cada restaurant, gelateria i bar, amb el seu horari i la carta.",
     table: "restaurants",
+    image: { column: "cover_media_id", label: "Foto" },
     key: "id",
     translations: "restaurant_translations",
     foreignKey: "restaurant_id",
@@ -98,6 +103,7 @@ export const ENTITIES = {
     singular: "activitat",
     description: "Activitats per a infants, famílies i adults.",
     table: "activities",
+    image: { column: "cover_media_id", label: "Foto" },
     key: "id",
     translations: "activity_translations",
     foreignKey: "activity_id",
@@ -113,6 +119,7 @@ export const ENTITIES = {
     singular: "allotjament",
     description: "Cada model de bungalow, mobil-home i parcel·la, amb les seves característiques.",
     table: "accommodations",
+    image: { column: "cover_media_id", label: "Foto principal" },
     key: "id",
     translations: "accommodation_translations",
     foreignKey: "accommodation_id",
@@ -138,6 +145,7 @@ export const ENTITIES = {
     singular: "tipus",
     description: "Els grups en què es presenten els allotjaments: bungalows, mobil-homes, parcel·les…",
     table: "accommodation_categories",
+    image: { column: "media_id", label: "Foto" },
     key: "key",
     translations: "accommodation_category_translations",
     foreignKey: "category_key",
