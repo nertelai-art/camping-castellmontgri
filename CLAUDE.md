@@ -52,14 +52,23 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   intent i ja no s'usa.
 - Una migració nova = un fitxer nou. Mai s'edita una migració ja aplicada al remot.
 
-## Plànol interactiu
+## Mapa interactiu (maqueta 3D)
 
-- Els punts són a `map_points` en % de la il·lustració. La font inicial és
-  `scripts/content/map-points.json`, en píxels del plànol (3000×1845): més fàcil de revisar.
-- Per comprovar-ne la posició sense navegador: dibuixar-los sobre el plànol amb sharp (crop +
-  composite) i mirar-ho ampliat.
-- La geometria del visor (límits, zoom al voltant d'un punt, centrar) és a `src/lib/map/viewport.ts`
-  amb proves. «Veure al plànol» fa servir un esdeveniment de finestra (`src/lib/map/events.ts`).
+- Els punts són a `map_points` en % de la il·lustració, amb `icon` (clau de `src/lib/map/icons.ts`:
+  les 39 icones de la llegenda del dibuix). La font inicial és `scripts/content/map-points.json`,
+  en píxels del plànol (3000×1845): més fàcil de revisar.
+- `pnpm map:build` llegeix la il·lustració i en treu la maqueta: `src/components/scene/map-scene.data.json`
+  (on és cada arbre i cada casa), `public/map/ground.jpg` (el dibuix sense rètols, logo ni cases) i
+  `public/map/icons.png` (l'atles d'icones). S'executa a mà quan canvia la il·lustració; el resultat va al git.
+  La detecció (colors, components, pics de densitat) és a `scripts/lib/map-detect.ts`, amb proves.
+- `src/components/scene/MapScene.tsx`: arbres i cases instanciats, ombres calculades un sol cop
+  (`shadowMap.autoUpdate = false`), `frameloop="demand"`. La càmera és la classe `CameraRig`, fora de React:
+  el lint del compilador de React no deixa mutar el que retornen els hooks (`camera`, `gl`).
+- Els marcadors són botons HTML sobre el canvas, projectats a cada fotograma: accessibles i amb les icones nítides.
+- La roda només amplia amb Ctrl (si no, segrestaria el scroll). A mòbil el mapa no agafa el dit fins a «Toca per explorar».
+- Sense WebGL es veu `map-flat.tsx` (la il·lustració amb zoom); la seva geometria és a `src/lib/map/viewport.ts`, amb proves.
+- «Veure al mapa» fa servir un esdeveniment de finestra (`src/lib/map/events.ts`).
+- Per comprovar posicions sense navegador: dibuixar-les sobre el plànol amb sharp (`pnpm map:build --debug <dir>`).
 
 ## Material de referència
 
@@ -99,10 +108,10 @@ client es pugen a Supabase Storage amb el script de seed.
 Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
 rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
 
-- Escenes a `src/components/scene/`: `HeroShowcase` + `HeroScene` (vol sobre el plànol) i
-  `FoodShowcase` + `FoodScene` (paella, gelat, copa). Fases a `phases.ts`, amb proves.
-- three.js no ha d'entrar a la càrrega inicial: el hero el carrega a la **primera interacció**
-  (`interaction.ts`); en ociós encara disparava el TBT. Fins que l'escena és a punt, la foto tapa.
+- Escenes a `src/components/scene/`: `MapScene` (la maqueta del mapa) i `FoodShowcase` + `FoodScene`
+  (paella, gelat, copa). Fases a `phases.ts`, amb proves. El hero és una foto, sense 3D.
+- three.js no ha d'entrar a la càrrega inicial: les escenes es carreguen amb `dynamic()` quan la secció
+  s'acosta a la pantalla (`useNearViewport`).
 - Textures d'imatges de Storage: a través de l'optimitzador de Next (`/_next/image?...&w=2048&q=75`),
   mateix origen. Next 16 només accepta la qualitat 75 si no se'n configuren més.
 - Vidre sobre canvas transparent: material transparent, no `transmission` (sortia blanc).

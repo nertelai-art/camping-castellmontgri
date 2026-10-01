@@ -160,6 +160,16 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ Verificat amb Chrome sense cap (playwright-core fora del projecte) a 0/25/50/75/100 % de cada escena, escriptori i mòbil: sense errors, fotogrames p50 16,7 ms (60 fps). El p95 a escriptori no és representatiu: sense GPU, el WebGL es pinta per CPU (SwiftShader).
 - ⏳ Mesura real (GPU i xarxa) a una previsualització de Vercel i a un mòbil de veritat.
 
+### Ronda de disseny (abans de la fase 5) ✅
+
+- Selector d'idioma desplegable amb banderes; «Mapa» al menú.
+- El hero torna a ser una foto: el 3D passa a la secció del mapa.
+- Mapa en 3D: maqueta amb cada arbre i cada casa detectats a la il·lustració (`pnpm map:build`), marcadors amb
+  les icones de la llegenda del dibuix, fitxa amb text gran i llegenda fora del mapa.
+- Piscines i tobogans sense la foto borrosa.
+- Pendent: col·locar els punts que falten (Take Away Ombra, Kids Club, glamping, tendes) i afinar posicions
+  des de l'editor del mapa (fase 5).
+
 ### Fase 5 — Panell d'administració
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.

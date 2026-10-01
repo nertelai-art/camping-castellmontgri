@@ -3,7 +3,7 @@ import type { MapPoint, Section } from "@/lib/supabase/content";
 import { MapExplorer, type Place } from "./map-explorer";
 import { SectionHeading } from "./section-heading";
 
-/** Plànol interactiu: la il·lustració del càmping amb els punts de l'admin (taula map_points). */
+/** Mapa interactiu: la maqueta 3D del càmping amb els punts de l'admin (taula map_points) i la llegenda. */
 export async function MapSection({
   section,
   points,
