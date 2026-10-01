@@ -11,6 +11,7 @@ import { readFile } from "node:fs/promises";
 import { basename, extname, join } from "node:path";
 import sharp from "sharp";
 import type { Database } from "../src/lib/supabase/database.types.ts";
+import { isMapIcon } from "../src/lib/map/icons.ts";
 import { parseBlocks, parseFrontmatter, parseSize, parseTestimonials, sentenceCase, titleCase, toPercent } from "./lib/markdown.ts";
 
 type Locale = Database["public"]["Enums"]["locale"];
@@ -487,6 +488,7 @@ type MapPointSeed = {
   activity?: string;
   accommodation?: string;
   category?: string;
+  icon?: string;
   label?: Record<Locale, string>;
 };
 
@@ -516,6 +518,7 @@ async function seedMapPoints() {
       null;
     const ref = p.service ?? p.restaurant ?? p.activity ?? p.accommodation;
     if (ref && !linked) throw new Error(`Punt ${order}: no existeix ${ref}`);
+    if (p.icon && !isMapIcon(p.icon)) throw new Error(`Punt ${order}: la icona ${p.icon} no existeix`);
     const row = check(
       await db
         .from("map_points")
@@ -528,6 +531,7 @@ async function seedMapPoints() {
           activity_id: p.activity ? linked!.id : null,
           accommodation_id: p.accommodation ? linked!.id : null,
           accommodation_category_key: p.category ?? null,
+          icon: p.icon ?? null,
           sort_order: order * 10,
           status: "published",
         })

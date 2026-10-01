@@ -10,7 +10,7 @@ amb dues peces:
 1. **Una landing espectacular**: animada, ràpida, en 5 idiomes, que vengui
    l'experiència i porti a reservar.
 2. **Un panell d'administració** on el càmping edita gairebé tot: textos,
-   imatges, allotjaments, serveis, restaurants, punts del plànol, opinions,
+   imatges, allotjaments, serveis, restaurants, punts del plànol,
    ofertes i temporada.
 
 **Decisió de base:** el contingut és editable **des del primer dia**. Cada secció
@@ -126,7 +126,7 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ Supabase local (Docker) i remot `camping-castellmontgri` (París, pla gratuït).
 - ✅ Esquema amb migracions (`supabase/migrations/`), RLS i proves pgTAP (`pnpm db:test`, 12 proves).
 - ✅ Tipus generats de l'esquema (`pnpm db:types`); lectura a `src/lib/supabase/content.ts`.
-- ✅ Seed idempotent des de `reference/` (`pnpm seed`): 316 imatges reduïdes a 2400 px (~110 MB), 26 allotjaments, 19 serveis, 12 restaurants, 13 activitats, 7 seccions i 5 opinions, tot en 5 idiomes.
+- ✅ Seed idempotent des de `reference/` (`pnpm seed`): 316 imatges reduïdes a 2400 px (~110 MB), 26 allotjaments, 19 serveis, 12 restaurants, 13 activitats, 7 seccions i 5 tot en 5 idiomes.
 - ✅ Revalidació per etiqueta de taula (`/api/revalidate`, expiració immediata).
 - ✅ Sentry (`nertel/camping-castellmontgri`, regió UE), desactivat si no hi ha DSN.
 - ✅ Fronteres de proveïdor vigilades per ESLint.
@@ -138,7 +138,7 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ Direcció visual «guia de natura»: paper crema amb gra, tinta oliva, accents terracota, numeració de secció i la carena del Montgrí amb el castell com a signatura. Fraunces (titulars) + Lato (la del web actual). Tema clar i fosc; les franges de color mantenen el contrast en tots dos.
 - ✅ Landing sencera amb dades reals en 5 idiomes: hero (foto aèria real), benvinguda amb xifres comptades del contingut, allotjaments (pestanyes, filtre per persones, fitxa amb galeria i equipament), plànol, gastronomia per zones, piscines i tobogans, serveis desplegables, animació per públics, entorn, opinions i peu amb contacte i acreditacions.
 - ✅ SEO: títol i descripció per idioma, canònica, `hreflang` + `x-default`, Open Graph, `sitemap.xml`, `robots.txt` (les previsualitzacions no s'indexen) i JSON-LD `Campground`.
-- ✅ Accessibilitat: Lighthouse 100 (contrast, `lang` a les opinions, diàleg amb focus i Escape, menú mòbil sense JS, enllaç «salta al contingut»).
+- ✅ Accessibilitat: Lighthouse 100 (contrast, `lang` a les diàleg amb focus i Escape, menú mòbil sense JS, enllaç «salta al contingut»).
 - ✅ Rendiment: Sentry del navegador diferit, tipografies de 320 KB a 89 KB, seccions sota el plec amb `content-visibility`, cap animació que bloquegi el LCP.
 - ⏳ **Lighthouse ≥ 95 a mòbil**: en local surt entre 75 i 83, amb una variació enorme (la mateixa build ha donat 27 i 80). La mesura bona es fa amb PageSpeed sobre una previsualització de Vercel.
 - ➡️ Redireccions 301 de les URL antigues: passen a la fase 6, quan existeixin les pàgines de destí.
@@ -160,7 +160,40 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ Verificat amb Chrome sense cap (playwright-core fora del projecte) a 0/25/50/75/100 % de cada escena, escriptori i mòbil: sense errors, fotogrames p50 16,7 ms (60 fps). El p95 a escriptori no és representatiu: sense GPU, el WebGL es pinta per CPU (SwiftShader).
 - ⏳ Mesura real (GPU i xarxa) a una previsualització de Vercel i a un mòbil de veritat.
 
+### Ronda de disseny (abans de la fase 5) ✅
+
+- Selector d'idioma desplegable amb banderes; «Mapa» al menú.
+- El hero torna a ser una foto: el 3D passa a la secció del mapa.
+- Mapa en 3D: maqueta amb cada arbre, cada bungalow numerat (806) i els edificis grans, sobre el dibuix net.
+  És el fons de la secció i s'obre a pantalla completa amb cercador de parcel·la (966 números), filtres i fitxa.
+  Els números surten en acostar-s'hi i en passar-hi el ratolí.
+- Piscines i tobogans amb la foto gran de la piscina de fons.
+- Allotjaments: targetes clarament clicables, dades amb icones.
+- Gastronomia amb fotos reals: la taula es para amb les fotos dels restaurants (ja no hi ha escena 3D de menjar).
+- Auditoria de rendiment: Lighthouse 97-98 a escriptori i 87-88 a mòbil en local; el mapa ja no congela la pàgina en carregar.
+- Pendent: col·locar els punts que falten (Take Away Ombra, Kids Club, glamping, tendes) i afinar posicions
+  des de l'editor del mapa (fase 5).
+- Pendent: els números de parcel·la i els edificis són fitxers del repositori; si el client els ha de poder
+  corregir, han de passar a la base de dades amb l'editor del mapa (fase 5).
+
 ### Fase 5 — Panell d'administració
+- ✅ **5.1 Fonaments**: inici de sessió, rols (RLS), menú i edició de textos en 5 idiomes de seccions, serveis,
+  restaurants i animació, amb avís del que falta traduir i publicat/esborrany. Els canvis es veuen a la web en desar.
+- ✅ **5.2 Més contingut**: allotjaments (característiques i equipament), tipus d'allotjament, noms dels punts del mapa
+  i dades generals (telèfon, correus, temporada, enllaços, textos per a Google).
+- ✅ **5.3 Posició dels punts del mapa**: es mou un punt clicant o arrossegant sobre el mapa (i amb les fletxes).
+- ✅ **5.4 Fotos**: es canvia la foto principal de seccions, serveis, restaurants, animació, allotjaments i tipus.
+- ✅ **5.5 Registre de canvis**: qui ha canviat què i quan (`/admin/changes`); només s'hi pot afegir.
+- ✅ **5.6 Afegir i esborrar**: punts del mapa (amb tipus i icona), serveis, restaurants i activitats. Neixen en esborrany.
+- ✅ **5.7 Opinions**: afegir, editar, publicar i esborrar opinions de clients.
+- ✅ **5.8 Galeria dels allotjaments**: afegir fotos (unes quantes de cop), treure'n i canviar-ne l'ordre.
+- ✅ **5.9 Editor visual** (`/admin/visual`): la web a l'esquerra i l'editor del bloc que s'hi clica a la dreta; en desar,
+  la web es recarrega al mateix punt. Amb vista de mòbil, canvi d'idioma i mode «Navega».
+- ✅ **5.10 En viu**: a l'editor visual el text es veu a la web mentre s'escriu (títols, textos, noms, horaris), i la web
+  canvia d'idioma amb la pestanya del formulari. No es desa res fins que es prem «Desa».
+- Pendent: esborranys a la web de l'editor visual, punts del mapa a
+  l'editor visual, retall i punt focal, text alternatiu de les fotos,
+  registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.
 - **Editor del plànol:** clicar sobre la il·lustració per col·locar o moure punts.

@@ -1,0 +1,62 @@
+{
+  "_note": "Edificis grans del plànol, mesurats a mà sobre retalls ampliats amb quadrícula (píxels de 3000×1845). Cada edifici és un o més volums: centre x/y de la teulada dibuixada, amplada w (eix x), fondària d (eix y), alçada de paret h, gir rot en graus (sentit horari) i teulada: gable-x / gable-y (dues aigües, carener al llarg de x o de y), hip (quatre aigües) o flat. `sports`: pistes que es redibuixen netes a terra; tl/tr/bl són tres cantonades (el dibuix és isomètric: són paral·lelograms). `no_trees`: rectangles [x0,y0,x1,y1] on el detector no ha de plantar arbres.",
+  "colors": {
+    "brown": "#8a5a38",
+    "tan": "#bfa66e",
+    "orange": "#cf8440",
+    "grey": "#6f7278",
+    "white": "#f1eee6",
+    "wood": "#a37a45",
+    "olive": "#b3aa7a",
+    "redbrown": "#8c4a36",
+    "yellow": "#e2c23c",
+    "wall": "#ecdcbc",
+    "wallwood": "#b98a5a",
+    "wallgrey": "#c9c6bd"
+  },
+  "buildings": [
+    { "name": "panorama-main", "x": 1072, "y": 765, "w": 125, "d": 62, "h": 26, "rot": 0, "roof": "flat", "color": "tan", "wall": "wall" },
+    { "name": "panorama-wing", "x": 1015, "y": 845, "w": 42, "d": 90, "h": 22, "rot": 0, "roof": "gable-y", "color": "tan", "wall": "wall" },
+    { "name": "panorama-wood", "x": 1017, "y": 910, "w": 54, "d": 40, "h": 20, "rot": 0, "roof": "gable-x", "color": "wood", "wall": "wallwood" },
+    { "name": "panorama-pool-bar", "x": 1094, "y": 1024, "w": 26, "d": 26, "h": 14, "rot": 0, "roof": "hip", "color": "wood", "wall": "wallwood" },
+
+    { "name": "ombra-supermarket", "x": 1652, "y": 1190, "w": 95, "d": 70, "h": 30, "rot": 0, "roof": "gable-x", "color": "brown", "wall": "wall" },
+    { "name": "ombra-west-wing", "x": 1670, "y": 1265, "w": 45, "d": 75, "h": 24, "rot": -20, "roof": "gable-y", "color": "brown", "wall": "wall" },
+    { "name": "ombra-north", "x": 1740, "y": 1180, "w": 80, "d": 50, "h": 28, "rot": 0, "roof": "gable-x", "color": "tan", "wall": "wall" },
+    { "name": "ombra-hip", "x": 1715, "y": 1241, "w": 65, "d": 58, "h": 26, "rot": 0, "roof": "hip", "color": "tan", "wall": "wall" },
+    { "name": "ombra-main", "x": 1790, "y": 1214, "w": 120, "d": 67, "h": 30, "rot": 0, "roof": "gable-x", "color": "brown", "wall": "wall" },
+    { "name": "ombra-east", "x": 1878, "y": 1184, "w": 53, "d": 57, "h": 26, "rot": 0, "roof": "hip", "color": "tan", "wall": "wall" },
+    { "name": "ombra-canopy", "x": 1828, "y": 1272, "w": 175, "d": 34, "h": 14, "rot": -7, "roof": "flat", "color": "white", "wall": "wallgrey" },
+    { "name": "ombra-east-low", "x": 1931, "y": 1252, "w": 38, "d": 55, "h": 20, "rot": 0, "roof": "hip", "color": "tan", "wall": "wall" },
+    { "name": "ombra-pizzeria", "x": 1722, "y": 1290, "w": 70, "d": 50, "h": 22, "rot": 0, "roof": "gable-x", "color": "brown", "wall": "wall" },
+    { "name": "ombra-porch", "x": 1717, "y": 1320, "w": 65, "d": 18, "h": 12, "rot": 0, "roof": "flat", "color": "grey", "wall": "wallgrey" },
+    { "name": "ombra-slide-tower", "x": 1936, "y": 1335, "w": 18, "d": 18, "h": 46, "rot": 0, "roof": "flat", "color": "yellow", "wall": "wall" },
+
+    { "name": "sanitary-east", "x": 2180, "y": 1262, "w": 92, "d": 50, "h": 18, "rot": -10, "roof": "gable-x", "color": "grey", "wall": "wallgrey" },
+    { "name": "reception-west", "x": 2515, "y": 1359, "w": 58, "d": 120, "h": 26, "rot": -32, "roof": "gable-y", "color": "brown", "wall": "wall" },
+    { "name": "reception-east", "x": 2606, "y": 1345, "w": 78, "d": 78, "h": 30, "rot": -32, "roof": "hip", "color": "tan", "wall": "wall" },
+    { "name": "gatehouse", "x": 2622, "y": 1253, "w": 34, "d": 26, "h": 16, "rot": 28, "roof": "flat", "color": "white", "wall": "wall" },
+    { "name": "gate-canopy", "x": 2596, "y": 1236, "w": 28, "d": 16, "h": 14, "rot": 28, "roof": "flat", "color": "tan", "wall": "wallwood" },
+
+    { "name": "church-nave", "x": 1137, "y": 1285, "w": 75, "d": 42, "h": 34, "rot": 0, "roof": "gable-x", "color": "orange", "wall": "wall" },
+    { "name": "church-tower", "x": 1128, "y": 1304, "w": 16, "d": 14, "h": 56, "rot": 0, "roof": "hip", "color": "orange", "wall": "wall" },
+    { "name": "church-west", "x": 1100, "y": 1345, "w": 28, "d": 70, "h": 24, "rot": 0, "roof": "gable-y", "color": "orange", "wall": "wall" },
+    { "name": "church-east", "x": 1150, "y": 1350, "w": 28, "d": 60, "h": 24, "rot": 0, "roof": "gable-y", "color": "orange", "wall": "wall" },
+    { "name": "lera", "x": 1223, "y": 1238, "w": 26, "d": 22, "h": 14, "rot": 0, "roof": "hip", "color": "wood", "wall": "wallwood" },
+
+    { "name": "sanitary-south", "x": 948, "y": 1482, "w": 120, "d": 58, "h": 22, "rot": 0, "roof": "gable-x", "color": "redbrown", "wall": "wall" },
+    { "name": "sanitary-north", "x": 1677, "y": 801, "w": 128, "d": 44, "h": 18, "rot": 25, "roof": "flat", "color": "olive", "wall": "wall" },
+    { "name": "west-arches", "x": 450, "y": 990, "w": 80, "d": 45, "h": 26, "rot": 0, "roof": "gable-x", "color": "tan", "wall": "wall" },
+    { "name": "sanitary-west", "x": 745, "y": 1240, "w": 30, "d": 75, "h": 18, "rot": -20, "roof": "flat", "color": "tan", "wall": "wall" }
+  ],
+  "sports": [
+    { "type": "apron", "tl": [1198, 668], "tr": [1262, 676], "bl": [1180, 866] },
+    { "type": "football", "tl": [1043, 652], "tr": [1201, 670], "bl": [1016, 729] },
+    { "type": "basket", "tl": [1212, 675], "tr": [1255, 679], "bl": [1201, 749] },
+    { "type": "tennis", "tl": [1209, 778], "tr": [1250, 782], "bl": [1192, 858] }
+  ],
+  "no_trees": [
+    [1010, 648, 1204, 760],
+    [1180, 664, 1264, 876]
+  ]
+}

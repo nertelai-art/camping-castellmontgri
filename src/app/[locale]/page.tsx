@@ -37,7 +37,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, settings, sections, categories, services, restaurants, activities, testimonials, surroundingsPhotos, accreditations, mapPoints] =
+  const [t, settings, sections, categories, services, restaurants, activities, testimonials, surroundingsPhotos, accreditations, mapPoints, flags] =
     await Promise.all([
       getTranslations("accommodation"),
       getSiteSettings(locale),
@@ -50,6 +50,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       getMediaByFolder("entorno", locale),
       getMediaByFolder("accreditations", locale),
       getMapPoints(locale),
+      getMediaByFolder("flags", locale),
     ]);
 
   const pools = services.find((s) => s.slug === "swimming-pools");
@@ -76,11 +77,9 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <CampgroundJsonLd settings={settings} url={`${siteUrl}/${locale}`} image={sections.hero?.media?.src} />
-      <SiteHeader settings={settings} locale={locale} />
+      <SiteHeader settings={settings} locale={locale} flags={flags} />
       <main id="main">
-        {sections.hero && (
-          <Hero section={sections.hero} mapSection={sections["map"]} mapPoints={mapPoints} settings={settings} locale={locale} />
-        )}
+        {sections.hero && <Hero section={sections.hero} settings={settings} locale={locale} />}
 
         {sections.welcome && (
           <Welcome
@@ -95,7 +94,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         )}
 
         {sections.accommodation && (
-          <section aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+          <section data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
             <div id="accommodation" className="grid gap-8 lg:grid-cols-2 lg:items-end">
               <SectionHeading
                 id="accommodation-title"
@@ -119,7 +118,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
 
         {sections["map"] && <MapSection section={sections["map"]} points={mapPoints} places={places} index={next()} />}
         {sections.gastronomy && <Gastronomy section={sections.gastronomy} restaurants={restaurants} onMap={onMap} index={next()} />}
-        {pools && <Pools pools={pools} slides={slides} index={next()} />}
+        {pools && <Pools pools={pools} slides={slides} onMap={onMap} index={next()} />}
         {sections.services && <ServicesGrid section={sections.services} services={otherServices} onMap={onMap} index={next()} />}
         {sections.entertainment && <Entertainment section={sections.entertainment} activities={activities} index={next()} />}
         {sections.surroundings && <Surroundings section={sections.surroundings} photos={surroundingsPhotos} index={next()} />}

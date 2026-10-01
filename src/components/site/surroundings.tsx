@@ -8,7 +8,7 @@ import { SectionHeading } from "./section-heading";
 export async function Surroundings({ section, photos, index }: { section: Section; photos: MediaRef[]; index: number }) {
   const t = await getTranslations("surroundings");
   return (
-    <section aria-labelledby="surroundings-title" className="cv py-24 lg:py-32">
+    <section data-edit="sections:surroundings" aria-labelledby="surroundings-title" className="cv py-24 lg:py-32">
       <div id="surroundings" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading id="surroundings-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
       </div>

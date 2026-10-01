@@ -19,12 +19,17 @@
     "db:types": "supabase gen types typescript --local > src/lib/supabase/database.types.ts",
     "db:reset": "supabase db reset",
     "seed": "node scripts/seed.ts",
-    "db:test": "supabase test db"
+    "db:test": "supabase test db",
+    "map:build": "node scripts/build-map-scene.ts",
+    "food:build": "node scripts/build-food-pieces.ts",
+    "local": "node scripts/local.ts",
+    "editor:grant": "node scripts/grant-editor.ts"
   },
   "dependencies": {
     "@react-three/drei": "10.7.9",
     "@react-three/fiber": "9.8.1",
     "@sentry/nextjs": "11.1.0",
+    "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "2.117.2",
     "next": "16.3.7",
     "next-intl": "4.14.8",

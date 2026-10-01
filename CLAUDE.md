@@ -41,6 +41,43 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - Les polítiques RLS tenen proves pgTAP a `supabase/tests/`. Qualsevol canvi de polítiques
   hi afegeix el seu cas.
 
+## Panell d'administració (`/admin`)
+
+- Fora de `[locale]`, amb el seu document (`src/app/admin/layout.tsx`), en català i sense indexar.
+- **Sessió**: Supabase Auth amb correu i contrasenya, en galetes (`@supabase/ssr`). `src/proxy.ts` la refresca a
+  cada petició a `/admin`; qui pot entrar ho decideix el layout de `(panel)` amb `currentEditor()` (compte + fila a
+  `profiles`). Les accions de servidor ho tornen a comprovar: són endpoints públics.
+- **Escriptura**: amb la sessió de l'editor i la clau publicable; RLS és qui deixa escriure. Cap clau secreta al panell.
+- **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
+  la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
+- En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
+  per exemple, es llegeixen dins `accommodation_categories`): la web ho ensenya de seguida.
+- Tipus de camp: text, número, data, casella, estat i posició al mapa (`MapPositionField`, geometria a `src/lib/map/position.ts`) a la base; text curt, llarg i llista (una línia per element, `text[]`)
+  per idioma. `site_settings` és d'una sola fila (`single`) i les seves traduccions no tenen clau forana.
+- Els formularis s'envien a mà dins d'una transició, no amb `action={…}`: React buida el formulari en acabar una
+  acció i, amb un error de validació, es perdria el que s'ha escrit.
+- **Fotos** (`ImageField`, `replaceImageAction`): el navegador redueix la foto a 2400 px i la passa a JPEG abans d'enviar-la
+  (Vercel no accepta cossos de més de 4,5 MB); el servidor comprova que és un JPEG i en llegeix la mida de la capçalera
+  (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
+- **Galeria** (`GalleryField`, entitats amb `gallery`): cada acció (afegir, treure, moure) es desa a l'instant i refresca
+  la pàgina del panell amb `revalidatePath`. Treure una foto de la galeria no esborra el fitxer de `media`.
+- **Editor visual** (`/admin/visual`, `VisualShell`): la web pública dins d'un iframe del mateix origen i l'editor al costat.
+  La web no carrega cap codi d'edició: només porta `data-edit="entitat:referència"` als blocs (la referència és la clau
+  de la secció o el `slug`; `resolveRef` en treu l'identificador). És el panell qui, des de fora, hi posa els ressaltats
+  i captura els clics. Els formularis avisen amb l'esdeveniment `admin:saved` i l'iframe es recarrega conservant el scroll.
+  Dins d'un bloc, `data-edit-field="camp"` marca on es pinta cada camp mentre s'escriu (esdeveniment `admin:draft`;
+  `RichText` el posa amb la prop `field`). És només DOM de l'iframe: si es canvia de bloc sense desar, es recarrega.
+  Un bloc nou editable a la web = posar-li `data-edit`. `src/lib/admin/visual.ts` (amb proves) llegeix les marques.
+- **Afegir i esborrar**: només les entitats amb `create` a `entities.ts`. Una fila nova neix en esborrany amb els valors per
+  defecte (i un `slug` generat si la taula en demana); esborrar demana dos clics. Totes dues coses queden al registre.
+- **Registre de canvis** (`change_log`, `/admin/changes`): l'apunta l'acció de servidor després de desar, amb la sessió de l'editor.
+  RLS només deixa afegir-hi (signat amb el propi compte) i llegir-lo: no es pot modificar ni esborrar des de l'API.
+- **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`
+  li dona o li treu l'accés. No hi ha registre obert.
+- **Proves en local**: `pnpm exec supabase start`, `pnpm local pnpm seed`, `pnpm local node scripts/seed-local-editor.ts`
+  (usuari de prova, contrasenya a `.env.local-editor`), `pnpm local next build` i la previsualització `web-local` (port 3200).
+  `pnpm local <ordre>` executa qualsevol cosa contra el Supabase local sense tocar `.env.local`.
+
 ## Supabase: local i remot
 
 - Local amb Docker: `pnpm exec supabase start` (ports 556xx, per no xocar amb altres projectes).
@@ -52,14 +89,42 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   intent i ja no s'usa.
 - Una migració nova = un fitxer nou. Mai s'edita una migració ja aplicada al remot.
 
-## Plànol interactiu
+## Mapa interactiu (maqueta 3D)
 
-- Els punts són a `map_points` en % de la il·lustració. La font inicial és
-  `scripts/content/map-points.json`, en píxels del plànol (3000×1845): més fàcil de revisar.
-- Per comprovar-ne la posició sense navegador: dibuixar-los sobre el plànol amb sharp (crop +
-  composite) i mirar-ho ampliat.
-- La geometria del visor (límits, zoom al voltant d'un punt, centrar) és a `src/lib/map/viewport.ts`
-  amb proves. «Veure al plànol» fa servir un esdeveniment de finestra (`src/lib/map/events.ts`).
+- Els punts són a `map_points` en % de la il·lustració, amb `icon` (clau de `src/lib/map/icons.ts`:
+  les 39 icones de la llegenda del dibuix). La font inicial és `scripts/content/map-points.json`,
+  en píxels del plànol (3000×1845): més fàcil de revisar.
+- `scripts/content/map-plots.json`: el número i la posició de les 966 parcel·les i allotjaments del dibuix
+  (`text` = número pintat a la parcel·la, `red` = allotjament del càmping, `cream` = operador turístic).
+  Es van llegir a mà sobre retalls ampliats amb quadrícula, en dues passades independents que van coincidir:
+  l'OCR (tesseract) no arriba al 30 % amb lletra de 7 px. Si canvia el plànol, s'han de tornar a llegir.
+- `scripts/content/map-buildings.json`: els edificis grans (restaurants, recepció, església, sanitaris) com a
+  volums mesurats a mà sobre retalls amb quadrícula (teulada a dues aigües, a quatre o plana), les pistes
+  d'esport (`sports`: es redibuixen netes, `scripts/lib/map-sports.ts`) i les zones sense arbres.
+- El terra no es difumina: el que s'esborra del dibuix (cases, icones, rètols) s'omple capa a capa continuant
+  el color de la vora (`inpaint` a `map-detect.ts`). Una mitjana de finestra deixava taques grises, sobretot a l'aigua.
+- `pnpm map:build` llegeix la il·lustració i aquests fitxers i en treu la maqueta:
+  `src/components/scene/map-scene.data.json` (arbres, cases, edificis i números), `public/map/ground.jpg`
+  (el dibuix sense rètols, logo, cases ni icones) i `public/map/icons.png` (l'atles d'icones). S'executa a mà;
+  el resultat va al git. Cada rètol d'allotjament té la seva casa (`scripts/lib/map-plots.ts`); la detecció
+  de colors i arbres és a `scripts/lib/map-detect.ts`. Tot amb proves.
+  `pnpm map:build --debug <dir>` pinta el que ha detectat sobre el plànol: mira-ho ampliat abans de donar-ho per bo.
+- `map-explorer.tsx`: tancat, el mapa és el **fons de la secció** (no agafa ni ratolí ni scroll, la càmera es gronxa);
+  en clicar-hi s'obre a pantalla completa com un diàleg (`position: fixed`, per això la secció no pot tenir
+  `overflow`, `transform` ni `contain`). És el mateix canvas: només canvia de mida.
+  A la columna: el cercador de números i un desplegable per tipus de lloc. El desplegable obert fa de filtre
+  del mapa, i el lloc triat (a la llista o al mapa) obre la seva fitxa a sota mateix del nom.
+  L'obertura i el tancament són animacions CSS (`map-*` a `globals.css`); amb moviment reduït no n'hi ha.
+- Un lloc només té foto i descripció si el punt del mapa enllaça un servei, restaurant, activitat o allotjament
+  que en tingui. Els punts solts (minigolf, caixer, mirador…) no en tenen fins que s'editin a l'admin.
+- `src/components/scene/MapScene.tsx`: arbres, cases i edificis instanciats, ombres calculades un sol cop
+  (`shadowMap.autoUpdate = false`), `frameloop="demand"`. La càmera és la classe `CameraRig`, fora de React:
+  el lint del compilador de React no deixa mutar el que retornen els hooks (`camera`, `gl`).
+- Marcadors, números i etiquetes són HTML sobre el canvas, projectats a cada fotograma: accessibles i nítids.
+  De prop surten els números dels bungalows a la vista; el ratolí marca la parcel·la més propera.
+- `src/lib/map/plots.ts` pesa (un miler de números): només l'importen els visors, que es carreguen amb `dynamic()`.
+- Sense WebGL es veu `map-flat.tsx` (la il·lustració amb zoom); la seva geometria és a `src/lib/map/viewport.ts`.
+- «Veure al mapa» fa servir un esdeveniment de finestra (`src/lib/map/events.ts`) i obre el mapa.
 
 ## Material de referència
 
@@ -96,18 +161,34 @@ client es pugen a Supabase Storage amb el script de seed.
 
 ## Animacions
 
-Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
-rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
+L'única escena 3D és la maqueta del mapa (skill `scroll-3d-scenes`: plantilles i regles de rendiment).
+Res de vídeo ni de models externs si es pot modelar per codi.
 
-- Escenes a `src/components/scene/`: `HeroShowcase` + `HeroScene` (vol sobre el plànol) i
-  `FoodShowcase` + `FoodScene` (paella, gelat, copa). Fases a `phases.ts`, amb proves.
-- three.js no ha d'entrar a la càrrega inicial: el hero el carrega a la **primera interacció**
-  (`interaction.ts`); en ociós encara disparava el TBT. Fins que l'escena és a punt, la foto tapa.
-- Textures d'imatges de Storage: a través de l'optimitzador de Next (`/_next/image?...&w=2048&q=75`),
-  mateix origen. Next 16 només accepta la qualitat 75 si no se'n configuren més.
-- Vidre sobre canvas transparent: material transparent, no `transmission` (sortia blanc).
-- Per revisar les escenes sense el panell (quan està amagat, `requestAnimationFrame` no corre):
-  Chrome sense cap amb playwright-core i captures al 0/25/50/75/100 %.
+- `src/components/scene/`: `MapScene` (la maqueta) i `FoodShowcase` (gastronomia). La gastronomia **no és 3D**:
+  cada plat es munta peça a peça amb `transform` guiat pel scroll (la paella buida, l'arròs, el marisc; el
+  cucurutxo i les boles). Les peces i on va cadascuna són a `food-pieces.ts`; quan arriba cadascuna, a
+  `pieceTiming` (`phases.ts`), amb proves. Un pas sense peces ensenya les fotos reals dels seus locals.
+- Les peces de menjar (`public/food/*.webp`) són **generades amb IA**, no fotos del càmping: les peticions són a
+  `scripts/content/food-pieces.prompts.json`, es generen amb la skill `generar-imatges` cap a
+  `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
+  Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
+  mensual de Hugging Face es va acabar a la desena imatge.
+- three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
+  ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
+- El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):
+  - Compilar shaders en dibuixar: més de 2 s a Windows (ANGLE tradueix a HLSL). Ara `gl.compileAsync` abans del
+    primer fotograma (`frameloop="never"` fins que acaba) i un sol programa per a tota la maqueta (tot `flatShading`).
+  - `<Preload>` i `<Environment>` de drei compilen i dibuixen dins d'un efecte de React: no s'han de fer servir.
+  - Crear un context WebGL de prova per saber si n'hi ha: car. `useRenderMode` només mira l'API i `WebGLBoundary`
+    recull la fallada si el context de debò no es pot crear.
+  - La textura del terra (5,5 MP) es descodifica fora del fil principal (`createImageBitmap`); a mòbil, la de 2048 px.
+- El gronxament del mapa de fons va a uns 30 fps i només mentre és a la vista.
+- Per mesurar: `pnpm build` + `pnpm start`, Lighthouse **sense** `--use-angle=swiftshader` (el GL per programari
+  infla el TBT i endarrereix la primera pintura un segon) i un Chrome sense cap amb GPU per als fotogrames.
+  Referència (portàtil, octubre 2026): escriptori 97-98, mòbil 87-88, TBT 110-140 ms; fotograma més llarg en
+  carregar el mapa, 170 ms.
+- Per revisar el mapa sense el panell (quan està amagat, `requestAnimationFrame` no corre): Chrome sense cap amb
+  playwright-core.
 
 - Respectar sempre `prefers-reduced-motion`: cada animació ha de tenir un estat
   final estàtic correcte.
