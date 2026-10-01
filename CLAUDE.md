@@ -124,18 +124,28 @@ client es pugen a Supabase Storage amb el script de seed.
 
 ## Animacions
 
-Les escenes 3D lligades al scroll segueixen la skill `scroll-3d-scenes` (plantilles i regles de
-rendiment). Res de vídeo ni de models externs si es pot modelar per codi.
+L'única escena 3D és la maqueta del mapa (skill `scroll-3d-scenes`: plantilles i regles de rendiment).
+Res de vídeo ni de models externs si es pot modelar per codi.
 
-- Escenes a `src/components/scene/`: `MapScene` (la maqueta del mapa) i `FoodShowcase` + `FoodScene`
-  (paella, gelat, copa). Fases a `phases.ts`, amb proves. El hero és una foto, sense 3D.
-- three.js no ha d'entrar a la càrrega inicial: les escenes es carreguen amb `dynamic()` quan la secció
-  s'acosta a la pantalla (`useNearViewport`).
-- Textures d'imatges de Storage: a través de l'optimitzador de Next (`/_next/image?...&w=2048&q=75`),
-  mateix origen. Next 16 només accepta la qualitat 75 si no se'n configuren més.
-- Vidre sobre canvas transparent: material transparent, no `transmission` (sortia blanc).
-- Per revisar les escenes sense el panell (quan està amagat, `requestAnimationFrame` no corre):
-  Chrome sense cap amb playwright-core i captures al 0/25/50/75/100 %.
+- `src/components/scene/`: `MapScene` (la maqueta) i `FoodShowcase` (gastronomia). La gastronomia **no és 3D**:
+  són les fotos reals dels restaurants que es col·loquen sobre la «taula» amb `transform` guiat pel scroll.
+  On és cada foto en cada moment surt de `cardPose` (`phases.ts`), amb proves.
+- three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
+  ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
+- El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):
+  - Compilar shaders en dibuixar: més de 2 s a Windows (ANGLE tradueix a HLSL). Ara `gl.compileAsync` abans del
+    primer fotograma (`frameloop="never"` fins que acaba) i un sol programa per a tota la maqueta (tot `flatShading`).
+  - `<Preload>` i `<Environment>` de drei compilen i dibuixen dins d'un efecte de React: no s'han de fer servir.
+  - Crear un context WebGL de prova per saber si n'hi ha: car. `useRenderMode` només mira l'API i `WebGLBoundary`
+    recull la fallada si el context de debò no es pot crear.
+  - La textura del terra (5,5 MP) es descodifica fora del fil principal (`createImageBitmap`); a mòbil, la de 2048 px.
+- El gronxament del mapa de fons va a uns 30 fps i només mentre és a la vista.
+- Per mesurar: `pnpm build` + `pnpm start`, Lighthouse **sense** `--use-angle=swiftshader` (el GL per programari
+  infla el TBT i endarrereix la primera pintura un segon) i un Chrome sense cap amb GPU per als fotogrames.
+  Referència (portàtil, octubre 2026): escriptori 97-98, mòbil 87-88, TBT 110-140 ms; fotograma més llarg en
+  carregar el mapa, 170 ms.
+- Per revisar el mapa sense el panell (quan està amagat, `requestAnimationFrame` no corre): Chrome sense cap amb
+  playwright-core.
 
 - Respectar sempre `prefers-reduced-motion`: cada animació ha de tenir un estat
   final estàtic correcte.

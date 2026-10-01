@@ -4,19 +4,6 @@ import { useEffect, useRef, useState, useSyncExternalStore, type RefObject } fro
 
 // Peces comunes de les escenes 3D guiades pel scroll (ampolles, coberta).
 
-let webgl: boolean | undefined;
-function supportsWebGL() {
-  if (webgl === undefined) {
-    try {
-      const canvas = document.createElement("canvas");
-      webgl = Boolean(canvas.getContext("webgl2") ?? canvas.getContext("webgl"));
-    } catch {
-      webgl = false;
-    }
-  }
-  return webgl;
-}
-
 const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
 const noop = () => () => {};
 const subscribeReducedMotion = (callback: () => void) => {
@@ -25,9 +12,15 @@ const subscribeReducedMotion = (callback: () => void) => {
   return () => media.removeEventListener("change", callback);
 };
 
-/** «3d», «static» (sense WebGL) o «pending» al servidor, fins que hidrata. */
+const hasWebGLApi = () => typeof WebGL2RenderingContext !== "undefined" || typeof WebGLRenderingContext !== "undefined";
+
+/**
+ * «3d», «static» (sense WebGL) o «pending» al servidor, fins que hidrata.
+ * Només mira si el navegador té l'API: crear un context de prova és car (desenes de mil·lisegons, segons
+ * sense GPU). Si després l'escena no pot crear el seu, `WebGLBoundary` avisa i es passa a la versió sense 3D.
+ */
 export function useRenderMode() {
-  return useSyncExternalStore(noop, () => (supportsWebGL() ? "3d" : "static"), () => "pending" as const);
+  return useSyncExternalStore(noop, () => (hasWebGLApi() ? "3d" : "static"), () => "pending" as const);
 }
 
 export function useReducedMotion() {
@@ -53,6 +46,26 @@ export function useNearViewport(ref: RefObject<HTMLElement | null>, margin = "15
     return () => observer.disconnect();
   }, [ref, margin]);
   return near;
+}
+
+const INTERACTIONS = ["scroll", "pointerdown", "pointermove", "keydown", "touchstart", "wheel"] as const;
+
+/**
+ * Es torna `true` (per sempre) a la primera interacció de qui visita: scroll, ratolí, teclat o dit.
+ * Serveix per no carregar three.js mentre la pàgina encara arrenca: a mòbil, compilar-lo i muntar una
+ * escena durant la càrrega bloqueja el fil principal uns quants segons.
+ */
+export function useInteracted() {
+  const [interacted, setInteracted] = useState(false);
+  useEffect(() => {
+    const done = () => setInteracted(true);
+    const options = { once: true, passive: true } as const;
+    for (const type of INTERACTIONS) window.addEventListener(type, done, options);
+    return () => {
+      for (const type of INTERACTIONS) window.removeEventListener(type, done);
+    };
+  }, []);
+  return interacted;
 }
 
 /**

@@ -3,9 +3,9 @@
 // El mapa del càmping en 3D: cada arbre, cada bungalow i els edificis de la il·lustració, aixecats sobre
 // el dibuix net. Les posicions surten de `pnpm map:build` (map-scene.data.json). Tot modelat per codi.
 
-import { MapControls, useTexture } from "@react-three/drei";
+import { MapControls } from "@react-three/drei";
 import { Canvas, useFrame, useThree, type RootState, type ThreeEvent } from "@react-three/fiber";
-import { Suspense, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type ComponentRef, type ReactNode, type Ref, type RefObject } from "react";
+import { Suspense, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type ComponentRef, type ReactNode, type Ref, type RefObject } from "react";
 import {
   BoxGeometry,
   BufferGeometry,
@@ -18,10 +18,10 @@ import {
   Object3D,
   Spherical,
   SRGBColorSpace,
+  Texture,
   Vector3,
   type InstancedMesh,
   type Mesh,
-  type Texture,
 } from "three";
 import { MapMarker } from "@/components/site/map-marker";
 import { findPlot, nearestPlot, PLOTS, type MapPlot } from "@/lib/map/plots";
@@ -98,6 +98,7 @@ class CameraRig {
   readonly target = new Vector3();
   distance = Infinity;
   private clock = 0;
+  private timer: ReturnType<typeof setTimeout> | undefined;
   private offset = new Vector3();
   private spherical = new Spherical();
 
@@ -172,13 +173,19 @@ class CameraRig {
       }
       state.invalidate();
     } else if (opts.drift && this.grow >= 1 && !opts.reducedMotion) {
-      // Fons de la landing: la vista de sortida es gronxa a poc a poc.
+      // Fons de la landing: la vista de sortida es gronxa a poc a poc. Es mou tan lent que n'hi ha prou amb uns
+      // 30 fotogrames per segon: la meitat de feina per a la GPU (i de bateria al mòbil).
       this.clock += delta;
       const home = this.home(state);
       home.theta += Math.sin(this.clock * 0.16) * 0.2;
       home.radius *= 1 - 0.04 * (1 - Math.cos(this.clock * 0.16));
       this.place(state, controls, home);
-      state.invalidate();
+      if (!this.timer) {
+        this.timer = setTimeout(() => {
+          this.timer = undefined;
+          state.invalidate();
+        }, 1000 / 30);
+      }
     }
     const now = this.current(state, controls);
     this.target.copy(now.target);
@@ -337,7 +344,7 @@ function Model({ rig }: { rig: CameraRig }) {
     <>
       <Instances items={items.trunks} rig={rig}>
         <primitive object={geometry.trunk} attach="geometry" />
-        <meshLambertMaterial />
+        <meshLambertMaterial flatShading />
       </Instances>
       <Instances items={items.crowns} rig={rig}>
         <primitive object={geometry.crown} attach="geometry" />
@@ -345,7 +352,7 @@ function Model({ rig }: { rig: CameraRig }) {
       </Instances>
       <Instances items={items.walls} rig={rig}>
         <primitive object={geometry.wall} attach="geometry" />
-        <meshLambertMaterial />
+        <meshLambertMaterial flatShading />
       </Instances>
       <Instances items={items.roofs} rig={rig}>
         <primitive object={geometry.roof} attach="geometry" />
@@ -359,10 +366,25 @@ function Model({ rig }: { rig: CameraRig }) {
   );
 }
 
-function prepareGround(map: Texture, maxAnisotropy: number) {
+/**
+ * Carrega la textura del terra descodificant-la fora del fil principal (`createImageBitmap`). Amb un <img>,
+ * el navegador descodifica i gira els 5,5 milions de píxels en pujar-la a la GPU: més d'un segon de pantalla
+ * congelada. Els mòbils i les pantalles petites reben la versió de 2048 px.
+ */
+async function loadGround(maxAnisotropy: number): Promise<Texture> {
+  const small = Math.min(window.innerWidth, window.innerHeight) < 700;
+  const response = await fetch(small ? "/map/ground-s.jpg" : "/map/ground.jpg");
+  if (!response.ok) throw new Error(`No s'ha pogut carregar el terra del mapa (${response.status})`);
+  const bitmap = await createImageBitmap(await response.blob());
+  const map = new Texture(bitmap);
+  // Un ImageBitmap no es pot girar en pujar-lo: es giren les coordenades (v → 1 − v).
+  map.flipY = false;
+  map.repeat.y = -1;
+  map.offset.y = 1;
   map.colorSpace = SRGBColorSpace;
   map.anisotropy = Math.min(8, maxAnisotropy);
   map.needsUpdate = true;
+  return map;
 }
 
 /**
@@ -370,15 +392,32 @@ function prepareGround(map: Texture, maxAnisotropy: number) {
  * També és on es llegeix el ratolí: el punt de terra més proper a una parcel·la la marca.
  */
 function Ground({ rig, onReady, onSelectPlot }: { rig: CameraRig; onReady: () => void; onSelectPlot: (plot: MapPlot) => void }) {
-  const map = useTexture("/map/ground.jpg");
+  const [map, setMap] = useState<Texture | null>(null);
   const gl = useThree((s) => s.gl);
   const get = useThree((s) => s.get);
   const invalidate = useThree((s) => s.invalidate);
-  useLayoutEffect(() => {
-    prepareGround(map, gl.capabilities.getMaxAnisotropy());
-    invalidate();
-    onReady();
-  }, [map, gl, invalidate, onReady]);
+  useEffect(() => {
+    let cancelled = false;
+    let loaded: Texture | undefined;
+    loadGround(gl.capabilities.getMaxAnisotropy()).then(
+      (texture) => {
+        if (cancelled) return texture.dispose();
+        loaded = texture;
+        setMap(texture);
+        invalidate();
+        onReady();
+      },
+      (error: unknown) => {
+        // Sense terra la maqueta no s'entén, però el mapa ha de continuar funcionant: es veu sobre el color de fons.
+        console.error(error);
+        if (!cancelled) onReady();
+      },
+    );
+    return () => {
+      cancelled = true;
+      loaded?.dispose();
+    };
+  }, [gl, invalidate, onReady]);
 
   const plotAt = (e: ThreeEvent<PointerEvent | MouseEvent>) => nearestPlot(e.point.x + 50, (e.point.z / DEPTH) * 100 + 50, HOVER_RADIUS);
 
@@ -395,7 +434,7 @@ function Ground({ rig, onReady, onSelectPlot }: { rig: CameraRig; onReady: () =>
         }}
       >
         <planeGeometry args={[WIDTH, DEPTH]} />
-        <meshBasicMaterial map={map} toneMapped={false} />
+        <meshBasicMaterial key={map ? "map" : "plain"} map={map} color={map ? "#ffffff" : "#7d8c4a"} toneMapped={false} />
       </mesh>
       <mesh rotation-x={-Math.PI / 2} position-y={0.03} receiveShadow>
         <planeGeometry args={[WIDTH, DEPTH]} />
@@ -403,10 +442,38 @@ function Ground({ rig, onReady, onSelectPlot }: { rig: CameraRig; onReady: () =>
       </mesh>
       <mesh position-y={-1.26}>
         <boxGeometry args={[WIDTH, 2.5, DEPTH]} />
-        <meshLambertMaterial color="#5a4630" />
+        <meshLambertMaterial color="#5a4630" flatShading />
       </mesh>
     </>
   );
+}
+
+/**
+ * Compila els shaders abans del primer fotograma, sense bloquejar. Compilar-los en dibuixar (el que fa three
+ * per defecte) congelava la pàgina més de dos segons a Windows, on cada programa es tradueix a HLSL.
+ */
+function compileScene({ gl, scene, camera }: RootState) {
+  // La comprovació d'errors de shader obliga a esperar el resultat de l'enllaç: només en desenvolupament.
+  gl.debug.checkShaderErrors = process.env.NODE_ENV !== "production";
+  return gl.compileAsync(scene, camera);
+}
+
+function Precompile({ enabled, onDone }: { enabled: boolean; onDone: () => void }) {
+  const get = useThree((s) => s.get);
+  useEffect(() => {
+    if (!enabled) return;
+    let alive = true;
+    const done = () => {
+      if (!alive) return;
+      onDone();
+      requestAnimationFrame(() => get().invalidate());
+    };
+    compileScene(get()).then(done, done);
+    return () => {
+      alive = false;
+    };
+  }, [enabled, get, onDone]);
+  return null;
 }
 
 function Rig({
@@ -429,6 +496,11 @@ function Rig({
   useEffect(() => {
     if (started && rig.grow < 1) rig.flyTo(get(), controls.current, (g, home) => Object.assign(g, home));
   }, [started, rig, get]);
+
+  // Amb `frameloop="demand"` ningú dibuixa si no es demana: en tornar a la vista, el gronxament s'ha d'engegar.
+  useEffect(() => {
+    if (drift) get().invalidate();
+  }, [drift, get]);
 
   useImperativeHandle(handle, () => {
     const fly = (change: (g: Goal, home: Goal) => void) => rig.flyTo(get(), controls.current, change);
@@ -592,6 +664,14 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
   const hover = useRef<HTMLDivElement>(null);
   const selected = useRef<HTMLDivElement>(null);
   const [rig] = useState(() => new CameraRig());
+  // Ordre d'arrencada: arriba el terra → es compilen els shaders → es comença a dibuixar i s'avisa que està a punt.
+  const [groundLoaded, setGroundLoaded] = useState(false);
+  const [compiled, setCompiled] = useState(false);
+  const onGround = useCallback(() => setGroundLoaded(true), []);
+  const onCompiled = useCallback(() => {
+    setCompiled(true);
+    onReady();
+  }, [onReady]);
   const hidden = { visibility: "hidden" } as const;
 
   return (
@@ -599,7 +679,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
       <Canvas
         flat
         shadows
-        frameloop="demand"
+        frameloop={compiled ? "demand" : "never"}
         dpr={[1, 1.75]}
         camera={{ fov: FOV, near: 1, far: 900, position: [0, 150, 0.1] }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
@@ -623,7 +703,8 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
           shadow-bias={-0.0006}
         />
         <Suspense fallback={null}>
-          <Ground rig={rig} onReady={onReady} onSelectPlot={onSelectPlot} />
+          <Ground rig={rig} onReady={onGround} onSelectPlot={onSelectPlot} />
+          <Precompile enabled={groundLoaded} onDone={onCompiled} />
           <Model rig={rig} />
           <Rig handle={handle} started={started} reducedMotion={reducedMotion} interactive={interactive} drift={drift} rig={rig} />
           <OverlayProjector overlay={{ markers, labels, hover, selected }} points={points} selectedPlot={selectedPlot} plotNames={plotNames} rig={rig} />

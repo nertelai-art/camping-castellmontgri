@@ -1,7 +1,7 @@
 // Llegeix la il·lustració del plànol i en treu la maqueta 3D: on és cada arbre i cada casa, i un terra
 // «net» (sense llegendes, logo, brúixola, cases ni icones) per posar-hi a sota.
 //
-//   pnpm map:build                 → src/components/scene/map-scene.data.json + public/map/ground.jpg + public/map/icons.png
+//   pnpm map:build                 → src/components/scene/map-scene.data.json + public/map/ground.jpg (+ ground-s.jpg) + public/map/icons.png
 //   pnpm map:build --debug <dir>   → a més, imatges de comprovació amb el que ha detectat
 //
 // Entrades revisades a mà (scripts/content/):
@@ -147,6 +147,8 @@ const patched = await sharp(cleaned, raw)
   .raw()
   .toBuffer();
 await sharp(patched, raw).jpeg({ quality: 80, mozjpeg: true }).toFile(join(OUT, "ground.jpg"));
+// Versió per a mòbils: menys memòria de GPU i menys temps de pujada.
+await sharp(patched, raw).resize(2048).jpeg({ quality: 78, mozjpeg: true }).toFile(join(OUT, "ground-s.jpg"));
 
 const KIND_CODE = { text: 0, red: 1, cream: 2 } as const;
 await writeFile(

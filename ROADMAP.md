@@ -167,7 +167,10 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - Mapa en 3D: maqueta amb cada arbre, cada bungalow numerat (806) i els edificis grans, sobre el dibuix net.
   És el fons de la secció i s'obre a pantalla completa amb cercador de parcel·la (966 números), filtres i fitxa.
   Els números surten en acostar-s'hi i en passar-hi el ratolí.
-- Piscines i tobogans sense la foto borrosa.
+- Piscines i tobogans amb la foto gran de la piscina de fons.
+- Allotjaments: targetes clarament clicables, dades amb icones.
+- Gastronomia amb fotos reals: la taula es para amb les fotos dels restaurants (ja no hi ha escena 3D de menjar).
+- Auditoria de rendiment: Lighthouse 97-98 a escriptori i 87-88 a mòbil en local; el mapa ja no congela la pàgina en carregar.
 - Pendent: col·locar els punts que falten (Take Away Ombra, Kids Club, glamping, tendes) i afinar posicions
   des de l'editor del mapa (fase 5).
 - Pendent: els números de parcel·la i els edificis són fitxers del repositori; si el client els ha de poder

@@ -10,7 +10,8 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { RichText } from "@/components/rich-text";
 import type { MapViewerHandle } from "@/components/scene/MapScene";
-import { useNearViewport, useReducedMotion, useRenderMode } from "@/components/scene/scroll-scene";
+import { WebGLBoundary } from "@/components/scene/webgl-boundary";
+import { useInteracted, useNearViewport, useReducedMotion, useRenderMode } from "@/components/scene/scroll-scene";
 import { MAP_FOCUS_EVENT, targetKey } from "@/lib/map/events";
 import { KIND_COLOR, MAP_KINDS as KINDS, type MapKind as Kind } from "@/lib/map/kinds";
 import type { MapPlot } from "@/lib/map/plots";
@@ -42,10 +43,15 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   const viewer = useRef<MapViewerHandle>(null);
   const pending = useRef<{ x: number; y: number } | null>(null);
   const cycle = useRef(new Map<string, number>());
-  const mode = useRenderMode();
   const reducedMotion = useReducedMotion();
   const near = useNearViewport(stage, "900px");
+  const interacted = useInteracted();
   const [open, setOpen] = useState(false);
+  // three.js no es carrega fins que qui visita fa alguna cosa (i el mapa és a prop): la càrrega inicial queda lliure.
+  const showViewer = (near && interacted) || open;
+  const [failed, setFailed] = useState(false);
+  const webgl = useRenderMode();
+  const mode = failed ? "static" : webgl;
   const [closing, setClosing] = useState(false);
   const [inView, setInView] = useState(false);
   const [started, setStarted] = useState(false);
@@ -234,7 +240,6 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   };
 
   const kindLabel = (k: string) => t(`kinds.${k as Kind}`);
-  const showViewer = near || open;
 
   return (
     <div
@@ -423,21 +428,33 @@ export function MapExplorer({ image, points, places, heading }: Props) {
         ) : (
           is3d &&
           showViewer && (
-            <MapScene
-              points={visible}
-              selectedId={selectedId}
-              onSelect={select}
-              selectedPlot={plot}
-              onSelectPlot={selectPlot}
-              plotNames={plotNames}
-              started={started}
-              reducedMotion={reducedMotion}
-              interactive={open && !closing}
-              drift={!open && inView}
-              handle={viewer}
-              onReady={onReady}
-            />
+            <WebGLBoundary onFail={() => setFailed(true)}>
+              <MapScene
+                points={visible}
+                selectedId={selectedId}
+                onSelect={select}
+                selectedPlot={plot}
+                onSelectPlot={selectPlot}
+                plotNames={plotNames}
+                started={started}
+                reducedMotion={reducedMotion}
+                interactive={open && !closing}
+                drift={!open && inView}
+                handle={viewer}
+                onReady={onReady}
+              />
+            </WebGLBoundary>
           )
+        )}
+        {/* Fins que la maqueta és a punt, el plànol dibuixat fa de fons (i després s'esvaeix). */}
+        {mode !== "static" && (
+          <Image
+            src={image.src}
+            alt=""
+            fill
+            sizes="100vw"
+            className={`pointer-events-none object-cover transition-opacity duration-700 ${ready ? "opacity-0" : "opacity-60"}`}
+          />
         )}
         {open && mode !== "static" && !ready && <p className="absolute inset-0 grid place-items-center text-lg font-bold text-on-dark">{t("loading")}</p>}
 
