@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ENTITIES, fieldName, LOCALES, missingLocales, parseContent, toList } from "./entities";
+import { displayName, ENTITIES, fieldName, LOCALES, missingLocales, parseContent, toList } from "./entities";
 
 const form = (entries: Record<string, string>) => {
   const data = new FormData();
@@ -78,6 +78,13 @@ describe("formulari de contingut", () => {
   it("una llista és una línia per element, sense línies buides", () => {
     expect(toList(" Terraza cubierta \n\nWifi\n  ")).toEqual(["Terraza cubierta", "Wifi"]);
     expect(toList("")).toEqual([]);
+  });
+
+  it("el nom d'un contingut: en català, si no en castellà, si no l'identificador; i el títol si només n'hi ha un", () => {
+    expect(displayName(ENTITIES.services, { es: { name: "Recepción" }, ca: { name: "Recepció" } }, "id-1")).toBe("Recepció");
+    expect(displayName(ENTITIES.services, { es: { name: "Recepción" }, ca: { name: "" } }, "id-1")).toBe("Recepción");
+    expect(displayName(ENTITIES.services, {}, "id-1")).toBe("id-1");
+    expect(displayName(ENTITIES.site_settings, { ca: { seo_title: "Càmping" } }, "true")).toBe("Dades generals");
   });
 
   it("diu quins idiomes falten per traduir", () => {

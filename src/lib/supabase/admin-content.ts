@@ -130,3 +130,35 @@ export async function countContent(entity: EntityName): Promise<number> {
   const { count } = await supabase.from(ENTITIES[entity].table).select("*", { count: "exact", head: true });
   return count ?? 0;
 }
+
+// ─── Registre de canvis ───────────────────────────────────────────────────────
+export type ChangeAction = "text" | "image";
+export type Change = { id: number; at: string; editor: string; entity: string; rowId: string; rowName: string; action: ChangeAction };
+
+/**
+ * Apunta un canvi al registre. Si falla no es desfà el canvi (ja està desat): es retorna l'error perquè qui crida
+ * el pugui deixar als logs.
+ */
+export async function logChange(change: { editor: string; entity: EntityName; rowId: string; rowName: string; action: ChangeAction }): Promise<string | null> {
+  const supabase = await db();
+  const { error } = await supabase
+    .from("change_log")
+    .insert({ editor_name: change.editor, entity: change.entity, row_id: change.rowId, row_name: change.rowName, action: change.action });
+  return error?.message ?? null;
+}
+
+/** Els últims canvis, del més nou al més antic. */
+export async function listChanges(limit = 100): Promise<Change[]> {
+  const supabase = await db();
+  const { data, error } = await supabase.from("change_log").select("*").order("created_at", { ascending: false }).limit(limit);
+  if (error) throw new Error(`No s'ha pogut llegir el registre de canvis: ${error.message}`);
+  return (data ?? []).map((row) => ({
+    id: row.id as number,
+    at: row.created_at as string,
+    editor: row.editor_name as string,
+    entity: row.entity as string,
+    rowId: row.row_id as string,
+    rowName: row.row_name as string,
+    action: row.action as ChangeAction,
+  }));
+}

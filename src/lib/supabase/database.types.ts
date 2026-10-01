@@ -298,6 +298,39 @@ export type Database = {
           },
         ]
       }
+      change_log: {
+        Row: {
+          action: string
+          created_at: string
+          editor_id: string | null
+          editor_name: string
+          entity: string
+          id: number
+          row_id: string
+          row_name: string
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          editor_id?: string | null
+          editor_name: string
+          entity: string
+          id?: never
+          row_id: string
+          row_name: string
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          editor_id?: string | null
+          editor_name?: string
+          entity?: string
+          id?: never
+          row_id?: string
+          row_name?: string
+        }
+        Relationships: []
+      }
       map_point_translations: {
         Row: {
           label: string

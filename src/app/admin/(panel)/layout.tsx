@@ -24,6 +24,11 @@ export default async function PanelLayout({ children }: LayoutProps<"/admin">) {
                 </Link>
               </li>
             ))}
+            <li className="lg:mt-3 lg:border-t lg:border-line lg:pt-3">
+              <Link href="/admin/changes" className="block rounded-xl px-3 py-2.5 text-base font-bold text-ink transition hover:bg-paper-2">
+                Registre de canvis
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="mt-5 border-t border-line pt-5 text-base">

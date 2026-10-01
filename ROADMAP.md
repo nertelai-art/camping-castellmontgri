@@ -183,6 +183,7 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
   i dades generals (telèfon, correus, temporada, enllaços, textos per a Google).
 - ✅ **5.3 Posició dels punts del mapa**: es mou un punt clicant o arrossegant sobre el mapa (i amb les fletxes).
 - ✅ **5.4 Fotos**: es canvia la foto principal de seccions, serveis, restaurants, animació, allotjaments i tipus.
+- ✅ **5.5 Registre de canvis**: qui ha canviat què i quan (`/admin/changes`); només s'hi pot afegir.
 - Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos, afegir i treure punts del mapa, opinions,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.

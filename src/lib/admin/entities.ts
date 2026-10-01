@@ -280,6 +280,13 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
 }
 
 /** Idiomes que encara no tenen el camp principal: es marquen al formulari i a les llistes. */
+/** Com es diu un contingut a les llistes i al registre: el camp principal en català o, si no, en castellà. */
+export function displayName(config: EntityConfig, translations: Partial<Translations>, fallback: string): string {
+  if (config.single) return config.title;
+  const main = config.text[0]!.name;
+  return translations.ca?.[main] || translations.es?.[main] || fallback;
+}
+
 /** Un camp de llista, tal com s'escriu al formulari (una línia per element), convertit en llista. */
 export const toList = (value: string) => value.split("\n").map((line) => line.trim()).filter(Boolean);
 

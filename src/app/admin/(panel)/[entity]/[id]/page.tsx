@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { replaceImageAction, saveContentAction } from "@/app/admin/actions";
 import { ContentForm } from "@/components/admin/content-form";
 import { ImageField } from "@/components/admin/image-field";
-import { ENTITIES, isEntity, type EntityConfig } from "@/lib/admin/entities";
+import { displayName, ENTITIES, isEntity, type EntityConfig } from "@/lib/admin/entities";
 import { getContent } from "@/lib/supabase/admin-content";
 
 export const metadata: Metadata = { title: "Edita" };
@@ -17,8 +17,7 @@ export default async function ContentEditor({ params }: PageProps<"/admin/[entit
   const content = await getContent(entity, id);
   if (!content) notFound();
 
-  const main = config.text[0]!.name;
-  const name = config.single ? config.title : content.translations.ca?.[main] || content.translations.es?.[main] || id;
+  const name = displayName(config, content.translations, id);
 
   return (
     <>
