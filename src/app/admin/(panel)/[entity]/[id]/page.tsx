@@ -18,7 +18,7 @@ export default async function ContentEditor({ params }: PageProps<"/admin/[entit
   const content = await getContent(entity, id);
   if (!content) notFound();
 
-  const name = displayName(config, content.translations, id);
+  const name = displayName(config, content.translations, id, content.base);
 
   return (
     <>
@@ -33,7 +33,7 @@ export default async function ContentEditor({ params }: PageProps<"/admin/[entit
         base={config.base}
         initial={{ base: content.base, translations: content.translations }}
       />
-      {config.create && <DeleteButton action={deleteContentAction.bind(null, entity, id)} what={`aquest ${config.singular}`} />}
+      {config.create && <DeleteButton action={deleteContentAction.bind(null, entity, id)} what={`${config.feminine ? "aquesta" : "aquest"} ${config.singular}`} />}
     </>
   );
 }

@@ -24,7 +24,7 @@ export default async function ContentList({ params }: PageProps<"/admin/[entity]
       {config.create && (
         <form action={createContentAction.bind(null, entity)} className="mt-6">
           <button type="submit" className="rounded-full bg-olive px-6 py-3 text-lg font-bold text-paper transition hover:brightness-110">
-            + Afegeix un {config.singular}
+            + Afegeix {config.feminine ? "una" : "un"} {config.singular}
           </button>
         </form>
       )}

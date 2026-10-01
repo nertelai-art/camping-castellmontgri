@@ -10,7 +10,7 @@ amb dues peces:
 1. **Una landing espectacular**: animada, ràpida, en 5 idiomes, que vengui
    l'experiència i porti a reservar.
 2. **Un panell d'administració** on el càmping edita gairebé tot: textos,
-   imatges, allotjaments, serveis, restaurants, punts del plànol, opinions,
+   imatges, allotjaments, serveis, restaurants, punts del plànol,
    ofertes i temporada.
 
 **Decisió de base:** el contingut és editable **des del primer dia**. Cada secció
@@ -126,7 +126,7 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ Supabase local (Docker) i remot `camping-castellmontgri` (París, pla gratuït).
 - ✅ Esquema amb migracions (`supabase/migrations/`), RLS i proves pgTAP (`pnpm db:test`, 12 proves).
 - ✅ Tipus generats de l'esquema (`pnpm db:types`); lectura a `src/lib/supabase/content.ts`.
-- ✅ Seed idempotent des de `reference/` (`pnpm seed`): 316 imatges reduïdes a 2400 px (~110 MB), 26 allotjaments, 19 serveis, 12 restaurants, 13 activitats, 7 seccions i 5 opinions, tot en 5 idiomes.
+- ✅ Seed idempotent des de `reference/` (`pnpm seed`): 316 imatges reduïdes a 2400 px (~110 MB), 26 allotjaments, 19 serveis, 12 restaurants, 13 activitats, 7 seccions i 5 tot en 5 idiomes.
 - ✅ Revalidació per etiqueta de taula (`/api/revalidate`, expiració immediata).
 - ✅ Sentry (`nertel/camping-castellmontgri`, regió UE), desactivat si no hi ha DSN.
 - ✅ Fronteres de proveïdor vigilades per ESLint.
@@ -138,7 +138,7 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ Direcció visual «guia de natura»: paper crema amb gra, tinta oliva, accents terracota, numeració de secció i la carena del Montgrí amb el castell com a signatura. Fraunces (titulars) + Lato (la del web actual). Tema clar i fosc; les franges de color mantenen el contrast en tots dos.
 - ✅ Landing sencera amb dades reals en 5 idiomes: hero (foto aèria real), benvinguda amb xifres comptades del contingut, allotjaments (pestanyes, filtre per persones, fitxa amb galeria i equipament), plànol, gastronomia per zones, piscines i tobogans, serveis desplegables, animació per públics, entorn, opinions i peu amb contacte i acreditacions.
 - ✅ SEO: títol i descripció per idioma, canònica, `hreflang` + `x-default`, Open Graph, `sitemap.xml`, `robots.txt` (les previsualitzacions no s'indexen) i JSON-LD `Campground`.
-- ✅ Accessibilitat: Lighthouse 100 (contrast, `lang` a les opinions, diàleg amb focus i Escape, menú mòbil sense JS, enllaç «salta al contingut»).
+- ✅ Accessibilitat: Lighthouse 100 (contrast, `lang` a les diàleg amb focus i Escape, menú mòbil sense JS, enllaç «salta al contingut»).
 - ✅ Rendiment: Sentry del navegador diferit, tipografies de 320 KB a 89 KB, seccions sota el plec amb `content-visibility`, cap animació que bloquegi el LCP.
 - ⏳ **Lighthouse ≥ 95 a mòbil**: en local surt entre 75 i 83, amb una variació enorme (la mateixa build ha donat 27 i 80). La mesura bona es fa amb PageSpeed sobre una previsualització de Vercel.
 - ➡️ Redireccions 301 de les URL antigues: passen a la fase 6, quan existeixin les pàgines de destí.
@@ -185,7 +185,8 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ **5.4 Fotos**: es canvia la foto principal de seccions, serveis, restaurants, animació, allotjaments i tipus.
 - ✅ **5.5 Registre de canvis**: qui ha canviat què i quan (`/admin/changes`); només s'hi pot afegir.
 - ✅ **5.6 Afegir i esborrar**: punts del mapa (amb tipus i icona), serveis, restaurants i activitats. Neixen en esborrany.
-- Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos, opinions,
+- ✅ **5.7 Opinions**: afegir, editar, publicar i esborrar opinions de clients.
+- Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.
