@@ -20,6 +20,12 @@ const byLocale = (rows: Record<string, unknown>[]): Partial<Translations> =>
 
 /** Les files amb les seves traduccions. Una taula d'una sola fila no té clau forana: les traduccions es llegeixen a part. */
 async function readRows(supabase: SupabaseClient, config: EntityConfig, id?: string): Promise<Row[]> {
+  if (config.translations === null) {
+    const query = supabase.from(config.table).select("*");
+    const { data, error } = await (id === undefined ? query.order("sort_order") : query.eq(config.key, id));
+    if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
+    return (data ?? []).map((row) => ({ ...row, translations: [] }));
+  }
   if (config.foreignKey === null) {
     const [base, translations] = await Promise.all([supabase.from(config.table).select("*"), supabase.from(config.translations).select("*")]);
     const error = base.error ?? translations.error;
@@ -42,7 +48,7 @@ export async function listContent(entity: EntityName): Promise<ContentListItem[]
     const translations = byLocale(row.translations);
     return {
       id: String(row[config.key]),
-      name: displayName(config, translations, String(row[config.key])),
+      name: displayName(config, translations, String(row[config.key]), row),
       published: "status" in row ? row.status === "published" : row.is_visible !== false,
       missing: missingLocales(config, translations),
     };
@@ -138,7 +144,7 @@ export async function saveContent(entity: EntityName, id: string, input: Content
     locale,
     ...Object.fromEntries(Object.entries(input.translations[locale]).map(([k, v]) => [k, lists.has(k) ? toList(v) : v === "" ? null : v])),
   }));
-  if (rows.length) {
+  if (rows.length && config.translations) {
     const { error } = await supabase.from(config.translations).upsert(rows, { onConflict: config.foreignKey ? `${config.foreignKey},locale` : "locale" });
     if (error) return error.message;
   }

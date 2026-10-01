@@ -22,7 +22,7 @@ export function ContentForm({ action, text, base, initial }: Props) {
   const [state, submit, pending] = useActionState<FormState, FormData>(action, {});
   const [locale, setLocale] = useState<Locale>("ca");
   // Quins idiomes tenen el camp principal ple, per marcar les pestanyes. Es va actualitzant mentre s'escriu.
-  const main = text[0]!.name;
+  const main = text[0]?.name ?? "";
   const [filled, setFilled] = useState<Record<Locale, boolean>>(
     () => Object.fromEntries(LOCALES.map((l) => [l, Boolean(initial.translations[l]?.[main])])) as Record<Locale, boolean>,
   );
@@ -40,7 +40,7 @@ export function ContentForm({ action, text, base, initial }: Props) {
     >
       {base.length > 0 && (
         <fieldset className="grid gap-5 rounded-3xl border border-line bg-card p-6">
-          <legend className="px-2 text-sm font-bold uppercase tracking-[0.18em] text-muted">Per a tots els idiomes</legend>
+          {text.length > 0 && <legend className="px-2 text-sm font-bold uppercase tracking-[0.18em] text-muted">Per a tots els idiomes</legend>}
           {base.map((field) => {
             const value = initial.base[field.name];
             if (field.kind === "boolean") {
@@ -85,6 +85,9 @@ export function ContentForm({ action, text, base, initial }: Props) {
             return (
               <label key={field.name} className="block text-base font-bold">
                 {field.label}
+                {field.kind === "text" && field.long ? (
+                  <textarea rows={6} name={field.name} defaultValue={String(value ?? "")} className={INPUT} />
+                ) : (
                 <input
                   type={field.kind === "date" ? "date" : "text"}
                   inputMode={field.kind === "number" ? (field.decimal ? "decimal" : "numeric") : undefined}
@@ -92,6 +95,7 @@ export function ContentForm({ action, text, base, initial }: Props) {
                   defaultValue={String(value ?? "")}
                   className={field.kind === "text" ? INPUT : `${INPUT} block max-w-56`}
                 />
+                )}
                 {field.help && <span className={HELP}>{field.help}</span>}
               </label>
             );
@@ -99,7 +103,7 @@ export function ContentForm({ action, text, base, initial }: Props) {
         </fieldset>
       )}
 
-      <div className="rounded-3xl border border-line bg-card p-6">
+      {text.length > 0 && <div className="rounded-3xl border border-line bg-card p-6">
         <div role="tablist" aria-label="Idioma" className="flex flex-wrap gap-2">
           {LOCALES.map((l) => (
             <button
@@ -152,6 +156,8 @@ export function ContentForm({ action, text, base, initial }: Props) {
           </div>
         ))}
       </div>
+
+      }
 
       <div className="sticky bottom-0 -mx-2 flex flex-wrap items-center gap-4 bg-paper/95 px-2 py-4 backdrop-blur">
         <button type="submit" disabled={pending} className="rounded-full bg-band-terra px-8 py-3.5 text-lg font-bold text-on-dark transition hover:brightness-110 disabled:opacity-60">

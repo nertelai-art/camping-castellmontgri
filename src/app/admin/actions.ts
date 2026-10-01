@@ -33,9 +33,14 @@ export async function signOut() {
   redirect("/admin/login");
 }
 
+async function contentName(entity: EntityName, id: string) {
+  const content = await getContent(entity, id);
+  return displayName(ENTITIES[entity], content?.translations ?? {}, id, content?.base);
+}
+
 /** Apunta el canvi al registre. Que el registre falli no ha de fer fallar un desat que ja s'ha fet. */
 async function record(editor: Editor, entity: EntityName, id: string, action: ChangeAction, knownName?: string) {
-  const rowName = knownName ?? displayName(ENTITIES[entity], (await getContent(entity, id))?.translations ?? {}, id);
+  const rowName = knownName ?? (await contentName(entity, id));
   const error = await logChange({ editor: editor.name ?? editor.email, entity, rowId: id, rowName, action });
   if (error) console.error(`[admin] no s'ha pogut apuntar el canvi al registre: ${error}`);
 }
@@ -101,7 +106,7 @@ export async function deleteContentAction(entity: string, id: string): Promise<F
 
   // El nom s'ha de llegir abans: després ja no hi serà.
   const config: EntityConfig = ENTITIES[entity];
-  const name = displayName(config, (await getContent(entity, id))?.translations ?? {}, id);
+  const name = await contentName(entity, id);
   const error = await deleteContent(entity, id);
   if (error) return { errors: [`No s'ha pogut esborrar: ${error}`] };
 

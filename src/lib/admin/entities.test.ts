@@ -81,6 +81,16 @@ describe("formulari de contingut", () => {
     expect(parseContent(ENTITIES.map_points, form({ ...point, kind: "", icon: "dragon" }))).toEqual({ ok: false, errors: ["Tipus de lloc: valor desconegut.", "Icona: valor desconegut."] });
   });
 
+  it("les opinions no tenen traduccions: tot són camps base i el nom és qui ho diu", () => {
+    const ok = parseContent(ENTITIES.testimonials, form({ author: "Marta", quote: "Molt bé\r\ntot", rating: "5", locale: "ca", status: "published", title: "", source: "" }));
+    expect(ok).toEqual({ ok: true, value: { base: { author: "Marta", title: "", quote: "Molt bé\ntot", rating: 5, source: "", locale: "ca", status: "published" }, translations: {} } });
+    const bad = parseContent(ENTITIES.testimonials, form({ author: "", quote: "", rating: "6", locale: "de", status: "draft" }));
+    expect(bad).toEqual({ ok: false, errors: ["Falta «Qui ho diu».", "Falta «Opinió».", "Estrelles (1 a 5): ha de ser entre 1 i 5.", "Idioma de l'opinió: valor desconegut."] });
+    expect(displayName(ENTITIES.testimonials, {}, "id-1", { author: "Marta" })).toBe("Marta");
+    expect(displayName(ENTITIES.testimonials, {}, "id-1", { author: "" })).toBe("Sense nom");
+    expect(missingLocales(ENTITIES.testimonials, {})).toEqual([]);
+  });
+
   it("una llista és una línia per element, sense línies buides", () => {
     expect(toList(" Terraza cubierta \n\nWifi\n  ")).toEqual(["Terraza cubierta", "Wifi"]);
     expect(toList("")).toEqual([]);
