@@ -12,7 +12,7 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
   const { address } = settings;
 
   return (
-    <footer id="contact" className="relative bg-band-olive pt-24 text-on-dark">
+    <footer data-edit="site_settings:true" id="contact" className="relative bg-band-olive pt-24 text-on-dark">
       <MontgriLine className="absolute inset-x-0 top-0 h-20 w-full -translate-y-full text-olive" />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div className="lg:col-span-2">

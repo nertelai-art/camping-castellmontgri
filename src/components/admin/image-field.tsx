@@ -1,11 +1,11 @@
 "use client";
 
-// La foto d'un contingut: ensenya la que hi ha i en deixa triar una de nova. La imatge triada es redueix i es passa a
-// JPEG aquí mateix, al navegador, abans d'enviar-la: així una foto de mòbil de 8 MB arriba al servidor pesant ben poc.
+// La foto d'un contingut: ensenya la que hi ha i en deixa triar una de nova (reduïda al navegador, `to-jpeg.ts`).
 
 import { startTransition, useActionState, useEffect, useRef, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
-import { fitWithin, MAX_BYTES } from "@/lib/admin/image";
+import { toJpeg, type Picked } from "./to-jpeg";
+import { SAVED_EVENT } from "./visual-shell";
 
 type Props = {
   action: (state: FormState, form: FormData) => Promise<FormState>;
@@ -13,33 +13,15 @@ type Props = {
   current: { src: string; width: number | null; height: number | null } | null;
 };
 
-type Picked = { blob: Blob; url: string; width: number; height: number };
-
-async function toJpeg(file: File): Promise<Picked> {
-  const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
-  const { width, height } = fitWithin({ width: bitmap.width, height: bitmap.height });
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext("2d");
-  if (!context) throw new Error("canvas");
-  // Fons blanc: un PNG amb transparència quedaria negre en passar a JPEG.
-  context.fillStyle = "#fff";
-  context.fillRect(0, 0, width, height);
-  context.drawImage(bitmap, 0, 0, width, height);
-  bitmap.close();
-  for (const quality of [0.86, 0.75, 0.6]) {
-    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", quality));
-    if (blob && blob.size <= MAX_BYTES) return { blob, url: URL.createObjectURL(blob), width, height };
-  }
-  throw new Error("size");
-}
-
 export function ImageField({ action, label, current }: Props) {
   const [state, submit, pending] = useActionState<FormState, FormData>(action, {});
   const [picked, setPicked] = useState<Picked | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const input = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (state.savedAt) window.dispatchEvent(new Event(SAVED_EVENT));
+  }, [state.savedAt]);
 
   // L'adreça temporal de la previsualització s'allibera quan es canvia de foto o se surt de la pàgina.
   useEffect(() => () => void (picked && URL.revokeObjectURL(picked.url)), [picked]);
@@ -48,9 +30,9 @@ export function ImageField({ action, label, current }: Props) {
   const shown = picked ?? current;
 
   return (
-    <section aria-label={label} className="mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
+    <section aria-label={label} className="@container mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
       <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-muted">{label}</h2>
-      <div className="mt-4 grid gap-5 sm:grid-cols-[minmax(0,18rem)_1fr] sm:items-start">
+      <div className="mt-4 grid gap-5 @xl:grid-cols-[minmax(0,18rem)_1fr] @xl:items-start">
         {shown ? (
           // eslint-disable-next-line @next/next/no-img-element -- previsualització: pot ser una adreça temporal del navegador
           <img src={"url" in shown ? shown.url : shown.src} alt="" width={shown.width ?? undefined} height={shown.height ?? undefined} className="aspect-[4/3] w-full rounded-2xl bg-paper-2 object-cover" />

@@ -19,7 +19,7 @@ export async function MapSection({
   if (!section.media) return null;
   return (
     // Sense `overflow`, `transform` ni `contain`: el mapa obert és `position: fixed` i ha de sortir de la secció.
-    <section id="map" aria-labelledby="map-title" className="bg-band-olive text-on-dark">
+    <section data-edit="sections:map" id="map" aria-labelledby="map-title" className="bg-band-olive text-on-dark">
       <MapExplorer
         image={section.media}
         points={points}

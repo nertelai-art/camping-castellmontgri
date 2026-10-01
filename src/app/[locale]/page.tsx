@@ -94,7 +94,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         )}
 
         {sections.accommodation && (
-          <section aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+          <section data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
             <div id="accommodation" className="grid gap-8 lg:grid-cols-2 lg:items-end">
               <SectionHeading
                 id="accommodation-title"

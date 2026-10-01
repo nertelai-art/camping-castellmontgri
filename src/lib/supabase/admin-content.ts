@@ -1,5 +1,6 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { moveItem } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
@@ -99,23 +100,80 @@ export async function deleteContent(entity: EntityName, id: string): Promise<str
   return null;
 }
 
+export type UploadedImage = { bytes: Uint8Array; width: number; height: number; name: string };
+
+/** Puja un JPEG al bucket i el registra a `media`. */
+async function uploadMedia(supabase: SupabaseClient, entity: EntityName, file: UploadedImage): Promise<{ id: string } | { error: string }> {
+  const path = `panell/${entity}/${file.name}.jpg`;
+  const upload = await supabase.storage.from("media").upload(path, file.bytes, { contentType: "image/jpeg", cacheControl: "31536000" });
+  if (upload.error) return { error: upload.error.message };
+  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height }).select("id").single();
+  if (media.error) return { error: media.error.message };
+  return { id: media.data.id as string };
+}
+
+// ─── Galeria ──────────────────────────────────────────────────────────────────
+export type GalleryItem = { id: string; src: string };
+
+/** Les fotos de la galeria d'un contingut, en ordre. */
+export async function getGallery(entity: EntityName, id: string): Promise<GalleryItem[]> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.gallery) return [];
+  const { data, error } = await (await db()).from(config.gallery.table).select("media_id, sort_order, media(path)").eq(config.gallery.foreignKey, id).order("sort_order");
+  if (error) throw new Error(`No s'ha pogut llegir la galeria: ${error.message}`);
+  return (data as unknown as { media_id: string; media: { path: string } | null }[]).filter((row) => row.media).map((row) => ({ id: row.media_id, src: mediaUrl(row.media!.path) }));
+}
+
+/** Puja una foto i la posa al final de la galeria. */
+export async function addToGallery(entity: EntityName, id: string, file: UploadedImage): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.gallery) return "Aquest contingut no té galeria.";
+  const supabase = await db();
+  const last = await supabase.from(config.gallery.table).select("sort_order").eq(config.gallery.foreignKey, id).order("sort_order", { ascending: false }).limit(1);
+  if (last.error) return last.error.message;
+  const media = await uploadMedia(supabase, entity, file);
+  if ("error" in media) return media.error;
+  const sort_order = ((last.data[0]?.sort_order as number | undefined) ?? -1) + 1;
+  const { error } = await supabase.from(config.gallery.table).insert({ [config.gallery.foreignKey]: id, media_id: media.id, sort_order });
+  return error?.message ?? null;
+}
+
+/** Treu una foto de la galeria. El fitxer es queda a `media`: pot ser la foto principal o d'un altre contingut. */
+export async function removeFromGallery(entity: EntityName, id: string, mediaId: string): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.gallery) return "Aquest contingut no té galeria.";
+  const { data, error } = await (await db()).from(config.gallery.table).delete().eq(config.gallery.foreignKey, id).eq("media_id", mediaId).select("media_id");
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per treure aquesta foto, o ja no hi és.";
+  return null;
+}
+
+/** Mou una foto un lloc i torna a numerar tota la galeria (0, 1, 2…). */
+export async function moveInGallery(entity: EntityName, id: string, mediaId: string, delta: 1 | -1): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.gallery) return "Aquest contingut no té galeria.";
+  const supabase = await db();
+  const current = await supabase.from(config.gallery.table).select("media_id").eq(config.gallery.foreignKey, id).order("sort_order");
+  if (current.error) return current.error.message;
+  const order = moveItem(current.data.map((row) => row.media_id as string), mediaId, delta);
+  const rows = order.map((media_id, sort_order) => ({ [config.gallery!.foreignKey]: id, media_id, sort_order }));
+  const { error } = await supabase.from(config.gallery.table).upsert(rows, { onConflict: `${config.gallery.foreignKey},media_id` });
+  return error?.message ?? null;
+}
+
 /**
  * Puja una foto nova al bucket, la registra a `media` i la posa com a foto del contingut. La foto anterior no s'esborra:
  * pot ser que la faci servir un altre contingut. Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer.
  */
-export async function replaceImage(entity: EntityName, id: string, file: { bytes: Uint8Array; width: number; height: number; name: string }): Promise<string | null> {
+export async function replaceImage(entity: EntityName, id: string, file: UploadedImage): Promise<string | null> {
   const config: EntityConfig = ENTITIES[entity];
   if (!config.image) return "Aquest contingut no té foto.";
   const supabase = await db();
 
-  const path = `panell/${entity}/${file.name}.jpg`;
-  const upload = await supabase.storage.from("media").upload(path, file.bytes, { contentType: "image/jpeg", cacheControl: "31536000" });
-  if (upload.error) return upload.error.message;
+  const media = await uploadMedia(supabase, entity, file);
+  if ("error" in media) return media.error;
 
-  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height }).select("id").single();
-  if (media.error) return media.error.message;
-
-  const { data, error } = await supabase.from(config.table).update({ [config.image.column]: media.data.id }).eq(config.key, id).select(config.key);
+  const { data, error } = await supabase.from(config.table).update({ [config.image.column]: media.id }).eq(config.key, id).select(config.key);
   if (error) return error.message;
   if (!data?.length) return "No tens permís per modificar aquest contingut, o ja no existeix.";
   return null;
@@ -188,4 +246,12 @@ export async function listChanges(limit = 100): Promise<Change[]> {
     rowName: row.row_name as string,
     action: row.action as ChangeAction,
   }));
+}
+
+/** L'identificador d'una fila a partir de la referència que en té la web pública (el `slug`, o la mateixa clau). */
+export async function resolveRef(entity: EntityName, ref: string): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.refColumn) return ref;
+  const { data } = await (await db()).from(config.table).select(config.key).eq(config.refColumn, ref).maybeSingle();
+  return data ? String((data as unknown as Record<string, unknown>)[config.key]) : null;
 }

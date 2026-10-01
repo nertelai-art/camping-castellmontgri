@@ -15,6 +15,9 @@ export default async function PanelLayout({ children }: LayoutProps<"/admin">) {
         <Link href="/admin" className="font-display block text-2xl leading-tight text-olive">
           Panell de continguts
         </Link>
+        <Link href="/admin/visual" className="mt-5 block rounded-2xl bg-band-terra px-4 py-3 text-center text-base font-bold text-on-dark transition hover:brightness-110">
+          Edita sobre la web
+        </Link>
         <nav aria-label="Continguts" className="mt-5">
           <ul className="flex flex-wrap gap-1 lg:grid">
             {ENTITY_NAMES.map((name) => (

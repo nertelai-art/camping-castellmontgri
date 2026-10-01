@@ -37,6 +37,8 @@ export type EntityConfig = {
   translations: string | null;
   /** Sense traduccions, el camp base que fa de nom a les llistes. */
   nameField?: string;
+  /** Columna amb què la web pública coneix la fila (el `slug`), si no és la mateixa clau. L'editor visual la resol. */
+  refColumn?: string;
   /** Columna de la taula de traduccions que apunta a la base. `null` si la taula base només té una fila. */
   foreignKey: string | null;
   /** Si la taula només té una fila, el seu identificador: la llista hi porta directament. */
@@ -52,6 +54,8 @@ export type EntityConfig = {
   create?: { defaults: Record<string, string | number>; slug?: boolean };
   /** La foto principal: la columna de la taula base que apunta a `media`. */
   image?: { column: string; label: string };
+  /** La galeria de fotos: la taula que lliga el contingut amb `media` (amb `media_id` i `sort_order`). */
+  gallery?: { table: string; foreignKey: string; label: string };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
   tags: readonly string[];
 };
@@ -134,6 +138,7 @@ export const ENTITIES = {
     singular: "servei",
     description: "Recepció, supermercat, piscines, bugaderia…",
     table: "services",
+    refColumn: "slug",
     create: { defaults: {}, slug: true },
     image: { column: "media_id", label: "Foto" },
     key: "id",
@@ -151,6 +156,7 @@ export const ENTITIES = {
     singular: "local",
     description: "Cada restaurant, gelateria i bar, amb el seu horari i la carta.",
     table: "restaurants",
+    refColumn: "slug",
     create: { defaults: {}, slug: true },
     image: { column: "cover_media_id", label: "Foto" },
     key: "id",
@@ -170,6 +176,7 @@ export const ENTITIES = {
     feminine: true,
     description: "Activitats per a infants, famílies i adults.",
     table: "activities",
+    refColumn: "slug",
     create: { defaults: {}, slug: true },
     image: { column: "cover_media_id", label: "Foto" },
     key: "id",
@@ -187,7 +194,9 @@ export const ENTITIES = {
     singular: "allotjament",
     description: "Cada model de bungalow, mobil-home i parcel·la, amb les seves característiques.",
     table: "accommodations",
+    refColumn: "slug",
     image: { column: "cover_media_id", label: "Foto principal" },
+    gallery: { table: "accommodation_media", foreignKey: "accommodation_id", label: "Galeria de fotos" },
     key: "id",
     translations: "accommodation_translations",
     foreignKey: "accommodation_id",
@@ -305,7 +314,7 @@ export const ENTITIES = {
 
 export type EntityName = keyof typeof ENTITIES;
 export const ENTITY_NAMES = Object.keys(ENTITIES) as EntityName[];
-export const isEntity = (name: string): name is EntityName => name in ENTITIES;
+export const isEntity = (name: string): name is EntityName => Object.hasOwn(ENTITIES, name);
 
 export type Translations = Record<Locale, Record<string, string>>;
 export type ContentInput = { base: Record<string, string | boolean | number | null>; translations: Translations };

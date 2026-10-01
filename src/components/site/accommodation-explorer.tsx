@@ -92,7 +92,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
         ) : (
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {list.map((a) => (
-              <li key={a.slug}>
+              <li key={a.slug} data-edit={`accommodations:${a.slug}`}>
                 <button
                   type="button"
                   onClick={() => show(a)}
