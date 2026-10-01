@@ -183,6 +183,9 @@ Res de vídeo ni de models externs si es pot modelar per codi.
     recull la fallada si el context de debò no es pot crear.
   - La textura del terra (5,5 MP) es descodifica fora del fil principal (`createImageBitmap`); a mòbil, la de 2048 px.
 - El gronxament del mapa de fons va a uns 30 fps i només mentre és a la vista.
+- De fons no hi ha marcadors ni etiquetes HTML (només amb el mapa obert): recol·locats a cada fotograma sobre la vista que
+  es gronxa es veien tremolar. I obrir el mapa es fa després d'un fotograma pintat i dins d'una transició: muntar la
+  columna i fer créixer el canvas dins del mateix clic donava un INP de més de 280 ms.
 - Per mesurar: `pnpm build` + `pnpm start`, Lighthouse **sense** `--use-angle=swiftshader` (el GL per programari
   infla el TBT i endarrereix la primera pintura un segon) i un Chrome sense cap amb GPU per als fotogrames.
   Referència (portàtil, octubre 2026): escriptori 97-98, mòbil 87-88, TBT 110-140 ms; fotograma més llarg en
