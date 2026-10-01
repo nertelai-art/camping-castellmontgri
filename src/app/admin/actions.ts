@@ -2,7 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
-import { ENTITIES, isEntity, parseContent } from "@/lib/admin/entities";
+import { ENTITIES, isEntity, parseContent, type EntityConfig } from "@/lib/admin/entities";
 import { saveContent } from "@/lib/supabase/admin-content";
 import { currentEditor, sessionClient } from "@/lib/supabase/session";
 
@@ -37,7 +37,7 @@ export async function saveContentAction(entity: string, id: string, _: FormState
   if (!(await currentEditor())) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
   if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
 
-  const config = ENTITIES[entity];
+  const config: EntityConfig = ENTITIES[entity];
   const parsed = parseContent(config, form);
   if (!parsed.ok) return { errors: parsed.errors };
 
@@ -45,6 +45,6 @@ export async function saveContentAction(entity: string, id: string, _: FormState
   if (error) return { errors: [`No s'ha pogut desar: ${error}`] };
 
   // La web pública llegeix de la caché: s'invalida la taula tocada i la petició següent ja veu el canvi.
-  revalidateTag(config.tag, { expire: 0 });
+  for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
   return { savedAt: Date.now() };
 }

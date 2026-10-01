@@ -65,7 +65,13 @@ export function ContentForm({ action, text, base, initial }: Props) {
             return (
               <label key={field.name} className="block text-base font-bold">
                 {field.label}
-                <input type="text" name={field.name} defaultValue={String(value ?? "")} className={INPUT} />
+                <input
+                  type={field.kind === "date" ? "date" : "text"}
+                  inputMode={field.kind === "number" ? (field.decimal ? "decimal" : "numeric") : undefined}
+                  name={field.name}
+                  defaultValue={String(value ?? "")}
+                  className={field.kind === "text" ? INPUT : `${INPUT} block max-w-56`}
+                />
                 {field.help && <span className={HELP}>{field.help}</span>}
               </label>
             );

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ENTITIES, fieldName, LOCALES, missingLocales, parseContent } from "./entities";
+import { ENTITIES, fieldName, LOCALES, missingLocales, parseContent, toList } from "./entities";
 
 const form = (entries: Record<string, string>) => {
   const data = new FormData();
@@ -46,6 +46,31 @@ describe("formulari de contingut", () => {
     const off = parseContent(ENTITIES.sections, form({ "es.title": "Bienvenidos" }));
     expect(on.ok && on.value.base.is_visible).toBe(true);
     expect(off.ok && off.value.base.is_visible).toBe(false);
+  });
+
+  it("els números: buit és sense valor, la coma val com a decimal i un text no passa", () => {
+    const ok = parseContent(ENTITIES.accommodations, form({ status: "published", capacity_max: "6", size_m2: "32,5", bedrooms: "", bathrooms: "1", "es.name": "Bungalow" }));
+    expect(ok.ok && ok.value.base).toEqual({ capacity_max: 6, size_m2: 32.5, bedrooms: null, bathrooms: 1, air_conditioning: false, is_accessible: false, status: "published" });
+    const bad = parseContent(ENTITIES.accommodations, form({ status: "published", capacity_max: "sis", bedrooms: "1.5", size_m2: "-3", "es.name": "Bungalow" }));
+    expect(bad).toEqual({ ok: false, errors: ["Persones (màxim): ha de ser un número sencer.", "Superfície (m²): ha de ser un número.", "Habitacions: ha de ser un número sencer."] });
+  });
+
+  it("les dades generals: noms obligatoris, correus, enllaços i dates comprovats", () => {
+    const bad = parseContent(
+      ENTITIES.site_settings,
+      form({ brand_name: "", legal_name: "Càmping SA", email_info: "info", booking_url: "reserves.cat", season_open: "2027-02-31x", season_close: "" }),
+    );
+    expect(bad).toEqual({
+      ok: false,
+      errors: ["Falta «Nom comercial».", "«Correu d'informació» no sembla un correu.", "«Enllaç de reserves» ha de començar per https://", "Obertura de temporada: la data no és vàlida."],
+    });
+    const ok = parseContent(ENTITIES.site_settings, form({ brand_name: "Natura Village", legal_name: "Càmping SA", email_info: "info@camping.test", season_open: "2027-03-27" }));
+    expect(ok.ok && [ok.value.base.email_info, ok.value.base.season_open, ok.value.base.season_close]).toEqual(["info@camping.test", "2027-03-27", null]);
+  });
+
+  it("una llista és una línia per element, sense línies buides", () => {
+    expect(toList(" Terraza cubierta \n\nWifi\n  ")).toEqual(["Terraza cubierta", "Wifi"]);
+    expect(toList("")).toEqual([]);
   });
 
   it("diu quins idiomes falten per traduir", () => {

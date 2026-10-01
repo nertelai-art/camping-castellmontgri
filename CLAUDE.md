@@ -50,7 +50,10 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - **Escriptura**: amb la sessió de l'editor i la clau publicable; RLS és qui deixa escriure. Cap clau secreta al panell.
 - **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
-- En desar s'invalida l'etiqueta de caché de la taula (`revalidateTag(taula, { expire: 0 })`): la web ho ensenya de seguida.
+- En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
+  per exemple, es llegeixen dins `accommodation_categories`): la web ho ensenya de seguida.
+- Tipus de camp: text, número, data, casella i estat a la base; text curt, llarg i llista (una línia per element, `text[]`)
+  per idioma. `site_settings` és d'una sola fila (`single`) i les seves traduccions no tenen clau forana.
 - Els formularis s'envien a mà dins d'una transició, no amb `action={…}`: React buida el formulari en acabar una
   acció i, amb un error de validació, es perdria el que s'ha escrit.
 - **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`
