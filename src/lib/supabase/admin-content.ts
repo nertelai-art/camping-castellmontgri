@@ -1,6 +1,6 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { moveItem } from "@/lib/admin/gallery";
+import { moveItem, moveWithin, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
@@ -23,7 +23,7 @@ const byLocale = (rows: Record<string, unknown>[]): Partial<Translations> =>
 async function readRows(supabase: SupabaseClient, config: EntityConfig, id?: string): Promise<Row[]> {
   if (config.translations === null) {
     const query = supabase.from(config.table).select("*");
-    const { data, error } = await (id === undefined ? query.order("sort_order") : query.eq(config.key, id));
+    const { data, error } = await (id === undefined ? query.order("sort_order").order(config.key) : query.eq(config.key, id));
     if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
     return (data ?? []).map((row) => ({ ...row, translations: [] }));
   }
@@ -34,17 +34,46 @@ async function readRows(supabase: SupabaseClient, config: EntityConfig, id?: str
     return (base.data ?? []).map((row) => ({ ...row, translations: translations.data ?? [] }));
   }
   const query = supabase.from(config.table).select(`*, translations:${config.translations}(*)`);
-  const { data, error } = await (id === undefined ? query.order("sort_order") : query.eq(config.key, id));
+  const { data, error } = await (id === undefined ? query.order("sort_order").order(config.key) : query.eq(config.key, id));
   if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
   return data as unknown as Row[];
 }
 
-export type ContentListItem = { id: string; name: string; published: boolean; missing: Locale[] };
+export type ContentListItem = {
+  id: string;
+  name: string;
+  published: boolean;
+  missing: Locale[];
+  /** Els camps base, com a text (o cert/fals), per a la taula. */
+  base: Record<string, string | boolean>;
+  /** La foto principal, si l'entitat en té. */
+  image: string | null;
+  /** El valor de la columna per la qual s'agrupa la llista. */
+  group: string | null;
+};
+
+/** Els camps base d'una fila tal com els vol un formulari: text, o cert/fals a les caselles. */
+function baseOf(config: EntityConfig, row: Record<string, unknown>) {
+  const base: Record<string, string | boolean> = {};
+  for (const field of config.base) {
+    base[field.name] = field.kind === "boolean" ? row[field.name] === true : asText(row[field.name]);
+    if (field.kind === "position") base.y = asText(row.y);
+  }
+  return base;
+}
 
 /** Les files d'una entitat, per a la llista: nom (en català o, si no, castellà), si es veu a la web i què falta traduir. */
 export async function listContent(entity: EntityName): Promise<ContentListItem[]> {
   const config: EntityConfig = ENTITIES[entity];
-  const rows = await readRows(await db(), config);
+  const supabase = await db();
+  const rows = await readRows(supabase, config);
+  // Les miniatures: una sola consulta per a totes les fotos de la llista.
+  const paths = new Map<string, string>();
+  const mediaIds = config.image ? [...new Set(rows.map((row) => row[config.image!.column]).filter((id): id is string => typeof id === "string"))] : [];
+  if (mediaIds.length) {
+    const { data } = await supabase.from("media").select("id, path").in("id", mediaIds);
+    for (const media of data ?? []) paths.set(media.id as string, mediaUrl(media.path as string));
+  }
   return rows.map((row) => {
     const translations = byLocale(row.translations);
     return {
@@ -52,6 +81,9 @@ export async function listContent(entity: EntityName): Promise<ContentListItem[]
       name: displayName(config, translations, String(row[config.key]), row),
       published: "status" in row ? row.status === "published" : row.is_visible !== false,
       missing: missingLocales(config, translations),
+      base: baseOf(config, row),
+      image: config.image ? (paths.get(row[config.image.column] as string) ?? null) : null,
+      group: config.groupBy ? asText(row[config.groupBy.column]) : null,
     };
   });
 }
@@ -63,12 +95,7 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
   const config: EntityConfig = ENTITIES[entity];
   const [row] = (await readRows(await db(), config, id)).filter((r) => String(r[config.key]) === id);
   if (!row) return null;
-  const base: ContentDetail["base"] = {};
-  for (const field of config.base) {
-    const value = row[field.name];
-    base[field.name] = field.kind === "boolean" ? value === true : asText(value);
-    if (field.kind === "position") base.y = asText(row.y);
-  }
+  const base = baseOf(config, row);
   let image: ContentImage | null = null;
   const mediaId = config.image ? row[config.image.column] : null;
   if (mediaId) {
@@ -254,4 +281,25 @@ export async function resolveRef(entity: EntityName, ref: string): Promise<strin
   if (!config.refColumn) return ref;
   const { data } = await (await db()).from(config.table).select(config.key).eq(config.refColumn, ref).maybeSingle();
   return data ? String((data as unknown as Record<string, unknown>)[config.key]) : null;
+}
+
+/** Puja o baixa un contingut un lloc dins la seva llista i deixa la llista numerada 0, 1, 2… */
+export async function moveContent(entity: EntityName, id: string, delta: 1 | -1): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.sortable) return "Aquesta llista no es pot reordenar.";
+  const supabase = await db();
+  // El mateix ordre que la llista del panell: per `sort_order` i, si empaten, per la clau.
+  const { data, error } = await supabase.from(config.table).select(config.groupBy ? `${config.key}, sort_order, ${config.groupBy.column}` : `${config.key}, sort_order`).order("sort_order").order(config.key);
+  if (error) return error.message;
+  const rows = data as unknown as Record<string, unknown>[];
+  const ids = rows.map((row) => String(row[config.key]));
+  // En una llista agrupada (els allotjaments per tipus) es mou dins del grup, que és el que es veu a la taula.
+  const column = config.groupBy?.column;
+  const group = column ? rows.find((row) => String(row[config.key]) === id)?.[column] : undefined;
+  const order = column ? moveWithin(ids, rows.filter((row) => row[column] === group).map((row) => String(row[config.key])), id, delta) : moveItem(ids, id, delta);
+  const changes = renumber(order, new Map(rows.map((row) => [String(row[config.key]), row.sort_order as number])));
+  const results = await Promise.all(changes.map(({ item, sort_order }) => supabase.from(config.table).update({ sort_order }).eq(config.key, item).select(config.key)));
+  const failed = results.find((result) => result.error || !result.data?.length);
+  if (failed) return failed.error?.message ?? "No tens permís per reordenar aquesta llista.";
+  return null;
 }

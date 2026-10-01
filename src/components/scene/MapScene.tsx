@@ -556,6 +556,9 @@ const screen = { x: 0, y: 0 };
 
 /** Posa cada marcador (botons HTML, fora del canvas) a sobre del seu punt. */
 function projectMarkers(el: HTMLElement, points: MapPoint[], state: RootState, shown: boolean) {
+  // Amagats i ja ho estaven: res a fer en aquest fotograma.
+  if (!shown && el.dataset.hidden === "true") return;
+  el.dataset.hidden = String(!shown);
   for (const [i, p] of points.entries()) {
     const node = el.children[i] as HTMLElement | undefined;
     if (!node) continue;
@@ -613,7 +616,11 @@ function OverlayProjector({
   selectedPlot,
   plotNames,
   rig,
+  shown,
 }: {
+  /** Amb el mapa obert. De fons no hi ha marcadors ni etiquetes: 47 botons HTML recol·locats a cada fotograma sobre una
+   * vista que es gronxa es veien tremolar (el canvas i el DOM no es pinten al mateix pas), i era feina de més. */
+  shown: boolean;
   overlay: Overlay;
   points: MapPoint[];
   selectedPlot: MapPlot | null;
@@ -623,10 +630,19 @@ function OverlayProjector({
   const invalidate = useThree((s) => s.invalidate);
   const hoverRing = useRef<Mesh>(null);
   const selectedRing = useRef<Mesh>(null);
-  useEffect(() => invalidate(), [points, selectedPlot, invalidate]);
+  useEffect(() => invalidate(), [points, selectedPlot, shown, invalidate]);
 
   useFrame((state) => {
-    if (overlay.markers.current) projectMarkers(overlay.markers.current, points, state, rig.grow > 0.75);
+    if (overlay.markers.current) projectMarkers(overlay.markers.current, points, state, shown && rig.grow > 0.75);
+    if (!shown) {
+      // En tancar: fora les etiquetes i els anells que hagin quedat de l'última vista.
+      for (const node of [...(overlay.labels.current?.children ?? []), overlay.hover.current, overlay.selected.current]) {
+        if (node instanceof HTMLElement) node.style.visibility = "hidden";
+      }
+      if (hoverRing.current) hoverRing.current.visible = false;
+      if (selectedRing.current) selectedRing.current.visible = false;
+      return;
+    }
     if (overlay.labels.current) projectLabels(overlay.labels.current, state, rig);
     const hover = rig.hover && rig.hover !== selectedPlot ? rig.hover : null;
     if (overlay.hover.current) placeLabel(overlay.hover.current, state, hover, hover && `${plotNames[hover.kind]} ${hover.n}`, 1.5);
@@ -707,7 +723,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
           <Precompile enabled={groundLoaded} onDone={onCompiled} />
           <Model rig={rig} />
           <Rig handle={handle} started={started} reducedMotion={reducedMotion} interactive={interactive} drift={drift} rig={rig} />
-          <OverlayProjector overlay={{ markers, labels, hover, selected }} points={points} selectedPlot={selectedPlot} plotNames={plotNames} rig={rig} />
+          <OverlayProjector overlay={{ markers, labels, hover, selected }} points={points} selectedPlot={selectedPlot} plotNames={plotNames} rig={rig} shown={interactive} />
         </Suspense>
       </Canvas>
       {/* Tancat, el mapa és un fons: res d'això s'ha de poder enfocar ni clicar. */}
@@ -717,7 +733,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
             <span key={i} className="pointer-events-none absolute left-0 top-0 rounded-full bg-white/95 px-1.5 py-px text-xs font-bold text-[#232a14] shadow" style={hidden} />
           ))}
         </div>
-        <div ref={markers}>
+        <div ref={markers} className={`transition-opacity duration-500 ${interactive ? "opacity-100" : "opacity-0"}`}>
           {points.map((p) => (
             <MapMarker key={p.id} point={p} selected={p.id === selectedId} onClick={() => onSelect(p)} className="absolute left-0 top-0 origin-bottom" style={hidden} />
           ))}
