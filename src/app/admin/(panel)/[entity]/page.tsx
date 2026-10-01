@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import { ENTITIES, isEntity, LOCALE_NAMES } from "@/lib/admin/entities";
+import { notFound, redirect } from "next/navigation";
+import { ENTITIES, isEntity, LOCALE_NAMES, type EntityConfig } from "@/lib/admin/entities";
 import { listContent } from "@/lib/supabase/admin-content";
 
 export async function generateMetadata({ params }: PageProps<"/admin/[entity]">): Promise<Metadata> {
@@ -12,7 +12,8 @@ export async function generateMetadata({ params }: PageProps<"/admin/[entity]">)
 export default async function ContentList({ params }: PageProps<"/admin/[entity]">) {
   const { entity } = await params;
   if (!isEntity(entity)) notFound();
-  const config = ENTITIES[entity];
+  const config: EntityConfig = ENTITIES[entity];
+  if (config.single) redirect(`/admin/${entity}/${config.single}`);
   const rows = await listContent(entity);
 
   return (

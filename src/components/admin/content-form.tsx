@@ -5,6 +5,7 @@
 
 import { startTransition, useActionState, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
+import { MapPositionField } from "./map-position-field";
 import { fieldName, LOCALE_NAMES, LOCALES, type EntityConfig, type Locale, type Translations } from "@/lib/admin/entities";
 
 type Props = {
@@ -50,6 +51,9 @@ export function ContentForm({ action, text, base, initial }: Props) {
                 </label>
               );
             }
+            if (field.kind === "position") {
+              return <MapPositionField key={field.name} label={field.label} help={field.help} initial={{ x: Number(initial.base.x), y: Number(initial.base.y) }} />;
+            }
             if (field.kind === "status") {
               return (
                 <label key={field.name} className="block text-base font-bold">
@@ -65,7 +69,13 @@ export function ContentForm({ action, text, base, initial }: Props) {
             return (
               <label key={field.name} className="block text-base font-bold">
                 {field.label}
-                <input type="text" name={field.name} defaultValue={String(value ?? "")} className={INPUT} />
+                <input
+                  type={field.kind === "date" ? "date" : "text"}
+                  inputMode={field.kind === "number" ? (field.decimal ? "decimal" : "numeric") : undefined}
+                  name={field.name}
+                  defaultValue={String(value ?? "")}
+                  className={field.kind === "text" ? INPUT : `${INPUT} block max-w-56`}
+                />
                 {field.help && <span className={HELP}>{field.help}</span>}
               </label>
             );

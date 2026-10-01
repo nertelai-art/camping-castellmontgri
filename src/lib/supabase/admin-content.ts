@@ -1,6 +1,7 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { ENTITIES, LOCALES, missingLocales, type ContentInput, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
 
 // Lectura i escriptura del panell. Tot passa amb la sessió de l'editor: RLS és qui deixa escriure o no.
@@ -12,19 +13,33 @@ async function db() {
 }
 
 type Row = Record<string, unknown> & { translations: Record<string, unknown>[] };
+// Tot arriba al formulari com a text; una llista (text[]), amb un element per línia.
+const asText = (value: unknown) => (value == null ? "" : Array.isArray(value) ? value.join("\n") : String(value));
 const byLocale = (rows: Record<string, unknown>[]): Partial<Translations> =>
-  Object.fromEntries(rows.map((t) => [t.locale as Locale, Object.fromEntries(Object.entries(t).map(([k, v]) => [k, v == null ? "" : String(v)]))]));
+  Object.fromEntries(rows.map((t) => [t.locale as Locale, Object.fromEntries(Object.entries(t).map(([k, v]) => [k, asText(v)]))]));
+
+/** Les files amb les seves traduccions. Una taula d'una sola fila no té clau forana: les traduccions es llegeixen a part. */
+async function readRows(supabase: SupabaseClient, config: EntityConfig, id?: string): Promise<Row[]> {
+  if (config.foreignKey === null) {
+    const [base, translations] = await Promise.all([supabase.from(config.table).select("*"), supabase.from(config.translations).select("*")]);
+    const error = base.error ?? translations.error;
+    if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
+    return (base.data ?? []).map((row) => ({ ...row, translations: translations.data ?? [] }));
+  }
+  const query = supabase.from(config.table).select(`*, translations:${config.translations}(*)`);
+  const { data, error } = await (id === undefined ? query.order("sort_order") : query.eq(config.key, id));
+  if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
+  return data as unknown as Row[];
+}
 
 export type ContentListItem = { id: string; name: string; published: boolean; missing: Locale[] };
 
 /** Les files d'una entitat, per a la llista: nom (en català o, si no, castellà), si es veu a la web i què falta traduir. */
 export async function listContent(entity: EntityName): Promise<ContentListItem[]> {
-  const config = ENTITIES[entity];
-  const supabase = await db();
-  const { data, error } = await supabase.from(config.table).select(`*, translations:${config.translations}(*)`).order("sort_order");
-  if (error) throw new Error(`No s'han pogut llegir ${config.title.toLowerCase()}: ${error.message}`);
-  const main = config.text[0].name;
-  return (data as Row[]).map((row) => {
+  const config: EntityConfig = ENTITIES[entity];
+  const rows = await readRows(await db(), config);
+  const main = config.text[0]!.name;
+  return rows.map((row) => {
     const translations = byLocale(row.translations);
     return {
       id: String(row[config.key]),
@@ -35,21 +50,48 @@ export async function listContent(entity: EntityName): Promise<ContentListItem[]
   });
 }
 
-export type ContentDetail = { id: string; base: Record<string, string | boolean>; translations: Partial<Translations> };
+export type ContentImage = { src: string; width: number | null; height: number | null };
+export type ContentDetail = { id: string; base: Record<string, string | boolean>; translations: Partial<Translations>; image: ContentImage | null };
 
 export async function getContent(entity: EntityName, id: string): Promise<ContentDetail | null> {
-  const config = ENTITIES[entity];
-  const supabase = await db();
-  const { data, error } = await supabase.from(config.table).select(`*, translations:${config.translations}(*)`).eq(config.key, id).maybeSingle();
-  if (error) throw new Error(`No s'ha pogut llegir la fila: ${error.message}`);
-  if (!data) return null;
-  const row = data as Row;
+  const config: EntityConfig = ENTITIES[entity];
+  const [row] = (await readRows(await db(), config, id)).filter((r) => String(r[config.key]) === id);
+  if (!row) return null;
   const base: ContentDetail["base"] = {};
   for (const field of config.base) {
     const value = row[field.name];
-    base[field.name] = field.kind === "boolean" ? value === true : value == null ? "" : String(value);
+    base[field.name] = field.kind === "boolean" ? value === true : asText(value);
+    if (field.kind === "position") base.y = asText(row.y);
   }
-  return { id, base, translations: byLocale(row.translations) };
+  let image: ContentImage | null = null;
+  const mediaId = config.image ? row[config.image.column] : null;
+  if (mediaId) {
+    const { data } = await (await db()).from("media").select("path, width, height").eq("id", mediaId).maybeSingle();
+    if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null };
+  }
+  return { id, base, translations: byLocale(row.translations), image };
+}
+
+/**
+ * Puja una foto nova al bucket, la registra a `media` i la posa com a foto del contingut. La foto anterior no s'esborra:
+ * pot ser que la faci servir un altre contingut. Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer.
+ */
+export async function replaceImage(entity: EntityName, id: string, file: { bytes: Uint8Array; width: number; height: number; name: string }): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.image) return "Aquest contingut no té foto.";
+  const supabase = await db();
+
+  const path = `panell/${entity}/${file.name}.jpg`;
+  const upload = await supabase.storage.from("media").upload(path, file.bytes, { contentType: "image/jpeg", cacheControl: "31536000" });
+  if (upload.error) return upload.error.message;
+
+  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height }).select("id").single();
+  if (media.error) return media.error.message;
+
+  const { data, error } = await supabase.from(config.table).update({ [config.image.column]: media.data.id }).eq(config.key, id).select(config.key);
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per modificar aquest contingut, o ja no existeix.";
+  return null;
 }
 
 /**
@@ -57,8 +99,9 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
  * Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer.
  */
 export async function saveContent(entity: EntityName, id: string, input: ContentInput): Promise<string | null> {
-  const config = ENTITIES[entity];
+  const config: EntityConfig = ENTITIES[entity];
   const supabase = await db();
+  const lists = new Set(config.text.filter((field) => field.list).map((field) => field.name));
 
   // Un camp de text buit a la base és «sense valor», no una cadena buida.
   const base = Object.fromEntries(Object.entries(input.base).map(([k, v]) => [k, v === "" ? null : v]));
@@ -70,12 +113,12 @@ export async function saveContent(entity: EntityName, id: string, input: Content
   }
 
   const rows = LOCALES.filter((locale) => input.translations[locale]).map((locale) => ({
-    [config.foreignKey]: id,
+    ...(config.foreignKey ? { [config.foreignKey]: id } : {}),
     locale,
-    ...Object.fromEntries(Object.entries(input.translations[locale]).map(([k, v]) => [k, v === "" ? null : v])),
+    ...Object.fromEntries(Object.entries(input.translations[locale]).map(([k, v]) => [k, lists.has(k) ? toList(v) : v === "" ? null : v])),
   }));
   if (rows.length) {
-    const { error } = await supabase.from(config.translations).upsert(rows, { onConflict: `${config.foreignKey},locale` });
+    const { error } = await supabase.from(config.translations).upsert(rows, { onConflict: config.foreignKey ? `${config.foreignKey},locale` : "locale" });
     if (error) return error.message;
   }
   return null;
