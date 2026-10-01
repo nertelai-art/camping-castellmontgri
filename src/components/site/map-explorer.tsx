@@ -2,12 +2,12 @@
 
 // El mapa del càmping. Tancat, és el fons de la secció: la maqueta 3D gronxant-se, sense agafar ni el ratolí
 // ni el scroll. En clicar-hi s'obre a pantalla completa, com un diàleg: allà sí que es mou amb el ratolí,
-// i al costat hi ha el cercador de parcel·les, els filtres i la fitxa de cada lloc.
+// i al costat hi ha el cercador de parcel·les i els llocs, agrupats en desplegables.
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { RichText } from "@/components/rich-text";
 import type { MapViewerHandle } from "@/components/scene/MapScene";
 import { useNearViewport, useReducedMotion, useRenderMode } from "@/components/scene/scroll-scene";
@@ -27,6 +27,10 @@ type Props = { image: MediaRef; points: MapPoint[]; places: Record<string, Place
 
 // Els mateixos colors que les teulades de la maqueta (MapScene).
 const PLOT_SWATCH = ["#8fa052", "#d8492a", "#f6e6bd"] as const;
+const CLOSE_MS = 280; // el que dura l'animació de tancar (globals.css)
+
+/** Ordre d'entrada de cada peça de la columna quan s'obre el mapa (`.map-rise`). */
+const rise = (i: number) => ({ ["--i" as string]: i }) as CSSProperties;
 
 export function MapExplorer({ image, points, places, heading }: Props) {
   const t = useTranslations("map");
@@ -42,32 +46,30 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   const reducedMotion = useReducedMotion();
   const near = useNearViewport(stage, "900px");
   const [open, setOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
   const [inView, setInView] = useState(false);
   const [started, setStarted] = useState(false);
   const [ready, setReady] = useState(false);
-  const [filter, setFilter] = useState<Kind | "all">("all");
+  // El desplegable obert fa de filtre: al mapa només es veuen els llocs d'aquell tipus. Cap d'obert: tots.
+  const [openKind, setOpenKind] = useState<Kind | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [plot, setPlot] = useState<MapPlot | null>(null);
   const [query, setQuery] = useState("");
   const [notFound, setNotFound] = useState<string | null>(null);
 
   const is3d = mode === "3d";
-  const visible = useMemo(() => points.filter((p) => filter === "all" || p.kind === filter), [points, filter]);
+  const visible = useMemo(() => points.filter((p) => openKind === null || p.kind === openKind), [points, openKind]);
   const selected = points.find((p) => p.id === selectedId) ?? null;
-  const selectedPlace = selected?.target ? places[targetKey(selected.target)] : undefined;
-  const kinds = useMemo(() => KINDS.filter((k) => points.some((p) => p.kind === k)), [points]);
   const plotNames = useMemo((): [string, string, string] => [t("plot.pitch"), t("plot.lodging"), t("plot.operator")], [t]);
-  // Llista: per tipus, un element per nom (els quatre sanitaris en són un, amb el recompte).
+  // Per tipus, un element per nom (els quatre sanitaris en són un, amb el recompte).
   const groups = useMemo(
     () =>
-      kinds
-        .filter((kind) => filter === "all" || filter === kind)
-        .map((kind) => {
-          const byLabel = new Map<string, MapPoint[]>();
-          for (const p of points) if (p.kind === kind) byLabel.set(p.label, [...(byLabel.get(p.label) ?? []), p]);
-          return { kind, entries: [...byLabel.values()] };
-        }),
-    [kinds, points, filter],
+      KINDS.filter((k) => points.some((p) => p.kind === k)).map((kind) => {
+        const byLabel = new Map<string, MapPoint[]>();
+        for (const p of points) if (p.kind === kind) byLabel.set(p.label, [...(byLabel.get(p.label) ?? []), p]);
+        return { kind, entries: [...byLabel.values()] };
+      }),
+    [points],
   );
 
   /** Porta la càmera a un lloc; si el visor encara no ha carregat, ho fa quan estigui a punt. */
@@ -85,12 +87,13 @@ export function MapExplorer({ image, points, places, heading }: Props) {
     });
   }, []);
 
+  /** Tria un lloc (des del mapa o des de la llista): s'obre el seu desplegable i la seva fitxa, i el mapa hi va. */
   const select = useCallback(
     (p: MapPoint) => {
       setPlot(null);
       setNotFound(null);
+      setOpenKind(p.kind as Kind);
       setSelectedId(p.id);
-      panel.current?.scrollTo({ top: 0 });
       flyTo(p);
     },
     [flyTo],
@@ -109,19 +112,32 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   );
 
   const openMap = useCallback(() => {
+    // D'on surt el mapa: el rectangle que ocupa ara la secció, perquè l'obertura comenci des d'allà.
+    const r = stage.current?.getBoundingClientRect();
+    if (r && shell.current) {
+      shell.current.style.setProperty("--from-top", `${Math.max(0, r.top)}px`);
+      shell.current.style.setProperty("--from-bottom", `${Math.max(0, window.innerHeight - r.bottom)}px`);
+    }
     setStarted(true);
+    setClosing(false);
     setOpen(true);
   }, []);
 
   const closeMap = useCallback(() => {
-    setOpen(false);
-    setSelectedId(null);
-    setPlot(null);
-    setNotFound(null);
-    setFilter("all");
-    viewer.current?.reset();
-    opener.current?.focus();
-  }, []);
+    const finish = () => {
+      setOpen(false);
+      setClosing(false);
+      setSelectedId(null);
+      setPlot(null);
+      setNotFound(null);
+      setOpenKind(null);
+      viewer.current?.reset();
+      opener.current?.focus({ preventScroll: true });
+    };
+    if (reducedMotion) return finish();
+    setClosing(true);
+    window.setTimeout(finish, CLOSE_MS);
+  }, [reducedMotion]);
 
   // «Veure al mapa» des de qualsevol secció: l'obre i hi tria el lloc.
   useEffect(() => {
@@ -129,7 +145,6 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       const target = (e as CustomEvent<MapTarget>).detail;
       const point = points.find((p) => p.target && targetKey(p.target) === targetKey(target));
       if (!point) return;
-      setFilter("all");
       openMap();
       select(point);
     };
@@ -153,25 +168,27 @@ export function MapExplorer({ image, points, places, heading }: Props) {
     return () => observer.disconnect();
   }, []);
 
-  // Obert: la pàgina de sota no es mou i el focus entra al diàleg.
+  // Obert: la pàgina de sota no es mou, el focus entra al diàleg i Esc el tanca sigui on sigui el focus.
   useEffect(() => {
     if (!open) return;
     const root = document.documentElement;
     const previous = root.style.overflow;
     root.style.overflow = "hidden";
     searchInput.current?.focus({ preventScroll: true });
-    return () => {
-      root.style.overflow = previous;
-    };
-  }, [open]);
-
-  // Esc tanca el mapa, sigui on sigui el focus.
-  useEffect(() => {
-    if (!open) return;
     const onEscape = (e: KeyboardEvent) => e.key === "Escape" && closeMap();
     document.addEventListener("keydown", onEscape);
-    return () => document.removeEventListener("keydown", onEscape);
+    return () => {
+      root.style.overflow = previous;
+      document.removeEventListener("keydown", onEscape);
+    };
   }, [open, closeMap]);
+
+  // El lloc triat queda a la vista dins la columna (pot haver-se triat clicant al mapa).
+  useEffect(() => {
+    if (!selectedId) return;
+    const frame = requestAnimationFrame(() => document.getElementById(`map-item-${selectedId}`)?.scrollIntoView({ block: "nearest", behavior: reducedMotion ? "auto" : "smooth" }));
+    return () => cancelAnimationFrame(frame);
+  }, [selectedId, reducedMotion]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (!open || e.key !== "Tab") return;
@@ -218,22 +235,25 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       role={open ? "dialog" : undefined}
       aria-modal={open ? true : undefined}
       aria-label={open ? t("title") : undefined}
+      data-closing={closing || undefined}
       onKeyDown={onKeyDown}
-      className={open ? "fixed inset-0 z-[80] flex flex-col bg-[#2c3318] lg:flex-row" : "relative"}
+      className={open ? "map-shell fixed inset-0 z-[80] flex flex-col bg-[#2c3318] lg:flex-row" : "relative"}
     >
       {open && (
-        <aside key="panel" className="flex min-h-0 flex-col bg-paper text-ink max-lg:order-last max-lg:h-[46svh] lg:w-[25rem] lg:shrink-0">
-          <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-4">
+        <aside key="panel" className="map-panel flex min-h-0 flex-col bg-paper text-ink max-lg:order-last max-lg:h-[46svh] lg:w-[25rem] lg:shrink-0">
+          <div className="map-rise flex items-center justify-between gap-3 border-b border-line px-5 py-4" style={rise(0)}>
             <h2 className="font-display text-2xl text-olive">{t("title")}</h2>
             <button type="button" onClick={closeMap} className="flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-base font-bold text-paper transition hover:bg-olive">
-              <CloseIcon />
+              <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+              </svg>
               {t("close")}
             </button>
           </div>
 
           <div ref={panel} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5">
             {/* Cercador de parcel·la o allotjament */}
-            <form onSubmit={onSearch} role="search" className="rounded-2xl bg-paper-2 p-4">
+            <form onSubmit={onSearch} role="search" className="map-rise rounded-2xl bg-paper-2 p-4" style={rise(1)}>
               <label htmlFor="map-search" className="text-base font-bold">
                 {t("search.label")}
               </label>
@@ -257,106 +277,111 @@ export function MapExplorer({ image, points, places, heading }: Props) {
               <p aria-live="polite" className="mt-2 text-base text-terra empty:hidden">
                 {notFound !== null && t("search.notFound", { number: notFound })}
               </p>
+              {plot && (
+                <div className="mt-3 rounded-xl bg-card p-4">
+                  <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-muted">
+                    <span aria-hidden="true" className="size-3.5 rounded-full ring-1 ring-ink/30" style={{ background: PLOT_SWATCH[plot.kind] }} />
+                    {plotNames[plot.kind]}
+                  </p>
+                  <p className="font-display mt-1 text-5xl leading-none text-olive">{plot.n}</p>
+                  <p className="mt-3 text-base leading-relaxed">{t(`plot.about.${plot.kind}`)}</p>
+                </div>
+              )}
             </form>
 
-            {selected ? (
-              // Fitxa d'un lloc
-              <article className="mt-5">
-                <BackButton onClick={() => setSelectedId(null)} label={t("allPlaces")} />
-                <div className="mt-4 flex items-center gap-3">
-                  <MarkerIcon point={selected} className="size-12 ring-1 ring-line" />
-                  <p className="text-sm font-bold uppercase tracking-[0.16em] text-muted">{kindLabel(selected.kind)}</p>
-                </div>
-                <h3 className="font-display mt-3 text-4xl leading-[1.05] text-olive">{selected.label}</h3>
-                {selectedPlace?.hours && <p className="mt-3 text-lg font-bold">{selectedPlace.hours}</p>}
-                {selectedPlace?.image && (
-                  <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-2xl bg-paper-2">
-                    <Image src={selectedPlace.image.src} alt="" fill sizes="25rem" className="object-cover" />
-                  </div>
-                )}
-                {selectedPlace?.description && <RichText text={selectedPlace.description} className="mt-4 grid gap-3 text-lg leading-relaxed text-ink [&_strong]:font-bold" />}
-                {(selected.target?.type === "category" || selected.target?.type === "accommodation") && (
-                  <a href="#accommodation" onClick={closeMap} className="mt-5 inline-block text-lg font-bold text-terra hover:underline">
-                    {t("seeAccommodation")} →
-                  </a>
-                )}
-              </article>
-            ) : plot ? (
-              // Fitxa d'una parcel·la o allotjament numerat
-              <article className="mt-5">
-                <BackButton onClick={() => setPlot(null)} label={t("allPlaces")} />
-                <p className="mt-4 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-muted">
-                  <span aria-hidden="true" className="size-3.5 rounded-full ring-1 ring-ink/30" style={{ background: PLOT_SWATCH[plot.kind] }} />
-                  {plotNames[plot.kind]}
-                </p>
-                <h3 className="font-display mt-2 text-6xl leading-none text-olive">{plot.n}</h3>
-                <p className="mt-4 text-lg leading-relaxed">{t(`plot.about.${plot.kind}`)}</p>
-              </article>
-            ) : (
-              <>
-                {/* Filtres */}
-                <div role="group" aria-label={t("filters")} className="mt-5 flex flex-wrap gap-2">
-                  {(["all", ...kinds] as const).map((k) => (
-                    <button
-                      key={k}
-                      type="button"
-                      aria-pressed={filter === k}
-                      onClick={() => setFilter(k)}
-                      className="flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-base font-bold text-ink transition hover:border-olive aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-paper"
-                    >
-                      {k !== "all" && <span aria-hidden="true" className="size-3 rounded-full ring-1 ring-white/70" style={{ background: KIND_COLOR[k] }} />}
-                      {k === "all" ? t("kinds.all") : kindLabel(k)}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Llocs, amb la icona de la llegenda del plànol */}
-                {groups.map(({ kind, entries }) => (
-                  <section key={kind} aria-labelledby={`map-list-${kind}`} className="mt-6">
-                    <h3 id={`map-list-${kind}`} className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-muted">
-                      <span aria-hidden="true" className="size-3 rounded-full" style={{ background: KIND_COLOR[kind] }} />
-                      {kindLabel(kind)}
+            {/* Llocs: un desplegable per tipus. El que és obert és el que es veu al mapa. */}
+            <div className="mt-4 grid gap-2">
+              {groups.map(({ kind, entries }, g) => {
+                const expanded = openKind === kind;
+                return (
+                  <section key={kind} className="map-rise overflow-hidden rounded-2xl border border-line" style={rise(g + 2)}>
+                    <h3>
+                      <button
+                        type="button"
+                        aria-expanded={expanded}
+                        aria-controls={`map-group-${kind}`}
+                        onClick={() => {
+                          setOpenKind(expanded ? null : kind);
+                          if (selected && selected.kind !== kind) setSelectedId(null);
+                        }}
+                        className="flex w-full items-center gap-3 px-4 py-3.5 text-left text-lg font-bold transition hover:bg-paper-2 aria-expanded:bg-paper-2"
+                      >
+                        <span aria-hidden="true" className="size-3.5 shrink-0 rounded-full" style={{ background: KIND_COLOR[kind] }} />
+                        {kindLabel(kind)}
+                        <span className="ml-auto text-base font-normal text-muted">{entries.length}</span>
+                        <svg viewBox="0 0 24 24" className={`size-5 shrink-0 text-muted transition-transform ${expanded ? "rotate-180" : ""}`} aria-hidden="true">
+                          <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
                     </h3>
-                    <ul className="mt-2 grid gap-0.5">
-                      {entries.map((group) => {
-                        const first = group[0]!;
-                        return (
-                          <li key={first.id}>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                // Si n'hi ha més d'un amb el mateix nom, cada clic porta al següent.
-                                const i = ((cycle.current.get(first.id) ?? -1) + 1) % group.length;
-                                cycle.current.set(first.id, i);
-                                select(group[i]!);
-                              }}
-                              className="flex w-full items-center gap-3 rounded-2xl px-2 py-2 text-left text-lg transition hover:bg-paper-2"
-                            >
-                              <MarkerIcon point={first} className="size-10 ring-1 ring-line" />
-                              <span className="font-bold leading-snug">{first.label}</span>
-                              {group.length > 1 && <span className="ml-auto rounded-full bg-paper-2 px-2.5 py-0.5 text-sm font-bold text-muted">×{group.length}</span>}
-                            </button>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                    {/* grid-rows 0fr → 1fr: s'obre amb transició sense haver de saber l'alçada */}
+                    <div id={`map-group-${kind}`} className={`grid transition-[grid-template-rows] duration-300 ease-out ${expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`} inert={!expanded}>
+                      <ul className="min-h-0 overflow-hidden">
+                        {entries.map((group) => {
+                          const first = group[0]!;
+                          const current = group.find((p) => p.id === selectedId);
+                          const place = current?.target ? places[targetKey(current.target)] : undefined;
+                          return (
+                            <li key={first.id} id={current ? `map-item-${current.id}` : undefined} className="border-t border-line">
+                              <button
+                                type="button"
+                                aria-expanded={Boolean(current)}
+                                onClick={() => {
+                                  // Si n'hi ha més d'un amb el mateix nom, cada clic porta al següent; l'únic, es plega.
+                                  if (current && group.length === 1) return setSelectedId(null);
+                                  const i = ((cycle.current.get(first.id) ?? -1) + 1) % group.length;
+                                  cycle.current.set(first.id, i);
+                                  select(group[i]!);
+                                }}
+                                className="flex w-full items-center gap-3 px-4 py-2.5 text-left text-lg transition hover:bg-paper-2 aria-expanded:bg-card"
+                              >
+                                <MarkerIcon point={first} className="size-10 ring-1 ring-line" />
+                                <span className="font-bold leading-snug">{first.label}</span>
+                                {group.length > 1 && <span className="ml-auto rounded-full bg-paper-2 px-2.5 py-0.5 text-sm font-bold text-muted">×{group.length}</span>}
+                              </button>
+                              {current && (
+                                // Fitxa del lloc triat, a sota mateix del seu nom
+                                <div className="map-detail bg-card px-4 pb-5">
+                                  {place?.image && (
+                                    <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-paper-2">
+                                      <Image src={place.image.src} alt={place.image.alt} fill sizes="23rem" className="object-cover" />
+                                    </div>
+                                  )}
+                                  {place?.hours && <p className="mt-3 text-lg font-bold">{place.hours}</p>}
+                                  {place?.description ? (
+                                    <RichText text={place.description} className="mt-3 grid gap-3 text-lg leading-relaxed text-ink [&_strong]:font-bold" />
+                                  ) : (
+                                    <p className="mt-1 text-base text-muted">{t("onMapOnly")}</p>
+                                  )}
+                                  {(current.target?.type === "category" || current.target?.type === "accommodation") && (
+                                    <a href="#accommodation" onClick={closeMap} className="mt-4 inline-block text-lg font-bold text-terra hover:underline">
+                                      {t("seeAccommodation")} →
+                                    </a>
+                                  )}
+                                </div>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
                   </section>
-                ))}
+                );
+              })}
+            </div>
 
-                {/* Què vol dir cada color de casa */}
-                <section className="mt-6 rounded-2xl bg-paper-2 p-4">
-                  <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-muted">{t("plot.legend")}</h3>
-                  <ul className="mt-2 grid gap-1.5 text-base">
-                    {([1, 2, 0] as const).map((kind) => (
-                      <li key={kind} className="flex items-center gap-2.5">
-                        <span aria-hidden="true" className="size-4 shrink-0 rounded ring-1 ring-ink/30" style={{ background: PLOT_SWATCH[kind] }} />
-                        {plotNames[kind]}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              </>
-            )}
+            {/* Què vol dir cada color de casa */}
+            <section className="map-rise mt-4 rounded-2xl bg-paper-2 p-4" style={rise(groups.length + 2)}>
+              <h3 className="text-sm font-bold uppercase tracking-[0.18em] text-muted">{t("plot.legend")}</h3>
+              <ul className="mt-2 grid gap-1.5 text-base">
+                {([1, 2, 0] as const).map((kind) => (
+                  <li key={kind} className="flex items-center gap-2.5">
+                    <span aria-hidden="true" className="size-4 shrink-0 rounded ring-1 ring-ink/30" style={{ background: PLOT_SWATCH[kind] }} />
+                    {plotNames[kind]}
+                  </li>
+                ))}
+              </ul>
+            </section>
           </div>
         </aside>
       )}
@@ -372,7 +397,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
         tabIndex={open ? 0 : undefined}
         onKeyDown={onStageKeyDown}
         className={`relative bg-[radial-gradient(120%_100%_at_50%_0%,#56632f_0%,#2c3318_70%)] outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-terra ${
-          open ? "min-h-0 flex-1" : "h-[min(94svh,62rem)] min-h-[36rem]"
+          open ? "min-h-0 min-w-0 flex-1" : "h-[min(94svh,62rem)] min-h-[36rem]"
         }`}
       >
         {mode === "static" ? (
@@ -393,7 +418,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
               plotNames={plotNames}
               started={started}
               reducedMotion={reducedMotion}
-              interactive={open}
+              interactive={open && !closing}
               drift={!open && inView}
               handle={viewer}
               onReady={onReady}
@@ -404,13 +429,13 @@ export function MapExplorer({ image, points, places, heading }: Props) {
 
         {open ? (
           <>
-            <div className="absolute bottom-3 right-3 z-20 flex gap-1.5 sm:flex-col sm:gap-2">
+            <div className="map-fade absolute bottom-3 right-3 z-20 flex gap-1.5 sm:flex-col sm:gap-2">
               {is3d && <ControlButton label={t("rotate")} onClick={() => viewer.current?.rotateBy(Math.PI / 4)} icon="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5" />}
               <ControlButton label={t("zoomIn")} onClick={() => viewer.current?.zoomBy(1.6)} icon="M12 5v14M5 12h14" />
               <ControlButton label={t("zoomOut")} onClick={() => viewer.current?.zoomBy(1 / 1.6)} icon="M5 12h14" />
               <ControlButton label={t("reset")} onClick={() => viewer.current?.reset()} icon="M4 11.5 12 5l8 6.5M6.5 10v9h11v-9" />
             </div>
-            <p id="map-hint" className="pointer-events-none absolute bottom-3 left-3 z-10 hidden max-w-lg rounded-full bg-ink/75 px-4 py-2 text-sm text-paper lg:block">
+            <p id="map-hint" className="map-fade pointer-events-none absolute bottom-3 left-3 z-10 hidden max-w-lg rounded-full bg-ink/75 px-4 py-2 text-sm text-paper lg:block">
               {is3d ? t("hint3d") : t("hint")}
             </p>
           </>
@@ -432,22 +457,6 @@ export function MapExplorer({ image, points, places, heading }: Props) {
         )}
       </div>
     </div>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
-      <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function BackButton({ onClick, label }: { onClick: () => void; label: string }) {
-  return (
-    <button type="button" onClick={onClick} className="text-base font-bold text-terra hover:underline">
-      ← {label}
-    </button>
   );
 }
 

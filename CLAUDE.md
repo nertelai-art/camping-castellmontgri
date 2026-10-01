@@ -61,8 +61,11 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   (`text` = número pintat a la parcel·la, `red` = allotjament del càmping, `cream` = operador turístic).
   Es van llegir a mà sobre retalls ampliats amb quadrícula, en dues passades independents que van coincidir:
   l'OCR (tesseract) no arriba al 30 % amb lletra de 7 px. Si canvia el plànol, s'han de tornar a llegir.
-- `scripts/content/map-buildings.json`: els edificis grans (restaurants, recepció, església, sanitaris),
-  col·locats a mà, i les zones on no hi ha d'haver arbres (camps d'esport).
+- `scripts/content/map-buildings.json`: els edificis grans (restaurants, recepció, església, sanitaris) com a
+  volums mesurats a mà sobre retalls amb quadrícula (teulada a dues aigües, a quatre o plana), les pistes
+  d'esport (`sports`: es redibuixen netes, `scripts/lib/map-sports.ts`) i les zones sense arbres.
+- El terra no es difumina: el que s'esborra del dibuix (cases, icones, rètols) s'omple capa a capa continuant
+  el color de la vora (`inpaint` a `map-detect.ts`). Una mitjana de finestra deixava taques grises, sobretot a l'aigua.
 - `pnpm map:build` llegeix la il·lustració i aquests fitxers i en treu la maqueta:
   `src/components/scene/map-scene.data.json` (arbres, cases, edificis i números), `public/map/ground.jpg`
   (el dibuix sense rètols, logo, cases ni icones) i `public/map/icons.png` (l'atles d'icones). S'executa a mà;
@@ -71,8 +74,12 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   `pnpm map:build --debug <dir>` pinta el que ha detectat sobre el plànol: mira-ho ampliat abans de donar-ho per bo.
 - `map-explorer.tsx`: tancat, el mapa és el **fons de la secció** (no agafa ni ratolí ni scroll, la càmera es gronxa);
   en clicar-hi s'obre a pantalla completa com un diàleg (`position: fixed`, per això la secció no pot tenir
-  `overflow`, `transform` ni `contain`), amb la columna del cercador de números, els filtres i la fitxa.
-  És el mateix canvas: només canvia de mida.
+  `overflow`, `transform` ni `contain`). És el mateix canvas: només canvia de mida.
+  A la columna: el cercador de números i un desplegable per tipus de lloc. El desplegable obert fa de filtre
+  del mapa, i el lloc triat (a la llista o al mapa) obre la seva fitxa a sota mateix del nom.
+  L'obertura i el tancament són animacions CSS (`map-*` a `globals.css`); amb moviment reduït no n'hi ha.
+- Un lloc només té foto i descripció si el punt del mapa enllaça un servei, restaurant, activitat o allotjament
+  que en tingui. Els punts solts (minigolf, caixer, mirador…) no en tenen fins que s'editin a l'admin.
 - `src/components/scene/MapScene.tsx`: arbres, cases i edificis instanciats, ombres calculades un sol cop
   (`shadowMap.autoUpdate = false`), `frameloop="demand"`. La càmera és la classe `CameraRig`, fora de React:
   el lint del compilador de React no deixa mutar el que retornen els hooks (`camera`, `gl`).

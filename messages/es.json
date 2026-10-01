@@ -78,7 +78,6 @@
   },
   "map": {
     "eyebrow": "El camping",
-    "filters": "Filtra el mapa",
     "viewer": "Mapa interactivo del camping en 3D",
     "hint": "Arrastra para moverte · pellizca, Ctrl + rueda o + y − para ampliar",
     "zoomIn": "Ampliar",
@@ -92,7 +91,6 @@
     "loading": "Cargando el mapa…",
     "title": "Mapa del camping",
     "open": "Explora el mapa",
-    "allPlaces": "Todos los lugares",
     "search": {
       "label": "Busca tu parcela o alojamiento",
       "placeholder": "Número, p. ej. 254",
@@ -110,8 +108,8 @@
         "2": "Alojamiento gestionado por un operador turístico. Si has reservado con un operador, este es el número que te han dado."
       }
     },
+    "onMapOnly": "Lo encontrarás marcado en el mapa.",
     "kinds": {
-      "all": "Todo",
       "accommodation": "Alojamiento",
       "food": "Comer y beber",
       "pool": "Piscinas",

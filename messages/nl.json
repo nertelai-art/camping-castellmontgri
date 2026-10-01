@@ -78,7 +78,6 @@
   },
   "map": {
     "eyebrow": "De camping",
-    "filters": "Filter de kaart",
     "viewer": "Interactieve 3D-kaart van de camping",
     "hint": "Sleep om te bewegen · knijp, Ctrl + scroll of + en − om te zoomen",
     "zoomIn": "Inzoomen",
@@ -92,7 +91,6 @@
     "loading": "Kaart laden…",
     "title": "Kaart van de camping",
     "open": "Verken de kaart",
-    "allPlaces": "Alle plekken",
     "search": {
       "label": "Zoek je plaats of accommodatie",
       "placeholder": "Nummer, bijv. 254",
@@ -110,8 +108,8 @@
         "2": "Accommodatie van een touroperator. Heb je via een touroperator geboekt, dan is dit het nummer dat je hebt gekregen."
       }
     },
+    "onMapOnly": "Je vindt het gemarkeerd op de kaart.",
     "kinds": {
-      "all": "Alles",
       "accommodation": "Accommodatie",
       "food": "Eten & drinken",
       "pool": "Zwembaden",

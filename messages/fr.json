@@ -78,7 +78,6 @@
   },
   "map": {
     "eyebrow": "Le camping",
-    "filters": "Filtrer la carte",
     "viewer": "Carte interactive du camping en 3D",
     "hint": "Faites glisser pour vous déplacer · pincez, Ctrl + molette ou + et − pour zoomer",
     "zoomIn": "Zoomer",
@@ -92,7 +91,6 @@
     "loading": "Chargement de la carte…",
     "title": "Carte du camping",
     "open": "Explorer la carte",
-    "allPlaces": "Tous les lieux",
     "search": {
       "label": "Trouvez votre emplacement ou hébergement",
       "placeholder": "Numéro, p. ex. 254",
@@ -110,8 +108,8 @@
         "2": "Hébergement géré par un tour-opérateur. Si vous avez réservé auprès d'un opérateur, c'est le numéro qu'il vous a donné."
       }
     },
+    "onMapOnly": "Vous le trouverez indiqué sur la carte.",
     "kinds": {
-      "all": "Tout",
       "accommodation": "Hébergement",
       "food": "Manger et boire",
       "pool": "Piscines",

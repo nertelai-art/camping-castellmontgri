@@ -152,6 +152,102 @@ body {
   contain-intrinsic-size: auto 1100px;
 }
 
+/* Mapa obert: surt de la secció (un retall que s'obre des d'on era) i la columna s'hi construeix peça a peça.
+   En tancar, es retalla fins on era i queda el fons de sempre. Amb moviment reduït, res d'això. */
+@keyframes map-open {
+  from {
+    clip-path: inset(var(--from-top, 0) 0 var(--from-bottom, 0) 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes map-close {
+  to {
+    clip-path: inset(var(--from-top, 0) 0 var(--from-bottom, 0) 0);
+  }
+}
+
+/* La columna empeny el mapa (marge), no el tapa: el mapa es va fent lloc mentre entra. */
+@keyframes map-panel-in {
+  from {
+    margin-left: -25rem;
+  }
+}
+
+@keyframes map-panel-out {
+  to {
+    margin-left: -25rem;
+  }
+}
+
+@keyframes map-panel-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes map-panel-down {
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes map-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes map-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-shell {
+    animation: map-open 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .map-panel {
+    animation: map-panel-up 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .map-rise {
+    animation: map-rise 460ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    animation-delay: calc(240ms + var(--i, 0) * 60ms);
+  }
+
+  .map-fade {
+    animation: map-fade 400ms 480ms both;
+  }
+
+  .map-detail {
+    animation: map-rise 320ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .map-shell[data-closing] {
+    animation: map-close 280ms ease-in both;
+  }
+
+  .map-shell[data-closing] .map-panel {
+    animation: map-panel-down 280ms ease-in both;
+  }
+
+  @media (min-width: 1024px) {
+    .map-panel {
+      animation-name: map-panel-in;
+    }
+
+    .map-shell[data-closing] .map-panel {
+      animation-name: map-panel-out;
+    }
+  }
+}
+
 /* Tira horitzontal amb scroll-snap (galeries, targetes). */
 .snap-strip {
   display: grid;

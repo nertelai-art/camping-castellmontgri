@@ -78,7 +78,6 @@
   },
   "map": {
     "eyebrow": "El càmping",
-    "filters": "Filtra el mapa",
     "viewer": "Mapa interactiu del càmping en 3D",
     "hint": "Arrossega per moure't · pessiga, Ctrl + roda o + i − per ampliar",
     "zoomIn": "Amplia",
@@ -92,7 +91,6 @@
     "loading": "Carregant el mapa…",
     "title": "Mapa del càmping",
     "open": "Explora el mapa",
-    "allPlaces": "Tots els llocs",
     "search": {
       "label": "Busca la teva parcel·la o allotjament",
       "placeholder": "Número, p. ex. 254",
@@ -110,8 +108,8 @@
         "2": "Allotjament gestionat per un operador turístic. Si has reservat amb un operador, aquest és el número que t'han donat."
       }
     },
+    "onMapOnly": "El trobaràs marcat al mapa.",
     "kinds": {
-      "all": "Tot",
       "accommodation": "Allotjament",
       "food": "Menjar i beure",
       "pool": "Piscines",
