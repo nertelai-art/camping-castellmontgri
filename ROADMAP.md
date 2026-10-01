@@ -186,7 +186,8 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ **5.5 Registre de canvis**: qui ha canviat què i quan (`/admin/changes`); només s'hi pot afegir.
 - ✅ **5.6 Afegir i esborrar**: punts del mapa (amb tipus i icona), serveis, restaurants i activitats. Neixen en esborrany.
 - ✅ **5.7 Opinions**: afegir, editar, publicar i esborrar opinions de clients.
-- Pendent: galeria dels allotjaments, retall i punt focal, text alternatiu de les fotos,
+- ✅ **5.8 Galeria dels allotjaments**: afegir fotos (unes quantes de cop), treure'n i canviar-ne l'ordre.
+- Pendent: retall i punt focal, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.

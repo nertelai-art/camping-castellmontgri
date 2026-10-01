@@ -52,6 +52,8 @@ export type EntityConfig = {
   create?: { defaults: Record<string, string | number>; slug?: boolean };
   /** La foto principal: la columna de la taula base que apunta a `media`. */
   image?: { column: string; label: string };
+  /** La galeria de fotos: la taula que lliga el contingut amb `media` (amb `media_id` i `sort_order`). */
+  gallery?: { table: string; foreignKey: string; label: string };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
   tags: readonly string[];
 };
@@ -188,6 +190,7 @@ export const ENTITIES = {
     description: "Cada model de bungalow, mobil-home i parcel·la, amb les seves característiques.",
     table: "accommodations",
     image: { column: "cover_media_id", label: "Foto principal" },
+    gallery: { table: "accommodation_media", foreignKey: "accommodation_id", label: "Galeria de fotos" },
     key: "id",
     translations: "accommodation_translations",
     foreignKey: "accommodation_id",

@@ -1,10 +1,22 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { displayName, ENTITIES, isEntity, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
 import { jpegSize, MAX_BYTES, MAX_SIDE } from "@/lib/admin/image";
-import { createContent, deleteContent, getContent, logChange, replaceImage, saveContent, type ChangeAction } from "@/lib/supabase/admin-content";
+import {
+  addToGallery,
+  createContent,
+  deleteContent,
+  getContent,
+  logChange,
+  moveInGallery,
+  removeFromGallery,
+  replaceImage,
+  saveContent,
+  type ChangeAction,
+  type UploadedImage,
+} from "@/lib/supabase/admin-content";
 import { currentEditor, sessionClient, type Editor } from "@/lib/supabase/session";
 
 export type FormState = { errors?: string[]; savedAt?: number };
@@ -64,20 +76,26 @@ export async function saveContentAction(entity: string, id: string, _: FormState
   return { savedAt: Date.now() };
 }
 
+/** La foto que arriba d'un formulari, comprovada: el navegador l'envia reduïda i en JPEG, però aquí no es dona per bo. */
+async function readImage(form: FormData): Promise<UploadedImage | { errors: string[] }> {
+  const file = form.get("image");
+  if (!(file instanceof Blob) || file.size === 0) return { errors: ["No ha arribat cap foto."] };
+  if (file.size > MAX_BYTES) return { errors: ["La foto pesa massa."] };
+  const bytes = new Uint8Array(await file.arrayBuffer());
+  const size = jpegSize(bytes);
+  if (!size || Math.max(size.width, size.height) > MAX_SIDE) return { errors: ["El fitxer no és una foto vàlida."] };
+  return { bytes, ...size, name: crypto.randomUUID() };
+}
+
 export async function replaceImageAction(entity: string, id: string, _: FormState, form: FormData): Promise<FormState> {
   const editor = await currentEditor();
   if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
   if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
 
-  const file = form.get("image");
-  if (!(file instanceof Blob) || file.size === 0) return { errors: ["No ha arribat cap foto."] };
-  if (file.size > MAX_BYTES) return { errors: ["La foto pesa massa."] };
-  // El navegador ja l'envia reduïda i en JPEG; aquí es comprova que ho sigui de debò i se'n llegeix la mida.
-  const bytes = new Uint8Array(await file.arrayBuffer());
-  const size = jpegSize(bytes);
-  if (!size || Math.max(size.width, size.height) > MAX_SIDE) return { errors: ["El fitxer no és una foto vàlida."] };
+  const image = await readImage(form);
+  if ("errors" in image) return image;
 
-  const error = await replaceImage(entity, id, { bytes, ...size, name: crypto.randomUUID() });
+  const error = await replaceImage(entity, id, image);
   if (error) return { errors: [`No s'ha pogut desar la foto: ${error}`] };
   await record(editor, entity, id, "image");
 
@@ -113,4 +131,35 @@ export async function deleteContentAction(entity: string, id: string): Promise<F
   await record(editor, entity, id, "delete", name);
   for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
   redirect(`/admin/${entity}`);
+}
+
+/** Feina comuna de les accions de la galeria: sessió, canvi, registre i refrescar el panell i la web. */
+async function galleryChange(entity: string, id: string, change: (entity: EntityName) => Promise<string | null>): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+  if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
+
+  const error = await change(entity);
+  if (error) return { errors: [`No s'ha pogut desar: ${error}`] };
+  await record(editor, entity, id, "image");
+
+  const config: EntityConfig = ENTITIES[entity];
+  for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
+  revalidatePath(`/admin/${entity}/${id}`);
+  return { savedAt: Date.now() };
+}
+
+export async function addGalleryImageAction(entity: string, id: string, form: FormData): Promise<FormState> {
+  const image = await readImage(form);
+  if ("errors" in image) return image;
+  return galleryChange(entity, id, (name) => addToGallery(name, id, image));
+}
+
+export async function removeGalleryImageAction(entity: string, id: string, mediaId: string): Promise<FormState> {
+  return galleryChange(entity, id, (name) => removeFromGallery(name, id, mediaId));
+}
+
+export async function moveGalleryImageAction(entity: string, id: string, mediaId: string, delta: 1 | -1): Promise<FormState> {
+  if (delta !== 1 && delta !== -1) return { errors: ["Moviment desconegut."] };
+  return galleryChange(entity, id, (name) => moveInGallery(name, id, mediaId, delta));
 }
