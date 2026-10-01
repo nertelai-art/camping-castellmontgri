@@ -143,67 +143,70 @@ export function isGround(r: number, g: number, b: number): boolean {
 }
 
 /**
- * Terra «net»: cada píxel passa a ser la mitjana dels píxels de terra del seu voltant (imatges
- * integrals), de manera que cases, icones i números desapareixen i queda el color del que hi ha a sota.
- * Amb `keep` > 0 només s'omplen els objectes i les seves vores; la resta del dibuix queda nítida.
+ * Omple els forats (on `known` és 0) cap endins, capa a capa: cada píxel pren la mitjana dels veïns que ja
+ * tenen color. A diferència d'una mitjana de finestra, el farciment continua el color de la vora (l'aigua
+ * continua blava, el camí gris) i no deixa taques grises. El que ja es coneix no es toca.
  */
-export function cleanGround(rgb: Uint8Array | Buffer, width: number, height: number, ground: Uint8Array, radius = 9, keep = 0): Uint8Array {
-  const iw = width + 1;
-  const sums = [0, 1, 2].map(() => new Float64Array(iw * (height + 1)));
-  const count = new Uint32Array(iw * (height + 1));
-  for (let y = 0; y < height; y++) {
-    let cr = 0, cg = 0, cb = 0, cn = 0;
-    for (let x = 0; x < width; x++) {
-      const p = y * width + x;
-      if (ground[p]) {
-        cr += rgb[p * 3]!;
-        cg += rgb[p * 3 + 1]!;
-        cb += rgb[p * 3 + 2]!;
-        cn++;
+export function inpaint(rgb: Uint8Array | Buffer, width: number, height: number, known: Uint8Array): Uint8Array {
+  const out = new Uint8Array(rgb);
+  const done = new Uint8Array(known);
+  const neighbours = [-1, 1, -width, width, -width - 1, -width + 1, width - 1, width + 1];
+  const hasKnownNeighbour = (p: number) => {
+    const x = p % width;
+    return (x > 0 && done[p - 1]) || (x < width - 1 && done[p + 1]) || (p >= width && done[p - width]) || (p < width * (height - 1) && done[p + width]);
+  };
+  let frontier: number[] = [];
+  for (let p = 0; p < width * height; p++) if (!done[p] && hasKnownNeighbour(p)) frontier.push(p);
+  while (frontier.length) {
+    // Primer es calcula tota la capa amb el que es coneixia abans, i després es dona per coneguda.
+    const colours = new Uint8Array(frontier.length * 3);
+    for (const [i, p] of frontier.entries()) {
+      const x = p % width;
+      let r = 0, g = 0, b = 0, n = 0;
+      for (const d of neighbours) {
+        const q = p + d;
+        if (q < 0 || q >= width * height || !done[q] || Math.abs((q % width) - x) > 1) continue;
+        r += out[q * 3]!;
+        g += out[q * 3 + 1]!;
+        b += out[q * 3 + 2]!;
+        n++;
       }
-      const i = (y + 1) * iw + x + 1;
-      const up = y * iw + x + 1;
-      sums[0]![i] = sums[0]![up]! + cr;
-      sums[1]![i] = sums[1]![up]! + cg;
-      sums[2]![i] = sums[2]![up]! + cb;
-      count[i] = count[up]! + cn;
+      colours.set([r / n, g / n, b / n], i * 3);
+    }
+    for (const [i, p] of frontier.entries()) {
+      out.set(colours.subarray(i * 3, i * 3 + 3), p * 3);
+      done[p] = 1;
+    }
+    const next = new Set<number>();
+    for (const p of frontier) {
+      const x = p % width;
+      for (const d of [-1, 1, -width, width]) {
+        const q = p + d;
+        if (q >= 0 && q < width * height && !done[q] && Math.abs((q % width) - x) <= 1) next.add(q);
+      }
+    }
+    frontier = [...next];
+  }
+  return out;
+}
+
+/** Erosiona una màscara: un píxel només queda a 1 si tots els de la seva finestra (2·radius + 1) ho són. */
+export function erode(mask: Uint8Array, width: number, height: number, radius: number): Uint8Array {
+  const iw = width + 1;
+  const sum = new Uint32Array(iw * (height + 1));
+  for (let y = 0; y < height; y++) {
+    let row = 0;
+    for (let x = 0; x < width; x++) {
+      row += mask[y * width + x]!;
+      sum[(y + 1) * iw + x + 1] = sum[y * iw + x + 1]! + row;
     }
   }
-  const out = new Uint8Array(width * height * 3);
-  const box = (a: Float64Array | Uint32Array, x0: number, y0: number, x1: number, y1: number) =>
-    a[y1 * iw + x1]! - a[y0 * iw + x1]! - a[y1 * iw + x0]! + a[y0 * iw + x0]!;
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const o = (y * width + x) * 3;
-      // Amb `keep`, el terra que té terra a tot el voltant (a `keep` píxels) es deixa tal com és: no s'esborrona.
-      if (keep > 0 && x >= keep && y >= keep && x + keep < width && y + keep < height) {
-        const side = 2 * keep + 1;
-        if (box(count, x - keep, y - keep, x + keep + 1, y + keep + 1) === side * side) {
-          out[o] = rgb[o]!;
-          out[o + 1] = rgb[o + 1]!;
-          out[o + 2] = rgb[o + 2]!;
-          continue;
-        }
-      }
-      let n = 0, r = radius, x0 = 0, y0 = 0, x1 = 0, y1 = 0;
-      // Si al voltant no hi ha prou terra (sota un edifici gran), s'eixampla la finestra.
-      for (; r <= radius * 8; r *= 2) {
-        x0 = Math.max(0, x - r);
-        y0 = Math.max(0, y - r);
-        x1 = Math.min(width, x + r + 1);
-        y1 = Math.min(height, y + r + 1);
-        n = box(count, x0, y0, x1, y1);
-        if (n >= 12) break;
-      }
-      if (n === 0) {
-        out[o] = rgb[o]!;
-        out[o + 1] = rgb[o + 1]!;
-        out[o + 2] = rgb[o + 2]!;
-      } else {
-        out[o] = box(sums[0]!, x0, y0, x1, y1) / n;
-        out[o + 1] = box(sums[1]!, x0, y0, x1, y1) / n;
-        out[o + 2] = box(sums[2]!, x0, y0, x1, y1) / n;
-      }
+  const out = new Uint8Array(width * height);
+  const side = 2 * radius + 1;
+  for (let y = radius; y < height - radius; y++) {
+    for (let x = radius; x < width - radius; x++) {
+      const total = sum[(y + radius + 1) * iw + x + radius + 1]! - sum[(y - radius) * iw + x + radius + 1]! - sum[(y + radius + 1) * iw + x - radius]! + sum[(y - radius) * iw + x - radius]!;
+      if (total === side * side) out[y * width + x] = 1;
     }
   }
   return out;

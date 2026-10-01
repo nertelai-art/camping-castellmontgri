@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { classify, cleanGround, components, densityPeaks, isGround, KIND_INDEX, KINDS } from "./map-detect";
+import { classify, components, densityPeaks, erode, inpaint, isGround, KIND_INDEX, KINDS } from "./map-detect";
 
 const hex = (h: string) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)] as const;
 const kindOf = (h: string) => KINDS[classify(...hex(h))];
@@ -52,16 +52,30 @@ describe("detecció del plànol", () => {
     for (const g of ["#bbbbbb", "#ccaa88", "#88aa44", "#66bbee", "#556622"]) expect(isGround(...hex(g)), g).toBe(true);
     for (const o of ["#888888", "#bb6633", "#ffffff", "#111111", "#dd2222", "#ddcc88"]) expect(isGround(...hex(o)), o).toBe(false);
   });
+});
 
-  it("neteja el terra: un objecte desapareix i pren el color del que l'envolta", () => {
-    // 5×5 de gespa (verd) amb una «casa» grisa al mig
-    const w = 5, h = 5;
-    const rgb = new Uint8Array(w * h * 3);
-    const ground = new Uint8Array(w * h).fill(1);
-    for (let p = 0; p < w * h; p++) rgb.set([136, 170, 68], p * 3);
-    rgb.set([136, 136, 136], 12 * 3);
-    ground[12] = 0;
-    const out = cleanGround(rgb, w, h, ground, 1);
-    expect([...out.subarray(12 * 3, 12 * 3 + 3)]).toEqual([136, 170, 68]);
+describe("inpaint i erode", () => {
+  it("omple un forat amb el color del voltant i no toca el que ja es coneixia", () => {
+    const W = 7, H = 7;
+    const rgb = new Uint8Array(W * H * 3);
+    const known = new Uint8Array(W * H).fill(1);
+    for (let p = 0; p < W * H; p++) rgb.set([10, 120, 200], p * 3); // tot «aigua»
+    for (const [x, y] of [[2, 2], [3, 2], [4, 2], [2, 3], [3, 3], [4, 3], [2, 4], [3, 4], [4, 4]] as const) {
+      known[y * W + x] = 0;
+      rgb.set([255, 255, 255], (y * W + x) * 3); // una icona blanca a sobre
+    }
+    const out = inpaint(rgb, W, H, known);
+    expect([...out.subarray((3 * W + 3) * 3, (3 * W + 3) * 3 + 3)]).toEqual([10, 120, 200]);
+    expect([...out.subarray(0, 3)]).toEqual([10, 120, 200]);
+  });
+
+  it("erode treu la vora d'una taca", () => {
+    const W = 5, H = 5;
+    const mask = new Uint8Array(W * H).fill(1);
+    mask[0] = 0;
+    const out = erode(mask, W, H, 1);
+    expect(out[2 * W + 2]).toBe(1); // el centre té tots els veïns
+    expect(out[1 * W + 1]).toBe(0); // toca el forat
+    expect(out[0 * W + 4]).toBe(0); // la vora de la imatge no té finestra sencera
   });
 });

@@ -8,9 +8,11 @@ import { Canvas, useFrame, useThree, type RootState, type ThreeEvent } from "@re
 import { Suspense, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type ComponentRef, type ReactNode, type Ref, type RefObject } from "react";
 import {
   BoxGeometry,
+  BufferGeometry,
   Color,
   ConeGeometry,
   CylinderGeometry,
+  Float32BufferAttribute,
   IcosahedronGeometry,
   MathUtils,
   Object3D,
@@ -240,10 +242,7 @@ const HOUSE = {
   2: { roof: "#f6e6bd", wall: "#8a745c" },
 } as const;
 const TENT = "#efe3c6";
-const BUILDING_ROOF = { tile: "#a8683f", wood: "#a37a45", grey: "#70747c", flat: "#f3efe6" } as const;
-const BUILDING_WALL = "#ecdcbc";
-
-type Roof = keyof typeof BUILDING_ROOF;
+type Roof = "gable-x" | "gable-y" | "hip" | "flat";
 
 function buildItems() {
   const random = seededRandom(7);
@@ -253,6 +252,7 @@ function buildItems() {
   const crowns: Item[] = [];
   const walls: Item[] = [];
   const roofs: Item[] = [];
+  const gables: Item[] = [];
 
   for (const [px, py, s, t] of data.trees as [number, number, number, number][]) {
     const [x, z] = world(px, py);
@@ -289,16 +289,32 @@ function buildItems() {
     roofs.push({ x, y: 0.34, z, sx: 0.8, sy: 0.4, sz: 0.6, ry, delay: d, color: new Color(style.roof) });
   }
 
-  for (const [px, py, pw, pd, h, rot, roof] of data.buildings as [number, number, number, number, number, number, Roof][]) {
+  for (const [px, py, pw, pd, h, rot, roof, roofColor, wallColor] of data.buildings as [number, number, number, number, number, number, Roof, string, string][]) {
     const [x, z] = world(px, py);
     const d = delay(x, z);
     const ry = -MathUtils.degToRad(rot);
     const height = h * UNIT * 0.8;
-    walls.push({ x, y: 0, z, sx: pw, sy: height, sz: pd, ry, delay: d, color: new Color(BUILDING_WALL) });
-    if (roof === "flat") walls.push({ x, y: height, z, sx: pw * 1.04, sy: 0.12, sz: pd * 1.04, ry, delay: d, color: new Color(BUILDING_ROOF.flat) });
-    else roofs.push({ x, y: height, z, sx: pw * 1.03, sy: Math.min(pw, pd) * 0.42, sz: pd * 1.03, ry, delay: d, color: new Color(BUILDING_ROOF[roof]) });
+    const pitch = Math.min(pw, pd) * 0.42;
+    walls.push({ x, y: 0, z, sx: pw, sy: height, sz: pd, ry, delay: d, color: new Color(wallColor) });
+    const top = { x, y: height, z, delay: d, color: new Color(roofColor) };
+    if (roof === "flat") walls.push({ ...top, sx: pw * 1.05, sy: 0.14, sz: pd * 1.05, ry });
+    else if (roof === "hip") roofs.push({ ...top, sx: pw * 1.05, sy: pitch, sz: pd * 1.05, ry });
+    // Dues aigües: el prisma té el carener al llarg de x; per al carener al llarg de y es gira 90°.
+    else if (roof === "gable-x") gables.push({ ...top, sx: pw * 1.05, sy: pitch, sz: pd * 1.08, ry });
+    else gables.push({ ...top, sx: pd * 1.05, sy: pitch, sz: pw * 1.08, ry: ry + Math.PI / 2 });
   }
-  return { trunks, crowns, walls, roofs };
+  return { trunks, crowns, walls, roofs, gables };
+}
+
+/** Teulada a dues aigües: prisma triangular de base 1 × 1 i alçada 0,5, amb el carener al llarg de x. */
+function gableGeometry() {
+  const a = [-0.5, 0, 0.5], b = [0.5, 0, 0.5], c = [0.5, 0, -0.5], d = [-0.5, 0, -0.5], e = [-0.5, 0.5, 0], f = [0.5, 0.5, 0];
+  // Dos vessants (quadrilàters) i dos testers (triangles), sense compartir vèrtexs: ombrejat pla.
+  const triangles = [a, b, f, a, f, e, c, d, e, c, e, f, d, a, e, b, c, f];
+  const geometry = new BufferGeometry();
+  geometry.setAttribute("position", new Float32BufferAttribute(triangles.flat(), 3));
+  geometry.computeVertexNormals();
+  return geometry;
 }
 
 function Model({ rig }: { rig: CameraRig }) {
@@ -311,6 +327,7 @@ function Model({ rig }: { rig: CameraRig }) {
       wall: new BoxGeometry(1, 1, 1).translate(0, 0.5, 0),
       // Piràmide de base 1 × 1 (un con de quatre cares girat 45°): teulada a quatre aigües.
       roof: new ConeGeometry(Math.SQRT1_2, 0.5, 4).rotateY(Math.PI / 4).translate(0, 0.25, 0),
+      gable: gableGeometry(),
     }),
     [],
   );
@@ -332,6 +349,10 @@ function Model({ rig }: { rig: CameraRig }) {
       </Instances>
       <Instances items={items.roofs} rig={rig}>
         <primitive object={geometry.roof} attach="geometry" />
+        <meshLambertMaterial flatShading />
+      </Instances>
+      <Instances items={items.gables} rig={rig}>
+        <primitive object={geometry.gable} attach="geometry" />
         <meshLambertMaterial flatShading />
       </Instances>
     </>
@@ -582,7 +603,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
         dpr={[1, 1.75]}
         camera={{ fov: FOV, near: 1, far: 900, position: [0, 150, 0.1] }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        resize={{ scroll: false, debounce: { scroll: 0, resize: 60 } }}
+        resize={{ scroll: false, debounce: 0 }}
         className={interactive ? "cursor-grab active:cursor-grabbing" : "pointer-events-none"}
         aria-hidden="true"
       >

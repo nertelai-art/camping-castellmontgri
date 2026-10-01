@@ -13,8 +13,9 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
-import { classify, cleanGround, components, densityPeaks, isGround, KIND_INDEX, type Kind } from "./lib/map-detect.ts";
+import { classify, components, densityPeaks, erode, inpaint, isGround, KIND_INDEX, type Kind } from "./lib/map-detect.ts";
 import { placeHouses, type Plot, type Roof } from "./lib/map-plots.ts";
+import { sportsSvg, type Sport } from "./lib/map-sports.ts";
 
 const SOURCE = "reference/images/plan/planol-camping-castell-montgri_2026.jpg";
 const OUT = "public/map";
@@ -22,7 +23,7 @@ const SCENE_JSON = "src/components/scene/map-scene.data.json";
 const debugDir = process.argv.includes("--debug") ? process.argv[process.argv.indexOf("--debug") + 1] : null;
 
 type Rect = [number, number, number, number];
-type Building = { name: string; x: number; y: number; w: number; d: number; h: number; rot: number; roof: "tile" | "wood" | "grey" | "flat" };
+type Building = { name: string; x: number; y: number; w: number; d: number; h: number; rot: number; roof: "gable-x" | "gable-y" | "hip" | "flat"; color: string; wall: string };
 
 // Rectangles que no són càmping: llegendes, logo i brúixola (en píxels de la il·lustració).
 const BANNERS: Rect[] = [
@@ -33,7 +34,16 @@ const BANNERS: Rect[] = [
 ];
 const inside = (rects: Rect[], x: number, y: number, margin = 0) => rects.some(([x0, y0, x1, y1]) => x >= x0 - margin && x <= x1 + margin && y >= y0 - margin && y <= y1 + margin);
 
-const { buildings, no_trees: noTrees } = JSON.parse(await readFile("scripts/content/map-buildings.json", "utf8")) as { buildings: Building[]; no_trees: Rect[] };
+const {
+  buildings,
+  colors,
+  sports,
+  no_trees: noTrees,
+} = JSON.parse(await readFile("scripts/content/map-buildings.json", "utf8")) as { buildings: Building[]; colors: Record<string, string>; sports: Sport[]; no_trees: Rect[] };
+const color = (key: string) => {
+  if (!colors[key]) throw new Error(`map-buildings.json: el color «${key}» no existeix`);
+  return colors[key];
+};
 const { plots } = JSON.parse(await readFile("scripts/content/map-plots.json", "utf8")) as { plots: Plot[] };
 // Caixa de cada edifici (sense gir: per excloure-hi arbres i cases n'hi ha prou).
 const buildingRects: Rect[] = buildings.map((b) => [b.x - b.w / 2, b.y - b.d / 2, b.x + b.w / 2, b.y + b.d / 2]);
@@ -93,6 +103,12 @@ for (const [x0, y0, x1, y1] of BANNERS) for (let y = y0; y <= Math.min(H - 1, y1
 for (const [x0, y0, x1, y1] of noTrees) {
   for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) if (ROOF_KINDS.some((k) => kinds[y * W + x] === KIND_INDEX[k])) ground[y * W + x] = 1;
 }
+// Les píndoles de número dels allotjaments s'esborren senceres (la vermella, pel color, es quedava a mitges):
+// a la maqueta el número va flotant sobre la casa.
+for (const plot of plots) {
+  if (plot.k === "text") continue;
+  for (let y = Math.max(0, plot.y - 8); y <= Math.min(H - 1, plot.y + 8); y++) ground.fill(0, y * W + Math.max(0, plot.x - 15), y * W + Math.min(W - 1, plot.x + 15) + 1);
+}
 // Els números de parcel·la pintats a terra (text blanc) es conserven: a la maqueta no hi ha res a sobre.
 for (const plot of plots) {
   if (plot.k !== "text") continue;
@@ -101,7 +117,8 @@ for (const plot of plots) {
 
 await mkdir(OUT, { recursive: true });
 const raw = { raw: { width: W, height: H, channels: 3 as const } };
-const cleaned = Buffer.from(cleanGround(rgb, W, H, ground, 9, 2));
+// Tot el que no és terra (i la seva vora, dos píxels) es torna a pintar continuant el color del voltant.
+const cleaned = Buffer.from(inpaint(rgb, W, H, erode(ground, W, H, 2)));
 // On hi havia rètols, el farciment fila per fila deixa ratlles: s'hi posa a sobre el mateix tros molt difuminat.
 const patches = await Promise.all(
   BANNERS.map(async ([x0, y0, x1, y1]) => {
@@ -117,7 +134,18 @@ const patches = await Promise.all(
     return { input, left, top };
   }),
 );
-const patched = await sharp(cleaned, raw).composite(patches).removeAlpha().raw().toBuffer();
+// A sota de cada edifici gran, una llosa llisa: el dibuix (que és en perspectiva) no ha de sobresortir del volum 3D.
+// I les pistes d'esport, redibuixades: tenien icones a sobre.
+const pads = Buffer.from(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><g fill="#d6c9a8" filter="blur(1.5px)">${buildings
+    .map((b) => `<rect x="${b.x - b.w / 2 - 6}" y="${b.y - b.d / 2 - 6}" width="${b.w + 12}" height="${b.d + 22}" rx="4" transform="rotate(${b.rot} ${b.x} ${b.y})"/>`)
+    .join("")}</g></svg>`,
+);
+const patched = await sharp(cleaned, raw)
+  .composite([...patches, { input: pads }, { input: Buffer.from(sportsSvg(sports, W, H)) }])
+  .removeAlpha()
+  .raw()
+  .toBuffer();
 await sharp(patched, raw).jpeg({ quality: 80, mozjpeg: true }).toFile(join(OUT, "ground.jpg"));
 
 const KIND_CODE = { text: 0, red: 1, cream: 2 } as const;
@@ -128,8 +156,8 @@ await writeFile(
     trees: trees.map((t) => [t.x, t.y, t.s, t.t]),
     // [x %, y %, mida, tipus (0 sense número, 1 allotjament del càmping, 2 operador turístic, 3 tenda)]
     houses: houses.map((h) => [pct(h.x, W), pct(h.y, H), Math.round(h.size) / 10, h.tent ? 3 : h.plot ? KIND_CODE[h.plot.k] : 0]),
-    // [x %, y %, amplada %, fondària % (de l'amplada), alçada, gir en graus, teulada]
-    buildings: buildings.map((b) => [pct(b.x, W), pct(b.y, H), pct(b.w, W), pct(b.d, W), b.h, b.rot, b.roof]),
+    // [x %, y %, amplada %, fondària % (de l'amplada), alçada, gir en graus, teulada, color de teulada, color de paret]
+    buildings: buildings.map((b) => [pct(b.x, W), pct(b.y, H), pct(b.w, W), pct(b.d, W), b.h, b.rot, b.roof, color(b.color), color(b.wall)]),
     // [número, x %, y %, tipus (0 parcel·la, 1 allotjament del càmping, 2 operador turístic), x i y de la casa si en té]
     plots: plots.map((p) => {
       const house = houses.find((h) => h.plot === p);
