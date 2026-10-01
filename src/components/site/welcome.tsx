@@ -16,7 +16,7 @@ export async function Welcome({ section, facts }: { section: Section; facts: Fac
   ] as const;
 
   return (
-    <section id="welcome" aria-labelledby="welcome-title" className="mx-auto grid max-w-7xl gap-12 px-4 py-24 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-32">
+    <section data-edit="sections:welcome" id="welcome" aria-labelledby="welcome-title" className="mx-auto grid max-w-7xl gap-12 px-4 py-24 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8 lg:py-32">
       <div className="reveal lg:col-span-7">
         <h2 id="welcome-title" className="font-display text-4xl leading-tight text-olive sm:text-5xl">
           {section.title}

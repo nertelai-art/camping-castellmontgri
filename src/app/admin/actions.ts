@@ -145,7 +145,8 @@ async function galleryChange(entity: string, id: string, change: (entity: Entity
 
   const config: EntityConfig = ENTITIES[entity];
   for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
-  revalidatePath(`/admin/${entity}/${id}`);
+  // Refresca la pàgina del panell que estigui oberta (la fitxa o l'editor visual) amb la galeria nova.
+  revalidatePath("/admin", "layout");
   return { savedAt: Date.now() };
 }
 

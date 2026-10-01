@@ -5,6 +5,7 @@
 import { startTransition, useActionState, useEffect, useRef, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { toJpeg, type Picked } from "./to-jpeg";
+import { SAVED_EVENT } from "./visual-shell";
 
 type Props = {
   action: (state: FormState, form: FormData) => Promise<FormState>;
@@ -18,6 +19,10 @@ export function ImageField({ action, label, current }: Props) {
   const [problem, setProblem] = useState<string | null>(null);
   const input = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    if (state.savedAt) window.dispatchEvent(new Event(SAVED_EVENT));
+  }, [state.savedAt]);
+
   // L'adreça temporal de la previsualització s'allibera quan es canvia de foto o se surt de la pàgina.
   useEffect(() => () => void (picked && URL.revokeObjectURL(picked.url)), [picked]);
 
@@ -25,9 +30,9 @@ export function ImageField({ action, label, current }: Props) {
   const shown = picked ?? current;
 
   return (
-    <section aria-label={label} className="mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
+    <section aria-label={label} className="@container mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
       <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-muted">{label}</h2>
-      <div className="mt-4 grid gap-5 sm:grid-cols-[minmax(0,18rem)_1fr] sm:items-start">
+      <div className="mt-4 grid gap-5 @xl:grid-cols-[minmax(0,18rem)_1fr] @xl:items-start">
         {shown ? (
           // eslint-disable-next-line @next/next/no-img-element -- previsualització: pot ser una adreça temporal del navegador
           <img src={"url" in shown ? shown.url : shown.src} alt="" width={shown.width ?? undefined} height={shown.height ?? undefined} className="aspect-[4/3] w-full rounded-2xl bg-paper-2 object-cover" />
