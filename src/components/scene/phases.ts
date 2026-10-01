@@ -18,17 +18,6 @@ export function easeOutBounce(t: number) {
   return n * (t -= 2.625 / d) * t + 0.984375;
 }
 
-/** Hero: la foto aèria s'esvaeix, el plànol s'ajeu com a terra, la càmera hi vola i s'aixequen els punts. */
-export const HERO_PHASES = {
-  photo: [0, 0.22], // la foto se'n va
-  unfold: [0.05, 0.45], // la targeta del plànol passa de dreta a estirada
-  fly: [0.35, 0.85], // la càmera baixa i s'hi acosta
-  pins: [0.55, 0.95], // cauen els punts
-} as const satisfies Record<string, Range>;
-
-/** Pas del text del hero: 0 = titular, 1 = invitació a obrir el plànol. */
-export const heroStep = (p: number) => (p < 0.5 ? 0 : 1);
-
 /** Gastronomia: tres objectes que entren i surten com en un carrusel. */
 export const FOOD_PHASES = {
   paella: [0, 0.4],

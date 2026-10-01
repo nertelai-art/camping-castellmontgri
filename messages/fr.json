@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Hébergement",
-    "map": "Plan",
+    "map": "Carte",
     "gastronomy": "Gastronomie",
     "services": "Services",
     "entertainment": "Animation",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Saison",
     "discover": "Découvrir le camping",
-    "from": "Du {open} au {close}",
-    "sceneDescription": "Animation : le plan illustré du camping se couche comme un sol et la caméra le survole pendant que tombent les repères des piscines, des restaurants et des espaces de loisirs."
+    "from": "Du {open} au {close}"
   },
   "facts": {
     "accommodations": "hébergements",
@@ -79,18 +78,24 @@
   },
   "map": {
     "eyebrow": "Le camping",
-    "filters": "Filtrer le plan",
-    "viewer": "Plan interactif du camping",
+    "filters": "Filtrer la carte",
+    "viewer": "Carte interactive du camping en 3D",
     "hint": "Faites glisser pour vous déplacer · pincez, Ctrl + molette ou + et − pour zoomer",
     "zoomIn": "Zoomer",
     "zoomOut": "Dézoomer",
-    "reset": "Voir tout le plan",
+    "reset": "Voir toute la carte",
     "fullscreen": "Plein écran",
     "exitFullscreen": "Quitter le plein écran",
-    "back": "Tous les lieux",
-    "places": "{count, plural, one {# lieu} other {# lieux}}",
     "seeAccommodation": "Voir les hébergements",
-    "showOnMap": "Voir sur le plan",
+    "showOnMap": "Voir sur la carte",
+    "hint3d": "Glissez pour vous déplacer · clic droit pour tourner · Ctrl + molette pour zoomer",
+    "rotate": "Tourner la carte",
+    "explore": "Touchez pour explorer la carte",
+    "done": "Terminé",
+    "close": "Fermer la fiche",
+    "loading": "Chargement de la carte…",
+    "legend": "Ce que vous trouverez au camping",
+    "legendHelp": "Touchez un lieu de la liste et la carte vous y emmène.",
     "kinds": {
       "all": "Tout",
       "accommodation": "Hébergement",

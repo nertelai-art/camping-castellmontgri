@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Accommodation",
-    "map": "Site map",
+    "map": "Map",
     "gastronomy": "Food & drink",
     "services": "Services",
     "entertainment": "Entertainment",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Season",
     "discover": "Explore the campsite",
-    "from": "{open} – {close}",
-    "sceneDescription": "Animation: the illustrated campsite map lies down like the ground and the camera flies over it while markers drop onto the pools, restaurants and leisure areas."
+    "from": "{open} – {close}"
   },
   "facts": {
     "accommodations": "places to stay",
@@ -80,17 +79,23 @@
   "map": {
     "eyebrow": "The campsite",
     "filters": "Filter the map",
-    "viewer": "Interactive campsite map",
+    "viewer": "Interactive 3D campsite map",
     "hint": "Drag to move · pinch, Ctrl + scroll or + and − to zoom",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
     "reset": "Show whole map",
     "fullscreen": "Full screen",
     "exitFullscreen": "Exit full screen",
-    "back": "All places",
-    "places": "{count, plural, one {# place} other {# places}}",
     "seeAccommodation": "See the accommodation",
     "showOnMap": "Show on map",
+    "hint3d": "Drag to move · right button to rotate · Ctrl + scroll to zoom",
+    "rotate": "Rotate the map",
+    "explore": "Tap to explore the map",
+    "done": "Done",
+    "close": "Close the card",
+    "loading": "Loading the map…",
+    "legend": "What's on the campsite",
+    "legendHelp": "Tap any place in the list and the map takes you there.",
     "kinds": {
       "all": "All",
       "accommodation": "Accommodation",

@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Allotjament",
-    "map": "Plànol",
+    "map": "Mapa",
     "gastronomy": "Gastronomia",
     "services": "Serveis",
     "entertainment": "Animació",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Temporada",
     "discover": "Descobreix el càmping",
-    "from": "Del {open} al {close}",
-    "sceneDescription": "Animació: el plànol il·lustrat del càmping s'ajeu com si fos el terra i la càmera hi vola per damunt mentre hi cauen els punts de les piscines, els restaurants i les zones de lleure."
+    "from": "Del {open} al {close}"
   },
   "facts": {
     "accommodations": "allotjaments",
@@ -79,18 +78,24 @@
   },
   "map": {
     "eyebrow": "El càmping",
-    "filters": "Filtra el plànol",
-    "viewer": "Plànol interactiu del càmping",
+    "filters": "Filtra el mapa",
+    "viewer": "Mapa interactiu del càmping en 3D",
     "hint": "Arrossega per moure't · pessiga, Ctrl + roda o + i − per ampliar",
     "zoomIn": "Amplia",
     "zoomOut": "Redueix",
     "reset": "Veure'l sencer",
     "fullscreen": "Pantalla completa",
     "exitFullscreen": "Surt de pantalla completa",
-    "back": "Tots els llocs",
-    "places": "{count, plural, one {# lloc} other {# llocs}}",
     "seeAccommodation": "Veure els allotjaments",
-    "showOnMap": "Veure al plànol",
+    "showOnMap": "Veure al mapa",
+    "hint3d": "Arrossega per moure't · botó dret per girar · Ctrl + roda per ampliar",
+    "rotate": "Gira el mapa",
+    "explore": "Toca per explorar el mapa",
+    "done": "Fet",
+    "close": "Tanca la fitxa",
+    "loading": "Carregant el mapa…",
+    "legend": "Què hi ha al càmping",
+    "legendHelp": "Toca qualsevol lloc de la llista i el mapa t'hi porta.",
     "kinds": {
       "all": "Tot",
       "accommodation": "Allotjament",

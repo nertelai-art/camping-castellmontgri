@@ -152,55 +152,6 @@ body {
   contain-intrinsic-size: auto 1100px;
 }
 
-/* Reflexos d'aigua a la secció de piscines: dues capes de llum que es desplacen amb transform
-   (composició a la GPU, sense JS). Amb moviment reduït, quiets. */
-.caustics::before,
-.caustics::after {
-  content: "";
-  position: absolute;
-  inset: -25%;
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-  background-image:
-    radial-gradient(closest-side, rgb(191 228 238 / 0.55), transparent 70%),
-    radial-gradient(closest-side, rgb(255 255 255 / 0.35), transparent 65%);
-  background-size:
-    180px 120px,
-    260px 190px;
-  background-position:
-    0 0,
-    90px 60px;
-}
-
-.caustics::after {
-  background-size:
-    230px 150px,
-    150px 110px;
-  opacity: 0.8;
-}
-
-@keyframes caustics-a {
-  to {
-    transform: translate3d(6%, 4%, 0) rotate(2deg);
-  }
-}
-
-@keyframes caustics-b {
-  to {
-    transform: translate3d(-5%, 6%, 0) rotate(-3deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .caustics::before {
-    animation: caustics-a 11s ease-in-out infinite alternate;
-  }
-
-  .caustics::after {
-    animation: caustics-b 14s ease-in-out infinite alternate;
-  }
-}
-
 /* Tira horitzontal amb scroll-snap (galeries, targetes). */
 .snap-strip {
   display: grid;

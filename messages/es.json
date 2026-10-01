@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Alojamiento",
-    "map": "Plano",
+    "map": "Mapa",
     "gastronomy": "Gastronomía",
     "services": "Servicios",
     "entertainment": "Animación",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Temporada",
     "discover": "Descubre el camping",
-    "from": "Del {open} al {close}",
-    "sceneDescription": "Animación: el plano ilustrado del camping se tumba como si fuera el suelo y la cámara vuela por encima mientras caen los puntos de las piscinas, los restaurantes y las zonas de ocio."
+    "from": "Del {open} al {close}"
   },
   "facts": {
     "accommodations": "alojamientos",
@@ -79,18 +78,24 @@
   },
   "map": {
     "eyebrow": "El camping",
-    "filters": "Filtra el plano",
-    "viewer": "Plano interactivo del camping",
+    "filters": "Filtra el mapa",
+    "viewer": "Mapa interactivo del camping en 3D",
     "hint": "Arrastra para moverte · pellizca, Ctrl + rueda o + y − para ampliar",
     "zoomIn": "Ampliar",
     "zoomOut": "Reducir",
     "reset": "Verlo entero",
     "fullscreen": "Pantalla completa",
     "exitFullscreen": "Salir de pantalla completa",
-    "back": "Todos los lugares",
-    "places": "{count, plural, one {# lugar} other {# lugares}}",
     "seeAccommodation": "Ver los alojamientos",
-    "showOnMap": "Ver en el plano",
+    "showOnMap": "Ver en el mapa",
+    "hint3d": "Arrastra para moverte · botón derecho para girar · Ctrl + rueda para ampliar",
+    "rotate": "Girar el mapa",
+    "explore": "Toca para explorar el mapa",
+    "done": "Hecho",
+    "close": "Cerrar la ficha",
+    "loading": "Cargando el mapa…",
+    "legend": "Qué hay en el camping",
+    "legendHelp": "Toca cualquier lugar de la lista y el mapa te lleva hasta él.",
     "kinds": {
       "all": "Todo",
       "accommodation": "Alojamiento",

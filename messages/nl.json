@@ -1,7 +1,7 @@
 {
   "nav": {
     "accommodation": "Accommodaties",
-    "map": "Plattegrond",
+    "map": "Kaart",
     "gastronomy": "Eten & drinken",
     "services": "Voorzieningen",
     "entertainment": "Animatie",
@@ -17,8 +17,7 @@
   "hero": {
     "season": "Seizoen",
     "discover": "Ontdek de camping",
-    "from": "{open} – {close}",
-    "sceneDescription": "Animatie: de getekende plattegrond van de camping gaat liggen als de grond en de camera vliegt eroverheen terwijl er markeringen vallen op de zwembaden, restaurants en speelplekken."
+    "from": "{open} – {close}"
   },
   "facts": {
     "accommodations": "accommodaties",
@@ -79,18 +78,24 @@
   },
   "map": {
     "eyebrow": "De camping",
-    "filters": "Filter de plattegrond",
-    "viewer": "Interactieve plattegrond van de camping",
+    "filters": "Filter de kaart",
+    "viewer": "Interactieve 3D-kaart van de camping",
     "hint": "Sleep om te bewegen · knijp, Ctrl + scroll of + en − om te zoomen",
     "zoomIn": "Inzoomen",
     "zoomOut": "Uitzoomen",
-    "reset": "Hele plattegrond",
+    "reset": "Hele kaart",
     "fullscreen": "Volledig scherm",
     "exitFullscreen": "Volledig scherm sluiten",
-    "back": "Alle plekken",
-    "places": "{count, plural, one {# plek} other {# plekken}}",
     "seeAccommodation": "Bekijk de accommodaties",
-    "showOnMap": "Toon op de plattegrond",
+    "showOnMap": "Toon op de kaart",
+    "hint3d": "Sleep om te bewegen · rechtermuisknop om te draaien · Ctrl + scroll om te zoomen",
+    "rotate": "Kaart draaien",
+    "explore": "Tik om de kaart te verkennen",
+    "done": "Klaar",
+    "close": "Kaartje sluiten",
+    "loading": "Kaart laden…",
+    "legend": "Wat er op de camping is",
+    "legendHelp": "Tik op een plek in de lijst en de kaart brengt je erheen.",
     "kinds": {
       "all": "Alles",
       "accommodation": "Accommodatie",

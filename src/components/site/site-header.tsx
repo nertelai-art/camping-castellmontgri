@@ -3,30 +3,56 @@ import { MediaImage } from "@/components/media-image";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import type { SiteSettings } from "@/lib/supabase/content";
+import type { MediaRef } from "@/lib/supabase/media";
 
 export const NAV = ["accommodation", "map", "gastronomy", "services", "entertainment", "surroundings", "contact"] as const;
 
-function LanguageSwitcher({ locale, label }: { locale: Locale; label: string }) {
+// Nom de cada idioma en el seu propi idioma: no es tradueix.
+const LANGUAGE_NAMES: Record<Locale, string> = { es: "Español", ca: "Català", fr: "Français", en: "English", nl: "Nederlands" };
+
+function Flag({ media }: { media: MediaRef | undefined }) {
+  if (!media) return null;
+  return <MediaImage media={media} alt="" className="size-5 shrink-0 rounded-full object-cover ring-1 ring-line" />;
+}
+
+/** Desplegable d'idiomes amb bandera. Sense JS: <details>, accessible amb teclat. */
+function LanguageMenu({ locale, label, flags }: { locale: Locale; label: string; flags: MediaRef[] }) {
+  const flag = (l: Locale) => flags.find((f) => f.path.endsWith(`/${l}.svg`));
   return (
-    <nav aria-label={label} className="flex gap-1">
-      {routing.locales.map((l) => (
-        <Link
-          key={l}
-          href="/"
-          locale={l}
-          hrefLang={l}
-          prefetch={false}
-          aria-current={l === locale ? "true" : undefined}
-          className="rounded-full px-2 py-1 text-xs font-bold uppercase tracking-wider text-muted transition hover:text-olive aria-[current]:bg-olive aria-[current]:text-paper"
-        >
-          {l}
-        </Link>
-      ))}
-    </nav>
+    <details className="group/lang relative">
+      <summary
+        aria-label={`${label}: ${LANGUAGE_NAMES[locale]}`}
+        className="flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-line px-3 text-sm font-bold uppercase text-ink transition hover:border-olive [&::-webkit-details-marker]:hidden"
+      >
+        <Flag media={flag(locale)} />
+        {locale}
+        <svg viewBox="0 0 24 24" className="size-4 text-muted transition group-open/lang:rotate-180" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </summary>
+      <ul className="absolute right-0 top-12 z-50 w-48 rounded-2xl border border-line bg-card p-2 shadow-xl">
+        {routing.locales.map((l) => (
+          <li key={l}>
+            <Link
+              href="/"
+              locale={l}
+              hrefLang={l}
+              lang={l}
+              prefetch={false}
+              aria-current={l === locale ? "true" : undefined}
+              className="flex items-center gap-3 rounded-xl px-3 py-2 font-bold text-ink hover:bg-paper-2 aria-[current]:bg-olive aria-[current]:text-paper"
+            >
+              <Flag media={flag(l)} />
+              {LANGUAGE_NAMES[l]}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </details>
   );
 }
 
-export async function SiteHeader({ settings, locale }: { settings: SiteSettings; locale: Locale }) {
+export async function SiteHeader({ settings, locale, flags }: { settings: SiteSettings; locale: Locale; flags: MediaRef[] }) {
   const t = await getTranslations("nav");
   const book = settings.bookingUrl && (
     <a
@@ -66,9 +92,7 @@ export async function SiteHeader({ settings, locale }: { settings: SiteSettings;
         </nav>
 
         <div className="ml-auto flex items-center gap-3">
-          <div className="hidden sm:block">
-            <LanguageSwitcher locale={locale} label={t("language")} />
-          </div>
+          <LanguageMenu locale={locale} label={t("language")} flags={flags} />
           {book}
           {/* Menú mòbil sense JS: <details> és accessible amb teclat i lector de pantalla. */}
           <details className="group relative xl:hidden">
@@ -91,9 +115,6 @@ export async function SiteHeader({ settings, locale }: { settings: SiteSettings;
                   </li>
                 ))}
               </ul>
-              <div className="mt-3 border-t border-line pt-3 sm:hidden">
-                <LanguageSwitcher locale={locale} label={t("language")} />
-              </div>
             </div>
           </details>
         </div>
