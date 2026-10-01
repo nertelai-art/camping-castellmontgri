@@ -17,3 +17,15 @@ export function moveItem<T>(items: readonly T[], item: T, delta: 1 | -1): T[] {
 export function renumber<T>(order: readonly T[], current: ReadonlyMap<T, number>): { item: T; sort_order: number }[] {
   return order.map((item, sort_order) => ({ item, sort_order })).filter(({ item, sort_order }) => current.get(item) !== sort_order);
 }
+
+/**
+ * Mou un element un lloc dins del seu grup (els bungalows entre els bungalows), deixant els altres grups on eren.
+ * Retorna l'ordre de tota la llista.
+ */
+export function moveWithin<T>(all: readonly T[], group: readonly T[], item: T, delta: 1 | -1): T[] {
+  const places = all.map((entry, index) => (group.includes(entry) ? index : -1)).filter((index) => index >= 0);
+  const moved = moveItem(places.map((index) => all[index]!), item, delta);
+  const next = [...all];
+  places.forEach((place, i) => (next[place] = moved[i]!));
+  return next;
+}

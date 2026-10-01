@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { moveItem, renumber } from "./gallery";
+import { moveItem, moveWithin, renumber } from "./gallery";
 
 describe("ordre de la galeria", () => {
   it("mou una foto un lloc endavant o enrere", () => {
@@ -36,5 +36,21 @@ describe("tornar a numerar una llista", () => {
       { item: "b", sort_order: 1 },
       { item: "c", sort_order: 2 },
     ]);
+  });
+});
+
+describe("moure dins d'un grup", () => {
+  // a i c són d'un grup; b i d, d'un altre, barrejats a la llista
+  it("intercanvia amb el veí del mateix grup i no toca els altres", () => {
+    expect(moveWithin(["a", "b", "c", "d"], ["a", "c"], "c", -1)).toEqual(["c", "b", "a", "d"]);
+    expect(moveWithin(["a", "b", "c", "d"], ["b", "d"], "b", 1)).toEqual(["a", "d", "c", "b"]);
+  });
+
+  it("el primer del grup no puja encara que a la llista en tingui un altre al davant", () => {
+    expect(moveWithin(["a", "b", "c", "d"], ["b", "d"], "b", -1)).toEqual(["a", "b", "c", "d"]);
+  });
+
+  it("amb un sol grup és com moure a la llista", () => {
+    expect(moveWithin(["a", "b", "c"], ["a", "b", "c"], "b", 1)).toEqual(["a", "c", "b"]);
   });
 });
