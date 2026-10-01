@@ -5,6 +5,7 @@
 
 import { startTransition, useActionState, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
+import { MapPositionField } from "./map-position-field";
 import { fieldName, LOCALE_NAMES, LOCALES, type EntityConfig, type Locale, type Translations } from "@/lib/admin/entities";
 
 type Props = {
@@ -49,6 +50,9 @@ export function ContentForm({ action, text, base, initial }: Props) {
                   {field.label}
                 </label>
               );
+            }
+            if (field.kind === "position") {
+              return <MapPositionField key={field.name} label={field.label} help={field.help} initial={{ x: Number(initial.base.x), y: Number(initial.base.y) }} />;
             }
             if (field.kind === "status") {
               return (

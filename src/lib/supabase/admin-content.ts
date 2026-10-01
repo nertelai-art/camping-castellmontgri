@@ -1,6 +1,7 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
 
 // Lectura i escriptura del panell. Tot passa amb la sessió de l'editor: RLS és qui deixa escriure o no.
@@ -49,7 +50,8 @@ export async function listContent(entity: EntityName): Promise<ContentListItem[]
   });
 }
 
-export type ContentDetail = { id: string; base: Record<string, string | boolean>; translations: Partial<Translations> };
+export type ContentImage = { src: string; width: number | null; height: number | null };
+export type ContentDetail = { id: string; base: Record<string, string | boolean>; translations: Partial<Translations>; image: ContentImage | null };
 
 export async function getContent(entity: EntityName, id: string): Promise<ContentDetail | null> {
   const config: EntityConfig = ENTITIES[entity];
@@ -59,8 +61,37 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
   for (const field of config.base) {
     const value = row[field.name];
     base[field.name] = field.kind === "boolean" ? value === true : asText(value);
+    if (field.kind === "position") base.y = asText(row.y);
   }
-  return { id, base, translations: byLocale(row.translations) };
+  let image: ContentImage | null = null;
+  const mediaId = config.image ? row[config.image.column] : null;
+  if (mediaId) {
+    const { data } = await (await db()).from("media").select("path, width, height").eq("id", mediaId).maybeSingle();
+    if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null };
+  }
+  return { id, base, translations: byLocale(row.translations), image };
+}
+
+/**
+ * Puja una foto nova al bucket, la registra a `media` i la posa com a foto del contingut. La foto anterior no s'esborra:
+ * pot ser que la faci servir un altre contingut. Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer.
+ */
+export async function replaceImage(entity: EntityName, id: string, file: { bytes: Uint8Array; width: number; height: number; name: string }): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.image) return "Aquest contingut no té foto.";
+  const supabase = await db();
+
+  const path = `panell/${entity}/${file.name}.jpg`;
+  const upload = await supabase.storage.from("media").upload(path, file.bytes, { contentType: "image/jpeg", cacheControl: "31536000" });
+  if (upload.error) return upload.error.message;
+
+  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height }).select("id").single();
+  if (media.error) return media.error.message;
+
+  const { data, error } = await supabase.from(config.table).update({ [config.image.column]: media.data.id }).eq(config.key, id).select(config.key);
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per modificar aquest contingut, o ja no existeix.";
+  return null;
 }
 
 /**

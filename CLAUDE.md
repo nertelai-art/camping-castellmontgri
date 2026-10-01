@@ -52,10 +52,13 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
 - En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
   per exemple, es llegeixen dins `accommodation_categories`): la web ho ensenya de seguida.
-- Tipus de camp: text, número, data, casella i estat a la base; text curt, llarg i llista (una línia per element, `text[]`)
+- Tipus de camp: text, número, data, casella, estat i posició al mapa (`MapPositionField`, geometria a `src/lib/map/position.ts`) a la base; text curt, llarg i llista (una línia per element, `text[]`)
   per idioma. `site_settings` és d'una sola fila (`single`) i les seves traduccions no tenen clau forana.
 - Els formularis s'envien a mà dins d'una transició, no amb `action={…}`: React buida el formulari en acabar una
   acció i, amb un error de validació, es perdria el que s'ha escrit.
+- **Fotos** (`ImageField`, `replaceImageAction`): el navegador redueix la foto a 2400 px i la passa a JPEG abans d'enviar-la
+  (Vercel no accepta cossos de més de 4,5 MB); el servidor comprova que és un JPEG i en llegeix la mida de la capçalera
+  (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
 - **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`
   li dona o li treu l'accés. No hi ha registre obert.
 - **Proves en local**: `pnpm exec supabase start`, `pnpm local pnpm seed`, `pnpm local node scripts/seed-local-editor.ts`

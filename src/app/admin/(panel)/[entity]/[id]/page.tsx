@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { saveContentAction } from "@/app/admin/actions";
+import { replaceImageAction, saveContentAction } from "@/app/admin/actions";
 import { ContentForm } from "@/components/admin/content-form";
+import { ImageField } from "@/components/admin/image-field";
 import { ENTITIES, isEntity, type EntityConfig } from "@/lib/admin/entities";
 import { getContent } from "@/lib/supabase/admin-content";
 
@@ -25,6 +26,7 @@ export default async function ContentEditor({ params }: PageProps<"/admin/[entit
         ← {config.single ? "Inici" : config.title}
       </Link>
       <h1 className="font-display mt-3 text-4xl text-olive">{name}</h1>
+      {config.image && <ImageField action={replaceImageAction.bind(null, entity, id)} label={config.image.label} current={content.image} />}
       <ContentForm
         action={saveContentAction.bind(null, entity, id)}
         text={config.text}
