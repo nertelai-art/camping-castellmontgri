@@ -89,5 +89,15 @@ describe("peces dels plats", () => {
       expect(piece.size[0] * piece.size[1]).toBeGreaterThan(0);
     }
   });
+
+  it("l'arròs queda dins la paella i el marisc dins l'arròs", () => {
+    const [pan, rice, ...toppings] = FOOD_PIECES[0]!;
+    expect(rice!.width).toBeLessThan(pan!.width);
+    // Distància al centre de l'arròs, en % de l'amplada de la taula (la taula fa 5:4).
+    for (const piece of toppings) {
+      const d = Math.hypot(piece.x - rice!.x, (piece.y - rice!.y) / 1.25);
+      expect(d + piece.width / 2).toBeLessThan(rice!.width / 2 + 2);
+    }
+  });
 });
 

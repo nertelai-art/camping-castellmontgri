@@ -19,20 +19,25 @@ type Props = { heading: ReactNode; steps: FoodStepContent[]; srDescription: stri
 /** Les fotos que surten a taula a cada pas: les que tenen imatge, fins a `MAX_CARDS`. */
 const photosOf = (step: FoodStepContent) => step.places.filter((p): p is { name: string; image: MediaRef } => p.image !== null).slice(0, MAX_CARDS);
 
-/** Estil d'una peça en un moment del scroll: ve del seu origen girant i apareixent, i marxa cap amunt esvaint-se. */
+/** Estil d'una peça en un moment del scroll: ve del seu origen (caient o creixent) i marxa cap amunt esvaint-se. */
 function pieceStyle(progress: number, step: number, order: number) {
   const pieces = FOOD_PIECES[step]!;
   const piece = pieces[order]!;
   const { entered, left } = pieceTiming(progress, step, order, pieces.length);
   const away = 1 - entered;
-  const [dx, dy, spin] = piece.from;
+  const { dx = 0, dy = 0, rotate = 0, scale = 1 } = piece.from;
   return {
     left: `${(piece.x + dx * away).toFixed(2)}%`,
     top: `${(piece.y + dy * away - 40 * left).toFixed(2)}%`,
-    transform: `translate(-50%, -50%) rotate(${((piece.rotate ?? 0) + spin * away).toFixed(2)}deg) scale(${(0.6 + 0.4 * entered - 0.2 * left).toFixed(3)})`,
-    opacity: (Math.min(1, entered * 1.8) * (1 - left)).toFixed(3),
+    transform: `translate(-50%, -50%) rotate(${((piece.rotate ?? 0) + rotate * away).toFixed(2)}deg) scale(${((1 + (scale - 1) * away) * (1 - 0.2 * left)).toFixed(3)})`,
+    opacity: (Math.min(1, entered * 2.2) * (1 - left)).toFixed(3),
   };
 }
+
+const SHADOW = {
+  table: "drop-shadow-[0_18px_18px_rgb(35_42_20/.30)]",
+  contact: "drop-shadow-[0_3px_3px_rgb(20_12_0/.45)]",
+} as const;
 
 export function FoodShowcase({ heading, steps, srDescription }: Props) {
   const section = useRef<HTMLDivElement>(null);
@@ -116,8 +121,8 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                     width={piece.size[0]}
                     height={piece.size[1]}
                     unoptimized
-                    className="absolute h-auto max-w-none drop-shadow-[0_14px_14px_rgb(35_42_20/.28)] will-change-[transform,opacity]"
-                    style={{ width: `${piece.width}%`, zIndex: s * 20 + order, ...pieceStyle(0, s, order) }}
+                    className={`absolute h-auto max-w-none will-change-[transform,opacity] ${piece.shadow ? SHADOW[piece.shadow] : ""}`}
+                    style={{ width: `${piece.width}%`, zIndex: s * 20 + (piece.z ?? order), ...pieceStyle(0, s, order) }}
                   />
                 )),
               )}
