@@ -111,6 +111,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             <AccommodationExplorer
               categories={categories}
               bookingUrl={settings.bookingUrl}
+              allHref={`/${locale}/accommodations`}
               onMap={[...onMap].filter((k) => k.startsWith("accommodation:") || k.startsWith("category:"))}
             />
           </section>

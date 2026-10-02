@@ -41,7 +41,9 @@
     "equipment": "Wat vind je er",
     "gallery": "Foto's van {name}",
     "photo": "Foto {index} van {total}",
-    "count": "{count, plural, one {# accommodatie} other {# accommodaties}}"
+    "count": "{count, plural, one {# accommodatie} other {# accommodaties}}",
+    "seeAll": "Alle accommodaties bekijken ({count})",
+    "backHome": "Terug naar home"
   },
   "gastronomy": {
     "eyebrow": "Eten en drinken",
@@ -116,7 +118,9 @@
       "leisure": "Vrije tijd & sport",
       "service": "Voorzieningen",
       "landmark": "Bezienswaardigheden"
-    }
+    },
+    "back": "Kaart verlaten",
+    "closeCard": "Kaartje sluiten"
   },
   "testimonials": {
     "eyebrow": "Beoordelingen",

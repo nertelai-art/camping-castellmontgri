@@ -24,6 +24,7 @@ import {
   type Mesh,
 } from "three";
 import { MapMarker } from "@/components/site/map-marker";
+import { placeCard } from "@/lib/map/popover";
 import { findPlot, nearestPlot, PLOTS, type MapPlot } from "@/lib/map/plots";
 import type { MapPoint } from "@/lib/supabase/content";
 import data from "./map-scene.data.json";
@@ -56,6 +57,8 @@ export type MapSceneProps = {
   drift: boolean;
   handle: Ref<MapViewerHandle>;
   onReady: () => void;
+  /** On es pinta la fitxa del lloc triat: la maqueta la col·loca a cada fotograma al costat del seu marcador. */
+  popover?: RefObject<HTMLDivElement | null>;
 };
 
 // El món fa 100 unitats d'ample, com els % de `map_points`.
@@ -366,14 +369,17 @@ function Model({ rig }: { rig: CameraRig }) {
   );
 }
 
+/** Mòbils i pantalles petites: menys píxels a dibuixar i una textura més petita, que a aquella mida no es nota. */
+const isSmallScreen = () => Math.min(window.innerWidth, window.innerHeight) < 700;
+const groundUrl = () => (isSmallScreen() ? "/map/ground-s.jpg" : "/map/ground.jpg");
+
 /**
  * Carrega la textura del terra descodificant-la fora del fil principal (`createImageBitmap`). Amb un <img>,
  * el navegador descodifica i gira els 5,5 milions de píxels en pujar-la a la GPU: més d'un segon de pantalla
  * congelada. Els mòbils i les pantalles petites reben la versió de 2048 px.
  */
 async function loadGround(maxAnisotropy: number): Promise<Texture> {
-  const small = Math.min(window.innerWidth, window.innerHeight) < 700;
-  const response = await fetch(small ? "/map/ground-s.jpg" : "/map/ground.jpg");
+  const response = await fetch(groundUrl());
   if (!response.ok) throw new Error(`No s'ha pogut carregar el terra del mapa (${response.status})`);
   const bitmap = await createImageBitmap(await response.blob());
   const map = new Texture(bitmap);
@@ -554,6 +560,28 @@ function project(state: RootState, x: number, y: number, z: number, out: { x: nu
 
 const screen = { x: 0, y: 0 };
 
+/** Posa la fitxa del lloc triat al costat del seu marcador (a sobre si hi cap), sempre sencera dins del visor. */
+function placePopover(anchor: HTMLElement, point: MapPoint | null, state: RootState) {
+  const card = anchor.firstElementChild as HTMLElement | null;
+  if (!point || !card) {
+    anchor.style.visibility = "hidden";
+    return;
+  }
+  const [x, z] = world(point.x, point.y);
+  scratch.set(x, MARKER_HEIGHT, z).project(state.camera);
+  // Darrere la càmera no hi ha on posar-la.
+  if (scratch.z >= 1) {
+    anchor.style.visibility = "hidden";
+    return;
+  }
+  const at = { x: ((scratch.x + 1) / 2) * state.size.width, y: ((1 - scratch.y) / 2) * state.size.height };
+  const place = placeCard(at, { width: card.offsetWidth, height: card.offsetHeight }, state.size);
+  anchor.style.visibility = "visible";
+  anchor.style.transform = `translate3d(${place.left}px, ${place.top}px, 0)`;
+  anchor.style.setProperty("--tail", `${place.tail}px`);
+  anchor.dataset.below = String(place.below);
+}
+
 /** Posa cada marcador (botons HTML, fora del canvas) a sobre del seu punt. */
 function projectMarkers(el: HTMLElement, points: MapPoint[], state: RootState, shown: boolean) {
   // Amagats i ja ho estaven: res a fer en aquest fotograma.
@@ -617,7 +645,11 @@ function OverlayProjector({
   plotNames,
   rig,
   shown,
+  popover,
+  selectedId,
 }: {
+  popover?: RefObject<HTMLDivElement | null>;
+  selectedId: string | null;
   /** Amb el mapa obert. De fons no hi ha marcadors ni etiquetes: 47 botons HTML recol·locats a cada fotograma sobre una
    * vista que es gronxa es veien tremolar (el canvas i el DOM no es pinten al mateix pas), i era feina de més. */
   shown: boolean;
@@ -630,10 +662,11 @@ function OverlayProjector({
   const invalidate = useThree((s) => s.invalidate);
   const hoverRing = useRef<Mesh>(null);
   const selectedRing = useRef<Mesh>(null);
-  useEffect(() => invalidate(), [points, selectedPlot, shown, invalidate]);
+  useEffect(() => invalidate(), [points, selectedPlot, selectedId, shown, invalidate]);
 
   useFrame((state) => {
     if (overlay.markers.current) projectMarkers(overlay.markers.current, points, state, shown && rig.grow > 0.75);
+    if (popover?.current) placePopover(popover.current, shown ? (points.find((p) => p.id === selectedId) ?? null) : null, state);
     if (!shown) {
       // En tancar: fora les etiquetes i els anells que hagin quedat de l'última vista.
       for (const node of [...(overlay.labels.current?.children ?? []), overlay.hover.current, overlay.selected.current]) {
@@ -674,7 +707,7 @@ function OverlayProjector({
 const LABEL_SLOTS = Array.from({ length: LABELS }, (_, i) => i);
 const TIP = "pointer-events-none absolute left-0 top-0 whitespace-nowrap rounded-full px-3 py-1 text-sm font-bold shadow-lg";
 
-export default function MapScene({ points, selectedId, onSelect, selectedPlot, onSelectPlot, plotNames, started, reducedMotion, interactive, drift, handle, onReady }: MapSceneProps) {
+export default function MapScene({ points, selectedId, onSelect, selectedPlot, onSelectPlot, plotNames, started, reducedMotion, interactive, drift, handle, onReady, popover }: MapSceneProps) {
   const markers = useRef<HTMLDivElement>(null);
   const labels = useRef<HTMLDivElement>(null);
   const hover = useRef<HTMLDivElement>(null);
@@ -689,6 +722,8 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
     onReady();
   }, [onReady]);
   const hidden = { visibility: "hidden" } as const;
+  // Un mòbil té 2,5–3 píxels per punt: dibuixar-los tots (i un mapa d'ombres de 2048) no es veu millor i escalfa la GPU.
+  const [small] = useState(isSmallScreen);
 
   return (
     <div className="absolute inset-0 isolate">
@@ -696,7 +731,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
         flat
         shadows
         frameloop={compiled ? "demand" : "never"}
-        dpr={[1, 1.75]}
+        dpr={[1, small ? 1.5 : 1.75]}
         camera={{ fov: FOV, near: 1, far: 900, position: [0, 150, 0.1] }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         resize={{ scroll: false, debounce: 0 }}
@@ -709,7 +744,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
           intensity={2.1}
           color="#fff0d2"
           castShadow
-          shadow-mapSize={[2048, 2048]}
+          shadow-mapSize={small ? [1024, 1024] : [2048, 2048]}
           shadow-camera-left={-62}
           shadow-camera-right={62}
           shadow-camera-top={45}
@@ -723,7 +758,7 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
           <Precompile enabled={groundLoaded} onDone={onCompiled} />
           <Model rig={rig} />
           <Rig handle={handle} started={started} reducedMotion={reducedMotion} interactive={interactive} drift={drift} rig={rig} />
-          <OverlayProjector overlay={{ markers, labels, hover, selected }} points={points} selectedPlot={selectedPlot} plotNames={plotNames} rig={rig} shown={interactive} />
+          <OverlayProjector overlay={{ markers, labels, hover, selected }} points={points} selectedPlot={selectedPlot} plotNames={plotNames} rig={rig} shown={interactive} popover={popover} selectedId={selectedId} />
         </Suspense>
       </Canvas>
       {/* Tancat, el mapa és un fons: res d'això s'ha de poder enfocar ni clicar. */}
@@ -735,7 +770,10 @@ export default function MapScene({ points, selectedId, onSelect, selectedPlot, o
         </div>
         <div ref={markers} className={`transition-opacity duration-500 ${interactive ? "opacity-100" : "opacity-0"}`}>
           {points.map((p) => (
-            <MapMarker key={p.id} point={p} selected={p.id === selectedId} onClick={() => onSelect(p)} className="absolute left-0 top-0 origin-bottom" style={hidden} />
+            <MapMarker key={p.id} point={p} selected={p.id === selectedId} onClick={() => onSelect(p)} // Amb la fitxa oberta al costat, el nom a sobre del marcador triat hi sobra.
+              className={`absolute left-0 top-0 origin-bottom ${popover ? "[&[aria-pressed=true]>span:first-child]:hidden" : ""}`}
+              style={hidden}
+            />
           ))}
         </div>
         <div ref={hover} aria-hidden="true" className={`${TIP} z-[6000] bg-ink text-paper`} style={hidden} />
