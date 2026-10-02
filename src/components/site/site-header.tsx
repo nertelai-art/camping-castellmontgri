@@ -53,7 +53,9 @@ function LanguageMenu({ locale, label, flags }: { locale: Locale; label: string;
   );
 }
 
-export async function SiteHeader({ settings, locale, flags }: { settings: SiteSettings; locale: Locale; flags: MediaRef[] }) {
+/** `home`: a la portada el menú salta a les seccions de la mateixa pàgina; a les altres pàgines, hi torna. */
+export async function SiteHeader({ settings, locale, flags, home = true }: { settings: SiteSettings; locale: Locale; flags: MediaRef[]; home?: boolean }) {
+  const base = home ? "" : `/${locale}`;
   const t = await getTranslations("nav");
   const book = settings.bookingUrl && (
     <a
@@ -72,7 +74,8 @@ export async function SiteHeader({ settings, locale, flags }: { settings: SiteSe
         {t("skip")}
       </a>
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4 sm:px-6 lg:h-20 lg:px-8">
-        <Link href="/" className="shrink-0" aria-label={settings.brandName}>
+        {/* Sense prefetch: a la portada, l'enllaç del logo tornava a baixar la mateixa pàgina (43 KB) en carregar. */}
+        <Link href="/" prefetch={false} className="shrink-0" aria-label={settings.brandName}>
           {settings.logo ? (
             <MediaImage media={settings.logo} alt={settings.brandName} priority className="h-10 w-auto lg:h-12 dark:brightness-0 dark:invert" />
           ) : (
@@ -84,7 +87,7 @@ export async function SiteHeader({ settings, locale, flags }: { settings: SiteSe
           <ul className="flex gap-6 text-sm font-bold text-ink/80">
             {NAV.map((key) => (
               <li key={key}>
-                <a href={`#${key}`} className="transition hover:text-terra">
+                <a href={`${base}#${key}`} className="transition hover:text-terra">
                   {t(key)}
                 </a>
               </li>
@@ -110,7 +113,7 @@ export async function SiteHeader({ settings, locale, flags }: { settings: SiteSe
               <ul className="grid gap-1">
                 {NAV.map((key) => (
                   <li key={key}>
-                    <a href={`#${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
+                    <a href={`${base}#${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
                       {t(key)}
                     </a>
                   </li>

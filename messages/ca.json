@@ -41,7 +41,9 @@
     "equipment": "Què hi trobaràs",
     "gallery": "Fotos de {name}",
     "photo": "Foto {index} de {total}",
-    "count": "{count, plural, one {# allotjament} other {# allotjaments}}"
+    "count": "{count, plural, one {# allotjament} other {# allotjaments}}",
+    "seeAll": "Veure tots els allotjaments ({count})",
+    "backHome": "Torna a l'inici"
   },
   "gastronomy": {
     "eyebrow": "Menjar i beure",
@@ -116,7 +118,9 @@
       "leisure": "Lleure i esport",
       "service": "Serveis",
       "landmark": "Llocs d'interès"
-    }
+    },
+    "back": "Surt del mapa",
+    "closeCard": "Tanca la fitxa"
   },
   "testimonials": {
     "eyebrow": "Opinions",

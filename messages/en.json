@@ -41,7 +41,9 @@
     "equipment": "What's inside",
     "gallery": "Photos of {name}",
     "photo": "Photo {index} of {total}",
-    "count": "{count, plural, one {# unit} other {# units}}"
+    "count": "{count, plural, one {# unit} other {# units}}",
+    "seeAll": "See all accommodation ({count})",
+    "backHome": "Back to home"
   },
   "gastronomy": {
     "eyebrow": "Eat and drink",
@@ -116,7 +118,9 @@
       "leisure": "Leisure & sport",
       "service": "Services",
       "landmark": "Points of interest"
-    }
+    },
+    "back": "Leave the map",
+    "closeCard": "Close the card"
   },
   "testimonials": {
     "eyebrow": "Reviews",

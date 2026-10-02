@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useId, useMemo, useRef, useState } from "react";
 import { RichText } from "@/components/rich-text";
@@ -14,7 +15,17 @@ type Props = {
   bookingUrl: string | null;
   /** Claus `accommodation:<slug>` que tenen punt al mapa. */
   onMap: string[];
+  /**
+   * A la portada: al mòbil només se n'ensenyen uns quants (en una sola columna, vint-i-tants fan un scroll
+   * inacabable) i un botó porta a la pàgina amb tots. Amb pantalla ampla, la graella sencera.
+   */
+  allHref?: string;
+  /** Si hi ha mapa a la pàgina on portar «Veure al mapa». */
+  mapLinks?: boolean;
 };
+
+/** Quants allotjaments es veuen al mòbil a la portada. */
+const MOBILE_PREVIEW = 4;
 
 /**
  * On porta «Veure al mapa»: al punt de l'allotjament si en té (les parcel·les). Dels bungalows, mobile homes,
@@ -25,7 +36,7 @@ function mapTargetFor(a: Accommodation, onMap: string[]): MapTarget {
   return { type: "category", slug: a.category };
 }
 
-export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) {
+export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, mapLinks = true }: Props) {
   const t = useTranslations("accommodation");
   const tNav = useTranslations("nav");
   const [category, setCategory] = useState<string>("all");
@@ -91,8 +102,8 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
           <p className="rounded-2xl border border-dashed border-line p-10 text-center text-muted">{t("empty")}</p>
         ) : (
           <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {list.map((a) => (
-              <li key={a.slug} data-edit={`accommodations:${a.slug}`}>
+            {list.map((a, i) => (
+              <li key={a.slug} data-edit={`accommodations:${a.slug}`} className={allHref && i >= MOBILE_PREVIEW ? "max-sm:hidden" : undefined}>
                 <button
                   type="button"
                   onClick={() => show(a)}
@@ -129,6 +140,15 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
               </li>
             ))}
           </ul>
+        )}
+        {allHref && list.length > MOBILE_PREVIEW && (
+          <Link
+            href={allHref}
+            className="mt-6 flex items-center justify-center gap-2 rounded-full bg-olive px-6 py-4 text-lg font-bold text-paper transition hover:brightness-110 sm:hidden"
+          >
+            {t("seeAll", { count: list.length })}
+            <span aria-hidden="true">→</span>
+          </Link>
         )}
       </div>
 
@@ -193,7 +213,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap }: Props) 
 
             <div className="sticky bottom-0 flex flex-wrap items-center justify-end gap-4 border-t border-line bg-paper/95 px-5 py-4 sm:px-8">
               {/* Primer es tanca la fitxa (és modal) perquè el mapa quedi a la vista. */}
-              <ShowOnMapButton target={mapTargetFor(open, onMap)} beforeShow={() => dialog.current?.close()} className="text-base text-olive" />
+              {mapLinks && <ShowOnMapButton target={mapTargetFor(open, onMap)} beforeShow={() => dialog.current?.close()} className="text-base text-olive" />}
               {bookingUrl && (
                 <a href={bookingUrl} target="_blank" rel="noopener" className="rounded-full bg-terra px-6 py-3 font-bold text-paper hover:bg-terra-2">
                   {tNav("book")}
