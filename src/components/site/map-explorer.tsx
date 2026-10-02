@@ -70,15 +70,27 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   const visible = useMemo(() => points.filter((p) => openKind === null || p.kind === openKind), [points, openKind]);
   const selected = points.find((p) => p.id === selectedId) ?? null;
   const selectedPlace = selected?.target ? places[targetKey(selected.target)] : undefined;
+  /**
+   * Tanca la fitxa del lloc triat. Al mòbil, a més, es torna al punt de partida: la càmera a la vista general i tots
+   * els llocs al mapa (tocar un marcador n'havia deixat només els del seu tipus). De prop, sense fitxa i amb la llista
+   * amagada, no se sap on s'és.
+   */
+  const closeCard = useCallback(() => {
+    setSelectedId(null);
+    if (!window.matchMedia("(max-width: 1023px)").matches) return;
+    setOpenKind(null);
+    viewer.current?.reset();
+  }, []);
+
   // Per a l'escoltador d'Esc, que viu més que un render: tanca la fitxa oberta, si n'hi ha, i diu si n'hi havia.
   const dismissCard = useRef<() => boolean>(() => false);
   useEffect(() => {
     dismissCard.current = () => {
       if (!selectedId) return false;
-      setSelectedId(null);
+      closeCard();
       return true;
     };
-  }, [selectedId]);
+  }, [selectedId, closeCard]);
   const plotNames = useMemo((): [string, string, string] => [t("plot.pitch"), t("plot.lodging"), t("plot.operator")], [t]);
   // Per tipus, un element per nom (els quatre sanitaris en són un, amb el recompte).
   const groups = useMemo(
@@ -168,8 +180,6 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       ),
     );
   }, []);
-
-  const closeCard = useCallback(() => setSelectedId(null), []);
 
   const closeMap = useCallback(() => {
     const finish = () => {
