@@ -118,6 +118,10 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   A la columna: el cercador de números i un desplegable per tipus de lloc. El desplegable obert fa de filtre
   del mapa, i el lloc triat (a la llista o al mapa) obre la seva fitxa a sota mateix del nom.
   L'obertura i el tancament són animacions CSS (`map-*` a `globals.css`); amb moviment reduït no n'hi ha.
+- A la maqueta, la fitxa del lloc triat (foto, horari, descripció, «x») surt del seu marcador: és HTML dins del visor,
+  i `MapScene` la col·loca a cada fotograma (`placeCard`, `src/lib/map/popover.ts`, amb proves: a sobre si hi cap, a sota
+  si no, sempre sencera a dins). Al mòbil, amb una fitxa oberta la columna es plega. Sense 3D (`map-flat`), la fitxa
+  continua a la columna. La fletxa de dalt a l'esquerra surt del mapa; Esc tanca primer la fitxa.
 - Un lloc només té foto i descripció si el punt del mapa enllaça un servei, restaurant, activitat o allotjament
   que en tingui. Els punts solts (minigolf, caixer, mirador…) no en tenen fins que s'editin a l'admin.
 - `src/components/scene/MapScene.tsx`: arbres, cases i edificis instanciats, ombres calculades un sol cop
@@ -185,6 +189,9 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   - Crear un context WebGL de prova per saber si n'hi ha: car. `useRenderMode` només mira l'API i `WebGLBoundary`
     recull la fallada si el context de debò no es pot crear.
   - La textura del terra (5,5 MP) es descodifica fora del fil principal (`createImageBitmap`); a mòbil, la de 2048 px.
+- Després de la primera interacció, i en un moment ociós, `map-explorer` va baixant three.js i el terra (si no hi ha
+  «estalvi de dades»): amb 4G lent, el mapa passava de 9 s a 2,5 s a sortir en arribar-hi. A pantalles petites, `dpr`
+  fins a 1,5 i ombres de 1024.
 - El gronxament del mapa de fons va a uns 30 fps i només mentre és a la vista.
 - De fons no hi ha marcadors ni etiquetes HTML (només amb el mapa obert): recol·locats a cada fotograma sobre la vista que
   es gronxa es veien tremolar. I obrir el mapa es fa després d'un fotograma pintat i dins d'una transició: muntar la

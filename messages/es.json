@@ -41,7 +41,9 @@
     "equipment": "Qué encontrarás",
     "gallery": "Fotos de {name}",
     "photo": "Foto {index} de {total}",
-    "count": "{count, plural, one {# alojamiento} other {# alojamientos}}"
+    "count": "{count, plural, one {# alojamiento} other {# alojamientos}}",
+    "seeAll": "Ver todos los alojamientos ({count})",
+    "backHome": "Volver al inicio"
   },
   "gastronomy": {
     "eyebrow": "Comer y beber",
@@ -116,7 +118,9 @@
       "leisure": "Ocio y deporte",
       "service": "Servicios",
       "landmark": "Lugares de interés"
-    }
+    },
+    "back": "Salir del mapa",
+    "closeCard": "Cerrar la ficha"
   },
   "testimonials": {
     "eyebrow": "Opiniones",

@@ -9,11 +9,14 @@ type Props = {
   highlight?: string | null;
   tone?: "light" | "dark";
   align?: "left" | "center";
+  /** Nivell del titular: 1 quan la secció és tota la pàgina. */
+  level?: 1 | 2;
 };
 
 /** Capçalera de secció a l'estil de guia de camp: número, subtítol petit i titular gran. */
-export function SectionHeading({ id, index, eyebrow, title, body, highlight, tone = "light", align = "left" }: Props) {
+export function SectionHeading({ id, index, eyebrow, title, body, highlight, tone = "light", align = "left", level = 2 }: Props) {
   const dark = tone === "dark";
+  const Title = level === 1 ? "h1" : "h2";
   return (
     <header className={`reveal max-w-3xl ${align === "center" ? "mx-auto text-center" : ""}`}>
       <p
@@ -25,9 +28,9 @@ export function SectionHeading({ id, index, eyebrow, title, body, highlight, ton
         <span aria-hidden="true" className={`h-px w-8 ${dark ? "bg-on-dark/50" : "bg-terra/60"}`} />
         {eyebrow}
       </p>
-      <h2 id={id} data-edit-field="title" className={`font-display mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? "text-on-dark" : "text-olive"}`}>
+      <Title id={id} data-edit-field="title" className={`font-display mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? "text-on-dark" : "text-olive"}`}>
         {title}
-      </h2>
+      </Title>
       {body && (
         <RichText
           field="body"

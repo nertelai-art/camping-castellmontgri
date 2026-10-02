@@ -39,6 +39,8 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   const stage = useRef<HTMLDivElement>(null);
   const opener = useRef<HTMLButtonElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
+  const back = useRef<HTMLButtonElement>(null);
+  const popover = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   const viewer = useRef<MapViewerHandle>(null);
   const pending = useRef<{ x: number; y: number } | null>(null);
@@ -67,6 +69,16 @@ export function MapExplorer({ image, points, places, heading }: Props) {
   const is3d = mode === "3d";
   const visible = useMemo(() => points.filter((p) => openKind === null || p.kind === openKind), [points, openKind]);
   const selected = points.find((p) => p.id === selectedId) ?? null;
+  const selectedPlace = selected?.target ? places[targetKey(selected.target)] : undefined;
+  // Per a l'escoltador d'Esc, que viu més que un render: tanca la fitxa oberta, si n'hi ha, i diu si n'hi havia.
+  const dismissCard = useRef<() => boolean>(() => false);
+  useEffect(() => {
+    dismissCard.current = () => {
+      if (!selectedId) return false;
+      setSelectedId(null);
+      return true;
+    };
+  }, [selectedId]);
   const plotNames = useMemo((): [string, string, string] => [t("plot.pitch"), t("plot.lodging"), t("plot.operator")], [t]);
   // Per tipus, un element per nom (els quatre sanitaris en són un, amb el recompte).
   const groups = useMemo(
@@ -78,6 +90,24 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       }),
     [points],
   );
+
+  // Un cop qui visita ha fet alguna cosa, i quan el navegador no té feina, es van baixant la maqueta (three.js)
+  // i el seu terra: en arribar a la secció ja hi són i el mapa surt de seguida, també amb una connexió lenta.
+  useEffect(() => {
+    if (!interacted || !is3d) return;
+    if ((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData) return;
+    const warm = () => {
+      void import("@/components/scene/MapScene");
+      const small = Math.min(window.innerWidth, window.innerHeight) < 700;
+      void fetch(small ? "/map/ground-s.jpg" : "/map/ground.jpg", { priority: "low" }).catch(() => {});
+    };
+    if (!("requestIdleCallback" in window)) {
+      const timer = setTimeout(warm, 1500);
+      return () => clearTimeout(timer);
+    }
+    const idle = requestIdleCallback(warm, { timeout: 4000 });
+    return () => cancelIdleCallback(idle);
+  }, [interacted, is3d]);
 
   /** Porta la càmera a un lloc; si el visor encara no ha carregat, ho fa quan estigui a punt. */
   const flyTo = useCallback((place: { x: number; y: number }) => {
@@ -139,6 +169,8 @@ export function MapExplorer({ image, points, places, heading }: Props) {
     );
   }, []);
 
+  const closeCard = useCallback(() => setSelectedId(null), []);
+
   const closeMap = useCallback(() => {
     const finish = () => {
       setOpen(false);
@@ -196,8 +228,14 @@ export function MapExplorer({ image, points, places, heading }: Props) {
     const root = document.documentElement;
     const previous = root.style.overflow;
     root.style.overflow = "hidden";
-    searchInput.current?.focus({ preventScroll: true });
-    const onEscape = (e: KeyboardEvent) => e.key === "Escape" && closeMap();
+    // Amb el dit, enfocar el cercador faria saltar el teclat i taparia mig mapa: el focus va al botó de sortir.
+    if (window.matchMedia("(pointer: coarse)").matches) back.current?.focus({ preventScroll: true });
+    else searchInput.current?.focus({ preventScroll: true });
+    // Esc tanca primer la fitxa oberta; si no n'hi ha, el mapa.
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (!dismissCard.current()) closeMap();
+    };
     document.addEventListener("keydown", onEscape);
     return () => {
       root.style.overflow = previous;
@@ -261,7 +299,11 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       className={open ? "map-shell fixed inset-0 z-[80] flex flex-col bg-[#2c3318] lg:flex-row" : "relative"}
     >
       {open && (
-        <aside key="panel" className="map-panel flex min-h-0 flex-col bg-paper text-ink max-lg:order-last max-lg:h-[46svh] lg:w-[25rem] lg:shrink-0">
+        <aside
+          key="panel"
+          // Al mòbil, amb una fitxa oberta sobre el mapa, la columna es plega: el mapa necessita l'alçada.
+          className={`map-panel flex min-h-0 flex-col bg-paper text-ink max-lg:order-last lg:w-[25rem] lg:shrink-0 ${selected && is3d ? "max-lg:h-auto" : "max-lg:h-[46svh]"}`}
+        >
           <div className="map-rise flex items-center justify-between gap-3 border-b border-line px-5 py-4" style={rise(0)}>
             <h2 className="font-display text-2xl text-olive">{t("title")}</h2>
             <button type="button" onClick={closeMap} className="flex items-center gap-2 rounded-full bg-ink px-4 py-2 text-base font-bold text-paper transition hover:bg-olive">
@@ -272,7 +314,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
             </button>
           </div>
 
-          <div ref={panel} className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5">
+          <div ref={panel} className={`min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-5 ${selected && is3d ? "max-lg:hidden" : ""}`}>
             {/* Cercador de parcel·la o allotjament */}
             <form onSubmit={onSearch} role="search" className="map-rise rounded-2xl bg-paper-2 p-4" style={rise(1)}>
               <label htmlFor="map-search" className="text-base font-bold">
@@ -367,8 +409,8 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                                 <span className="font-bold leading-snug">{first.label}</span>
                                 {group.length > 1 && <span className="ml-auto rounded-full bg-paper-2 px-2.5 py-0.5 text-sm font-bold text-muted">×{group.length}</span>}
                               </button>
-                              {current && (
-                                // Fitxa del lloc triat, a sota mateix del seu nom
+                              {current && !is3d && (
+                                // Sense maqueta 3D, la fitxa del lloc triat va a sota mateix del seu nom (a la maqueta surt del marcador)
                                 <div className="map-detail bg-card px-4 pb-5">
                                   {place?.image && (
                                     <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-paper-2">
@@ -451,6 +493,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                 drift={!open && inView}
                 handle={viewer}
                 onReady={onReady}
+                popover={popover}
               />
             </WebGLBoundary>
           )
@@ -469,6 +512,64 @@ export function MapExplorer({ image, points, places, heading }: Props) {
 
         {open ? (
           <>
+            <button
+              ref={back}
+              type="button"
+              onClick={closeMap}
+              aria-label={t("back")}
+              title={t("back")}
+              className="map-fade absolute left-3 top-3 z-20 grid size-12 place-items-center rounded-full bg-paper text-ink shadow-lg ring-1 ring-ink/10 transition hover:bg-card focus-visible:ring-4 focus-visible:ring-terra"
+            >
+              <svg viewBox="0 0 24 24" className="size-6" aria-hidden="true">
+                <path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            {/* La fitxa del lloc triat: la maqueta la posa al costat del seu marcador a cada fotograma. */}
+            {is3d && (
+              <div ref={popover} className="group/pop pointer-events-none absolute left-0 top-0 z-30" style={{ visibility: "hidden" }}>
+                {selected && (
+                  <div
+                    key={selected.id}
+                    role="dialog"
+                    aria-label={selected.label}
+                    className="map-pop pointer-events-auto relative w-[min(20rem,calc(100vw-1.25rem))] rounded-3xl bg-paper text-ink shadow-[0_24px_50px_-12px_rgb(0_0_0/.6)] ring-1 ring-ink/10"
+                  >
+                    <span aria-hidden="true" className="absolute -bottom-2 left-[var(--tail)] size-4 -translate-x-1/2 rotate-45 bg-paper group-data-[below=true]/pop:-top-2 group-data-[below=true]/pop:bottom-auto" />
+                    <button
+                      type="button"
+                      onClick={closeCard}
+                      aria-label={t("closeCard")}
+                      className="absolute right-2.5 top-2.5 z-10 grid size-10 place-items-center rounded-full bg-ink text-paper shadow-lg transition hover:bg-olive focus-visible:ring-4 focus-visible:ring-terra"
+                    >
+                      <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+                      </svg>
+                    </button>
+                    <div className="relative overflow-hidden rounded-3xl">
+                      {selectedPlace?.image && (
+                        <div className="relative aspect-[2/1] bg-paper-2">
+                          <Image src={selectedPlace.image.src} alt={selectedPlace.image.alt} fill sizes="20rem" className="object-cover" />
+                        </div>
+                      )}
+                      <div className="max-h-[min(13rem,28svh)] overflow-y-auto overscroll-contain px-5 pb-5 pt-4">
+                        <h3 className={`font-display text-2xl leading-tight text-olive ${selectedPlace?.image ? "" : "pr-11"}`}>{selected.label}</h3>
+                        {selectedPlace?.hours && <p className="mt-1.5 text-base font-bold">{selectedPlace.hours}</p>}
+                        {selectedPlace?.description ? (
+                          <RichText text={selectedPlace.description} className="mt-2 grid gap-2.5 text-base leading-relaxed [&_strong]:font-bold" />
+                        ) : (
+                          <p className="mt-1.5 text-base text-muted">{t("onMapOnly")}</p>
+                        )}
+                        {(selected.target?.type === "category" || selected.target?.type === "accommodation") && (
+                          <a href="#accommodation" onClick={closeMap} className="mt-3 inline-block text-base font-bold text-terra hover:underline">
+                            {t("seeAccommodation")} →
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
             <div className="map-fade absolute bottom-3 right-3 z-20 flex gap-1.5 sm:flex-col sm:gap-2">
               {is3d && <ControlButton label={t("rotate")} onClick={() => viewer.current?.rotateBy(Math.PI / 4)} icon="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5" />}
               <ControlButton label={t("zoomIn")} onClick={() => viewer.current?.zoomBy(1.6)} icon="M12 5v14M5 12h14" />
