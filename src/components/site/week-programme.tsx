@@ -45,14 +45,14 @@ export function WeekProgramme() {
       {week && week.sessions.length > 0 && (
         <div className="mt-16 rounded-[2rem] border border-on-dark/30 p-6 sm:p-8">
           <h3 className="font-display text-3xl">{t("title")}</h3>
-          <div role="group" aria-label={t("days")} className="mt-5 flex gap-2 overflow-x-auto pb-1">
+          <div role="group" aria-label={t("days")} className="mt-5 flex flex-wrap gap-2">
             {weekDays(mondayOf(week.today)).map((day) => (
               <button
                 key={day}
                 type="button"
                 aria-pressed={day === active}
                 onClick={() => setPicked(day)}
-                className="shrink-0 rounded-full border border-on-dark/40 px-4 py-2 font-bold capitalize transition hover:border-on-dark aria-pressed:bg-on-dark aria-pressed:text-band-terra"
+                className="rounded-full border border-on-dark/40 px-4 py-2 font-bold capitalize transition hover:border-on-dark aria-pressed:bg-on-dark aria-pressed:text-band-terra"
               >
                 {weekday(day, locale, "short")}
               </button>
