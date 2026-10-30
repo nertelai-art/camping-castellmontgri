@@ -42,6 +42,13 @@ export function PanelNav({ children }: { children: ReactNode }) {
             <div key={group.title} className="mt-4">
               <p className="px-3 text-sm font-bold uppercase tracking-[0.16em] text-muted">{group.title}</p>
               <ul className="mt-1 grid gap-0.5">
+                {group.pages?.map((page) => (
+                  <li key={page.href}>
+                    <Item href={page.href} current={isCurrent(pathname, page.href)} onClick={close}>
+                      {page.title}
+                    </Item>
+                  </li>
+                ))}
                 {group.entities.map((name) => (
                   <li key={name}>
                     <Item href={entityHref(name)} current={isCurrent(pathname, entityHref(name))} onClick={close}>

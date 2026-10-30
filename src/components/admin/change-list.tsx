@@ -3,7 +3,7 @@ import { ENTITIES, isEntity } from "@/lib/admin/entities";
 import type { Change } from "@/lib/supabase/admin-content";
 
 const WHEN = new Intl.DateTimeFormat("ca", { dateStyle: "medium", timeStyle: "short", timeZone: "Europe/Madrid" });
-const ACTION = { text: "ha canviat els textos de", image: "ha canviat la foto de", create: "ha creat", delete: "ha esborrat" } as const;
+const ACTION = { text: "ha canviat els textos de", image: "ha canviat la foto de", create: "ha creat", delete: "ha esborrat", programme: "ha canviat el programa de" } as const;
 
 /** Qui ha canviat què. El fan servir el registre de canvis i la pàgina d'inici. */
 export function ChangeList({ changes }: { changes: Change[] }) {

@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import type { Activity, Section } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
+import { WeekProgramme } from "./week-programme";
 
 const AUDIENCES = ["children", "family", "adult"] as const;
 
@@ -42,6 +43,7 @@ export async function Entertainment({ section, activities, index }: { section: S
             );
           })}
         </div>
+        <WeekProgramme />
       </div>
     </section>
   );

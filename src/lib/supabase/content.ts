@@ -1,6 +1,7 @@
 import "server-only";
 import type { Locale } from "@/i18n/routing";
 import { focusPosition } from "@/lib/content/focus";
+import { addDays, shortTime } from "@/lib/content/programme";
 import { localesFor, pickTranslation } from "@/lib/content/translate";
 import { isMapIcon } from "@/lib/map/icons";
 import { mediaUrl, type MediaRef } from "./media";
@@ -222,6 +223,33 @@ export async function getActivities(locale: Locale) {
   });
 }
 export type Activity = Awaited<ReturnType<typeof getActivities>>[number];
+
+/** El programa d'una setmana, en ordre. RLS deixa fora les activitats que no estan publicades. */
+export async function getWeekProgramme(locale: Locale, monday: string) {
+  const result = await contentClient()
+    .from("activity_sessions")
+    .select("day, starts_at, ends_at, place, activities(slug, audience, activity_translations(locale, name))")
+    .gte("day", monday)
+    .lte("day", addDays(monday, 6))
+    .in("activities.activity_translations.locale", localesFor(locale))
+    .order("day")
+    .order("starts_at");
+  return unwrap(result, "el programa").flatMap((session) => {
+    const activity = session.activities;
+    if (!activity) return [];
+    return [
+      {
+        day: session.day,
+        start: shortTime(session.starts_at),
+        end: session.ends_at && shortTime(session.ends_at),
+        place: session.place,
+        name: pickTranslation(activity.activity_translations, locale)?.name ?? activity.slug,
+        audience: activity.audience,
+      },
+    ];
+  });
+}
+export type ProgrammeSession = Awaited<ReturnType<typeof getWeekProgramme>>[number];
 
 // ─── Opinions (en l'idioma original) ─────────────────────────────────────────
 export async function getTestimonials() {

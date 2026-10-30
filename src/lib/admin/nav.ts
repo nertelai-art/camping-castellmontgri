@@ -3,23 +3,26 @@
 
 import { ENTITIES, type EntityName } from "./entities";
 
-export const NAV_GROUPS: readonly { title: string; entities: readonly EntityName[] }[] = [
+export const entityHref = (entity: EntityName) => `/admin/${entity}`;
+
+export const PROGRAMME_HREF = "/admin/programme";
+
+export const NAV_GROUPS: readonly { title: string; entities: readonly EntityName[]; pages?: readonly { href: string; title: string }[] }[] = [
   { title: "La portada", entities: ["sections", "testimonials"] },
   { title: "Allotjaments", entities: ["accommodations", "accommodation_categories"] },
-  { title: "Al càmping", entities: ["restaurants", "activities", "services", "map_points"] },
+  { title: "Al càmping", pages: [{ href: PROGRAMME_HREF, title: "Programa setmanal" }], entities: ["restaurants", "activities", "services", "map_points"] },
   { title: "Dades", entities: ["site_settings"] },
 ];
 
-export const TASKS: readonly { label: string; hint: string; entity: EntityName }[] = [
-  { label: "Canviar l'horari o la carta d'un restaurant", hint: "Restaurants i bars", entity: "restaurants" },
-  { label: "Canviar les fotos d'un allotjament", hint: "Allotjaments", entity: "accommodations" },
-  { label: "Afegir una activitat d'animació", hint: "Animació", entity: "activities" },
-  { label: "Afegir l'opinió d'un client", hint: "Opinions", entity: "testimonials" },
-  { label: "Moure o afegir un punt del mapa", hint: "Punts del mapa", entity: "map_points" },
-  { label: "Canviar el telèfon, les dates de temporada o l'enllaç de reserves", hint: "Dades generals", entity: "site_settings" },
+export const TASKS: readonly { label: string; hint: string; href: string }[] = [
+  { label: "Posar les activitats de la setmana", hint: "Programa setmanal", href: PROGRAMME_HREF },
+  { label: "Canviar l'horari o la carta d'un restaurant", hint: "Restaurants i bars", href: entityHref("restaurants") },
+  { label: "Canviar les fotos d'un allotjament", hint: "Allotjaments", href: entityHref("accommodations") },
+  { label: "Afegir una activitat d'animació", hint: "Animació", href: entityHref("activities") },
+  { label: "Afegir l'opinió d'un client", hint: "Opinions", href: entityHref("testimonials") },
+  { label: "Moure o afegir un punt del mapa", hint: "Punts del mapa", href: entityHref("map_points") },
+  { label: "Canviar el telèfon, les dates de temporada o l'enllaç de reserves", hint: "Dades generals", href: entityHref("site_settings") },
 ];
-
-export const entityHref = (entity: EntityName) => `/admin/${entity}`;
 
 /** L'opció del menú activa és la de la llista i la de tot el que penja d'ella. */
 export const isCurrent = (pathname: string, href: string) => pathname === href || pathname.startsWith(`${href}/`);

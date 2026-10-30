@@ -203,7 +203,8 @@ export const ENTITIES = {
       { name: "description", label: "Descripció", long: true, help: RICH },
     ],
     base: [HOURS, STATUS],
-    tags: ["activities"],
+    // El programa setmanal llegeix el nom de l'activitat dins de la seva consulta.
+    tags: ["activities", "activity_sessions"],
   },
   accommodations: {
     title: "Allotjaments",

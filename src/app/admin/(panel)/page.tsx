@@ -26,7 +26,7 @@ export default async function PanelHome() {
       <ul className="mt-4 grid max-w-3xl gap-3 sm:grid-cols-2">
         {TASKS.map((task) => (
           <li key={task.label}>
-            <Link href={entityHref(task.entity)} className="block h-full rounded-2xl border border-line bg-card px-5 py-4 transition hover:border-olive">
+            <Link href={task.href} className="block h-full rounded-2xl border border-line bg-card px-5 py-4 transition hover:border-olive">
               <span className="block text-lg font-bold text-ink">{task.label}</span>
               <span className="mt-1 block text-base text-muted">{task.hint}</span>
             </Link>

@@ -80,6 +80,10 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   que la taula ensenya. `groupBy` agrupa la llista (allotjaments per tipus) i llavors l'ordre es mou dins del grup.
 - **Afegir i esborrar**: només les entitats amb `create` a `entities.ts`. Una fila nova neix en esborrany amb els valors per
   defecte (i un `slug` generat si la taula en demana); esborrar demana dos clics. Totes dues coses queden al registre.
+- **Programa setmanal** (`activity_sessions`, `/admin/programme`, `ProgrammeDay`): què es fa cada dia, per dates, amb «Copia la setmana anterior».
+  El nom surt de l'activitat, en 5 idiomes; el lloc és un sol text. Fora de `ENTITIES` perquè no és una fitxa amb idiomes sinó una graella.
+  La web el demana quan s'hi arriba (`WeekProgramme` → `/api/programme?locale=&week=`): la pàgina surt d'una caché que no sap quin dia és.
+  Aquest mateix JSON públic serveix per a altres canals. Sense res programat, a la web no surt res.
 - **Registre de canvis** (`change_log`, `/admin/changes`): l'apunta l'acció de servidor després de desar, amb la sessió de l'editor.
   RLS només deixa afegir-hi (signat amb el propi compte) i llegir-lo: no es pot modificar ni esborrar des de l'API.
 - **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`

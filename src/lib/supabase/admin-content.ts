@@ -3,6 +3,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { moveItem, moveWithin, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
 import { CENTER } from "@/lib/content/focus";
+import { addDays, shortTime, type SessionInput } from "@/lib/content/programme";
 import type { Position } from "@/lib/map/position";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
@@ -253,15 +254,51 @@ export async function saveContent(entity: EntityName, id: string, input: Content
   return null;
 }
 
+// ─── Programa setmanal ────────────────────────────────────────────────────────
+export type AdminSession = { id: string; activityId: string; day: string; startsAt: string; endsAt: string | null; place: string | null };
+
+/** Les sessions d'una setmana, en ordre. */
+export async function listSessions(monday: string): Promise<AdminSession[]> {
+  const { data, error } = await (await db()).from("activity_sessions").select("*").gte("day", monday).lte("day", addDays(monday, 6)).order("day").order("starts_at");
+  if (error) throw new Error(`No s'ha pogut llegir el programa: ${error.message}`);
+  return (data ?? []).map((row) => ({ id: row.id, activityId: row.activity_id, day: row.day, startsAt: shortTime(row.starts_at), endsAt: row.ends_at && shortTime(row.ends_at), place: row.place }));
+}
+
+export async function addSession(session: SessionInput): Promise<string | null> {
+  const { error } = await (await db())
+    .from("activity_sessions")
+    .insert({ activity_id: session.activityId, day: session.day, starts_at: session.startsAt, ends_at: session.endsAt, place: session.place });
+  if (error?.code === "23505") return "Aquesta activitat ja hi és aquest dia i a aquesta hora.";
+  return error?.message ?? null;
+}
+
+/** Esborra una sessió i retorna de quin dia era, per apuntar-ho al registre. */
+export async function removeSession(id: string): Promise<{ day: string } | { error: string }> {
+  const { data, error } = await (await db()).from("activity_sessions").delete().eq("id", id).select("day");
+  if (error) return { error: error.message };
+  if (!data?.[0]) return { error: "No tens permís per treure aquesta activitat, o ja no hi és." };
+  return { day: data[0].day };
+}
+
+/** Copia a aquesta setmana el programa de l'anterior. El que ja hi és no es toca. */
+export async function copyPreviousWeek(monday: string): Promise<string | null> {
+  const supabase = await db();
+  const previous = await listSessions(addDays(monday, -7));
+  if (!previous.length) return "La setmana anterior no té cap activitat.";
+  const rows = previous.map((session) => ({ activity_id: session.activityId, day: addDays(session.day, 7), starts_at: session.startsAt, ends_at: session.endsAt, place: session.place }));
+  const { error } = await supabase.from("activity_sessions").upsert(rows, { onConflict: "activity_id,day,starts_at", ignoreDuplicates: true });
+  return error?.message ?? null;
+}
+
 // ─── Registre de canvis ───────────────────────────────────────────────────────
-export type ChangeAction = "text" | "image" | "create" | "delete";
+export type ChangeAction = "text" | "image" | "create" | "delete" | "programme";
 export type Change = { id: number; at: string; editor: string; entity: string; rowId: string; rowName: string; action: ChangeAction };
 
 /**
  * Apunta un canvi al registre. Si falla no es desfà el canvi (ja està desat): es retorna l'error perquè qui crida
  * el pugui deixar als logs.
  */
-export async function logChange(change: { editor: string; entity: EntityName; rowId: string; rowName: string; action: ChangeAction }): Promise<string | null> {
+export async function logChange(change: { editor: string; entity: EntityName | "programme"; rowId: string; rowName: string; action: ChangeAction }): Promise<string | null> {
   const supabase = await db();
   const { error } = await supabase
     .from("change_log")
