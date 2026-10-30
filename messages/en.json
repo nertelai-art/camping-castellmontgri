@@ -12,10 +12,10 @@
     "close": "Close",
     "language": "Language",
     "skip": "Skip to content",
-    "clientArea": "Guest area"
+    "clientArea": "Guest area",
+    "gallery": "Photos"
   },
   "hero": {
-    "season": "Season",
     "discover": "Explore the campsite",
     "from": "{open} – {close}"
   },
@@ -43,7 +43,9 @@
     "photo": "Photo {index} of {total}",
     "count": "{count, plural, one {# unit} other {# units}}",
     "seeAll": "See all accommodation ({count})",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "from": "from",
+    "perNight": "/night"
   },
   "gastronomy": {
     "eyebrow": "Eat and drink",
@@ -143,5 +145,21 @@
   "units": {
     "people": "{count} guests",
     "bedrooms": "{count, plural, one {# bedroom} other {# bedrooms}}"
+  },
+  "booking": {
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "adults": "Adults",
+    "children": "Children",
+    "search": "Search availability",
+    "invalid": "Check-out must be after check-in."
+  },
+  "gallery": {
+    "eyebrow": "Photos",
+    "all": "All photos ({count})",
+    "open": "Open photo {index}",
+    "previous": "Previous",
+    "next": "Next",
+    "counter": "{index} / {total}"
   }
 }

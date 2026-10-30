@@ -5,6 +5,7 @@ import { AccommodationExplorer } from "@/components/site/accommodation-explorer"
 import { Entertainment } from "@/components/site/entertainment";
 import { Gastronomy } from "@/components/site/gastronomy";
 import { Hero } from "@/components/site/hero";
+import { ImageGallery } from "@/components/site/image-gallery";
 import { CampgroundJsonLd } from "@/components/site/json-ld";
 import type { Place } from "@/components/site/map-explorer";
 import { MapSection } from "@/components/site/map-section";
@@ -37,6 +38,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
+  const tGallery = await getTranslations("gallery");
   const [t, settings, sections, categories, services, restaurants, activities, testimonials, surroundingsPhotos, accreditations, mapPoints, flags] =
     await Promise.all([
       getTranslations("accommodation"),
@@ -79,7 +81,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       <CampgroundJsonLd settings={settings} url={`${siteUrl}/${locale}`} image={sections.hero?.media?.src} />
       <SiteHeader settings={settings} locale={locale} flags={flags} />
       <main id="main">
-        {sections.hero && <Hero section={sections.hero} settings={settings} locale={locale} />}
+        {sections.hero && <Hero section={sections.hero} settings={settings} />}
 
         {sections.welcome && (
           <Welcome
@@ -114,6 +116,17 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
               allHref={`/${locale}/accommodations`}
               onMap={[...onMap].filter((k) => k.startsWith("accommodation:") || k.startsWith("category:"))}
             />
+          </section>
+        )}
+
+        {sections.gallery && sections.gallery.gallery.length > 0 && (
+          <section data-edit="sections:gallery" aria-labelledby="gallery-title" className="cv mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+            <div id="gallery">
+              <div id="image-gallery">
+                <SectionHeading id="gallery-title" index={next()} eyebrow={tGallery("eyebrow")} title={sections.gallery.title} body={sections.gallery.body} highlight={sections.gallery.highlight} />
+              </div>
+              <ImageGallery photos={sections.gallery.gallery} />
+            </div>
           </section>
         )}
 

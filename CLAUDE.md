@@ -168,8 +168,17 @@ client es pugen a Supabase Storage amb el script de seed.
 - Projecte Vercel: `camping-castellmontgri` (equip `nertelai-7298s-projects`). Els builds llegeixen
   els valors públics de `.env.production` (URL i clau publicable de Supabase, DSN de Sentry).
 
+## Reserves
+
+- El motor és WitBooking (`engine.witbooking.com/{idioma}/property/castellmontgri`), i tot el que se'n sap és a `src/lib/booking/link.ts`:
+  `datein` i `dateout` en DD-MM-AAAA, `adults` i `ninos`. En un altre format ignora les dates sense dir res. Els paràmetres es van treure del
+  codi del motor, no d'una documentació: si canvien, la barra continua obrint el motor, però sense la cerca.
+- `BookingBar` (al hero) és l'única cerca. Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
+
 ## Disseny
 
+- Estil de referència: holacamp.net (foto gran amb la cerca a sobre, targetes amb preu i «Reservar», galeria) amb els colors de la marca.
+  El fons és gairebé blanc per acostar-se al motor de reserves, i el botó principal és `band-olive`.
 - Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
   franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
   fosc: si no, el text crema perd contrast.

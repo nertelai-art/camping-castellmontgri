@@ -12,10 +12,10 @@
     "close": "Sluiten",
     "language": "Taal",
     "skip": "Naar de inhoud",
-    "clientArea": "Gastenportaal"
+    "clientArea": "Gastenportaal",
+    "gallery": "Foto's"
   },
   "hero": {
-    "season": "Seizoen",
     "discover": "Ontdek de camping",
     "from": "{open} – {close}"
   },
@@ -43,7 +43,9 @@
     "photo": "Foto {index} van {total}",
     "count": "{count, plural, one {# accommodatie} other {# accommodaties}}",
     "seeAll": "Alle accommodaties bekijken ({count})",
-    "backHome": "Terug naar home"
+    "backHome": "Terug naar home",
+    "from": "vanaf",
+    "perNight": "/nacht"
   },
   "gastronomy": {
     "eyebrow": "Eten en drinken",
@@ -143,5 +145,21 @@
   "units": {
     "people": "{count} pers.",
     "bedrooms": "{count, plural, one {# slaapk.} other {# slaapk.}}"
+  },
+  "booking": {
+    "checkIn": "Aankomst",
+    "checkOut": "Vertrek",
+    "adults": "Volwassenen",
+    "children": "Kinderen",
+    "search": "Beschikbaarheid zoeken",
+    "invalid": "Vertrek moet na aankomst zijn."
+  },
+  "gallery": {
+    "eyebrow": "Foto's",
+    "all": "Alle foto's ({count})",
+    "open": "Open foto {index}",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "counter": "{index} / {total}"
   }
 }

@@ -10,12 +10,13 @@ import { ImageField } from "./image-field";
 export async function ContentEditor({ entity, content, canDelete = true }: { entity: EntityName; content: ContentDetail; canDelete?: boolean }) {
   const config: EntityConfig = ENTITIES[entity];
   const { id } = content;
-  const gallery = config.gallery ? await getGallery(entity, id) : [];
+  const hasGallery = config.gallery && (!config.gallery.only || config.gallery.only.includes(id));
+  const gallery = hasGallery ? await getGallery(entity, id) : [];
 
   return (
     <>
       {config.image && <ImageField action={replaceImageAction.bind(null, entity, id)} label={config.image.label} current={content.image} />}
-      {config.gallery && (
+      {hasGallery && config.gallery && (
         <GalleryField
           label={config.gallery.label}
           items={gallery}

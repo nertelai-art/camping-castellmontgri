@@ -68,7 +68,13 @@ export type EntityConfig = {
   /** La foto principal: la columna de la taula base que apunta a `media`. */
   image?: { column: string; label: string };
   /** La galeria de fotos: la taula que lliga el contingut amb `media` (amb `media_id` i `sort_order`). */
-  gallery?: { table: string; foreignKey: string; label: string };
+  gallery?: {
+    table: string;
+    foreignKey: string;
+    label: string;
+    /** Només aquestes files tenen galeria (de les seccions, només la que ensenya la galeria). */
+    only?: readonly string[];
+  };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
   tags: readonly string[];
 };
@@ -134,6 +140,7 @@ export const ENTITIES = {
     description: "Els títols i textos de cada bloc de la pàgina principal.",
     table: "sections",
     image: { column: "media_id", label: "Foto de la secció" },
+    gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria", only: ["gallery"] },
     key: "key",
     translations: "section_translations",
     foreignKey: "section_key",
@@ -231,6 +238,7 @@ export const ENTITIES = {
       { name: "bathrooms", label: "Banys", kind: "number" },
       { name: "air_conditioning", label: "Té aire condicionat", kind: "boolean" },
       { name: "is_accessible", label: "Adaptat per a mobilitat reduïda", kind: "boolean" },
+      { name: "price_from", label: "Preu des de (€/nit)", kind: "number", decimal: true, help: "El més baix de la temporada. Buit: la targeta no ensenya cap preu." },
       STATUS,
     ],
     // La web llegeix els allotjaments dins de la consulta de les seves categories.
