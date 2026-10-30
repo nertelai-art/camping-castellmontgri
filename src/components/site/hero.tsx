@@ -19,7 +19,7 @@ export async function Hero({ section, settings }: { section: Section; settings: 
         {section.media && (
           <MediaImage media={section.media} fill priority fetchPriority="high" sizes="100vw" className="ken-burns -z-10 object-cover" />
         )}
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(22_27_13/.1)_0%,rgb(22_27_13/.25)_40%,rgb(22_27_13/.72)_100%)]" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(22_27_13/.1)_0%,rgb(22_27_13/.3)_30%,rgb(22_27_13/.62)_55%,rgb(22_27_13/.8)_100%)]" />
 
         <div className="relative flex w-full flex-col items-center px-4 pb-8 pt-20 sm:px-10 sm:pb-12 lg:pb-14">
           <h1 id="hero-title" data-edit-field="title" className="font-display max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.98]">
