@@ -117,6 +117,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
                         fill
                         sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                         className="object-cover transition duration-700 group-hover:scale-105"
+                        style={{ objectPosition: a.cover.position }}
                       />
                     )}
                     {a.isAccessible && (
@@ -185,6 +186,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
                       fill
                       sizes="(min-width: 640px) 600px, 85vw"
                       className="object-cover"
+                      style={{ objectPosition: m.position }}
                     />
                   </li>
                 ))}

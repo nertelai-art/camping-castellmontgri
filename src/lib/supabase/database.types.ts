@@ -444,6 +444,8 @@ export type Database = {
       media: {
         Row: {
           created_at: string
+          focus_x: number
+          focus_y: number
           height: number | null
           id: string
           mime_type: string
@@ -454,6 +456,8 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          focus_x?: number
+          focus_y?: number
           height?: number | null
           id?: string
           mime_type: string
@@ -464,6 +468,8 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          focus_x?: number
+          focus_y?: number
           height?: number | null
           id?: string
           mime_type?: string

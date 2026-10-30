@@ -2,6 +2,8 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { moveItem, moveWithin, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { CENTER } from "@/lib/content/focus";
+import type { Position } from "@/lib/map/position";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
 
@@ -88,7 +90,7 @@ export async function listContent(entity: EntityName): Promise<ContentListItem[]
   });
 }
 
-export type ContentImage = { src: string; width: number | null; height: number | null };
+export type ContentImage = { src: string; width: number | null; height: number | null; focus: Position };
 export type ContentDetail = { id: string; base: Record<string, string | boolean>; translations: Partial<Translations>; image: ContentImage | null };
 
 export async function getContent(entity: EntityName, id: string): Promise<ContentDetail | null> {
@@ -99,8 +101,8 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
   let image: ContentImage | null = null;
   const mediaId = config.image ? row[config.image.column] : null;
   if (mediaId) {
-    const { data } = await (await db()).from("media").select("path, width, height").eq("id", mediaId).maybeSingle();
-    if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null };
+    const { data } = await (await db()).from("media").select("path, width, height, focus_x, focus_y").eq("id", mediaId).maybeSingle();
+    if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null, focus: { x: Number(data.focus_x), y: Number(data.focus_y) } };
   }
   return { id, base, translations: byLocale(row.translations), image };
 }
@@ -130,11 +132,11 @@ export async function deleteContent(entity: EntityName, id: string): Promise<str
 export type UploadedImage = { bytes: Uint8Array; width: number; height: number; name: string };
 
 /** Puja un JPEG al bucket i el registra a `media`. */
-async function uploadMedia(supabase: SupabaseClient, entity: EntityName, file: UploadedImage): Promise<{ id: string } | { error: string }> {
+async function uploadMedia(supabase: SupabaseClient, entity: EntityName, file: UploadedImage, focus: Position = CENTER): Promise<{ id: string } | { error: string }> {
   const path = `panell/${entity}/${file.name}.jpg`;
   const upload = await supabase.storage.from("media").upload(path, file.bytes, { contentType: "image/jpeg", cacheControl: "31536000" });
   if (upload.error) return { error: upload.error.message };
-  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height }).select("id").single();
+  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height, focus_x: focus.x, focus_y: focus.y }).select("id").single();
   if (media.error) return { error: media.error.message };
   return { id: media.data.id as string };
 }
@@ -192,17 +194,32 @@ export async function moveInGallery(entity: EntityName, id: string, mediaId: str
  * Puja una foto nova al bucket, la registra a `media` i la posa com a foto del contingut. La foto anterior no s'esborra:
  * pot ser que la faci servir un altre contingut. Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer.
  */
-export async function replaceImage(entity: EntityName, id: string, file: UploadedImage): Promise<string | null> {
+export async function replaceImage(entity: EntityName, id: string, file: UploadedImage, focus: Position): Promise<string | null> {
   const config: EntityConfig = ENTITIES[entity];
   if (!config.image) return "Aquest contingut no té foto.";
   const supabase = await db();
 
-  const media = await uploadMedia(supabase, entity, file);
+  const media = await uploadMedia(supabase, entity, file, focus);
   if ("error" in media) return media.error;
 
   const { data, error } = await supabase.from(config.table).update({ [config.image.column]: media.id }).eq(config.key, id).select(config.key);
   if (error) return error.message;
   if (!data?.length) return "No tens permís per modificar aquest contingut, o ja no existeix.";
+  return null;
+}
+
+/** Mou el punt que no s'ha de retallar de la foto actual. La foto surt de la fila, no del que digui el navegador. */
+export async function setImageFocus(entity: EntityName, id: string, focus: Position): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.image) return "Aquest contingut no té foto.";
+  const supabase = await db();
+  const { data: row, error: readError } = await supabase.from(config.table).select(config.image.column).eq(config.key, id).maybeSingle();
+  if (readError) return readError.message;
+  const mediaId = (row as unknown as Record<string, unknown> | null)?.[config.image.column];
+  if (typeof mediaId !== "string") return "Aquest contingut encara no té foto.";
+  const { data, error } = await supabase.from("media").update({ focus_x: focus.x, focus_y: focus.y }).eq("id", mediaId).select("id");
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per modificar aquesta foto.";
   return null;
 }
 

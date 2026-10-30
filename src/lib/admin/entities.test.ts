@@ -38,7 +38,7 @@ describe("formulari de contingut", () => {
   it("no accepta un estat inventat ni un enllaç que no sigui http(s)", () => {
     const result = parseContent(ENTITIES.restaurants, form({ status: "archived", hours: "", "es.name": "Bar", "es.menu_url": "javascript:alert(1)" }));
     expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.errors).toEqual(["Estat: valor desconegut.", "Castellà: «Enllaç a la carta» ha de començar per https://"]);
+    if (!result.ok) expect(result.errors).toEqual(["Estat: valor desconegut.", "Castellà: «Carta» ha de començar per https://"]);
   });
 
   it("les caselles: marcada és cert, absent és fals", () => {

@@ -196,8 +196,10 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
   soles); els allotjaments, agrupats per tipus.
 - ✅ **5.13 Inici per tasques**: la pàgina d'inici parteix del que es vol fer, amb el que queda per acabar i els últims canvis;
   el menú va per temes, marca on ets i al mòbil es plega.
+- ✅ **5.14 Fotos i cartes**: es marca el punt de la foto que no s'ha de retallar, amb una vista de com queda en ample i en mòbil;
+  les cartes es pugen en PDF des del restaurant i es poden posar a tots els idiomes.
 - Pendent: esborranys a la web de l'editor visual, punts del mapa a
-  l'editor visual, retall i punt focal, text alternatiu de les fotos,
+  l'editor visual, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.

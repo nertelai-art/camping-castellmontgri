@@ -61,6 +61,11 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - **Fotos** (`ImageField`, `replaceImageAction`): el navegador redueix la foto a 2400 px i la passa a JPEG abans d'enviar-la
   (Vercel no accepta cossos de més de 4,5 MB); el servidor comprova que és un JPEG i en llegeix la mida de la capçalera
   (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
+  Clicant la foto es marca el punt que no s'ha de retallar (`media.focus_x/y`, en %): la web el fa servir d'`object-position`
+  (`MediaRef.position`). Una imatge de la web amb `object-cover` que no passi per `MediaImage` l'ha de posar a mà.
+- **Cartes** (`PdfField`, `pdfFolder` a `entities.ts`): el PDF va directe del navegador a Storage amb la sessió de l'editor
+  (`src/lib/supabase/browser.ts`), perquè una carta passa sovint dels 4,5 MB de Vercel. El límit de 20 MB i el tipus els posa el bucket;
+  el navegador comprova els primers bytes (`src/lib/admin/pdf.ts`). L'adreça es desa amb «Desa els canvis», com la resta de textos.
 - **Galeria** (`GalleryField`, entitats amb `gallery`): cada acció (afegir, treure, moure) es desa a l'instant i refresca
   la pàgina del panell amb `revalidatePath`. Treure una foto de la galeria no esborra el fitxer de `media`.
 - **Editor visual** (`/admin/visual`, `VisualShell`): la web pública dins d'un iframe del mateix origen i l'editor al costat.
