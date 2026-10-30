@@ -198,6 +198,8 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
   el menú va per temes, marca on ets i al mòbil es plega.
 - ✅ **5.14 Fotos i cartes**: es marca el punt de la foto que no s'ha de retallar, amb una vista de com queda en ample i en mòbil;
   les cartes es pugen en PDF des del restaurant i es poden posar a tots els idiomes.
+- ✅ **5.15 Programa setmanal**: activitats per dia i hora des del panell, copiant la setmana anterior si es repeteix; a la web surt
+  la setmana en curs, i `/api/programme` en dona el JSON per a altres canals.
 - Pendent: esborranys a la web de l'editor visual, punts del mapa a
   l'editor visual, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.

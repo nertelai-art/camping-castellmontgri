@@ -3,10 +3,14 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { displayName, ENTITIES, isEntity, parseBaseValue, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
+import { PROGRAMME_HREF } from "@/lib/admin/nav";
 import { parseFocus } from "@/lib/content/focus";
+import { isDay, mondayOf, parseSession } from "@/lib/content/programme";
 import { jpegSize, MAX_BYTES, MAX_SIDE } from "@/lib/admin/image";
 import {
+  addSession,
   addToGallery,
+  copyPreviousWeek,
   createContent,
   deleteContent,
   getContent,
@@ -14,6 +18,7 @@ import {
   moveContent,
   moveInGallery,
   removeFromGallery,
+  removeSession,
   replaceImage,
   saveContent,
   setImageFocus,
@@ -189,6 +194,47 @@ export async function moveContentAction(entity: string, id: string, delta: 1 | -
   for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
   revalidatePath("/admin", "layout");
   return { savedAt: Date.now() };
+}
+
+/** Feina comuna de les accions del programa: sessió, canvi, registre i refrescar el panell i la web. */
+async function programmeChange(change: () => Promise<{ day: string } | { error: string | null }>): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+
+  const result = await change();
+  if ("error" in result) {
+    if (result.error) return { errors: [result.error] };
+    throw new Error("Un canvi del programa ha de dir de quin dia és.");
+  }
+  const monday = mondayOf(result.day);
+  const label = new Intl.DateTimeFormat("ca", { day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(`${monday}T00:00:00Z`));
+  const error = await logChange({ editor: editor.name ?? editor.email, entity: "programme", rowId: monday, rowName: `la setmana del ${label}`, action: "programme" });
+  if (error) console.error(`[admin] no s'ha pogut apuntar el canvi al registre: ${error}`);
+
+  revalidateTag("activity_sessions", { expire: 0 });
+  revalidatePath(PROGRAMME_HREF);
+  return { savedAt: Date.now() };
+}
+
+export async function addSessionAction(_: FormState, form: FormData): Promise<FormState> {
+  const parsed = parseSession(form);
+  if (!parsed.ok) return { errors: parsed.errors };
+  return programmeChange(async () => {
+    const error = await addSession(parsed.value);
+    return error ? { error } : { day: parsed.value.day };
+  });
+}
+
+export async function removeSessionAction(id: string): Promise<FormState> {
+  return programmeChange(() => removeSession(id));
+}
+
+export async function copyPreviousWeekAction(monday: string): Promise<FormState> {
+  if (!isDay(monday)) return { errors: ["La setmana no és vàlida."] };
+  return programmeChange(async () => {
+    const error = await copyPreviousWeek(monday);
+    return error ? { error } : { day: monday };
+  });
 }
 
 /** Desa una sola cel·la de la taula (un camp que no depèn de l'idioma). */

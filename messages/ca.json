@@ -72,6 +72,11 @@
       "children": "Infantil",
       "family": "Família",
       "adult": "Adults"
+    },
+    "programme": {
+      "title": "Aquesta setmana",
+      "days": "Tria el dia",
+      "empty": "Aquest dia no hi ha cap activitat."
     }
   },
   "surroundings": {

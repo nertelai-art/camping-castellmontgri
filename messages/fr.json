@@ -72,6 +72,11 @@
       "children": "Enfants",
       "family": "Famille",
       "adult": "Adultes"
+    },
+    "programme": {
+      "title": "Cette semaine",
+      "days": "Choisissez le jour",
+      "empty": "Aucune activité ce jour-là."
     }
   },
   "surroundings": {

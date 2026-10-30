@@ -269,6 +269,44 @@ export type Database = {
           },
         ]
       }
+      activity_sessions: {
+        Row: {
+          activity_id: string
+          created_at: string
+          day: string
+          ends_at: string | null
+          id: string
+          place: string | null
+          starts_at: string
+        }
+        Insert: {
+          activity_id: string
+          created_at?: string
+          day: string
+          ends_at?: string | null
+          id?: string
+          place?: string | null
+          starts_at: string
+        }
+        Update: {
+          activity_id?: string
+          created_at?: string
+          day?: string
+          ends_at?: string | null
+          id?: string
+          place?: string | null
+          starts_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_sessions_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "activities"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       activity_translations: {
         Row: {
           activity_id: string

@@ -72,6 +72,11 @@
       "children": "Kinderen",
       "family": "Gezin",
       "adult": "Volwassenen"
+    },
+    "programme": {
+      "title": "Deze week",
+      "days": "Kies de dag",
+      "empty": "Op deze dag zijn er geen activiteiten."
     }
   },
   "surroundings": {
