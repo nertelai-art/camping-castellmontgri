@@ -194,6 +194,8 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ **5.11 Ordre de les llistes**: serveis, restaurants, activitats, allotjaments, tipus i opinions es reordenen amb fletxes.
 - ✅ **5.12 Llistes com a taula**: una fila per contingut amb la foto, el nom i les dades editables allà mateix (es desen
   soles); els allotjaments, agrupats per tipus.
+- ✅ **5.13 Inici per tasques**: la pàgina d'inici parteix del que es vol fer, amb el que queda per acabar i els últims canvis;
+  el menú va per temes, marca on ets i al mòbil es plega.
 - Pendent: esborranys a la web de l'editor visual, punts del mapa a
   l'editor visual, retall i punt focal, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.

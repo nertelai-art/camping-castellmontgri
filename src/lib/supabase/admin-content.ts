@@ -236,13 +236,6 @@ export async function saveContent(entity: EntityName, id: string, input: Content
   return null;
 }
 
-/** Quantes files té cada entitat, per al tauler d'inici. */
-export async function countContent(entity: EntityName): Promise<number> {
-  const supabase = await db();
-  const { count } = await supabase.from(ENTITIES[entity].table).select("*", { count: "exact", head: true });
-  return count ?? 0;
-}
-
 // ─── Registre de canvis ───────────────────────────────────────────────────────
 export type ChangeAction = "text" | "image" | "create" | "delete";
 export type Change = { id: number; at: string; editor: string; entity: string; rowId: string; rowName: string; action: ChangeAction };

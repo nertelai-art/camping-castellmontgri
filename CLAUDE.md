@@ -48,6 +48,8 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   cada petició a `/admin`; qui pot entrar ho decideix el layout de `(panel)` amb `currentEditor()` (compte + fila a
   `profiles`). Les accions de servidor ho tornen a comprovar: són endpoints públics.
 - **Escriptura**: amb la sessió de l'editor i la clau publicable; RLS és qui deixa escriure. Cap clau secreta al panell.
+- **Com s'hi arriba** és a `src/lib/admin/nav.ts` (amb proves): el menú per temes (`NAV_GROUPS`), les tasques de la pàgina d'inici
+  (`TASKS`) i el que queda per acabar (`pendingWork`: el que no es veu a la web i el que falta traduir). Una entitat nova ha d'anar al menú.
 - **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
 - En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
