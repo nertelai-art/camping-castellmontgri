@@ -11,7 +11,16 @@ export type Locale = (typeof LOCALES)[number];
 export const LOCALE_NAMES: Record<Locale, string> = { es: "Castellà", ca: "Català", fr: "Francès", en: "Anglès", nl: "Neerlandès" };
 
 /** `list`: una línia per element; es desa com a llista (text[]). */
-type TextField = { name: string; label: string; help?: string; required?: boolean; long?: boolean; list?: boolean };
+type TextField = {
+  name: string;
+  label: string;
+  help?: string;
+  required?: boolean;
+  long?: boolean;
+  list?: boolean;
+  /** L'adreça d'un PDF que es pot pujar des del formulari, a aquesta carpeta del bucket. */
+  pdfFolder?: string;
+};
 export type BaseField =
   | { name: string; label: string; help?: string; kind: "text"; required?: boolean; long?: boolean }
   | { name: string; label: string; help?: string; kind: "number"; decimal?: boolean; min?: number; max?: number }
@@ -171,7 +180,7 @@ export const ENTITIES = {
     text: [
       { name: "name", label: "Nom", required: true },
       { name: "description", label: "Descripció", long: true, help: RICH },
-      { name: "menu_url", label: "Enllaç a la carta", help: "Adreça completa (https://…) del PDF o la pàgina de la carta en aquest idioma." },
+      { name: "menu_url", label: "Carta", pdfFolder: "cartes", help: "La carta en aquest idioma: un PDF de fins a 20 MB o l'adreça completa (https://…) d'una pàgina." },
     ],
     base: [HOURS, STATUS],
     tags: ["restaurants"],

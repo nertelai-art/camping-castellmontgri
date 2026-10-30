@@ -3,6 +3,7 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { displayName, ENTITIES, isEntity, parseBaseValue, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
+import { parseFocus } from "@/lib/content/focus";
 import { jpegSize, MAX_BYTES, MAX_SIDE } from "@/lib/admin/image";
 import {
   addToGallery,
@@ -15,6 +16,7 @@ import {
   removeFromGallery,
   replaceImage,
   saveContent,
+  setImageFocus,
   type ChangeAction,
   type UploadedImage,
 } from "@/lib/supabase/admin-content";
@@ -93,15 +95,24 @@ export async function replaceImageAction(entity: string, id: string, _: FormStat
   if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
   if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
 
-  const image = await readImage(form);
-  if ("errors" in image) return image;
+  const focus = parseFocus(form.get("focus_x"), form.get("focus_y"));
+  if (!focus) return { errors: ["El punt de la foto no és vàlid."] };
 
-  const error = await replaceImage(entity, id, image);
+  // Sense foto nova, només es mou el punt de la que ja hi ha. Aquesta foto la pot fer servir un altre contingut: s'invalida tota la web.
+  let error: string | null;
+  const newPhoto = form.has("image");
+  if (newPhoto) {
+    const image = await readImage(form);
+    if ("errors" in image) return image;
+    error = await replaceImage(entity, id, image, focus);
+  } else {
+    error = await setImageFocus(entity, id, focus);
+  }
   if (error) return { errors: [`No s'ha pogut desar la foto: ${error}`] };
   await record(editor, entity, id, "image");
 
   const config: EntityConfig = ENTITIES[entity];
-  for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
+  for (const tag of newPhoto ? config.tags : ["content"]) revalidateTag(tag, { expire: 0 });
   return { savedAt: Date.now() };
 }
 

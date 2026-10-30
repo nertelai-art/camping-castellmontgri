@@ -1,5 +1,6 @@
 import "server-only";
 import type { Locale } from "@/i18n/routing";
+import { focusPosition } from "@/lib/content/focus";
 import { localesFor, pickTranslation } from "@/lib/content/translate";
 import { isMapIcon } from "@/lib/map/icons";
 import { mediaUrl, type MediaRef } from "./media";
@@ -7,9 +8,9 @@ import { contentClient } from "./server";
 
 // Lectures del contingut de la web. Retornen tipus del domini, ja traduïts a l'idioma de la pàgina.
 
-type RawMedia = { path: string; width: number | null; height: number | null; media_translations: { locale: string; alt: string }[] } | null;
+type RawMedia = { path: string; width: number | null; height: number | null; focus_x: number; focus_y: number; media_translations: { locale: string; alt: string }[] } | null;
 
-const MEDIA = "path, width, height, media_translations(locale, alt)";
+const MEDIA = "path, width, height, focus_x, focus_y, media_translations(locale, alt)";
 
 function toMedia(raw: RawMedia, locale: Locale, fallbackAlt = ""): MediaRef | null {
   if (!raw) return null;
@@ -19,6 +20,7 @@ function toMedia(raw: RawMedia, locale: Locale, fallbackAlt = ""): MediaRef | nu
     width: raw.width,
     height: raw.height,
     alt: pickTranslation(raw.media_translations, locale)?.alt || fallbackAlt,
+    position: focusPosition({ x: raw.focus_x, y: raw.focus_y }),
   };
 }
 
