@@ -50,7 +50,7 @@ describe("formulari de contingut", () => {
 
   it("els números: buit és sense valor, la coma val com a decimal i un text no passa", () => {
     const ok = parseContent(ENTITIES.accommodations, form({ status: "published", capacity_max: "6", size_m2: "32,5", bedrooms: "", bathrooms: "1", "es.name": "Bungalow" }));
-    expect(ok.ok && ok.value.base).toEqual({ capacity_max: 6, size_m2: 32.5, bedrooms: null, bathrooms: 1, air_conditioning: false, is_accessible: false, status: "published" });
+    expect(ok.ok && ok.value.base).toEqual({ capacity_max: 6, size_m2: 32.5, bedrooms: null, bathrooms: 1, air_conditioning: false, is_accessible: false, price_from: null, status: "published" });
     const bad = parseContent(ENTITIES.accommodations, form({ status: "published", capacity_max: "sis", bedrooms: "1.5", size_m2: "-3", "es.name": "Bungalow" }));
     expect(bad).toEqual({ ok: false, errors: ["Persones (màxim): ha de ser un número sencer.", "Superfície (m²): ha de ser un número.", "Habitacions: ha de ser un número sencer."] });
   });
@@ -92,7 +92,7 @@ describe("formulari de contingut", () => {
   });
 
   it("la taula ensenya els camps curts, no els textos llargs ni la posició", () => {
-    expect(tableColumns(ENTITIES.accommodations).map((f) => f.name)).toEqual(["capacity_max", "size_m2", "bedrooms", "bathrooms", "air_conditioning", "is_accessible", "status"]);
+    expect(tableColumns(ENTITIES.accommodations).map((f) => f.name)).toEqual(["capacity_max", "size_m2", "bedrooms", "bathrooms", "air_conditioning", "is_accessible", "price_from", "status"]);
     expect(tableColumns(ENTITIES.map_points).map((f) => f.name)).toEqual(["kind", "icon", "status"]);
     expect(tableColumns(ENTITIES.testimonials).map((f) => f.name)).not.toContain("quote");
   });

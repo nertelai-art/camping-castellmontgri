@@ -170,6 +170,7 @@ export type Database = {
           cover_media_id: string | null
           id: string
           is_accessible: boolean
+          price_from: number | null
           size_m2: number | null
           slug: string
           sort_order: number
@@ -186,6 +187,7 @@ export type Database = {
           cover_media_id?: string | null
           id?: string
           is_accessible?: boolean
+          price_from?: number | null
           size_m2?: number | null
           slug: string
           sort_order?: number
@@ -202,6 +204,7 @@ export type Database = {
           cover_media_id?: string | null
           id?: string
           is_accessible?: boolean
+          price_from?: number | null
           size_m2?: number | null
           slug?: string
           sort_order?: number
@@ -517,6 +520,39 @@ export type Database = {
           width?: number | null
         }
         Relationships: []
+      }
+      section_media: {
+        Row: {
+          media_id: string
+          section_key: string
+          sort_order: number
+        }
+        Insert: {
+          media_id: string
+          section_key: string
+          sort_order?: number
+        }
+        Update: {
+          media_id?: string
+          section_key?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "section_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "section_media_section_key_fkey"
+            columns: ["section_key"]
+            isOneToOne: false
+            referencedRelation: "sections"
+            referencedColumns: ["key"]
+          },
+        ]
       }
       media_translations: {
         Row: {

@@ -2,10 +2,11 @@ import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
+import { bookingLink } from "@/lib/booking/link";
 import type { SiteSettings } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
 
-export const NAV = ["accommodation", "map", "gastronomy", "services", "entertainment", "surroundings", "contact"] as const;
+export const NAV = ["accommodation", "gallery", "map", "gastronomy", "services", "entertainment", "surroundings", "contact"] as const;
 
 // Nom de cada idioma en el seu propi idioma: no es tradueix.
 const LANGUAGE_NAMES: Record<Locale, string> = { es: "Español", ca: "Català", fr: "Français", en: "English", nl: "Nederlands" };
@@ -59,10 +60,10 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
   const t = await getTranslations("nav");
   const book = settings.bookingUrl && (
     <a
-      href={settings.bookingUrl}
+      href={bookingLink(settings.bookingUrl, { locale })}
       target="_blank"
       rel="noopener"
-      className="inline-flex items-center rounded-full bg-terra px-5 py-2.5 text-sm font-bold text-paper shadow-[0_6px_20px_-8px_var(--terra)] transition hover:bg-terra-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+      className="inline-flex items-center rounded-full bg-band-olive px-5 py-2.5 text-sm font-bold text-on-dark transition hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
     >
       {t("book")}
     </a>

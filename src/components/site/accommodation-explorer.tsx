@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useId, useMemo, useRef, useState } from "react";
 import { RichText } from "@/components/rich-text";
+import { bookingLink } from "@/lib/booking/link";
 import { ShowOnMapButton } from "./show-on-map-button";
 import type { Accommodation, AccommodationCategory, MapTarget } from "@/lib/supabase/content";
 
@@ -39,6 +40,7 @@ function mapTargetFor(a: Accommodation, onMap: string[]): MapTarget {
 export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, mapLinks = true }: Props) {
   const t = useTranslations("accommodation");
   const tNav = useTranslations("nav");
+  const locale = useLocale();
   const [category, setCategory] = useState<string>("all");
   const [guests, setGuests] = useState<number>(0);
   const [open, setOpen] = useState<Accommodation | null>(null);
@@ -101,21 +103,25 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
         {list.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-line p-10 text-center text-muted">{t("empty")}</p>
         ) : (
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((a, i) => (
-              <li key={a.slug} data-edit={`accommodations:${a.slug}`} className={allHref && i >= MOBILE_PREVIEW ? "max-sm:hidden" : undefined}>
+              <li
+                key={a.slug}
+                data-edit={`accommodations:${a.slug}`}
+                className={`flex flex-col overflow-hidden rounded-3xl border border-line bg-card p-2.5 transition duration-300 hover:border-olive hover:shadow-[0_28px_44px_-22px_rgb(35_42_20/.55)] ${allHref && i >= MOBILE_PREVIEW ? "max-sm:hidden" : ""}`}
+              >
                 <button
                   type="button"
                   onClick={() => show(a)}
-                  className="group flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-line bg-card text-left transition duration-300 hover:-translate-y-1.5 hover:border-olive hover:shadow-[0_28px_44px_-22px_rgb(35_42_20/.55)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+                  className="group flex w-full flex-1 cursor-pointer flex-col text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-paper-2">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-paper-2">
                     {a.cover && (
                       <Image
                         src={a.cover.src}
                         alt=""
                         fill
-                        sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                         className="object-cover transition duration-700 group-hover:scale-105"
                         style={{ objectPosition: a.cover.position }}
                       />
@@ -133,11 +139,25 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
                       </svg>
                     </span>
                   </div>
-                  <div className="flex flex-1 flex-col gap-2 p-5">
+                  <div className="flex flex-1 flex-col gap-2 px-2.5 pb-3 pt-4">
                     <span data-edit-field="name" className="font-display text-2xl leading-tight text-olive transition-colors group-hover:text-terra">{a.name}</span>
                     <Specs a={a} />
                   </div>
                 </button>
+                <div className="flex flex-wrap items-end justify-between gap-3 border-t border-line px-2.5 pb-1.5 pt-3">
+                  <Price value={a.priceFrom} />
+                  {bookingUrl && (
+                    <a
+                      href={bookingLink(bookingUrl, { locale })}
+                      target="_blank"
+                      rel="noopener"
+                      aria-label={`${tNav("book")}: ${a.name}`}
+                      className="ml-auto rounded-full bg-band-olive px-5 py-2.5 text-sm font-bold text-on-dark transition hover:brightness-125"
+                    >
+                      {tNav("book")} <span aria-hidden="true">→</span>
+                    </a>
+                  )}
+                </div>
               </li>
             ))}
           </ul>
@@ -216,8 +236,9 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
             <div className="sticky bottom-0 flex flex-wrap items-center justify-end gap-4 border-t border-line bg-paper/95 px-5 py-4 sm:px-8">
               {/* Primer es tanca la fitxa (és modal) perquè el mapa quedi a la vista. */}
               {mapLinks && <ShowOnMapButton target={mapTargetFor(open, onMap)} beforeShow={() => dialog.current?.close()} className="text-base text-olive" />}
+              <Price value={open.priceFrom} />
               {bookingUrl && (
-                <a href={bookingUrl} target="_blank" rel="noopener" className="rounded-full bg-terra px-6 py-3 font-bold text-paper hover:bg-terra-2">
+                <a href={bookingLink(bookingUrl, { locale })} target="_blank" rel="noopener" className="rounded-full bg-band-olive px-6 py-3 font-bold text-on-dark transition hover:brightness-125">
                   {tNav("book")}
                 </a>
               )}
@@ -238,6 +259,22 @@ const SPEC_ICON = {
   airConditioning: "M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5",
   accessible: "M11 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M11 8v6h5l2.5 5M11 10.5h4M8 12.2A5 5 0 1 0 14.5 19",
 } as const;
+
+/** «des de 31 €/nit». Sense preu no s'ensenya res: un preu inventat seria pitjor que cap. */
+function Price({ value }: { value: number | null }) {
+  const t = useTranslations("accommodation");
+  const locale = useLocale();
+  if (value == null) return null;
+  return (
+    <p className="text-sm leading-tight text-muted">
+      {t("from")}
+      <span className="block text-lg font-bold text-ink">
+        {new Intl.NumberFormat(locale, { style: "currency", currency: "EUR", maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(value)}
+        <span className="text-sm font-normal text-muted">{t("perNight")}</span>
+      </span>
+    </p>
+  );
+}
 
 function Specs({ a, large = false }: { a: Accommodation; large?: boolean }) {
   const t = useTranslations("accommodation");

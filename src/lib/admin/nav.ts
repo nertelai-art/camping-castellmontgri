@@ -18,6 +18,7 @@ export const TASKS: readonly { label: string; hint: string; href: string }[] = [
   { label: "Posar les activitats de la setmana", hint: "Programa setmanal", href: PROGRAMME_HREF },
   { label: "Canviar l'horari o la carta d'un restaurant", hint: "Restaurants i bars", href: entityHref("restaurants") },
   { label: "Canviar les fotos d'un allotjament", hint: "Allotjaments", href: entityHref("accommodations") },
+  { label: "Canviar les fotos de la galeria", hint: "Seccions de la portada", href: `${entityHref("sections")}/gallery` },
   { label: "Afegir una activitat d'animació", hint: "Animació", href: entityHref("activities") },
   { label: "Afegir l'opinió d'un client", hint: "Opinions", href: entityHref("testimonials") },
   { label: "Moure o afegir un punt del mapa", hint: "Punts del mapa", href: entityHref("map_points") },

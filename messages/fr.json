@@ -12,10 +12,10 @@
     "close": "Fermer",
     "language": "Langue",
     "skip": "Aller au contenu",
-    "clientArea": "Espace client"
+    "clientArea": "Espace client",
+    "gallery": "Images"
   },
   "hero": {
-    "season": "Saison",
     "discover": "Découvrir le camping",
     "from": "Du {open} au {close}"
   },
@@ -43,7 +43,9 @@
     "photo": "Photo {index} sur {total}",
     "count": "{count, plural, one {# hébergement} other {# hébergements}}",
     "seeAll": "Voir tous les hébergements ({count})",
-    "backHome": "Retour à l'accueil"
+    "backHome": "Retour à l'accueil",
+    "from": "à partir de",
+    "perNight": "/nuit"
   },
   "gastronomy": {
     "eyebrow": "Manger et boire",
@@ -143,5 +145,21 @@
   "units": {
     "people": "{count} pers.",
     "bedrooms": "{count, plural, one {# ch.} other {# ch.}}"
+  },
+  "booking": {
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "adults": "Adultes",
+    "children": "Enfants",
+    "search": "Rechercher des disponibilités",
+    "invalid": "Le départ doit être après l'arrivée."
+  },
+  "gallery": {
+    "eyebrow": "Images",
+    "all": "Toutes les images ({count})",
+    "open": "Ouvrir la photo {index}",
+    "previous": "Précédente",
+    "next": "Suivante",
+    "counter": "{index} / {total}"
   }
 }

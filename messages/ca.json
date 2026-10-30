@@ -12,10 +12,10 @@
     "close": "Tancar",
     "language": "Idioma",
     "skip": "Salta al contingut",
-    "clientArea": "Àrea de clients"
+    "clientArea": "Àrea de clients",
+    "gallery": "Imatges"
   },
   "hero": {
-    "season": "Temporada",
     "discover": "Descobreix el càmping",
     "from": "Del {open} al {close}"
   },
@@ -43,7 +43,9 @@
     "photo": "Foto {index} de {total}",
     "count": "{count, plural, one {# allotjament} other {# allotjaments}}",
     "seeAll": "Veure tots els allotjaments ({count})",
-    "backHome": "Torna a l'inici"
+    "backHome": "Torna a l'inici",
+    "from": "des de",
+    "perNight": "/nit"
   },
   "gastronomy": {
     "eyebrow": "Menjar i beure",
@@ -143,5 +145,21 @@
   "units": {
     "people": "{count} pers.",
     "bedrooms": "{count, plural, one {# hab.} other {# hab.}}"
+  },
+  "booking": {
+    "checkIn": "Entrada",
+    "checkOut": "Sortida",
+    "adults": "Adults",
+    "children": "Nens",
+    "search": "Cerca disponibilitat",
+    "invalid": "La sortida ha de ser després de l'entrada."
+  },
+  "gallery": {
+    "eyebrow": "Imatges",
+    "all": "Totes les imatges ({count})",
+    "open": "Obre la foto {index}",
+    "previous": "Anterior",
+    "next": "Següent",
+    "counter": "{index} / {total}"
   }
 }

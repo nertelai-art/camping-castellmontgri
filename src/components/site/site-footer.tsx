@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
+import { bookingLink } from "@/lib/booking/link";
 import { directionsUrl, formatDayMonth } from "@/lib/content/format";
 import type { SiteSettings } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
@@ -19,7 +20,7 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
           <p className="font-display text-4xl leading-tight sm:text-5xl">{settings.brandName}</p>
           <p className="mt-4 max-w-sm text-on-dark/80">{settings.legalName}</p>
           {settings.bookingUrl && (
-            <a href={settings.bookingUrl} target="_blank" rel="noopener" className="mt-8 inline-block rounded-full bg-band-terra px-6 py-3 font-bold hover:brightness-110">
+            <a href={bookingLink(settings.bookingUrl, { locale })} target="_blank" rel="noopener" className="mt-8 inline-block rounded-full bg-band-terra px-6 py-3 font-bold hover:brightness-110">
               {tNav("book")}
             </a>
           )}

@@ -210,6 +210,12 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - Opcional: botó «traduir des del català/castellà» amb IA, sempre revisable.
 - **Acabat quan:** el client canvia un text, una foto i un punt del plànol sense ajuda.
 
+### Ronda d'estil (nota del client, 30/10/2026)
+
+- ✅ Barra de reserva al hero amb dates i persones, que obre el motor amb la cerca feta. L'enllaç de reserves passa de Thelis a WitBooking.
+- ✅ Targetes d'allotjament amb preu «des de» (editable) i «Reservar»; galeria d'imatges editable; fons més clar.
+- Pendent: disponibilitat i preus reals (l'API de WitBooking s'ha demanat), i que el client validi l'estil.
+
 ### Fase 6 — Pàgines interiors i llançament
 - Fitxa de cada allotjament, restaurant i servei; pàgines legals; treballa amb nosaltres.
 - Galetes (consentiment real), accessibilitat (WCAG 2.2 AA), proves E2E dels fluxos clau.
