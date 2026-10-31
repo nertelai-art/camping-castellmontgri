@@ -173,7 +173,22 @@ client es pugen a Supabase Storage amb el script de seed.
 - El motor és WitBooking (`engine.witbooking.com/{idioma}/property/castellmontgri`), i tot el que se'n sap és a `src/lib/booking/link.ts`:
   `datein` i `dateout` en DD-MM-AAAA, `adults` i `ninos`. En un altre format ignora les dates sense dir res. Els paràmetres es van treure del
   codi del motor, no d'una documentació: si canvien, la barra continua obrint el motor, però sense la cerca.
-- `BookingBar` (al hero) és l'única cerca. Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
+- `BookingBar` (al hero) és l'única cerca, amb selectors propis: calendari de dos mesos (`BookingCalendar`, lògica a `src/lib/booking/calendar.ts`, amb proves) i comptadors de persones.
+  A l'escriptori el panell surt cap amunt, dins de la foto i sense moure la pàgina: el text del hero s'aparta i, si no hi cap, la barra baixa (es mesura en obrir, `translate` al formulari).
+  Al mòbil, una làmina (`position: fixed`: per això el contenidor no porta `.rise`, i el `translate` només s'aplica a l'escriptori). Sense JS, el botó porta al motor igualment.
+- Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
+
+- **Com arribar-hi** (`directions.tsx`): surt de les dades generals. La ruta és un formulari normal cap a Google Maps (origen i manera d'anar-hi), sense JS ni servidor nostre.
+  El mapa d'OpenStreetMap es veu sempre, es carrega en acostar-s'hi i no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
+- **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
+  Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
+
+## Pàgines
+
+- La portada és curta, com holacamp.net. Instal·lacions (amb piscines i tobogans), animació (amb el programa setmanal), gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/services`, `entertainment`, `gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`).
+  A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`); a la galeria només s'hi arriba pel menú. El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
+- `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
+- A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 
 ## Disseny
 
@@ -182,6 +197,7 @@ client es pugen a Supabase Storage amb el script de seed.
 - Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
   franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
   fosc: si no, el text crema perd contrast.
+- La barra de scroll de la pàgina té el fons de la web i la barra `band-olive` (`globals.css`).
 - Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
   cursiva són desenes de KB que endarrereixen el LCP a mòbil.
 - Les seccions sota el plec porten `.cv` (`content-visibility: auto`).
@@ -200,6 +216,9 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
   Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
   mensual de Hugging Face es va acabar a la desena imatge.
+- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge, i les xifres a sota. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
+- **De la targeta a la fitxa** (`accommodation-explorer.tsx`, `withViewTransition`): la foto vola de la targeta a la fitxa amb View Transitions i la fitxa es construeix al voltant (`.accommodation-build`).
+  La foto de la targeta i la de la fitxa porten el mateix `view-transition-name`, mai alhora. Sense suport o amb moviment reduït, s'obre i prou. Totes dues fotos són 4:3 perquè el vol no es deformi.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):

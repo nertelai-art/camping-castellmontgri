@@ -6,7 +6,9 @@ import { bookingLink } from "@/lib/booking/link";
 import type { SiteSettings } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
 
-export const NAV = ["accommodation", "gallery", "map", "gastronomy", "services", "entertainment", "surroundings", "contact"] as const;
+export const NAV = ["accommodation", "map", "services", "entertainment", "gastronomy", "surroundings", "gallery", "contact"] as const;
+/** Les entrades del menú que tenen pàgina pròpia; les altres són seccions de la portada. */
+const PAGES: readonly (typeof NAV)[number][] = ["services", "entertainment", "gastronomy", "surroundings", "gallery"];
 
 // Nom de cada idioma en el seu propi idioma: no es tradueix.
 const LANGUAGE_NAMES: Record<Locale, string> = { es: "Español", ca: "Català", fr: "Français", en: "English", nl: "Nederlands" };
@@ -88,9 +90,15 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
           <ul className="flex gap-6 text-sm font-bold text-ink/80">
             {NAV.map((key) => (
               <li key={key}>
-                <a href={`${base}#${key}`} className="transition hover:text-terra">
-                  {t(key)}
-                </a>
+                {PAGES.includes(key) ? (
+                  <Link href={`/${key}`} className="transition hover:text-terra">
+                    {t(key)}
+                  </Link>
+                ) : (
+                  <a href={`${base}#${key}`} className="transition hover:text-terra">
+                    {t(key)}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -114,9 +122,15 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
               <ul className="grid gap-1">
                 {NAV.map((key) => (
                   <li key={key}>
-                    <a href={`${base}#${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
-                      {t(key)}
-                    </a>
+                    {PAGES.includes(key) ? (
+                      <Link href={`/${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
+                        {t(key)}
+                      </Link>
+                    ) : (
+                      <a href={`${base}#${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
+                        {t(key)}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

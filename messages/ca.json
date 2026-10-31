@@ -3,7 +3,7 @@
     "accommodation": "Allotjament",
     "map": "Mapa",
     "gastronomy": "Gastronomia",
-    "services": "Serveis",
+    "services": "Instal·lacions",
     "entertainment": "Animació",
     "surroundings": "Entorn",
     "contact": "Contacte",
@@ -45,7 +45,11 @@
     "seeAll": "Veure tots els allotjaments ({count})",
     "backHome": "Torna a l'inici",
     "from": "des de",
-    "perNight": "/nit"
+    "perNight": "/nit",
+    "readMore": "Llegir més",
+    "readLess": "Llegir menys",
+    "previousPhoto": "Foto anterior",
+    "nextPhoto": "Foto següent"
   },
   "gastronomy": {
     "eyebrow": "Menjar i beure",
@@ -152,14 +156,69 @@
     "adults": "Adults",
     "children": "Nens",
     "search": "Cerca disponibilitat",
-    "invalid": "La sortida ha de ser després de l'entrada."
+    "guests": "Persones",
+    "addDate": "Afegeix la data",
+    "adultsCount": "{count, plural, one {# adult} other {# adults}}",
+    "childrenCount": "{count, plural, one {# nen} other {# nens}}",
+    "nights": "{count, plural, one {# nit} other {# nits}}",
+    "chooseCheckIn": "Tria el dia d'entrada",
+    "chooseCheckOut": "Ara, el de sortida",
+    "clear": "Esborra",
+    "done": "Fet",
+    "previousMonth": "Mes anterior",
+    "nextMonth": "Mes següent",
+    "less": "Treu: {label}",
+    "more": "Afegeix: {label}"
   },
   "gallery": {
     "eyebrow": "Imatges",
-    "all": "Totes les imatges ({count})",
     "open": "Obre la foto {index}",
     "previous": "Anterior",
     "next": "Següent",
     "counter": "{index} / {total}"
+  },
+  "directions": {
+    "eyebrow": "On som",
+    "title": "Com arribar-hi",
+    "route": "Mira la ruta",
+    "email": "Escriu-nos",
+    "mapTitle": "Mapa de la situació del càmping",
+    "mode": "Com vens",
+    "modes": {
+      "car": "Cotxe",
+      "transit": "Transport",
+      "bike": "Bici",
+      "walk": "A peu"
+    },
+    "from": "D'on vens?",
+    "fromPlaceholder": "La teva ciutat o adreça",
+    "useMap": "Clic per moure el mapa"
+  },
+  "trip": {
+    "eyebrow": "Planifica l'escapada",
+    "title": "El teu viatge, amb la IA",
+    "body": "Tria els dies i el tipus de viatge, i emporta't aquest text al teu assistent d'IA preferit. En uns segons tindràs un pla a mida.",
+    "duration": "Durada",
+    "fewer": "Una nit menys",
+    "more": "Una nit més",
+    "type": "Tipus de viatge",
+    "types": {
+      "family": "En família",
+      "adventure": "Aventura",
+      "romantic": "Romàntic",
+      "culture": "Cultural"
+    },
+    "openIn": "Obre a {name}",
+    "copy": "Copia",
+    "copied": "Copiat!",
+    "prompt": "Passaré {nights, plural, one {# nit} other {# nits}} a {camping} ({place}) i vull un viatge de tipus «{type}». Mira la seva web, {url}, i prepara'm un pla dia a dia (matí, tarda i nit) amb què gaudir al càmping, llocs amb encant i on menjar a prop, i un consell dels que no surten a les guies. Ves al gra, amb llistes curtes.",
+    "greeting": "Què planifiquem?",
+    "chooseAssistant": "Tria el teu assistent",
+    "nightsLabel": "{count, plural, one {nit} other {nits}}"
+  },
+  "explore": {
+    "eyebrow": "Més que dormir",
+    "title": "Descobreix el càmping",
+    "cta": "Veure'n més"
   }
 }

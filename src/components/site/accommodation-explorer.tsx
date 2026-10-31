@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { useId, useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { RichText } from "@/components/rich-text";
 import { bookingLink } from "@/lib/booking/link";
+import { equipmentOnly } from "@/lib/content/equipment";
+import { withViewTransition } from "@/lib/view-transition";
 import { ShowOnMapButton } from "./show-on-map-button";
 import type { Accommodation, AccommodationCategory, MapTarget } from "@/lib/supabase/content";
 
@@ -27,6 +29,11 @@ type Props = {
 
 /** Quants allotjaments es veuen al mòbil a la portada. */
 const MOBILE_PREVIEW = 4;
+/** A partir de quants caràcters la descripció de la fitxa surt plegada. */
+const COLLAPSED_LENGTH = 320;
+/** Els noms de les transicions de vista, que són als estils de `globals.css`. */
+const PHOTO_TRANSITION = "accommodation-photo";
+const SHEET_TRANSITION = "accommodation-sheet";
 
 /**
  * On porta «Veure al mapa»: al punt de l'allotjament si en té (les parcel·les). Dels bungalows, mobile homes,
@@ -45,15 +52,35 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
   const [guests, setGuests] = useState<number>(0);
   const [open, setOpen] = useState<Accommodation | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const grid = useRef<HTMLUListElement>(null);
   const tabsId = useId();
 
   const all = useMemo(() => categories.flatMap((c) => c.accommodations), [categories]);
   const current = categories.find((c) => c.key === category);
   const list = (current ? current.accommodations : all).filter((a) => !guests || (a.capacityMax ?? 0) >= guests);
 
+  // La foto de la targeta i la de la fitxa porten el mateix nom de transició, mai alhora: és el que fa que el navegador la faci volar d'una a l'altra.
+  const cardPhoto = (slug: string) => grid.current?.querySelector<HTMLElement>(`[data-photo="${slug}"]`) ?? null;
+
   const show = (a: Accommodation) => {
-    setOpen(a);
-    dialog.current?.showModal();
+    const photo = cardPhoto(a.slug);
+    if (photo) photo.style.viewTransitionName = PHOTO_TRANSITION;
+    void withViewTransition(() => {
+      if (photo) photo.style.viewTransitionName = "";
+      setOpen(a);
+      dialog.current?.showModal();
+    });
+  };
+
+  const hide = () => {
+    const photo = open && cardPhoto(open.slug);
+    void withViewTransition(() => {
+      setOpen(null);
+      dialog.current?.close();
+      if (photo) photo.style.viewTransitionName = PHOTO_TRANSITION;
+    }).finally(() => {
+      if (photo) photo.style.viewTransitionName = "";
+    });
   };
 
   return (
@@ -93,8 +120,6 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
         </fieldset>
       </div>
 
-      {current?.description && <RichText text={current.description} className="mt-6 max-w-3xl text-muted [&_strong]:text-ink" />}
-
       {/* Llista */}
       <div id={`${tabsId}-panel`} role="tabpanel" aria-labelledby={`${tabsId}-${category}`} className="mt-8">
         <p className="sr-only" aria-live="polite">
@@ -103,60 +128,70 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
         {list.length === 0 ? (
           <p className="rounded-2xl border border-dashed border-line p-10 text-center text-muted">{t("empty")}</p>
         ) : (
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul ref={grid} className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {list.map((a, i) => (
               <li
                 key={a.slug}
                 data-edit={`accommodations:${a.slug}`}
-                className={`flex flex-col overflow-hidden rounded-3xl border border-line bg-card p-2.5 transition duration-300 hover:border-olive hover:shadow-[0_28px_44px_-22px_rgb(35_42_20/.55)] ${allHref && i >= MOBILE_PREVIEW ? "max-sm:hidden" : ""}`}
+                className={`group/card relative flex flex-col rounded-3xl border border-line bg-card p-2.5 transition duration-300 hover:border-olive hover:shadow-[0_28px_44px_-22px_rgb(35_42_20/.55)] ${allHref && i >= MOBILE_PREVIEW ? "max-sm:hidden" : ""}`}
               >
-                <button
-                  type="button"
-                  onClick={() => show(a)}
-                  className="group flex w-full flex-1 cursor-pointer flex-col text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-paper-2">
-                    {a.cover && (
-                      <Image
-                        src={a.cover.src}
-                        alt=""
-                        fill
-                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                        className="object-cover transition duration-700 group-hover:scale-105"
-                        style={{ objectPosition: a.cover.position }}
-                      />
-                    )}
-                    {a.isAccessible && (
-                      <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-1 text-xs font-bold text-olive">{t("accessible")}</span>
-                    )}
-                    {/* Senyal que la targeta s'obre: sempre visible (al mòbil no hi ha «passar per sobre») i s'encén amb el ratolí. */}
-                    <span
-                      aria-hidden="true"
-                      className="absolute bottom-3 right-3 grid size-11 place-items-center rounded-full bg-paper text-olive shadow-lg transition duration-300 group-hover:scale-110 group-hover:bg-terra group-hover:text-paper"
-                    >
-                      <svg viewBox="0 0 24 24" className="size-5">
-                        <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-                      </svg>
-                    </span>
-                  </div>
-                  <div className="flex flex-1 flex-col gap-2 px-2.5 pb-3 pt-4">
-                    <span data-edit-field="name" className="font-display text-2xl leading-tight text-olive transition-colors group-hover:text-terra">{a.name}</span>
-                    <Specs a={a} />
-                  </div>
-                </button>
-                <div className="flex flex-wrap items-end justify-between gap-3 border-t border-line px-2.5 pb-1.5 pt-3">
-                  <Price value={a.priceFrom} />
+                <div data-photo={a.slug} className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-paper-2">
+                  {a.cover && (
+                    <Image
+                      src={a.cover.src}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                      className="object-cover transition duration-700 group-hover/card:scale-105"
+                      style={{ objectPosition: a.cover.position }}
+                    />
+                  )}
+                  {a.isAccessible && (
+                    <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-1 text-xs font-bold text-olive">{t("accessible")}</span>
+                  )}
                   {bookingUrl && (
+                    // Per sobre del botó que ocupa tota la targeta. La icona es desplega amb el ratolí; on no n'hi ha, ja surt desplegada.
                     <a
                       href={bookingLink(bookingUrl, { locale })}
                       target="_blank"
                       rel="noopener"
                       aria-label={`${tNav("book")}: ${a.name}`}
-                      className="ml-auto rounded-full bg-band-olive px-5 py-2.5 text-sm font-bold text-on-dark transition hover:brightness-125"
+                      className="group/book absolute bottom-3 right-3 z-10 flex h-11 items-center rounded-full bg-band-olive text-on-dark shadow-lg transition hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
                     >
-                      {tNav("book")} <span aria-hidden="true">→</span>
+                      <span className="grid size-11 shrink-0 place-items-center">
+                        <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+                          <path
+                            d="M7 3.5v3M17 3.5v3M4 9.5h16M5.5 5.5h13A1.5 1.5 0 0 1 20 7v11.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5V7a1.5 1.5 0 0 1 1.5-1.5zM9 14.5l2 2 4-4"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </span>
+                      <span className="grid grid-cols-[0fr] transition-[grid-template-columns] duration-300 ease-out group-hover/card:grid-cols-[1fr] group-focus-visible/book:grid-cols-[1fr] [@media(hover:none)]:grid-cols-[1fr]">
+                        <span className="overflow-hidden whitespace-nowrap text-sm font-bold">
+                          <span className="block pr-5">{tNav("book")}</span>
+                        </span>
+                      </span>
                     </a>
                   )}
+                </div>
+                <div className="flex flex-1 flex-col gap-2 px-2.5 pb-2 pt-4">
+                  {/* El botó s'estén per tota la targeta (`after`): clicant on sigui s'obre la fitxa. */}
+                  <button
+                    type="button"
+                    onClick={() => show(a)}
+                    data-edit-field="name"
+                    className="font-display cursor-pointer text-left text-2xl leading-tight text-olive transition-colors after:absolute after:inset-0 after:rounded-3xl group-hover/card:text-terra focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-terra"
+                  >
+                    {a.name}
+                  </button>
+                  <Specs a={a} />
+                  <div className="mt-auto pt-2">
+                    <Price value={a.priceFrom} />
+                  </div>
                 </div>
               </li>
             ))}
@@ -176,77 +211,143 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
       {/* Fitxa */}
       <dialog
         ref={dialog}
+        onCancel={(event) => {
+          event.preventDefault();
+          hide();
+        }}
         onClose={() => setOpen(null)}
-        onClick={(e) => e.target === dialog.current && dialog.current?.close()}
+        onClick={(e) => e.target === dialog.current && hide()}
         aria-labelledby={`${tabsId}-dialog-title`}
-        className="m-auto max-h-[92svh] w-[min(64rem,calc(100vw-1.5rem))] overflow-y-auto rounded-[2rem] bg-paper p-0 text-ink shadow-2xl"
+        className="m-auto max-h-[92svh] w-[min(72rem,calc(100vw-1.5rem))] overflow-y-auto rounded-[2rem] bg-paper p-0 text-ink shadow-2xl md:overflow-hidden"
       >
         {open && (
-          <article>
-            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-line bg-paper/95 px-5 py-4 backdrop-blur sm:px-8">
-              <h3 id={`${tabsId}-dialog-title`} className="font-display text-3xl text-olive">
-                {open.name}
-              </h3>
-              <form method="dialog">
-                <button className="flex size-10 items-center justify-center rounded-full border border-line text-olive hover:bg-paper-2" aria-label={tNav("close")}>
-                  <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
-                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </form>
-            </div>
-
-            {open.gallery.length > 0 && (
-              <ul aria-label={t("gallery", { name: open.name })} className="snap-strip auto-cols-[85%] gap-3 px-5 pt-5 sm:auto-cols-[60%] sm:px-8">
-                {open.gallery.map((m, i) => (
-                  <li key={m.path} className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-paper-2">
-                    <Image
-                      src={m.src}
-                      alt={t("photo", { index: i + 1, total: open.gallery.length })}
-                      fill
-                      sizes="(min-width: 640px) 600px, 85vw"
-                      className="object-cover"
-                      style={{ objectPosition: m.position }}
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
-
-            <div className="grid gap-8 px-5 py-8 sm:px-8 md:grid-cols-[1.4fr_1fr]">
-              <div>
-                <Specs a={open} large />
-                <RichText text={open.description} className="mt-6 grid gap-4 leading-relaxed text-muted [&_strong]:text-ink" />
-              </div>
-              {open.features.length > 0 && (
-                <div className="rounded-3xl bg-card p-6">
-                  <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-terra">{t("equipment")}</h4>
-                  <ul className="mt-4 grid gap-2 text-sm">
-                    {open.features.map((f) => (
-                      <li key={f} className="flex gap-2">
-                        <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-olive" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            <div className="sticky bottom-0 flex flex-wrap items-center justify-end gap-4 border-t border-line bg-paper/95 px-5 py-4 sm:px-8">
-              {/* Primer es tanca la fitxa (és modal) perquè el mapa quedi a la vista. */}
-              {mapLinks && <ShowOnMapButton target={mapTargetFor(open, onMap)} beforeShow={() => dialog.current?.close()} className="text-base text-olive" />}
-              <Price value={open.priceFrom} />
-              {bookingUrl && (
-                <a href={bookingLink(bookingUrl, { locale })} target="_blank" rel="noopener" className="rounded-full bg-band-olive px-6 py-3 font-bold text-on-dark transition hover:brightness-125">
-                  {tNav("book")}
-                </a>
-              )}
-            </div>
-          </article>
+          <Sheet
+            key={open.slug}
+            a={open}
+            titleId={`${tabsId}-dialog-title`}
+            bookingUrl={bookingUrl}
+            onClose={hide}
+            // Primer es tanca la fitxa (és modal) perquè el mapa quedi a la vista.
+            map={mapLinks ? <ShowOnMapButton target={mapTargetFor(open, onMap)} beforeShow={() => dialog.current?.close()} className="text-base text-olive" /> : null}
+          />
         )}
       </dialog>
     </div>
+  );
+}
+
+/** La fitxa: la foto que ve de la targeta a l'esquerra, amb les altres a sota, i les dades a la dreta. Cada bloc entra un moment després de l'anterior. */
+function Sheet({ a, titleId, bookingUrl, onClose, map }: { a: Accommodation; titleId: string; bookingUrl: string | null; onClose: () => void; map: ReactNode }) {
+  const t = useTranslations("accommodation");
+  const tNav = useTranslations("nav");
+  const locale = useLocale();
+  const [index, setIndex] = useState(0);
+  // La de la targeta primer, perquè la transició arribi a la mateixa foto.
+  const photos = a.cover ? [a.cover, ...a.gallery.filter((m) => m.src !== a.cover?.src)] : a.gallery;
+  const photo = photos[index];
+  const equipment = equipmentOnly(a.features, a.airConditioning ? [t("airConditioning")] : []);
+  const go = (step: number) => setIndex((index + step + photos.length) % photos.length);
+
+  return (
+    <article style={{ viewTransitionName: SHEET_TRANSITION }} className="relative bg-paper md:grid md:h-[min(44rem,92svh)] md:grid-cols-[1.2fr_1fr]">
+      <div className="sticky top-0 z-20 flex h-0 justify-end md:absolute md:inset-x-0">
+        <button type="button" onClick={onClose} aria-label={tNav("close")} className="m-3 grid size-11 shrink-0 place-items-center rounded-full bg-card text-olive shadow-lg transition hover:scale-105">
+          <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex min-h-0 flex-col gap-3 p-3 sm:p-4 md:overflow-y-auto">
+        <div style={{ viewTransitionName: PHOTO_TRANSITION }} className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-[1.5rem] bg-paper-2">
+          {photo && (
+            <Image
+              key={photo.src}
+              src={photo.src}
+              alt={t("photo", { index: index + 1, total: photos.length })}
+              fill
+              priority
+              sizes="(min-width: 768px) 55vw, 100vw"
+              className="object-cover"
+              style={{ objectPosition: photo.position }}
+            />
+          )}
+          {photos.length > 1 && (
+            <>
+              <PhotoButton label={t("previousPhoto")} onClick={() => go(-1)} side="left" />
+              <PhotoButton label={t("nextPhoto")} onClick={() => go(1)} side="right" />
+              <span className="absolute bottom-3 left-3 rounded-full bg-paper/90 px-3 py-1 text-xs font-bold tabular-nums text-olive">
+                {index + 1} / {photos.length}
+              </span>
+            </>
+          )}
+        </div>
+        {photos.length > 1 && (
+          <ul aria-label={t("gallery", { name: a.name })} className="accommodation-build snap-strip shrink-0 auto-cols-[5.5rem] gap-2 p-1" style={{ ["--i" as string]: 0 }}>
+            {photos.map((m, i) => (
+              <li key={m.src}>
+                <button
+                  type="button"
+                  aria-current={i === index}
+                  aria-label={t("photo", { index: i + 1, total: photos.length })}
+                  onClick={() => setIndex(i)}
+                  className="relative block aspect-[4/3] w-full overflow-hidden rounded-xl opacity-70 transition hover:opacity-100 aria-[current=true]:opacity-100 aria-[current=true]:ring-2 aria-[current=true]:ring-olive aria-[current=true]:ring-offset-2 aria-[current=true]:ring-offset-paper"
+                >
+                  <Image src={m.src} alt="" fill sizes="88px" className="object-cover" style={{ objectPosition: m.position }} />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div className="flex min-h-0 flex-col">
+        <div className="flex-1 px-5 pb-6 pt-2 sm:px-7 md:overflow-y-auto md:pt-7">
+          <h3 id={titleId} className="accommodation-build font-display pr-12 text-3xl leading-tight text-olive sm:text-4xl" style={{ ["--i" as string]: 1 }}>
+            {a.name}
+          </h3>
+          <div className="accommodation-build mt-4" style={{ ["--i" as string]: 2 }}>
+            <Specs a={a} large />
+          </div>
+          <div className="accommodation-build" style={{ ["--i" as string]: 3 }}>
+            <Description text={a.description} />
+          </div>
+          {equipment.length > 0 && (
+            <div className="accommodation-build mt-7" style={{ ["--i" as string]: 4 }}>
+              <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-terra">{t("equipment")}</h4>
+              <ul className="mt-3 flex flex-wrap gap-2 text-sm">
+                {equipment.map((f) => (
+                  <li key={f} className="rounded-full border border-line bg-card px-3 py-1.5">
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className="accommodation-build sticky bottom-0 flex flex-wrap items-center justify-between gap-3 border-t border-line bg-paper px-5 py-4 sm:px-7" style={{ ["--i" as string]: 5 }}>
+          {map}
+          <div className="ml-auto flex items-center gap-4">
+            <Price value={a.priceFrom} />
+            {bookingUrl && (
+              <a href={bookingLink(bookingUrl, { locale })} target="_blank" rel="noopener" className="rounded-full bg-band-olive px-6 py-3 font-bold text-on-dark transition hover:brightness-125">
+                {tNav("book")}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function PhotoButton({ label, onClick, side }: { label: string; onClick: () => void; side: "left" | "right" }) {
+  return (
+    <button type="button" aria-label={label} onClick={onClick} className={`absolute top-1/2 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-paper/90 text-olive shadow transition hover:bg-paper ${side === "left" ? "left-3" : "right-3"}`}>
+      <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+        <path d={side === "left" ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"} fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </button>
   );
 }
 
@@ -259,6 +360,25 @@ const SPEC_ICON = {
   airConditioning: "M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5",
   accessible: "M11 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M11 8v6h5l2.5 5M11 10.5h4M8 12.2A5 5 0 1 0 14.5 19",
 } as const;
+
+/** El text sencer és llarg: es veu el començament i «Llegir més» desplega la resta. */
+function Description({ text }: { text: string | null }) {
+  const t = useTranslations("accommodation");
+  const [expanded, setExpanded] = useState(false);
+  if (!text) return null;
+  const long = text.length > COLLAPSED_LENGTH;
+  return (
+    <div className="mt-5">
+      {/* `line-clamp` i `grid` es trepitgen (tots dos posen `display`): plegat, només el primer. */}
+      <RichText text={text} className={`leading-relaxed text-muted [&_strong]:text-ink ${long && !expanded ? "line-clamp-4" : "grid gap-4"}`} />
+      {long && (
+        <button type="button" onClick={() => setExpanded(!expanded)} aria-expanded={expanded} className="mt-3 font-bold text-olive underline underline-offset-4">
+          {expanded ? t("readLess") : t("readMore")}
+        </button>
+      )}
+    </div>
+  );
+}
 
 /** «des de 31 €/nit». Sense preu no s'ensenya res: un preu inventat seria pitjor que cap. */
 function Price({ value }: { value: number | null }) {

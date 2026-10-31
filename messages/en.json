@@ -3,7 +3,7 @@
     "accommodation": "Accommodation",
     "map": "Map",
     "gastronomy": "Food & drink",
-    "services": "Services",
+    "services": "Facilities",
     "entertainment": "Entertainment",
     "surroundings": "Surroundings",
     "contact": "Contact",
@@ -45,7 +45,11 @@
     "seeAll": "See all accommodation ({count})",
     "backHome": "Back to home",
     "from": "from",
-    "perNight": "/night"
+    "perNight": "/night",
+    "readMore": "Read more",
+    "readLess": "Read less",
+    "previousPhoto": "Previous photo",
+    "nextPhoto": "Next photo"
   },
   "gastronomy": {
     "eyebrow": "Eat and drink",
@@ -152,14 +156,69 @@
     "adults": "Adults",
     "children": "Children",
     "search": "Search availability",
-    "invalid": "Check-out must be after check-in."
+    "guests": "Guests",
+    "addDate": "Add date",
+    "adultsCount": "{count, plural, one {# adult} other {# adults}}",
+    "childrenCount": "{count, plural, one {# child} other {# children}}",
+    "nights": "{count, plural, one {# night} other {# nights}}",
+    "chooseCheckIn": "Choose your arrival day",
+    "chooseCheckOut": "Now your departure day",
+    "clear": "Clear",
+    "done": "Done",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "less": "Remove: {label}",
+    "more": "Add: {label}"
   },
   "gallery": {
     "eyebrow": "Photos",
-    "all": "All photos ({count})",
     "open": "Open photo {index}",
     "previous": "Previous",
     "next": "Next",
     "counter": "{index} / {total}"
+  },
+  "directions": {
+    "eyebrow": "Where we are",
+    "title": "How to get here",
+    "route": "See the route",
+    "email": "Write to us",
+    "mapTitle": "Map of the campsite’s location",
+    "mode": "How you’re coming",
+    "modes": {
+      "car": "Car",
+      "transit": "Transit",
+      "bike": "Bike",
+      "walk": "On foot"
+    },
+    "from": "Where are you coming from?",
+    "fromPlaceholder": "Your city or address",
+    "useMap": "Click to move the map"
+  },
+  "trip": {
+    "eyebrow": "Plan your getaway",
+    "title": "Your trip, with AI",
+    "body": "Choose the length and type of trip, and take this text to your favourite AI assistant. In seconds you’ll have a plan made for you.",
+    "duration": "Length",
+    "fewer": "One night fewer",
+    "more": "One night more",
+    "type": "Type of trip",
+    "types": {
+      "family": "Family",
+      "adventure": "Adventure",
+      "romantic": "Romantic",
+      "culture": "Cultural"
+    },
+    "openIn": "Open in {name}",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "prompt": "I’m spending {nights, plural, one {# night} other {# nights}} at {camping} ({place}) and I want a “{type}” trip. Check their website, {url}, and make me a day-by-day plan (morning, afternoon and evening) with what to enjoy at the campsite, charming places and where to eat nearby, and one tip you won’t find in the guidebooks. Get to the point, with short lists.",
+    "greeting": "What shall we plan?",
+    "chooseAssistant": "Choose your assistant",
+    "nightsLabel": "{count, plural, one {night} other {nights}}"
+  },
+  "explore": {
+    "eyebrow": "More than a place to sleep",
+    "title": "Discover the campsite",
+    "cta": "See more"
   }
 }
