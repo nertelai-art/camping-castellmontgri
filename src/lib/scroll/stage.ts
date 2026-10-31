@@ -12,3 +12,9 @@ export function countAt(value: number, progress: number, from: number, to: numbe
   const t = Math.min(1, Math.max(0, (progress - from) / (to - from)));
   return Math.round(value * t);
 }
+
+/**
+ * Quant s'ha de tornar a pujar la pàgina quan l'escena acabada perd el recorregut, perquè el que es veu no es mogui.
+ * Només el que ja s'ha passat: si el bloc encara és a sota, treure-li alçada no mou res del que hi ha a dalt.
+ */
+export const collapseShift = (top: number, removed: number) => Math.min(removed, Math.max(0, -top));

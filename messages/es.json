@@ -183,7 +183,6 @@
     "title": "Cómo llegar",
     "route": "Ver la ruta",
     "email": "Escríbenos",
-    "showMap": "Ver el mapa",
     "mapTitle": "Mapa de la situación del camping",
     "mode": "Cómo vienes",
     "modes": {
@@ -194,7 +193,7 @@
     },
     "from": "¿Desde dónde vienes?",
     "fromPlaceholder": "Tu ciudad o dirección",
-    "hideMap": "Ver la foto"
+    "useMap": "Clic para mover el mapa"
   },
   "trip": {
     "eyebrow": "Planifica tu escapada",
@@ -217,5 +216,10 @@
     "greeting": "¿Qué planificamos?",
     "chooseAssistant": "Elige tu asistente",
     "nightsLabel": "{count, plural, one {noche} other {noches}}"
+  },
+  "explore": {
+    "eyebrow": "Más que dormir",
+    "title": "Descubre el camping",
+    "cta": "Ver"
   }
 }

@@ -183,7 +183,6 @@
     "title": "Zo kom je hier",
     "route": "Bekijk de route",
     "email": "Schrijf ons",
-    "showMap": "Toon de kaart",
     "mapTitle": "Kaart met de ligging van de camping",
     "mode": "Hoe je komt",
     "modes": {
@@ -194,7 +193,7 @@
     },
     "from": "Waar kom je vandaan?",
     "fromPlaceholder": "Je stad of adres",
-    "hideMap": "Toon de foto"
+    "useMap": "Klik om de kaart te bewegen"
   },
   "trip": {
     "eyebrow": "Plan je uitje",
@@ -217,5 +216,10 @@
     "greeting": "Wat gaan we plannen?",
     "chooseAssistant": "Kies je assistent",
     "nightsLabel": "{count, plural, one {nacht} other {nachten}}"
+  },
+  "explore": {
+    "eyebrow": "Meer dan slapen",
+    "title": "Ontdek de camping",
+    "cta": "Bekijk"
   }
 }

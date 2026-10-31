@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countAt, stageProgress } from "./stage";
+import { collapseShift, countAt, stageProgress } from "./stage";
 
 describe("escena guiada pel scroll", () => {
   it("el progrés va de 0 a 1 mentre el bloc està fixat, i no en surt", () => {
@@ -12,6 +12,13 @@ describe("escena guiada pel scroll", () => {
 
   it("un bloc que no és més alt que la pantalla no té recorregut", () => {
     expect(stageProgress(-50, 800, 800)).toBe(0);
+  });
+
+  it("en acabar, la pàgina puja just el que s'ha passat, perquè la vista no salti", () => {
+    expect(collapseShift(-1700, 1700)).toBe(1700);
+    expect(collapseShift(-5000, 1700)).toBe(1700);
+    expect(collapseShift(-300, 1700)).toBe(300);
+    expect(collapseShift(200, 1700)).toBe(0);
   });
 
   it("les xifres compten només dins del seu tram i acaben al valor exacte", () => {

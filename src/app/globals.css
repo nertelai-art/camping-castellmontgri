@@ -88,6 +88,34 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* La barra de scroll de la pàgina: el fons de la web i la barra verd fosc. Amb `::-webkit-scrollbar` es pot arrodonir; `scrollbar-color`, per a qui no en sap
+   (Firefox), només si no: Chrome ignora els `::-webkit-scrollbar` si hi ha totes dues coses. */
+@supports selector(::-webkit-scrollbar) {
+  html::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: var(--paper);
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border: 3px solid var(--paper);
+    border-radius: 999px;
+    background: var(--band-olive);
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: var(--olive-2);
+  }
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: var(--band-olive) var(--paper);
+  }
+}
+
 /* Gra de paper com a textura de fons (no una capa fixa amb mix-blend: obligaria a recompondre
    tota la pàgina a cada fotograma de scroll). Les franges de color el tapen, i és el que volem. */
 body {
@@ -353,6 +381,11 @@ body {
     --open: calc(var(--raw) * var(--raw) * (3 - 2 * var(--raw)));
     --facts: clamp(0, calc((var(--p) - 0.58) / 0.14), 1);
     height: 300svh;
+  }
+
+  /* L'animació s'ha acabat i queda clavada: ja no cal recorregut (WelcomeStage). */
+  .welcome[data-done] {
+    height: 100svh;
   }
 
   .welcome-stage {

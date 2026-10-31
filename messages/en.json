@@ -183,7 +183,6 @@
     "title": "How to get here",
     "route": "See the route",
     "email": "Write to us",
-    "showMap": "Show the map",
     "mapTitle": "Map of the campsite’s location",
     "mode": "How you’re coming",
     "modes": {
@@ -194,7 +193,7 @@
     },
     "from": "Where are you coming from?",
     "fromPlaceholder": "Your city or address",
-    "hideMap": "Show the photo"
+    "useMap": "Click to move the map"
   },
   "trip": {
     "eyebrow": "Plan your getaway",
@@ -217,5 +216,10 @@
     "greeting": "What shall we plan?",
     "chooseAssistant": "Choose your assistant",
     "nightsLabel": "{count, plural, one {night} other {nights}}"
+  },
+  "explore": {
+    "eyebrow": "More than a place to sleep",
+    "title": "Discover the campsite",
+    "cta": "See more"
   }
 }

@@ -179,9 +179,14 @@ client es pugen a Supabase Storage amb el script de seed.
 - Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
 
 - **Com arribar-hi** (`directions.tsx`): surt de les dades generals. La ruta és un formulari normal cap a Google Maps (origen i manera d'anar-hi), sense JS ni servidor nostre.
-  El mapa d'OpenStreetMap només es carrega si es demana.
+  El mapa d'OpenStreetMap es veu sempre, es carrega en acostar-s'hi i no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
 - **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
   Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
+
+## Pàgines
+
+- La portada és curta. Gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`); a la portada només hi ha una porta a cadascuna (`explore.tsx`). El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
+- A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 
 ## Disseny
 
@@ -190,6 +195,7 @@ client es pugen a Supabase Storage amb el script de seed.
 - Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
   franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
   fosc: si no, el text crema perd contrast.
+- La barra de scroll de la pàgina té el fons de la web i la barra `band-olive` (`globals.css`).
 - Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
   cursiva són desenes de KB que endarrereixen el LCP a mòbil.
 - Les seccions sota el plec porten `.cv` (`content-visibility: auto`).
@@ -212,6 +218,7 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   (`transform`, `opacity`, `clip-path`). La primera foto de la galeria de la secció és la que s'obre; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
   Sense JS, amb moviment reduït o amb menys de 560 px d'alçada és un mosaic normal: la condició és a `globals.css` i a `welcome-stage.tsx`, i han de coincidir.
   La carena del Montgrí (`MontgriLine`, la del peu) fa de paisatge: el text al cel, les fotos al davant.
+  L'animació es fa una vegada: en arribar al final queda clavada i la secció perd el recorregut (`data-done`), quan el scroll s'atura i pujant la pàgina el mateix que s'ha tret (`collapseShift`), perquè la vista no es mogui ni es talli el salt d'un enllaç.
 - **De la targeta a la fitxa** (`accommodation-explorer.tsx`, `withViewTransition`): la foto vola de la targeta a la fitxa amb View Transitions i la fitxa es construeix al voltant (`.accommodation-build`).
   La foto de la targeta i la de la fitxa porten el mateix `view-transition-name`, mai alhora. Sense suport o amb moviment reduït, s'obre i prou. Totes dues fotos són 4:3 perquè el vol no es deformi.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja

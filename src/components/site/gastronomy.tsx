@@ -22,11 +22,13 @@ export async function Gastronomy({
   restaurants,
   onMap,
   index,
+  level,
 }: {
   section: Section;
   restaurants: Restaurant[];
   onMap: Set<string>;
   index: number;
+  level?: 1 | 2;
 }) {
   const t = await getTranslations("gastronomy");
   // A cada pas, primer els llocs amb la foto més gran: són les que surten a taula.
@@ -42,7 +44,7 @@ export async function Gastronomy({
       <div id="gastronomy">
         <FoodShowcase
           heading={
-            <SectionHeading id="gastronomy-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
+            <SectionHeading id="gastronomy-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} level={level} />
           }
           steps={steps}
           srDescription={t("sceneDescription")}

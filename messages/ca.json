@@ -183,7 +183,6 @@
     "title": "Com arribar-hi",
     "route": "Mira la ruta",
     "email": "Escriu-nos",
-    "showMap": "Mostra el mapa",
     "mapTitle": "Mapa de la situació del càmping",
     "mode": "Com vens",
     "modes": {
@@ -194,7 +193,7 @@
     },
     "from": "D'on vens?",
     "fromPlaceholder": "La teva ciutat o adreça",
-    "hideMap": "Mostra la foto"
+    "useMap": "Clic per moure el mapa"
   },
   "trip": {
     "eyebrow": "Planifica l'escapada",
@@ -217,5 +216,10 @@
     "greeting": "Què planifiquem?",
     "chooseAssistant": "Tria el teu assistent",
     "nightsLabel": "{count, plural, one {nit} other {nits}}"
+  },
+  "explore": {
+    "eyebrow": "Més que dormir",
+    "title": "Descobreix el càmping",
+    "cta": "Mira-ho"
   }
 }
