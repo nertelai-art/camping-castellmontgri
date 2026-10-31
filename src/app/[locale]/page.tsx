@@ -3,18 +3,16 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { AccommodationExplorer } from "@/components/site/accommodation-explorer";
 import { AnchorSettle } from "@/components/site/anchor-settle";
-import { Entertainment } from "@/components/site/entertainment";
 import { Hero } from "@/components/site/hero";
 import { Directions } from "@/components/site/directions";
 import { Explore } from "@/components/site/explore";
+import { GalleryPreview } from "@/components/site/gallery-preview";
 import { CampgroundJsonLd } from "@/components/site/json-ld";
 import { TripPlanner } from "@/components/site/trip-planner";
 import type { Place } from "@/components/site/map-explorer";
 import { MapSection } from "@/components/site/map-section";
-import { Pools } from "@/components/site/pools";
 import { RevealOnScroll } from "@/components/site/reveal-on-scroll";
 import { SectionHeading } from "@/components/site/section-heading";
-import { ServicesGrid } from "@/components/site/services-grid";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { Testimonials } from "@/components/site/testimonials";
@@ -54,9 +52,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       getMediaByFolder("flags", locale),
     ]);
 
-  const pools = services.find((s) => s.slug === "swimming-pools");
-  const slides = services.find((s) => s.slug === "slides");
-  const otherServices = services.filter((s) => s !== pools && s !== slides);
   const accommodationCount = categories.reduce((n, c) => n + c.accommodations.length, 0);
 
   // Fitxes del plànol: el que cal mostrar de cada lloc enllaçat (sense repetir consultes).
@@ -73,9 +68,10 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
 
   // El que té pàgina pròpia, a la portada només és una porta.
   const explore = [
+    { href: "/services", section: sections.services },
+    { href: "/entertainment", section: sections.entertainment },
     { href: "/gastronomy", section: sections.gastronomy },
     { href: "/surroundings", section: sections.surroundings },
-    { href: "/gallery", section: sections.gallery },
   ].filter((item): item is { href: string; section: Section } => Boolean(item.section));
 
   // Numeració de guia de camp: només compten les seccions que surten.
@@ -124,11 +120,9 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         )}
 
         <Explore index={next()} items={explore} />
+        {sections.gallery && <GalleryPreview section={sections.gallery} index={next()} />}
 
         {sections["map"] && <MapSection section={sections["map"]} points={mapPoints} places={places} index={next()} />}
-        {pools && <Pools pools={pools} slides={slides} onMap={onMap} index={next()} />}
-        {sections.services && <ServicesGrid section={sections.services} services={otherServices} onMap={onMap} index={next()} />}
-        {sections.entertainment && <Entertainment section={sections.entertainment} activities={activities} index={next()} />}
         <Directions settings={settings} photo={sections.surroundings?.media ?? null} index={next()} />
         <TripPlanner camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} index={next()} />
         <Testimonials testimonials={testimonials} index={next()} />

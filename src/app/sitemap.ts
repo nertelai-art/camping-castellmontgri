@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/site-url";
 
-const PAGES = ["accommodations", "gastronomy", "surroundings", "gallery"];
+const PAGES = ["accommodations", "services", "entertainment", "gastronomy", "surroundings", "gallery"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const languages = Object.fromEntries(routing.locales.map((l) => [l, `${siteUrl}/${l}`]));

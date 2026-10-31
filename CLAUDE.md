@@ -185,7 +185,9 @@ client es pugen a Supabase Storage amb el script de seed.
 
 ## Pàgines
 
-- La portada és curta. Gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`); a la portada només hi ha una porta a cadascuna (`explore.tsx`). El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
+- La portada és curta, com holacamp.net. Instal·lacions (amb piscines i tobogans), animació (amb el programa setmanal), gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/services`, `entertainment`, `gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`).
+  A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`), i la galeria, cinc fotos (`gallery-preview.tsx`). El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
+- `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 
 ## Disseny
@@ -214,11 +216,7 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
   Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
   mensual de Hugging Face es va acabar a la desena imatge.
-- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): escena fixada de 300svh. `WelcomeStage` només posa el progrés del scroll a `--p` i fa comptar les xifres; la coreografia és CSS
-  (`transform`, `opacity`, `clip-path`). La primera foto de la galeria de la secció és la que s'obre; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
-  Sense JS, amb moviment reduït o amb menys de 560 px d'alçada és un mosaic normal: la condició és a `globals.css` i a `welcome-stage.tsx`, i han de coincidir.
-  La carena del Montgrí (`MontgriLine`, la del peu) fa de paisatge: el text al cel, les fotos al davant.
-  L'animació es fa una vegada: en arribar al final queda clavada i la secció perd el recorregut (`data-done`), quan el scroll s'atura i pujant la pàgina el mateix que s'ha tret (`collapseShift`), perquè la vista no es mogui ni es talli el salt d'un enllaç.
+- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge, i les xifres a sota. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
 - **De la targeta a la fitxa** (`accommodation-explorer.tsx`, `withViewTransition`): la foto vola de la targeta a la fitxa amb View Transitions i la fitxa es construeix al voltant (`.accommodation-build`).
   La foto de la targeta i la de la fitxa porten el mateix `view-transition-name`, mai alhora. Sense suport o amb moviment reduït, s'obre i prou. Totes dues fotos són 4:3 perquè el vol no es deformi.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja

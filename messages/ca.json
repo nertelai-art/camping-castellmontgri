@@ -3,7 +3,7 @@
     "accommodation": "Allotjament",
     "map": "Mapa",
     "gastronomy": "Gastronomia",
-    "services": "Serveis",
+    "services": "Instal·lacions",
     "entertainment": "Animació",
     "surroundings": "Entorn",
     "contact": "Contacte",
@@ -220,6 +220,6 @@
   "explore": {
     "eyebrow": "Més que dormir",
     "title": "Descobreix el càmping",
-    "cta": "Mira-ho"
+    "cta": "Veure'n més"
   }
 }

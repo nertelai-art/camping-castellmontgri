@@ -8,7 +8,7 @@ import type { MediaRef } from "@/lib/supabase/media";
 
 export const NAV = ["accommodation", "map", "services", "entertainment", "gastronomy", "surroundings", "gallery", "contact"] as const;
 /** Les entrades del menú que tenen pàgina pròpia; les altres són seccions de la portada. */
-const PAGES: readonly (typeof NAV)[number][] = ["gastronomy", "surroundings", "gallery"];
+const PAGES: readonly (typeof NAV)[number][] = ["services", "entertainment", "gastronomy", "surroundings", "gallery"];
 
 // Nom de cada idioma en el seu propi idioma: no es tradueix.
 const LANGUAGE_NAMES: Record<Locale, string> = { es: "Español", ca: "Català", fr: "Français", en: "English", nl: "Nederlands" };

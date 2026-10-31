@@ -3,7 +3,7 @@
     "accommodation": "Accommodaties",
     "map": "Kaart",
     "gastronomy": "Eten & drinken",
-    "services": "Voorzieningen",
+    "services": "Faciliteiten",
     "entertainment": "Animatie",
     "surroundings": "Omgeving",
     "contact": "Contact",
@@ -220,6 +220,6 @@
   "explore": {
     "eyebrow": "Meer dan slapen",
     "title": "Ontdek de camping",
-    "cta": "Bekijk"
+    "cta": "Meer bekijken"
   }
 }

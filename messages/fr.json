@@ -3,7 +3,7 @@
     "accommodation": "Hébergement",
     "map": "Carte",
     "gastronomy": "Gastronomie",
-    "services": "Services",
+    "services": "Installations",
     "entertainment": "Animation",
     "surroundings": "Environs",
     "contact": "Contact",
@@ -220,6 +220,6 @@
   "explore": {
     "eyebrow": "Plus qu’un lieu où dormir",
     "title": "Découvrez le camping",
-    "cta": "Voir"
+    "cta": "Voir plus"
   }
 }

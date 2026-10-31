@@ -316,191 +316,96 @@ body {
 }
 
 /* ─── Benvinguda ─────────────────────────────────────────────────────────────
- * Per defecte, un mosaic normal: text, fotos en graella i la foto gran amb les xifres.
- * Amb JS, moviment permès i prou alçada, escena fixada: WelcomeStage posa el progrés a --p (de 0 a 1) i tot surt d'aquí,
- * només amb transform, opacity i clip-path. Si es canvia la condició, s'ha de canviar també a welcome-stage.tsx.
+ * Al mòbil, en columna: el text, la carena del Montgrí i les fotos. A l'escriptori, el text al cel, envoltat de fotos, i la carena de terra.
  */
 .welcome-intro {
+  position: relative;
+  z-index: 2;
   margin-inline: auto;
   max-width: 44rem;
-  padding: 5rem 1.25rem 2.5rem;
+  padding: 4.5rem 1.25rem 1.5rem;
   text-align: center;
 }
 
 .welcome-ridge {
-  height: 5rem;
-  margin-bottom: 0.75rem;
+  height: 6rem;
 }
 
-.welcome-tiles {
+.welcome-photos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  padding-inline: 0.75rem;
-}
-
-.welcome-tile {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: 1.25rem;
+  padding: 0.25rem 0.75rem 0;
   background: var(--paper-2);
 }
 
-@media (min-width: 1024px) {
-  .welcome-tiles {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.welcome-main,
+.welcome-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 48px -24px rgb(35 42 20 / 0.55);
 }
 
 .welcome-main {
-  position: relative;
-  margin: 0.75rem 0.75rem 5rem;
-  overflow: hidden;
-  border-radius: 1.5rem;
-  background: var(--band-olive);
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
 }
 
-.welcome-photo {
-  position: absolute;
-  inset: 0;
+.welcome-tile {
+  aspect-ratio: 4 / 3;
 }
 
-.welcome-facts {
-  position: relative;
-  padding: 10rem 1.5rem 2.5rem;
-  background: linear-gradient(180deg, rgb(22 27 13 / 0) 0%, rgb(22 27 13 / 0.72) 55%, rgb(22 27 13 / 0.86) 100%);
+.welcome-tile[data-slot="5"],
+.welcome-tile[data-slot="6"] {
+  display: none;
 }
 
-@media (scripting: enabled) and (prefers-reduced-motion: no-preference) and (min-height: 560px) {
-  .welcome {
-    --p: 0;
-    /* El tram de cada cosa dins del recorregut. --open va suavitzat. */
-    --fade: clamp(0, calc((var(--p) - 0.05) / 0.2), 1);
-    --raw: clamp(0, calc((var(--p) - 0.08) / 0.47), 1);
-    --open: calc(var(--raw) * var(--raw) * (3 - 2 * var(--raw)));
-    --facts: clamp(0, calc((var(--p) - 0.58) / 0.14), 1);
-    height: 300svh;
-  }
-
-  /* L'animació s'ha acabat i queda clavada: ja no cal recorregut (WelcomeStage). */
-  .welcome[data-done] {
-    height: 100svh;
-  }
-
+@media (min-width: 1024px) {
   .welcome-stage {
-    position: sticky;
-    top: 0;
-    height: 100svh;
+    position: relative;
+    height: clamp(42rem, calc(100svh - 5rem), 58rem);
     overflow: clip;
   }
 
   .welcome-intro {
     position: absolute;
-    z-index: 2;
     inset-inline: 0;
-    top: 21%;
+    top: 8%;
     padding-block: 0;
     max-width: min(40rem, 42vw);
-    opacity: calc(1 - var(--fade));
-    transform: translateY(calc(var(--fade) * -3rem));
   }
 
-  /* La carena, i sota seu el mateix color fins a baix: la muntanya fa de terra de l'escena. */
   .welcome-ridge {
     position: absolute;
-    inset: 53% 0 0;
+    inset: 50% 0 0;
     height: auto;
-    margin: 0;
-    background: linear-gradient(var(--paper-2), var(--paper-2)) bottom / 100% calc(100% - 25vh + 1px) no-repeat;
-    transform: translateY(calc(var(--open) * 10vh));
+    background: linear-gradient(var(--paper-2), var(--paper-2)) bottom / 100% calc(100% - 11rem + 1px) no-repeat;
   }
 
   .welcome-ridge svg {
-    height: 25vh;
+    height: 11rem;
   }
 
-  .welcome-tiles {
+  .welcome-photos {
     display: contents;
   }
 
+  .welcome-main,
   .welcome-tile {
     position: absolute;
     z-index: 1;
     aspect-ratio: auto;
-    box-shadow: 0 24px 48px -24px rgb(35 42 20 / 0.55);
-    /* Cada foto marxa cap al seu costat, més o menys de pressa segons --dx i --dy. */
-    transform: translate(calc(var(--dx) * var(--open)), calc(var(--dy) * var(--open))) scale(calc(1 + 0.12 * var(--open)));
   }
 
-  .welcome-tile[data-slot="1"] { left: 3%; top: 15%; width: 18vw; height: 34%; --dx: -28vw; --dy: -10vh; }
-  .welcome-tile[data-slot="2"] { left: 7%; top: 54%; width: 21vw; height: 31%; --dx: -36vw; --dy: 22vh; }
-  .welcome-tile[data-slot="3"] { right: 3%; top: 13%; width: 21vw; height: 28%; --dx: 36vw; --dy: -18vh; }
-  .welcome-tile[data-slot="4"] { right: 6%; top: 45%; width: 18vw; height: 38%; --dx: 28vw; --dy: 18vh; }
-  .welcome-tile[data-slot="5"] { left: 23%; top: 73%; width: 11vw; height: 19%; --dx: -22vw; --dy: 36vh; }
-  .welcome-tile[data-slot="6"] { right: 26%; top: 76%; width: 9vw; height: 16%; --dx: 22vw; --dy: 36vh; }
+  .welcome-main { inset: 67% 38% 6%; }
 
-  /* La foto gran ocupa tota l'escena des del principi: el que s'obre és el retall. Així no es reescala mai. */
-  .welcome-main {
-    position: absolute;
-    z-index: 3;
-    inset: 0;
-    margin: 0;
-    border-radius: 0;
-    background: none;
-    --hide-x: calc((1 - var(--open)) * 38%);
-    clip-path: inset(calc((1 - var(--open)) * 72%) var(--hide-x) calc((1 - var(--open)) * 7%) var(--hide-x) round calc((1 - var(--open)) * 1.5rem));
-  }
-
-  /* I la foto es va apropant des de lluny: a l'inici es veu sencera dins del retall, no un tros d'aigua. */
-  .welcome-photo {
-    --start: 0.3;
-    transform-origin: 50% 90%;
-    transform: scale(calc(var(--start) + (1 - var(--start)) * var(--open)));
-  }
-
-  .welcome-facts {
-    position: absolute;
-    inset: auto 0 0;
-    padding: 10rem 1.5rem 3.5rem;
-    opacity: var(--facts);
-    transform: translateY(calc((1 - var(--facts)) * 3rem));
-  }
-
-  /* Al mòbil no hi ha costats: el text al mig, dues fotos a dalt i dues a baix, que surten en vertical. */
-  @media (max-width: 1023px) {
-    .welcome-intro {
-      top: 27%;
-      max-width: none;
-    }
-
-    .welcome-ridge {
-      inset-block-start: 59%;
-      background-size: 100% calc(100% - 16vh + 1px);
-    }
-
-    .welcome-ridge svg {
-      height: 16vh;
-    }
-
-    .welcome-tile[data-slot="1"] { left: 4%; top: 10%; width: 44vw; height: 15%; --dx: -20vw; --dy: -30vh; }
-    .welcome-tile[data-slot="3"] { left: auto; right: 4%; top: 10%; width: 44vw; height: 15%; --dx: 20vw; --dy: -30vh; }
-    .welcome-tile[data-slot="2"] { left: 4%; top: 75%; width: 28vw; height: 19%; --dx: -32vw; --dy: 28vh; }
-    .welcome-tile[data-slot="4"] { left: auto; right: 4%; top: 75%; width: 28vw; height: 19%; --dx: 32vw; --dy: 28vh; }
-    .welcome-tile[data-slot="5"],
-    .welcome-tile[data-slot="6"] {
-      display: none;
-    }
-
-    .welcome-main {
-      --hide-x: calc((1 - var(--open)) * 34%);
-      clip-path: inset(calc((1 - var(--open)) * 75%) var(--hide-x) calc((1 - var(--open)) * 6%) var(--hide-x) round calc((1 - var(--open)) * 1.25rem));
-    }
-
-    .welcome-photo {
-      --start: 0.4;
-    }
-  }
+  .welcome-tile[data-slot="1"] { left: 3%; top: 8%; width: 18vw; height: 36%; }
+  .welcome-tile[data-slot="2"] { left: 7%; top: 50%; width: 21vw; height: 32%; }
+  .welcome-tile[data-slot="3"] { right: 3%; top: 6%; width: 21vw; height: 30%; }
+  .welcome-tile[data-slot="4"] { right: 6%; top: 40%; width: 18vw; height: 40%; }
+  .welcome-tile[data-slot="5"] { display: block; left: 23%; top: 72%; width: 11vw; height: 20%; }
+  .welcome-tile[data-slot="6"] { display: block; right: 26%; top: 75%; width: 9vw; height: 17%; }
 }
 
 /* Seccions sota el plec: el navegador no en calcula l'estil ni les pinta fins que s'hi acosta.
