@@ -214,7 +214,13 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 
 - ✅ Barra de reserva al hero amb dates i persones, que obre el motor amb la cerca feta. L'enllaç de reserves passa de Thelis a WitBooking.
 - ✅ Targetes d'allotjament amb preu «des de» (editable) i «Reservar»; galeria d'imatges editable; fons més clar.
+- ✅ Hero amb el títol i la cerca al mig, sense avís de temporada; selectors propis de dates i persones.
+- ✅ Benvinguda animada: la foto del mig s'obre fins a omplir la pantalla, les altres marxen i compten les xifres.
+- ✅ Allotjaments amb una sola frase a la capçalera; la fitxa plega el text i no repeteix les xifres a l'equipament.
+- ✅ Com arribar-hi i «El teu viatge, amb la IA», inspirats en HolaCamp.
 - Pendent: disponibilitat i preus reals (l'API de WitBooking s'ha demanat), i que el client validi l'estil.
+- Idees de HolaCamp per més endavant: l'app (encara no existeix; no es posa cap botó de descàrrega fins que n'hi hagi), notes de Booking, Tripadvisor i Google al hero (calen les notes reals),
+  preguntes freqüents, cerca compacta a la capçalera en baixar i carrusel de fotos a les targetes.
 
 ### Fase 6 — Pàgines interiors i llançament
 - Fitxa de cada allotjament, restaurant i servei; pàgines legals; treballa amb nosaltres.

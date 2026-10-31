@@ -45,7 +45,9 @@
     "seeAll": "Ver todos los alojamientos ({count})",
     "backHome": "Volver al inicio",
     "from": "desde",
-    "perNight": "/noche"
+    "perNight": "/noche",
+    "readMore": "Leer más",
+    "readLess": "Leer menos"
   },
   "gastronomy": {
     "eyebrow": "Comer y beber",
@@ -152,7 +154,19 @@
     "adults": "Adultos",
     "children": "Niños",
     "search": "Buscar disponibilidad",
-    "invalid": "La salida tiene que ser después de la entrada."
+    "guests": "Personas",
+    "addDate": "Añadir fecha",
+    "adultsCount": "{count, plural, one {# adulto} other {# adultos}}",
+    "childrenCount": "{count, plural, one {# niño} other {# niños}}",
+    "nights": "{count, plural, one {# noche} other {# noches}}",
+    "chooseCheckIn": "Elige el día de entrada",
+    "chooseCheckOut": "Ahora, el de salida",
+    "clear": "Borrar",
+    "done": "Hecho",
+    "previousMonth": "Mes anterior",
+    "nextMonth": "Mes siguiente",
+    "less": "Quitar: {label}",
+    "more": "Añadir: {label}"
   },
   "gallery": {
     "eyebrow": "Imágenes",
@@ -161,5 +175,33 @@
     "previous": "Anterior",
     "next": "Siguiente",
     "counter": "{index} / {total}"
+  },
+  "directions": {
+    "eyebrow": "Dónde estamos",
+    "title": "Cómo llegar",
+    "route": "Ver la ruta",
+    "email": "Escríbenos",
+    "showMap": "Ver el mapa",
+    "mapTitle": "Mapa de la situación del camping"
+  },
+  "trip": {
+    "eyebrow": "Planifica tu escapada",
+    "title": "Tu viaje, con la IA",
+    "body": "Elige los días y el tipo de viaje, y llévate este texto a tu asistente de IA favorito. En segundos tendrás un plan a tu medida.",
+    "duration": "Duración",
+    "fewer": "Una noche menos",
+    "more": "Una noche más",
+    "nights": "{count, plural, one {# noche} other {# noches}}",
+    "type": "Tipo de viaje",
+    "types": {
+      "family": "En familia",
+      "adventure": "Aventura",
+      "romantic": "Romántico",
+      "culture": "Cultural"
+    },
+    "openIn": "Abrir en",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "prompt": "Voy a pasar {nights, plural, one {# noche} other {# noches}} en {camping} ({place}) y quiero un viaje de tipo «{type}». Mira su web, {url}, y prepárame un plan día a día (mañana, tarde y noche) con qué disfrutar en el camping, lugares con encanto y dónde comer cerca, y un consejo de los que no salen en las guías. Ve al grano, con listas cortas."
   }
 }

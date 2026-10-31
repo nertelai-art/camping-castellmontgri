@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useId, useMemo, useRef, useState } from "react";
 import { RichText } from "@/components/rich-text";
 import { bookingLink } from "@/lib/booking/link";
+import { equipmentOnly } from "@/lib/content/equipment";
 import { ShowOnMapButton } from "./show-on-map-button";
 import type { Accommodation, AccommodationCategory, MapTarget } from "@/lib/supabase/content";
 
@@ -27,6 +28,8 @@ type Props = {
 
 /** Quants allotjaments es veuen al mòbil a la portada. */
 const MOBILE_PREVIEW = 4;
+/** A partir de quants caràcters la descripció de la fitxa surt plegada. */
+const COLLAPSED_LENGTH = 320;
 
 /**
  * On porta «Veure al mapa»: al punt de l'allotjament si en té (les parcel·les). Dels bungalows, mobile homes,
@@ -92,8 +95,6 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
           ))}
         </fieldset>
       </div>
-
-      {current?.description && <RichText text={current.description} className="mt-6 max-w-3xl text-muted [&_strong]:text-ink" />}
 
       {/* Llista */}
       <div id={`${tabsId}-panel`} role="tabpanel" aria-labelledby={`${tabsId}-${category}`} className="mt-8">
@@ -216,13 +217,14 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
             <div className="grid gap-8 px-5 py-8 sm:px-8 md:grid-cols-[1.4fr_1fr]">
               <div>
                 <Specs a={open} large />
-                <RichText text={open.description} className="mt-6 grid gap-4 leading-relaxed text-muted [&_strong]:text-ink" />
+                {/* `key`: en canviar de fitxa, el text torna a sortir plegat. */}
+                <Description key={open.slug} text={open.description} />
               </div>
-              {open.features.length > 0 && (
+              {equipmentOnly(open.features).length > 0 && (
                 <div className="rounded-3xl bg-card p-6">
                   <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-terra">{t("equipment")}</h4>
                   <ul className="mt-4 grid gap-2 text-sm">
-                    {open.features.map((f) => (
+                    {equipmentOnly(open.features).map((f) => (
                       <li key={f} className="flex gap-2">
                         <span aria-hidden="true" className="mt-2 size-1.5 shrink-0 rounded-full bg-olive" />
                         {f}
@@ -259,6 +261,25 @@ const SPEC_ICON = {
   airConditioning: "M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5",
   accessible: "M11 5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M11 8v6h5l2.5 5M11 10.5h4M8 12.2A5 5 0 1 0 14.5 19",
 } as const;
+
+/** El text sencer és llarg: es veu el començament i «Llegir més» desplega la resta. */
+function Description({ text }: { text: string | null }) {
+  const t = useTranslations("accommodation");
+  const [expanded, setExpanded] = useState(false);
+  if (!text) return null;
+  const long = text.length > COLLAPSED_LENGTH;
+  return (
+    <div className="mt-6">
+      {/* `line-clamp` i `grid` es trepitgen (tots dos posen `display`): plegat, només el primer. */}
+      <RichText text={text} className={`leading-relaxed text-muted [&_strong]:text-ink ${long && !expanded ? "line-clamp-4" : "grid gap-4"}`} />
+      {long && (
+        <button type="button" onClick={() => setExpanded(!expanded)} aria-expanded={expanded} className="mt-3 font-bold text-olive underline underline-offset-4">
+          {expanded ? t("readLess") : t("readMore")}
+        </button>
+      )}
+    </div>
+  );
+}
 
 /** «des de 31 €/nit». Sense preu no s'ensenya res: un preu inventat seria pitjor que cap. */
 function Price({ value }: { value: number | null }) {

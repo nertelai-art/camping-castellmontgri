@@ -45,7 +45,9 @@
     "seeAll": "Alle accommodaties bekijken ({count})",
     "backHome": "Terug naar home",
     "from": "vanaf",
-    "perNight": "/nacht"
+    "perNight": "/nacht",
+    "readMore": "Lees meer",
+    "readLess": "Lees minder"
   },
   "gastronomy": {
     "eyebrow": "Eten en drinken",
@@ -152,7 +154,19 @@
     "adults": "Volwassenen",
     "children": "Kinderen",
     "search": "Beschikbaarheid zoeken",
-    "invalid": "Vertrek moet na aankomst zijn."
+    "guests": "Personen",
+    "addDate": "Datum kiezen",
+    "adultsCount": "{count, plural, one {# volwassene} other {# volwassenen}}",
+    "childrenCount": "{count, plural, one {# kind} other {# kinderen}}",
+    "nights": "{count, plural, one {# nacht} other {# nachten}}",
+    "chooseCheckIn": "Kies je aankomstdag",
+    "chooseCheckOut": "Nu je vertrekdag",
+    "clear": "Wissen",
+    "done": "Klaar",
+    "previousMonth": "Vorige maand",
+    "nextMonth": "Volgende maand",
+    "less": "Minder: {label}",
+    "more": "Meer: {label}"
   },
   "gallery": {
     "eyebrow": "Foto's",
@@ -161,5 +175,33 @@
     "previous": "Vorige",
     "next": "Volgende",
     "counter": "{index} / {total}"
+  },
+  "directions": {
+    "eyebrow": "Waar we zijn",
+    "title": "Zo kom je hier",
+    "route": "Bekijk de route",
+    "email": "Schrijf ons",
+    "showMap": "Toon de kaart",
+    "mapTitle": "Kaart met de ligging van de camping"
+  },
+  "trip": {
+    "eyebrow": "Plan je uitje",
+    "title": "Jouw reis, met AI",
+    "body": "Kies de duur en het soort reis, en neem deze tekst mee naar je favoriete AI-assistent. Binnen enkele seconden heb je een plan op maat.",
+    "duration": "Duur",
+    "fewer": "Een nacht minder",
+    "more": "Een nacht meer",
+    "nights": "{count, plural, one {# nacht} other {# nachten}}",
+    "type": "Soort reis",
+    "types": {
+      "family": "Met het gezin",
+      "adventure": "Avontuur",
+      "romantic": "Romantisch",
+      "culture": "Cultuur"
+    },
+    "openIn": "Openen in",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd!",
+    "prompt": "Ik verblijf {nights, plural, one {# nacht} other {# nachten}} op {camping} ({place}) en wil een reis van het type “{type}”. Bekijk hun website, {url}, en maak een plan per dag (ochtend, middag en avond) met wat er op de camping te beleven is, leuke plekken en waar je in de buurt kunt eten, en een tip die niet in de reisgidsen staat. Kom meteen ter zake, met korte lijstjes."
   }
 }

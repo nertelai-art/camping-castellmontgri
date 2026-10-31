@@ -6,7 +6,9 @@ import { Entertainment } from "@/components/site/entertainment";
 import { Gastronomy } from "@/components/site/gastronomy";
 import { Hero } from "@/components/site/hero";
 import { ImageGallery } from "@/components/site/image-gallery";
+import { Directions } from "@/components/site/directions";
 import { CampgroundJsonLd } from "@/components/site/json-ld";
+import { TripPlanner } from "@/components/site/trip-planner";
 import type { Place } from "@/components/site/map-explorer";
 import { MapSection } from "@/components/site/map-section";
 import { Pools } from "@/components/site/pools";
@@ -96,19 +98,17 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         )}
 
         {sections.accommodation && (
-          <section data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
-            <div id="accommodation" className="grid gap-8 lg:grid-cols-2 lg:items-end">
+          <section data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+            {/* Només una frase: el text llarg d'aquesta secció és el mateix que el dels mobile homes, i la gent ve a triar. */}
+            <div id="accommodation">
               <SectionHeading
                 id="accommodation-title"
                 index={next()}
                 eyebrow={t("eyebrow")}
                 title={sections.accommodation.title}
-                body={sections.accommodation.body}
                 highlight={sections.accommodation.highlight}
+                body={sections.accommodation.highlight ? null : sections.accommodation.body}
               />
-              {sections["accommodation-intro"]?.body && (
-                <p className="reveal max-w-xl text-muted lg:justify-self-end">{sections["accommodation-intro"].body.split("\n\n")[0]}</p>
-              )}
             </div>
             <AccommodationExplorer
               categories={categories}
@@ -136,6 +136,8 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         {sections.services && <ServicesGrid section={sections.services} services={otherServices} onMap={onMap} index={next()} />}
         {sections.entertainment && <Entertainment section={sections.entertainment} activities={activities} index={next()} />}
         {sections.surroundings && <Surroundings section={sections.surroundings} photos={surroundingsPhotos} index={next()} />}
+        <Directions settings={settings} photo={sections.surroundings?.media ?? null} index={next()} />
+        <TripPlanner camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} index={next()} />
         <Testimonials testimonials={testimonials} index={next()} />
       </main>
       <SiteFooter settings={settings} accreditations={accreditations} locale={locale} />

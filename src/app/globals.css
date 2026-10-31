@@ -145,6 +145,187 @@ body {
   }
 }
 
+/* Els panells de la cerca de reserva: pugen de baix al mòbil i cauen una mica a l'escriptori. */
+@keyframes booking-sheet {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes booking-drop {
+  from {
+    opacity: 0;
+    translate: 0 -0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .booking-panel {
+    animation: booking-sheet 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @media (min-width: 1024px) {
+    .booking-panel {
+      animation: booking-drop 180ms ease-out;
+    }
+  }
+}
+
+/* ─── Benvinguda ─────────────────────────────────────────────────────────────
+ * Per defecte, un mosaic normal: text, fotos en graella i la foto gran amb les xifres.
+ * Amb JS, moviment permès i prou alçada, escena fixada: WelcomeStage posa el progrés a --p (de 0 a 1) i tot surt d'aquí,
+ * només amb transform, opacity i clip-path. Si es canvia la condició, s'ha de canviar també a welcome-stage.tsx.
+ */
+.welcome-intro {
+  margin-inline: auto;
+  max-width: 44rem;
+  padding: 5rem 1.25rem 2.5rem;
+  text-align: center;
+}
+
+.welcome-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding-inline: 0.75rem;
+}
+
+.welcome-tile {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: var(--paper-2);
+}
+
+@media (min-width: 1024px) {
+  .welcome-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.welcome-main {
+  position: relative;
+  margin: 0.75rem 0.75rem 5rem;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: var(--band-olive);
+}
+
+.welcome-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.welcome-facts {
+  position: relative;
+  padding: 10rem 1.5rem 2.5rem;
+  background: linear-gradient(180deg, rgb(22 27 13 / 0) 0%, rgb(22 27 13 / 0.72) 55%, rgb(22 27 13 / 0.86) 100%);
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) and (min-height: 560px) {
+  .welcome {
+    --p: 0;
+    /* El tram de cada cosa dins del recorregut. --open va suavitzat. */
+    --fade: clamp(0, calc((var(--p) - 0.05) / 0.2), 1);
+    --raw: clamp(0, calc((var(--p) - 0.08) / 0.47), 1);
+    --open: calc(var(--raw) * var(--raw) * (3 - 2 * var(--raw)));
+    --facts: clamp(0, calc((var(--p) - 0.58) / 0.14), 1);
+    height: 300svh;
+  }
+
+  .welcome-stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: clip;
+  }
+
+  .welcome-intro {
+    position: absolute;
+    z-index: 2;
+    inset-inline: 0;
+    top: 21%;
+    padding-block: 0;
+    max-width: min(40rem, 42vw);
+    opacity: calc(1 - var(--fade));
+    transform: translateY(calc(var(--fade) * -3rem));
+  }
+
+  .welcome-tiles {
+    display: contents;
+  }
+
+  .welcome-tile {
+    position: absolute;
+    z-index: 1;
+    aspect-ratio: auto;
+    box-shadow: 0 24px 48px -24px rgb(35 42 20 / 0.55);
+    /* Cada foto marxa cap al seu costat, més o menys de pressa segons --dx i --dy. */
+    transform: translate(calc(var(--dx) * var(--open)), calc(var(--dy) * var(--open))) scale(calc(1 + 0.12 * var(--open)));
+  }
+
+  .welcome-tile[data-slot="1"] { left: 3%; top: 15%; width: 18vw; height: 34%; --dx: -28vw; --dy: -10vh; }
+  .welcome-tile[data-slot="2"] { left: 7%; top: 54%; width: 21vw; height: 31%; --dx: -36vw; --dy: 22vh; }
+  .welcome-tile[data-slot="3"] { right: 3%; top: 13%; width: 21vw; height: 28%; --dx: 36vw; --dy: -18vh; }
+  .welcome-tile[data-slot="4"] { right: 6%; top: 45%; width: 18vw; height: 38%; --dx: 28vw; --dy: 18vh; }
+  .welcome-tile[data-slot="5"] { left: 23%; top: 73%; width: 11vw; height: 19%; --dx: -22vw; --dy: 36vh; }
+  .welcome-tile[data-slot="6"] { right: 26%; top: 76%; width: 9vw; height: 16%; --dx: 22vw; --dy: 36vh; }
+
+  /* La foto gran ocupa tota l'escena des del principi: el que s'obre és el retall. Així no es reescala mai. */
+  .welcome-main {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+    margin: 0;
+    border-radius: 0;
+    background: none;
+    --hide-x: calc((1 - var(--open)) * 38%);
+    clip-path: inset(calc((1 - var(--open)) * 72%) var(--hide-x) calc((1 - var(--open)) * 7%) var(--hide-x) round calc((1 - var(--open)) * 1.5rem));
+  }
+
+  /* I la foto es va apropant des de lluny: a l'inici es veu sencera dins del retall, no un tros d'aigua. */
+  .welcome-photo {
+    --start: 0.3;
+    transform-origin: 50% 90%;
+    transform: scale(calc(var(--start) + (1 - var(--start)) * var(--open)));
+  }
+
+  .welcome-facts {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 10rem 1.5rem 3.5rem;
+    opacity: var(--facts);
+    transform: translateY(calc((1 - var(--facts)) * 3rem));
+  }
+
+  /* Al mòbil no hi ha costats: el text al mig, dues fotos a dalt i dues a baix, que surten en vertical. */
+  @media (max-width: 1023px) {
+    .welcome-intro {
+      top: 29%;
+      max-width: none;
+    }
+
+    .welcome-tile[data-slot="1"] { left: 4%; top: 10%; width: 44vw; height: 15%; --dx: -20vw; --dy: -30vh; }
+    .welcome-tile[data-slot="3"] { left: auto; right: 4%; top: 10%; width: 44vw; height: 15%; --dx: 20vw; --dy: -30vh; }
+    .welcome-tile[data-slot="2"] { left: 4%; top: 75%; width: 28vw; height: 19%; --dx: -32vw; --dy: 28vh; }
+    .welcome-tile[data-slot="4"] { left: auto; right: 4%; top: 75%; width: 28vw; height: 19%; --dx: 32vw; --dy: 28vh; }
+    .welcome-tile[data-slot="5"],
+    .welcome-tile[data-slot="6"] {
+      display: none;
+    }
+
+    .welcome-main {
+      --hide-x: calc((1 - var(--open)) * 34%);
+      clip-path: inset(calc((1 - var(--open)) * 75%) var(--hide-x) calc((1 - var(--open)) * 6%) var(--hide-x) round calc((1 - var(--open)) * 1.25rem));
+    }
+
+    .welcome-photo {
+      --start: 0.4;
+    }
+  }
+}
+
 /* Seccions sota el plec: el navegador no en calcula l'estil ni les pinta fins que s'hi acosta.
    L'alçada aproximada evita que la barra de scroll salti. */
 .cv {

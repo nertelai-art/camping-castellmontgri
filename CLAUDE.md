@@ -173,7 +173,13 @@ client es pugen a Supabase Storage amb el script de seed.
 - El motor és WitBooking (`engine.witbooking.com/{idioma}/property/castellmontgri`), i tot el que se'n sap és a `src/lib/booking/link.ts`:
   `datein` i `dateout` en DD-MM-AAAA, `adults` i `ninos`. En un altre format ignora les dates sense dir res. Els paràmetres es van treure del
   codi del motor, no d'una documentació: si canvien, la barra continua obrint el motor, però sense la cerca.
-- `BookingBar` (al hero) és l'única cerca. Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
+- `BookingBar` (al hero) és l'única cerca, amb selectors propis: calendari de dos mesos (`BookingCalendar`, lògica a `src/lib/booking/calendar.ts`, amb proves) i comptadors de persones.
+  A l'escriptori són desplegables sota la barra; al mòbil, una làmina (`position: fixed`: per això el contenidor no porta `.rise`, un `transform` la descol·locaria). Sense JS, el botó porta al motor igualment.
+- Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
+
+- **Com arribar-hi** (`directions.tsx`): surt de les dades generals. El mapa d'OpenStreetMap només es carrega si es demana.
+- **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
+  Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre.
 
 ## Disseny
 
@@ -200,6 +206,9 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
   Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
   mensual de Hugging Face es va acabar a la desena imatge.
+- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): escena fixada de 300svh. `WelcomeStage` només posa el progrés del scroll a `--p` i fa comptar les xifres; la coreografia és CSS
+  (`transform`, `opacity`, `clip-path`). La primera foto de la galeria de la secció és la que s'obre; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
+  Sense JS, amb moviment reduït o amb menys de 560 px d'alçada és un mosaic normal: la condició és a `globals.css` i a `welcome-stage.tsx`, i han de coincidir.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):

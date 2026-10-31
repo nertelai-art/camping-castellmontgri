@@ -45,7 +45,9 @@
     "seeAll": "See all accommodation ({count})",
     "backHome": "Back to home",
     "from": "from",
-    "perNight": "/night"
+    "perNight": "/night",
+    "readMore": "Read more",
+    "readLess": "Read less"
   },
   "gastronomy": {
     "eyebrow": "Eat and drink",
@@ -152,7 +154,19 @@
     "adults": "Adults",
     "children": "Children",
     "search": "Search availability",
-    "invalid": "Check-out must be after check-in."
+    "guests": "Guests",
+    "addDate": "Add date",
+    "adultsCount": "{count, plural, one {# adult} other {# adults}}",
+    "childrenCount": "{count, plural, one {# child} other {# children}}",
+    "nights": "{count, plural, one {# night} other {# nights}}",
+    "chooseCheckIn": "Choose your arrival day",
+    "chooseCheckOut": "Now your departure day",
+    "clear": "Clear",
+    "done": "Done",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "less": "Remove: {label}",
+    "more": "Add: {label}"
   },
   "gallery": {
     "eyebrow": "Photos",
@@ -161,5 +175,33 @@
     "previous": "Previous",
     "next": "Next",
     "counter": "{index} / {total}"
+  },
+  "directions": {
+    "eyebrow": "Where we are",
+    "title": "How to get here",
+    "route": "See the route",
+    "email": "Write to us",
+    "showMap": "Show the map",
+    "mapTitle": "Map of the campsite’s location"
+  },
+  "trip": {
+    "eyebrow": "Plan your getaway",
+    "title": "Your trip, with AI",
+    "body": "Choose the length and type of trip, and take this text to your favourite AI assistant. In seconds you’ll have a plan made for you.",
+    "duration": "Length",
+    "fewer": "One night fewer",
+    "more": "One night more",
+    "nights": "{count, plural, one {# night} other {# nights}}",
+    "type": "Type of trip",
+    "types": {
+      "family": "Family",
+      "adventure": "Adventure",
+      "romantic": "Romantic",
+      "culture": "Cultural"
+    },
+    "openIn": "Open in",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "prompt": "I’m spending {nights, plural, one {# night} other {# nights}} at {camping} ({place}) and I want a “{type}” trip. Check their website, {url}, and make me a day-by-day plan (morning, afternoon and evening) with what to enjoy at the campsite, charming places and where to eat nearby, and one tip you won’t find in the guidebooks. Get to the point, with short lists."
   }
 }
