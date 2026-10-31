@@ -186,7 +186,7 @@ client es pugen a Supabase Storage amb el script de seed.
 ## Pàgines
 
 - La portada és curta, com holacamp.net. Instal·lacions (amb piscines i tobogans), animació (amb el programa setmanal), gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/services`, `entertainment`, `gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`).
-  A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`), i la galeria, cinc fotos (`gallery-preview.tsx`). El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
+  A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`); a la galeria només s'hi arriba pel menú. El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
 - `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 

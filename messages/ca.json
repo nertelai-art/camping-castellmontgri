@@ -172,7 +172,6 @@
   },
   "gallery": {
     "eyebrow": "Imatges",
-    "all": "Totes les imatges ({count})",
     "open": "Obre la foto {index}",
     "previous": "Anterior",
     "next": "Següent",

@@ -172,7 +172,6 @@
   },
   "gallery": {
     "eyebrow": "Images",
-    "all": "Toutes les images ({count})",
     "open": "Ouvrir la photo {index}",
     "previous": "Précédente",
     "next": "Suivante",

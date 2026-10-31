@@ -6,7 +6,6 @@ import { AnchorSettle } from "@/components/site/anchor-settle";
 import { Hero } from "@/components/site/hero";
 import { Directions } from "@/components/site/directions";
 import { Explore } from "@/components/site/explore";
-import { GalleryPreview } from "@/components/site/gallery-preview";
 import { CampgroundJsonLd } from "@/components/site/json-ld";
 import { TripPlanner } from "@/components/site/trip-planner";
 import type { Place } from "@/components/site/map-explorer";
@@ -120,10 +119,9 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         )}
 
         <Explore index={next()} items={explore} />
-        {sections.gallery && <GalleryPreview section={sections.gallery} index={next()} />}
 
         {sections["map"] && <MapSection section={sections["map"]} points={mapPoints} places={places} index={next()} />}
-        <Directions settings={settings} photo={sections.surroundings?.media ?? null} index={next()} />
+        <Directions settings={settings} index={next()} />
         <TripPlanner camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} index={next()} />
         <Testimonials testimonials={testimonials} index={next()} />
       </main>

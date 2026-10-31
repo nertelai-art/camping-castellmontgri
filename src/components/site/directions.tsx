@@ -2,9 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { MediaImage } from "@/components/media-image";
 import type { SiteSettings } from "@/lib/supabase/content";
-import type { MediaRef } from "@/lib/supabase/media";
 
 // Com es va a Google Maps (`travelmode`), amb la seva icona (traç de 24 px).
 const MODES = [
@@ -15,11 +13,11 @@ const MODES = [
 ] as const;
 
 /**
- * Com arribar-hi: la foto a tota l'amplada i, a sobre, el formulari de la ruta i el mapa. La ruta és un formulari normal cap a Google Maps: va sense JS i no passa per
+ * Com arribar-hi: el formulari de la ruta i el mapa, un al costat de l'altre. La ruta és un formulari normal cap a Google Maps: va sense JS i no passa per
  * cap servidor nostre. El mapa és d'OpenStreetMap, es carrega en acostar-s'hi i no agafa el ratolí fins que s'hi clica: si no, en passar-hi per sobre, la roda faria zoom
  * en lloc de baixar la pàgina.
  */
-export function Directions({ settings, photo, index }: { settings: SiteSettings; photo: MediaRef | null; index: number }) {
+export function Directions({ settings, index }: { settings: SiteSettings; index: number }) {
   const t = useTranslations("directions");
   const [mapActive, setMapActive] = useState(false);
   const { address, geo, phone, emails } = settings;
@@ -30,12 +28,10 @@ export function Directions({ settings, photo, index }: { settings: SiteSettings;
     : null;
 
   return (
-    <section aria-labelledby="directions-title" className="cv px-3 pb-24 sm:px-4 lg:pb-32">
-      <div id="directions" className="relative isolate flex flex-col justify-end overflow-hidden rounded-[2rem] bg-band-sea p-3 pt-40 sm:p-5 sm:pt-56 lg:min-h-[88svh] lg:rounded-[2.5rem] lg:p-8">
-        {photo && <MediaImage media={photo} alt="" fill sizes="100vw" className="-z-10 object-cover" />}
-
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] lg:gap-5">
-          <div className="reveal rounded-[1.75rem] bg-card p-6 text-ink shadow-[0_30px_70px_-20px_rgb(0_0_0/.55)] sm:p-8">
+    <section aria-labelledby="directions-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+      <div id="directions">
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] lg:gap-5">
+          <div className="reveal rounded-[1.75rem] border border-line bg-card p-6 text-ink sm:p-8">
             <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-terra">
               <span className="font-display text-sm normal-case tracking-normal">{String(index).padStart(2, "0")}</span>
               <span aria-hidden="true" className="h-px w-8 bg-terra/60" />
@@ -92,7 +88,7 @@ export function Directions({ settings, photo, index }: { settings: SiteSettings;
           </div>
 
           {mapSrc && (
-            <div className="reveal relative min-h-[22rem] overflow-hidden rounded-[1.75rem] bg-paper-2 shadow-[0_30px_70px_-20px_rgb(0_0_0/.55)]">
+            <div className="reveal relative min-h-[22rem] overflow-hidden rounded-[1.75rem] border border-line bg-paper-2">
               <iframe src={mapSrc} title={t("mapTitle")} loading="lazy" className="absolute inset-0 size-full border-0" />
               {!mapActive && (
                 <button type="button" onClick={() => setMapActive(true)} className="group absolute inset-0 flex items-end justify-center p-4">
