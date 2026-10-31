@@ -47,7 +47,9 @@
     "from": "à partir de",
     "perNight": "/nuit",
     "readMore": "Lire la suite",
-    "readLess": "Réduire"
+    "readLess": "Réduire",
+    "previousPhoto": "Photo précédente",
+    "nextPhoto": "Photo suivante"
   },
   "gastronomy": {
     "eyebrow": "Manger et boire",
@@ -182,7 +184,17 @@
     "route": "Voir l’itinéraire",
     "email": "Écrivez-nous",
     "showMap": "Afficher la carte",
-    "mapTitle": "Carte de l’emplacement du camping"
+    "mapTitle": "Carte de l’emplacement du camping",
+    "mode": "Comment vous venez",
+    "modes": {
+      "car": "Voiture",
+      "transit": "Transports",
+      "bike": "Vélo",
+      "walk": "À pied"
+    },
+    "from": "D’où venez-vous ?",
+    "fromPlaceholder": "Votre ville ou adresse",
+    "hideMap": "Afficher la photo"
   },
   "trip": {
     "eyebrow": "Préparez votre séjour",
@@ -191,7 +203,6 @@
     "duration": "Durée",
     "fewer": "Une nuit de moins",
     "more": "Une nuit de plus",
-    "nights": "{count, plural, one {# nuit} other {# nuits}}",
     "type": "Type de voyage",
     "types": {
       "family": "En famille",
@@ -199,9 +210,12 @@
       "romantic": "Romantique",
       "culture": "Culturel"
     },
-    "openIn": "Ouvrir dans",
+    "openIn": "Ouvrir dans {name}",
     "copy": "Copier",
     "copied": "Copié !",
-    "prompt": "Je vais passer {nights, plural, one {# nuit} other {# nuits}} à {camping} ({place}) et je veux un voyage de type « {type} ». Consulte leur site, {url}, et prépare-moi un programme jour par jour (matin, après-midi et soir) : quoi faire au camping, les endroits qui ont du charme et où manger à proximité, et un conseil qu’on ne trouve pas dans les guides. Va droit au but, avec des listes courtes."
+    "prompt": "Je vais passer {nights, plural, one {# nuit} other {# nuits}} à {camping} ({place}) et je veux un voyage de type « {type} ». Consulte leur site, {url}, et prépare-moi un programme jour par jour (matin, après-midi et soir) : quoi faire au camping, les endroits qui ont du charme et où manger à proximité, et un conseil qu’on ne trouve pas dans les guides. Va droit au but, avec des listes courtes.",
+    "greeting": "Que prévoit-on ?",
+    "chooseAssistant": "Choisissez votre assistant",
+    "nightsLabel": "{count, plural, one {nuit} other {nuits}}"
   }
 }

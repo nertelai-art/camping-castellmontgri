@@ -100,7 +100,7 @@ export function BookingCalendar({ range, today, onPick }: Props) {
                         onPick(day);
                       }}
                       onMouseEnter={() => setHover(day)}
-                      className={`mx-auto grid aspect-square w-full max-w-11 place-items-center rounded-full text-sm font-bold tabular-nums transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-terra ${
+                      className={`mx-auto grid aspect-square w-full max-w-11 place-items-center lg:max-w-9 rounded-full text-sm font-bold tabular-nums transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-terra ${
                         isEdge ? "bg-band-olive text-on-dark" : past ? "text-muted/40 line-through" : "text-ink hover:bg-olive/15"
                       } ${day === today && !isEdge ? "ring-1 ring-inset ring-olive/50" : ""}`}
                     >

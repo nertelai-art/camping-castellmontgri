@@ -47,7 +47,9 @@
     "from": "desde",
     "perNight": "/noche",
     "readMore": "Leer más",
-    "readLess": "Leer menos"
+    "readLess": "Leer menos",
+    "previousPhoto": "Foto anterior",
+    "nextPhoto": "Foto siguiente"
   },
   "gastronomy": {
     "eyebrow": "Comer y beber",
@@ -182,7 +184,17 @@
     "route": "Ver la ruta",
     "email": "Escríbenos",
     "showMap": "Ver el mapa",
-    "mapTitle": "Mapa de la situación del camping"
+    "mapTitle": "Mapa de la situación del camping",
+    "mode": "Cómo vienes",
+    "modes": {
+      "car": "Coche",
+      "transit": "Transporte",
+      "bike": "Bici",
+      "walk": "A pie"
+    },
+    "from": "¿Desde dónde vienes?",
+    "fromPlaceholder": "Tu ciudad o dirección",
+    "hideMap": "Ver la foto"
   },
   "trip": {
     "eyebrow": "Planifica tu escapada",
@@ -191,7 +203,6 @@
     "duration": "Duración",
     "fewer": "Una noche menos",
     "more": "Una noche más",
-    "nights": "{count, plural, one {# noche} other {# noches}}",
     "type": "Tipo de viaje",
     "types": {
       "family": "En familia",
@@ -199,9 +210,12 @@
       "romantic": "Romántico",
       "culture": "Cultural"
     },
-    "openIn": "Abrir en",
+    "openIn": "Abrir en {name}",
     "copy": "Copiar",
     "copied": "¡Copiado!",
-    "prompt": "Voy a pasar {nights, plural, one {# noche} other {# noches}} en {camping} ({place}) y quiero un viaje de tipo «{type}». Mira su web, {url}, y prepárame un plan día a día (mañana, tarde y noche) con qué disfrutar en el camping, lugares con encanto y dónde comer cerca, y un consejo de los que no salen en las guías. Ve al grano, con listas cortas."
+    "prompt": "Voy a pasar {nights, plural, one {# noche} other {# noches}} en {camping} ({place}) y quiero un viaje de tipo «{type}». Mira su web, {url}, y prepárame un plan día a día (mañana, tarde y noche) con qué disfrutar en el camping, lugares con encanto y dónde comer cerca, y un consejo de los que no salen en las guías. Ve al grano, con listas cortas.",
+    "greeting": "¿Qué planificamos?",
+    "chooseAssistant": "Elige tu asistente",
+    "nightsLabel": "{count, plural, one {noche} other {noches}}"
   }
 }

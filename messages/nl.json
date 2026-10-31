@@ -47,7 +47,9 @@
     "from": "vanaf",
     "perNight": "/nacht",
     "readMore": "Lees meer",
-    "readLess": "Lees minder"
+    "readLess": "Lees minder",
+    "previousPhoto": "Vorige foto",
+    "nextPhoto": "Volgende foto"
   },
   "gastronomy": {
     "eyebrow": "Eten en drinken",
@@ -182,7 +184,17 @@
     "route": "Bekijk de route",
     "email": "Schrijf ons",
     "showMap": "Toon de kaart",
-    "mapTitle": "Kaart met de ligging van de camping"
+    "mapTitle": "Kaart met de ligging van de camping",
+    "mode": "Hoe je komt",
+    "modes": {
+      "car": "Auto",
+      "transit": "Openbaar",
+      "bike": "Fiets",
+      "walk": "Te voet"
+    },
+    "from": "Waar kom je vandaan?",
+    "fromPlaceholder": "Je stad of adres",
+    "hideMap": "Toon de foto"
   },
   "trip": {
     "eyebrow": "Plan je uitje",
@@ -191,7 +203,6 @@
     "duration": "Duur",
     "fewer": "Een nacht minder",
     "more": "Een nacht meer",
-    "nights": "{count, plural, one {# nacht} other {# nachten}}",
     "type": "Soort reis",
     "types": {
       "family": "Met het gezin",
@@ -199,9 +210,12 @@
       "romantic": "Romantisch",
       "culture": "Cultuur"
     },
-    "openIn": "Openen in",
+    "openIn": "Openen in {name}",
     "copy": "Kopiëren",
     "copied": "Gekopieerd!",
-    "prompt": "Ik verblijf {nights, plural, one {# nacht} other {# nachten}} op {camping} ({place}) en wil een reis van het type “{type}”. Bekijk hun website, {url}, en maak een plan per dag (ochtend, middag en avond) met wat er op de camping te beleven is, leuke plekken en waar je in de buurt kunt eten, en een tip die niet in de reisgidsen staat. Kom meteen ter zake, met korte lijstjes."
+    "prompt": "Ik verblijf {nights, plural, one {# nacht} other {# nachten}} op {camping} ({place}) en wil een reis van het type “{type}”. Bekijk hun website, {url}, en maak een plan per dag (ochtend, middag en avond) met wat er op de camping te beleven is, leuke plekken en waar je in de buurt kunt eten, en een tip die niet in de reisgidsen staat. Kom meteen ter zake, met korte lijstjes.",
+    "greeting": "Wat gaan we plannen?",
+    "chooseAssistant": "Kies je assistent",
+    "nightsLabel": "{count, plural, one {nacht} other {nachten}}"
   }
 }

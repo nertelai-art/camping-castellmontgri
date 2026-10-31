@@ -13,7 +13,7 @@ export async function Hero({ section, settings }: { section: Section; settings: 
   return (
     // z-20: els panells de la cerca surten per sobre de la secció següent.
     <section data-edit="sections:hero" aria-labelledby="hero-title" className="relative z-20 px-3 pt-3 sm:px-4 sm:pt-4">
-      <div className="relative isolate flex min-h-[calc(100svh-6.5rem)] flex-col items-center justify-center rounded-[2rem] bg-band-olive text-center text-on-dark lg:rounded-[2.5rem]">
+      <div data-hero className="relative isolate flex min-h-[calc(100svh-6.5rem)] flex-col items-center justify-center rounded-[2rem] bg-band-olive text-center text-on-dark lg:rounded-[2.5rem]">
         {/* El retall va només a la foto: si anés al contenidor, tallaria els panells de la cerca. */}
         <div className="absolute inset-0 -z-10 overflow-hidden rounded-[inherit]">
           {section.media && <MediaImage media={section.media} fill priority fetchPriority="high" sizes="100vw" className="ken-burns object-cover" />}
@@ -21,18 +21,20 @@ export async function Hero({ section, settings }: { section: Section; settings: 
         </div>
 
         <div className="flex w-full flex-col items-center px-4 py-16 sm:px-10">
-          <h1 id="hero-title" data-edit-field="title" className="font-display max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.98]">
-            {words.map((word, i) => (
-              <Fragment key={i}>
-                <span className="rise inline-block" style={{ ["--i" as string]: i }}>
-                  {word}
-                </span>
-                {i < words.length - 1 && " "}
-              </Fragment>
-            ))}
-          </h1>
-          <div className="rise mt-4 max-w-2xl text-lg text-on-dark sm:text-xl" style={{ ["--i" as string]: words.length }}>
-            <RichText field="body" text={section.body} />
+          <div className="hero-copy flex flex-col items-center">
+            <h1 id="hero-title" data-edit-field="title" className="font-display max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.98]">
+              {words.map((word, i) => (
+                <Fragment key={i}>
+                  <span className="rise inline-block" style={{ ["--i" as string]: i }}>
+                    {word}
+                  </span>
+                  {i < words.length - 1 && " "}
+                </Fragment>
+              ))}
+            </h1>
+            <div className="rise mt-4 max-w-2xl text-lg text-on-dark sm:text-xl" style={{ ["--i" as string]: words.length }}>
+              <RichText field="body" text={section.body} />
+            </div>
           </div>
           {/* Sense `.rise`: un `transform` aquí faria que la làmina del mòbil (position: fixed) es col·loqués respecte d'aquest bloc. */}
           {settings.bookingUrl && (
@@ -42,7 +44,7 @@ export async function Hero({ section, settings }: { section: Section; settings: 
           )}
         </div>
 
-        <a href="#welcome" className="group absolute bottom-5 inline-flex items-center gap-2 font-bold text-on-dark max-sm:hidden">
+        <a href="#welcome" className="hero-more group absolute bottom-5 inline-flex items-center gap-2 font-bold text-on-dark transition-opacity max-sm:hidden">
           {t("discover")}
           <span aria-hidden="true" className="transition group-hover:translate-y-1">
             ↓

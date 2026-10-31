@@ -174,12 +174,14 @@ client es pugen a Supabase Storage amb el script de seed.
   `datein` i `dateout` en DD-MM-AAAA, `adults` i `ninos`. En un altre format ignora les dates sense dir res. Els paràmetres es van treure del
   codi del motor, no d'una documentació: si canvien, la barra continua obrint el motor, però sense la cerca.
 - `BookingBar` (al hero) és l'única cerca, amb selectors propis: calendari de dos mesos (`BookingCalendar`, lògica a `src/lib/booking/calendar.ts`, amb proves) i comptadors de persones.
-  A l'escriptori són desplegables sota la barra; al mòbil, una làmina (`position: fixed`: per això el contenidor no porta `.rise`, un `transform` la descol·locaria). Sense JS, el botó porta al motor igualment.
+  A l'escriptori el panell surt cap amunt, dins de la foto i sense moure la pàgina: el text del hero s'aparta i, si no hi cap, la barra baixa (es mesura en obrir, `translate` al formulari).
+  Al mòbil, una làmina (`position: fixed`: per això el contenidor no porta `.rise`, i el `translate` només s'aplica a l'escriptori). Sense JS, el botó porta al motor igualment.
 - Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
 
-- **Com arribar-hi** (`directions.tsx`): surt de les dades generals. El mapa d'OpenStreetMap només es carrega si es demana.
+- **Com arribar-hi** (`directions.tsx`): surt de les dades generals. La ruta és un formulari normal cap a Google Maps (origen i manera d'anar-hi), sense JS ni servidor nostre.
+  El mapa d'OpenStreetMap només es carrega si es demana.
 - **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
-  Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre.
+  Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
 
 ## Disseny
 
@@ -209,6 +211,9 @@ Res de vídeo ni de models externs si es pot modelar per codi.
 - **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): escena fixada de 300svh. `WelcomeStage` només posa el progrés del scroll a `--p` i fa comptar les xifres; la coreografia és CSS
   (`transform`, `opacity`, `clip-path`). La primera foto de la galeria de la secció és la que s'obre; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
   Sense JS, amb moviment reduït o amb menys de 560 px d'alçada és un mosaic normal: la condició és a `globals.css` i a `welcome-stage.tsx`, i han de coincidir.
+  La carena del Montgrí (`MontgriLine`, la del peu) fa de paisatge: el text al cel, les fotos al davant.
+- **De la targeta a la fitxa** (`accommodation-explorer.tsx`, `withViewTransition`): la foto vola de la targeta a la fitxa amb View Transitions i la fitxa es construeix al voltant (`.accommodation-build`).
+  La foto de la targeta i la de la fitxa porten el mateix `view-transition-name`, mai alhora. Sense suport o amb moviment reduït, s'obre i prou. Totes dues fotos són 4:3 perquè el vol no es deformi.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):

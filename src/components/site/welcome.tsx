@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import { RichText } from "@/components/rich-text";
 import type { Section } from "@/lib/supabase/content";
+import { MontgriLine } from "./montgri-line";
 import { WelcomeStage } from "./welcome-stage";
 
 type Facts = { accommodations: number; restaurants: number; services: number; activities: number };
@@ -30,6 +31,11 @@ export async function Welcome({ section, facts }: { section: Section; facts: Fac
             {section.title}
           </h2>
           <RichText field="body" text={section.body} className="mt-5 grid gap-4 text-base leading-relaxed text-muted sm:text-lg [&_strong]:font-bold [&_strong]:text-ink" />
+        </div>
+
+        {/* La muntanya del footer, aquí com a paisatge: el text al cel, les fotos al davant i el castell a sobre de la foto que s'obre. */}
+        <div className="welcome-ridge">
+          <MontgriLine className="block h-full w-full text-olive/70" fillClassName="fill-paper-2" />
         </div>
 
         <ul aria-hidden="true" className="welcome-tiles">

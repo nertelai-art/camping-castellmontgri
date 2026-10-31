@@ -47,7 +47,9 @@
     "from": "from",
     "perNight": "/night",
     "readMore": "Read more",
-    "readLess": "Read less"
+    "readLess": "Read less",
+    "previousPhoto": "Previous photo",
+    "nextPhoto": "Next photo"
   },
   "gastronomy": {
     "eyebrow": "Eat and drink",
@@ -182,7 +184,17 @@
     "route": "See the route",
     "email": "Write to us",
     "showMap": "Show the map",
-    "mapTitle": "Map of the campsite’s location"
+    "mapTitle": "Map of the campsite’s location",
+    "mode": "How you’re coming",
+    "modes": {
+      "car": "Car",
+      "transit": "Transit",
+      "bike": "Bike",
+      "walk": "On foot"
+    },
+    "from": "Where are you coming from?",
+    "fromPlaceholder": "Your city or address",
+    "hideMap": "Show the photo"
   },
   "trip": {
     "eyebrow": "Plan your getaway",
@@ -191,7 +203,6 @@
     "duration": "Length",
     "fewer": "One night fewer",
     "more": "One night more",
-    "nights": "{count, plural, one {# night} other {# nights}}",
     "type": "Type of trip",
     "types": {
       "family": "Family",
@@ -199,9 +210,12 @@
       "romantic": "Romantic",
       "culture": "Cultural"
     },
-    "openIn": "Open in",
+    "openIn": "Open in {name}",
     "copy": "Copy",
     "copied": "Copied!",
-    "prompt": "I’m spending {nights, plural, one {# night} other {# nights}} at {camping} ({place}) and I want a “{type}” trip. Check their website, {url}, and make me a day-by-day plan (morning, afternoon and evening) with what to enjoy at the campsite, charming places and where to eat nearby, and one tip you won’t find in the guidebooks. Get to the point, with short lists."
+    "prompt": "I’m spending {nights, plural, one {# night} other {# nights}} at {camping} ({place}) and I want a “{type}” trip. Check their website, {url}, and make me a day-by-day plan (morning, afternoon and evening) with what to enjoy at the campsite, charming places and where to eat nearby, and one tip you won’t find in the guidebooks. Get to the point, with short lists.",
+    "greeting": "What shall we plan?",
+    "chooseAssistant": "Choose your assistant",
+    "nightsLabel": "{count, plural, one {night} other {nights}}"
   }
 }

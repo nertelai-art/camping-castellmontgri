@@ -155,8 +155,124 @@ body {
 @keyframes booking-drop {
   from {
     opacity: 0;
-    translate: 0 -0.5rem;
+    transform: translateY(0.75rem) scale(0.98);
   }
+}
+
+/* Amb un panell obert, el text del hero s'aparta: el panell surt cap amunt, a sobre seu, i la barra baixa si no hi cap. */
+@media (min-width: 1024px) {
+  .hero-copy {
+    transition: opacity 240ms ease;
+  }
+
+  [data-hero]:has(form[data-open]) .hero-copy,
+  [data-hero]:has(form[data-open]) .hero-more {
+    opacity: 0;
+  }
+
+  .booking-form {
+    transition: translate 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .booking-form {
+    transition: none;
+  }
+}
+
+/* De la targeta a la fitxa: la foto vola d'un lloc a l'altre (View Transitions) i la fitxa es construeix al voltant. */
+::view-transition-group(accommodation-photo) {
+  animation-duration: 480ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(accommodation-photo),
+::view-transition-new(accommodation-photo) {
+  height: 100%;
+  object-fit: cover;
+  overflow: clip;
+}
+
+::view-transition-new(accommodation-sheet) {
+  animation: accommodation-sheet-in 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+::view-transition-old(accommodation-sheet) {
+  animation: accommodation-sheet-out 260ms ease-in both;
+}
+
+@keyframes accommodation-sheet-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(1rem);
+  }
+}
+
+@keyframes accommodation-sheet-out {
+  to {
+    opacity: 0;
+    transform: scale(0.97) translateY(0.75rem);
+  }
+}
+
+@keyframes accommodation-build {
+  from {
+    opacity: 0;
+    transform: translateY(0.875rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accommodation-build {
+    animation: accommodation-build 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(140ms + var(--i, 0) * 55ms);
+  }
+}
+
+/* «El teu viatge»: cada assistent amb l'aspecte de la seva aplicació. Són colors de cada plataforma, no de la marca: per això no són tokens,
+   i no canvien amb el mode fosc. */
+.trip-chat {
+  --chat-bg: #212121;
+  --chat-fg: #ececec;
+  --chat-muted: #b4b4b4;
+  --chat-bubble: #303030;
+  --chat-accent: #ffffff;
+  --chat-accent-fg: #0d0d0d;
+  --chat-line: #3d3d3d;
+  --chat-logo: #ffffff;
+  background: var(--chat-bg);
+  color: var(--chat-fg);
+  transition: background-color 320ms ease, color 320ms ease;
+}
+
+.trip-chat[data-assistant="claude"] {
+  --chat-bg: #f5f4ed;
+  --chat-fg: #141413;
+  --chat-muted: #5e5d59;
+  --chat-bubble: #e8e6dc;
+  --chat-accent: #b5512f;
+  --chat-accent-fg: #ffffff;
+  --chat-line: #dedcd1;
+  --chat-logo: #d97757;
+}
+
+.trip-chat[data-assistant="gemini"] {
+  --chat-bg: #ffffff;
+  --chat-fg: #1f1f1f;
+  --chat-muted: #5f6368;
+  --chat-bubble: #f0f4f9;
+  --chat-accent: #0b57d0;
+  --chat-accent-fg: #ffffff;
+  --chat-line: #dde3ea;
+  --chat-logo: #4285f4;
+}
+
+.trip-chat[data-assistant="gemini"] .trip-greeting {
+  background: linear-gradient(90deg, #4285f4, #9b72cb 55%, #d96570);
+  background-clip: text;
+  color: transparent;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -181,6 +297,11 @@ body {
   max-width: 44rem;
   padding: 5rem 1.25rem 2.5rem;
   text-align: center;
+}
+
+.welcome-ridge {
+  height: 5rem;
+  margin-bottom: 0.75rem;
 }
 
 .welcome-tiles {
@@ -252,6 +373,20 @@ body {
     transform: translateY(calc(var(--fade) * -3rem));
   }
 
+  /* La carena, i sota seu el mateix color fins a baix: la muntanya fa de terra de l'escena. */
+  .welcome-ridge {
+    position: absolute;
+    inset: 53% 0 0;
+    height: auto;
+    margin: 0;
+    background: linear-gradient(var(--paper-2), var(--paper-2)) bottom / 100% calc(100% - 25vh + 1px) no-repeat;
+    transform: translateY(calc(var(--open) * 10vh));
+  }
+
+  .welcome-ridge svg {
+    height: 25vh;
+  }
+
   .welcome-tiles {
     display: contents;
   }
@@ -302,8 +437,17 @@ body {
   /* Al mòbil no hi ha costats: el text al mig, dues fotos a dalt i dues a baix, que surten en vertical. */
   @media (max-width: 1023px) {
     .welcome-intro {
-      top: 29%;
+      top: 27%;
       max-width: none;
+    }
+
+    .welcome-ridge {
+      inset-block-start: 59%;
+      background-size: 100% calc(100% - 16vh + 1px);
+    }
+
+    .welcome-ridge svg {
+      height: 16vh;
     }
 
     .welcome-tile[data-slot="1"] { left: 4%; top: 10%; width: 44vw; height: 15%; --dx: -20vw; --dy: -30vh; }

@@ -4,7 +4,7 @@
 // calendari del navegador). Sense JS els panells no s'obren, però el formulari porta al motor igualment.
 
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { bookingLink } from "@/lib/booking/link";
 import { formatDay, localDay, nightsBetween, pickDay, type Range } from "@/lib/booking/calendar";
 import { BookingCalendar } from "./booking-calendar";
@@ -13,6 +13,8 @@ type Panel = "dates" | "guests" | null;
 
 const MAX_ADULTS = 8;
 const MAX_CHILDREN = 6;
+/** L'aire entre el panell i la barra, i entre el panell i la vora de la foto. */
+const PANEL_GAP = 28;
 
 export function BookingBar({ bookingUrl }: { bookingUrl: string }) {
   const t = useTranslations("booking");
@@ -46,12 +48,28 @@ export function BookingBar({ bookingUrl }: { bookingUrl: string }) {
     };
     document.addEventListener("pointerdown", onPointer);
     document.addEventListener("keydown", onKey);
-    // Que el panell es vegi sencer si la barra queda baixa a la pantalla.
-    if (window.matchMedia("(min-width: 1024px)").matches) sheet.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
     return () => {
       document.removeEventListener("pointerdown", onPointer);
       document.removeEventListener("keydown", onKey);
     };
+  }, [panel]);
+
+  // A l'escriptori el panell surt cap amunt i s'ha de quedar dins de la foto, sense moure la pàgina: si a sobre de la barra no hi cap, la barra baixa.
+  useLayoutEffect(() => {
+    const form = root.current;
+    if (!form) return;
+    const hero = form.closest("[data-hero]");
+    if (!panel || !hero || !sheet.current || !window.matchMedia("(min-width: 1024px)").matches) {
+      form.style.translate = "";
+      return;
+    }
+    form.style.translate = "";
+    const bar = form.getBoundingClientRect();
+    const frame = hero.getBoundingClientRect();
+    const top = Math.max(frame.top, document.querySelector("header")?.getBoundingClientRect().bottom ?? 0);
+    const needed = sheet.current.offsetHeight + PANEL_GAP;
+    const room = Math.max(0, Math.min(frame.bottom, window.innerHeight) - bar.bottom - PANEL_GAP);
+    form.style.translate = `0 ${Math.min(room, Math.max(0, needed - (bar.top - top)))}px`;
   }, [panel]);
 
   const guests = [t("adultsCount", { count: adults }), ...(children ? [t("childrenCount", { count: children }) ] : [])].join(" · ");
@@ -63,6 +81,7 @@ export function BookingBar({ bookingUrl }: { bookingUrl: string }) {
       action={bookingUrl}
       target="_blank"
       aria-label={t("search")}
+      data-open={panel ? "" : undefined}
       onSubmit={(event) => {
         event.preventDefault();
         // Una entrada sense sortida no és una cerca: el motor ignoraria la data sense dir res.
@@ -74,7 +93,7 @@ export function BookingBar({ bookingUrl }: { bookingUrl: string }) {
         setPanel(null);
         window.open(bookingLink(bookingUrl, { locale, ...range, adults, children }), "_blank", "noopener");
       }}
-      className="relative w-full max-w-3xl text-left"
+      className="booking-form relative w-full max-w-3xl text-left"
     >
       <div className="grid grid-cols-2 items-center gap-1 rounded-[1.75rem] bg-card p-1.5 text-ink shadow-[0_24px_60px_-20px_rgb(22_27_13/.7)] lg:grid-cols-[1fr_1fr_1.2fr_auto] lg:rounded-full">
         <Field label={t("checkIn")} active={panel === "dates"} onClick={(el) => open("dates", el)} expanded={panel === "dates"}>
@@ -104,8 +123,8 @@ export function BookingBar({ bookingUrl }: { bookingUrl: string }) {
             ref={sheet}
             role="dialog"
             aria-label={panel === "dates" ? t("checkIn") + " · " + t("checkOut") : t("guests")}
-            className={`booking-panel scroll-mb-4 fixed inset-x-0 bottom-0 z-50 max-h-[88svh] overflow-y-auto overscroll-contain rounded-t-[1.75rem] bg-card p-5 text-ink shadow-2xl lg:absolute lg:inset-x-auto lg:bottom-auto lg:top-full lg:mt-3 lg:rounded-[1.75rem] lg:p-6 ${
-              panel === "dates" ? "lg:left-1/2 lg:w-[44rem] lg:-translate-x-1/2" : "lg:right-0 lg:w-[22rem]"
+            className={`booking-panel fixed inset-x-0 bottom-0 z-50 max-h-[88svh] overflow-y-auto overscroll-contain rounded-t-[1.75rem] bg-card p-5 text-ink shadow-2xl lg:absolute lg:inset-x-auto lg:bottom-full lg:mb-3 lg:max-h-none lg:origin-bottom lg:overflow-visible lg:rounded-[1.75rem] lg:p-5 ${
+              panel === "dates" ? "lg:left-1/2 lg:-ml-[21rem] lg:w-[42rem]" : "lg:right-0 lg:w-[22rem]"
             }`}
           >
             {panel === "dates" ? (

@@ -47,7 +47,9 @@
     "from": "des de",
     "perNight": "/nit",
     "readMore": "Llegir més",
-    "readLess": "Llegir menys"
+    "readLess": "Llegir menys",
+    "previousPhoto": "Foto anterior",
+    "nextPhoto": "Foto següent"
   },
   "gastronomy": {
     "eyebrow": "Menjar i beure",
@@ -182,7 +184,17 @@
     "route": "Mira la ruta",
     "email": "Escriu-nos",
     "showMap": "Mostra el mapa",
-    "mapTitle": "Mapa de la situació del càmping"
+    "mapTitle": "Mapa de la situació del càmping",
+    "mode": "Com vens",
+    "modes": {
+      "car": "Cotxe",
+      "transit": "Transport",
+      "bike": "Bici",
+      "walk": "A peu"
+    },
+    "from": "D'on vens?",
+    "fromPlaceholder": "La teva ciutat o adreça",
+    "hideMap": "Mostra la foto"
   },
   "trip": {
     "eyebrow": "Planifica l'escapada",
@@ -191,7 +203,6 @@
     "duration": "Durada",
     "fewer": "Una nit menys",
     "more": "Una nit més",
-    "nights": "{count, plural, one {# nit} other {# nits}}",
     "type": "Tipus de viatge",
     "types": {
       "family": "En família",
@@ -199,9 +210,12 @@
       "romantic": "Romàntic",
       "culture": "Cultural"
     },
-    "openIn": "Obre a",
+    "openIn": "Obre a {name}",
     "copy": "Copia",
     "copied": "Copiat!",
-    "prompt": "Passaré {nights, plural, one {# nit} other {# nits}} a {camping} ({place}) i vull un viatge de tipus «{type}». Mira la seva web, {url}, i prepara'm un pla dia a dia (matí, tarda i nit) amb què gaudir al càmping, llocs amb encant i on menjar a prop, i un consell dels que no surten a les guies. Ves al gra, amb llistes curtes."
+    "prompt": "Passaré {nights, plural, one {# nit} other {# nits}} a {camping} ({place}) i vull un viatge de tipus «{type}». Mira la seva web, {url}, i prepara'm un pla dia a dia (matí, tarda i nit) amb què gaudir al càmping, llocs amb encant i on menjar a prop, i un consell dels que no surten a les guies. Ves al gra, amb llistes curtes.",
+    "greeting": "Què planifiquem?",
+    "chooseAssistant": "Tria el teu assistent",
+    "nightsLabel": "{count, plural, one {nit} other {nits}}"
   }
 }
