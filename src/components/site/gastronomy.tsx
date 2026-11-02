@@ -31,6 +31,9 @@ export async function Gastronomy({
   level?: 1 | 2;
 }) {
   const t = await getTranslations("gastronomy");
+  // Sota l'h1 de la pàgina, les zones són h2 i els locals h3; sota l'h2 d'una secció, un nivell més avall.
+  const Zone = level === 1 ? "h2" : "h3";
+  const Place = level === 1 ? "h3" : "h4";
   // A cada pas, primer els llocs amb la foto més gran: són les que surten a taula.
   const steps: FoodStepContent[] = (["food", "icecream", "drinks"] as const).map((key, i) => ({
     title: t(`steps.${key}`),
@@ -57,10 +60,10 @@ export async function Gastronomy({
           if (!items.length) return null;
           return (
             <div key={zone} className="mt-20">
-              <h3 className="font-display flex items-baseline gap-4 text-3xl text-terra">
+              <Zone className="font-display flex items-baseline gap-4 text-3xl text-terra">
                 {t(`zone.${zone}`)}
                 <span aria-hidden="true" className="h-px flex-1 bg-terra/30" />
-              </h3>
+              </Zone>
               <ul className="snap-strip mt-6 auto-cols-[78%] gap-5 pb-4 sm:auto-cols-[45%] lg:auto-cols-[calc((100%-3.75rem)/4)]">
                 {items.map((r) => (
                   <li key={r.slug} data-edit={`restaurants:${r.slug}`} className="reveal flex flex-col overflow-hidden rounded-3xl bg-card shadow-[0_20px_40px_-30px_rgb(35_42_20/.6)]">
@@ -68,7 +71,7 @@ export async function Gastronomy({
                       {r.cover && <MediaImage media={r.cover} fill sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 78vw" className="object-cover" />}
                     </div>
                     <div className="flex flex-1 flex-col gap-2 p-5">
-                      <h4 data-edit-field="name" className="font-display text-2xl leading-tight text-olive">{r.name}</h4>
+                      <Place data-edit-field="name" className="font-display text-2xl leading-tight text-olive">{r.name}</Place>
                       {r.hours && (
                         <p className="text-sm text-muted">
                           <span className="sr-only">{t("hours")}: </span>

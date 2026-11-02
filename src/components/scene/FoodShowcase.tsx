@@ -145,6 +145,8 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                     width={piece.size[0]}
                     height={piece.size[1]}
                     unoptimized
+                    // La paella buida és el primer que es veu a la pàgina de gastronomia: no ha d'esperar.
+                    priority={s === 0 && order === 0}
                     className={`absolute h-auto max-w-none will-change-[transform,opacity] ${piece.shadow ? SHADOW[piece.shadow] : ""}`}
                     style={{ width: `${piece.width}%`, zIndex: s * 20 + (piece.z ?? order), ...pieceStyle(done ? 1 : 0, s, order) }}
                   />

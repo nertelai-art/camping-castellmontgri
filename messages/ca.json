@@ -144,7 +144,13 @@
     "season": "Temporada",
     "license": "Registre de turisme",
     "rights": "Tots els drets reservats.",
-    "notice": "Web nova en construcció"
+    "notice": "Web nova en construcció",
+    "legal": {
+      "privacy": "Privacitat",
+      "cookies": "Galetes",
+      "legal-notice": "Avís legal",
+      "booking-conditions": "Condicions de reserva"
+    }
   },
   "units": {
     "people": "{count} pers.",
@@ -192,7 +198,10 @@
     },
     "from": "D'on vens?",
     "fromPlaceholder": "La teva ciutat o adreça",
-    "useMap": "Clic per moure el mapa"
+    "useMap": "Clic per moure el mapa",
+    "mapConsent": "El mapa és d'OpenStreetMap: en carregar-lo, el teu navegador es connecta als seus servidors.",
+    "mapLoad": "Carrega el mapa",
+    "mapRemember": "Ho recordarem en aquest navegador."
   },
   "trip": {
     "eyebrow": "Planifica l'escapada",

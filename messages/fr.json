@@ -144,7 +144,13 @@
     "season": "Saison",
     "license": "Registre du tourisme",
     "rights": "Tous droits réservés.",
-    "notice": "Nouveau site en construction"
+    "notice": "Nouveau site en construction",
+    "legal": {
+      "privacy": "Confidentialité",
+      "cookies": "Cookies",
+      "legal-notice": "Mentions légales",
+      "booking-conditions": "Conditions de réservation"
+    }
   },
   "units": {
     "people": "{count} pers.",
@@ -192,7 +198,10 @@
     },
     "from": "D’où venez-vous ?",
     "fromPlaceholder": "Votre ville ou adresse",
-    "useMap": "Cliquez pour déplacer la carte"
+    "useMap": "Cliquez pour déplacer la carte",
+    "mapConsent": "La carte vient d’OpenStreetMap : en la chargeant, votre navigateur se connecte à leurs serveurs.",
+    "mapLoad": "Charger la carte",
+    "mapRemember": "Nous nous en souviendrons sur ce navigateur."
   },
   "trip": {
     "eyebrow": "Préparez votre séjour",
