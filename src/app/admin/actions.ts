@@ -3,18 +3,28 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { displayName, ENTITIES, isEntity, parseBaseValue, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
+import { PROGRAMME_HREF } from "@/lib/admin/nav";
+import { parseFocus } from "@/lib/content/focus";
+import { isHomeBlock, moveHomeBlock } from "@/lib/content/home";
+import { isDay, mondayOf, parseSession } from "@/lib/content/programme";
 import { jpegSize, MAX_BYTES, MAX_SIDE } from "@/lib/admin/image";
 import {
+  addSession,
   addToGallery,
+  copyPreviousWeek,
   createContent,
   deleteContent,
   getContent,
+  listHomeBlocks,
   logChange,
   moveContent,
   moveInGallery,
   removeFromGallery,
+  removeSession,
   replaceImage,
   saveContent,
+  saveHomeOrder,
+  setImageFocus,
   type ChangeAction,
   type UploadedImage,
 } from "@/lib/supabase/admin-content";
@@ -93,15 +103,24 @@ export async function replaceImageAction(entity: string, id: string, _: FormStat
   if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
   if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
 
-  const image = await readImage(form);
-  if ("errors" in image) return image;
+  const focus = parseFocus(form.get("focus_x"), form.get("focus_y"));
+  if (!focus) return { errors: ["El punt de la foto no és vàlid."] };
 
-  const error = await replaceImage(entity, id, image);
+  // Sense foto nova, només es mou el punt de la que ja hi ha. Aquesta foto la pot fer servir un altre contingut: s'invalida tota la web.
+  let error: string | null;
+  const newPhoto = form.has("image");
+  if (newPhoto) {
+    const image = await readImage(form);
+    if ("errors" in image) return image;
+    error = await replaceImage(entity, id, image, focus);
+  } else {
+    error = await setImageFocus(entity, id, focus);
+  }
   if (error) return { errors: [`No s'ha pogut desar la foto: ${error}`] };
   await record(editor, entity, id, "image");
 
   const config: EntityConfig = ENTITIES[entity];
-  for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
+  for (const tag of newPhoto ? config.tags : ["content"]) revalidateTag(tag, { expire: 0 });
   return { savedAt: Date.now() };
 }
 
@@ -180,6 +199,47 @@ export async function moveContentAction(entity: string, id: string, delta: 1 | -
   return { savedAt: Date.now() };
 }
 
+/** Feina comuna de les accions del programa: sessió, canvi, registre i refrescar el panell i la web. */
+async function programmeChange(change: () => Promise<{ day: string } | { error: string | null }>): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+
+  const result = await change();
+  if ("error" in result) {
+    if (result.error) return { errors: [result.error] };
+    throw new Error("Un canvi del programa ha de dir de quin dia és.");
+  }
+  const monday = mondayOf(result.day);
+  const label = new Intl.DateTimeFormat("ca", { day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(`${monday}T00:00:00Z`));
+  const error = await logChange({ editor: editor.name ?? editor.email, entity: "programme", rowId: monday, rowName: `la setmana del ${label}`, action: "programme" });
+  if (error) console.error(`[admin] no s'ha pogut apuntar el canvi al registre: ${error}`);
+
+  revalidateTag("activity_sessions", { expire: 0 });
+  revalidatePath(PROGRAMME_HREF);
+  return { savedAt: Date.now() };
+}
+
+export async function addSessionAction(_: FormState, form: FormData): Promise<FormState> {
+  const parsed = parseSession(form);
+  if (!parsed.ok) return { errors: parsed.errors };
+  return programmeChange(async () => {
+    const error = await addSession(parsed.value);
+    return error ? { error } : { day: parsed.value.day };
+  });
+}
+
+export async function removeSessionAction(id: string): Promise<FormState> {
+  return programmeChange(() => removeSession(id));
+}
+
+export async function copyPreviousWeekAction(monday: string): Promise<FormState> {
+  if (!isDay(monday)) return { errors: ["La setmana no és vàlida."] };
+  return programmeChange(async () => {
+    const error = await copyPreviousWeek(monday);
+    return error ? { error } : { day: monday };
+  });
+}
+
 /** Desa una sola cel·la de la taula (un camp que no depèn de l'idioma). */
 export async function updateFieldAction(entity: string, id: string, name: string, value: string | boolean): Promise<FormState> {
   const editor = await currentEditor();
@@ -196,6 +256,23 @@ export async function updateFieldAction(entity: string, id: string, name: string
   await record(editor, entity, id, "text");
 
   for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
+  revalidatePath("/admin", "layout");
+  return { savedAt: Date.now() };
+}
+
+/** Puja o baixa un bloc de la portada. L'ordre és el de les seccions, i la web el fa servir de seguida. */
+export async function moveHomeBlockAction(key: string, delta: 1 | -1): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+  if (!isHomeBlock(key)) return { errors: ["Aquest bloc no és de la portada."] };
+  if (delta !== 1 && delta !== -1) return { errors: ["Moviment desconegut."] };
+
+  const blocks = await listHomeBlocks();
+  const error = await saveHomeOrder(moveHomeBlock(blocks.map((block) => block.key), key, delta));
+  if (error) return { errors: [`No s'ha pogut reordenar: ${error}`] };
+  await record(editor, "sections", key, "text");
+
+  revalidateTag("sections", { expire: 0 });
   revalidatePath("/admin", "layout");
   return { savedAt: Date.now() };
 }

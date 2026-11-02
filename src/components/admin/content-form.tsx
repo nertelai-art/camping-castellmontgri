@@ -6,8 +6,9 @@
 import { startTransition, useActionState, useEffect, useState } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { MapPositionField } from "./map-position-field";
+import { PdfField } from "./pdf-field";
 import { DRAFT_EVENT, LOCALE_EVENT, SAVED_EVENT, type DraftDetail } from "@/lib/admin/visual";
-import { fieldName, LOCALE_NAMES, LOCALES, type EntityConfig, type Locale, type Translations } from "@/lib/admin/entities";
+import { fieldName, LOCALE_NAMES, LOCALES, mainField, type EntityConfig, type Locale, type Translations } from "@/lib/admin/entities";
 
 type Props = {
   action: (state: FormState, form: FormData) => Promise<FormState>;
@@ -27,9 +28,13 @@ export function ContentForm({ action, text, base, initial }: Props) {
     if (state.savedAt) window.dispatchEvent(new Event(SAVED_EVENT));
   }, [state.savedAt]);
   // Quins idiomes tenen el camp principal ple, per marcar les pestanyes. Es va actualitzant mentre s'escriu.
-  const main = text[0]?.name ?? "";
+  const main = mainField({ text });
   const [filled, setFilled] = useState<Record<Locale, boolean>>(
     () => Object.fromEntries(LOCALES.map((l) => [l, Boolean(initial.translations[l]?.[main])])) as Record<Locale, boolean>,
+  );
+  // Els camps de PDF es poden omplir des d'un altre idioma («posa-la a tots»): el seu valor viu aquí.
+  const [pdfs, setPdfs] = useState<Record<string, string>>(() =>
+    Object.fromEntries(text.filter((field) => field.pdfFolder).flatMap((field) => LOCALES.map((l) => [fieldName(l, field.name), initial.translations[l]?.[field.name] ?? ""]))),
   );
 
   return (
@@ -145,6 +150,21 @@ export function ContentForm({ action, text, base, initial }: Props) {
           <div key={l} role="tabpanel" id={`panel-${l}`} aria-labelledby={`tab-${l}`} hidden={locale !== l} className="mt-6 grid gap-5">
             {text.map((field) => {
               const name = fieldName(l, field.name);
+              if (field.pdfFolder) {
+                return (
+                  <PdfField
+                    key={name}
+                    name={name}
+                    label={field.label}
+                    help={field.help}
+                    lang={l}
+                    folder={field.pdfFolder}
+                    value={pdfs[name] ?? ""}
+                    onChange={(url) => setPdfs((current) => ({ ...current, [name]: url }))}
+                    onApplyToAll={() => setPdfs((current) => ({ ...current, ...Object.fromEntries(LOCALES.map((other) => [fieldName(other, field.name), current[name] ?? ""])) }))}
+                  />
+                );
+              }
               const value = initial.translations[l]?.[field.name] ?? "";
               const common = {
                 name,

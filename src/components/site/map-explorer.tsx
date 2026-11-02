@@ -424,7 +424,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                                 <div className="map-detail bg-card px-4 pb-5">
                                   {place?.image && (
                                     <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-paper-2">
-                                      <Image src={place.image.src} alt={place.image.alt} fill sizes="23rem" className="object-cover" />
+                                      <Image src={place.image.src} alt={place.image.alt} fill sizes="23rem" className="object-cover" style={{ objectPosition: place.image.position }} />
                                     </div>
                                   )}
                                   {place?.hours && <p className="mt-3 text-lg font-bold">{place.hours}</p>}
@@ -558,7 +558,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                     <div className="relative overflow-hidden rounded-3xl">
                       {selectedPlace?.image && (
                         <div className="relative aspect-[2/1] bg-paper-2">
-                          <Image src={selectedPlace.image.src} alt={selectedPlace.image.alt} fill sizes="20rem" className="object-cover" />
+                          <Image src={selectedPlace.image.src} alt={selectedPlace.image.alt} fill sizes="20rem" className="object-cover" style={{ objectPosition: selectedPlace.image.position }} />
                         </div>
                       )}
                       <div className="max-h-[min(13rem,28svh)] overflow-y-auto overscroll-contain px-5 pb-5 pt-4">

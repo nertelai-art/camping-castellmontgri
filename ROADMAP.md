@@ -194,8 +194,14 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - ✅ **5.11 Ordre de les llistes**: serveis, restaurants, activitats, allotjaments, tipus i opinions es reordenen amb fletxes.
 - ✅ **5.12 Llistes com a taula**: una fila per contingut amb la foto, el nom i les dades editables allà mateix (es desen
   soles); els allotjaments, agrupats per tipus.
+- ✅ **5.13 Inici per tasques**: la pàgina d'inici parteix del que es vol fer, amb el que queda per acabar i els últims canvis;
+  el menú va per temes, marca on ets i al mòbil es plega.
+- ✅ **5.14 Fotos i cartes**: es marca el punt de la foto que no s'ha de retallar, amb una vista de com queda en ample i en mòbil;
+  les cartes es pugen en PDF des del restaurant i es poden posar a tots els idiomes.
+- ✅ **5.15 Programa setmanal**: activitats per dia i hora des del panell, copiant la setmana anterior si es repeteix; a la web surt
+  la setmana en curs, i `/api/programme` en dona el JSON per a altres canals.
 - Pendent: esborranys a la web de l'editor visual, punts del mapa a
-  l'editor visual, retall i punt focal, text alternatiu de les fotos,
+  l'editor visual, text alternatiu de les fotos,
   registre de canvis, previsualització d'esborranys, alta d'usuaris per invitació.
 - `/admin` amb inici de sessió, rols i registre de canvis.
 - Editors per a cada taula: formularis amb pestanyes per idioma, avís de traducció que falta, text ric (Tiptap), pujada d'imatges amb retall i punt focal, ordenació per arrossegament.
@@ -203,6 +209,18 @@ de Vercel revisada al navegador (mòbil i fosc inclosos).
 - Esborrany / publicat i **previsualització** abans de publicar.
 - Opcional: botó «traduir des del català/castellà» amb IA, sempre revisable.
 - **Acabat quan:** el client canvia un text, una foto i un punt del plànol sense ajuda.
+
+### Ronda d'estil (nota del client, 30/10/2026)
+
+- ✅ Barra de reserva al hero amb dates i persones, que obre el motor amb la cerca feta. L'enllaç de reserves passa de Thelis a WitBooking.
+- ✅ Targetes d'allotjament amb preu «des de» (editable) i «Reservar»; galeria d'imatges editable; fons més clar.
+- ✅ Hero amb el títol i la cerca al mig, sense avís de temporada; selectors propis de dates i persones.
+- ✅ Benvinguda animada: la foto del mig s'obre fins a omplir la pantalla, les altres marxen i compten les xifres.
+- ✅ Allotjaments amb una sola frase a la capçalera; la fitxa plega el text i no repeteix les xifres a l'equipament.
+- ✅ Com arribar-hi i «El teu viatge, amb la IA», inspirats en HolaCamp.
+- Pendent: disponibilitat i preus reals (l'API de WitBooking s'ha demanat), i que el client validi l'estil.
+- Idees de HolaCamp per més endavant: l'app (encara no existeix; no es posa cap botó de descàrrega fins que n'hi hagi), notes de Booking, Tripadvisor i Google al hero (calen les notes reals),
+  preguntes freqüents, cerca compacta a la capçalera en baixar i carrusel de fotos a les targetes.
 
 ### Fase 6 — Pàgines interiors i llançament
 - Fitxa de cada allotjament, restaurant i servei; pàgines legals; treballa amb nosaltres.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { displayName, ENTITIES, fieldName, LOCALES, missingLocales, parseBaseValue, parseContent, tableColumns, toList } from "./entities";
+import { displayName, ENTITIES, fieldName, LOCALES, mainField, missingLocales, parseBaseValue, parseContent, tableColumns, toList } from "./entities";
 
 const form = (entries: Record<string, string>) => {
   const data = new FormData();
@@ -38,7 +38,7 @@ describe("formulari de contingut", () => {
   it("no accepta un estat inventat ni un enllaç que no sigui http(s)", () => {
     const result = parseContent(ENTITIES.restaurants, form({ status: "archived", hours: "", "es.name": "Bar", "es.menu_url": "javascript:alert(1)" }));
     expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.errors).toEqual(["Estat: valor desconegut.", "Castellà: «Enllaç a la carta» ha de començar per https://"]);
+    if (!result.ok) expect(result.errors).toEqual(["Estat: valor desconegut.", "Castellà: «Carta» ha de començar per https://"]);
   });
 
   it("les caselles: marcada és cert, absent és fals", () => {
@@ -50,7 +50,7 @@ describe("formulari de contingut", () => {
 
   it("els números: buit és sense valor, la coma val com a decimal i un text no passa", () => {
     const ok = parseContent(ENTITIES.accommodations, form({ status: "published", capacity_max: "6", size_m2: "32,5", bedrooms: "", bathrooms: "1", "es.name": "Bungalow" }));
-    expect(ok.ok && ok.value.base).toEqual({ capacity_max: 6, size_m2: 32.5, bedrooms: null, bathrooms: 1, air_conditioning: false, is_accessible: false, status: "published" });
+    expect(ok.ok && ok.value.base).toEqual({ capacity_max: 6, size_m2: 32.5, bedrooms: null, bathrooms: 1, air_conditioning: false, is_accessible: false, price_from: null, status: "published" });
     const bad = parseContent(ENTITIES.accommodations, form({ status: "published", capacity_max: "sis", bedrooms: "1.5", size_m2: "-3", "es.name": "Bungalow" }));
     expect(bad).toEqual({ ok: false, errors: ["Persones (màxim): ha de ser un número sencer.", "Superfície (m²): ha de ser un número.", "Habitacions: ha de ser un número sencer."] });
   });
@@ -92,7 +92,7 @@ describe("formulari de contingut", () => {
   });
 
   it("la taula ensenya els camps curts, no els textos llargs ni la posició", () => {
-    expect(tableColumns(ENTITIES.accommodations).map((f) => f.name)).toEqual(["capacity_max", "size_m2", "bedrooms", "bathrooms", "air_conditioning", "is_accessible", "status"]);
+    expect(tableColumns(ENTITIES.accommodations).map((f) => f.name)).toEqual(["capacity_max", "size_m2", "bedrooms", "bathrooms", "air_conditioning", "is_accessible", "price_from", "status"]);
     expect(tableColumns(ENTITIES.map_points).map((f) => f.name)).toEqual(["kind", "icon", "status"]);
     expect(tableColumns(ENTITIES.testimonials).map((f) => f.name)).not.toContain("quote");
   });
@@ -130,6 +130,14 @@ describe("formulari de contingut", () => {
 
   it("diu quins idiomes falten per traduir", () => {
     expect(missingLocales(ENTITIES.services, { es: { name: "Recepción" }, ca: { name: "Recepció" }, fr: { name: "" } })).toEqual(["fr", "en", "nl"]);
+  });
+
+  it("el camp principal és el primer obligatori, encara que no sigui el primer del formulari", () => {
+    // A les seccions, el text de sobre el títol va primer, però la secció es diu pel títol i és el títol el que falta traduir.
+    expect(mainField(ENTITIES.sections)).toBe("title");
+    expect(displayName(ENTITIES.sections, { ca: { eyebrow: "On som", title: "Com arribar-hi" } }, "directions")).toBe("Com arribar-hi");
+    expect(missingLocales(ENTITIES.sections, Object.fromEntries(LOCALES.map((l) => [l, { eyebrow: "", title: "Títol" }])))).toEqual([]);
+    expect(mainField(ENTITIES.services)).toBe("name");
   });
 
   it("cada camp del formulari té un nom únic per idioma", () => {

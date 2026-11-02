@@ -118,7 +118,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                     <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
                       {photosOf(step).map((p) => (
                         <li key={p.name} className="relative aspect-[4/3] overflow-hidden rounded-xl bg-paper-2">
-                          <Image src={p.image.src} alt={p.name} fill sizes="(min-width: 640px) 12rem, 45vw" className="object-cover" />
+                          <Image src={p.image.src} alt={p.name} fill sizes="(min-width: 640px) 12rem, 45vw" className="object-cover" style={{ objectPosition: p.image.position }} />
                         </li>
                       ))}
                     </ul>
@@ -145,6 +145,8 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                     width={piece.size[0]}
                     height={piece.size[1]}
                     unoptimized
+                    // La paella buida és el primer que es veu a la pàgina de gastronomia: no ha d'esperar.
+                    priority={s === 0 && order === 0}
                     className={`absolute h-auto max-w-none will-change-[transform,opacity] ${piece.shadow ? SHADOW[piece.shadow] : ""}`}
                     style={{ width: `${piece.width}%`, zIndex: s * 20 + (piece.z ?? order), ...pieceStyle(done ? 1 : 0, s, order) }}
                   />
@@ -173,7 +175,7 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
                       }}
                     >
                       <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-paper-2">
-                        <Image src={p.image.src} alt="" fill sizes="(min-width: 1024px) 24vw, 45vw" className="object-cover" />
+                        <Image src={p.image.src} alt="" fill sizes="(min-width: 1024px) 24vw, 45vw" className="object-cover" style={{ objectPosition: p.image.position }} />
                       </div>
                       <figcaption className="font-display truncate px-1 pb-0.5 pt-1.5 text-sm text-olive sm:text-lg">{p.name}</figcaption>
                     </figure>

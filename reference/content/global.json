@@ -62,8 +62,8 @@
     }
   ],
   "booking": {
-    "engine": "Thelis Resa (webcamp.fr)",
-    "bookingUrl": "https://thelisresa.webcamp.fr/?camping=castellmontgri17",
+    "engine": "WitBooking (l'extracció inicial era Thelis Resa, webcamp.fr)",
+    "bookingUrl": "https://engine.witbooking.com/es/property/castellmontgri",
     "campingId": "castellmontgri17",
     "widgetScript": "https://thelisresa.webcamp.fr/ilib/v4/?categories&favorites&searchengine&simpleblock",
     "widgetTags": [

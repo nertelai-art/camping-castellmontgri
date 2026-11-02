@@ -3,7 +3,7 @@
     "accommodation": "Hébergement",
     "map": "Carte",
     "gastronomy": "Gastronomie",
-    "services": "Services",
+    "services": "Installations",
     "entertainment": "Animation",
     "surroundings": "Environs",
     "contact": "Contact",
@@ -12,10 +12,10 @@
     "close": "Fermer",
     "language": "Langue",
     "skip": "Aller au contenu",
-    "clientArea": "Espace client"
+    "clientArea": "Espace client",
+    "gallery": "Images"
   },
   "hero": {
-    "season": "Saison",
     "discover": "Découvrir le camping",
     "from": "Du {open} au {close}"
   },
@@ -26,7 +26,7 @@
     "activities": "activités d'animation"
   },
   "accommodation": {
-    "eyebrow": "Où dormir",
+    "label": "Où dormir",
     "all": "Tous",
     "guests": "Personnes",
     "guestsAny": "Indifférent",
@@ -43,10 +43,15 @@
     "photo": "Photo {index} sur {total}",
     "count": "{count, plural, one {# hébergement} other {# hébergements}}",
     "seeAll": "Voir tous les hébergements ({count})",
-    "backHome": "Retour à l'accueil"
+    "backHome": "Retour à l'accueil",
+    "from": "à partir de",
+    "perNight": "/nuit",
+    "readMore": "Lire la suite",
+    "readLess": "Réduire",
+    "previousPhoto": "Photo précédente",
+    "nextPhoto": "Photo suivante"
   },
   "gastronomy": {
-    "eyebrow": "Manger et boire",
     "zone": {
       "ombra": "Zone Ombra",
       "panorama": "Zone Panorama"
@@ -63,22 +68,19 @@
   "pools": {
     "eyebrow": "Eau et soleil"
   },
-  "services": {
-    "eyebrow": "Tout à portée de main"
-  },
   "entertainment": {
-    "eyebrow": "Pour toute la famille",
     "audience": {
       "children": "Enfants",
       "family": "Famille",
       "adult": "Adultes"
+    },
+    "programme": {
+      "title": "Cette semaine",
+      "days": "Choisissez le jour",
+      "empty": "Aucune activité ce jour-là."
     }
   },
-  "surroundings": {
-    "eyebrow": "L'Empordà et la Costa Brava"
-  },
   "map": {
-    "eyebrow": "Le camping",
     "viewer": "Carte interactive du camping en 3D",
     "hint": "Faites glisser pour vous déplacer · pincez, Ctrl + molette ou + et − pour zoomer",
     "zoomIn": "Zoomer",
@@ -123,8 +125,6 @@
     "closeCard": "Fermer la fiche"
   },
   "testimonials": {
-    "eyebrow": "Avis",
-    "title": "Ce qu'ils disent de nous",
     "via": "sur {source}"
   },
   "footer": {
@@ -133,10 +133,83 @@
     "season": "Saison",
     "license": "Registre du tourisme",
     "rights": "Tous droits réservés.",
-    "notice": "Nouveau site en construction"
+    "notice": "Nouveau site en construction",
+    "legal": {
+      "privacy": "Confidentialité",
+      "cookies": "Cookies",
+      "legal-notice": "Mentions légales",
+      "booking-conditions": "Conditions de réservation"
+    }
   },
   "units": {
     "people": "{count} pers.",
     "bedrooms": "{count, plural, one {# ch.} other {# ch.}}"
+  },
+  "booking": {
+    "checkIn": "Arrivée",
+    "checkOut": "Départ",
+    "adults": "Adultes",
+    "children": "Enfants",
+    "search": "Rechercher des disponibilités",
+    "guests": "Personnes",
+    "addDate": "Ajouter la date",
+    "adultsCount": "{count, plural, one {# adulte} other {# adultes}}",
+    "childrenCount": "{count, plural, one {# enfant} other {# enfants}}",
+    "nights": "{count, plural, one {# nuit} other {# nuits}}",
+    "chooseCheckIn": "Choisissez le jour d’arrivée",
+    "chooseCheckOut": "Maintenant, le jour de départ",
+    "clear": "Effacer",
+    "done": "OK",
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "less": "Retirer : {label}",
+    "more": "Ajouter : {label}"
+  },
+  "gallery": {
+    "label": "Images",
+    "open": "Ouvrir la photo {index}",
+    "previous": "Précédente",
+    "next": "Suivante",
+    "counter": "{index} / {total}"
+  },
+  "directions": {
+    "route": "Voir l’itinéraire",
+    "email": "Écrivez-nous",
+    "mapTitle": "Carte de l’emplacement du camping",
+    "mode": "Comment vous venez",
+    "modes": {
+      "car": "Voiture",
+      "transit": "Transports",
+      "bike": "Vélo",
+      "walk": "À pied"
+    },
+    "from": "D’où venez-vous ?",
+    "fromPlaceholder": "Votre ville ou adresse",
+    "useMap": "Cliquez pour déplacer la carte",
+    "mapConsent": "La carte vient d’OpenStreetMap : en la chargeant, votre navigateur se connecte à leurs serveurs.",
+    "mapLoad": "Charger la carte",
+    "mapRemember": "Nous nous en souviendrons sur ce navigateur."
+  },
+  "trip": {
+    "duration": "Durée",
+    "fewer": "Une nuit de moins",
+    "more": "Une nuit de plus",
+    "type": "Type de voyage",
+    "types": {
+      "family": "En famille",
+      "adventure": "Aventure",
+      "romantic": "Romantique",
+      "culture": "Culturel"
+    },
+    "openIn": "Ouvrir dans {name}",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "prompt": "Je vais passer {nights, plural, one {# nuit} other {# nuits}} à {camping} ({place}) et je veux un voyage de type « {type} ». Consulte leur site, {url}, et prépare-moi un programme jour par jour (matin, après-midi et soir) : quoi faire au camping, les endroits qui ont du charme et où manger à proximité, et un conseil qu’on ne trouve pas dans les guides. Va droit au but, avec des listes courtes.",
+    "greeting": "Que prévoit-on ?",
+    "chooseAssistant": "Choisissez votre assistant",
+    "nightsLabel": "{count, plural, one {nuit} other {nuits}}"
+  },
+  "explore": {
+    "cta": "Voir plus"
   }
 }

@@ -1,21 +1,21 @@
 import { getTranslations } from "next-intl/server";
 import { paragraphs } from "@/lib/content/rich-text";
-import type { Testimonial } from "@/lib/supabase/content";
+import type { Section, Testimonial } from "@/lib/supabase/content";
 
 /** Opinions en l'idioma original (lang al blockquote perquè el lector de pantalla les pronunciï bé). */
-export async function Testimonials({ testimonials, index }: { testimonials: Testimonial[]; index: number }) {
+export async function Testimonials({ section, testimonials, index }: { section: Section; testimonials: Testimonial[]; index: number }) {
   const t = await getTranslations("testimonials");
   if (!testimonials.length) return null;
   return (
-    <section aria-labelledby="testimonials-title" className="cv bg-paper-2 py-24 lg:py-32">
+    <section data-edit="sections:testimonials" aria-labelledby="testimonials-title" className="cv bg-paper-2 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-terra">
           <span className="font-display text-sm normal-case tracking-normal">{String(index).padStart(2, "0")}</span>
           <span aria-hidden="true" className="h-px w-8 bg-terra/60" />
-          {t("eyebrow")}
+          {section.eyebrow && <span data-edit-field="eyebrow">{section.eyebrow}</span>}
         </p>
-        <h2 id="testimonials-title" className="font-display mt-4 text-4xl text-olive sm:text-5xl">
-          {t("title")}
+        <h2 id="testimonials-title" data-edit-field="title" className="font-display mt-4 text-4xl text-olive sm:text-5xl">
+          {section.title}
         </h2>
         <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {testimonials.map((item) => (

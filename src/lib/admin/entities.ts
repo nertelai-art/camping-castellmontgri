@@ -11,7 +11,16 @@ export type Locale = (typeof LOCALES)[number];
 export const LOCALE_NAMES: Record<Locale, string> = { es: "Castellà", ca: "Català", fr: "Francès", en: "Anglès", nl: "Neerlandès" };
 
 /** `list`: una línia per element; es desa com a llista (text[]). */
-type TextField = { name: string; label: string; help?: string; required?: boolean; long?: boolean; list?: boolean };
+type TextField = {
+  name: string;
+  label: string;
+  help?: string;
+  required?: boolean;
+  long?: boolean;
+  list?: boolean;
+  /** L'adreça d'un PDF que es pot pujar des del formulari, a aquesta carpeta del bucket. */
+  pdfFolder?: string;
+};
 export type BaseField =
   | { name: string; label: string; help?: string; kind: "text"; required?: boolean; long?: boolean }
   | { name: string; label: string; help?: string; kind: "number"; decimal?: boolean; min?: number; max?: number }
@@ -59,7 +68,13 @@ export type EntityConfig = {
   /** La foto principal: la columna de la taula base que apunta a `media`. */
   image?: { column: string; label: string };
   /** La galeria de fotos: la taula que lliga el contingut amb `media` (amb `media_id` i `sort_order`). */
-  gallery?: { table: string; foreignKey: string; label: string };
+  gallery?: {
+    table: string;
+    foreignKey: string;
+    label: string;
+    /** Només aquestes files tenen galeria (de les seccions, només la que ensenya la galeria). */
+    only?: readonly string[];
+  };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
   tags: readonly string[];
 };
@@ -119,16 +134,18 @@ const RICH = "Pots separar paràgrafs amb una línia en blanc i posar **negreta*
 
 export const ENTITIES = {
   sections: {
-    title: "Seccions de la portada",
+    title: "Tots els textos",
     singular: "secció",
     feminine: true,
-    description: "Els títols i textos de cada bloc de la pàgina principal.",
+    description: "El títol i el text de cada bloc de la portada, de cada pàgina del web i de les pàgines legals. A les pàgines legals, un paràgraf que comença amb «## » és un títol i amb «### », un subtítol.",
     table: "sections",
     image: { column: "media_id", label: "Foto de la secció" },
+    gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria", only: ["gallery", "welcome"] },
     key: "key",
     translations: "section_translations",
     foreignKey: "section_key",
     text: [
+      { name: "eyebrow", label: "Text de sobre el títol", help: "Les poques paraules en majúscules petites que van sobre el títol, com «On som»." },
       { name: "title", label: "Títol", required: true },
       { name: "body", label: "Text", long: true, help: RICH },
       { name: "highlight", label: "Frase destacada" },
@@ -171,13 +188,13 @@ export const ENTITIES = {
     text: [
       { name: "name", label: "Nom", required: true },
       { name: "description", label: "Descripció", long: true, help: RICH },
-      { name: "menu_url", label: "Enllaç a la carta", help: "Adreça completa (https://…) del PDF o la pàgina de la carta en aquest idioma." },
+      { name: "menu_url", label: "Carta", pdfFolder: "cartes", help: "La carta en aquest idioma: un PDF de fins a 20 MB o l'adreça completa (https://…) d'una pàgina." },
     ],
     base: [HOURS, STATUS],
     tags: ["restaurants"],
   },
   activities: {
-    title: "Animació",
+    title: "Activitats d'animació",
     singular: "activitat",
     feminine: true,
     description: "Activitats per a infants, famílies i adults.",
@@ -194,7 +211,8 @@ export const ENTITIES = {
       { name: "description", label: "Descripció", long: true, help: RICH },
     ],
     base: [HOURS, STATUS],
-    tags: ["activities"],
+    // El programa setmanal llegeix el nom de l'activitat dins de la seva consulta.
+    tags: ["activities", "activity_sessions"],
   },
   accommodations: {
     title: "Allotjaments",
@@ -221,6 +239,7 @@ export const ENTITIES = {
       { name: "bathrooms", label: "Banys", kind: "number" },
       { name: "air_conditioning", label: "Té aire condicionat", kind: "boolean" },
       { name: "is_accessible", label: "Adaptat per a mobilitat reduïda", kind: "boolean" },
+      { name: "price_from", label: "Preu des de (€/nit)", kind: "number", decimal: true, help: "El més baix de la temporada. Buit: la targeta no ensenya cap preu." },
       STATUS,
     ],
     // La web llegeix els allotjaments dins de la consulta de les seves categories.
@@ -297,7 +316,6 @@ export const ENTITIES = {
     text: [
       { name: "seo_title", label: "Títol per a Google", help: "El títol que surt als resultats de cerca i a la pestanya del navegador." },
       { name: "seo_description", label: "Descripció per a Google", long: true, help: "Una o dues frases (uns 150 caràcters)." },
-      { name: "season_notice", label: "Avís de temporada", help: "P. ex. «Abierto del 27 de marzo al 4 de octubre»." },
     ],
     base: [
       { name: "brand_name", label: "Nom comercial", kind: "text", required: true },
@@ -427,12 +445,14 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
   return errors.length ? { ok: false, errors } : { ok: true, value: { base, translations } };
 }
 
-/** Idiomes que encara no tenen el camp principal: es marquen al formulari i a les llistes. */
+/** El camp que dona nom a un contingut i que, si falta, vol dir que no està traduït: el primer obligatori (el títol d'una secció, encara que el text de sobre el títol vagi abans). */
+export const mainField = (config: Pick<EntityConfig, "text">) => (config.text.find((field) => field.required) ?? config.text[0])?.name ?? "";
+
 /** Com es diu un contingut a les llistes i al registre: el camp principal en català o, si no, en castellà. */
 export function displayName(config: EntityConfig, translations: Partial<Translations>, fallback: string, base: Record<string, unknown> = {}): string {
   if (config.single) return config.title;
   if (config.nameField) return String(base[config.nameField] || "Sense nom");
-  const main = config.text[0]!.name;
+  const main = mainField(config);
   // Un identificador generat (uuid) no diu res a ningú; una clau escrita a mà («hero», «pools») sí.
   return translations.ca?.[main] || translations.es?.[main] || (config.key === "id" ? "Sense nom" : fallback);
 }
@@ -440,8 +460,9 @@ export function displayName(config: EntityConfig, translations: Partial<Translat
 /** Un camp de llista, tal com s'escriu al formulari (una línia per element), convertit en llista. */
 export const toList = (value: string) => value.split("\n").map((line) => line.trim()).filter(Boolean);
 
+/** Idiomes que encara no tenen el camp principal: es marquen al formulari i a les llistes. */
 export function missingLocales(config: EntityConfig, translations: Partial<Translations>): Locale[] {
   if (!config.translations) return [];
-  const main = config.text[0]!.name;
+  const main = mainField(config);
   return LOCALES.filter((locale) => !translations[locale]?.[main]);
 }

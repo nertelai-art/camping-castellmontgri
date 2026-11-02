@@ -2,10 +2,13 @@ import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
+import { bookingLink } from "@/lib/booking/link";
 import type { SiteSettings } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
 
-export const NAV = ["accommodation", "map", "gastronomy", "services", "entertainment", "surroundings", "contact"] as const;
+export const NAV = ["accommodation", "map", "services", "entertainment", "gastronomy", "surroundings", "gallery", "contact"] as const;
+/** Les entrades del menú que tenen pàgina pròpia; les altres són seccions de la portada. */
+const PAGES: readonly (typeof NAV)[number][] = ["services", "entertainment", "gastronomy", "surroundings", "gallery"];
 
 // Nom de cada idioma en el seu propi idioma: no es tradueix.
 const LANGUAGE_NAMES: Record<Locale, string> = { es: "Español", ca: "Català", fr: "Français", en: "English", nl: "Nederlands" };
@@ -21,12 +24,15 @@ function LanguageMenu({ locale, label, flags }: { locale: Locale; label: string;
   return (
     <details className="group/lang relative">
       <summary
-        aria-label={`${label}: ${LANGUAGE_NAMES[locale]}`}
         className="flex h-10 cursor-pointer list-none items-center gap-2 rounded-full border border-line px-3 max-sm:gap-1 max-sm:px-2 text-sm font-bold uppercase text-ink transition hover:border-olive [&::-webkit-details-marker]:hidden"
       >
         <Flag media={flag(locale)} />
         {/* A mòbil només la bandera: amb el codi, la capçalera no hi cap i tota la pàgina s'eixampla. */}
         <span className="max-sm:hidden">{locale}</span>
+        {/* El nom accessible ha de contenir el que es veu («ES»): per això s'afegeix al final, i no amb aria-label. */}
+        <span className="sr-only">{" "}
+          {label}: {LANGUAGE_NAMES[locale]}
+        </span>
         <svg viewBox="0 0 24 24" className="size-4 text-muted transition group-open/lang:rotate-180" aria-hidden="true">
           <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
@@ -59,10 +65,10 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
   const t = await getTranslations("nav");
   const book = settings.bookingUrl && (
     <a
-      href={settings.bookingUrl}
+      href={bookingLink(settings.bookingUrl, { locale })}
       target="_blank"
       rel="noopener"
-      className="inline-flex items-center rounded-full bg-terra px-5 py-2.5 text-sm font-bold text-paper shadow-[0_6px_20px_-8px_var(--terra)] transition hover:bg-terra-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
+      className="inline-flex items-center rounded-full bg-band-olive px-5 py-2.5 text-sm font-bold text-on-dark transition hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terra"
     >
       {t("book")}
     </a>
@@ -87,9 +93,15 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
           <ul className="flex gap-6 text-sm font-bold text-ink/80">
             {NAV.map((key) => (
               <li key={key}>
-                <a href={`${base}#${key}`} className="transition hover:text-terra">
-                  {t(key)}
-                </a>
+                {PAGES.includes(key) ? (
+                  <Link href={`/${key}`} className="transition hover:text-terra">
+                    {t(key)}
+                  </Link>
+                ) : (
+                  <a href={`${base}#${key}`} className="transition hover:text-terra">
+                    {t(key)}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -113,9 +125,15 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
               <ul className="grid gap-1">
                 {NAV.map((key) => (
                   <li key={key}>
-                    <a href={`${base}#${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
-                      {t(key)}
-                    </a>
+                    {PAGES.includes(key) ? (
+                      <Link href={`/${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
+                        {t(key)}
+                      </Link>
+                    ) : (
+                      <a href={`${base}#${key}`} className="block rounded-lg px-3 py-2 font-bold text-ink hover:bg-paper-2">
+                        {t(key)}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

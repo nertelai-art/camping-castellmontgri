@@ -2,16 +2,17 @@ import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import type { Activity, Section } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
+import { WeekProgramme } from "./week-programme";
 
 const AUDIENCES = ["children", "family", "adult"] as const;
 
-export async function Entertainment({ section, activities, index }: { section: Section; activities: Activity[]; index: number }) {
+export async function Entertainment({ section, activities, index, level }: { section: Section; activities: Activity[]; index: number; level?: 1 | 2 }) {
   const t = await getTranslations("entertainment");
   return (
     <section data-edit="sections:entertainment" aria-labelledby="entertainment-title" className="cv bg-band-terra py-24 text-on-dark lg:py-32">
       <div id="entertainment" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr]">
-          <SectionHeading id="entertainment-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} tone="dark" />
+          <SectionHeading id="entertainment-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} tone="dark" level={level} />
           {section.media && (
             <div className="reveal relative aspect-[4/3] overflow-hidden rounded-[2rem] lg:-rotate-2">
               <MediaImage media={section.media} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
@@ -42,6 +43,7 @@ export async function Entertainment({ section, activities, index }: { section: S
             );
           })}
         </div>
+        <WeekProgramme />
       </div>
     </section>
   );

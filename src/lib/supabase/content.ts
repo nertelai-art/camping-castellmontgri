@@ -1,5 +1,7 @@
 import "server-only";
 import type { Locale } from "@/i18n/routing";
+import { focusPosition } from "@/lib/content/focus";
+import { addDays, shortTime } from "@/lib/content/programme";
 import { localesFor, pickTranslation } from "@/lib/content/translate";
 import { isMapIcon } from "@/lib/map/icons";
 import { mediaUrl, type MediaRef } from "./media";
@@ -7,9 +9,9 @@ import { contentClient } from "./server";
 
 // Lectures del contingut de la web. Retornen tipus del domini, ja traduïts a l'idioma de la pàgina.
 
-type RawMedia = { path: string; width: number | null; height: number | null; media_translations: { locale: string; alt: string }[] } | null;
+type RawMedia = { path: string; width: number | null; height: number | null; focus_x: number; focus_y: number; media_translations: { locale: string; alt: string }[] } | null;
 
-const MEDIA = "path, width, height, media_translations(locale, alt)";
+const MEDIA = "path, width, height, focus_x, focus_y, media_translations(locale, alt)";
 
 function toMedia(raw: RawMedia, locale: Locale, fallbackAlt = ""): MediaRef | null {
   if (!raw) return null;
@@ -19,6 +21,7 @@ function toMedia(raw: RawMedia, locale: Locale, fallbackAlt = ""): MediaRef | nu
     width: raw.width,
     height: raw.height,
     alt: pickTranslation(raw.media_translations, locale)?.alt || fallbackAlt,
+    position: focusPosition({ x: raw.focus_x, y: raw.focus_y }),
   };
 }
 
@@ -50,7 +53,7 @@ export async function getSiteSettings(locale: Locale) {
       country: s.country,
     },
     geo: s.lat != null && s.lng != null ? { lat: s.lat, lng: s.lng } : null,
-    season: { open: s.season_open, close: s.season_close, notice: t?.season_notice ?? null },
+    season: { open: s.season_open, close: s.season_close },
     licenseCode: s.license_code,
     bookingUrl: s.booking_url,
     clientPortalUrl: s.client_portal_url,
@@ -62,32 +65,60 @@ export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
 // ─── Seccions ─────────────────────────────────────────────────────────────────
 export type Section = {
   key: string;
+  /** El text petit de sobre el títol («On som», «Planifica l'escapada»…). */
+  eyebrow: string | null;
   title: string;
   body: string | null;
   highlight: string | null;
   ctaLabel: string | null;
   media: MediaRef | null;
+  /** Les fotos de la secció, si en té (la galeria de la portada). */
+  gallery: MediaRef[];
 };
+
+const SECTION = `key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, eyebrow, title, body, highlight, cta_label), section_media(sort_order, media(${MEDIA}))`;
 
 /** Seccions visibles, indexades per clau (`hero`, `welcome`, `gastronomy`…). */
 export async function getSections(locale: Locale): Promise<Record<string, Section>> {
   const result = await contentClient()
     .from("sections")
-    .select(`key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, title, body, highlight, cta_label)`)
+    .select(SECTION)
     .eq("is_visible", true)
     .in("section_translations.locale", localesFor(locale))
     .order("sort_order");
+  return toSections(unwrap(result, "les seccions"), locale);
+}
+
+/** Una sola secció, per a les pàgines que només en mostren una (les legals): no cal portar el text de totes les altres. */
+export async function getSection(locale: Locale, key: string): Promise<Section | null> {
+  const result = await contentClient()
+    .from("sections")
+    .select(SECTION)
+    .eq("key", key)
+    .eq("is_visible", true)
+    .in("section_translations.locale", localesFor(locale));
+  return toSections(unwrap(result, `la secció ${key}`), locale)[key] ?? null;
+}
+
+type RawSection = { key: string; media: Parameters<typeof toMedia>[0]; section_translations: { locale: string; eyebrow: string | null; title: string; body: string | null; highlight: string | null; cta_label: string | null }[]; section_media: { sort_order: number; media: Parameters<typeof toMedia>[0] }[] };
+
+function toSections(rows: RawSection[], locale: Locale): Record<string, Section> {
   const sections: Record<string, Section> = {};
-  for (const s of unwrap(result, "les seccions")) {
+  for (const s of rows) {
     const t = pickTranslation(s.section_translations, locale);
     if (!t) continue;
     sections[s.key] = {
       key: s.key,
+      eyebrow: t.eyebrow,
       title: t.title,
       body: t.body,
       highlight: t.highlight,
       ctaLabel: t.cta_label,
       media: toMedia(s.media, locale, t.title),
+      gallery: [...s.section_media]
+        .sort((x, y) => x.sort_order - y.sort_order)
+        .map((m) => toMedia(m.media, locale, t.title))
+        .filter((m): m is MediaRef => m !== null),
     };
   }
   return sections;
@@ -102,7 +133,7 @@ export async function getAccommodationCategories(locale: Locale) {
       `key, media:media!accommodation_categories_media_id_fkey(${MEDIA}),
        accommodation_category_translations(locale, name, description),
        accommodations(
-         slug, capacity_max, size_m2, bedrooms, bathrooms, air_conditioning, is_accessible, sort_order,
+         slug, capacity_max, size_m2, bedrooms, bathrooms, air_conditioning, is_accessible, price_from, sort_order,
          cover:media!accommodations_cover_media_id_fkey(${MEDIA}),
          accommodation_translations(locale, name, description, features),
          accommodation_media(sort_order, media(${MEDIA}))
@@ -139,6 +170,7 @@ export async function getAccommodationCategories(locale: Locale) {
           bathrooms: a.bathrooms,
           airConditioning: a.air_conditioning,
           isAccessible: a.is_accessible,
+          priceFrom: a.price_from,
           cover: toMedia(a.cover, locale, name),
           gallery,
         };
@@ -220,6 +252,33 @@ export async function getActivities(locale: Locale) {
   });
 }
 export type Activity = Awaited<ReturnType<typeof getActivities>>[number];
+
+/** El programa d'una setmana, en ordre. RLS deixa fora les activitats que no estan publicades. */
+export async function getWeekProgramme(locale: Locale, monday: string) {
+  const result = await contentClient()
+    .from("activity_sessions")
+    .select("day, starts_at, ends_at, place, activities(slug, audience, activity_translations(locale, name))")
+    .gte("day", monday)
+    .lte("day", addDays(monday, 6))
+    .in("activities.activity_translations.locale", localesFor(locale))
+    .order("day")
+    .order("starts_at");
+  return unwrap(result, "el programa").flatMap((session) => {
+    const activity = session.activities;
+    if (!activity) return [];
+    return [
+      {
+        day: session.day,
+        start: shortTime(session.starts_at),
+        end: session.ends_at && shortTime(session.ends_at),
+        place: session.place,
+        name: pickTranslation(activity.activity_translations, locale)?.name ?? activity.slug,
+        audience: activity.audience,
+      },
+    ];
+  });
+}
+export type ProgrammeSession = Awaited<ReturnType<typeof getWeekProgramme>>[number];
 
 // ─── Opinions (en l'idioma original) ─────────────────────────────────────────
 export async function getTestimonials() {

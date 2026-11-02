@@ -48,6 +48,16 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   cada petició a `/admin`; qui pot entrar ho decideix el layout de `(panel)` amb `currentEditor()` (compte + fila a
   `profiles`). Les accions de servidor ho tornen a comprovar: són endpoints públics.
 - **Escriptura**: amb la sessió de l'editor i la clau publicable; RLS és qui deixa escriure. Cap clau secreta al panell.
+- **Com s'hi arriba** és a `src/lib/admin/nav.ts` (amb proves): el menú per pàgines del web i temes (`NAV_GROUPS`: la portada, pàgines del web, allotjaments,
+  al càmping, textos legals i dades; una pàgina del web és un enllaç directe a la fitxa de la seva secció), les tasques de la pàgina d'inici
+  (`TASKS`) i el que queda per acabar (`pendingWork`: el que no es veu a la web i el que falta traduir). Una entitat nova ha d'anar al menú.
+  Només es marca l'opció més concreta (`currentHref`): la fitxa de Gastronomia no marca també «Tots els textos».
+- **La portada** (`/admin/home`, `HomeBlocks`): els blocs de la pàgina principal amb fletxes i casella. L'ordre és el `sort_order` de les seves seccions
+  (`src/lib/content/home.ts`, `HOME_BLOCKS`, amb proves) i si surten, el seu `is_visible`; la portada els pinta en aquest ordre. El hero va sempre primer.
+  Les portes a les pàgines, com arribar-hi, el viatge amb la IA i les opinions també són seccions (`explore`, `directions`, `trip`, `testimonials`): el títol s'edita al panell.
+- **Text de sobre el títol** (`section_translations.eyebrow`, «On som», «Planifica l'escapada»…): és contingut de cada secció i s'edita al panell. Buit, no surt.
+  El camp principal d'una entitat (el que li dona nom i diu si falta traduir) és el primer obligatori (`mainField`), no el primer del formulari.
+  Només el de les piscines (`pools.eyebrow`) continua a `messages/`: aquell bloc surt dels serveis, no d'una secció.
 - **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
 - En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
@@ -59,6 +69,11 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - **Fotos** (`ImageField`, `replaceImageAction`): el navegador redueix la foto a 2400 px i la passa a JPEG abans d'enviar-la
   (Vercel no accepta cossos de més de 4,5 MB); el servidor comprova que és un JPEG i en llegeix la mida de la capçalera
   (`src/lib/admin/image.ts`), la puja a `media/panell/<entitat>/<uuid>.jpg` i crea la fila a `media`. La foto anterior no s'esborra.
+  Clicant la foto es marca el punt que no s'ha de retallar (`media.focus_x/y`, en %): la web el fa servir d'`object-position`
+  (`MediaRef.position`). Una imatge de la web amb `object-cover` que no passi per `MediaImage` l'ha de posar a mà.
+- **Cartes** (`PdfField`, `pdfFolder` a `entities.ts`): el PDF va directe del navegador a Storage amb la sessió de l'editor
+  (`src/lib/supabase/browser.ts`), perquè una carta passa sovint dels 4,5 MB de Vercel. El límit de 20 MB i el tipus els posa el bucket;
+  el navegador comprova els primers bytes (`src/lib/admin/pdf.ts`). L'adreça es desa amb «Desa els canvis», com la resta de textos.
 - **Galeria** (`GalleryField`, entitats amb `gallery`): cada acció (afegir, treure, moure) es desa a l'instant i refresca
   la pàgina del panell amb `revalidatePath`. Treure una foto de la galeria no esborra el fitxer de `media`.
 - **Editor visual** (`/admin/visual`, `VisualShell`): la web pública dins d'un iframe del mateix origen i l'editor al costat.
@@ -73,6 +88,10 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   que la taula ensenya. `groupBy` agrupa la llista (allotjaments per tipus) i llavors l'ordre es mou dins del grup.
 - **Afegir i esborrar**: només les entitats amb `create` a `entities.ts`. Una fila nova neix en esborrany amb els valors per
   defecte (i un `slug` generat si la taula en demana); esborrar demana dos clics. Totes dues coses queden al registre.
+- **Programa setmanal** (`activity_sessions`, `/admin/programme`, `ProgrammeDay`): què es fa cada dia, per dates, amb «Copia la setmana anterior».
+  El nom surt de l'activitat, en 5 idiomes; el lloc és un sol text. Fora de `ENTITIES` perquè no és una fitxa amb idiomes sinó una graella.
+  La web el demana quan s'hi arriba (`WeekProgramme` → `/api/programme?locale=&week=`): la pàgina surt d'una caché que no sap quin dia és.
+  Aquest mateix JSON públic serveix per a altres canals. Sense res programat, a la web no surt res.
 - **Registre de canvis** (`change_log`, `/admin/changes`): l'apunta l'acció de servidor després de desar, amb la sessió de l'editor.
   RLS només deixa afegir-hi (signat amb el propi compte) i llegir-lo: no es pot modificar ni esborrar des de l'API.
 - **Usuaris**: el compte es crea al tauler de Supabase (la persona hi tria la contrasenya) i `pnpm editor:grant <correu> [editor|admin|cap]`
@@ -157,11 +176,44 @@ client es pugen a Supabase Storage amb el script de seed.
 - Projecte Vercel: `camping-castellmontgri` (equip `nertelai-7298s-projects`). Els builds llegeixen
   els valors públics de `.env.production` (URL i clau publicable de Supabase, DSN de Sentry).
 
+## Reserves
+
+- El motor és WitBooking (`engine.witbooking.com/{idioma}/property/castellmontgri`), i tot el que se'n sap és a `src/lib/booking/link.ts`:
+  `datein` i `dateout` en DD-MM-AAAA, `adults` i `ninos`. En un altre format ignora les dates sense dir res. Els paràmetres es van treure del
+  codi del motor, no d'una documentació: si canvien, la barra continua obrint el motor, però sense la cerca.
+- `BookingBar` (al hero) és l'única cerca, amb selectors propis: calendari de dos mesos (`BookingCalendar`, lògica a `src/lib/booking/calendar.ts`, amb proves) i comptadors de persones.
+  A l'escriptori el panell surt cap amunt, dins de la foto i sense moure la pàgina: el text del hero s'aparta i, si no hi cap, la barra baixa (es mesura en obrir, `translate` al formulari).
+  Al mòbil, una làmina (`position: fixed`: per això el contenidor no porta `.rise`, i el `translate` només s'aplica a l'escriptori). Sense JS, el botó porta al motor igualment.
+- Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
+
+- **Com arribar-hi** (`directions.tsx`): surt de les dades generals. La ruta és un formulari normal cap a Google Maps (origen i manera d'anar-hi), sense JS ni servidor nostre.
+  El mapa d'OpenStreetMap és de tercers: no es carrega fins que qui visita ho accepta («Carrega el mapa»), i l'acceptació es recorda en aquest navegador (`localStorage`, `map-consent`).
+  Un cop carregat, no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
+- **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
+  Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
+
+## Pàgines
+
+- La portada és curta, com holacamp.net. Instal·lacions (amb piscines i tobogans), animació (amb el programa setmanal), gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/services`, `entertainment`, `gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`).
+  A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`); a la galeria només s'hi arriba pel menú. El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
+- `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
+- A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
+- **Pàgines legals** (`/[locale]/legal/[slug]`: privacitat, galetes, avís legal i condicions de reserva; `src/lib/content/legal.ts`): cadascuna és una secció del panell (`legal-privacy`…),
+  amb títols al text (paràgrafs que comencen amb `#`, `documentBlocks`). `node scripts/seed-legal.ts` les carrega i només afegeix el que no hi és; els enllaços són al peu.
+  Privacitat i galetes estan redactades per al web nou (`scripts/content/legal/<idioma>/`): descriuen el que el web fa de veritat (cap galeta en entrar; `NEXT_LOCALE` en canviar d'idioma; `map-consent` en acceptar el mapa;
+  Vercel, Supabase, Sentry, WitBooking i, amb consentiment, OpenStreetMap). **Si el web comença a fer servir una galeta, un servei o un formulari nou, s'han d'actualitzar** i tornar a carregar amb `--replace privacy,cookies`.
+  L'avís legal i les condicions de reserva continuen sent les del web antic.
+- **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `src/lib/seo/old-urls.json` (generat de `reference/content/site-map.json` amb `node scripts/build-old-urls.ts`: `reference/` no puja a Vercel) va a la pàgina nova equivalent, en el mateix idioma;
+  el que no en té (esdeveniments, treballa amb nosaltres, canal de denúncies) va a la portada.
+
 ## Disseny
 
+- Estil de referència: holacamp.net (foto gran amb la cerca a sobre, targetes amb preu i «Reservar», galeria) amb els colors de la marca.
+  El fons és gairebé blanc per acostar-se al motor de reserves, i el botó principal és `band-olive`.
 - Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
   franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
   fosc: si no, el text crema perd contrast.
+- La barra de scroll de la pàgina té el fons de la web i la barra `band-olive` (`globals.css`).
 - Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
   cursiva són desenes de KB que endarrereixen el LCP a mòbil.
 - Les seccions sota el plec porten `.cv` (`content-visibility: auto`).
@@ -180,6 +232,9 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
   Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
   mensual de Hugging Face es va acabar a la desena imatge.
+- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge, i les xifres a sota. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
+- **De la targeta a la fitxa** (`accommodation-explorer.tsx`, `withViewTransition`): la foto vola de la targeta a la fitxa amb View Transitions i la fitxa es construeix al voltant (`.accommodation-build`).
+  La foto de la targeta i la de la fitxa porten el mateix `view-transition-name`, mai alhora. Sense suport o amb moviment reduït, s'obre i prou. Totes dues fotos són 4:3 perquè el vol no es deformi.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):

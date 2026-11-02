@@ -3,7 +3,7 @@
     "accommodation": "Allotjament",
     "map": "Mapa",
     "gastronomy": "Gastronomia",
-    "services": "Serveis",
+    "services": "Instal·lacions",
     "entertainment": "Animació",
     "surroundings": "Entorn",
     "contact": "Contacte",
@@ -12,10 +12,10 @@
     "close": "Tancar",
     "language": "Idioma",
     "skip": "Salta al contingut",
-    "clientArea": "Àrea de clients"
+    "clientArea": "Àrea de clients",
+    "gallery": "Imatges"
   },
   "hero": {
-    "season": "Temporada",
     "discover": "Descobreix el càmping",
     "from": "Del {open} al {close}"
   },
@@ -26,7 +26,7 @@
     "activities": "activitats d'animació"
   },
   "accommodation": {
-    "eyebrow": "On dormir",
+    "label": "On dormir",
     "all": "Tots",
     "guests": "Persones",
     "guestsAny": "Qualsevol",
@@ -43,10 +43,15 @@
     "photo": "Foto {index} de {total}",
     "count": "{count, plural, one {# allotjament} other {# allotjaments}}",
     "seeAll": "Veure tots els allotjaments ({count})",
-    "backHome": "Torna a l'inici"
+    "backHome": "Torna a l'inici",
+    "from": "des de",
+    "perNight": "/nit",
+    "readMore": "Llegir més",
+    "readLess": "Llegir menys",
+    "previousPhoto": "Foto anterior",
+    "nextPhoto": "Foto següent"
   },
   "gastronomy": {
-    "eyebrow": "Menjar i beure",
     "zone": {
       "ombra": "Zona Ombra",
       "panorama": "Zona Panorama"
@@ -63,22 +68,19 @@
   "pools": {
     "eyebrow": "Aigua i sol"
   },
-  "services": {
-    "eyebrow": "Tot a mà"
-  },
   "entertainment": {
-    "eyebrow": "Per a tota la família",
     "audience": {
       "children": "Infantil",
       "family": "Família",
       "adult": "Adults"
+    },
+    "programme": {
+      "title": "Aquesta setmana",
+      "days": "Tria el dia",
+      "empty": "Aquest dia no hi ha cap activitat."
     }
   },
-  "surroundings": {
-    "eyebrow": "L'Empordà i la Costa Brava"
-  },
   "map": {
-    "eyebrow": "El càmping",
     "viewer": "Mapa interactiu del càmping en 3D",
     "hint": "Arrossega per moure't · pessiga, Ctrl + roda o + i − per ampliar",
     "zoomIn": "Amplia",
@@ -123,8 +125,6 @@
     "closeCard": "Tanca la fitxa"
   },
   "testimonials": {
-    "eyebrow": "Opinions",
-    "title": "Què diuen de nosaltres",
     "via": "a {source}"
   },
   "footer": {
@@ -133,10 +133,83 @@
     "season": "Temporada",
     "license": "Registre de turisme",
     "rights": "Tots els drets reservats.",
-    "notice": "Web nova en construcció"
+    "notice": "Web nova en construcció",
+    "legal": {
+      "privacy": "Privacitat",
+      "cookies": "Galetes",
+      "legal-notice": "Avís legal",
+      "booking-conditions": "Condicions de reserva"
+    }
   },
   "units": {
     "people": "{count} pers.",
     "bedrooms": "{count, plural, one {# hab.} other {# hab.}}"
+  },
+  "booking": {
+    "checkIn": "Entrada",
+    "checkOut": "Sortida",
+    "adults": "Adults",
+    "children": "Nens",
+    "search": "Cerca disponibilitat",
+    "guests": "Persones",
+    "addDate": "Afegeix la data",
+    "adultsCount": "{count, plural, one {# adult} other {# adults}}",
+    "childrenCount": "{count, plural, one {# nen} other {# nens}}",
+    "nights": "{count, plural, one {# nit} other {# nits}}",
+    "chooseCheckIn": "Tria el dia d'entrada",
+    "chooseCheckOut": "Ara, el de sortida",
+    "clear": "Esborra",
+    "done": "Fet",
+    "previousMonth": "Mes anterior",
+    "nextMonth": "Mes següent",
+    "less": "Treu: {label}",
+    "more": "Afegeix: {label}"
+  },
+  "gallery": {
+    "label": "Imatges",
+    "open": "Obre la foto {index}",
+    "previous": "Anterior",
+    "next": "Següent",
+    "counter": "{index} / {total}"
+  },
+  "directions": {
+    "route": "Mira la ruta",
+    "email": "Escriu-nos",
+    "mapTitle": "Mapa de la situació del càmping",
+    "mode": "Com vens",
+    "modes": {
+      "car": "Cotxe",
+      "transit": "Transport",
+      "bike": "Bici",
+      "walk": "A peu"
+    },
+    "from": "D'on vens?",
+    "fromPlaceholder": "La teva ciutat o adreça",
+    "useMap": "Clic per moure el mapa",
+    "mapConsent": "El mapa és d'OpenStreetMap: en carregar-lo, el teu navegador es connecta als seus servidors.",
+    "mapLoad": "Carrega el mapa",
+    "mapRemember": "Ho recordarem en aquest navegador."
+  },
+  "trip": {
+    "duration": "Durada",
+    "fewer": "Una nit menys",
+    "more": "Una nit més",
+    "type": "Tipus de viatge",
+    "types": {
+      "family": "En família",
+      "adventure": "Aventura",
+      "romantic": "Romàntic",
+      "culture": "Cultural"
+    },
+    "openIn": "Obre a {name}",
+    "copy": "Copia",
+    "copied": "Copiat!",
+    "prompt": "Passaré {nights, plural, one {# nit} other {# nits}} a {camping} ({place}) i vull un viatge de tipus «{type}». Mira la seva web, {url}, i prepara'm un pla dia a dia (matí, tarda i nit) amb què gaudir al càmping, llocs amb encant i on menjar a prop, i un consell dels que no surten a les guies. Ves al gra, amb llistes curtes.",
+    "greeting": "Què planifiquem?",
+    "chooseAssistant": "Tria el teu assistent",
+    "nightsLabel": "{count, plural, one {nit} other {nits}}"
+  },
+  "explore": {
+    "cta": "Veure'n més"
   }
 }

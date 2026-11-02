@@ -2,6 +2,10 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { moveItem, moveWithin, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { CENTER } from "@/lib/content/focus";
+import { HOME_BLOCKS, isHomeBlock, type HomeBlock } from "@/lib/content/home";
+import { addDays, shortTime, type SessionInput } from "@/lib/content/programme";
+import type { Position } from "@/lib/map/position";
 import { mediaUrl } from "./media";
 import { sessionClient } from "./session";
 
@@ -88,7 +92,7 @@ export async function listContent(entity: EntityName): Promise<ContentListItem[]
   });
 }
 
-export type ContentImage = { src: string; width: number | null; height: number | null };
+export type ContentImage = { src: string; width: number | null; height: number | null; focus: Position };
 export type ContentDetail = { id: string; base: Record<string, string | boolean>; translations: Partial<Translations>; image: ContentImage | null };
 
 export async function getContent(entity: EntityName, id: string): Promise<ContentDetail | null> {
@@ -99,8 +103,8 @@ export async function getContent(entity: EntityName, id: string): Promise<Conten
   let image: ContentImage | null = null;
   const mediaId = config.image ? row[config.image.column] : null;
   if (mediaId) {
-    const { data } = await (await db()).from("media").select("path, width, height").eq("id", mediaId).maybeSingle();
-    if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null };
+    const { data } = await (await db()).from("media").select("path, width, height, focus_x, focus_y").eq("id", mediaId).maybeSingle();
+    if (data) image = { src: mediaUrl(data.path as string), width: data.width as number | null, height: data.height as number | null, focus: { x: Number(data.focus_x), y: Number(data.focus_y) } };
   }
   return { id, base, translations: byLocale(row.translations), image };
 }
@@ -130,11 +134,11 @@ export async function deleteContent(entity: EntityName, id: string): Promise<str
 export type UploadedImage = { bytes: Uint8Array; width: number; height: number; name: string };
 
 /** Puja un JPEG al bucket i el registra a `media`. */
-async function uploadMedia(supabase: SupabaseClient, entity: EntityName, file: UploadedImage): Promise<{ id: string } | { error: string }> {
+async function uploadMedia(supabase: SupabaseClient, entity: EntityName, file: UploadedImage, focus: Position = CENTER): Promise<{ id: string } | { error: string }> {
   const path = `panell/${entity}/${file.name}.jpg`;
   const upload = await supabase.storage.from("media").upload(path, file.bytes, { contentType: "image/jpeg", cacheControl: "31536000" });
   if (upload.error) return { error: upload.error.message };
-  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height }).select("id").single();
+  const media = await supabase.from("media").insert({ path, mime_type: "image/jpeg", width: file.width, height: file.height, focus_x: focus.x, focus_y: focus.y }).select("id").single();
   if (media.error) return { error: media.error.message };
   return { id: media.data.id as string };
 }
@@ -192,17 +196,32 @@ export async function moveInGallery(entity: EntityName, id: string, mediaId: str
  * Puja una foto nova al bucket, la registra a `media` i la posa com a foto del contingut. La foto anterior no s'esborra:
  * pot ser que la faci servir un altre contingut. Retorna l'error en text si Supabase (o RLS) no ho ha deixat fer.
  */
-export async function replaceImage(entity: EntityName, id: string, file: UploadedImage): Promise<string | null> {
+export async function replaceImage(entity: EntityName, id: string, file: UploadedImage, focus: Position): Promise<string | null> {
   const config: EntityConfig = ENTITIES[entity];
   if (!config.image) return "Aquest contingut no té foto.";
   const supabase = await db();
 
-  const media = await uploadMedia(supabase, entity, file);
+  const media = await uploadMedia(supabase, entity, file, focus);
   if ("error" in media) return media.error;
 
   const { data, error } = await supabase.from(config.table).update({ [config.image.column]: media.id }).eq(config.key, id).select(config.key);
   if (error) return error.message;
   if (!data?.length) return "No tens permís per modificar aquest contingut, o ja no existeix.";
+  return null;
+}
+
+/** Mou el punt que no s'ha de retallar de la foto actual. La foto surt de la fila, no del que digui el navegador. */
+export async function setImageFocus(entity: EntityName, id: string, focus: Position): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.image) return "Aquest contingut no té foto.";
+  const supabase = await db();
+  const { data: row, error: readError } = await supabase.from(config.table).select(config.image.column).eq(config.key, id).maybeSingle();
+  if (readError) return readError.message;
+  const mediaId = (row as unknown as Record<string, unknown> | null)?.[config.image.column];
+  if (typeof mediaId !== "string") return "Aquest contingut encara no té foto.";
+  const { data, error } = await supabase.from("media").update({ focus_x: focus.x, focus_y: focus.y }).eq("id", mediaId).select("id");
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per modificar aquesta foto.";
   return null;
 }
 
@@ -236,22 +255,51 @@ export async function saveContent(entity: EntityName, id: string, input: Content
   return null;
 }
 
-/** Quantes files té cada entitat, per al tauler d'inici. */
-export async function countContent(entity: EntityName): Promise<number> {
+// ─── Programa setmanal ────────────────────────────────────────────────────────
+export type AdminSession = { id: string; activityId: string; day: string; startsAt: string; endsAt: string | null; place: string | null };
+
+/** Les sessions d'una setmana, en ordre. */
+export async function listSessions(monday: string): Promise<AdminSession[]> {
+  const { data, error } = await (await db()).from("activity_sessions").select("*").gte("day", monday).lte("day", addDays(monday, 6)).order("day").order("starts_at");
+  if (error) throw new Error(`No s'ha pogut llegir el programa: ${error.message}`);
+  return (data ?? []).map((row) => ({ id: row.id, activityId: row.activity_id, day: row.day, startsAt: shortTime(row.starts_at), endsAt: row.ends_at && shortTime(row.ends_at), place: row.place }));
+}
+
+export async function addSession(session: SessionInput): Promise<string | null> {
+  const { error } = await (await db())
+    .from("activity_sessions")
+    .insert({ activity_id: session.activityId, day: session.day, starts_at: session.startsAt, ends_at: session.endsAt, place: session.place });
+  if (error?.code === "23505") return "Aquesta activitat ja hi és aquest dia i a aquesta hora.";
+  return error?.message ?? null;
+}
+
+/** Esborra una sessió i retorna de quin dia era, per apuntar-ho al registre. */
+export async function removeSession(id: string): Promise<{ day: string } | { error: string }> {
+  const { data, error } = await (await db()).from("activity_sessions").delete().eq("id", id).select("day");
+  if (error) return { error: error.message };
+  if (!data?.[0]) return { error: "No tens permís per treure aquesta activitat, o ja no hi és." };
+  return { day: data[0].day };
+}
+
+/** Copia a aquesta setmana el programa de l'anterior. El que ja hi és no es toca. */
+export async function copyPreviousWeek(monday: string): Promise<string | null> {
   const supabase = await db();
-  const { count } = await supabase.from(ENTITIES[entity].table).select("*", { count: "exact", head: true });
-  return count ?? 0;
+  const previous = await listSessions(addDays(monday, -7));
+  if (!previous.length) return "La setmana anterior no té cap activitat.";
+  const rows = previous.map((session) => ({ activity_id: session.activityId, day: addDays(session.day, 7), starts_at: session.startsAt, ends_at: session.endsAt, place: session.place }));
+  const { error } = await supabase.from("activity_sessions").upsert(rows, { onConflict: "activity_id,day,starts_at", ignoreDuplicates: true });
+  return error?.message ?? null;
 }
 
 // ─── Registre de canvis ───────────────────────────────────────────────────────
-export type ChangeAction = "text" | "image" | "create" | "delete";
+export type ChangeAction = "text" | "image" | "create" | "delete" | "programme";
 export type Change = { id: number; at: string; editor: string; entity: string; rowId: string; rowName: string; action: ChangeAction };
 
 /**
  * Apunta un canvi al registre. Si falla no es desfà el canvi (ja està desat): es retorna l'error perquè qui crida
  * el pugui deixar als logs.
  */
-export async function logChange(change: { editor: string; entity: EntityName; rowId: string; rowName: string; action: ChangeAction }): Promise<string | null> {
+export async function logChange(change: { editor: string; entity: EntityName | "programme"; rowId: string; rowName: string; action: ChangeAction }): Promise<string | null> {
   const supabase = await db();
   const { error } = await supabase
     .from("change_log")
@@ -302,4 +350,31 @@ export async function moveContent(entity: EntityName, id: string, delta: 1 | -1)
   const failed = results.find((result) => result.error || !result.data?.length);
   if (failed) return failed.error?.message ?? "No tens permís per reordenar aquesta llista.";
   return null;
+}
+
+// ─── La portada ───────────────────────────────────────────────────────────────
+
+export type HomeBlockRow = { key: HomeBlock; title: string; visible: boolean };
+
+/** Els blocs de la portada en l'ordre en què surten, amb el títol en català (o en castellà, si no n'hi ha). */
+export async function listHomeBlocks(): Promise<HomeBlockRow[]> {
+  const { data, error } = await (await db())
+    .from("sections")
+    .select("key, sort_order, is_visible, section_translations(locale, title)")
+    .in("key", [...HOME_BLOCKS])
+    .order("sort_order")
+    .order("key");
+  if (error) throw new Error(`No s'han pogut llegir els blocs de la portada: ${error.message}`);
+  return (data ?? []).filter((row) => isHomeBlock(row.key)).map((row) => {
+    const titles = new Map(row.section_translations.map((t) => [t.locale, t.title]));
+    return { key: row.key as HomeBlock, title: titles.get("ca") || titles.get("es") || row.key, visible: row.is_visible };
+  });
+}
+
+/** Desa l'ordre nou dels blocs de la portada. */
+export async function saveHomeOrder(order: { key: HomeBlock; sort_order: number }[]): Promise<string | null> {
+  const supabase = await db();
+  const results = await Promise.all(order.map(({ key, sort_order }) => supabase.from("sections").update({ sort_order }).eq("key", key).select("key")));
+  const failed = results.find((result) => result.error || !result.data?.length);
+  return failed ? (failed.error?.message ?? "No tens permís per canviar l'ordre de la portada.") : null;
 }

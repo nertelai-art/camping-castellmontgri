@@ -170,6 +170,7 @@ export type Database = {
           cover_media_id: string | null
           id: string
           is_accessible: boolean
+          price_from: number | null
           size_m2: number | null
           slug: string
           sort_order: number
@@ -186,6 +187,7 @@ export type Database = {
           cover_media_id?: string | null
           id?: string
           is_accessible?: boolean
+          price_from?: number | null
           size_m2?: number | null
           slug: string
           sort_order?: number
@@ -202,6 +204,7 @@ export type Database = {
           cover_media_id?: string | null
           id?: string
           is_accessible?: boolean
+          price_from?: number | null
           size_m2?: number | null
           slug?: string
           sort_order?: number
@@ -265,6 +268,44 @@ export type Database = {
             columns: ["cover_media_id"]
             isOneToOne: false
             referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      activity_sessions: {
+        Row: {
+          activity_id: string
+          created_at: string
+          day: string
+          ends_at: string | null
+          id: string
+          place: string | null
+          starts_at: string
+        }
+        Insert: {
+          activity_id: string
+          created_at?: string
+          day: string
+          ends_at?: string | null
+          id?: string
+          place?: string | null
+          starts_at: string
+        }
+        Update: {
+          activity_id?: string
+          created_at?: string
+          day?: string
+          ends_at?: string | null
+          id?: string
+          place?: string | null
+          starts_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_sessions_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "activities"
             referencedColumns: ["id"]
           },
         ]
@@ -444,6 +485,8 @@ export type Database = {
       media: {
         Row: {
           created_at: string
+          focus_x: number
+          focus_y: number
           height: number | null
           id: string
           mime_type: string
@@ -454,6 +497,8 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          focus_x?: number
+          focus_y?: number
           height?: number | null
           id?: string
           mime_type: string
@@ -464,6 +509,8 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          focus_x?: number
+          focus_y?: number
           height?: number | null
           id?: string
           mime_type?: string
@@ -594,10 +641,44 @@ export type Database = {
           },
         ]
       }
+      section_media: {
+        Row: {
+          media_id: string
+          section_key: string
+          sort_order: number
+        }
+        Insert: {
+          media_id: string
+          section_key: string
+          sort_order?: number
+        }
+        Update: {
+          media_id?: string
+          section_key?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "section_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "section_media_section_key_fkey"
+            columns: ["section_key"]
+            isOneToOne: false
+            referencedRelation: "sections"
+            referencedColumns: ["key"]
+          },
+        ]
+      }
       section_translations: {
         Row: {
           body: string | null
           cta_label: string | null
+          eyebrow: string | null
           highlight: string | null
           locale: Database["public"]["Enums"]["locale"]
           section_key: string
@@ -606,6 +687,7 @@ export type Database = {
         Insert: {
           body?: string | null
           cta_label?: string | null
+          eyebrow?: string | null
           highlight?: string | null
           locale: Database["public"]["Enums"]["locale"]
           section_key: string
@@ -614,6 +696,7 @@ export type Database = {
         Update: {
           body?: string | null
           cta_label?: string | null
+          eyebrow?: string | null
           highlight?: string | null
           locale?: Database["public"]["Enums"]["locale"]
           section_key?: string

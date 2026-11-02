@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { paragraphs, parseInline } from "./rich-text";
+import { documentBlocks, paragraphs, parseInline } from "./rich-text";
 
 describe("text ric lleuger", () => {
   it("separa paràgrafs per línies buides", () => {
@@ -13,6 +13,19 @@ describe("text ric lleuger", () => {
       { text: "Bienvenidos", bold: true },
       { text: " al camping!", bold: false },
     ]);
+  });
+
+  it("als textos llargs, els paràgrafs amb «#» són títols de dos nivells", () => {
+    expect(documentBlocks("# AVISO\n\n## Datos\n\n### Cookies **propias**\n\nTexto #1.")).toEqual([
+      { kind: "heading", level: 2, inlines: [{ text: "AVISO", bold: false }] },
+      { kind: "heading", level: 2, inlines: [{ text: "Datos", bold: false }] },
+      { kind: "heading", level: 3, inlines: [{ text: "Cookies ", bold: false }, { text: "propias", bold: true }] },
+      { kind: "paragraph", inlines: [{ text: "Texto #1.", bold: false }] },
+    ]);
+  });
+
+  it("un «#» sense espai no és un títol", () => {
+    expect(documentBlocks("#hashtag")).toEqual([{ kind: "paragraph", inlines: [{ text: "#hashtag", bold: false }] }]);
   });
 
   it("no interpreta HTML", () => {

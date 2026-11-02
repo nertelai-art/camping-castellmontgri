@@ -3,7 +3,7 @@
     "accommodation": "Accommodaties",
     "map": "Kaart",
     "gastronomy": "Eten & drinken",
-    "services": "Voorzieningen",
+    "services": "Faciliteiten",
     "entertainment": "Animatie",
     "surroundings": "Omgeving",
     "contact": "Contact",
@@ -12,10 +12,10 @@
     "close": "Sluiten",
     "language": "Taal",
     "skip": "Naar de inhoud",
-    "clientArea": "Gastenportaal"
+    "clientArea": "Gastenportaal",
+    "gallery": "Foto's"
   },
   "hero": {
-    "season": "Seizoen",
     "discover": "Ontdek de camping",
     "from": "{open} – {close}"
   },
@@ -26,7 +26,7 @@
     "activities": "animatieactiviteiten"
   },
   "accommodation": {
-    "eyebrow": "Waar slapen",
+    "label": "Waar slapen",
     "all": "Alle",
     "guests": "Personen",
     "guestsAny": "Alle",
@@ -43,10 +43,15 @@
     "photo": "Foto {index} van {total}",
     "count": "{count, plural, one {# accommodatie} other {# accommodaties}}",
     "seeAll": "Alle accommodaties bekijken ({count})",
-    "backHome": "Terug naar home"
+    "backHome": "Terug naar home",
+    "from": "vanaf",
+    "perNight": "/nacht",
+    "readMore": "Lees meer",
+    "readLess": "Lees minder",
+    "previousPhoto": "Vorige foto",
+    "nextPhoto": "Volgende foto"
   },
   "gastronomy": {
-    "eyebrow": "Eten en drinken",
     "zone": {
       "ombra": "Zone Ombra",
       "panorama": "Zone Panorama"
@@ -63,22 +68,19 @@
   "pools": {
     "eyebrow": "Water en zon"
   },
-  "services": {
-    "eyebrow": "Alles bij de hand"
-  },
   "entertainment": {
-    "eyebrow": "Voor het hele gezin",
     "audience": {
       "children": "Kinderen",
       "family": "Gezin",
       "adult": "Volwassenen"
+    },
+    "programme": {
+      "title": "Deze week",
+      "days": "Kies de dag",
+      "empty": "Op deze dag zijn er geen activiteiten."
     }
   },
-  "surroundings": {
-    "eyebrow": "De Empordà en de Costa Brava"
-  },
   "map": {
-    "eyebrow": "De camping",
     "viewer": "Interactieve 3D-kaart van de camping",
     "hint": "Sleep om te bewegen · knijp, Ctrl + scroll of + en − om te zoomen",
     "zoomIn": "Inzoomen",
@@ -123,8 +125,6 @@
     "closeCard": "Kaartje sluiten"
   },
   "testimonials": {
-    "eyebrow": "Beoordelingen",
-    "title": "Wat onze gasten zeggen",
     "via": "op {source}"
   },
   "footer": {
@@ -133,10 +133,83 @@
     "season": "Seizoen",
     "license": "Toerismeregister",
     "rights": "Alle rechten voorbehouden.",
-    "notice": "Nieuwe website in aanbouw"
+    "notice": "Nieuwe website in aanbouw",
+    "legal": {
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "legal-notice": "Juridische kennisgeving",
+      "booking-conditions": "Reserveringsvoorwaarden"
+    }
   },
   "units": {
     "people": "{count} pers.",
     "bedrooms": "{count, plural, one {# slaapk.} other {# slaapk.}}"
+  },
+  "booking": {
+    "checkIn": "Aankomst",
+    "checkOut": "Vertrek",
+    "adults": "Volwassenen",
+    "children": "Kinderen",
+    "search": "Beschikbaarheid zoeken",
+    "guests": "Personen",
+    "addDate": "Datum kiezen",
+    "adultsCount": "{count, plural, one {# volwassene} other {# volwassenen}}",
+    "childrenCount": "{count, plural, one {# kind} other {# kinderen}}",
+    "nights": "{count, plural, one {# nacht} other {# nachten}}",
+    "chooseCheckIn": "Kies je aankomstdag",
+    "chooseCheckOut": "Nu je vertrekdag",
+    "clear": "Wissen",
+    "done": "Klaar",
+    "previousMonth": "Vorige maand",
+    "nextMonth": "Volgende maand",
+    "less": "Minder: {label}",
+    "more": "Meer: {label}"
+  },
+  "gallery": {
+    "label": "Foto's",
+    "open": "Open foto {index}",
+    "previous": "Vorige",
+    "next": "Volgende",
+    "counter": "{index} / {total}"
+  },
+  "directions": {
+    "route": "Bekijk de route",
+    "email": "Schrijf ons",
+    "mapTitle": "Kaart met de ligging van de camping",
+    "mode": "Hoe je komt",
+    "modes": {
+      "car": "Auto",
+      "transit": "Openbaar",
+      "bike": "Fiets",
+      "walk": "Te voet"
+    },
+    "from": "Waar kom je vandaan?",
+    "fromPlaceholder": "Je stad of adres",
+    "useMap": "Klik om de kaart te bewegen",
+    "mapConsent": "De kaart komt van OpenStreetMap: als je hem laadt, maakt je browser verbinding met hun servers.",
+    "mapLoad": "Kaart laden",
+    "mapRemember": "We onthouden dit in deze browser."
+  },
+  "trip": {
+    "duration": "Duur",
+    "fewer": "Een nacht minder",
+    "more": "Een nacht meer",
+    "type": "Soort reis",
+    "types": {
+      "family": "Met het gezin",
+      "adventure": "Avontuur",
+      "romantic": "Romantisch",
+      "culture": "Cultuur"
+    },
+    "openIn": "Openen in {name}",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd!",
+    "prompt": "Ik verblijf {nights, plural, one {# nacht} other {# nachten}} op {camping} ({place}) en wil een reis van het type “{type}”. Bekijk hun website, {url}, en maak een plan per dag (ochtend, middag en avond) met wat er op de camping te beleven is, leuke plekken en waar je in de buurt kunt eten, en een tip die niet in de reisgidsen staat. Kom meteen ter zake, met korte lijstjes.",
+    "greeting": "Wat gaan we plannen?",
+    "chooseAssistant": "Kies je assistent",
+    "nightsLabel": "{count, plural, one {nacht} other {nachten}}"
+  },
+  "explore": {
+    "cta": "Meer bekijken"
   }
 }
