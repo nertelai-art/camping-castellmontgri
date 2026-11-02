@@ -191,7 +191,10 @@ client es pugen a Supabase Storage amb el script de seed.
 - `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 - **Pàgines legals** (`/[locale]/legal/[slug]`: privacitat, galetes, avís legal i condicions de reserva; `src/lib/content/legal.ts`): cadascuna és una secció del panell (`legal-privacy`…),
-  amb títols al text (paràgrafs que comencen amb `#`, `documentBlocks`). El text inicial és el del web antic: `node scripts/seed-legal.ts`, que només afegeix el que no hi és. Els enllaços són al peu.
+  amb títols al text (paràgrafs que comencen amb `#`, `documentBlocks`). `node scripts/seed-legal.ts` les carrega i només afegeix el que no hi és; els enllaços són al peu.
+  Privacitat i galetes estan redactades per al web nou (`scripts/content/legal/<idioma>/`): descriuen el que el web fa de veritat (cap galeta en entrar; `NEXT_LOCALE` en canviar d'idioma; `map-consent` en acceptar el mapa;
+  Vercel, Supabase, Sentry, WitBooking i, amb consentiment, OpenStreetMap). **Si el web comença a fer servir una galeta, un servei o un formulari nou, s'han d'actualitzar** i tornar a carregar amb `--replace privacy,cookies`.
+  L'avís legal i les condicions de reserva continuen sent les del web antic.
 - **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `src/lib/seo/old-urls.json` (generat de `reference/content/site-map.json` amb `node scripts/build-old-urls.ts`: `reference/` no puja a Vercel) va a la pàgina nova equivalent, en el mateix idioma;
   el que no en té (esdeveniments, treballa amb nosaltres, canal de denúncies) va a la portada.
 
