@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { routing } from "@/i18n/routing";
+import { LEGAL_PAGES } from "@/lib/content/legal";
 import { siteUrl } from "@/lib/site-url";
 
-const PAGES = ["accommodations", "services", "entertainment", "gastronomy", "surroundings", "gallery"];
+const PAGES = ["accommodations", "services", "entertainment", "gastronomy", "surroundings", "gallery", ...Object.keys(LEGAL_PAGES).map((slug) => `legal/${slug}`)];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const languages = Object.fromEntries(routing.locales.map((l) => [l, `${siteUrl}/${l}`]));

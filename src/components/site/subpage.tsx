@@ -14,11 +14,12 @@ import { SiteHeader } from "./site-header";
 
 export async function subpageMetadata(locale: string, path: string, sectionKey: string): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) return {};
-  const [{ brandName }, sections] = await Promise.all([getSiteSettings(locale), getSections(locale)]);
+  const [{ brandName, seo }, sections] = await Promise.all([getSiteSettings(locale), getSections(locale)]);
   const section = sections[sectionKey];
   return {
     title: section ? `${section.title} · ${brandName}` : brandName,
-    description: section?.body?.split("\n\n")[0] ?? undefined,
+    // Una secció sense text (la galeria) es queda amb la descripció general del web.
+    description: section?.body?.split("\n\n")[0] || seo.description || undefined,
     alternates: {
       canonical: `/${locale}/${path}`,
       languages: { ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}/${path}`])), "x-default": `/${routing.defaultLocale}/${path}` },

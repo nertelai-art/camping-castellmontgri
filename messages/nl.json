@@ -144,7 +144,13 @@
     "season": "Seizoen",
     "license": "Toerismeregister",
     "rights": "Alle rechten voorbehouden.",
-    "notice": "Nieuwe website in aanbouw"
+    "notice": "Nieuwe website in aanbouw",
+    "legal": {
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "legal-notice": "Juridische kennisgeving",
+      "booking-conditions": "Reserveringsvoorwaarden"
+    }
   },
   "units": {
     "people": "{count} pers.",
@@ -192,7 +198,10 @@
     },
     "from": "Waar kom je vandaan?",
     "fromPlaceholder": "Je stad of adres",
-    "useMap": "Klik om de kaart te bewegen"
+    "useMap": "Klik om de kaart te bewegen",
+    "mapConsent": "De kaart komt van OpenStreetMap: als je hem laadt, maakt je browser verbinding met hun servers.",
+    "mapLoad": "Kaart laden",
+    "mapRemember": "We onthouden dit in deze browser."
   },
   "trip": {
     "eyebrow": "Plan je uitje",

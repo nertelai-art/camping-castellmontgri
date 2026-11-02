@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { LEGAL_PAGES, type LegalSlug } from "@/lib/content/legal";
 import { MediaImage } from "@/components/media-image";
 import { bookingLink } from "@/lib/booking/link";
 import { directionsUrl, formatDayMonth } from "@/lib/content/format";
@@ -82,6 +83,15 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
         <p>
           © {settings.season.open?.slice(0, 4)} {settings.legalName}. {t("rights")}
         </p>
+        <ul className="flex flex-wrap gap-x-5 gap-y-1">
+          {(Object.keys(LEGAL_PAGES) as LegalSlug[]).map((slug) => (
+            <li key={slug}>
+              <a href={`/${locale}/legal/${slug}`} className="hover:text-on-dark hover:underline">
+                {t(`legal.${slug}`)}
+              </a>
+            </li>
+          ))}
+        </ul>
         {settings.licenseCode && (
           <p>
             {t("license")}: {settings.licenseCode}

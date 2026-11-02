@@ -179,7 +179,8 @@ client es pugen a Supabase Storage amb el script de seed.
 - Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
 
 - **Com arribar-hi** (`directions.tsx`): surt de les dades generals. La ruta és un formulari normal cap a Google Maps (origen i manera d'anar-hi), sense JS ni servidor nostre.
-  El mapa d'OpenStreetMap es veu sempre, es carrega en acostar-s'hi i no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
+  El mapa d'OpenStreetMap és de tercers: no es carrega fins que qui visita ho accepta («Carrega el mapa»), i l'acceptació es recorda en aquest navegador (`localStorage`, `map-consent`).
+  Un cop carregat, no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
 - **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
   Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
 
@@ -189,6 +190,10 @@ client es pugen a Supabase Storage amb el script de seed.
   A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`); a la galeria només s'hi arriba pel menú. El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
 - `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
+- **Pàgines legals** (`/[locale]/legal/[slug]`: privacitat, galetes, avís legal i condicions de reserva; `src/lib/content/legal.ts`): cadascuna és una secció del panell (`legal-privacy`…),
+  amb títols al text (paràgrafs que comencen amb `#`, `documentBlocks`). El text inicial és el del web antic: `node scripts/seed-legal.ts`, que només afegeix el que no hi és. Els enllaços són al peu.
+- **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `reference/content/site-map.json` va a la pàgina nova equivalent, en el mateix idioma;
+  el que no en té (esdeveniments, treballa amb nosaltres, canal de denúncies) va a la portada.
 
 ## Disseny
 

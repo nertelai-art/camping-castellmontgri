@@ -37,6 +37,7 @@ export function ImageGallery({ photos }: { photos: MediaRef[] }) {
                 src={item.src}
                 alt={item.alt}
                 fill
+                priority={i === 0}
                 sizes={i === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
                 className="object-cover transition duration-500 group-hover:scale-105"
                 style={{ objectPosition: item.position }}
