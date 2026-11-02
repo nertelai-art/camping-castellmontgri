@@ -1,0 +1,1329 @@
+[
+ {
+  "key": "home",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl"
+  }
+ },
+ {
+  "key": "alojamientos",
+  "group": "accommodation-category",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie"
+  }
+ },
+ {
+  "key": "mobile-home",
+  "group": "accommodation-category",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mobile-home"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mobile-home"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mobile-home"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mobile-home"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mobile-home"
+  }
+ },
+ {
+  "key": "glamping",
+  "group": "accommodation-category",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/glamping"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/glamping"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/glamping"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/glamping"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/glamping"
+  }
+ },
+ {
+  "key": "tiendas",
+  "group": "accommodation-category",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/tiendas"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tendes"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/tents"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/tents"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tents"
+  }
+ },
+ {
+  "key": "parcelas",
+  "group": "accommodation-category",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcelas"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parceles"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/emplacements"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/pitches"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/plaatsen"
+  }
+ },
+ {
+  "key": "restauracion",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie"
+  }
+ },
+ {
+  "key": "servicios",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/servicios"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/serveis"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/services"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/services"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/diensten"
+  }
+ },
+ {
+  "key": "animacion",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie"
+  }
+ },
+ {
+  "key": "eventos",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/eventos"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/events"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/evenements"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/events"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/evenementen"
+  }
+ },
+ {
+  "key": "entorno",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/entorno"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/entorn"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/environnement"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/environment"
+  }
+ },
+ {
+  "key": "mh-medes",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-medes"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-medes"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-medes"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-medes"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-medes"
+  }
+ },
+ {
+  "key": "mh-montgri",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-montgri"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-montgri"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-montgri"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-montgri"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-montgri"
+  }
+ },
+ {
+  "key": "mh-ter",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-ter"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-ter"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-ter"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-ter"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-ter"
+  }
+ },
+ {
+  "key": "mh-rocamora-6",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-rocamora-6"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-rocamora-6"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-rocamora-6"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-rocamora-6"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-rocamora-6"
+  }
+ },
+ {
+  "key": "mh-rocamora-4",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-rocamora-4"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-rocamora-4"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-rocamora-4"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-rocamora-4"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-rocamora-4"
+  }
+ },
+ {
+  "key": "chalet-45",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-45"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-45"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-45"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-45"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-45"
+  }
+ },
+ {
+  "key": "chalet-45-superior",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-45-superior"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-45-superior"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-45-superior"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-45-superior"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-45-superior"
+  }
+ },
+ {
+  "key": "chalet-6",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-6"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-6"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-6"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-6"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-6"
+  }
+ },
+ {
+  "key": "chalet-45-pmr",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-45-pmr"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-45-pmr"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-45-pmr"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-45-pmr"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-45-pmr"
+  }
+ },
+ {
+  "key": "mh-padrosa-4",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-padrosa-4"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-padrosa-4"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-padrosa-4"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-padrosa-4"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-padrosa-4"
+  }
+ },
+ {
+  "key": "mh-padrosa-superior",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-padrosa-superior"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-padrosa-superior"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-padrosa-superior"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-padrosa-superior"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-padrosa-superior"
+  }
+ },
+ {
+  "key": "mh-ter-4",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-ter-4"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-ter-4"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-ter-4"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-ter-4"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-ter-4"
+  }
+ },
+ {
+  "key": "chalet-56",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/chalet-56"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/chalet-56"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/chalet-56"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/chalet-56"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/chalet-56"
+  }
+ },
+ {
+  "key": "mh-rocamaura-4-superior",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/mh-rocamaura-4-superior"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/mh-rocamaura-4-superior"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/mh-rocamaura-4-superior"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/mh-rocamaura-4-superior"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/mh-rocamaura-4-superior"
+  }
+ },
+ {
+  "key": "village-45",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/village-45"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/village-45"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/village-45"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/village-45"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/village-45"
+  }
+ },
+ {
+  "key": "village-6",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/village-6"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/village-6"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/village-6"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/village-6"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/village-6"
+  }
+ },
+ {
+  "key": "tienda-plis-plas",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/tienda-plis-plas"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tenda-plis-plas"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/tente-plis-plas"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/tent-plis-plas"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tent-plis-plas"
+  }
+ },
+ {
+  "key": "nature-habitat",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/nature-habitat"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/nature-habitat"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/nature-habitat"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/nature-habitat"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/nature-habitat"
+  }
+ },
+ {
+  "key": "tenda-mont-pla",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/tenda-mont-pla"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/tenda-mont-pla"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/tenda-mont-pla"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/tenda-mont-pla"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/tenda-mont-pla"
+  }
+ },
+ {
+  "key": "parcela-estandar",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcela-estandar"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parcela-estandard"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/terrrain-standard"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/standard-plot"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/standaard-perceel"
+  }
+ },
+ {
+  "key": "parcela-comodity",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcela-comodity"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parcela-comodity"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/colis-comodity"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/comodity-portion"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/comodity-parcel"
+  }
+ },
+ {
+  "key": "parcela-comodity-plus",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/parcela-comodity-plus"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/parcela-comodity-plus"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/tterrain-comoditty-plus"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/comodity-plus-plot"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/comodity-plus-plot"
+  }
+ },
+ {
+  "key": "condiciones-de-reservas",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/condiciones-de-reservas"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/condicions-de-reserves"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/conditions-de-reservations"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/booking-conditions"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/reserveringsvoorwaarden"
+  }
+ },
+ {
+  "key": "preservacion-del-entorno",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/preservacion-del-entorno/"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/preservacio-de-lentorn"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/preservation-de-lenvironnement"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/environmentally-friendly"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/het-behoud-van-het-milieu"
+  }
+ },
+ {
+  "key": "trabaja-con-nosotros",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/trabaja-con-nosotros"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/treballa-amb-nosaltres"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/travaille-avec-nous"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/work-with-us"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/werk-met-ons"
+  }
+ },
+ {
+  "key": "politica-de-privacidad",
+  "group": "legal",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/politica-de-privacidad"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/politica-de-privacitat"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/politique-de-privacite"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/privacy-policy"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/privacybeleid"
+  }
+ },
+ {
+  "key": "politica-de-cookies",
+  "group": "legal",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/politica-de-cookies"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/politica-de-cookies"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/politique-de-cookies"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/cookie-policy"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/cookie-policy"
+  }
+ },
+ {
+  "key": "aviso-legal",
+  "group": "legal",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/aviso-legal"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/avis-legal"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/avis-legal"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/legal-notes"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/wettelijke-waarschuwing"
+  }
+ },
+ {
+  "key": "canal-de-denuncias",
+  "group": "legal",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/canal-de-denuncias"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/canal-de-denuncies"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/canal-de-reclamation"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/complaint-channel"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/klacht-kanaal"
+  }
+ },
+ {
+  "key": "restaurant-heladeria-mini-golf",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/heladeria-mini-golf"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/gelateria-mini-golf"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/glacier-mini-golf"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/mini-golf-ice-cream-parlor"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/minigolf-ijssalon"
+  }
+ },
+ {
+  "key": "restaurant-restaurante-ombra",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/restaurante-ombra"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/restaurant-ombra"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/restaurant-ombra"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/ombra-restaurant"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/ombra-restaurant"
+  }
+ },
+ {
+  "key": "restaurant-pizzeria",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/pizzeria"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/pizzeria"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/pizzeria"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/pizza-shop"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/pizza-winkel"
+  }
+ },
+ {
+  "key": "restaurant-take-away-ombra",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/take-away-ombra"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/take-away-ombra"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/ombra-a-emporter"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/take-away-ombra"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/neem-ombra-mee"
+  }
+ },
+ {
+  "key": "restaurant-cafeteria-creperie",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/cafeteria-creperie"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/cafeteria-creperie"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/cafe-creperie"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/cafe-creperie"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/cafe-creperie"
+  }
+ },
+ {
+  "key": "restaurant-barra-heineken",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/barra-heineken"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/barra-heineken"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/barra-heineken"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/bar-heineken"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/barra-heineken"
+  }
+ },
+ {
+  "key": "restaurant-restaurante-grill",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/restaurante-grill"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/restaurant-grill"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/restaurant-grill"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/restaurant-grill"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/restaurantgrill"
+  }
+ },
+ {
+  "key": "restaurant-take-away-panorama",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/take-away-panorama"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/take-away-panorama"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/take-away-panorama"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/take-away-panorama"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/take-away-panorama"
+  }
+ },
+ {
+  "key": "restaurant-bar-panorama",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/bar-panorama"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/bar-panorama"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/bar-panorama"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/bar-panorama"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/bar-panorama"
+  }
+ },
+ {
+  "key": "restaurant-heladeria-panorama",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/heladeria-panorama"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/gelateria-panorama"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/glacier-panorama"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/panorama-ice-cream-parlor"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/panorama-ijssalon"
+  }
+ },
+ {
+  "key": "restaurant-the-seagull-discopub",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/the-seagull-discopub"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/the-seagull-discopub"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/the-seagull-discopub"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/the-seagull-discopub"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/the-seagull-discopub"
+  }
+ },
+ {
+  "key": "restaurant-lera",
+  "group": "restaurant",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/restauracion/lera"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/restauracio/lera"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/restauration/lera"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/restoration/lera"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/restauratie/lera"
+  }
+ },
+ {
+  "key": "animation-mini-club",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/mini-club"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/mini-club"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/mini-club"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/mini-club"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/mini-club"
+  }
+ },
+ {
+  "key": "animation-mini-disco",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/mini-disco"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/mini-disco"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/mini-discotheque"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/mini-disco"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/minidisco"
+  }
+ },
+ {
+  "key": "animation-hinchables",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/hinchables"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/inflables"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/gonflables"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/inflatables"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/opblaasbaar"
+  }
+ },
+ {
+  "key": "animation-aquagym",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/aquagym"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/aquagym"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/aquagym"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/aquagym"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/aquagym"
+  }
+ },
+ {
+  "key": "animation-futbol",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/futbol"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/futbol"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/football"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/football"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/voetbal"
+  }
+ },
+ {
+  "key": "animation-balonesto",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/balonesto"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/basket"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/basket-ball"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/basket"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/basketbal"
+  }
+ },
+ {
+  "key": "animation-tenis",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/tenis"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/tenis"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/tennis"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/tennis"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/tennis"
+  }
+ },
+ {
+  "key": "animation-waterpolo",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/waterpolo"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/waterpolo"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/water-polo"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/waterpolo"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/water-polo"
+  }
+ },
+ {
+  "key": "animation-balonmano",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/balonmano"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/handbol"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/handball"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/handball"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/handbal"
+  }
+ },
+ {
+  "key": "animation-shows-nocturnos-panorama",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/shows-nocturnos-panorama"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/shows-nocturns-panorama"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/spectacles-nocturnes-panorama"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/night-shows-panorama"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/nachtshows-panorama"
+  }
+ },
+ {
+  "key": "animation-pantalla-gigante",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/pantalla-gigante"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/pantalla-gegant"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/ecran-geant"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/giant-screen"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/gigantisch-scherm"
+  }
+ },
+ {
+  "key": "animation-tiro-al-arco",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/tiro-al-arco"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/tir-a-larc"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/tir-a-larc"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/archery"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/boogschieten"
+  }
+ },
+ {
+  "key": "animation-petanca",
+  "group": "animation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/animacion/petanca"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/animacio/petanca"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/animation/petanque"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/animation/petanque"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/animatie/petanque"
+  }
+ },
+ {
+  "key": "glamping-emporda",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/glamping-emporda"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/glamping-emporda"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/glamping-emporda"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/glamping-emporda"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/glamping-emporda"
+  }
+ },
+ {
+  "key": "montpla-blue",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/montpla-blue"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/montpla-blue"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/montpla-blue"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/montpla-blue"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/montpla-blue"
+  }
+ },
+ {
+  "key": "new-glamping-2",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/new-glamping-2"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/new-glamping-2"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/new-glamping-2"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/new-glamping-2"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/new-glamping-2"
+  }
+ },
+ {
+  "key": "new-glamping-4",
+  "group": "accommodation",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/alojamientos/new-glamping-4"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/allotjaments/new-glamping-4"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/hebergement/new-glamping-4"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/accommodation/new-glamping-4"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/accomodatie/new-glamping-4"
+  }
+ },
+ {
+  "key": "comparar-alojamientos",
+  "group": "page",
+  "es": {
+   "url": "https://www.camping-castellmontgri.com/es/comparar-alojamientos"
+  },
+  "ca": {
+   "url": "https://www.camping-castellmontgri.com/ca/comparar-allotjaments"
+  },
+  "fr": {
+   "url": "https://www.camping-castellmontgri.com/fr/comparez-les-hebergements"
+  },
+  "en": {
+   "url": "https://www.camping-castellmontgri.com/en/compare-accommodations"
+  },
+  "nl": {
+   "url": "https://www.camping-castellmontgri.com/nl/vergelijk-accommodaties"
+  }
+ }
+]

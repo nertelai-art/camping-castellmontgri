@@ -1,7 +1,7 @@
 import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
-import oldPages from "./reference/content/site-map.json" with { type: "json" };
+import oldPages from "./src/lib/seo/old-urls.json" with { type: "json" };
 import { oldSiteRedirects, type OldPage } from "./src/lib/seo/redirects";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");

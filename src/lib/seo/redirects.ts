@@ -1,4 +1,4 @@
-// Les adreces del web antic (reference/content/site-map.json), cap a la pàgina nova que en fa la feina. Que no es perdi el que Google ja coneix.
+// Les adreces del web antic (old-urls.json, que surt de reference/content/site-map.json amb scripts/build-old-urls.ts), cap a la pàgina nova que en fa la feina. Que no es perdi el que Google ja coneix.
 
 export type OldPage = { key: string; group: string } & Partial<Record<string, { url?: string } | string | null>>;
 export type Redirect = { source: string; destination: string; permanent: true };

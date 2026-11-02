@@ -31,8 +31,9 @@ export async function Gastronomy({
   level?: 1 | 2;
 }) {
   const t = await getTranslations("gastronomy");
-  // Sota l'h1 de la pàgina, les zones són h2; sota l'h2 d'una secció, h3.
+  // Sota l'h1 de la pàgina, les zones són h2 i els locals h3; sota l'h2 d'una secció, un nivell més avall.
   const Zone = level === 1 ? "h2" : "h3";
+  const Place = level === 1 ? "h3" : "h4";
   // A cada pas, primer els llocs amb la foto més gran: són les que surten a taula.
   const steps: FoodStepContent[] = (["food", "icecream", "drinks"] as const).map((key, i) => ({
     title: t(`steps.${key}`),
@@ -70,7 +71,7 @@ export async function Gastronomy({
                       {r.cover && <MediaImage media={r.cover} fill sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 78vw" className="object-cover" />}
                     </div>
                     <div className="flex flex-1 flex-col gap-2 p-5">
-                      <h4 data-edit-field="name" className="font-display text-2xl leading-tight text-olive">{r.name}</h4>
+                      <Place data-edit-field="name" className="font-display text-2xl leading-tight text-olive">{r.name}</Place>
                       {r.hours && (
                         <p className="text-sm text-muted">
                           <span className="sr-only">{t("hours")}: </span>

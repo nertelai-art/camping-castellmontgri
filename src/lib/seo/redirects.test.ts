@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import pages from "../../../reference/content/site-map.json" with { type: "json" };
+import pages from "./old-urls.json" with { type: "json" };
 import { oldSiteRedirects, type OldPage } from "./redirects";
 
 const redirects = oldSiteRedirects(pages as OldPage[]);

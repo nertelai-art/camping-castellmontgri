@@ -192,7 +192,7 @@ client es pugen a Supabase Storage amb el script de seed.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 - **Pàgines legals** (`/[locale]/legal/[slug]`: privacitat, galetes, avís legal i condicions de reserva; `src/lib/content/legal.ts`): cadascuna és una secció del panell (`legal-privacy`…),
   amb títols al text (paràgrafs que comencen amb `#`, `documentBlocks`). El text inicial és el del web antic: `node scripts/seed-legal.ts`, que només afegeix el que no hi és. Els enllaços són al peu.
-- **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `reference/content/site-map.json` va a la pàgina nova equivalent, en el mateix idioma;
+- **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `src/lib/seo/old-urls.json` (generat de `reference/content/site-map.json` amb `node scripts/build-old-urls.ts`: `reference/` no puja a Vercel) va a la pàgina nova equivalent, en el mateix idioma;
   el que no en té (esdeveniments, treballa amb nosaltres, canal de denúncies) va a la portada.
 
 ## Disseny
