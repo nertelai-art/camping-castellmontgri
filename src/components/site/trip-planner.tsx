@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { ASSISTANTS, clampNights, MAX_NIGHTS, MIN_NIGHTS, TRIP_TYPES, type AssistantKey, type TripType } from "@/lib/trip/assistants";
 import { AssistantLogo } from "./ai-logos";
+import type { Section } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
 
 // Icones dels tipus de viatge (traç de 24 px).
@@ -15,7 +16,7 @@ const TYPE_ICON: Record<TripType, string> = {
 };
 
 /** «El teu viatge, amb la IA»: tria nits i tipus de viatge, i el text va a l'assistent de cadascú. No s'envia res a cap servidor nostre. */
-export function TripPlanner({ camping, place, url, index }: { camping: string; place: string | null; url: string; index: number }) {
+export function TripPlanner({ section, camping, place, url, index }: { section: Section; camping: string; place: string | null; url: string; index: number }) {
   const t = useTranslations("trip");
   const [nights, setNights] = useState(3);
   const [type, setType] = useState<TripType>("family");
@@ -36,10 +37,10 @@ export function TripPlanner({ camping, place, url, index }: { camping: string; p
   };
 
   return (
-    <section aria-labelledby="trip-title" className="cv mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
+    <section data-edit="sections:trip" aria-labelledby="trip-title" className="cv mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-14">
         <div>
-          <SectionHeading id="trip-title" index={index} eyebrow={t("eyebrow")} title={t("title")} body={t("body")} />
+          <SectionHeading id="trip-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
 
           <div className="reveal mt-9 grid gap-7">
             <div className="flex items-center justify-between gap-4 rounded-3xl border border-line bg-card px-5 py-4">

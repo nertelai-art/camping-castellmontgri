@@ -134,10 +134,10 @@ const RICH = "Pots separar paràgrafs amb una línia en blanc i posar **negreta*
 
 export const ENTITIES = {
   sections: {
-    title: "Seccions de la portada",
+    title: "Tots els textos",
     singular: "secció",
     feminine: true,
-    description: "Els títols i textos de cada bloc de la pàgina principal.",
+    description: "El títol i el text de cada bloc de la portada, de cada pàgina del web i de les pàgines legals. A les pàgines legals, un paràgraf que comença amb «## » és un títol i amb «### », un subtítol.",
     table: "sections",
     image: { column: "media_id", label: "Foto de la secció" },
     gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria", only: ["gallery", "welcome"] },
@@ -193,7 +193,7 @@ export const ENTITIES = {
     tags: ["restaurants"],
   },
   activities: {
-    title: "Animació",
+    title: "Activitats d'animació",
     singular: "activitat",
     feminine: true,
     description: "Activitats per a infants, famílies i adults.",

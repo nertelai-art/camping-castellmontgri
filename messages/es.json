@@ -135,7 +135,6 @@
   },
   "testimonials": {
     "eyebrow": "Opiniones",
-    "title": "Qué dicen de nosotros",
     "via": "en {source}"
   },
   "footer": {
@@ -185,7 +184,6 @@
   },
   "directions": {
     "eyebrow": "Dónde estamos",
-    "title": "Cómo llegar",
     "route": "Ver la ruta",
     "email": "Escríbenos",
     "mapTitle": "Mapa de la situación del camping",
@@ -205,8 +203,6 @@
   },
   "trip": {
     "eyebrow": "Planifica tu escapada",
-    "title": "Tu viaje, con la IA",
-    "body": "Elige los días y el tipo de viaje, y llévate este texto a tu asistente de IA favorito. En segundos tendrás un plan a tu medida.",
     "duration": "Duración",
     "fewer": "Una noche menos",
     "more": "Una noche más",
@@ -227,7 +223,6 @@
   },
   "explore": {
     "eyebrow": "Más que dormir",
-    "title": "Descubre el camping",
     "cta": "Ver más"
   }
 }

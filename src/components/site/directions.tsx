@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useSyncExternalStore } from "react";
-import type { SiteSettings } from "@/lib/supabase/content";
+import type { Section, SiteSettings } from "@/lib/supabase/content";
 
 // Com es va a Google Maps (`travelmode`), amb la seva icona (traç de 24 px).
 const MODES = [
@@ -40,7 +40,7 @@ function subscribeConsent(onChange: () => void) {
  * cap servidor nostre. El mapa és d'OpenStreetMap, es carrega quan s'accepta i no agafa el ratolí fins que s'hi clica: si no, en passar-hi per sobre, la roda faria zoom
  * en lloc de baixar la pàgina.
  */
-export function Directions({ settings, index }: { settings: SiteSettings; index: number }) {
+export function Directions({ section, settings, index }: { section: Section; settings: SiteSettings; index: number }) {
   const t = useTranslations("directions");
   const [mapActive, setMapActive] = useState(false);
   const consent = useSyncExternalStore(subscribeConsent, readConsent, () => false);
@@ -61,7 +61,7 @@ export function Directions({ settings, index }: { settings: SiteSettings; index:
     : null;
 
   return (
-    <section aria-labelledby="directions-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+    <section data-edit="sections:directions" aria-labelledby="directions-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div id="directions">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] lg:gap-5">
           <div className="reveal rounded-[1.75rem] border border-line bg-card p-6 text-ink sm:p-8">
@@ -70,8 +70,8 @@ export function Directions({ settings, index }: { settings: SiteSettings; index:
               <span aria-hidden="true" className="h-px w-8 bg-terra/60" />
               {t("eyebrow")}
             </p>
-            <h2 id="directions-title" className="font-display mt-3 text-4xl leading-[1.04] text-olive sm:text-5xl">
-              {t("title")}
+            <h2 id="directions-title" data-edit-field="title" className="font-display mt-3 text-4xl leading-[1.04] text-olive sm:text-5xl">
+              {section.title}
             </h2>
             <address className="mt-3 not-italic text-muted">
               {address.street}, {[address.postalCode, address.locality].filter(Boolean).join(" ")}

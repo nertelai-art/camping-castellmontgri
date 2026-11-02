@@ -135,7 +135,6 @@
   },
   "testimonials": {
     "eyebrow": "Opinions",
-    "title": "Què diuen de nosaltres",
     "via": "a {source}"
   },
   "footer": {
@@ -185,7 +184,6 @@
   },
   "directions": {
     "eyebrow": "On som",
-    "title": "Com arribar-hi",
     "route": "Mira la ruta",
     "email": "Escriu-nos",
     "mapTitle": "Mapa de la situació del càmping",
@@ -205,8 +203,6 @@
   },
   "trip": {
     "eyebrow": "Planifica l'escapada",
-    "title": "El teu viatge, amb la IA",
-    "body": "Tria els dies i el tipus de viatge, i emporta't aquest text al teu assistent d'IA preferit. En uns segons tindràs un pla a mida.",
     "duration": "Durada",
     "fewer": "Una nit menys",
     "more": "Una nit més",
@@ -227,7 +223,6 @@
   },
   "explore": {
     "eyebrow": "Més que dormir",
-    "title": "Descobreix el càmping",
     "cta": "Veure'n més"
   }
 }

@@ -135,7 +135,6 @@
   },
   "testimonials": {
     "eyebrow": "Reviews",
-    "title": "What our guests say",
     "via": "on {source}"
   },
   "footer": {
@@ -185,7 +184,6 @@
   },
   "directions": {
     "eyebrow": "Where we are",
-    "title": "How to get here",
     "route": "See the route",
     "email": "Write to us",
     "mapTitle": "Map of the campsite’s location",
@@ -205,8 +203,6 @@
   },
   "trip": {
     "eyebrow": "Plan your getaway",
-    "title": "Your trip, with AI",
-    "body": "Choose the length and type of trip, and take this text to your favourite AI assistant. In seconds you’ll have a plan made for you.",
     "duration": "Length",
     "fewer": "One night fewer",
     "more": "One night more",
@@ -227,7 +223,6 @@
   },
   "explore": {
     "eyebrow": "More than a place to sleep",
-    "title": "Discover the campsite",
     "cta": "See more"
   }
 }
