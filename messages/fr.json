@@ -26,7 +26,7 @@
     "activities": "activités d'animation"
   },
   "accommodation": {
-    "eyebrow": "Où dormir",
+    "label": "Où dormir",
     "all": "Tous",
     "guests": "Personnes",
     "guestsAny": "Indifférent",
@@ -52,7 +52,6 @@
     "nextPhoto": "Photo suivante"
   },
   "gastronomy": {
-    "eyebrow": "Manger et boire",
     "zone": {
       "ombra": "Zone Ombra",
       "panorama": "Zone Panorama"
@@ -69,11 +68,7 @@
   "pools": {
     "eyebrow": "Eau et soleil"
   },
-  "services": {
-    "eyebrow": "Tout à portée de main"
-  },
   "entertainment": {
-    "eyebrow": "Pour toute la famille",
     "audience": {
       "children": "Enfants",
       "family": "Famille",
@@ -85,11 +80,7 @@
       "empty": "Aucune activité ce jour-là."
     }
   },
-  "surroundings": {
-    "eyebrow": "L'Empordà et la Costa Brava"
-  },
   "map": {
-    "eyebrow": "Le camping",
     "viewer": "Carte interactive du camping en 3D",
     "hint": "Faites glisser pour vous déplacer · pincez, Ctrl + molette ou + et − pour zoomer",
     "zoomIn": "Zoomer",
@@ -134,8 +125,6 @@
     "closeCard": "Fermer la fiche"
   },
   "testimonials": {
-    "eyebrow": "Avis",
-    "title": "Ce qu'ils disent de nous",
     "via": "sur {source}"
   },
   "footer": {
@@ -177,15 +166,13 @@
     "more": "Ajouter : {label}"
   },
   "gallery": {
-    "eyebrow": "Images",
+    "label": "Images",
     "open": "Ouvrir la photo {index}",
     "previous": "Précédente",
     "next": "Suivante",
     "counter": "{index} / {total}"
   },
   "directions": {
-    "eyebrow": "Où nous sommes",
-    "title": "Comment venir",
     "route": "Voir l’itinéraire",
     "email": "Écrivez-nous",
     "mapTitle": "Carte de l’emplacement du camping",
@@ -204,9 +191,6 @@
     "mapRemember": "Nous nous en souviendrons sur ce navigateur."
   },
   "trip": {
-    "eyebrow": "Préparez votre séjour",
-    "title": "Votre voyage, avec l’IA",
-    "body": "Choisissez la durée et le type de voyage, puis emportez ce texte dans votre assistant d’IA préféré. En quelques secondes, vous aurez un programme sur mesure.",
     "duration": "Durée",
     "fewer": "Une nuit de moins",
     "more": "Une nuit de plus",
@@ -226,8 +210,6 @@
     "nightsLabel": "{count, plural, one {nuit} other {nuits}}"
   },
   "explore": {
-    "eyebrow": "Plus qu’un lieu où dormir",
-    "title": "Découvrez le camping",
     "cta": "Voir plus"
   }
 }

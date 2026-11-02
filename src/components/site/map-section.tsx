@@ -1,4 +1,3 @@
-import { getTranslations } from "next-intl/server";
 import type { MapPoint, Section } from "@/lib/supabase/content";
 import { MapExplorer, type Place } from "./map-explorer";
 import { SectionHeading } from "./section-heading";
@@ -15,7 +14,6 @@ export async function MapSection({
   places: Record<string, Place>;
   index: number;
 }) {
-  const t = await getTranslations("map");
   if (!section.media) return null;
   return (
     // Sense `overflow`, `transform` ni `contain`: el mapa obert és `position: fixed` i ha de sortir de la secció.
@@ -24,7 +22,7 @@ export async function MapSection({
         image={section.media}
         points={points}
         places={places}
-        heading={<SectionHeading id="map-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} tone="dark" />}
+        heading={<SectionHeading id="map-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} tone="dark" />}
       />
     </section>
   );

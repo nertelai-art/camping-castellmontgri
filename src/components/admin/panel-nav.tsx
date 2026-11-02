@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import { ENTITIES } from "@/lib/admin/entities";
-import { entityHref, isCurrent, NAV_GROUPS } from "@/lib/admin/nav";
+import { currentHref, entityHref, NAV_GROUPS } from "@/lib/admin/nav";
 
 const ITEM = "block rounded-xl px-3 py-2 text-base font-bold transition";
 
@@ -21,6 +21,8 @@ export function PanelNav({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  // Només es marca una opció: la més concreta (la fitxa de Gastronomia no marca també «Tots els textos»).
+  const current = currentHref(pathname, [...NAV_GROUPS.flatMap((group) => [...(group.pages ?? []).map((page) => page.href), ...group.entities.map(entityHref)]), "/admin/changes"]);
 
   return (
     <>
@@ -44,14 +46,14 @@ export function PanelNav({ children }: { children: ReactNode }) {
               <ul className="mt-1 grid gap-0.5">
                 {group.pages?.map((page) => (
                   <li key={page.href}>
-                    <Item href={page.href} current={isCurrent(pathname, page.href)} onClick={close}>
+                    <Item href={page.href} current={current === page.href} onClick={close}>
                       {page.title}
                     </Item>
                   </li>
                 ))}
                 {group.entities.map((name) => (
                   <li key={name}>
-                    <Item href={entityHref(name)} current={isCurrent(pathname, entityHref(name))} onClick={close}>
+                    <Item href={entityHref(name)} current={current === entityHref(name)} onClick={close}>
                       {ENTITIES[name].title}
                     </Item>
                   </li>
@@ -60,7 +62,7 @@ export function PanelNav({ children }: { children: ReactNode }) {
             </div>
           ))}
           <div className="mt-4 border-t border-line pt-3">
-            <Item href="/admin/changes" current={isCurrent(pathname, "/admin/changes")} onClick={close}>
+            <Item href="/admin/changes" current={current === "/admin/changes"} onClick={close}>
               Registre de canvis
             </Item>
           </div>

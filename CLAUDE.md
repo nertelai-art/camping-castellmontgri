@@ -48,8 +48,16 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   cada petició a `/admin`; qui pot entrar ho decideix el layout de `(panel)` amb `currentEditor()` (compte + fila a
   `profiles`). Les accions de servidor ho tornen a comprovar: són endpoints públics.
 - **Escriptura**: amb la sessió de l'editor i la clau publicable; RLS és qui deixa escriure. Cap clau secreta al panell.
-- **Com s'hi arriba** és a `src/lib/admin/nav.ts` (amb proves): el menú per temes (`NAV_GROUPS`), les tasques de la pàgina d'inici
+- **Com s'hi arriba** és a `src/lib/admin/nav.ts` (amb proves): el menú per pàgines del web i temes (`NAV_GROUPS`: la portada, pàgines del web, allotjaments,
+  al càmping, textos legals i dades; una pàgina del web és un enllaç directe a la fitxa de la seva secció), les tasques de la pàgina d'inici
   (`TASKS`) i el que queda per acabar (`pendingWork`: el que no es veu a la web i el que falta traduir). Una entitat nova ha d'anar al menú.
+  Només es marca l'opció més concreta (`currentHref`): la fitxa de Gastronomia no marca també «Tots els textos».
+- **La portada** (`/admin/home`, `HomeBlocks`): els blocs de la pàgina principal amb fletxes i casella. L'ordre és el `sort_order` de les seves seccions
+  (`src/lib/content/home.ts`, `HOME_BLOCKS`, amb proves) i si surten, el seu `is_visible`; la portada els pinta en aquest ordre. El hero va sempre primer.
+  Les portes a les pàgines, com arribar-hi, el viatge amb la IA i les opinions també són seccions (`explore`, `directions`, `trip`, `testimonials`): el títol s'edita al panell.
+- **Text de sobre el títol** (`section_translations.eyebrow`, «On som», «Planifica l'escapada»…): és contingut de cada secció i s'edita al panell. Buit, no surt.
+  El camp principal d'una entitat (el que li dona nom i diu si falta traduir) és el primer obligatori (`mainField`), no el primer del formulari.
+  Només el de les piscines (`pools.eyebrow`) continua a `messages/`: aquell bloc surt dels serveis, no d'una secció.
 - **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
 - En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,

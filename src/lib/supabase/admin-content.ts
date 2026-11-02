@@ -3,6 +3,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { moveItem, moveWithin, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
 import { CENTER } from "@/lib/content/focus";
+import { HOME_BLOCKS, isHomeBlock, type HomeBlock } from "@/lib/content/home";
 import { addDays, shortTime, type SessionInput } from "@/lib/content/programme";
 import type { Position } from "@/lib/map/position";
 import { mediaUrl } from "./media";
@@ -349,4 +350,31 @@ export async function moveContent(entity: EntityName, id: string, delta: 1 | -1)
   const failed = results.find((result) => result.error || !result.data?.length);
   if (failed) return failed.error?.message ?? "No tens permís per reordenar aquesta llista.";
   return null;
+}
+
+// ─── La portada ───────────────────────────────────────────────────────────────
+
+export type HomeBlockRow = { key: HomeBlock; title: string; visible: boolean };
+
+/** Els blocs de la portada en l'ordre en què surten, amb el títol en català (o en castellà, si no n'hi ha). */
+export async function listHomeBlocks(): Promise<HomeBlockRow[]> {
+  const { data, error } = await (await db())
+    .from("sections")
+    .select("key, sort_order, is_visible, section_translations(locale, title)")
+    .in("key", [...HOME_BLOCKS])
+    .order("sort_order")
+    .order("key");
+  if (error) throw new Error(`No s'han pogut llegir els blocs de la portada: ${error.message}`);
+  return (data ?? []).filter((row) => isHomeBlock(row.key)).map((row) => {
+    const titles = new Map(row.section_translations.map((t) => [t.locale, t.title]));
+    return { key: row.key as HomeBlock, title: titles.get("ca") || titles.get("es") || row.key, visible: row.is_visible };
+  });
+}
+
+/** Desa l'ordre nou dels blocs de la portada. */
+export async function saveHomeOrder(order: { key: HomeBlock; sort_order: number }[]): Promise<string | null> {
+  const supabase = await db();
+  const results = await Promise.all(order.map(({ key, sort_order }) => supabase.from("sections").update({ sort_order }).eq("key", key).select("key")));
+  const failed = results.find((result) => result.error || !result.data?.length);
+  return failed ? (failed.error?.message ?? "No tens permís per canviar l'ordre de la portada.") : null;
 }

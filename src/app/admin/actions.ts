@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { displayName, ENTITIES, isEntity, parseBaseValue, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
 import { PROGRAMME_HREF } from "@/lib/admin/nav";
 import { parseFocus } from "@/lib/content/focus";
+import { isHomeBlock, moveHomeBlock } from "@/lib/content/home";
 import { isDay, mondayOf, parseSession } from "@/lib/content/programme";
 import { jpegSize, MAX_BYTES, MAX_SIDE } from "@/lib/admin/image";
 import {
@@ -14,6 +15,7 @@ import {
   createContent,
   deleteContent,
   getContent,
+  listHomeBlocks,
   logChange,
   moveContent,
   moveInGallery,
@@ -21,6 +23,7 @@ import {
   removeSession,
   replaceImage,
   saveContent,
+  saveHomeOrder,
   setImageFocus,
   type ChangeAction,
   type UploadedImage,
@@ -253,6 +256,23 @@ export async function updateFieldAction(entity: string, id: string, name: string
   await record(editor, entity, id, "text");
 
   for (const tag of config.tags) revalidateTag(tag, { expire: 0 });
+  revalidatePath("/admin", "layout");
+  return { savedAt: Date.now() };
+}
+
+/** Puja o baixa un bloc de la portada. L'ordre és el de les seccions, i la web el fa servir de seguida. */
+export async function moveHomeBlockAction(key: string, delta: 1 | -1): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+  if (!isHomeBlock(key)) return { errors: ["Aquest bloc no és de la portada."] };
+  if (delta !== 1 && delta !== -1) return { errors: ["Moviment desconegut."] };
+
+  const blocks = await listHomeBlocks();
+  const error = await saveHomeOrder(moveHomeBlock(blocks.map((block) => block.key), key, delta));
+  if (error) return { errors: [`No s'ha pogut reordenar: ${error}`] };
+  await record(editor, "sections", key, "text");
+
+  revalidateTag("sections", { expire: 0 });
   revalidatePath("/admin", "layout");
   return { savedAt: Date.now() };
 }

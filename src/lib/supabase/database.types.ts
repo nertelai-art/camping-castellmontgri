@@ -521,39 +521,6 @@ export type Database = {
         }
         Relationships: []
       }
-      section_media: {
-        Row: {
-          media_id: string
-          section_key: string
-          sort_order: number
-        }
-        Insert: {
-          media_id: string
-          section_key: string
-          sort_order?: number
-        }
-        Update: {
-          media_id?: string
-          section_key?: string
-          sort_order?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "section_media_media_id_fkey"
-            columns: ["media_id"]
-            isOneToOne: false
-            referencedRelation: "media"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "section_media_section_key_fkey"
-            columns: ["section_key"]
-            isOneToOne: false
-            referencedRelation: "sections"
-            referencedColumns: ["key"]
-          },
-        ]
-      }
       media_translations: {
         Row: {
           alt: string
@@ -674,10 +641,44 @@ export type Database = {
           },
         ]
       }
+      section_media: {
+        Row: {
+          media_id: string
+          section_key: string
+          sort_order: number
+        }
+        Insert: {
+          media_id: string
+          section_key: string
+          sort_order?: number
+        }
+        Update: {
+          media_id?: string
+          section_key?: string
+          sort_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "section_media_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "section_media_section_key_fkey"
+            columns: ["section_key"]
+            isOneToOne: false
+            referencedRelation: "sections"
+            referencedColumns: ["key"]
+          },
+        ]
+      }
       section_translations: {
         Row: {
           body: string | null
           cta_label: string | null
+          eyebrow: string | null
           highlight: string | null
           locale: Database["public"]["Enums"]["locale"]
           section_key: string
@@ -686,6 +687,7 @@ export type Database = {
         Insert: {
           body?: string | null
           cta_label?: string | null
+          eyebrow?: string | null
           highlight?: string | null
           locale: Database["public"]["Enums"]["locale"]
           section_key: string
@@ -694,6 +696,7 @@ export type Database = {
         Update: {
           body?: string | null
           cta_label?: string | null
+          eyebrow?: string | null
           highlight?: string | null
           locale?: Database["public"]["Enums"]["locale"]
           section_key?: string

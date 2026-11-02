@@ -26,7 +26,7 @@
     "activities": "animatieactiviteiten"
   },
   "accommodation": {
-    "eyebrow": "Waar slapen",
+    "label": "Waar slapen",
     "all": "Alle",
     "guests": "Personen",
     "guestsAny": "Alle",
@@ -52,7 +52,6 @@
     "nextPhoto": "Volgende foto"
   },
   "gastronomy": {
-    "eyebrow": "Eten en drinken",
     "zone": {
       "ombra": "Zone Ombra",
       "panorama": "Zone Panorama"
@@ -69,11 +68,7 @@
   "pools": {
     "eyebrow": "Water en zon"
   },
-  "services": {
-    "eyebrow": "Alles bij de hand"
-  },
   "entertainment": {
-    "eyebrow": "Voor het hele gezin",
     "audience": {
       "children": "Kinderen",
       "family": "Gezin",
@@ -85,11 +80,7 @@
       "empty": "Op deze dag zijn er geen activiteiten."
     }
   },
-  "surroundings": {
-    "eyebrow": "De Empordà en de Costa Brava"
-  },
   "map": {
-    "eyebrow": "De camping",
     "viewer": "Interactieve 3D-kaart van de camping",
     "hint": "Sleep om te bewegen · knijp, Ctrl + scroll of + en − om te zoomen",
     "zoomIn": "Inzoomen",
@@ -134,8 +125,6 @@
     "closeCard": "Kaartje sluiten"
   },
   "testimonials": {
-    "eyebrow": "Beoordelingen",
-    "title": "Wat onze gasten zeggen",
     "via": "op {source}"
   },
   "footer": {
@@ -177,15 +166,13 @@
     "more": "Meer: {label}"
   },
   "gallery": {
-    "eyebrow": "Foto's",
+    "label": "Foto's",
     "open": "Open foto {index}",
     "previous": "Vorige",
     "next": "Volgende",
     "counter": "{index} / {total}"
   },
   "directions": {
-    "eyebrow": "Waar we zijn",
-    "title": "Zo kom je hier",
     "route": "Bekijk de route",
     "email": "Schrijf ons",
     "mapTitle": "Kaart met de ligging van de camping",
@@ -204,9 +191,6 @@
     "mapRemember": "We onthouden dit in deze browser."
   },
   "trip": {
-    "eyebrow": "Plan je uitje",
-    "title": "Jouw reis, met AI",
-    "body": "Kies de duur en het soort reis, en neem deze tekst mee naar je favoriete AI-assistent. Binnen enkele seconden heb je een plan op maat.",
     "duration": "Duur",
     "fewer": "Een nacht minder",
     "more": "Een nacht meer",
@@ -226,8 +210,6 @@
     "nightsLabel": "{count, plural, one {nacht} other {nachten}}"
   },
   "explore": {
-    "eyebrow": "Meer dan slapen",
-    "title": "Ontdek de camping",
     "cta": "Meer bekijken"
   }
 }

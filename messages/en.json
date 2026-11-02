@@ -26,7 +26,7 @@
     "activities": "entertainment activities"
   },
   "accommodation": {
-    "eyebrow": "Where to stay",
+    "label": "Where to stay",
     "all": "All",
     "guests": "Guests",
     "guestsAny": "Any",
@@ -52,7 +52,6 @@
     "nextPhoto": "Next photo"
   },
   "gastronomy": {
-    "eyebrow": "Eat and drink",
     "zone": {
       "ombra": "Ombra area",
       "panorama": "Panorama area"
@@ -69,11 +68,7 @@
   "pools": {
     "eyebrow": "Water and sun"
   },
-  "services": {
-    "eyebrow": "Everything at hand"
-  },
   "entertainment": {
-    "eyebrow": "For the whole family",
     "audience": {
       "children": "Kids",
       "family": "Family",
@@ -85,11 +80,7 @@
       "empty": "There are no activities on this day."
     }
   },
-  "surroundings": {
-    "eyebrow": "Empordà and the Costa Brava"
-  },
   "map": {
-    "eyebrow": "The campsite",
     "viewer": "Interactive 3D campsite map",
     "hint": "Drag to move · pinch, Ctrl + scroll or + and − to zoom",
     "zoomIn": "Zoom in",
@@ -134,8 +125,6 @@
     "closeCard": "Close the card"
   },
   "testimonials": {
-    "eyebrow": "Reviews",
-    "title": "What our guests say",
     "via": "on {source}"
   },
   "footer": {
@@ -177,15 +166,13 @@
     "more": "Add: {label}"
   },
   "gallery": {
-    "eyebrow": "Photos",
+    "label": "Photos",
     "open": "Open photo {index}",
     "previous": "Previous",
     "next": "Next",
     "counter": "{index} / {total}"
   },
   "directions": {
-    "eyebrow": "Where we are",
-    "title": "How to get here",
     "route": "See the route",
     "email": "Write to us",
     "mapTitle": "Map of the campsite’s location",
@@ -204,9 +191,6 @@
     "mapRemember": "We’ll remember this on this browser."
   },
   "trip": {
-    "eyebrow": "Plan your getaway",
-    "title": "Your trip, with AI",
-    "body": "Choose the length and type of trip, and take this text to your favourite AI assistant. In seconds you’ll have a plan made for you.",
     "duration": "Length",
     "fewer": "One night fewer",
     "more": "One night more",
@@ -226,8 +210,6 @@
     "nightsLabel": "{count, plural, one {night} other {nights}}"
   },
   "explore": {
-    "eyebrow": "More than a place to sleep",
-    "title": "Discover the campsite",
     "cta": "See more"
   }
 }

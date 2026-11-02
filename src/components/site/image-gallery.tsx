@@ -48,7 +48,7 @@ export function ImageGallery({ photos }: { photos: MediaRef[] }) {
       </ul>
       <dialog
         ref={dialog}
-        aria-label={t("eyebrow")}
+        aria-label={t("label")}
         onClick={(event) => event.target === dialog.current && dialog.current?.close()}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") move(-1);

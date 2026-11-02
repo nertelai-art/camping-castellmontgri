@@ -1,9 +1,11 @@
 import { hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import type { ReactNode } from "react";
 import { AccommodationExplorer } from "@/components/site/accommodation-explorer";
 import { AnchorSettle } from "@/components/site/anchor-settle";
 import { Hero } from "@/components/site/hero";
+import { homeBlocks, type HomeBlock } from "@/lib/content/home";
 import { Directions } from "@/components/site/directions";
 import { Explore } from "@/components/site/explore";
 import { CampgroundJsonLd } from "@/components/site/json-ld";
@@ -36,9 +38,8 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, settings, sections, categories, services, restaurants, activities, testimonials, accreditations, mapPoints, flags] =
+  const [settings, sections, categories, services, restaurants, activities, testimonials, accreditations, mapPoints, flags] =
     await Promise.all([
-      getTranslations("accommodation"),
       getSiteSettings(locale),
       getSections(locale),
       getAccommodationCategories(locale),
@@ -73,9 +74,49 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
     { href: "/surroundings", section: sections.surroundings },
   ].filter((item): item is { href: string; section: Section } => Boolean(item.section));
 
-  // Numeració de guia de camp: només compten les seccions que surten.
+  // Numeració de guia de camp: només compten les seccions que surten, en l'ordre en què surten.
   let n = 0;
   const next = () => ++n;
+
+  // Cada bloc de la portada. L'ordre i si surt es decideixen al panell («La portada»): són l'ordre i la visibilitat de les seves seccions.
+  const render: Record<HomeBlock, () => ReactNode> = {
+    welcome: () =>
+      sections.welcome && (
+        <Welcome
+          key="welcome"
+          section={sections.welcome}
+          facts={{ accommodations: accommodationCount, restaurants: restaurants.length, services: services.length, activities: activities.length }}
+        />
+      ),
+    accommodation: () =>
+      sections.accommodation && (
+        <section key="accommodation" data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+          {/* Només una frase: el text llarg d'aquesta secció és el mateix que el dels mobile homes, i la gent ve a triar. */}
+          <div id="accommodation">
+            <SectionHeading
+              id="accommodation-title"
+              index={next()}
+              eyebrow={sections.accommodation.eyebrow}
+              title={sections.accommodation.title}
+              highlight={sections.accommodation.highlight}
+              body={sections.accommodation.highlight ? null : sections.accommodation.body}
+            />
+          </div>
+          <AccommodationExplorer
+            categories={categories}
+            bookingUrl={settings.bookingUrl}
+            allHref={`/${locale}/accommodations`}
+            onMap={[...onMap].filter((k) => k.startsWith("accommodation:") || k.startsWith("category:"))}
+          />
+        </section>
+      ),
+    explore: () => sections.explore && explore.length > 0 && <Explore key="explore" section={sections.explore} index={next()} items={explore} />,
+    map: () => sections.map && <MapSection key="map" section={sections.map} points={mapPoints} places={places} index={next()} />,
+    directions: () => sections.directions && <Directions key="directions" section={sections.directions} settings={settings} index={next()} />,
+    trip: () =>
+      sections.trip && <TripPlanner key="trip" section={sections.trip} camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} index={next()} />,
+    testimonials: () => sections.testimonials && testimonials.length > 0 && <Testimonials key="testimonials" section={sections.testimonials} testimonials={testimonials} index={next()} />,
+  };
 
   return (
     <>
@@ -84,46 +125,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       <main id="main">
         {sections.hero && <Hero section={sections.hero} settings={settings} />}
 
-        {sections.welcome && (
-          <Welcome
-            section={sections.welcome}
-            facts={{
-              accommodations: accommodationCount,
-              restaurants: restaurants.length,
-              services: services.length,
-              activities: activities.length,
-            }}
-          />
-        )}
-
-        {sections.accommodation && (
-          <section data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
-            {/* Només una frase: el text llarg d'aquesta secció és el mateix que el dels mobile homes, i la gent ve a triar. */}
-            <div id="accommodation">
-              <SectionHeading
-                id="accommodation-title"
-                index={next()}
-                eyebrow={t("eyebrow")}
-                title={sections.accommodation.title}
-                highlight={sections.accommodation.highlight}
-                body={sections.accommodation.highlight ? null : sections.accommodation.body}
-              />
-            </div>
-            <AccommodationExplorer
-              categories={categories}
-              bookingUrl={settings.bookingUrl}
-              allHref={`/${locale}/accommodations`}
-              onMap={[...onMap].filter((k) => k.startsWith("accommodation:") || k.startsWith("category:"))}
-            />
-          </section>
-        )}
-
-        <Explore index={next()} items={explore} />
-
-        {sections["map"] && <MapSection section={sections["map"]} points={mapPoints} places={places} index={next()} />}
-        <Directions settings={settings} index={next()} />
-        <TripPlanner camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} index={next()} />
-        <Testimonials testimonials={testimonials} index={next()} />
+        {homeBlocks(Object.keys(sections)).map((key) => render[key]())}
       </main>
       <SiteFooter settings={settings} accreditations={accreditations} locale={locale} />
       <RevealOnScroll />

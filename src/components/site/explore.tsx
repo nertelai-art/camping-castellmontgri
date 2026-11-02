@@ -6,12 +6,13 @@ import type { Section } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
 
 /** El que té pàgina pròpia, a la portada: foto, títol, una descripció curta (el text de la secció, tallat) i l'enllaç. Una foto a cada banda, alternant. */
-export async function Explore({ items, index }: { items: { href: string; section: Section }[]; index: number }) {
+export async function Explore({ section, items, index }: { section: Section; items: { href: string; section: Section }[]; index: number }) {
   const t = await getTranslations("explore");
-  if (!items.length) return null;
   return (
     <section aria-labelledby="explore-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
-      <SectionHeading id="explore-title" index={index} eyebrow={t("eyebrow")} title={t("title")} />
+      <div data-edit="sections:explore">
+        <SectionHeading id="explore-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} />
+      </div>
       <ul className="mt-12 grid gap-12 lg:gap-16">
         {items.map(({ href, section }, i) => (
           <li key={href} data-edit={`sections:${section.key}`} className="reveal grid items-center gap-6 lg:grid-cols-2 lg:gap-14">
