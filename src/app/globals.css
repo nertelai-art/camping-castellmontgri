@@ -88,6 +88,34 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* La barra de scroll de la pàgina: el fons de la web i la barra verd fosc. Amb `::-webkit-scrollbar` es pot arrodonir; `scrollbar-color`, per a qui no en sap
+   (Firefox), només si no: Chrome ignora els `::-webkit-scrollbar` si hi ha totes dues coses. */
+@supports selector(::-webkit-scrollbar) {
+  html::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  html::-webkit-scrollbar-track {
+    background: var(--paper);
+  }
+
+  html::-webkit-scrollbar-thumb {
+    border: 3px solid var(--paper);
+    border-radius: 999px;
+    background: var(--band-olive);
+  }
+
+  html::-webkit-scrollbar-thumb:hover {
+    background: var(--olive-2);
+  }
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: var(--band-olive) var(--paper);
+  }
+}
+
 /* Gra de paper com a textura de fons (no una capa fixa amb mix-blend: obligaria a recompondre
    tota la pàgina a cada fotograma de scroll). Les franges de color el tapen, i és el que volem. */
 body {
@@ -143,6 +171,241 @@ body {
   .reveal:not(.is-shown) {
     translate: 0 2rem;
   }
+}
+
+/* Els panells de la cerca de reserva: pugen de baix al mòbil i cauen una mica a l'escriptori. */
+@keyframes booking-sheet {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes booking-drop {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+}
+
+/* Amb un panell obert, el text del hero s'aparta: el panell surt cap amunt, a sobre seu, i la barra baixa si no hi cap. */
+@media (min-width: 1024px) {
+  .hero-copy {
+    transition: opacity 240ms ease;
+  }
+
+  [data-hero]:has(form[data-open]) .hero-copy,
+  [data-hero]:has(form[data-open]) .hero-more {
+    opacity: 0;
+  }
+
+  .booking-form {
+    transition: translate 340ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .booking-form {
+    transition: none;
+  }
+}
+
+/* De la targeta a la fitxa: la foto vola d'un lloc a l'altre (View Transitions) i la fitxa es construeix al voltant. */
+::view-transition-group(accommodation-photo) {
+  animation-duration: 480ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+::view-transition-old(accommodation-photo),
+::view-transition-new(accommodation-photo) {
+  height: 100%;
+  object-fit: cover;
+  overflow: clip;
+}
+
+::view-transition-new(accommodation-sheet) {
+  animation: accommodation-sheet-in 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+::view-transition-old(accommodation-sheet) {
+  animation: accommodation-sheet-out 260ms ease-in both;
+}
+
+@keyframes accommodation-sheet-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(1rem);
+  }
+}
+
+@keyframes accommodation-sheet-out {
+  to {
+    opacity: 0;
+    transform: scale(0.97) translateY(0.75rem);
+  }
+}
+
+@keyframes accommodation-build {
+  from {
+    opacity: 0;
+    transform: translateY(0.875rem);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accommodation-build {
+    animation: accommodation-build 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(140ms + var(--i, 0) * 55ms);
+  }
+}
+
+/* «El teu viatge»: cada assistent amb l'aspecte de la seva aplicació. Són colors de cada plataforma, no de la marca: per això no són tokens,
+   i no canvien amb el mode fosc. */
+.trip-chat {
+  --chat-bg: #212121;
+  --chat-fg: #ececec;
+  --chat-muted: #b4b4b4;
+  --chat-bubble: #303030;
+  --chat-accent: #ffffff;
+  --chat-accent-fg: #0d0d0d;
+  --chat-line: #3d3d3d;
+  --chat-logo: #ffffff;
+  background: var(--chat-bg);
+  color: var(--chat-fg);
+  transition: background-color 320ms ease, color 320ms ease;
+}
+
+.trip-chat[data-assistant="claude"] {
+  --chat-bg: #f5f4ed;
+  --chat-fg: #141413;
+  --chat-muted: #5e5d59;
+  --chat-bubble: #e8e6dc;
+  --chat-accent: #b5512f;
+  --chat-accent-fg: #ffffff;
+  --chat-line: #dedcd1;
+  --chat-logo: #d97757;
+}
+
+.trip-chat[data-assistant="gemini"] {
+  --chat-bg: #ffffff;
+  --chat-fg: #1f1f1f;
+  --chat-muted: #5f6368;
+  --chat-bubble: #f0f4f9;
+  --chat-accent: #0b57d0;
+  --chat-accent-fg: #ffffff;
+  --chat-line: #dde3ea;
+  --chat-logo: #4285f4;
+}
+
+.trip-chat[data-assistant="gemini"] .trip-greeting {
+  background: linear-gradient(90deg, #4285f4, #9b72cb 55%, #d96570);
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .booking-panel {
+    animation: booking-sheet 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  @media (min-width: 1024px) {
+    .booking-panel {
+      animation: booking-drop 180ms ease-out;
+    }
+  }
+}
+
+/* ─── Benvinguda ─────────────────────────────────────────────────────────────
+ * Al mòbil, en columna: el text, la carena del Montgrí i les fotos. A l'escriptori, el text al cel, envoltat de fotos, i la carena de terra.
+ */
+.welcome-intro {
+  position: relative;
+  z-index: 2;
+  margin-inline: auto;
+  max-width: 44rem;
+  padding: 4.5rem 1.25rem 1.5rem;
+  text-align: center;
+}
+
+.welcome-ridge {
+  height: 6rem;
+}
+
+.welcome-photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 0.25rem 0.75rem 0;
+  background: var(--paper-2);
+}
+
+.welcome-main,
+.welcome-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 48px -24px rgb(35 42 20 / 0.55);
+}
+
+.welcome-main {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+.welcome-tile {
+  aspect-ratio: 4 / 3;
+}
+
+.welcome-tile[data-slot="5"],
+.welcome-tile[data-slot="6"] {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .welcome-stage {
+    position: relative;
+    height: clamp(42rem, calc(100svh - 5rem), 58rem);
+    overflow: clip;
+  }
+
+  .welcome-intro {
+    position: absolute;
+    inset-inline: 0;
+    top: 8%;
+    padding-block: 0;
+    max-width: min(40rem, 42vw);
+  }
+
+  .welcome-ridge {
+    position: absolute;
+    inset: 50% 0 0;
+    height: auto;
+    background: linear-gradient(var(--paper-2), var(--paper-2)) bottom / 100% calc(100% - 11rem + 1px) no-repeat;
+  }
+
+  .welcome-ridge svg {
+    height: 11rem;
+  }
+
+  .welcome-photos {
+    display: contents;
+  }
+
+  .welcome-main,
+  .welcome-tile {
+    position: absolute;
+    z-index: 1;
+    aspect-ratio: auto;
+  }
+
+  .welcome-main { inset: 67% 38% 6%; }
+
+  .welcome-tile[data-slot="1"] { left: 3%; top: 8%; width: 18vw; height: 36%; }
+  .welcome-tile[data-slot="2"] { left: 7%; top: 50%; width: 21vw; height: 32%; }
+  .welcome-tile[data-slot="3"] { right: 3%; top: 6%; width: 21vw; height: 30%; }
+  .welcome-tile[data-slot="4"] { right: 6%; top: 40%; width: 18vw; height: 40%; }
+  .welcome-tile[data-slot="5"] { display: block; left: 23%; top: 72%; width: 11vw; height: 20%; }
+  .welcome-tile[data-slot="6"] { display: block; right: 26%; top: 75%; width: 9vw; height: 17%; }
 }
 
 /* Seccions sota el plec: el navegador no en calcula l'estil ni les pinta fins que s'hi acosta.

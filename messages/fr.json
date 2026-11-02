@@ -3,7 +3,7 @@
     "accommodation": "Hébergement",
     "map": "Carte",
     "gastronomy": "Gastronomie",
-    "services": "Services",
+    "services": "Installations",
     "entertainment": "Animation",
     "surroundings": "Environs",
     "contact": "Contact",
@@ -45,7 +45,11 @@
     "seeAll": "Voir tous les hébergements ({count})",
     "backHome": "Retour à l'accueil",
     "from": "à partir de",
-    "perNight": "/nuit"
+    "perNight": "/nuit",
+    "readMore": "Lire la suite",
+    "readLess": "Réduire",
+    "previousPhoto": "Photo précédente",
+    "nextPhoto": "Photo suivante"
   },
   "gastronomy": {
     "eyebrow": "Manger et boire",
@@ -152,14 +156,69 @@
     "adults": "Adultes",
     "children": "Enfants",
     "search": "Rechercher des disponibilités",
-    "invalid": "Le départ doit être après l'arrivée."
+    "guests": "Personnes",
+    "addDate": "Ajouter la date",
+    "adultsCount": "{count, plural, one {# adulte} other {# adultes}}",
+    "childrenCount": "{count, plural, one {# enfant} other {# enfants}}",
+    "nights": "{count, plural, one {# nuit} other {# nuits}}",
+    "chooseCheckIn": "Choisissez le jour d’arrivée",
+    "chooseCheckOut": "Maintenant, le jour de départ",
+    "clear": "Effacer",
+    "done": "OK",
+    "previousMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "less": "Retirer : {label}",
+    "more": "Ajouter : {label}"
   },
   "gallery": {
     "eyebrow": "Images",
-    "all": "Toutes les images ({count})",
     "open": "Ouvrir la photo {index}",
     "previous": "Précédente",
     "next": "Suivante",
     "counter": "{index} / {total}"
+  },
+  "directions": {
+    "eyebrow": "Où nous sommes",
+    "title": "Comment venir",
+    "route": "Voir l’itinéraire",
+    "email": "Écrivez-nous",
+    "mapTitle": "Carte de l’emplacement du camping",
+    "mode": "Comment vous venez",
+    "modes": {
+      "car": "Voiture",
+      "transit": "Transports",
+      "bike": "Vélo",
+      "walk": "À pied"
+    },
+    "from": "D’où venez-vous ?",
+    "fromPlaceholder": "Votre ville ou adresse",
+    "useMap": "Cliquez pour déplacer la carte"
+  },
+  "trip": {
+    "eyebrow": "Préparez votre séjour",
+    "title": "Votre voyage, avec l’IA",
+    "body": "Choisissez la durée et le type de voyage, puis emportez ce texte dans votre assistant d’IA préféré. En quelques secondes, vous aurez un programme sur mesure.",
+    "duration": "Durée",
+    "fewer": "Une nuit de moins",
+    "more": "Une nuit de plus",
+    "type": "Type de voyage",
+    "types": {
+      "family": "En famille",
+      "adventure": "Aventure",
+      "romantic": "Romantique",
+      "culture": "Culturel"
+    },
+    "openIn": "Ouvrir dans {name}",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "prompt": "Je vais passer {nights, plural, one {# nuit} other {# nuits}} à {camping} ({place}) et je veux un voyage de type « {type} ». Consulte leur site, {url}, et prépare-moi un programme jour par jour (matin, après-midi et soir) : quoi faire au camping, les endroits qui ont du charme et où manger à proximité, et un conseil qu’on ne trouve pas dans les guides. Va droit au but, avec des listes courtes.",
+    "greeting": "Que prévoit-on ?",
+    "chooseAssistant": "Choisissez votre assistant",
+    "nightsLabel": "{count, plural, one {nuit} other {nuits}}"
+  },
+  "explore": {
+    "eyebrow": "Plus qu’un lieu où dormir",
+    "title": "Découvrez le camping",
+    "cta": "Voir plus"
   }
 }

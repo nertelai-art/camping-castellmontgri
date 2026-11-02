@@ -140,7 +140,7 @@ export const ENTITIES = {
     description: "Els títols i textos de cada bloc de la pàgina principal.",
     table: "sections",
     image: { column: "media_id", label: "Foto de la secció" },
-    gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria", only: ["gallery"] },
+    gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria", only: ["gallery", "welcome"] },
     key: "key",
     translations: "section_translations",
     foreignKey: "section_key",
@@ -315,7 +315,6 @@ export const ENTITIES = {
     text: [
       { name: "seo_title", label: "Títol per a Google", help: "El títol que surt als resultats de cerca i a la pestanya del navegador." },
       { name: "seo_description", label: "Descripció per a Google", long: true, help: "Una o dues frases (uns 150 caràcters)." },
-      { name: "season_notice", label: "Avís de temporada", help: "P. ex. «Abierto del 27 de marzo al 4 de octubre»." },
     ],
     base: [
       { name: "brand_name", label: "Nom comercial", kind: "text", required: true },

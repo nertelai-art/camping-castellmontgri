@@ -11,18 +11,20 @@ export async function ServicesGrid({
   services,
   onMap,
   index,
+  level,
 }: {
   section: Section;
   services: Service[];
   onMap: Set<string>;
   index: number;
+  level?: 1 | 2;
 }) {
   const t = await getTranslations("services");
   return (
     <section data-edit="sections:services" aria-labelledby="services-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div id="services" className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHeading id="services-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
+          <SectionHeading id="services-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} level={level} />
         </div>
         <ul className="grid gap-3 sm:grid-cols-2">
           {services.map((s) => (

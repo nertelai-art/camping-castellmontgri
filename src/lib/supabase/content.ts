@@ -53,7 +53,7 @@ export async function getSiteSettings(locale: Locale) {
       country: s.country,
     },
     geo: s.lat != null && s.lng != null ? { lat: s.lat, lng: s.lng } : null,
-    season: { open: s.season_open, close: s.season_close, notice: t?.season_notice ?? null },
+    season: { open: s.season_open, close: s.season_close },
     licenseCode: s.license_code,
     bookingUrl: s.booking_url,
     clientPortalUrl: s.client_portal_url,

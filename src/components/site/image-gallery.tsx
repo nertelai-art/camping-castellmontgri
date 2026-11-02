@@ -1,6 +1,6 @@
 "use client";
 
-// La galeria de la portada: una foto gran i quatre de petites. En clicar-ne una, s'obre a pantalla completa i es pot
+// La pàgina de la galeria: totes les fotos, la primera més gran. En clicar-ne una, s'obre a pantalla completa i es pot
 // passar amb els botons o les fletxes del teclat. El <dialog> ja porta el focus i la tecla Esc.
 
 import Image from "next/image";
@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import type { MediaRef } from "@/lib/supabase/media";
 
-const PREVIEW = 5;
 const ARROW = "grid size-12 place-items-center rounded-full bg-card text-xl font-bold text-ink shadow-lg transition hover:brightness-95";
 
 export function ImageGallery({ photos }: { photos: MediaRef[] }) {
@@ -25,8 +24,8 @@ export function ImageGallery({ photos }: { photos: MediaRef[] }) {
 
   return (
     <>
-      <ul className="mt-10 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4 lg:grid-rows-2">
-        {photos.slice(0, PREVIEW).map((item, i) => (
+      <ul className="mt-10 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+        {photos.map((item, i) => (
           <li key={item.path} className={i === 0 ? "col-span-2 lg:row-span-2" : ""}>
             <button
               type="button"
@@ -46,14 +45,6 @@ export function ImageGallery({ photos }: { photos: MediaRef[] }) {
           </li>
         ))}
       </ul>
-      {photos.length > PREVIEW && (
-        <p className="mt-4 text-right">
-          <button type="button" onClick={() => open(0)} className="font-bold text-terra hover:underline">
-            {t("all", { count: photos.length })}
-          </button>
-        </p>
-      )}
-
       <dialog
         ref={dialog}
         aria-label={t("eyebrow")}

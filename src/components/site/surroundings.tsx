@@ -5,12 +5,12 @@ import type { MediaRef } from "@/lib/supabase/media";
 import { SectionHeading } from "./section-heading";
 
 /** Entorn: foto aèria de les Medes a sang i un mosaic amb les fotos de platges, cultura i Tossa. */
-export async function Surroundings({ section, photos, index }: { section: Section; photos: MediaRef[]; index: number }) {
+export async function Surroundings({ section, photos, index, level }: { section: Section; photos: MediaRef[]; index: number; level?: 1 | 2 }) {
   const t = await getTranslations("surroundings");
   return (
     <section data-edit="sections:surroundings" aria-labelledby="surroundings-title" className="cv py-24 lg:py-32">
       <div id="surroundings" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading id="surroundings-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
+        <SectionHeading id="surroundings-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} level={level} />
       </div>
       <div className="mt-14 grid gap-3 px-3 sm:px-4 lg:grid-cols-4 lg:grid-rows-2">
         {section.media && (
