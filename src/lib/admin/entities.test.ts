@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { displayName, ENTITIES, fieldName, LOCALES, missingLocales, parseBaseValue, parseContent, tableColumns, toList } from "./entities";
+import { displayName, ENTITIES, fieldName, LOCALES, mainField, missingLocales, parseBaseValue, parseContent, tableColumns, toList } from "./entities";
 
 const form = (entries: Record<string, string>) => {
   const data = new FormData();
@@ -130,6 +130,14 @@ describe("formulari de contingut", () => {
 
   it("diu quins idiomes falten per traduir", () => {
     expect(missingLocales(ENTITIES.services, { es: { name: "Recepción" }, ca: { name: "Recepció" }, fr: { name: "" } })).toEqual(["fr", "en", "nl"]);
+  });
+
+  it("el camp principal és el primer obligatori, encara que no sigui el primer del formulari", () => {
+    // A les seccions, el text de sobre el títol va primer, però la secció es diu pel títol i és el títol el que falta traduir.
+    expect(mainField(ENTITIES.sections)).toBe("title");
+    expect(displayName(ENTITIES.sections, { ca: { eyebrow: "On som", title: "Com arribar-hi" } }, "directions")).toBe("Com arribar-hi");
+    expect(missingLocales(ENTITIES.sections, Object.fromEntries(LOCALES.map((l) => [l, { eyebrow: "", title: "Títol" }])))).toEqual([]);
+    expect(mainField(ENTITIES.services)).toBe("name");
   });
 
   it("cada camp del formulari té un nom únic per idioma", () => {

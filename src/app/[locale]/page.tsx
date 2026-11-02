@@ -1,5 +1,5 @@
 import { hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { AccommodationExplorer } from "@/components/site/accommodation-explorer";
@@ -38,9 +38,8 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [t, settings, sections, categories, services, restaurants, activities, testimonials, accreditations, mapPoints, flags] =
+  const [settings, sections, categories, services, restaurants, activities, testimonials, accreditations, mapPoints, flags] =
     await Promise.all([
-      getTranslations("accommodation"),
       getSiteSettings(locale),
       getSections(locale),
       getAccommodationCategories(locale),
@@ -97,7 +96,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             <SectionHeading
               id="accommodation-title"
               index={next()}
-              eyebrow={t("eyebrow")}
+              eyebrow={sections.accommodation.eyebrow}
               title={sections.accommodation.title}
               highlight={sections.accommodation.highlight}
               body={sections.accommodation.highlight ? null : sections.accommodation.body}

@@ -87,7 +87,7 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap, allHref, 
     <div className="mt-12">
       {/* Filtres */}
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-        <div role="tablist" aria-label={t("eyebrow")} className="snap-strip -mx-4 gap-2 px-4 pb-1 lg:mx-0 lg:px-0">
+        <div role="tablist" aria-label={t("label")} className="snap-strip -mx-4 gap-2 px-4 pb-1 lg:mx-0 lg:px-0">
           {[{ key: "all", name: t("all"), count: all.length }, ...categories.map((c) => ({ key: c.key, name: c.name, count: c.accommodations.length }))].map(
             (c) => (
               <button

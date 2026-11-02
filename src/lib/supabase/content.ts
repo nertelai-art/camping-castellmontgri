@@ -65,6 +65,8 @@ export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
 // ─── Seccions ─────────────────────────────────────────────────────────────────
 export type Section = {
   key: string;
+  /** El text petit de sobre el títol («On som», «Planifica l'escapada»…). */
+  eyebrow: string | null;
   title: string;
   body: string | null;
   highlight: string | null;
@@ -74,7 +76,7 @@ export type Section = {
   gallery: MediaRef[];
 };
 
-const SECTION = `key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, title, body, highlight, cta_label), section_media(sort_order, media(${MEDIA}))`;
+const SECTION = `key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, eyebrow, title, body, highlight, cta_label), section_media(sort_order, media(${MEDIA}))`;
 
 /** Seccions visibles, indexades per clau (`hero`, `welcome`, `gastronomy`…). */
 export async function getSections(locale: Locale): Promise<Record<string, Section>> {
@@ -98,7 +100,7 @@ export async function getSection(locale: Locale, key: string): Promise<Section |
   return toSections(unwrap(result, `la secció ${key}`), locale)[key] ?? null;
 }
 
-type RawSection = { key: string; media: Parameters<typeof toMedia>[0]; section_translations: { locale: string; title: string; body: string | null; highlight: string | null; cta_label: string | null }[]; section_media: { sort_order: number; media: Parameters<typeof toMedia>[0] }[] };
+type RawSection = { key: string; media: Parameters<typeof toMedia>[0]; section_translations: { locale: string; eyebrow: string | null; title: string; body: string | null; highlight: string | null; cta_label: string | null }[]; section_media: { sort_order: number; media: Parameters<typeof toMedia>[0] }[] };
 
 function toSections(rows: RawSection[], locale: Locale): Record<string, Section> {
   const sections: Record<string, Section> = {};
@@ -107,6 +109,7 @@ function toSections(rows: RawSection[], locale: Locale): Record<string, Section>
     if (!t) continue;
     sections[s.key] = {
       key: s.key,
+      eyebrow: t.eyebrow,
       title: t.title,
       body: t.body,
       highlight: t.highlight,

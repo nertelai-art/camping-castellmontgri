@@ -26,7 +26,7 @@
     "activities": "activitats d'animació"
   },
   "accommodation": {
-    "eyebrow": "On dormir",
+    "label": "On dormir",
     "all": "Tots",
     "guests": "Persones",
     "guestsAny": "Qualsevol",
@@ -52,7 +52,6 @@
     "nextPhoto": "Foto següent"
   },
   "gastronomy": {
-    "eyebrow": "Menjar i beure",
     "zone": {
       "ombra": "Zona Ombra",
       "panorama": "Zona Panorama"
@@ -69,11 +68,7 @@
   "pools": {
     "eyebrow": "Aigua i sol"
   },
-  "services": {
-    "eyebrow": "Tot a mà"
-  },
   "entertainment": {
-    "eyebrow": "Per a tota la família",
     "audience": {
       "children": "Infantil",
       "family": "Família",
@@ -85,11 +80,7 @@
       "empty": "Aquest dia no hi ha cap activitat."
     }
   },
-  "surroundings": {
-    "eyebrow": "L'Empordà i la Costa Brava"
-  },
   "map": {
-    "eyebrow": "El càmping",
     "viewer": "Mapa interactiu del càmping en 3D",
     "hint": "Arrossega per moure't · pessiga, Ctrl + roda o + i − per ampliar",
     "zoomIn": "Amplia",
@@ -134,7 +125,6 @@
     "closeCard": "Tanca la fitxa"
   },
   "testimonials": {
-    "eyebrow": "Opinions",
     "via": "a {source}"
   },
   "footer": {
@@ -176,14 +166,13 @@
     "more": "Afegeix: {label}"
   },
   "gallery": {
-    "eyebrow": "Imatges",
+    "label": "Imatges",
     "open": "Obre la foto {index}",
     "previous": "Anterior",
     "next": "Següent",
     "counter": "{index} / {total}"
   },
   "directions": {
-    "eyebrow": "On som",
     "route": "Mira la ruta",
     "email": "Escriu-nos",
     "mapTitle": "Mapa de la situació del càmping",
@@ -202,7 +191,6 @@
     "mapRemember": "Ho recordarem en aquest navegador."
   },
   "trip": {
-    "eyebrow": "Planifica l'escapada",
     "duration": "Durada",
     "fewer": "Una nit menys",
     "more": "Una nit més",
@@ -222,7 +210,6 @@
     "nightsLabel": "{count, plural, one {nit} other {nits}}"
   },
   "explore": {
-    "eyebrow": "Més que dormir",
     "cta": "Veure'n més"
   }
 }

@@ -55,6 +55,9 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - **La portada** (`/admin/home`, `HomeBlocks`): els blocs de la pàgina principal amb fletxes i casella. L'ordre és el `sort_order` de les seves seccions
   (`src/lib/content/home.ts`, `HOME_BLOCKS`, amb proves) i si surten, el seu `is_visible`; la portada els pinta en aquest ordre. El hero va sempre primer.
   Les portes a les pàgines, com arribar-hi, el viatge amb la IA i les opinions també són seccions (`explore`, `directions`, `trip`, `testimonials`): el títol s'edita al panell.
+- **Text de sobre el títol** (`section_translations.eyebrow`, «On som», «Planifica l'escapada»…): és contingut de cada secció i s'edita al panell. Buit, no surt.
+  El camp principal d'una entitat (el que li dona nom i diu si falta traduir) és el primer obligatori (`mainField`), no el primer del formulari.
+  Només el de les piscines (`pools.eyebrow`) continua a `messages/`: aquell bloc surt dels serveis, no d'una secció.
 - **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
 - En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,

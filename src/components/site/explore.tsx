@@ -11,7 +11,7 @@ export async function Explore({ section, items, index }: { section: Section; ite
   return (
     <section aria-labelledby="explore-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
       <div data-edit="sections:explore">
-        <SectionHeading id="explore-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
+        <SectionHeading id="explore-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} />
       </div>
       <ul className="mt-12 grid gap-12 lg:gap-16">
         {items.map(({ href, section }, i) => (
