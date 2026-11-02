@@ -3,7 +3,7 @@ import { RichText } from "@/components/rich-text";
 type Props = {
   id: string;
   index: number;
-  eyebrow: string;
+  eyebrow: string | null;
   title: string;
   body?: string | null;
   highlight?: string | null;
@@ -26,7 +26,7 @@ export function SectionHeading({ id, index, eyebrow, title, body, highlight, ton
       >
         <span className="font-display text-sm normal-case tracking-normal">{String(index).padStart(2, "0")}</span>
         <span aria-hidden="true" className={`h-px w-8 ${dark ? "bg-on-dark/50" : "bg-terra/60"}`} />
-        {eyebrow}
+        {eyebrow && <span data-edit-field="eyebrow">{eyebrow}</span>}
       </p>
       <Title id={id} data-edit-field="title" className={`font-display mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-6xl ${dark ? "text-on-dark" : "text-olive"}`}>
         {title}

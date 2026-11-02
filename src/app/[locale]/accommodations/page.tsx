@@ -54,7 +54,7 @@ export default async function Accommodations({ params }: PageProps<"/[locale]/ac
             {t("backHome")}
           </Link>
           <div className="mt-8">
-            <SectionHeading id="accommodation-title" index={1} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} level={1} />
+            <SectionHeading id="accommodation-title" index={1} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={1} />
           </div>
           {/* Aquí no hi ha mapa: «Veure al mapa» no hi porta enlloc. */}
           <AccommodationExplorer categories={categories} bookingUrl={settings.bookingUrl} onMap={[]} mapLinks={false} />

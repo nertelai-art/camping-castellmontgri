@@ -40,7 +40,7 @@ export function TripPlanner({ section, camping, place, url, index }: { section: 
     <section data-edit="sections:trip" aria-labelledby="trip-title" className="cv mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-14">
         <div>
-          <SectionHeading id="trip-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} />
+          <SectionHeading id="trip-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} />
 
           <div className="reveal mt-9 grid gap-7">
             <div className="flex items-center justify-between gap-4 rounded-3xl border border-line bg-card px-5 py-4">

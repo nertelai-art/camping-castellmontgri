@@ -47,7 +47,7 @@ export async function Gastronomy({
       <div id="gastronomy">
         <FoodShowcase
           heading={
-            <SectionHeading id="gastronomy-title" index={index} eyebrow={t("eyebrow")} title={section.title} body={section.body} highlight={section.highlight} level={level} />
+            <SectionHeading id="gastronomy-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={level} />
           }
           steps={steps}
           srDescription={t("sceneDescription")}

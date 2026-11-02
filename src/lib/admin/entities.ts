@@ -145,6 +145,7 @@ export const ENTITIES = {
     translations: "section_translations",
     foreignKey: "section_key",
     text: [
+      { name: "eyebrow", label: "Text de sobre el títol", help: "Les poques paraules en majúscules petites que van sobre el títol, com «On som»." },
       { name: "title", label: "Títol", required: true },
       { name: "body", label: "Text", long: true, help: RICH },
       { name: "highlight", label: "Frase destacada" },
@@ -444,12 +445,14 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
   return errors.length ? { ok: false, errors } : { ok: true, value: { base, translations } };
 }
 
-/** Idiomes que encara no tenen el camp principal: es marquen al formulari i a les llistes. */
+/** El camp que dona nom a un contingut i que, si falta, vol dir que no està traduït: el primer obligatori (el títol d'una secció, encara que el text de sobre el títol vagi abans). */
+export const mainField = (config: Pick<EntityConfig, "text">) => (config.text.find((field) => field.required) ?? config.text[0])?.name ?? "";
+
 /** Com es diu un contingut a les llistes i al registre: el camp principal en català o, si no, en castellà. */
 export function displayName(config: EntityConfig, translations: Partial<Translations>, fallback: string, base: Record<string, unknown> = {}): string {
   if (config.single) return config.title;
   if (config.nameField) return String(base[config.nameField] || "Sense nom");
-  const main = config.text[0]!.name;
+  const main = mainField(config);
   // Un identificador generat (uuid) no diu res a ningú; una clau escrita a mà («hero», «pools») sí.
   return translations.ca?.[main] || translations.es?.[main] || (config.key === "id" ? "Sense nom" : fallback);
 }
@@ -457,8 +460,9 @@ export function displayName(config: EntityConfig, translations: Partial<Translat
 /** Un camp de llista, tal com s'escriu al formulari (una línia per element), convertit en llista. */
 export const toList = (value: string) => value.split("\n").map((line) => line.trim()).filter(Boolean);
 
+/** Idiomes que encara no tenen el camp principal: es marquen al formulari i a les llistes. */
 export function missingLocales(config: EntityConfig, translations: Partial<Translations>): Locale[] {
   if (!config.translations) return [];
-  const main = config.text[0]!.name;
+  const main = mainField(config);
   return LOCALES.filter((locale) => !translations[locale]?.[main]);
 }

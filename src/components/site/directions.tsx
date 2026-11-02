@@ -68,7 +68,7 @@ export function Directions({ section, settings, index }: { section: Section; set
             <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-terra">
               <span className="font-display text-sm normal-case tracking-normal">{String(index).padStart(2, "0")}</span>
               <span aria-hidden="true" className="h-px w-8 bg-terra/60" />
-              {t("eyebrow")}
+              {section.eyebrow && <span data-edit-field="eyebrow">{section.eyebrow}</span>}
             </p>
             <h2 id="directions-title" data-edit-field="title" className="font-display mt-3 text-4xl leading-[1.04] text-olive sm:text-5xl">
               {section.title}
