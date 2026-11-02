@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { assertLocale, Subpage, subpageMetadata } from "@/components/site/subpage";
 import { documentBlocks } from "@/lib/content/rich-text";
 import { isLegalSlug, LEGAL_PAGES } from "@/lib/content/legal";
-import { getSections } from "@/lib/supabase/content";
+import { getSection } from "@/lib/supabase/content";
 import type { Inline } from "@/lib/content/rich-text";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/legal/[slug]">): Promise<Metadata> {
@@ -19,7 +19,7 @@ export default async function LegalPage({ params }: PageProps<"/[locale]/legal/[
   const { locale: raw, slug } = await params;
   const locale = assertLocale(raw);
   if (!isLegalSlug(slug)) notFound();
-  const section = (await getSections(locale))[LEGAL_PAGES[slug]];
+  const section = await getSection(locale, LEGAL_PAGES[slug]);
   if (!section) notFound();
   return (
     <Subpage locale={locale}>

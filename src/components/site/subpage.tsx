@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { routing, type Locale } from "@/i18n/routing";
-import { getMediaByFolder, getSections, getSiteSettings } from "@/lib/supabase/content";
+import { getMediaByFolder, getSection, getSiteSettings } from "@/lib/supabase/content";
 import { RevealOnScroll } from "./reveal-on-scroll";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -14,8 +14,7 @@ import { SiteHeader } from "./site-header";
 
 export async function subpageMetadata(locale: string, path: string, sectionKey: string): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) return {};
-  const [{ brandName, seo }, sections] = await Promise.all([getSiteSettings(locale), getSections(locale)]);
-  const section = sections[sectionKey];
+  const [{ brandName, seo }, section] = await Promise.all([getSiteSettings(locale), getSection(locale, sectionKey)]);
   return {
     title: section ? `${section.title} · ${brandName}` : brandName,
     // Una secció sense text (la galeria) es queda amb la descripció general del web.

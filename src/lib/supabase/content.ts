@@ -74,16 +74,35 @@ export type Section = {
   gallery: MediaRef[];
 };
 
+const SECTION = `key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, title, body, highlight, cta_label), section_media(sort_order, media(${MEDIA}))`;
+
 /** Seccions visibles, indexades per clau (`hero`, `welcome`, `gastronomy`…). */
 export async function getSections(locale: Locale): Promise<Record<string, Section>> {
   const result = await contentClient()
     .from("sections")
-    .select(`key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, title, body, highlight, cta_label), section_media(sort_order, media(${MEDIA}))`)
+    .select(SECTION)
     .eq("is_visible", true)
     .in("section_translations.locale", localesFor(locale))
     .order("sort_order");
+  return toSections(unwrap(result, "les seccions"), locale);
+}
+
+/** Una sola secció, per a les pàgines que només en mostren una (les legals): no cal portar el text de totes les altres. */
+export async function getSection(locale: Locale, key: string): Promise<Section | null> {
+  const result = await contentClient()
+    .from("sections")
+    .select(SECTION)
+    .eq("key", key)
+    .eq("is_visible", true)
+    .in("section_translations.locale", localesFor(locale));
+  return toSections(unwrap(result, `la secció ${key}`), locale)[key] ?? null;
+}
+
+type RawSection = { key: string; media: Parameters<typeof toMedia>[0]; section_translations: { locale: string; title: string; body: string | null; highlight: string | null; cta_label: string | null }[]; section_media: { sort_order: number; media: Parameters<typeof toMedia>[0] }[] };
+
+function toSections(rows: RawSection[], locale: Locale): Record<string, Section> {
   const sections: Record<string, Section> = {};
-  for (const s of unwrap(result, "les seccions")) {
+  for (const s of rows) {
     const t = pickTranslation(s.section_translations, locale);
     if (!t) continue;
     sections[s.key] = {
