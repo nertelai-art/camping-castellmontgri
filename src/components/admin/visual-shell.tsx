@@ -5,10 +5,12 @@
 // posa els ressaltats i escolta els clics des de fora. Mentre s'escriu, el text es pinta a la web directament (és un
 // esborrany: encara no s'ha desat); en desar, la web es recarrega al mateix punt amb el contingut de debò.
 
+import { ChevronLeft, Eye, Monitor, MousePointerClick, Smartphone } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LOCALE_NAMES, LOCALES, type Locale } from "@/lib/admin/entities";
+import { LEGAL_SITE_PAGES, SITE_PAGES, startPage } from "@/lib/admin/nav";
 import {
   DRAFT_EVENT,
   editMark,
@@ -30,14 +32,19 @@ const STYLE = `
   .admin-edit-selected { outline: 4px solid #e2572c !important; outline-offset: -4px !important; }
 `;
 
-const TOGGLE = "rounded-full border border-line px-3.5 py-1.5 text-sm font-bold transition hover:border-olive aria-pressed:border-olive aria-pressed:bg-olive aria-pressed:text-paper";
+const TOGGLE = "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-bold text-muted transition hover:text-ink aria-pressed:bg-card aria-pressed:text-olive aria-pressed:shadow-sm";
+const SEGMENTS = "flex items-center gap-0.5 rounded-full bg-paper-2 p-1";
+const SELECT = "rounded-full border border-line bg-card px-3 py-1.5 text-sm font-bold";
 
 export function VisualShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const frame = useRef<HTMLIFrameElement>(null);
   const editor = useRef<HTMLElement>(null);
+  const searchParams = useSearchParams();
   const [locale, setLocale] = useState<Locale>("ca");
+  // La pàgina del web que es veu: la que s'ha triat al tauler (`?page=`) o la portada. Es pot canviar des de dalt.
+  const [page, setPage] = useState(() => startPage(searchParams.get("page")));
   const [phone, setPhone] = useState(false);
   const [editing, setEditing] = useState(true);
   // Els blocs que contenen el que s'ha clicat, de fora cap a dins: per poder pujar a la secció des d'una fitxa.
@@ -173,28 +180,50 @@ export function VisualShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="grid h-svh grid-rows-[auto_minmax(0,1fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,1fr)_30rem] lg:grid-rows-[auto_minmax(0,1fr)]">
-      <header className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-line bg-card px-4 py-2.5 lg:col-span-2">
-        <Link href="/admin" className="text-base font-bold text-terra hover:underline">
-          ← Panell
+      <header className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-line bg-card px-4 py-2.5 lg:col-span-2">
+        <Link href="/admin" className="inline-flex items-center gap-1 rounded-full px-2 py-1.5 text-sm font-bold text-muted transition hover:bg-paper-2 hover:text-ink">
+          <ChevronLeft aria-hidden="true" className="size-4" />
+          Tauler
         </Link>
-        <p className="font-display text-xl text-olive">Edita sobre la web</p>
-        <div className="flex flex-wrap items-center gap-1.5 lg:ml-auto">
-          <button type="button" aria-pressed={editing} onClick={() => setEditing(true)} className={TOGGLE}>
-            Edita
-          </button>
-          <button type="button" aria-pressed={!editing} onClick={() => setEditing(false)} className={TOGGLE} title="Per obrir diàlegs i menús de la web com un visitant">
-            Navega
-          </button>
-          <span aria-hidden="true" className="mx-1 h-6 w-px bg-line" />
-          <button type="button" aria-pressed={!phone} onClick={() => setPhone(false)} className={TOGGLE}>
-            Ordinador
-          </button>
-          <button type="button" aria-pressed={phone} onClick={() => setPhone(true)} className={TOGGLE}>
-            Mòbil
-          </button>
-          <label className="ml-1 flex items-center gap-2 text-sm font-bold">
+        <span aria-hidden="true" className="h-6 w-px bg-line" />
+        <p className="flex items-center gap-2 font-bold text-olive">
+          <MousePointerClick aria-hidden="true" className="size-5" />
+          Edita sobre la web
+        </p>
+        <label className="flex items-center gap-2">
+          <span className="sr-only">Pàgina del web</span>
+          <select value={page} onChange={(event) => setPage(startPage(event.target.value))} className={SELECT}>
+            {[...SITE_PAGES, ...LEGAL_SITE_PAGES].map((p) => (
+              <option key={p.path} value={p.path}>
+                {p.title}
+              </option>
+            ))}
+          </select>
+        </label>
+        <div className="flex flex-wrap items-center gap-2 lg:ml-auto">
+          <div className={SEGMENTS} role="group" aria-label="Mode">
+            <button type="button" aria-pressed={editing} onClick={() => setEditing(true)} className={TOGGLE}>
+              <MousePointerClick aria-hidden="true" className="size-4" />
+              Edita
+            </button>
+            <button type="button" aria-pressed={!editing} onClick={() => setEditing(false)} className={TOGGLE} title="Per obrir diàlegs i menús de la web com un visitant">
+              <Eye aria-hidden="true" className="size-4" />
+              Navega
+            </button>
+          </div>
+          <div className={SEGMENTS} role="group" aria-label="Pantalla">
+            <button type="button" aria-pressed={!phone} onClick={() => setPhone(false)} className={TOGGLE}>
+              <Monitor aria-hidden="true" className="size-4" />
+              <span className="sr-only sm:not-sr-only">Ordinador</span>
+            </button>
+            <button type="button" aria-pressed={phone} onClick={() => setPhone(true)} className={TOGGLE}>
+              <Smartphone aria-hidden="true" className="size-4" />
+              <span className="sr-only sm:not-sr-only">Mòbil</span>
+            </button>
+          </div>
+          <label className="flex items-center gap-2">
             <span className="sr-only">Idioma de la web</span>
-            <select value={locale} onChange={(event) => setLocale(event.target.value as Locale)} className="rounded-full border border-line bg-card px-3 py-1.5">
+            <select value={locale} onChange={(event) => setLocale(event.target.value as Locale)} className={SELECT}>
               {LOCALES.map((l) => (
                 <option key={l} value={l}>
                   {LOCALE_NAMES[l]}
@@ -208,8 +237,8 @@ export function VisualShell({ children }: { children: React.ReactNode }) {
       <div className="min-h-0 overflow-hidden bg-paper-2">
         <iframe
           ref={frame}
-          key={locale}
-          src={`/${locale}`}
+          key={`${locale}${page}`}
+          src={`/${locale}${page}`}
           title="La web, tal com la veuen els visitants"
           onLoad={attach}
           className="mx-auto block h-full border-0 bg-paper shadow-[0_0_0_1px_var(--color-line)] transition-[width] duration-300"

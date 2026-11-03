@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ENTITY_NAMES } from "./entities";
-import { currentHref, isCurrent, NAV_GROUPS, pendingWork, TASKS } from "./nav";
+import { CREATABLE, createLabel, currentHref, isCurrent, LEGAL_SITE_PAGES, NAV_GROUPS, navItems, pendingWork, SITE_PAGES, startPage, TASKS, visualPageHref } from "./nav";
 
 describe("menú del panell", () => {
   it("porta a cada contingut exactament una vegada", () => {
@@ -27,6 +27,41 @@ describe("menú del panell", () => {
     expect(isCurrent("/admin/services", "/admin/services")).toBe(true);
     expect(isCurrent("/admin/services/123", "/admin/services")).toBe(true);
     expect(isCurrent("/admin/services-old", "/admin/services")).toBe(false);
+  });
+});
+
+describe("pàgines del web al tauler", () => {
+  it("cada pàgina té una adreça i una secció pròpies", () => {
+    const pages = [...SITE_PAGES, ...LEGAL_SITE_PAGES];
+    expect(new Set(pages.map((page) => page.path)).size).toBe(pages.length);
+    expect(new Set(pages.map((page) => page.section)).size).toBe(pages.length);
+  });
+
+  it("l'editor visual només s'obre en una pàgina del web coneguda", () => {
+    expect(startPage("/gastronomy")).toBe("/gastronomy");
+    expect(startPage("/legal/privacy")).toBe("/legal/privacy");
+    expect(startPage(null)).toBe("");
+    // Res de fora del web ni adreces que no existeixen: l'iframe carregaria qualsevol cosa del mateix origen.
+    expect(startPage("//evil.example")).toBe("");
+    expect(startPage("/admin")).toBe("");
+    expect(startPage("/gastronomy/../admin")).toBe("");
+  });
+
+  it("l'enllaç a l'editor visual porta la pàgina, i la portada no en porta", () => {
+    expect(visualPageHref("/gastronomy")).toBe("/admin/visual?page=%2Fgastronomy");
+    expect(visualPageHref("")).toBe("/admin/visual");
+  });
+
+  it("el botó de crear només ofereix el que es pot afegir, amb el gènere bé", () => {
+    expect(CREATABLE).toContain("activities");
+    expect(CREATABLE).not.toContain("accommodations");
+    expect(createLabel("activities")).toBe("Nova activitat");
+    expect(createLabel("services")).toBe("Nou servei");
+    expect(createLabel("restaurants")).toBe("Nou restaurant o bar");
+  });
+
+  it("cada opció del menú té icona", () => {
+    expect(NAV_GROUPS.flatMap(navItems).every((item) => Boolean(item.icon))).toBe(true);
   });
 });
 

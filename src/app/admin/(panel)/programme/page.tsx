@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ProgrammeDay, ProgrammeWeekCopy } from "@/components/admin/programme-editor";
+import { PageHeader } from "@/components/admin/page-header";
 import { entityHref, PROGRAMME_HREF } from "@/lib/admin/nav";
 import { addDays, isDay, mondayOf, todayAtCamping, weekDays } from "@/lib/content/programme";
 import { listContent, listSessions } from "@/lib/supabase/admin-content";
@@ -22,10 +23,9 @@ export default async function Programme({ searchParams }: PageProps<"/admin/prog
 
   return (
     <>
-      <h1 className="font-display text-4xl text-olive">Programa setmanal</h1>
-      <p className="mt-2 max-w-2xl text-lg text-muted">Què es fa cada dia. A la web surt el de la setmana en curs, i cada canvi es desa sol.</p>
+      <PageHeader icon="calendar" title="Programa setmanal" description="Què es fa cada dia. A la web surt el de la setmana en curs, i cada canvi es desa sol." />
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Link href={`${PROGRAMME_HREF}?week=${addDays(monday, -7)}`} className={NAV}>
           ← Anterior
         </Link>
