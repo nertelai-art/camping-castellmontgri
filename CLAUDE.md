@@ -52,6 +52,12 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   al càmping, textos legals i dades; una pàgina del web és un enllaç directe a la fitxa de la seva secció), les tasques de la pàgina d'inici
   (`TASKS`) i el que queda per acabar (`pendingWork`: el que no es veu a la web i el que falta traduir). Una entitat nova ha d'anar al menú.
   Només es marca l'opció més concreta (`currentHref`): la fitxa de Gastronomia no marca també «Tots els textos».
+- **Carcassa** (`AdminShell`): barra lateral fosca amb icones (lucide-react, només al panell; quina icona toca a cada opció és un nom a `nav.ts`
+  i el dibuix és a `admin-icons.tsx`), que es plega a l'escriptori (galeta `admin-sidebar`, del panell) i al mòbil és un calaix (tancat, `invisible`:
+  fora del teclat); a dalt, «Edita sobre la web», «Veure la web» i el compte. Cada pàgina comença amb `PageHeader`.
+- **Tauler** (`/admin`): editar sobre la web, crear contingut nou (`CREATABLE`, `createLabel`), les xifres, les pàgines del web (`SITE_PAGES` i
+  `LEGAL_SITE_PAGES`: foto de la secció, si es veu, què falta traduir, i «Sobre la web» o «Textos i fotos»), el que queda per acabar i l'activitat recent.
+  L'editor visual s'obre en una pàgina amb `?page=` (`visualPageHref`); `startPage` només hi deixa posar una pàgina del web coneguda.
 - **La portada** (`/admin/home`, `HomeBlocks`): els blocs de la pàgina principal amb fletxes i casella. L'ordre és el `sort_order` de les seves seccions
   (`src/lib/content/home.ts`, `HOME_BLOCKS`, amb proves) i si surten, el seu `is_visible`; la portada els pinta en aquest ordre. El hero va sempre primer.
   Les portes a les pàgines, com arribar-hi, el viatge amb la IA i les opinions també són seccions (`explore`, `directions`, `trip`, `testimonials`): el títol s'edita al panell.
