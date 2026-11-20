@@ -211,7 +211,10 @@ client es pugen a Supabase Storage amb el script de seed.
 - Els preus «des de» (`accommodations.price_from`) s'escriuen a mà al panell fins que hi hagi l'API.
 
 - **Com arribar-hi** (`directions.tsx`): surt de les dades generals. La ruta és un formulari normal cap a Google Maps (origen i manera d'anar-hi), sense JS ni servidor nostre.
-  El mapa d'OpenStreetMap és de tercers: no es carrega fins que qui visita ho accepta («Carrega el mapa»), i l'acceptació es recorda en aquest navegador (`localStorage`, `map-consent`).
+  El mapa és una imatge nostra (`public/map/zona.webp`, feta amb `python scripts/build-directions-map.py <lat> <lng>` a partir de les rajoles d'OpenStreetMap,
+  amb el càmping al centre exacte, on va l'agulla): surt a l'instant, sense cap pas d'acceptar (feia nosa i el client no el vol) i sense demanar res a tercers
+  en visitar la web. En clicar-hi s'obre Google Maps. La llicència d'OpenStreetMap demana l'atribució: un «© OpenStreetMap» petit al racó, que no es treu.
+  Si canvien les coordenades del càmping, es torna a fer la imatge.
   Un cop carregat, no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
 - **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
   Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
@@ -227,8 +230,8 @@ client es pugen a Supabase Storage amb el script de seed.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
 - **Pàgines legals** (`/[locale]/legal/[slug]`: privacitat, galetes, avís legal i condicions de reserva; `src/lib/content/legal.ts`): cadascuna és una secció del panell (`legal-privacy`…),
   amb títols al text (paràgrafs que comencen amb `#`, `documentBlocks`). `node scripts/seed-legal.ts` les carrega i només afegeix el que no hi és; els enllaços són al peu.
-  Privacitat i galetes estan redactades per al web nou (`scripts/content/legal/<idioma>/`): descriuen el que el web fa de veritat (cap galeta en entrar; `NEXT_LOCALE` en canviar d'idioma; `map-consent` en acceptar el mapa;
-  Vercel, Supabase, Sentry, WitBooking i, amb consentiment, OpenStreetMap). **Si el web comença a fer servir una galeta, un servei o un formulari nou, s'han d'actualitzar** i tornar a carregar amb `--replace privacy,cookies`.
+  Privacitat i galetes estan redactades per al web nou (`scripts/content/legal/<idioma>/`): descriuen el que el web fa de veritat (cap galeta en entrar; `NEXT_LOCALE` en canviar d'idioma;
+  Vercel, Supabase, Sentry i WitBooking; el mapa de «Com arribar-hi» és una imatge nostra i Google Maps només s'obre si s'hi clica). **Si el web comença a fer servir una galeta, un servei o un formulari nou, s'han d'actualitzar** i tornar a carregar amb `--replace privacy,cookies`.
   L'avís legal i les condicions de reserva continuen sent les del web antic.
 - **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `src/lib/seo/old-urls.json` (generat de `reference/content/site-map.json` amb `node scripts/build-old-urls.ts`: `reference/` no puja a Vercel) va a la pàgina nova equivalent, en el mateix idioma;
   el que no en té (esdeveniments, treballa amb nosaltres, canal de denúncies) va a la portada.

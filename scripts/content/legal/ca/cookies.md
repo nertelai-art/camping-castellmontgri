@@ -8,15 +8,13 @@ Les galetes (cookies) són petits fitxers que un web guarda al teu navegador per
 
 ## Què fa servir aquest web
 
-Aquest web **no fa servir galetes d'anàlisi, de publicitat ni de seguiment**, i no guarda res al teu navegador quan hi entres. Només guarda aquestes dues dades, i només quan tu fas alguna cosa que les necessita:
+Aquest web **no fa servir galetes d'anàlisi, de publicitat ni de seguiment**, i no guarda res al teu navegador quan hi entres. Només guarda aquesta dada, i només quan tu fas alguna cosa que la necessita:
 
 **NEXT_LOCALE** (galeta pròpia). Es crea si canvies d'idioma amb el selector, per ensenyar-te les pàgines en l'idioma que has triat. Dura fins que tanques el navegador. És una galeta de personalització que demanes tu, i per això no necessita consentiment.
 
-**map-consent** (emmagatzematge local propi). Es guarda quan prems «Carrega el mapa» a l'apartat «Com arribar-hi», per no haver-t'ho de preguntar cada vegada. No caduca: s'esborra quan esborres les dades del lloc al navegador.
-
 ## Contingut de tercers
 
-El mapa de l'apartat «Com arribar-hi» és d'OpenStreetMap i no es carrega fins que l'acceptes. Un cop carregat, OpenStreetMap pot fer servir les seves pròpies galetes o tecnologies: ho pots consultar a la seva política de privacitat (osmfoundation.org).
+El mapa de l'apartat «Com arribar-hi» és una imatge allotjada en aquest web (dades del mapa © col·laboradors d'OpenStreetMap): en veure'l no es connecta amb cap servei de tercers. Si el prems, s'obre Google Maps en una pestanya nova, amb les seves pròpies condicions.
 
 El motor de reserves de WitBooking i els enllaços a Google Maps, ChatGPT, Claude i Gemini s'obren als seus propis webs, que tenen les seves pròpies polítiques de galetes.
 
@@ -36,7 +34,7 @@ Pots esborrar les galetes i les dades d'aquest web, o impedir que es guardin, de
 
 **Edge:** Configuració › Galetes i permisos del lloc.
 
-Si les bloqueges, el web continuarà funcionant, però hauràs de triar l'idioma i acceptar el mapa cada vegada.
+Si les bloqueges, el web continuarà funcionant, però hauràs de triar l'idioma cada vegada.
 
 ## Canvis
 

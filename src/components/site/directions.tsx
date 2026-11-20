@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useState, useSyncExternalStore } from "react";
 import type { Section, SiteSettings } from "@/lib/supabase/content";
 
 // Com es va a Google Maps (`travelmode`), amb la seva icona (traç de 24 px).
@@ -12,53 +12,17 @@ const MODES = [
   { key: "walking", label: "walk", icon: "M13 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM10 21l2.5-6-2-2.5.8-4 2.7 1 1.5 2.5H18M8 12l.8-3.5 2.5-.5M14.5 15.5 16 21" },
 ] as const;
 
-// El mapa és de tercers: no es carrega fins que qui visita ho accepta, i l'acceptació es recorda en aquest navegador.
-const MAP_CONSENT_KEY = "map-consent";
-const MAP_CONSENT_EVENT = "map-consent";
-let acceptedThisVisit = false;
-
-function readConsent() {
-  if (acceptedThisVisit) return true;
-  try {
-    return localStorage.getItem(MAP_CONSENT_KEY) === "1";
-  } catch {
-    return false;
-  }
-}
-
-function subscribeConsent(onChange: () => void) {
-  window.addEventListener(MAP_CONSENT_EVENT, onChange);
-  window.addEventListener("storage", onChange);
-  return () => {
-    window.removeEventListener(MAP_CONSENT_EVENT, onChange);
-    window.removeEventListener("storage", onChange);
-  };
-}
-
 /**
  * Com arribar-hi: el formulari de la ruta i el mapa, un al costat de l'altre. La ruta és un formulari normal cap a Google Maps: va sense JS i no passa per
- * cap servidor nostre. El mapa és d'OpenStreetMap, es carrega quan s'accepta i no agafa el ratolí fins que s'hi clica: si no, en passar-hi per sobre, la roda faria zoom
- * en lloc de baixar la pàgina.
+ * cap servidor nostre. El mapa és una imatge nostra (`public/map/zona.webp`, `scripts/build-directions-map.py`): surt a l'instant i, en visitar la web,
+ * no es demana res a cap servidor de tercers. El càmping és al centre exacte de la imatge i l'agulla hi va a sobre. En clicar-hi s'obre a Google Maps,
+ * que és on la gent busca com arribar. Les dades del mapa són d'OpenStreetMap: la seva llicència demana l'atribució, i va petita al racó.
  */
 export function Directions({ section, settings }: { section: Section; settings: SiteSettings }) {
   const t = useTranslations("directions");
-  const [mapActive, setMapActive] = useState(false);
-  const consent = useSyncExternalStore(subscribeConsent, readConsent, () => false);
-  const acceptMap = () => {
-    try {
-      localStorage.setItem(MAP_CONSENT_KEY, "1");
-    } catch {
-      // Sense emmagatzematge (navegació privada estricta): el mapa es carrega igualment, però no es recordarà.
-    }
-    acceptedThisVisit = true;
-    window.dispatchEvent(new Event(MAP_CONSENT_EVENT));
-  };
   const { address, geo, phone, emails } = settings;
   const destination = geo ? `${geo.lat},${geo.lng}` : [address.street, address.locality].filter(Boolean).join(", ");
-  const delta = 0.012;
-  const mapSrc = geo
-    ? `https://www.openstreetmap.org/export/embed.html?bbox=${geo.lng - delta},${geo.lat - delta},${geo.lng + delta},${geo.lat + delta}&layer=mapnik&marker=${geo.lat},${geo.lng}`
-    : null;
+  const mapUrl = geo ? `https://www.google.com/maps/search/?api=1&query=${geo.lat},${geo.lng}` : null;
 
   return (
     <section data-edit="sections:directions" aria-labelledby="directions-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
@@ -120,28 +84,33 @@ export function Directions({ section, settings }: { section: Section; settings: 
             </div>
           </div>
 
-          {mapSrc && (
-            <div className="reveal relative min-h-[22rem] overflow-hidden rounded-[1.75rem] border border-line bg-paper-2">
-              {consent ? (
-                <iframe src={mapSrc} title={t("mapTitle")} loading="lazy" className="absolute inset-0 size-full border-0" />
-              ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
-                  <svg viewBox="0 0 24 24" className="size-10 text-olive" aria-hidden="true">
-                    <path d="M9 4 3.5 6.5v13.5L9 17.5l6 2.5 5.5-2.5V4L15 6.5zM9 4v13.5M15 6.5V20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <p className="max-w-sm text-muted">{t("mapConsent")}</p>
-                  <button type="button" onClick={acceptMap} className="rounded-full bg-band-olive px-6 py-3 font-bold text-on-dark transition hover:brightness-125">
-                    {t("mapLoad")}
-                  </button>
-                  <p className="text-xs text-muted">{t("mapRemember")}</p>
-                </div>
-              )}
-              {consent && !mapActive && (
-                <button type="button" onClick={() => setMapActive(true)} className="group absolute inset-0 flex items-end justify-center p-4">
-                  <span className="rounded-full bg-card px-5 py-2.5 text-sm font-bold text-olive shadow-xl transition group-hover:scale-105">{t("useMap")}</span>
-                </button>
-              )}
-            </div>
+          {mapUrl && (
+            <a
+              href={mapUrl}
+              target="_blank"
+              rel="noopener"
+              aria-label={t("openMap")}
+              className="reveal group relative block min-h-[22rem] overflow-hidden rounded-[1.75rem] border border-line bg-paper-2"
+            >
+              <Image
+                src="/map/zona.webp"
+                alt={t("mapTitle")}
+                fill
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+              {/* L'agulla, al centre: el càmping és el centre de la imatge. */}
+              <span aria-hidden="true" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full drop-shadow-lg">
+                <svg viewBox="0 0 32 42" className="h-12 w-9">
+                  <path d="M16 41s14-13.6 14-25A14 14 0 0 0 2 16c0 11.4 14 25 14 25z" fill="var(--band-olive)" stroke="white" strokeWidth="2.5" />
+                  <circle cx="16" cy="16" r="5.5" fill="white" />
+                </svg>
+              </span>
+              <span className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-card px-5 py-2.5 text-sm font-bold text-olive shadow-xl transition group-hover:scale-105">
+                {t("openMap")}
+              </span>
+              <span className="absolute bottom-1 right-2 text-[10px] text-ink/55">© OpenStreetMap</span>
+            </a>
           )}
         </div>
       </div>

@@ -202,10 +202,7 @@
     },
     "from": "¿Desde dónde vienes?",
     "fromPlaceholder": "Tu ciudad o dirección",
-    "useMap": "Clic para mover el mapa",
-    "mapConsent": "El mapa es de OpenStreetMap: al cargarlo, tu navegador se conecta a sus servidores.",
-    "mapLoad": "Cargar el mapa",
-    "mapRemember": "Lo recordaremos en este navegador."
+    "openMap": "Abrir en Google Maps"
   },
   "trip": {
     "duration": "Duración",

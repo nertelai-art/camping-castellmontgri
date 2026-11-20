@@ -32,11 +32,9 @@ If you email or call us, we use the data you give us to reply.
 
 **Legal basis:** your consent when contacting us and, if you ask for information in order to book, steps taken before entering into a contract (Article 6(1)(a) and 6(1)(b) GDPR).
 
-### When you load the map
+### The map in "How to get here"
 
-In the "How to get here" section, the map comes from OpenStreetMap and only loads if you ask for it. When it loads, your browser connects to OpenStreetMap's servers, which receive your IP address.
-
-**Legal basis:** your consent (Article 6(1)(a) GDPR), given when you press "Load the map". You can withdraw it by clearing this site's data in your browser.
+The map is an image hosted on this website: viewing it sends no data to third parties. If you click it, Google Maps opens in a new tab and, from then on, Google's privacy policy applies.
 
 ## Who we share data with
 
@@ -49,8 +47,6 @@ We do not sell your data or pass it to third parties for advertising. To run the
 **Functional Software Inc. (Sentry)** receives error reports, stored on servers in the European Union (Germany).
 
 **WitBooking** runs the booking engine.
-
-If you load the map, the **OpenStreetMap Foundation** (United Kingdom, covered by a European Commission adequacy decision) receives your IP address.
 
 We also share data with public authorities when the law requires it, for example with the police for the guest register.
 
