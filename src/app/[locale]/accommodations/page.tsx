@@ -11,7 +11,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { routing } from "@/i18n/routing";
 import { getAccommodationCategories, getMediaByFolder, getSections, getSiteSettings } from "@/lib/supabase/content";
 
-// Tots els allotjaments, en una pàgina a part: a la portada, al mòbil, només se n'ensenyen uns quants.
+// Tots els allotjaments, en una pàgina a part (el menú hi porta des de les pàgines que no són la portada).
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/accommodations">): Promise<Metadata> {
   const { locale } = await params;
@@ -50,14 +50,13 @@ export default async function Accommodations({ params }: PageProps<"/[locale]/ac
       <main id="main">
         <section data-edit="sections:accommodation" aria-labelledby="accommodation-title" className="mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-32 lg:pt-14">
           <Link href={`/${locale}#accommodation`} className="inline-flex items-center gap-2 text-base font-bold text-terra hover:underline">
-            <span aria-hidden="true">←</span>
             {t("backHome")}
           </Link>
           <div className="mt-8">
-            <SectionHeading id="accommodation-title" index={1} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={1} />
+            <SectionHeading id="accommodation-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={1} />
           </div>
           {/* Aquí no hi ha mapa: «Veure al mapa» no hi porta enlloc. */}
-          <AccommodationExplorer categories={categories} bookingUrl={settings.bookingUrl} onMap={[]} mapLinks={false} />
+          <AccommodationExplorer categories={categories} bookingUrl={settings.bookingUrl} />
         </section>
       </main>
       <SiteFooter settings={settings} accreditations={accreditations} locale={locale} />

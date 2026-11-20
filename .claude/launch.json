@@ -30,6 +30,18 @@
         "3200"
       ],
       "port": 3200
+    },
+    {
+      "name": "web-local-dev",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "local",
+        "next",
+        "dev",
+        "-p",
+        "3201"
+      ],
+      "port": 3201
     }
   ]
 }

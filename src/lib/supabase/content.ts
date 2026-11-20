@@ -290,6 +290,25 @@ export async function getTestimonials() {
 }
 export type Testimonial = Awaited<ReturnType<typeof getTestimonials>>[number];
 
+// ─── Notes a les plataformes de ressenyes ─────────────────────────────────────
+export async function getReviewPlatforms() {
+  const result = await contentClient()
+    .from("review_platforms")
+    .select("id, platform, rating, scale, review_count, url")
+    .order("sort_order");
+  // Una base de dades sense la taula encara (la migració 20261120100000 no s'hi ha aplicat) no ha de fer caure la portada: no surten notes.
+  if (result.error?.code === "PGRST205") return [];
+  return unwrap(result, "les notes de les plataformes").map((p) => ({
+    id: p.id,
+    platform: p.platform,
+    rating: Number(p.rating),
+    scale: p.scale,
+    reviewCount: p.review_count,
+    url: p.url,
+  }));
+}
+export type ReviewPlatform = Awaited<ReturnType<typeof getReviewPlatforms>>[number];
+
 // ─── Imatges soltes per carpeta (entorn, acreditacions) ─────────────────────
 export async function getMediaByFolder(folder: string, locale: Locale) {
   const result = await contentClient()

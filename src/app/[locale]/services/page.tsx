@@ -19,8 +19,8 @@ export default async function ServicesPage({ params }: PageProps<"/[locale]/serv
   const slides = services.find((s) => s.slug === "slides");
   return (
     <Subpage locale={locale}>
-      <ServicesGrid section={sections.services} services={services.filter((s) => s !== pools && s !== slides)} onMap={new Set()} index={1} level={1} />
-      {pools && <Pools pools={pools} slides={slides} onMap={new Set()} index={2} />}
+      <ServicesGrid section={sections.services} services={services.filter((s) => s !== pools && s !== slides)} onMap={new Set()} level={1} />
+      {pools && <Pools pools={pools} slides={slides} onMap={new Set()} />}
     </Subpage>
   );
 }

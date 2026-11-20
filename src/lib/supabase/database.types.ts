@@ -641,6 +641,42 @@ export type Database = {
           },
         ]
       }
+      review_platforms: {
+        Row: {
+          id: string
+          platform: string
+          rating: number
+          review_count: number | null
+          scale: number
+          sort_order: number
+          status: Database["public"]["Enums"]["publish_status"]
+          updated_at: string
+          url: string | null
+        }
+        Insert: {
+          id?: string
+          platform: string
+          rating: number
+          review_count?: number | null
+          scale?: number
+          sort_order?: number
+          status?: Database["public"]["Enums"]["publish_status"]
+          updated_at?: string
+          url?: string | null
+        }
+        Update: {
+          id?: string
+          platform?: string
+          rating?: number
+          review_count?: number | null
+          scale?: number
+          sort_order?: number
+          status?: Database["public"]["Enums"]["publish_status"]
+          updated_at?: string
+          url?: string | null
+        }
+        Relationships: []
+      }
       section_media: {
         Row: {
           media_id: string

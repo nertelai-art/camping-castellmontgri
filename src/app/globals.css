@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 /*
- * Sistema de disseny — «guia de natura».
- * Colors del web actual: oliva #485328 (logo), crema #F7F0D3, terracota #CA5732 / #BA380C.
- * Paper crema amb gra, tinta oliva, accents terracota, fotos grans i numeració de secció.
+ * Sistema de disseny — net i blanc, amb els colors de la marca.
+ * Colors del web actual: oliva #485328 (logo), terracota #CA5732 / #BA380C.
+ * Fons blanc, superfícies grises molt clares (sense crema ni beix), tinta oliva, accents terracota i fotos grans.
  */
 
 :root {
-  --paper: #fbf8ee;
-  --paper-2: #f3edd6;
+  --paper: #ffffff;
+  --paper-2: #f4f5f1;
   --card: #ffffff;
   --ink: #232a14;
   --olive: #485328;
   --olive-2: #5f6d36;
   --muted: #5d6247;
-  --line: #e4dcc0;
+  --line: #e3e6de;
   --terra: #ba380c;
   --terra-2: #ca5732;
   --sea: #1d6f86;
-  --on-dark: #f7f0d3;
-  --blush: #fff4f0;
+  --on-dark: #fbfbf8;
+  --blush: #fdf3ef;
   /* Franges de color amb text clar: iguals en tots dos temes perquè el contrast no canviï. */
   --band-olive: #3e4822;
   --band-terra: #a8330b;
@@ -33,7 +33,7 @@
     --paper: #161b0d;
     --paper-2: #1d2412;
     --card: #20281a;
-    --ink: #efe8cc;
+    --ink: #eef0e8;
     --olive: #c3cf8b;
     --olive-2: #a9b772;
     --muted: #b3b193;
@@ -41,7 +41,7 @@
     --terra: #ec8a5f;
     --terra-2: #f09a74;
     --sea: #7cc3d6;
-    --on-dark: #f7f0d3;
+    --on-dark: #fbfbf8;
     --blush: #231a12;
     color-scheme: dark;
   }
@@ -114,12 +114,6 @@ body {
   html {
     scrollbar-color: var(--band-olive) var(--paper);
   }
-}
-
-/* Gra de paper com a textura de fons (no una capa fixa amb mix-blend: obligaria a recompondre
-   tota la pàgina a cada fotograma de scroll). Les franges de color el tapen, i és el que volem. */
-body {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.14 0 0 0 0 0.16 0 0 0 0 0.08 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .font-display {
@@ -210,44 +204,10 @@ body {
   }
 }
 
-/* De la targeta a la fitxa: la foto vola d'un lloc a l'altre (View Transitions) i la fitxa es construeix al voltant. */
-::view-transition-group(accommodation-photo) {
-  animation-duration: 480ms;
-  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-::view-transition-old(accommodation-photo),
-::view-transition-new(accommodation-photo) {
-  height: 100%;
-  object-fit: cover;
-  overflow: clip;
-}
-
-::view-transition-new(accommodation-sheet) {
-  animation: accommodation-sheet-in 400ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
-}
-
-::view-transition-old(accommodation-sheet) {
-  animation: accommodation-sheet-out 260ms ease-in both;
-}
-
-@keyframes accommodation-sheet-in {
-  from {
-    opacity: 0;
-    transform: scale(0.96) translateY(1rem);
-  }
-}
-
-@keyframes accommodation-sheet-out {
-  to {
-    opacity: 0;
-    transform: scale(0.97) translateY(0.75rem);
-  }
-}
-
+/* La pàgina de cada allotjament es construeix per ordre (`--i`): fotos, nom, dades i reserva. Només desplaçament, sense opacitat:
+   la primera foto i el títol poden ser l'element LCP. */
 @keyframes accommodation-build {
   from {
-    opacity: 0;
     transform: translateY(0.875rem);
   }
 }
@@ -256,6 +216,153 @@ body {
   .accommodation-build {
     animation: accommodation-build 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
     animation-delay: calc(140ms + var(--i, 0) * 55ms);
+  }
+}
+
+/* Les targetes d'allotjament que arriben amb «Ver más»: pugen una mica, l'una després de l'altra. Només desplaçament (res d'opacitat 0). */
+@keyframes accommodation-card-in {
+  from {
+    transform: translateY(1.5rem) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accommodation-card {
+    animation: accommodation-card-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i, 0) * 45ms);
+  }
+}
+
+/* ─── «Explora el càmping»: la imatge flotant del mapa ────────────────────────
+ * Amagada, baixa fora de la pantalla. Amb el ratolí a sobre, l'etiqueta s'obre (grid 0fr → 1fr al component) i el plànol s'apropa.
+ * El punt de la xinxeta fa un pols suau perquè es vegi que s'hi pot clicar.
+ */
+.map-teaser {
+  transition:
+    translate 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    scale 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 300ms ease;
+}
+
+.map-teaser[data-visible="false"] {
+  translate: 0 calc(100% + 2rem);
+  scale: 0.85;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.map-teaser:hover,
+.map-teaser:focus-visible {
+  scale: 1.04;
+}
+
+@keyframes map-teaser-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(186 56 12 / 0.55);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 0.9rem rgb(186 56 12 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .map-teaser-pin {
+    animation: map-teaser-pulse 2.2s ease-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-teaser {
+    transition: none;
+  }
+}
+
+/* ─── «Más que dormir» (les portes a les pàgines) ─────────────────────────────
+ * En arribar-hi (`.reveal` → `.is-shown`): la foto s'obre des del centre (clip-path) mentre el zoom s'aparta, la ratlla es dibuixa
+ * i el text puja per ordre (`--d`). En baixar, la foto es desplaça una mica (`--shift`, `ExploreParallax`). Amb el ratolí, la foto
+ * s'apropa i el botó s'omple des de baix. Sense JS o amb moviment reduït, tot surt quiet i sencer.
+ */
+.explore-photo {
+  transform: translateY(var(--shift, 0%));
+}
+
+.explore-photo img {
+  transition: scale 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.explore-item:hover .explore-photo img {
+  scale: 1.06;
+}
+
+.explore-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--band-olive);
+  transform: translateY(101%);
+  transition: transform 380ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.explore-cta > span {
+  transition: color 380ms ease;
+}
+
+.explore-cta:hover::before,
+.explore-cta:focus-visible::before {
+  transform: translateY(0);
+}
+
+.explore-cta:hover > span,
+.explore-cta:focus-visible > span {
+  color: var(--on-dark);
+}
+
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .explore-media {
+    clip-path: inset(10% 14% round 2rem);
+    transition: clip-path 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .explore-media img {
+    scale: 1.22;
+  }
+
+  .explore-rule {
+    transform: scaleX(0);
+    transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1) 200ms;
+  }
+
+  .explore-copy > [style] {
+    translate: 0 1.75rem;
+    transition: translate 900ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(150ms + var(--d, 0) * 110ms);
+  }
+
+  .explore-item.is-shown .explore-media {
+    clip-path: inset(0 round 2rem);
+  }
+
+  .explore-item.is-shown .explore-media img {
+    scale: 1;
+  }
+
+  .explore-item.is-shown:hover .explore-media img {
+    scale: 1.06;
+  }
+
+  .explore-item.is-shown .explore-rule {
+    transform: scaleX(1);
+  }
+
+  .explore-item.is-shown .explore-copy > [style] {
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explore-photo {
+    transform: none;
   }
 }
 
@@ -335,7 +442,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  padding: 0.25rem 0.75rem 0;
+  padding: 0.25rem 0.75rem 3rem;
   background: var(--paper-2);
 }
 

@@ -19,12 +19,6 @@
     "discover": "Découvrir le camping",
     "from": "Du {open} au {close}"
   },
-  "facts": {
-    "accommodations": "hébergements",
-    "restaurants": "restaurants et bars",
-    "services": "services",
-    "activities": "activités d'animation"
-  },
   "accommodation": {
     "label": "Où dormir",
     "all": "Tous",
@@ -42,14 +36,27 @@
     "gallery": "Photos de {name}",
     "photo": "Photo {index} sur {total}",
     "count": "{count, plural, one {# hébergement} other {# hébergements}}",
-    "seeAll": "Voir tous les hébergements ({count})",
     "backHome": "Retour à l'accueil",
     "from": "à partir de",
     "perNight": "/nuit",
     "readMore": "Lire la suite",
     "readLess": "Réduire",
     "previousPhoto": "Photo précédente",
-    "nextPhoto": "Photo suivante"
+    "nextPhoto": "Photo suivante",
+    "seeMore": "Voir plus",
+    "showing": "{shown} sur {total}",
+    "details": "Voir les détails",
+    "allPhotos": "Voir les {count} photos",
+    "layout": "Agencement",
+    "camping": "Le camping",
+    "zone": "Les environs",
+    "campingServices": "Services du camping",
+    "discoverZone": "Découvrir les environs",
+    "others": "Autres hébergements",
+    "bookTitle": "Réservez votre séjour",
+    "bookHint": "Vous choisirez les dates et le nombre de personnes à l'étape suivante.",
+    "breadcrumb": "Fil d'Ariane",
+    "home": "Accueil"
   },
   "gastronomy": {
     "zone": {
@@ -122,10 +129,14 @@
       "landmark": "Lieux d'intérêt"
     },
     "back": "Quitter la carte",
-    "closeCard": "Fermer la fiche"
+    "closeCard": "Fermer la fiche",
+    "teaser": "Explorez le camping"
   },
   "testimonials": {
-    "via": "sur {source}"
+    "via": "sur {source}",
+    "reviews": "{count, plural, one {# avis} other {# avis}}",
+    "score": "{rating} sur {scale}",
+    "seeOn": "Avis sur {platform}"
   },
   "footer": {
     "contact": "Contact",

@@ -15,7 +15,7 @@ export default async function SurroundingsPage({ params }: PageProps<"/[locale]/
   if (!sections.surroundings) notFound();
   return (
     <Subpage locale={locale}>
-      <Surroundings section={sections.surroundings} photos={photos} index={1} level={1} />
+      <Surroundings section={sections.surroundings} photos={photos} level={1} />
     </Subpage>
   );
 }

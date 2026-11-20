@@ -21,6 +21,7 @@ export type NavIcon =
   | "home"
   | "layout"
   | "quote"
+  | "star"
   | "map-pin"
   | "pool"
   | "party"
@@ -50,6 +51,7 @@ export const ENTITY_ICONS: Record<EntityName, NavIcon> = {
   accommodation_categories: "tags",
   map_points: "map-pin",
   testimonials: "quote",
+  review_platforms: "star",
   site_settings: "settings",
 };
 
@@ -57,7 +59,7 @@ export type NavItem = { href: string; title: string; icon: NavIcon };
 export type NavGroup = { title: string; pages?: readonly NavItem[]; entities: readonly EntityName[] };
 
 export const NAV_GROUPS: readonly NavGroup[] = [
-  { title: "La portada", pages: [{ href: HOME_HREF, title: "Ordre i blocs", icon: "layout" }], entities: ["testimonials", "map_points"] },
+  { title: "La portada", pages: [{ href: HOME_HREF, title: "Ordre i blocs", icon: "layout" }], entities: ["testimonials", "review_platforms", "map_points"] },
   {
     title: "Pàgines del web",
     pages: [

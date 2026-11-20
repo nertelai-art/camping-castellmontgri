@@ -5,7 +5,7 @@ import type { Service } from "@/lib/supabase/content";
 import { ShowOnMapButton } from "./show-on-map-button";
 
 /** Piscines i tobogans: la foto gran de la piscina de fons (la del servei, 2400 px), sota un vel blau. Els textos surten dels serveis de l'admin. */
-export async function Pools({ pools, slides, onMap, index }: { pools: Service; slides?: Service; onMap: Set<string>; index: number }) {
+export async function Pools({ pools, slides, onMap }: { pools: Service; slides?: Service; onMap: Set<string> }) {
   const t = await getTranslations("pools");
   const blocks = [pools, slides].filter((s): s is Service => Boolean(s));
   return (
@@ -14,9 +14,7 @@ export async function Pools({ pools, slides, onMap, index }: { pools: Service; s
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(10_52_64/.78)_0%,rgb(15_76_92/.5)_45%,rgb(10_52_64/.85)_100%)]" />
       <div id="pools" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="reveal max-w-3xl">
-          <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-on-dark">
-            <span className="font-display text-sm normal-case tracking-normal">{String(index).padStart(2, "0")}</span>
-            <span aria-hidden="true" className="h-px w-8 bg-on-dark/50" />
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-on-dark">
             {t("eyebrow")}
           </p>
           <h2 id="pools-title" className="font-display mt-4 text-5xl leading-none sm:text-6xl lg:text-7xl">

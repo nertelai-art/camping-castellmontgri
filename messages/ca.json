@@ -19,12 +19,6 @@
     "discover": "Descobreix el càmping",
     "from": "Del {open} al {close}"
   },
-  "facts": {
-    "accommodations": "allotjaments",
-    "restaurants": "restaurants i bars",
-    "services": "serveis",
-    "activities": "activitats d'animació"
-  },
   "accommodation": {
     "label": "On dormir",
     "all": "Tots",
@@ -42,14 +36,27 @@
     "gallery": "Fotos de {name}",
     "photo": "Foto {index} de {total}",
     "count": "{count, plural, one {# allotjament} other {# allotjaments}}",
-    "seeAll": "Veure tots els allotjaments ({count})",
     "backHome": "Torna a l'inici",
     "from": "des de",
     "perNight": "/nit",
     "readMore": "Llegir més",
     "readLess": "Llegir menys",
     "previousPhoto": "Foto anterior",
-    "nextPhoto": "Foto següent"
+    "nextPhoto": "Foto següent",
+    "seeMore": "Veure'n més",
+    "showing": "{shown} de {total}",
+    "details": "Veure'n els detalls",
+    "allPhotos": "Veure les {count} fotos",
+    "layout": "Distribució",
+    "camping": "El càmping",
+    "zone": "La zona",
+    "campingServices": "Serveis del càmping",
+    "discoverZone": "Descobreix l'entorn",
+    "others": "Altres allotjaments",
+    "bookTitle": "Reserva la teva estada",
+    "bookHint": "Tries les dates i les persones al pas següent.",
+    "breadcrumb": "Ruta de navegació",
+    "home": "Inici"
   },
   "gastronomy": {
     "zone": {
@@ -122,10 +129,14 @@
       "landmark": "Llocs d'interès"
     },
     "back": "Surt del mapa",
-    "closeCard": "Tanca la fitxa"
+    "closeCard": "Tanca la fitxa",
+    "teaser": "Explora el càmping"
   },
   "testimonials": {
-    "via": "a {source}"
+    "via": "a {source}",
+    "reviews": "{count, plural, one {# opinió} other {# opinions}}",
+    "score": "{rating} de {scale}",
+    "seeOn": "Opinions a {platform}"
   },
   "footer": {
     "contact": "Contacte",

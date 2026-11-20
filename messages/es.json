@@ -19,12 +19,6 @@
     "discover": "Descubre el camping",
     "from": "Del {open} al {close}"
   },
-  "facts": {
-    "accommodations": "alojamientos",
-    "restaurants": "restaurantes y bares",
-    "services": "servicios",
-    "activities": "actividades de animación"
-  },
   "accommodation": {
     "label": "Dónde dormir",
     "all": "Todos",
@@ -42,14 +36,27 @@
     "gallery": "Fotos de {name}",
     "photo": "Foto {index} de {total}",
     "count": "{count, plural, one {# alojamiento} other {# alojamientos}}",
-    "seeAll": "Ver todos los alojamientos ({count})",
     "backHome": "Volver al inicio",
     "from": "desde",
     "perNight": "/noche",
     "readMore": "Leer más",
     "readLess": "Leer menos",
     "previousPhoto": "Foto anterior",
-    "nextPhoto": "Foto siguiente"
+    "nextPhoto": "Foto siguiente",
+    "seeMore": "Ver más",
+    "showing": "{shown} de {total}",
+    "details": "Ver detalles",
+    "allPhotos": "Ver las {count} fotos",
+    "layout": "Distribución",
+    "camping": "El camping",
+    "zone": "La zona",
+    "campingServices": "Servicios del camping",
+    "discoverZone": "Descubre el entorno",
+    "others": "Otros alojamientos",
+    "bookTitle": "Reserva tu estancia",
+    "bookHint": "Eliges las fechas y las personas en el siguiente paso.",
+    "breadcrumb": "Ruta de navegación",
+    "home": "Inicio"
   },
   "gastronomy": {
     "zone": {
@@ -122,10 +129,14 @@
       "landmark": "Lugares de interés"
     },
     "back": "Salir del mapa",
-    "closeCard": "Cerrar la ficha"
+    "closeCard": "Cerrar la ficha",
+    "teaser": "Explora el camping"
   },
   "testimonials": {
-    "via": "en {source}"
+    "via": "en {source}",
+    "reviews": "{count, plural, one {# opinión} other {# opiniones}}",
+    "score": "{rating} de {scale}",
+    "seeOn": "Opiniones en {platform}"
   },
   "footer": {
     "contact": "Contacto",
