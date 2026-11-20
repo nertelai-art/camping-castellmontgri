@@ -7,29 +7,33 @@ import { openMapView } from "@/lib/map/events";
 
 /**
  * La imatge flotant del mapa, a baix a la dreta: un retall del plànol que, amb el ratolí a sobre, s'obre en «Explora el càmping».
- * En clicar-hi s'obre el mapa a pantalla completa. Surt quan ja s'ha deixat enrere el hero i s'amaga quan el mapa és a la vista:
- * allà ja hi és. Les animacions són a `.map-teaser` (globals.css); amb moviment reduït, només canvia de lloc.
+ * En clicar-hi s'obre el mapa a pantalla completa. Surt quan ja s'ha deixat enrere el hero i s'amaga quan el mapa és a la vista
+ * (allà ja hi és) i quan arriba el peu (tapava l'adreça i els textos legals). Les animacions són a `.map-teaser` (globals.css); amb moviment reduït, només canvia de lloc.
  */
 export function MapTeaser() {
   const t = useTranslations("map");
   const [pastHero, setPastHero] = useState(false);
   const [mapInView, setMapInView] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
 
   useEffect(() => {
     const hero = document.querySelector("main > section:first-child");
     const map = document.getElementById("map");
+    const footer = document.querySelector("footer");
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.target === hero) setPastHero(!entry.isIntersecting && entry.boundingClientRect.top < 0);
         if (entry.target === map) setMapInView(entry.isIntersecting);
+        if (entry.target === footer) setFooterInView(entry.isIntersecting);
       }
     });
     if (hero) observer.observe(hero);
     if (map) observer.observe(map);
+    if (footer) observer.observe(footer);
     return () => observer.disconnect();
   }, []);
 
-  const visible = pastHero && !mapInView;
+  const visible = pastHero && !mapInView && !footerInView;
 
   return (
     <button
@@ -45,7 +49,7 @@ export function MapTeaser() {
           <span className="block pl-4 pr-3">{t("teaser")}</span>
         </span>
       </span>
-      <span className="map-teaser-thumb relative block size-16 overflow-hidden rounded-full ring-2 ring-on-dark/80 sm:size-[4.5rem]">
+      <span className="map-teaser-thumb relative block size-14 overflow-hidden rounded-full ring-2 ring-on-dark/80 sm:size-[4.5rem]">
         <Image src="/map/ground-s.jpg" alt="" fill sizes="72px" className="object-cover object-[46%_52%] transition duration-700 group-hover:scale-125" />
         <span aria-hidden="true" className="map-teaser-pin absolute left-1/2 top-1/2 grid size-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-terra text-on-dark shadow-md">
           <svg viewBox="0 0 24 24" className="size-4">

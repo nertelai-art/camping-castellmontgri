@@ -28,7 +28,7 @@ export async function ServicesGrid({
               <details className="group h-full rounded-2xl border border-line bg-card transition open:bg-paper-2 hover:border-olive">
                 <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">
                   <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-paper-2 group-open:bg-card">
-                    {s.icon && <MediaImage media={s.icon} alt="" className="size-8 dark:invert" />}
+                    {s.icon && <MediaImage media={s.icon} alt="" className="size-8" />}
                   </span>
                   <span data-edit-field="name" className="flex-1 font-bold text-ink">{s.name}</span>
                   <span aria-hidden="true" className="text-xl text-olive transition group-open:rotate-45">

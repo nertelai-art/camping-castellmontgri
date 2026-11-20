@@ -84,15 +84,16 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap = [] }: Pr
             ),
           )}
         </div>
-        <fieldset className="flex flex-wrap items-center gap-2">
+        {/* Al mòbil, en una sola línia que llisca (com els tipus): en dues, el «6+» quedava sol a sota. `min-w-0`: un fieldset no s'encongeix sol. */}
+        <fieldset className="-mx-4 flex min-w-0 items-center gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0 lg:pb-0">
           <legend className="sr-only">{t("guests")}</legend>
-          <span aria-hidden="true" className="mr-1 text-sm font-bold uppercase tracking-wider text-muted">
+          <span aria-hidden="true" className="mr-1 shrink-0 text-sm font-bold uppercase tracking-wider text-muted">
             {t("guests")}
           </span>
           {[0, ...GUEST_STEPS].map((n) => (
-            <label key={n} className="cursor-pointer">
+            <label key={n} className="shrink-0 cursor-pointer">
               <input type="radio" name="guests" value={n} checked={guests === n} onChange={() => filter(() => setGuests(n))} className="peer sr-only" />
-              <span className="inline-block rounded-full border border-line px-3.5 py-1.5 text-sm font-bold transition peer-checked:border-terra peer-checked:bg-terra peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-terra">
+              <span className="inline-block whitespace-nowrap rounded-full border border-line px-3.5 py-1.5 text-sm font-bold transition peer-checked:border-terra peer-checked:bg-terra peer-checked:text-paper peer-focus-visible:outline-2 peer-focus-visible:outline-terra">
                 {n ? t("guestsMin", { count: n }) : t("guestsAny")}
               </span>
             </label>

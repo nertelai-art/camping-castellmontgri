@@ -130,8 +130,9 @@ export function FoodShowcase({ heading, steps, srDescription }: Props) {
 
           {/* La taula */}
           {animated && (
-            <div aria-hidden="true" className="relative w-full max-lg:h-[40svh] lg:aspect-[5/4]">
-              {/* La taula fa sempre 5:4, perquè les peces (col·locades en %) encaixin igual a mòbil que a escriptori. */}
+            <div aria-hidden="true" className="relative w-full max-lg:h-[40svh] max-lg:overflow-x-clip lg:aspect-[5/4]">
+              {/* La taula fa sempre 5:4, perquè les peces (col·locades en %) encaixin igual a mòbil que a escriptori. Al mòbil és més ampla
+                  que la pantalla: se'n retallen els costats (sense, la pàgina es podia arrossegar de costat). */}
               <div ref={table} className="absolute left-1/2 top-0 aspect-[5/4] h-full -translate-x-1/2 lg:inset-0 lg:h-auto lg:w-full lg:translate-x-0">
               {FOOD_PIECES.map((pieces, s) =>
                 pieces.map((piece, order) => (

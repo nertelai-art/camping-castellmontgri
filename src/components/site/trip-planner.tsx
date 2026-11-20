@@ -118,9 +118,6 @@ export function TripPlanner({ section, camping, place, url }: { section: Section
                 className="flex items-center gap-2 rounded-full bg-[var(--chat-accent)] px-5 py-2.5 text-sm font-bold text-[var(--chat-accent-fg)] transition hover:opacity-85"
               >
                 {t("openIn", { name: assistant.name })}
-                <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
-                  <path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
               </a>
             </div>
           </div>

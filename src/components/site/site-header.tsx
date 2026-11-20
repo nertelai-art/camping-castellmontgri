@@ -83,7 +83,7 @@ export async function SiteHeader({ settings, locale, flags, home = true }: { set
         {/* Sense prefetch: a la portada, l'enllaç del logo tornava a baixar la mateixa pàgina (43 KB) en carregar. */}
         <Link href="/" prefetch={false} className="shrink-0" aria-label={settings.brandName}>
           {settings.logo ? (
-            <MediaImage media={settings.logo} alt={settings.brandName} priority className="h-10 w-auto lg:h-12 dark:brightness-0 dark:invert" />
+            <MediaImage media={settings.logo} alt={settings.brandName} priority className="h-10 w-auto lg:h-12" />
           ) : (
             <span className="font-display text-xl text-olive">{settings.brandName}</span>
           )}

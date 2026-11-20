@@ -19,33 +19,17 @@
   --terra-2: #ca5732;
   --sea: #1d6f86;
   --on-dark: #fbfbf8;
-  --blush: #fdf3ef;
+  /* Fons de la secció de gastronomia: gris neutre molt clar, no rosat (res que tiri a crema). */
+  --blush: #f6f6f4;
   /* Franges de color amb text clar: iguals en tots dos temes perquè el contrast no canviï. */
   --band-olive: #3e4822;
   --band-terra: #a8330b;
   --band-sea: #0f4c5c;
   --foam: #bfe4ee;
+  /* Només hi ha tema clar: amb el sistema en mode fosc, la web es veu igual (també els formularis i la barra de scroll). */
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #161b0d;
-    --paper-2: #1d2412;
-    --card: #20281a;
-    --ink: #eef0e8;
-    --olive: #c3cf8b;
-    --olive-2: #a9b772;
-    --muted: #b3b193;
-    --line: #37402a;
-    --terra: #ec8a5f;
-    --terra-2: #f09a74;
-    --sea: #7cc3d6;
-    --on-dark: #fbfbf8;
-    --blush: #231a12;
-    color-scheme: dark;
-  }
-}
 
 @theme inline {
   --color-paper: var(--paper);

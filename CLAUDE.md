@@ -222,8 +222,9 @@ client es pugen a Supabase Storage amb el script de seed.
   El fons és blanc (res de crema ni beix, ni gra de paper) i les superfícies, un gris molt clar (`paper-2`); el botó principal és `band-olive`.
   Les capçaleres de secció no porten número ni ratlla, i els botons no porten fletxa.
 - Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
-  franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
-  fosc: si no, el text crema perd contrast.
+  franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`.
+- **No hi ha mode fosc, i no se n'ha de fer**: el client no el vol. `color-scheme: light` i cap `dark:` ni
+  `prefers-color-scheme: dark`; amb el sistema en fosc, la web es veu igual.
 - La barra de scroll de la pàgina té el fons de la web i la barra `band-olive` (`globals.css`).
 - Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
   cursiva són desenes de KB que endarrereixen el LCP a mòbil.
@@ -252,7 +253,7 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   Es construeix per ordre (`.accommodation-build`, només desplaçament: la primera foto pot ser l'LCP). És al mapa del web (`sitemap.ts`).
 - **«Més que dormir»** (`explore.tsx`, `.explore-*` a `globals.css`): en arribar-hi, la foto s'obre des del centre (`clip-path`) mentre s'aparta el zoom, la ratlla es dibuixa i el text puja per ordre;
   en baixar, la foto es desplaça una mica (`ExploreParallax`: `--shift` només a les que són a la vista, un `requestAnimationFrame` per scroll). Amb moviment reduït, quiet.
-- **«Explora el càmping»** (`map-teaser.tsx`): la imatge flotant del mapa a baix a la dreta. Surt després del hero i s'amaga amb el mapa a la vista; amb el ratolí s'obre l'etiqueta,
+- **«Explora el càmping»** (`map-teaser.tsx`): la imatge flotant del mapa a baix a la dreta. Surt després del hero i s'amaga amb el mapa o el peu a la vista; amb el ratolí s'obre l'etiqueta,
   i en clicar obre el mapa a pantalla completa (`openMapView`, esdeveniment `camping:map-open` a `src/lib/map/events.ts`).
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
