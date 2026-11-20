@@ -79,7 +79,8 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
         </ul>
       )}
 
-      <div className="mx-auto mt-16 flex max-w-7xl flex-wrap justify-between gap-4 border-t border-on-dark/20 px-4 py-6 text-sm text-on-dark/70 sm:px-6 lg:px-8">
+      {/* A baix de tot, espai per al mapa flotant (surt sempre a baix a la dreta): que no tapi els textos legals. */}
+      <div className="mx-auto mt-16 flex max-w-7xl flex-wrap justify-between gap-4 border-t border-on-dark/20 px-4 pb-32 pt-6 text-sm text-on-dark/70 sm:px-6 sm:pr-40 lg:px-8 lg:pb-6 lg:pr-40">
         <p>
           © {settings.season.open?.slice(0, 4)} {settings.legalName}. {t("rights")}
         </p>

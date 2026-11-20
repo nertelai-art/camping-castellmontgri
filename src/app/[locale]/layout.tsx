@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
+import { MapTeaser } from "@/components/site/map-teaser";
 import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/site-url";
 import { getSections, getSiteSettings } from "@/lib/supabase/content";
@@ -50,7 +51,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   return (
     <html lang={locale} data-scroll-behavior="smooth" className={`${display.variable} ${body.variable}`}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          {children}
+          {/* El mapa flotant surt a totes les pàgines. */}
+          <MapTeaser />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

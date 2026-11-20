@@ -16,7 +16,7 @@ export default async function GastronomyPage({ params }: PageProps<"/[locale]/ga
   return (
     <Subpage locale={locale}>
       {/* Aquí no hi ha mapa: «Veure al mapa» no hi porta enlloc. */}
-      <Gastronomy section={sections.gastronomy} restaurants={restaurants} onMap={new Set()} level={1} />
+      <Gastronomy section={sections.gastronomy} restaurants={restaurants} />
     </Subpage>
   );
 }

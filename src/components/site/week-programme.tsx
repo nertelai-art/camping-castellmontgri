@@ -43,8 +43,8 @@ export function WeekProgramme() {
   return (
     <div ref={root}>
       {week && week.sessions.length > 0 && (
-        <div className="mt-16 rounded-[2rem] border border-on-dark/30 p-6 sm:p-8">
-          <h3 className="font-display text-3xl">{t("title")}</h3>
+        <div className="mt-16 rounded-[2rem] bg-paper-2 p-6 sm:p-10">
+          <h3 className="font-display text-3xl text-olive sm:text-4xl">{t("title")}</h3>
           <div role="group" aria-label={t("days")} className="mt-5 flex flex-wrap gap-2">
             {weekDays(mondayOf(week.today)).map((day) => (
               <button
@@ -52,7 +52,7 @@ export function WeekProgramme() {
                 type="button"
                 aria-pressed={day === active}
                 onClick={() => setPicked(day)}
-                className="rounded-full border border-on-dark/40 px-4 py-2 font-bold capitalize transition hover:border-on-dark aria-pressed:bg-on-dark aria-pressed:text-band-terra"
+                className="rounded-full border border-line bg-card px-4 py-2 font-bold capitalize text-ink transition hover:border-olive aria-pressed:border-olive aria-pressed:bg-olive aria-pressed:text-paper"
               >
                 {weekday(day, locale, "short")}
               </button>
@@ -61,20 +61,20 @@ export function WeekProgramme() {
           {sessions.length > 0 ? (
             <ul className="mt-5 grid gap-x-8 gap-y-3 md:grid-cols-2">
               {sessions.map((session) => (
-                <li key={`${session.start}-${session.name}`} className="flex gap-4 border-t border-on-dark/20 pt-3">
-                  <span className="w-28 shrink-0 font-bold tabular-nums">
+                <li key={`${session.start}-${session.name}`} className="flex gap-4 rounded-2xl bg-card p-4">
+                  <span className="w-28 shrink-0 font-bold tabular-nums text-terra">
                     {session.start}
                     {session.end && `–${session.end}`}
                   </span>
                   <span>
-                    <span className="block font-bold">{session.name}</span>
-                    {session.place && <span className="block text-sm">{session.place}</span>}
+                    <span className="block font-bold text-ink">{session.name}</span>
+                    {session.place && <span className="block text-sm text-muted">{session.place}</span>}
                   </span>
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="mt-5">{t("empty")}</p>
+            <p className="mt-5 text-muted">{t("empty")}</p>
           )}
         </div>
       )}

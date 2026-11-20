@@ -70,7 +70,8 @@
       "food": "Per menjar",
       "icecream": "Gelats",
       "drinks": "Per beure"
-    }
+    },
+    "places": "Restaurants i bars"
   },
   "pools": {
     "eyebrow": "Aigua i sol"
@@ -85,7 +86,10 @@
       "title": "Aquesta setmana",
       "days": "Tria el dia",
       "empty": "Aquest dia no hi ha cap activitat."
-    }
+    },
+    "all": "Totes",
+    "activities": "Activitats",
+    "filter": "Per a qui"
   },
   "map": {
     "viewer": "Mapa interactiu del càmping en 3D",
@@ -130,7 +134,7 @@
     },
     "back": "Surt del mapa",
     "closeCard": "Tanca la fitxa",
-    "teaser": "Explora el càmping"
+    "teaser": "Explorar el mapa"
   },
   "testimonials": {
     "via": "a {source}",
@@ -222,5 +226,8 @@
   },
   "explore": {
     "cta": "Veure'n més"
+  },
+  "services": {
+    "title": "Tot el que hi ha al càmping"
   }
 }

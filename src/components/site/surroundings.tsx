@@ -1,27 +1,27 @@
 import { MediaImage } from "@/components/media-image";
 import type { Section } from "@/lib/supabase/content";
 import type { MediaRef } from "@/lib/supabase/media";
-import { SectionHeading } from "./section-heading";
+import { SubpageHero } from "./subpage-hero";
 
-/** Entorn: foto aèria de les Medes a sang i un mosaic amb les fotos de platges, cultura i Tossa. */
-export async function Surroundings({ section, photos, level }: { section: Section; photos: MediaRef[]; level?: 1 | 2 }) {
+/** La pàgina d'entorn: la capçalera amb la foto aèria de les Medes i, a sota, totes les fotos de l'entorn en un mosaic. */
+export async function Surroundings({ section, photos }: { section: Section; photos: MediaRef[] }) {
+  const mosaic = photos.length >= 5;
   return (
-    <section data-edit="sections:surroundings" aria-labelledby="surroundings-title" className="cv py-24 lg:py-32">
-      <div id="surroundings" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading id="surroundings-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={level} />
-      </div>
-      <div className="mt-14 grid gap-3 px-3 sm:px-4 lg:grid-cols-4 lg:grid-rows-2">
-        {section.media && (
-          <div className="reveal relative aspect-[16/10] overflow-hidden rounded-[2rem] lg:col-span-3 lg:row-span-2 lg:aspect-auto">
-            <MediaImage media={section.media} fill sizes="(min-width: 1024px) 75vw, 100vw" className="object-cover" />
-          </div>
-        )}
-        {photos.slice(0, 2).map((p) => (
-          <div key={p.path} className="reveal relative aspect-[4/3] overflow-hidden rounded-[2rem]">
-            <MediaImage media={p} fill sizes="(min-width: 1024px) 25vw, 100vw" className="object-cover" />
-          </div>
-        ))}
-      </div>
-    </section>
+    <div id="surroundings">
+      <SubpageHero section={section} id="surroundings-title" />
+      {photos.length > 0 && (
+        // Amb cinc fotos o més, mosaic (una de gran cada cinc); amb menys, totes iguals en una fila, perquè no quedi cap forat.
+        <ul className={`mx-auto grid max-w-7xl gap-3 px-4 py-16 sm:px-6 lg:px-8 lg:py-24 ${mosaic ? "grid-cols-2 lg:grid-cols-4" : ["", "sm:grid-cols-1", "sm:grid-cols-2", "sm:grid-cols-3", "sm:grid-cols-2 lg:grid-cols-4"][photos.length]}`}>
+          {photos.map((p, i) => {
+            const big = mosaic && i % 5 === 0;
+            return (
+              <li key={p.path} className={`reveal group relative overflow-hidden rounded-3xl bg-paper-2 ${big ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/5]"}`}>
+                <MediaImage media={p} fill sizes={big ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 33vw, 100vw"} className="object-cover transition duration-700 group-hover:scale-105" />
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
   );
 }
