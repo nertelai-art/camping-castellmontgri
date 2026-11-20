@@ -3,11 +3,10 @@ import { LEGAL_PAGES, type LegalSlug } from "@/lib/content/legal";
 import { MediaImage } from "@/components/media-image";
 import { bookingLink } from "@/lib/booking/link";
 import { directionsUrl, formatDayMonth } from "@/lib/content/format";
-import type { SiteSettings } from "@/lib/supabase/content";
-import type { MediaRef } from "@/lib/supabase/media";
+import type { Accreditation, SiteSettings } from "@/lib/supabase/content";
 import { MontgriLine } from "./montgri-line";
 
-export async function SiteFooter({ settings, accreditations, locale }: { settings: SiteSettings; accreditations: MediaRef[]; locale: string }) {
+export async function SiteFooter({ settings, accreditations, locale }: { settings: SiteSettings; accreditations: Accreditation[]; locale: string }) {
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
   const tHero = await getTranslations("hero");
@@ -71,11 +70,22 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
 
       {accreditations.length > 0 && (
         <ul className="mx-auto mt-16 flex max-w-7xl flex-wrap items-center gap-6 px-4 sm:px-6 lg:px-8">
-          {accreditations.map((a) => (
-            <li key={a.path} className="rounded-xl bg-paper/95 p-2">
-              <MediaImage media={a} alt={a.alt || a.path.split("/").pop()!.replace(/\.\w+$/, "")} className="h-10 w-auto" sizes="120px" />
-            </li>
-          ))}
+          {accreditations.map(({ media, link }) => {
+            const name = media.alt || media.path.split("/").pop()!.replace(/\.\w+$/, "");
+            const badge = <MediaImage media={media} alt={name} className="h-10 w-auto" sizes="120px" />;
+            // Amb enllaç (com al web antic), porta a la seva fitxa del càmping en una pestanya nova.
+            return (
+              <li key={media.path}>
+                {link ? (
+                  <a href={link} target="_blank" rel="noopener" className="block rounded-xl bg-paper/95 p-2 transition hover:-translate-y-0.5 hover:bg-paper hover:shadow-lg">
+                    {badge}
+                  </a>
+                ) : (
+                  <span className="block rounded-xl bg-paper/95 p-2">{badge}</span>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
 

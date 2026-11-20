@@ -58,6 +58,7 @@ export async function getSiteSettings(locale: Locale) {
     bookingUrl: s.booking_url,
     clientPortalUrl: s.client_portal_url,
     seo: { title: t?.seo_title ?? s.brand_name, description: t?.seo_description ?? null },
+    promoVideo: s.promo_video ? promoVideoFiles(s.promo_video) : null,
   };
 }
 export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
@@ -320,6 +321,32 @@ export async function getMediaByFolder(folder: string, locale: Locale) {
     .map((m) => toMedia(m, locale))
     .filter((m): m is MediaRef => m !== null);
 }
+
+/**
+ * Les insígnies del peu (ADAC, Tripadvisor…), cadascuna amb el seu enllaç si en té (`media.link_url`).
+ */
+export async function getAccreditations(locale: Locale) {
+  const query = (columns: string) => contentClient().from("media").select(columns).like("path", "accreditations/%").order("path");
+  let result = await query(`${MEDIA}, link_url`);
+  // Una base de dades sense la columna encara (la migració 20261121120000 no s'hi ha aplicat) no ha de fer caure el web: sense enllaços.
+  if (result.error?.code === "42703") result = await query(MEDIA);
+  const rows = unwrap(result, "les insígnies") as unknown as (Parameters<typeof toMedia>[0] & { link_url?: string | null })[];
+  return rows.flatMap((m) => {
+    const media = toMedia(m, locale);
+    return media ? [{ media, link: m.link_url ?? null }] : [];
+  });
+}
+export type Accreditation = Awaited<ReturnType<typeof getAccreditations>>[number];
+
+/** Els fitxers del vídeo promocional a Storage, a partir del seu nom (`site_settings.promo_video`): el sencer, la vista prèvia i la foto. */
+function promoVideoFiles(name: string) {
+  return {
+    src: mediaUrl(`video/${name}.mp4`),
+    preview: mediaUrl(`video/${name}-preview.mp4`),
+    poster: mediaUrl(`video/${name}-poster.jpg`),
+  };
+}
+export type PromoVideo = ReturnType<typeof promoVideoFiles>;
 
 // ─── Plànol ───────────────────────────────────────────────────────────────────
 export type MapTarget = { type: "service" | "restaurant" | "activity" | "accommodation" | "category"; slug: string };

@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { routing, type Locale } from "@/i18n/routing";
-import { getMediaByFolder, getSection, getSiteSettings } from "@/lib/supabase/content";
+import { getAccreditations, getMediaByFolder, getSection, getSiteSettings } from "@/lib/supabase/content";
 import { RevealOnScroll } from "./reveal-on-scroll";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -34,7 +34,7 @@ export function assertLocale(locale: string): Locale {
 export async function Subpage({ locale, children }: { locale: Locale; children: ReactNode }) {
   const [settings, accreditations, flags] = await Promise.all([
     getSiteSettings(locale),
-    getMediaByFolder("accreditations", locale),
+    getAccreditations(locale),
     getMediaByFolder("flags", locale),
   ]);
   return (
