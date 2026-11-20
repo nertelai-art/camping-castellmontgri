@@ -32,11 +32,9 @@ Si nos escribes un correo o nos llamas, usamos los datos que nos facilitas para 
 
 **Base legal:** tu consentimiento al contactarnos y, si nos pides información para reservar, la aplicación de medidas precontractuales (artículo 6.1.a y 6.1.b del RGPD).
 
-### Cuando cargas el mapa
+### El mapa de «Cómo llegar»
 
-En el apartado «Cómo llegar», el mapa es de OpenStreetMap y solo se carga si lo pides. Al cargarlo, tu navegador se conecta a los servidores de OpenStreetMap, que reciben tu dirección IP.
-
-**Base legal:** tu consentimiento (artículo 6.1.a del RGPD), que das al pulsar «Cargar el mapa». Puedes retirarlo borrando los datos del sitio en tu navegador.
+El mapa es una imagen alojada en esta web: al verlo no se envía ningún dato a terceros. Si lo pulsas, se abre Google Maps en una pestaña nueva y, desde ese momento, se aplica la política de privacidad de Google.
 
 ## Con quién compartimos los datos
 
@@ -49,8 +47,6 @@ No vendemos tus datos ni los cedemos a terceros para que hagan publicidad. Para 
 **Functional Software Inc. (Sentry)** recibe los informes de errores, que se guardan en servidores de la Unión Europea (Alemania).
 
 **WitBooking** gestiona el motor de reservas.
-
-Si cargas el mapa, la **OpenStreetMap Foundation** (Reino Unido, país con decisión de adecuación de la Comisión Europea) recibe tu dirección IP.
 
 También comunicamos datos a las administraciones públicas cuando la ley nos obliga, por ejemplo a las Fuerzas y Cuerpos de Seguridad en el registro de viajeros.
 

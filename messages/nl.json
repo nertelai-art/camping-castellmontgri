@@ -202,10 +202,7 @@
     },
     "from": "Waar kom je vandaan?",
     "fromPlaceholder": "Je stad of adres",
-    "useMap": "Klik om de kaart te bewegen",
-    "mapConsent": "De kaart komt van OpenStreetMap: als je hem laadt, maakt je browser verbinding met hun servers.",
-    "mapLoad": "Kaart laden",
-    "mapRemember": "We onthouden dit in deze browser."
+    "openMap": "Openen in Google Maps"
   },
   "trip": {
     "duration": "Duur",

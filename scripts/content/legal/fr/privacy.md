@@ -32,11 +32,9 @@ Si vous nous écrivez un e-mail ou nous appelez, nous utilisons les données que
 
 **Base légale :** votre consentement en nous contactant et, si vous nous demandez des informations pour réserver, l'exécution de mesures précontractuelles (article 6.1.a et 6.1.b du RGPD).
 
-### Lorsque vous chargez la carte
+### La carte de « Comment venir »
 
-Dans la rubrique « Comment venir », la carte provient d'OpenStreetMap et ne se charge que si vous le demandez. En la chargeant, votre navigateur se connecte aux serveurs d'OpenStreetMap, qui reçoivent votre adresse IP.
-
-**Base légale :** votre consentement (article 6.1.a du RGPD), donné en appuyant sur « Charger la carte ». Vous pouvez le retirer en effaçant les données du site dans votre navigateur.
+La carte est une image hébergée sur ce site : l'afficher n'envoie aucune donnée à des tiers. Si vous cliquez dessus, Google Maps s'ouvre dans un nouvel onglet et, à partir de ce moment, la politique de confidentialité de Google s'applique.
 
 ## Avec qui nous partageons les données
 
@@ -49,8 +47,6 @@ Nous ne vendons pas vos données et ne les cédons pas à des tiers à des fins 
 **Functional Software Inc. (Sentry)** reçoit les rapports d'erreur, conservés sur des serveurs situés dans l'Union européenne (Allemagne).
 
 **WitBooking** gère le moteur de réservation.
-
-Si vous chargez la carte, l'**OpenStreetMap Foundation** (Royaume-Uni, pays bénéficiant d'une décision d'adéquation de la Commission européenne) reçoit votre adresse IP.
 
 Nous communiquons également des données aux administrations publiques lorsque la loi nous y oblige, par exemple aux forces de l'ordre pour le registre des voyageurs.
 

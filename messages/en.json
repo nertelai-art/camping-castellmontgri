@@ -202,10 +202,7 @@
     },
     "from": "Where are you coming from?",
     "fromPlaceholder": "Your city or address",
-    "useMap": "Click to move the map",
-    "mapConsent": "The map comes from OpenStreetMap: loading it connects your browser to their servers.",
-    "mapLoad": "Load the map",
-    "mapRemember": "We’ll remember this on this browser."
+    "openMap": "Open in Google Maps"
   },
   "trip": {
     "duration": "Length",

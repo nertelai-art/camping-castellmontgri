@@ -202,10 +202,7 @@
     },
     "from": "D'on vens?",
     "fromPlaceholder": "La teva ciutat o adreça",
-    "useMap": "Clic per moure el mapa",
-    "mapConsent": "El mapa és d'OpenStreetMap: en carregar-lo, el teu navegador es connecta als seus servidors.",
-    "mapLoad": "Carrega el mapa",
-    "mapRemember": "Ho recordarem en aquest navegador."
+    "openMap": "Obre-ho a Google Maps"
   },
   "trip": {
     "duration": "Durada",

@@ -32,11 +32,9 @@ Als je ons een e-mail stuurt of belt, gebruiken we de gegevens die je ons geeft 
 
 **Rechtsgrond:** je toestemming wanneer je contact met ons opneemt en, als je informatie vraagt om te reserveren, het nemen van precontractuele maatregelen (artikel 6, lid 1, onder a en b, AVG).
 
-### Als je de kaart laadt
+### De kaart in "Zo kom je hier"
 
-In het onderdeel "Zo kom je hier" komt de kaart van OpenStreetMap en wordt ze alleen geladen als je daarom vraagt. Bij het laden maakt je browser verbinding met de servers van OpenStreetMap, die je IP-adres ontvangen.
-
-**Rechtsgrond:** je toestemming (artikel 6, lid 1, onder a, AVG), die je geeft door op "Kaart laden" te drukken. Je kunt ze intrekken door de sitegegevens in je browser te wissen.
+De kaart is een afbeelding die op deze website staat: bij het bekijken worden geen gegevens naar derden gestuurd. Klik je erop, dan opent Google Maps in een nieuw tabblad en geldt vanaf dat moment het privacybeleid van Google.
 
 ## Met wie we gegevens delen
 
@@ -49,8 +47,6 @@ We verkopen je gegevens niet en geven ze niet aan derden voor reclame. Om de web
 **Functional Software Inc. (Sentry)** ontvangt de foutrapporten, die worden bewaard op servers in de Europese Unie (Duitsland).
 
 **WitBooking** beheert het reserveringssysteem.
-
-Als je de kaart laadt, ontvangt de **OpenStreetMap Foundation** (Verenigd Koninkrijk, land met een adequaatheidsbesluit van de Europese Commissie) je IP-adres.
 
 We delen ook gegevens met overheidsinstanties wanneer de wet ons daartoe verplicht, bijvoorbeeld met de politie voor het gastenregister.
 

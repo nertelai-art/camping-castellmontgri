@@ -8,15 +8,13 @@ Les cookies sont de petits fichiers qu'un site enregistre dans votre navigateur 
 
 ## Ce que ce site utilise
 
-Ce site **n'utilise aucun cookie d'analyse, de publicité ni de suivi**, et n'enregistre rien dans votre navigateur à votre arrivée. Il n'enregistre que ces deux éléments, et seulement lorsque vous faites une action qui en a besoin :
+Ce site **n'utilise aucun cookie d'analyse, de publicité ni de suivi**, et n'enregistre rien dans votre navigateur à votre arrivée. Il n'enregistre que cet élément, et seulement lorsque vous faites une action qui en a besoin :
 
 **NEXT_LOCALE** (cookie propre). Créé si vous changez de langue avec le sélecteur, pour afficher les pages dans la langue choisie. Il dure jusqu'à la fermeture du navigateur. C'est un cookie de personnalisation que vous demandez vous-même : il ne nécessite donc pas de consentement.
 
-**map-consent** (stockage local propre). Enregistré lorsque vous appuyez sur « Charger la carte » dans la rubrique « Comment venir », pour ne pas avoir à vous le redemander. Il n'expire pas : il est supprimé lorsque vous effacez les données du site dans votre navigateur.
-
 ## Contenus de tiers
 
-La carte de la rubrique « Comment venir » provient d'OpenStreetMap et ne se charge pas tant que vous ne l'avez pas acceptée. Une fois chargée, OpenStreetMap peut utiliser ses propres cookies ou technologies : consultez sa politique de confidentialité (osmfoundation.org).
+La carte de la rubrique « Comment venir » est une image hébergée sur ce site (données cartographiques © contributeurs d'OpenStreetMap) : l'afficher ne contacte aucun service tiers. Si vous cliquez dessus, Google Maps s'ouvre dans un nouvel onglet, avec ses propres conditions.
 
 Le moteur de réservation de WitBooking et les liens vers Google Maps, ChatGPT, Claude et Gemini s'ouvrent sur leurs propres sites, qui ont leurs propres politiques de cookies.
 
@@ -36,7 +34,7 @@ Vous pouvez supprimer les cookies et les données de ce site, ou empêcher leur 
 
 **Edge :** Paramètres › Cookies et autorisations de site.
 
-Si vous les bloquez, le site continuera de fonctionner, mais vous devrez choisir la langue et accepter la carte à chaque fois.
+Si vous les bloquez, le site continuera de fonctionner, mais vous devrez choisir la langue à chaque fois.
 
 ## Modifications
 
