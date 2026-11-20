@@ -140,7 +140,9 @@
     "via": "op {source}",
     "reviews": "{count, plural, one {# beoordeling} other {# beoordelingen}}",
     "score": "{rating} van {scale}",
-    "seeOn": "Beoordelingen op {platform}"
+    "seeOn": "Beoordelingen op {platform}",
+    "previous": "Vorige beoordeling",
+    "next": "Volgende beoordeling"
   },
   "footer": {
     "contact": "Contact",

@@ -140,7 +140,9 @@
     "via": "sur {source}",
     "reviews": "{count, plural, one {# avis} other {# avis}}",
     "score": "{rating} sur {scale}",
-    "seeOn": "Avis sur {platform}"
+    "seeOn": "Avis sur {platform}",
+    "previous": "Avis précédent",
+    "next": "Avis suivant"
   },
   "footer": {
     "contact": "Contact",
