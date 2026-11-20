@@ -17,7 +17,14 @@ import { bookingLink } from "@/lib/booking/link";
 import { accommodationHref } from "@/lib/content/accommodation";
 import { amenities, bedLayout } from "@/lib/content/equipment";
 import { paragraphs } from "@/lib/content/rich-text";
-import { getAccommodationCategories, getMediaByFolder, getSections, getServices, getSiteSettings } from "@/lib/supabase/content";
+import {
+  getAccommodationCategories,
+  getAccreditations,
+  getMediaByFolder,
+  getSections,
+  getServices,
+  getSiteSettings,
+} from "@/lib/supabase/content";
 
 // La pàgina de cada allotjament: les fotos, les dades amb icones, com es dorm, l'equipament, el càmping i la zona, i la reserva al costat.
 
@@ -60,7 +67,7 @@ export default async function AccommodationPage({ params }: PageProps<"/[locale]
     findAccommodation(locale, slug),
     getSections(locale),
     getServices(locale),
-    getMediaByFolder("accreditations", locale),
+    getAccreditations(locale),
     getMediaByFolder("flags", locale),
   ]);
   if (!found) notFound();

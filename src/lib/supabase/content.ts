@@ -58,6 +58,7 @@ export async function getSiteSettings(locale: Locale) {
     bookingUrl: s.booking_url,
     clientPortalUrl: s.client_portal_url,
     seo: { title: t?.seo_title ?? s.brand_name, description: t?.seo_description ?? null },
+    promoVideo: s.promo_video ? promoVideoFiles(s.promo_video) : null,
   };
 }
 export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
@@ -320,6 +321,32 @@ export async function getMediaByFolder(folder: string, locale: Locale) {
     .map((m) => toMedia(m, locale))
     .filter((m): m is MediaRef => m !== null);
 }
+
+/**
+ * Les insígnies del peu (ADAC, Tripadvisor…), cadascuna amb el seu enllaç si en té (`media.link_url`).
+ */
+export async function getAccreditations(locale: Locale) {
+  const result = await contentClient()
+    .from("media")
+    .select(`${MEDIA}, link_url`)
+    .like("path", "accreditations/%")
+    .order("path");
+  return unwrap(result, "les insígnies").flatMap((m) => {
+    const media = toMedia(m, locale);
+    return media ? [{ media, link: m.link_url }] : [];
+  });
+}
+export type Accreditation = Awaited<ReturnType<typeof getAccreditations>>[number];
+
+/** Els fitxers del vídeo promocional a Storage, a partir del seu nom (`site_settings.promo_video`): el sencer, la vista prèvia i la foto. */
+function promoVideoFiles(name: string) {
+  return {
+    src: mediaUrl(`video/${name}.mp4`),
+    preview: mediaUrl(`video/${name}-preview.mp4`),
+    poster: mediaUrl(`video/${name}-poster.jpg`),
+  };
+}
+export type PromoVideo = ReturnType<typeof promoVideoFiles>;
 
 // ─── Plànol ───────────────────────────────────────────────────────────────────
 export type MapTarget = { type: "service" | "restaurant" | "activity" | "accommodation" | "category"; slug: string };

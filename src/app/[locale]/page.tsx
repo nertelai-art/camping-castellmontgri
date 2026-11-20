@@ -23,14 +23,15 @@ import { routing } from "@/i18n/routing";
 import { brandSiteUrl, siteUrl } from "@/lib/site-url";
 import {
   getAccommodationCategories,
+  getAccreditations,
   getActivities,
   getMapPoints,
   getMediaByFolder,
   getRestaurants,
+  getReviewPlatforms,
   getSections,
   getServices,
   getSiteSettings,
-  getReviewPlatforms,
   getTestimonials,
   type Section,
 } from "@/lib/supabase/content";
@@ -50,7 +51,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       getActivities(locale),
       getTestimonials(),
       getReviewPlatforms(),
-      getMediaByFolder("accreditations", locale),
+      getAccreditations(locale),
       getMapPoints(locale),
       getMediaByFolder("flags", locale),
     ]);

@@ -17,7 +17,8 @@
   },
   "hero": {
     "discover": "Descubre el camping",
-    "from": "Del {open} al {close}"
+    "from": "Del {open} al {close}",
+    "watchVideo": "Ver el vídeo"
   },
   "accommodation": {
     "label": "Dónde dormir",

@@ -17,7 +17,8 @@
   },
   "hero": {
     "discover": "Descobreix el càmping",
-    "from": "Del {open} al {close}"
+    "from": "Del {open} al {close}",
+    "watchVideo": "Mira el vídeo"
   },
   "accommodation": {
     "label": "On dormir",
