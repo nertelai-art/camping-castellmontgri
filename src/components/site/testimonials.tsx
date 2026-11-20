@@ -1,6 +1,7 @@
 import { getLocale, getTranslations } from "next-intl/server";
 import { paragraphs } from "@/lib/content/rich-text";
 import type { ReviewPlatform, Section, Testimonial } from "@/lib/supabase/content";
+import { PlatformLogo } from "./platform-logo";
 
 /**
  * Les opinions, a sobre dels allotjaments: la nota del càmping a cada plataforma (enllaçada a les seves ressenyes) i, a sota, les opinions
@@ -31,8 +32,11 @@ export async function Testimonials({ section, testimonials, platforms }: { secti
               {platforms.map((p) => {
                 const body = (
                   <>
-                    <span className="text-sm font-bold text-muted">{p.platform}</span>
-                    <span className="mt-1 flex items-baseline gap-1">
+                    <span className="flex items-center gap-2.5">
+                      <PlatformLogo platform={p.platform} />
+                      <span className="text-sm font-bold text-ink">{p.platform}</span>
+                    </span>
+                    <span className="mt-3 flex items-baseline gap-1">
                       <span className="font-display text-4xl tabular-nums text-olive">{score.format(p.rating)}</span>
                       <span className="text-sm font-bold text-muted">/{p.scale}</span>
                     </span>
@@ -41,7 +45,7 @@ export async function Testimonials({ section, testimonials, platforms }: { secti
                     <span className="sr-only">{t("score", { rating: score.format(p.rating), scale: p.scale })}</span>
                   </>
                 );
-                const box = "flex h-full min-w-36 flex-col rounded-3xl border border-line bg-card px-5 py-4 transition";
+                const box = "flex h-full min-w-44 flex-col rounded-3xl border border-line bg-card px-5 py-4 transition";
                 return (
                   <li key={p.id} data-edit={`review_platforms:${p.id}`}>
                     {p.url ? (
@@ -76,9 +80,12 @@ export async function Testimonials({ section, testimonials, platforms }: { secti
                       </p>
                     ))}
                   </blockquote>
-                  <figcaption className="mt-6 border-t border-line pt-4 text-sm font-bold text-ink">
-                    <span data-edit-field="author">{item.author}</span>
-                    {item.source && <span className="font-normal text-muted"> · {t("via", { source: item.source })}</span>}
+                  <figcaption className="mt-6 flex items-center gap-3 border-t border-line pt-4 text-sm font-bold text-ink">
+                    {item.source && <PlatformLogo platform={item.source} className="size-8" />}
+                    <span>
+                      <span data-edit-field="author">{item.author}</span>
+                      {item.source && <span className="block font-normal text-muted">{t("via", { source: item.source })}</span>}
+                    </span>
                   </figcaption>
                 </figure>
               </li>

@@ -229,5 +229,14 @@
   },
   "services": {
     "title": "Everything at the campsite"
+  },
+  "contact": {
+    "call": "Call us",
+    "write": "Write to us",
+    "visit": "Visit us",
+    "info": "Information",
+    "reservations": "Bookings",
+    "bookTitle": "Ready to go?",
+    "bookText": "Choose your dates and accommodation on our booking site."
   }
 }

@@ -3,7 +3,7 @@
 
 import { moveItem } from "@/lib/admin/gallery";
 
-export const HOME_BLOCKS = ["welcome", "accommodation", "explore", "map", "directions", "trip", "testimonials"] as const;
+export const HOME_BLOCKS = ["welcome", "accommodation", "explore", "map", "directions", "trip", "testimonials", "contact"] as const;
 export type HomeBlock = (typeof HOME_BLOCKS)[number];
 
 export const isHomeBlock = (key: string): key is HomeBlock => (HOME_BLOCKS as readonly string[]).includes(key);

@@ -229,5 +229,14 @@
   },
   "services": {
     "title": "Alles op de camping"
+  },
+  "contact": {
+    "call": "Bel ons",
+    "write": "Mail ons",
+    "visit": "Kom langs",
+    "info": "Informatie",
+    "reservations": "Reserveringen",
+    "bookTitle": "Klaar om te boeken?",
+    "bookText": "Kies je data en accommodatie op onze boekingssite."
   }
 }

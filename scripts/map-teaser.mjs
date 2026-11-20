@@ -1,11 +1,11 @@
-// La volta de la maqueta per al mapa flotant (`public/map/teaser.webp`): obre el mapa de la portada (`pnpm dev` engegat),
+// La volta de la maqueta per al mapa flotant (`public/map/teaser.mp4`): obre el mapa de la portada (`pnpm dev` engegat),
 // amaga el que hi ha a sobre del canvas i el fa girar amb el botó dret (MapControls sense inèrcia: arrossegar dx px gira
 // 2π·dx/alçada), amb una captura quadrada a cada pas. S'executa a mà quan canvia la maqueta:
-//   PLAYWRIGHT_CORE=<camí a playwright-core> CHROME=<chrome.exe> node scripts/map-teaser.mjs <carpeta> 36
-// i després els fotogrames es converteixen en WebP animat (160 px, 120 ms per fotograma, qualitat 58) i el primer, en quiet:
-//   python -c "from PIL import Image; f=[Image.open(f'<carpeta>/f{i:02d}.png').convert('RGB').resize((160,160)) for i in range(36)];
-//              f[0].save('public/map/teaser.webp', save_all=True, append_images=f[1:], duration=120, loop=0, quality=58, method=6);
-//              f[0].save('public/map/teaser-still.webp', quality=78, method=6)"
+//   PLAYWRIGHT_CORE=<camí a playwright-core> CHROME=<chrome.exe> node scripts/map-teaser.mjs <carpeta> 120
+// (120 fotogrames: 3° per pas) i després es fa el vídeo i el fotograma quiet (els noms, amb tres xifres: f000.png…):
+//   ffmpeg -framerate 30 -i <carpeta>/f%03d.png -vf "scale=224:224:flags=lanczos,format=yuv420p" -c:v libx264 -preset veryslow
+//          -crf 30 -profile:v main -movflags +faststart -an public/map/teaser.mp4
+//   ffmpeg -i <carpeta>/f000.png -vf scale=224:224 -quality 78 public/map/teaser-still.webp
 import { createRequire } from "node:module";
 
 // playwright-core no és dependència del projecte: es fa servir el d'una altra instal·lació (PLAYWRIGHT_CORE).
@@ -50,7 +50,7 @@ const probe = process.argv[4] === "probe";
   await page.waitForTimeout(1500);
   const dx = box.h / frames;
   for (let i = 0; i < (probe ? 1 : frames); i++) {
-    await page.screenshot({ path: `${out}/f${String(i).padStart(2, "0")}.png`, clip });
+    await page.screenshot({ path: `${out}/f${String(i).padStart(3, "0")}.png`, clip });
     await page.mouse.move(cx, cy);
     await page.mouse.down({ button: "right" });
     await page.mouse.move(cx + dx, cy, { steps: 3 });

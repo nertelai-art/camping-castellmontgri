@@ -229,5 +229,14 @@
   },
   "services": {
     "title": "Tot el que hi ha al càmping"
+  },
+  "contact": {
+    "call": "Truca'ns",
+    "write": "Escriu-nos",
+    "visit": "Vine a veure'ns",
+    "info": "Informació",
+    "reservations": "Reserves",
+    "bookTitle": "Ho tens clar?",
+    "bookText": "Tria dates i allotjament a la nostra web de reserves."
   }
 }
