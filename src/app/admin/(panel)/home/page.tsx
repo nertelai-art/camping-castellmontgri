@@ -11,13 +11,14 @@ export const metadata: Metadata = { title: "La portada" };
 
 // Què hi ha a cada bloc, perquè qui edita sàpiga què amaga o mou.
 const HINTS: Record<HomeBlock, string> = {
-  welcome: "El text de benvinguda, les fotos del voltant i les xifres.",
-  accommodation: "Les targetes dels allotjaments, amb el filtre per tipus.",
+  welcome: "El text de benvinguda i les fotos del voltant.",
+  accommodation: "Les targetes dels allotjaments, amb el filtre per tipus (de 9 en 9).",
   explore: "Les portes a Instal·lacions, Animació, Gastronomia i Entorn.",
   map: "El mapa interactiu del càmping.",
   directions: "Com arribar-hi: la ruta a Google Maps i el mapa de la zona.",
   trip: "El viatge amb la IA: ChatGPT, Claude i Gemini.",
-  testimonials: "Les opinions dels clients.",
+  testimonials: "Les notes a Booking, Google… i les opinions dels clients.",
+  contact: "Telèfon, correus, adreça i temporada (de les dades generals) i el botó de reservar. El menú «Contacte» hi porta.",
 };
 
 export default async function HomeLayout() {

@@ -229,5 +229,14 @@
   },
   "services": {
     "title": "Todo lo que hay en el camping"
+  },
+  "contact": {
+    "call": "Llámanos",
+    "write": "Escríbenos",
+    "visit": "Visítanos",
+    "info": "Información",
+    "reservations": "Reservas",
+    "bookTitle": "¿Lo tienes claro?",
+    "bookText": "Elige fechas y alojamiento en nuestra web de reservas."
   }
 }
