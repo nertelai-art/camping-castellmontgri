@@ -2,14 +2,17 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { paragraphs } from "@/lib/content/rich-text";
 import type { ReviewPlatform, Section, Testimonial } from "@/lib/supabase/content";
 import { PlatformLogo } from "./platform-logo";
+import { ReviewCarousel } from "./review-carousel";
 
 /**
  * Les opinions, a sobre dels allotjaments: la nota del càmping a cada plataforma (enllaçada a les seves ressenyes) i, a sota, les opinions
- * en l'idioma original (lang al blockquote perquè el lector de pantalla les pronunciï bé). Les notes i les opinions s'editen al panell.
+ * en l'idioma original (lang al blockquote perquè el lector de pantalla les pronunciï bé), en un carrusel amb fletxes. Només surten les de
+ * cinc estrelles: és una tria de disseny, no de contingut (al panell es poden tenir publicades les altres). S'editen al panell.
  */
 export async function Testimonials({ section, testimonials, platforms }: { section: Section; testimonials: Testimonial[]; platforms: ReviewPlatform[] }) {
   const [t, locale] = await Promise.all([getTranslations("testimonials"), getLocale()]);
-  if (!testimonials.length && !platforms.length) return null;
+  const best = testimonials.filter((item) => item.rating === 5);
+  if (!best.length && !platforms.length) return null;
   const score = new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 
   return (
@@ -62,10 +65,10 @@ export async function Testimonials({ section, testimonials, platforms }: { secti
           )}
         </div>
 
-        {testimonials.length > 0 && (
-          <ul className="snap-strip -mx-4 mt-12 auto-cols-[min(85%,26rem)] gap-5 px-4 pb-2 md:mx-0 md:grid-flow-row md:grid-cols-2 md:overflow-visible md:px-0 lg:grid-cols-3">
-            {testimonials.map((item) => (
-              <li key={item.id} data-edit={`testimonials:${item.id}`} className="reveal">
+        {best.length > 0 && (
+          <ReviewCarousel previous={t("previous")} next={t("next")}>
+            {best.map((item) => (
+              <li key={item.id} data-edit={`testimonials:${item.id}`}>
                 <figure className="flex h-full flex-col rounded-[2rem] bg-card p-7 lg:p-8">
                   {item.rating != null && <Stars value={item.rating / 5} />}
                   <blockquote lang={item.locale} className="mt-4 flex-1">
@@ -90,7 +93,7 @@ export async function Testimonials({ section, testimonials, platforms }: { secti
                 </figure>
               </li>
             ))}
-          </ul>
+          </ReviewCarousel>
         )}
       </div>
     </section>
