@@ -14,6 +14,10 @@ describe("blocs de la portada", () => {
     ]);
   });
 
+  it("el contacte és un bloc de la portada (el menú «Contacte» hi porta)", () => {
+    expect(homeBlocks(["welcome", "contact", "footer"])).toEqual(["welcome", "contact"]);
+  });
+
   it("el primer no puja i l'últim no baixa", () => {
     expect(moveHomeBlock(["welcome", "map"], "welcome", -1).map((b) => b.key)).toEqual(["welcome", "map"]);
     expect(moveHomeBlock(["welcome", "map"], "map", 1).map((b) => b.key)).toEqual(["welcome", "map"]);

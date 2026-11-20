@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { AccommodationExplorer } from "@/components/site/accommodation-explorer";
 import { AnchorSettle } from "@/components/site/anchor-settle";
+import { Contact } from "@/components/site/contact";
 import { Hero } from "@/components/site/hero";
 import { homeBlocks, type HomeBlock } from "@/lib/content/home";
 import { Directions } from "@/components/site/directions";
@@ -19,7 +20,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { Testimonials } from "@/components/site/testimonials";
 import { Welcome } from "@/components/site/welcome";
 import { routing } from "@/i18n/routing";
-import { siteUrl } from "@/lib/site-url";
+import { brandSiteUrl, siteUrl } from "@/lib/site-url";
 import {
   getAccommodationCategories,
   getActivities,
@@ -105,7 +106,8 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
     map: () => sections.map && <MapSection key="map" section={sections.map} points={mapPoints} places={places} />,
     directions: () => sections.directions && <Directions key="directions" section={sections.directions} settings={settings} />,
     trip: () =>
-      sections.trip && <TripPlanner key="trip" section={sections.trip} camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} />,
+      sections.trip && <TripPlanner key="trip" section={sections.trip} camping={settings.brandName} place={settings.address.locality} url={`${brandSiteUrl}/${locale}`} />,
+    contact: () => sections.contact && <Contact key="contact" section={sections.contact} settings={settings} />,
     testimonials: () =>
       sections.testimonials && <Testimonials key="testimonials" section={sections.testimonials} testimonials={testimonials} platforms={platforms} />,
   };
