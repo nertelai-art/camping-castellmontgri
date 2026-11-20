@@ -40,7 +40,7 @@ function subscribeConsent(onChange: () => void) {
  * cap servidor nostre. El mapa és d'OpenStreetMap, es carrega quan s'accepta i no agafa el ratolí fins que s'hi clica: si no, en passar-hi per sobre, la roda faria zoom
  * en lloc de baixar la pàgina.
  */
-export function Directions({ section, settings, index }: { section: Section; settings: SiteSettings; index: number }) {
+export function Directions({ section, settings }: { section: Section; settings: SiteSettings }) {
   const t = useTranslations("directions");
   const [mapActive, setMapActive] = useState(false);
   const consent = useSyncExternalStore(subscribeConsent, readConsent, () => false);
@@ -65,12 +65,12 @@ export function Directions({ section, settings, index }: { section: Section; set
       <div id="directions">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] lg:gap-5">
           <div className="reveal rounded-[1.75rem] border border-line bg-card p-6 text-ink sm:p-8">
-            <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.22em] text-terra">
-              <span className="font-display text-sm normal-case tracking-normal">{String(index).padStart(2, "0")}</span>
-              <span aria-hidden="true" className="h-px w-8 bg-terra/60" />
-              {section.eyebrow && <span data-edit-field="eyebrow">{section.eyebrow}</span>}
-            </p>
-            <h2 id="directions-title" data-edit-field="title" className="font-display mt-3 text-4xl leading-[1.04] text-olive sm:text-5xl">
+            {section.eyebrow && (
+              <p data-edit-field="eyebrow" className="mb-3 text-xs font-bold uppercase tracking-[0.22em] text-terra">
+                {section.eyebrow}
+              </p>
+            )}
+            <h2 id="directions-title" data-edit-field="title" className="font-display text-4xl leading-[1.04] text-olive sm:text-5xl">
               {section.title}
             </h2>
             <address className="mt-3 not-italic text-muted">
@@ -102,7 +102,7 @@ export function Directions({ section, settings, index }: { section: Section; set
                 <input name="origin" autoComplete="off" placeholder={t("fromPlaceholder")} className="w-full bg-transparent text-ink placeholder:text-muted focus:outline-none" />
               </label>
               <button type="submit" className="flex items-center justify-center gap-2 rounded-full bg-band-olive px-6 py-3.5 font-bold text-on-dark transition hover:brightness-125">
-                {t("route")} <span aria-hidden="true">→</span>
+                {t("route")}
               </button>
             </form>
 

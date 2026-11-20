@@ -4,6 +4,9 @@ import { ENTITIES, isEntity, tableColumns, type EntityConfig } from "@/lib/admin
 import { createContentAction, moveContentAction, updateFieldAction } from "@/app/admin/actions";
 import { ContentTable, type TableGroup } from "@/components/admin/content-table";
 import { listContent } from "@/lib/supabase/admin-content";
+import { PageHeader, PRIMARY } from "@/components/admin/page-header";
+import { Plus } from "lucide-react";
+import { ENTITY_ICONS } from "@/lib/admin/nav";
 
 export async function generateMetadata({ params }: PageProps<"/admin/[entity]">): Promise<Metadata> {
   const { entity } = await params;
@@ -29,18 +32,24 @@ export default async function ContentList({ params }: PageProps<"/admin/[entity]
 
   return (
     <>
-      <h1 className="font-display text-4xl text-olive">{config.title}</h1>
-      <p className="mt-2 max-w-2xl text-lg text-muted">{config.description}</p>
-      {config.create && (
-        <form action={createContentAction.bind(null, entity)} className="mt-6">
-          <button type="submit" className="rounded-full bg-olive px-6 py-3 text-lg font-bold text-paper transition hover:brightness-110">
-            + Afegeix {config.feminine ? "una" : "un"} {config.singular}
-          </button>
-        </form>
-      )}
+      <PageHeader
+        icon={ENTITY_ICONS[entity]}
+        title={config.title}
+        description={config.description}
+        actions={
+          config.create && (
+            <form action={createContentAction.bind(null, entity)}>
+              <button type="submit" className={PRIMARY}>
+                <Plus aria-hidden="true" className="size-5" />
+                Afegeix {config.feminine ? "una" : "un"} {config.singular}
+              </button>
+            </form>
+          )
+        }
+      />
       {rows.length > 0 && (
         <>
-          <p className="mt-6 max-w-3xl text-base text-muted">
+          <p className="max-w-3xl text-base text-muted">
             {columns.length > 0 && "Les dades de la taula es canvien aquí mateix i es desen soles. "}
             Per als textos i les fotos, clica el nom.{config.sortable && " L'ordre és el de la web: canvia'l amb les fletxes."}
           </p>

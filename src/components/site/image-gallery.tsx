@@ -5,17 +5,15 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useRef, useState, type RefObject } from "react";
 import type { MediaRef } from "@/lib/supabase/media";
 
 const ARROW = "grid size-12 place-items-center rounded-full bg-card text-xl font-bold text-ink shadow-lg transition hover:brightness-95";
 
 export function ImageGallery({ photos }: { photos: MediaRef[] }) {
   const t = useTranslations("gallery");
-  const tNav = useTranslations("nav");
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0);
-  const photo = photos[index];
   const move = (delta: number) => setIndex((i) => (i + delta + photos.length) % photos.length);
   const open = (i: number) => {
     setIndex(i);
@@ -46,38 +44,48 @@ export function ImageGallery({ photos }: { photos: MediaRef[] }) {
           </li>
         ))}
       </ul>
-      <dialog
-        ref={dialog}
-        aria-label={t("label")}
-        onClick={(event) => event.target === dialog.current && dialog.current?.close()}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowLeft") move(-1);
-          if (event.key === "ArrowRight") move(1);
-        }}
-        className="m-auto h-svh max-h-none w-screen max-w-none bg-black/90 p-0 backdrop:bg-black/70"
-      >
-        {photo && (
-          <div className="relative size-full">
-            <Image key={photo.path} src={photo.src} alt={photo.alt} fill sizes="100vw" className="object-contain" />
-            <p className="absolute left-4 top-4 rounded-full bg-card px-4 py-2 text-sm font-bold text-ink">{t("counter", { index: index + 1, total: photos.length })}</p>
-            <form method="dialog" className="absolute right-4 top-4">
-              <button aria-label={tNav("close")} className={ARROW}>
-                ×
-              </button>
-            </form>
-            {photos.length > 1 && (
-              <>
-                <button type="button" onClick={() => move(-1)} aria-label={t("previous")} className={`${ARROW} absolute left-4 top-1/2 -translate-y-1/2`}>
-                  ←
-                </button>
-                <button type="button" onClick={() => move(1)} aria-label={t("next")} className={`${ARROW} absolute right-4 top-1/2 -translate-y-1/2`}>
-                  →
-                </button>
-              </>
-            )}
-          </div>
-        )}
-      </dialog>
+      <Lightbox dialog={dialog} photos={photos} index={index} onMove={move} />
     </>
+  );
+}
+
+/** Les fotos a pantalla completa, d'una en una. La fa servir també la pàgina de cada allotjament. */
+export function Lightbox({ dialog, photos, index, onMove }: { dialog: RefObject<HTMLDialogElement | null>; photos: MediaRef[]; index: number; onMove: (delta: number) => void }) {
+  const t = useTranslations("gallery");
+  const tNav = useTranslations("nav");
+  const photo = photos[index];
+  return (
+    <dialog
+      ref={dialog}
+      aria-label={t("label")}
+      onClick={(event) => event.target === dialog.current && dialog.current?.close()}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") onMove(-1);
+        if (event.key === "ArrowRight") onMove(1);
+      }}
+      className="m-auto h-svh max-h-none w-screen max-w-none bg-black/90 p-0 backdrop:bg-black/70"
+    >
+      {photo && (
+        <div className="relative size-full">
+          <Image key={photo.path} src={photo.src} alt={photo.alt} fill sizes="100vw" className="object-contain" />
+          <p className="absolute left-4 top-4 rounded-full bg-card px-4 py-2 text-sm font-bold text-ink">{t("counter", { index: index + 1, total: photos.length })}</p>
+          <form method="dialog" className="absolute right-4 top-4">
+            <button aria-label={tNav("close")} className={ARROW}>
+              ×
+            </button>
+          </form>
+          {photos.length > 1 && (
+            <>
+              <button type="button" onClick={() => onMove(-1)} aria-label={t("previous")} className={`${ARROW} absolute left-4 top-1/2 -translate-y-1/2`}>
+                ←
+              </button>
+              <button type="button" onClick={() => onMove(1)} aria-label={t("next")} className={`${ARROW} absolute right-4 top-1/2 -translate-y-1/2`}>
+                →
+              </button>
+            </>
+          )}
+        </div>
+      )}
+    </dialog>
   );
 }

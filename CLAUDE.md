@@ -52,9 +52,18 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   al càmping, textos legals i dades; una pàgina del web és un enllaç directe a la fitxa de la seva secció), les tasques de la pàgina d'inici
   (`TASKS`) i el que queda per acabar (`pendingWork`: el que no es veu a la web i el que falta traduir). Una entitat nova ha d'anar al menú.
   Només es marca l'opció més concreta (`currentHref`): la fitxa de Gastronomia no marca també «Tots els textos».
+- **Carcassa** (`AdminShell`): barra lateral fosca amb icones (lucide-react: al panell i a la pàgina de cada allotjament, que és de servidor i no el porta al navegador; quina icona toca a cada opció és un nom a `nav.ts`
+  i el dibuix és a `admin-icons.tsx`), que es plega a l'escriptori (galeta `admin-sidebar`, del panell) i al mòbil és un calaix (tancat, `invisible`:
+  fora del teclat); a dalt, «Edita sobre la web», «Veure la web» i el compte. Cada pàgina comença amb `PageHeader`.
+- **Tauler** (`/admin`): editar sobre la web, crear contingut nou (`CREATABLE`, `createLabel`), les xifres, les pàgines del web (`SITE_PAGES` i
+  `LEGAL_SITE_PAGES`: foto de la secció, si es veu, què falta traduir, i «Sobre la web» o «Textos i fotos»), el que queda per acabar i l'activitat recent.
+  L'editor visual s'obre en una pàgina amb `?page=` (`visualPageHref`); `startPage` només hi deixa posar una pàgina del web coneguda.
 - **La portada** (`/admin/home`, `HomeBlocks`): els blocs de la pàgina principal amb fletxes i casella. L'ordre és el `sort_order` de les seves seccions
   (`src/lib/content/home.ts`, `HOME_BLOCKS`, amb proves) i si surten, el seu `is_visible`; la portada els pinta en aquest ordre. El hero va sempre primer.
   Les portes a les pàgines, com arribar-hi, el viatge amb la IA i les opinions també són seccions (`explore`, `directions`, `trip`, `testimonials`): el títol s'edita al panell.
+- **Opinions** (`testimonials.tsx`, just abans dels allotjaments): a dalt, la nota a cada plataforma (`review_platforms`, «Notes a les plataformes» al panell: nota, escala 5 o 10,
+  nombre d'opinions i enllaç); a sota, les opinions (`testimonials`). Les notes de partida (Booking.com i Campings.com) es van comprovar a la pàgina de cada plataforma el 20/11/2026:
+  canvien amb el temps i es posen al dia al panell. Cap nota al codi; tampoc copiem ressenyes senceres de Google o Tripadvisor (són text de tercers): les opinions les tria i les escriu el client.
 - **Text de sobre el títol** (`section_translations.eyebrow`, «On som», «Planifica l'escapada»…): és contingut de cada secció i s'edita al panell. Buit, no surt.
   El camp principal d'una entitat (el que li dona nom i diu si falta traduir) és el primer obligatori (`mainField`), no el primer del formulari.
   Només el de les piscines (`pools.eyebrow`) continua a `messages/`: aquell bloc surt dels serveis, no d'una secció.
@@ -99,6 +108,7 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - **Proves en local**: `pnpm exec supabase start`, `pnpm local pnpm seed`, `pnpm local node scripts/seed-local-editor.ts`
   (usuari de prova, contrasenya a `.env.local-editor`), `pnpm local next build` i la previsualització `web-local` (port 3200).
   `pnpm local <ordre>` executa qualsevol cosa contra el Supabase local sense tocar `.env.local`.
+  Per mirar canvis en calent contra el local, la previsualització `web-local-dev` (port 3201); només pot córrer un `next dev` per carpeta, així que primer s'atura `web`.
 
 ## Supabase: local i remot
 
@@ -209,10 +219,12 @@ client es pugen a Supabase Storage amb el script de seed.
 ## Disseny
 
 - Estil de referència: holacamp.net (foto gran amb la cerca a sobre, targetes amb preu i «Reservar», galeria) amb els colors de la marca.
-  El fons és gairebé blanc per acostar-se al motor de reserves, i el botó principal és `band-olive`.
+  El fons és blanc (res de crema ni beix, ni gra de paper) i les superfícies, un gris molt clar (`paper-2`); el botó principal és `band-olive`.
+  Les capçaleres de secció no porten número ni ratlla, i els botons no porten fletxa.
 - Colors només a través dels tokens de `globals.css` (`paper`, `ink`, `olive`, `terra`…). Les
-  franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`, que no canvien en mode
-  fosc: si no, el text crema perd contrast.
+  franges amb text clar fan servir `band-olive`, `band-terra` i `band-sea`.
+- **No hi ha mode fosc, i no se n'ha de fer**: el client no el vol. `color-scheme: light` i cap `dark:` ni
+  `prefers-color-scheme: dark`; amb el sistema en fosc, la web es veu igual.
 - La barra de scroll de la pàgina té el fons de la web i la barra `band-olive` (`globals.css`).
 - Tipografies: Fraunces (només eix SOFT, sense cursiva) i Lato 400/700. Afegir un pes o una
   cursiva són desenes de KB que endarrereixen el LCP a mòbil.
@@ -232,9 +244,17 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
   Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
   mensual de Hugging Face es va acabar a la desena imatge.
-- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge, i les xifres a sota. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
-- **De la targeta a la fitxa** (`accommodation-explorer.tsx`, `withViewTransition`): la foto vola de la targeta a la fitxa amb View Transitions i la fitxa es construeix al voltant (`.accommodation-build`).
-  La foto de la targeta i la de la fitxa porten el mateix `view-transition-name`, mai alhora. Sense suport o amb moviment reduït, s'obre i prou. Totes dues fotos són 4:3 perquè el vol no es deformi.
+- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
+- **Allotjaments** (`accommodation-explorer.tsx`): se n'ensenyen 9 (`PAGE_SIZE`) i «Ver más» n'afegeix 9 més fins a l'últim; canviar un filtre torna a començar. Les noves pugen per ordre (`.accommodation-card`)
+  i el focus va a la primera nova. Cada targeta porta a la pàgina de l'allotjament (`accommodationHref`).
+- **Pàgina de l'allotjament** (`/[locale]/accommodations/[slug]`, com la d'holacamp): fotos en mosaic (`AccommodationGallery`, obre `Lightbox`), dades amb icona (`accommodation-parts.tsx`),
+  distribució dels llits i equipament amb icona (`bedLayout` i `amenities` a `src/lib/content/equipment.ts`, amb proves: paraules clau en els 5 idiomes; el que no reconeix porta la icona genèrica),
+  el càmping (text de la benvinguda), els serveis, la zona i altres allotjaments del mateix tipus. La reserva va al costat i fixa a l'escriptori, i en una barra a baix al mòbil.
+  Es construeix per ordre (`.accommodation-build`, només desplaçament: la primera foto pot ser l'LCP). És al mapa del web (`sitemap.ts`).
+- **«Més que dormir»** (`explore.tsx`, `.explore-*` a `globals.css`): en arribar-hi, la foto s'obre des del centre (`clip-path`) mentre s'aparta el zoom, la ratlla es dibuixa i el text puja per ordre;
+  en baixar, la foto es desplaça una mica (`ExploreParallax`: `--shift` només a les que són a la vista, un `requestAnimationFrame` per scroll). Amb moviment reduït, quiet.
+- **«Explora el càmping»** (`map-teaser.tsx`): la imatge flotant del mapa a baix a la dreta. Surt després del hero i s'amaga amb el mapa o el peu a la vista; amb el ratolí s'obre l'etiqueta,
+  i en clicar obre el mapa a pantalla completa (`openMapView`, esdeveniment `camping:map-open` a `src/lib/map/events.ts`).
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):

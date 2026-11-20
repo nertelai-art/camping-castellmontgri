@@ -16,7 +16,7 @@ const TYPE_ICON: Record<TripType, string> = {
 };
 
 /** «El teu viatge, amb la IA»: tria nits i tipus de viatge, i el text va a l'assistent de cadascú. No s'envia res a cap servidor nostre. */
-export function TripPlanner({ section, camping, place, url, index }: { section: Section; camping: string; place: string | null; url: string; index: number }) {
+export function TripPlanner({ section, camping, place, url }: { section: Section; camping: string; place: string | null; url: string }) {
   const t = useTranslations("trip");
   const [nights, setNights] = useState(3);
   const [type, setType] = useState<TripType>("family");
@@ -40,7 +40,7 @@ export function TripPlanner({ section, camping, place, url, index }: { section: 
     <section data-edit="sections:trip" aria-labelledby="trip-title" className="cv mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-14">
         <div>
-          <SectionHeading id="trip-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} />
+          <SectionHeading id="trip-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} />
 
           <div className="reveal mt-9 grid gap-7">
             <div className="flex items-center justify-between gap-4 rounded-3xl border border-line bg-card px-5 py-4">
@@ -118,9 +118,6 @@ export function TripPlanner({ section, camping, place, url, index }: { section: 
                 className="flex items-center gap-2 rounded-full bg-[var(--chat-accent)] px-5 py-2.5 text-sm font-bold text-[var(--chat-accent-fg)] transition hover:opacity-85"
               >
                 {t("openIn", { name: assistant.name })}
-                <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
-                  <path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
               </a>
             </div>
           </div>

@@ -21,13 +21,11 @@ export async function Gastronomy({
   section,
   restaurants,
   onMap,
-  index,
   level,
 }: {
   section: Section;
   restaurants: Restaurant[];
   onMap: Set<string>;
-  index: number;
   level?: 1 | 2;
 }) {
   const t = await getTranslations("gastronomy");
@@ -47,7 +45,7 @@ export async function Gastronomy({
       <div id="gastronomy">
         <FoodShowcase
           heading={
-            <SectionHeading id="gastronomy-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={level} />
+            <SectionHeading id="gastronomy-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={level} />
           }
           steps={steps}
           srDescription={t("sceneDescription")}
@@ -81,7 +79,7 @@ export async function Gastronomy({
                       <div className="mt-auto flex flex-wrap gap-x-4 gap-y-1 pt-2 text-terra">
                         {r.menuUrl && (
                           <a href={r.menuUrl} target="_blank" rel="noopener" className="text-sm font-bold hover:underline">
-                            {t("menu")} ↗
+                            {t("menu")}
                           </a>
                         )}
                         {onMap.has(`restaurant:${r.slug}`) && <ShowOnMapButton target={{ type: "restaurant", slug: r.slug }} />}

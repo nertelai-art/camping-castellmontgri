@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeBlocks } from "@/components/admin/home-blocks";
-import { entityHref } from "@/lib/admin/nav";
+import { entityHref, visualPageHref } from "@/lib/admin/nav";
+import { PageHeader, SECONDARY } from "@/components/admin/page-header";
+import { MousePointerClick } from "lucide-react";
 import type { HomeBlock } from "@/lib/content/home";
 import { listHomeBlocks } from "@/lib/supabase/admin-content";
 
@@ -22,15 +24,26 @@ export default async function HomeLayout() {
   const blocks = (await listHomeBlocks()).map((block) => ({ ...block, hint: HINTS[block.key] }));
   return (
     <>
-      <h1 className="font-display text-4xl text-olive">La portada</h1>
-      <p className="mt-2 max-w-2xl text-lg text-muted">
+      <PageHeader
+        icon="layout"
+        title="La portada"
+        actions={
+          <Link href={visualPageHref("")} className={SECONDARY}>
+            <MousePointerClick aria-hidden="true" className="size-5" />
+            Edita-la sobre la web
+          </Link>
+        }
+        description={
+          <>
         Els blocs de la pàgina principal, en l&apos;ordre en què surten. Amb les fletxes es mouen i amb la casella s&apos;amaguen; es desa sol. La foto gran i
         la cerca de reserva van sempre primer: el seu text és a{" "}
         <Link href={`${entityHref("sections")}/hero`} className="font-bold text-terra hover:underline">
           la portada (hero)
         </Link>
         .
-      </p>
+          </>
+        }
+      />
       <HomeBlocks blocks={blocks} />
     </>
   );

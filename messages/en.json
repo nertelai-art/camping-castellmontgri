@@ -19,12 +19,6 @@
     "discover": "Explore the campsite",
     "from": "{open} – {close}"
   },
-  "facts": {
-    "accommodations": "places to stay",
-    "restaurants": "restaurants and bars",
-    "services": "services",
-    "activities": "entertainment activities"
-  },
   "accommodation": {
     "label": "Where to stay",
     "all": "All",
@@ -42,14 +36,27 @@
     "gallery": "Photos of {name}",
     "photo": "Photo {index} of {total}",
     "count": "{count, plural, one {# unit} other {# units}}",
-    "seeAll": "See all accommodation ({count})",
     "backHome": "Back to home",
     "from": "from",
     "perNight": "/night",
     "readMore": "Read more",
     "readLess": "Read less",
     "previousPhoto": "Previous photo",
-    "nextPhoto": "Next photo"
+    "nextPhoto": "Next photo",
+    "seeMore": "Show more",
+    "showing": "{shown} of {total}",
+    "details": "View details",
+    "allPhotos": "See all {count} photos",
+    "layout": "Layout",
+    "camping": "The campsite",
+    "zone": "The area",
+    "campingServices": "Campsite facilities",
+    "discoverZone": "Discover the area",
+    "others": "Other accommodation",
+    "bookTitle": "Book your stay",
+    "bookHint": "You'll choose dates and guests on the next step.",
+    "breadcrumb": "Breadcrumb",
+    "home": "Home"
   },
   "gastronomy": {
     "zone": {
@@ -122,10 +129,14 @@
       "landmark": "Points of interest"
     },
     "back": "Leave the map",
-    "closeCard": "Close the card"
+    "closeCard": "Close the card",
+    "teaser": "Explore the campsite"
   },
   "testimonials": {
-    "via": "on {source}"
+    "via": "on {source}",
+    "reviews": "{count, plural, one {# review} other {# reviews}}",
+    "score": "{rating} out of {scale}",
+    "seeOn": "Reviews on {platform}"
   },
   "footer": {
     "contact": "Contact",

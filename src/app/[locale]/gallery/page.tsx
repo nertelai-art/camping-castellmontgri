@@ -18,7 +18,7 @@ export default async function GalleryPage({ params }: PageProps<"/[locale]/galle
   return (
     <Subpage locale={locale}>
       <section data-edit="sections:gallery" aria-labelledby="gallery-title" className="mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-32">
-        <SectionHeading id="gallery-title" index={1} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={1} />
+        <SectionHeading id="gallery-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={1} />
         <ImageGallery photos={section.gallery} />
       </section>
     </Subpage>

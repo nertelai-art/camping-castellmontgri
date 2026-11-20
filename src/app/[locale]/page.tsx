@@ -12,6 +12,7 @@ import { CampgroundJsonLd } from "@/components/site/json-ld";
 import { TripPlanner } from "@/components/site/trip-planner";
 import type { Place } from "@/components/site/map-explorer";
 import { MapSection } from "@/components/site/map-section";
+import { MapTeaser } from "@/components/site/map-teaser";
 import { RevealOnScroll } from "@/components/site/reveal-on-scroll";
 import { SectionHeading } from "@/components/site/section-heading";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -29,6 +30,7 @@ import {
   getSections,
   getServices,
   getSiteSettings,
+  getReviewPlatforms,
   getTestimonials,
   type Section,
 } from "@/lib/supabase/content";
@@ -38,7 +40,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [settings, sections, categories, services, restaurants, activities, testimonials, accreditations, mapPoints, flags] =
+  const [settings, sections, categories, services, restaurants, activities, testimonials, platforms, accreditations, mapPoints, flags] =
     await Promise.all([
       getSiteSettings(locale),
       getSections(locale),
@@ -47,12 +49,11 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       getRestaurants(locale),
       getActivities(locale),
       getTestimonials(),
+      getReviewPlatforms(),
       getMediaByFolder("accreditations", locale),
       getMapPoints(locale),
       getMediaByFolder("flags", locale),
     ]);
-
-  const accommodationCount = categories.reduce((n, c) => n + c.accommodations.length, 0);
 
   // Fitxes del plànol: el que cal mostrar de cada lloc enllaçat (sense repetir consultes).
   const places: Record<string, Place> = {};
@@ -74,19 +75,11 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
     { href: "/surroundings", section: sections.surroundings },
   ].filter((item): item is { href: string; section: Section } => Boolean(item.section));
 
-  // Numeració de guia de camp: només compten les seccions que surten, en l'ordre en què surten.
-  let n = 0;
-  const next = () => ++n;
-
   // Cada bloc de la portada. L'ordre i si surt es decideixen al panell («La portada»): són l'ordre i la visibilitat de les seves seccions.
   const render: Record<HomeBlock, () => ReactNode> = {
     welcome: () =>
       sections.welcome && (
-        <Welcome
-          key="welcome"
-          section={sections.welcome}
-          facts={{ accommodations: accommodationCount, restaurants: restaurants.length, services: services.length, activities: activities.length }}
-        />
+<Welcome key="welcome" section={sections.welcome} />
       ),
     accommodation: () =>
       sections.accommodation && (
@@ -95,7 +88,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           <div id="accommodation">
             <SectionHeading
               id="accommodation-title"
-              index={next()}
+             
               eyebrow={sections.accommodation.eyebrow}
               title={sections.accommodation.title}
               highlight={sections.accommodation.highlight}
@@ -105,17 +98,17 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           <AccommodationExplorer
             categories={categories}
             bookingUrl={settings.bookingUrl}
-            allHref={`/${locale}/accommodations`}
             onMap={[...onMap].filter((k) => k.startsWith("accommodation:") || k.startsWith("category:"))}
           />
         </section>
       ),
-    explore: () => sections.explore && explore.length > 0 && <Explore key="explore" section={sections.explore} index={next()} items={explore} />,
-    map: () => sections.map && <MapSection key="map" section={sections.map} points={mapPoints} places={places} index={next()} />,
-    directions: () => sections.directions && <Directions key="directions" section={sections.directions} settings={settings} index={next()} />,
+    explore: () => sections.explore && explore.length > 0 && <Explore key="explore" section={sections.explore} items={explore} />,
+    map: () => sections.map && <MapSection key="map" section={sections.map} points={mapPoints} places={places} />,
+    directions: () => sections.directions && <Directions key="directions" section={sections.directions} settings={settings} />,
     trip: () =>
-      sections.trip && <TripPlanner key="trip" section={sections.trip} camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} index={next()} />,
-    testimonials: () => sections.testimonials && testimonials.length > 0 && <Testimonials key="testimonials" section={sections.testimonials} testimonials={testimonials} index={next()} />,
+      sections.trip && <TripPlanner key="trip" section={sections.trip} camping={settings.brandName} place={settings.address.locality} url={`${siteUrl}/${locale}`} />,
+    testimonials: () =>
+      sections.testimonials && <Testimonials key="testimonials" section={sections.testimonials} testimonials={testimonials} platforms={platforms} />,
   };
 
   return (
@@ -128,6 +121,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         {homeBlocks(Object.keys(sections)).map((key) => render[key]())}
       </main>
       <SiteFooter settings={settings} accreditations={accreditations} locale={locale} />
+      {sections.map && sections.map.media && <MapTeaser />}
       <RevealOnScroll />
       <AnchorSettle />
     </>

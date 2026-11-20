@@ -9,20 +9,18 @@ export async function ServicesGrid({
   section,
   services,
   onMap,
-  index,
   level,
 }: {
   section: Section;
   services: Service[];
   onMap: Set<string>;
-  index: number;
   level?: 1 | 2;
 }) {
   return (
     <section data-edit="sections:services" aria-labelledby="services-title" className="cv mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
       <div id="services" className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHeading id="services-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={level} />
+          <SectionHeading id="services-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={level} />
         </div>
         <ul className="grid gap-3 sm:grid-cols-2">
           {services.map((s) => (
@@ -30,7 +28,7 @@ export async function ServicesGrid({
               <details className="group h-full rounded-2xl border border-line bg-card transition open:bg-paper-2 hover:border-olive">
                 <summary className="flex cursor-pointer list-none items-center gap-4 p-4 [&::-webkit-details-marker]:hidden">
                   <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-paper-2 group-open:bg-card">
-                    {s.icon && <MediaImage media={s.icon} alt="" className="size-8 dark:invert" />}
+                    {s.icon && <MediaImage media={s.icon} alt="" className="size-8" />}
                   </span>
                   <span data-edit-field="name" className="flex-1 font-bold text-ink">{s.name}</span>
                   <span aria-hidden="true" className="text-xl text-olive transition group-open:rotate-45">

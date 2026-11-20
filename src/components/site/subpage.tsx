@@ -45,7 +45,6 @@ export async function Subpage({ locale, children }: { locale: Locale; children: 
       <main id="main">
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-base font-bold text-terra hover:underline">
-            <span aria-hidden="true">←</span>
             {t("backHome")}
           </Link>
         </div>
