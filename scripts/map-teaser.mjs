@@ -1,10 +1,10 @@
 // La volta de la maqueta per al mapa flotant (`public/map/teaser.mp4`): obre el mapa de la portada (`pnpm dev` engegat),
 // amaga el que hi ha a sobre del canvas i el fa girar amb el botó dret (MapControls sense inèrcia: arrossegar dx px gira
 // 2π·dx/alçada), amb una captura quadrada a cada pas. S'executa a mà quan canvia la maqueta:
-//   PLAYWRIGHT_CORE=<camí a playwright-core> CHROME=<chrome.exe> node scripts/map-teaser.mjs <carpeta> 240
-// (240 fotogrames: 1,5° per pas; a 24 per segon, una volta cada 10 s) i després es fa el vídeo i el fotograma quiet (els noms, amb tres xifres: f000.png…):
-//   ffmpeg -framerate 24 -i <carpeta>/f%03d.png -vf "scale=224:224:flags=lanczos,format=yuv420p" -c:v libx264 -preset veryslow
-//          -crf 31 -profile:v main -movflags +faststart -an public/map/teaser.mp4
+//   PLAYWRIGHT_CORE=<camí a playwright-core> CHROME=<chrome.exe> node scripts/map-teaser.mjs <carpeta> 360
+// (360 fotogrames: 1° per pas; a 18 per segon, una volta cada 20 s) i després es fa el vídeo i el fotograma quiet (els noms, amb tres xifres: f000.png…):
+//   ffmpeg -framerate 18 -i <carpeta>/f%03d.png -vf "scale=224:224:flags=lanczos,format=yuv420p" -c:v libx264 -preset veryslow
+//          -crf 34 -profile:v main -movflags +faststart -an public/map/teaser.mp4
 //   ffmpeg -i <carpeta>/f000.png -vf scale=224:224 -quality 78 public/map/teaser-still.webp
 import { createRequire } from "node:module";
 

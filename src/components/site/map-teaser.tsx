@@ -7,8 +7,8 @@ import { MAP_OPEN_HASH, openMapView } from "@/lib/map/events";
 
 /**
  * El mapa flotant, a baix a la dreta de totes les pàgines: un quadre amb la maqueta 3D girant. No és three.js (seria massa
- * pes per a cada pàgina) sinó la volta de la maqueta capturada en 240 fotogrames (`scripts/map-teaser.mjs`) i feta vídeo:
- * `public/map/teaser.mp4`, 140 KB, 24 fotogrames per segon: una volta cada 10 s, a poc a poc. Un vídeo el descodifica el xip de vídeo del mòbil; un WebP animat
+ * pes per a cada pàgina) sinó la volta de la maqueta capturada en 360 fotogrames, un per grau (`scripts/map-teaser.mjs`), i feta vídeo:
+ * `public/map/teaser.mp4`, 160 KB, 18 fotogrames per segon: una volta cada 20 s, ben a poc a poc. Un vídeo el descodifica el xip de vídeo del mòbil; un WebP animat
  * (el que hi havia) el descodificava el processador fotograma a fotograma i anava a salts. D'entrada es veu el primer
  * fotograma (`teaser-still.webp`, 10 KB); el vídeo es posa quan el navegador està ociós, i amb moviment reduït no.
  * Amb el ratolí a sobre surt «Explorar mapa». A la portada obre el mapa a pantalla completa; a les altres pàgines hi porta i l'obre.
