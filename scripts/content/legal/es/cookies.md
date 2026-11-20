@@ -8,15 +8,13 @@ Las cookies son pequeños archivos que una web guarda en tu navegador para recor
 
 ## Qué usa esta web
 
-Esta web **no usa cookies de análisis, de publicidad ni de seguimiento**, y no guarda nada en tu navegador al entrar. Solo guarda estos dos datos, y solo cuando tú haces algo que los necesita:
+Esta web **no usa cookies de análisis, de publicidad ni de seguimiento**, y no guarda nada en tu navegador al entrar. Solo guarda este dato, y solo cuando tú haces algo que lo necesita:
 
 **NEXT_LOCALE** (cookie propia). Se crea si cambias de idioma con el selector, para mostrarte las páginas en el idioma que has elegido. Dura hasta que cierras el navegador. Es una cookie de personalización que pides tú, por lo que no necesita consentimiento.
 
-**map-consent** (almacenamiento local propio). Se guarda cuando pulsas «Cargar el mapa» en el apartado «Cómo llegar», para no tener que preguntártelo cada vez. No caduca: se borra cuando borras los datos del sitio en tu navegador.
-
 ## Contenido de terceros
 
-El mapa del apartado «Cómo llegar» es de OpenStreetMap y no se carga hasta que lo aceptas. Una vez cargado, OpenStreetMap puede usar sus propias cookies o tecnologías: puedes consultarlo en su política de privacidad (osmfoundation.org).
+El mapa del apartado «Cómo llegar» es una imagen alojada en esta web (datos del mapa © colaboradores de OpenStreetMap): al verlo no se conecta con ningún servicio de terceros. Si lo pulsas, se abre Google Maps en una pestaña nueva, con sus propias condiciones.
 
 El motor de reservas de WitBooking y los enlaces a Google Maps, ChatGPT, Claude y Gemini se abren en sus propias webs, que tienen sus propias políticas de cookies.
 
@@ -36,7 +34,7 @@ Puedes borrar las cookies y los datos de esta web, o impedir que se guarden, des
 
 **Edge:** Configuración › Cookies y permisos del sitio.
 
-Si las bloqueas, la web seguirá funcionando, pero tendrás que elegir el idioma y aceptar el mapa cada vez.
+Si las bloqueas, la web seguirá funcionando, pero tendrás que elegir el idioma cada vez.
 
 ## Cambios
 

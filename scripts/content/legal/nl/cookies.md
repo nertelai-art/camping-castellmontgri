@@ -8,15 +8,13 @@ Cookies zijn kleine bestanden die een website in je browser opslaat om iets te o
 
 ## Wat deze website gebruikt
 
-Deze website **gebruikt geen analytische, advertentie- of trackingcookies**, en slaat niets op in je browser wanneer je binnenkomt. Ze slaat alleen deze twee gegevens op, en alleen als je iets doet waarvoor ze nodig zijn:
+Deze website **gebruikt geen analytische, advertentie- of trackingcookies**, en slaat niets op in je browser wanneer je binnenkomt. Ze slaat alleen dit gegeven op, en alleen als je iets doet waarvoor het nodig is:
 
 **NEXT_LOCALE** (eigen cookie). Wordt aangemaakt als je met de taalkeuze van taal wisselt, zodat de pagina's in de gekozen taal worden getoond. Blijft bestaan tot je de browser sluit. Het is een personalisatiecookie waar je zelf om vraagt, en daarom is er geen toestemming voor nodig.
 
-**map-consent** (eigen lokale opslag). Wordt opgeslagen als je in het onderdeel "Zo kom je hier" op "Kaart laden" drukt, zodat we het niet elke keer hoeven te vragen. Verloopt niet: wordt verwijderd als je de sitegegevens in je browser wist.
-
 ## Inhoud van derden
 
-De kaart in het onderdeel "Zo kom je hier" komt van OpenStreetMap en wordt pas geladen als je ermee instemt. Zodra ze geladen is, kan OpenStreetMap eigen cookies of technieken gebruiken: zie het privacybeleid van OpenStreetMap (osmfoundation.org).
+De kaart in het onderdeel "Zo kom je hier" is een afbeelding die op deze website staat (kaartgegevens © OpenStreetMap-bijdragers): bij het bekijken wordt geen enkele dienst van derden benaderd. Klik je erop, dan opent Google Maps in een nieuw tabblad, met eigen voorwaarden.
 
 Het reserveringssysteem van WitBooking en de links naar Google Maps, ChatGPT, Claude en Gemini openen op hun eigen websites, die hun eigen cookiebeleid hebben.
 
@@ -36,7 +34,7 @@ Je kunt de cookies en gegevens van deze website verwijderen, of voorkomen dat ze
 
 **Edge:** Instellingen › Cookies en sitemachtigingen.
 
-Als je ze blokkeert, blijft de website werken, maar moet je telkens de taal kiezen en de kaart accepteren.
+Als je ze blokkeert, blijft de website werken, maar moet je telkens de taal kiezen.
 
 ## Wijzigingen
 

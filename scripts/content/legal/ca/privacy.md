@@ -32,11 +32,9 @@ Si ens escrius un correu o ens truques, fem servir les dades que ens facilites p
 
 **Base legal:** el teu consentiment en contactar-nos i, si ens demanes informació per reservar, l'aplicació de mesures precontractuals (article 6.1.a i 6.1.b del RGPD).
 
-### Quan carregues el mapa
+### El mapa de «Com arribar-hi»
 
-A l'apartat «Com arribar-hi», el mapa és d'OpenStreetMap i només es carrega si el demanes. En carregar-lo, el teu navegador es connecta als servidors d'OpenStreetMap, que reben la teva adreça IP.
-
-**Base legal:** el teu consentiment (article 6.1.a del RGPD), que dones en prémer «Carrega el mapa». El pots retirar esborrant les dades del lloc al navegador.
+El mapa és una imatge allotjada en aquest web: en veure'l no s'envia cap dada a tercers. Si el prems, s'obre Google Maps en una pestanya nova i, des d'aquell moment, s'aplica la política de privacitat de Google.
 
 ## Amb qui compartim les dades
 
@@ -49,8 +47,6 @@ No venem les teves dades ni les cedim a tercers perquè en facin publicitat. Per
 **Functional Software Inc. (Sentry)** rep els informes d'errors, que es guarden en servidors de la Unió Europea (Alemanya).
 
 **WitBooking** gestiona el motor de reserves.
-
-Si carregues el mapa, l'**OpenStreetMap Foundation** (Regne Unit, país amb decisió d'adequació de la Comissió Europea) rep la teva adreça IP.
 
 També comuniquem dades a les administracions públiques quan la llei ens hi obliga, per exemple a les Forces i Cossos de Seguretat en el registre de viatgers.
 
