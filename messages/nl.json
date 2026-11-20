@@ -17,7 +17,8 @@
   },
   "hero": {
     "discover": "Ontdek de camping",
-    "from": "{open} – {close}"
+    "from": "{open} – {close}",
+    "watchVideo": "Bekijk de video"
   },
   "accommodation": {
     "label": "Waar slapen",

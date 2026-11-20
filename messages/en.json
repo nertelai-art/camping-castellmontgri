@@ -17,7 +17,8 @@
   },
   "hero": {
     "discover": "Explore the campsite",
-    "from": "{open} – {close}"
+    "from": "{open} – {close}",
+    "watchVideo": "Watch the video"
   },
   "accommodation": {
     "label": "Where to stay",

@@ -360,6 +360,12 @@ export const ENTITIES = {
       { name: "email_whistleblowing", label: "Correu del canal de denúncies", kind: "text" },
       { name: "booking_url", label: "Enllaç de reserves", kind: "text", help: "Adreça completa (https://…)." },
       { name: "client_portal_url", label: "Enllaç de l'àrea de clients", kind: "text", help: "Adreça completa (https://…)." },
+      {
+        name: "promo_video",
+        label: "Vídeo promocional",
+        kind: "text",
+        help: "El nom dels fitxers a Storage, a media/video/ (p. ex. «promo-es»: promo-es.mp4, promo-es-preview.mp4 i promo-es-poster.jpg). Buit, al hero no surt el botó «Veure el vídeo».",
+      },
       { name: "season_open", label: "Obertura de temporada", kind: "date" },
       { name: "season_close", label: "Tancament de temporada", kind: "date" },
       { name: "street", label: "Adreça", kind: "text" },

@@ -4,6 +4,7 @@ import { MediaImage } from "@/components/media-image";
 import { RichText } from "@/components/rich-text";
 import type { Section, SiteSettings } from "@/lib/supabase/content";
 import { BookingBar } from "./booking-bar";
+import { PromoVideo } from "./promo-video";
 
 /** Hero: la foto aèria real del càmping amb el titular i la cerca de reserva al mig. */
 export async function Hero({ section, settings }: { section: Section; settings: SiteSettings }) {
@@ -42,6 +43,8 @@ export async function Hero({ section, settings }: { section: Section; settings: 
               <BookingBar bookingUrl={settings.bookingUrl} />
             </div>
           )}
+          {/* El vídeo del càmping: només si qui visita ho vol (botó), mai sol. A l'escriptori, al racó de baix a l'esquerra. */}
+          {settings.promoVideo && <PromoVideo video={settings.promoVideo} className="mt-6 lg:absolute lg:bottom-5 lg:left-5 lg:mt-0" />}
         </div>
 
         <a href="#welcome" className="hero-more group absolute bottom-5 inline-flex items-center gap-2 font-bold text-on-dark transition-opacity max-sm:hidden">

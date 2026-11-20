@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/site/section-heading";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { routing } from "@/i18n/routing";
-import { getAccommodationCategories, getMediaByFolder, getSections, getSiteSettings } from "@/lib/supabase/content";
+import { getAccommodationCategories, getAccreditations, getMediaByFolder, getSections, getSiteSettings } from "@/lib/supabase/content";
 
 // Tots els allotjaments, en una pàgina a part (el menú hi porta des de les pàgines que no són la portada).
 
@@ -38,7 +38,7 @@ export default async function Accommodations({ params }: PageProps<"/[locale]/ac
     getSiteSettings(locale),
     getSections(locale),
     getAccommodationCategories(locale),
-    getMediaByFolder("accreditations", locale),
+    getAccreditations(locale),
     getMediaByFolder("flags", locale),
   ]);
   const section = sections.accommodation;

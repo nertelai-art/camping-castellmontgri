@@ -489,6 +489,7 @@ export type Database = {
           focus_y: number
           height: number | null
           id: string
+          link_url: string | null
           mime_type: string
           path: string
           source_url: string | null
@@ -501,6 +502,7 @@ export type Database = {
           focus_y?: number
           height?: number | null
           id?: string
+          link_url?: string | null
           mime_type: string
           path: string
           source_url?: string | null
@@ -513,6 +515,7 @@ export type Database = {
           focus_y?: number
           height?: number | null
           id?: string
+          link_url?: string | null
           mime_type?: string
           path?: string
           source_url?: string | null
@@ -878,6 +881,7 @@ export type Database = {
           phone_display: string | null
           phone_e164: string | null
           postal_code: string | null
+          promo_video: string | null
           region: string | null
           season_close: string | null
           season_open: string | null
@@ -904,6 +908,7 @@ export type Database = {
           phone_display?: string | null
           phone_e164?: string | null
           postal_code?: string | null
+          promo_video?: string | null
           region?: string | null
           season_close?: string | null
           season_open?: string | null
@@ -930,6 +935,7 @@ export type Database = {
           phone_display?: string | null
           phone_e164?: string | null
           postal_code?: string | null
+          promo_video?: string | null
           region?: string | null
           season_close?: string | null
           season_open?: string | null

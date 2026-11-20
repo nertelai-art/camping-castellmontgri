@@ -74,6 +74,12 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   telèfon, correus, adreça i temporada de les dades generals, i el botó de reservar.
 - **«El teu viatge»** llegeix la web des de `brandSiteUrl` (`src/lib/site-url.ts`): el domini del càmping, no `siteUrl`, que a Vercel sense domini és
   l'adreça interna de cada desplegament (canvia i no es pot llegir de fora).
+- **Vídeo promocional** (`promo-video.tsx`, al hero): un botó «Ver el vídeo» amb uns segons en bucle (sense so; es baixen quan el navegador està ociós, i amb moviment
+  reduït o «estalvi de dades», només la foto) que obre el vídeo sencer a pantalla completa, amb so i controls. Mai es posa sol: és un anunci amb història i text, no un fons.
+  Els fitxers són a Storage, `media/video/<nom>.mp4`, `<nom>-preview.mp4` i `<nom>-poster.jpg`; el nom és `site_settings.promo_video` («Dades generals» al panell). Buit, no surt el botó.
+  El vídeo sencer és de 1080p comprimit (11 MB, `-crf 28 -movflags +faststart`: comença a sonar abans d'haver baixat tot). El de 20/11/2026 és en castellà (`promo-es`).
+- **Insígnies del peu** (`getAccreditations`): les imatges de `media/accreditations/`, amb enllaç si `media.link_url` en té (ADAC, Tripadvisor i Zoover, com al web antic).
+  El panell encara no edita aquest enllaç.
 - **Text de sobre el títol** (`section_translations.eyebrow`, «On som», «Planifica l'escapada»…): és contingut de cada secció i s'edita al panell. Buit, no surt.
   El camp principal d'una entitat (el que li dona nom i diu si falta traduir) és el primer obligatori (`mainField`), no el primer del formulari.
   Només el de les piscines (`pools.eyebrow`) continua a `messages/`: aquell bloc surt dels serveis, no d'una secció.
