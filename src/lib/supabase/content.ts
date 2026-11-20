@@ -326,14 +326,14 @@ export async function getMediaByFolder(folder: string, locale: Locale) {
  * Les insígnies del peu (ADAC, Tripadvisor…), cadascuna amb el seu enllaç si en té (`media.link_url`).
  */
 export async function getAccreditations(locale: Locale) {
-  const result = await contentClient()
-    .from("media")
-    .select(`${MEDIA}, link_url`)
-    .like("path", "accreditations/%")
-    .order("path");
-  return unwrap(result, "les insígnies").flatMap((m) => {
+  const query = (columns: string) => contentClient().from("media").select(columns).like("path", "accreditations/%").order("path");
+  let result = await query(`${MEDIA}, link_url`);
+  // Una base de dades sense la columna encara (la migració 20261121120000 no s'hi ha aplicat) no ha de fer caure el web: sense enllaços.
+  if (result.error?.code === "42703") result = await query(MEDIA);
+  const rows = unwrap(result, "les insígnies") as unknown as (Parameters<typeof toMedia>[0] & { link_url?: string | null })[];
+  return rows.flatMap((m) => {
     const media = toMedia(m, locale);
-    return media ? [{ media, link: m.link_url }] : [];
+    return media ? [{ media, link: m.link_url ?? null }] : [];
   });
 }
 export type Accreditation = Awaited<ReturnType<typeof getAccreditations>>[number];
