@@ -12,7 +12,7 @@ import { RichText } from "@/components/rich-text";
 import type { MapViewerHandle } from "@/components/scene/MapScene";
 import { WebGLBoundary } from "@/components/scene/webgl-boundary";
 import { useInteracted, useNearViewport, useReducedMotion, useRenderMode } from "@/components/scene/scroll-scene";
-import { MAP_FOCUS_EVENT, targetKey } from "@/lib/map/events";
+import { MAP_FOCUS_EVENT, MAP_OPEN_EVENT, targetKey } from "@/lib/map/events";
 import { KIND_COLOR, MAP_KINDS as KINDS, type MapKind as Kind } from "@/lib/map/kinds";
 import type { MapPlot } from "@/lib/map/plots";
 import type { MapPoint, MapTarget } from "@/lib/supabase/content";
@@ -213,7 +213,11 @@ export function MapExplorer({ image, points, places, heading }: Props) {
       viewer.current?.reset();
     };
     window.addEventListener(MAP_FOCUS_EVENT, onFocus);
-    return () => window.removeEventListener(MAP_FOCUS_EVENT, onFocus);
+    window.addEventListener(MAP_OPEN_EVENT, openMap);
+    return () => {
+      window.removeEventListener(MAP_FOCUS_EVENT, onFocus);
+      window.removeEventListener(MAP_OPEN_EVENT, openMap);
+    };
   }, [points, openMap, select]);
 
   // L'entrada (la maqueta creix) comença quan el mapa ocupa prou pantalla; fora de pantalla, no es dibuixa.
@@ -435,7 +439,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                                   )}
                                   {(current.target?.type === "category" || current.target?.type === "accommodation") && (
                                     <a href="#accommodation" onClick={closeMap} className="mt-4 inline-block text-lg font-bold text-terra hover:underline">
-                                      {t("seeAccommodation")} →
+                                      {t("seeAccommodation")}
                                     </a>
                                   )}
                                 </div>
@@ -571,7 +575,7 @@ export function MapExplorer({ image, points, places, heading }: Props) {
                         )}
                         {(selected.target?.type === "category" || selected.target?.type === "accommodation") && (
                           <a href="#accommodation" onClick={closeMap} className="mt-3 inline-block text-base font-bold text-terra hover:underline">
-                            {t("seeAccommodation")} →
+                            {t("seeAccommodation")}
                           </a>
                         )}
                       </div>

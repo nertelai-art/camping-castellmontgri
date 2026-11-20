@@ -7,12 +7,10 @@ export async function MapSection({
   section,
   points,
   places,
-  index,
 }: {
   section: Section;
   points: MapPoint[];
   places: Record<string, Place>;
-  index: number;
 }) {
   if (!section.media) return null;
   return (
@@ -22,7 +20,7 @@ export async function MapSection({
         image={section.media}
         points={points}
         places={places}
-        heading={<SectionHeading id="map-title" index={index} eyebrow={section.eyebrow} title={section.title} body={section.body} tone="dark" />}
+        heading={<SectionHeading id="map-title" eyebrow={section.eyebrow} title={section.title} body={section.body} tone="dark" />}
       />
     </section>
   );

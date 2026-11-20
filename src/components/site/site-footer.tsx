@@ -47,7 +47,7 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
           </address>
           {settings.geo && (
             <a href={directionsUrl(settings.geo.lat, settings.geo.lng)} target="_blank" rel="noopener" className="mt-4 inline-block font-bold text-foam hover:underline">
-              {t("howToGet")} ↗
+              {t("howToGet")}
             </a>
           )}
         </div>
@@ -63,7 +63,7 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
           )}
           {settings.clientPortalUrl && (
             <a href={`${settings.clientPortalUrl}/${locale}`} target="_blank" rel="noopener" className="mt-6 inline-block font-bold hover:underline">
-              {tNav("clientArea")} ↗
+              {tNav("clientArea")}
             </a>
           )}
         </div>

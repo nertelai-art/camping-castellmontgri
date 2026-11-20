@@ -1,23 +1,13 @@
-import { getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import { RichText } from "@/components/rich-text";
 import type { Section } from "@/lib/supabase/content";
 import { MontgriLine } from "./montgri-line";
 
-type Facts = { accommodations: number; restaurants: number; services: number; activities: number };
-
 /**
- * Benvinguda: el text entre fotos, amb la carena del Montgrí de paisatge, i a sota les xifres (comptades del contingut, mai escrites a mà).
+ * Benvinguda: el text entre fotos, amb la carena del Montgrí de paisatge.
  * La primera foto de la galeria de la secció és la del mig; la resta, les del voltant. Es canvien des del panell. La composició és a `.welcome` (globals.css).
  */
-export async function Welcome({ section, facts }: { section: Section; facts: Facts }) {
-  const t = await getTranslations("facts");
-  const items = [
-    [facts.accommodations, t("accommodations")],
-    [facts.restaurants, t("restaurants")],
-    [facts.services, t("services")],
-    [facts.activities, t("activities")],
-  ] as const;
+export function Welcome({ section }: { section: Section }) {
   const [main = section.media, ...around] = section.gallery;
 
   return (
@@ -46,17 +36,6 @@ export async function Welcome({ section, facts }: { section: Section; facts: Fac
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="bg-paper-2 px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pb-20">
-        <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
-          {items.map(([value, label]) => (
-            <div key={label} className="flex flex-col border-t border-olive/40 pt-4">
-              <dt className="order-2 mt-1 text-sm leading-snug text-muted sm:text-base">{label}</dt>
-              <dd className="font-display -order-1 text-5xl tabular-nums text-olive sm:text-6xl">{value}</dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </section>
   );

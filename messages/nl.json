@@ -19,12 +19,6 @@
     "discover": "Ontdek de camping",
     "from": "{open} – {close}"
   },
-  "facts": {
-    "accommodations": "accommodaties",
-    "restaurants": "restaurants en bars",
-    "services": "voorzieningen",
-    "activities": "animatieactiviteiten"
-  },
   "accommodation": {
     "label": "Waar slapen",
     "all": "Alle",
@@ -42,14 +36,27 @@
     "gallery": "Foto's van {name}",
     "photo": "Foto {index} van {total}",
     "count": "{count, plural, one {# accommodatie} other {# accommodaties}}",
-    "seeAll": "Alle accommodaties bekijken ({count})",
     "backHome": "Terug naar home",
     "from": "vanaf",
     "perNight": "/nacht",
     "readMore": "Lees meer",
     "readLess": "Lees minder",
     "previousPhoto": "Vorige foto",
-    "nextPhoto": "Volgende foto"
+    "nextPhoto": "Volgende foto",
+    "seeMore": "Meer tonen",
+    "showing": "{shown} van {total}",
+    "details": "Bekijk details",
+    "allPhotos": "Bekijk alle {count} foto's",
+    "layout": "Indeling",
+    "camping": "De camping",
+    "zone": "De omgeving",
+    "campingServices": "Voorzieningen van de camping",
+    "discoverZone": "Ontdek de omgeving",
+    "others": "Andere accommodaties",
+    "bookTitle": "Boek je verblijf",
+    "bookHint": "Je kiest de data en het aantal personen in de volgende stap.",
+    "breadcrumb": "Kruimelpad",
+    "home": "Home"
   },
   "gastronomy": {
     "zone": {
@@ -122,10 +129,14 @@
       "landmark": "Bezienswaardigheden"
     },
     "back": "Kaart verlaten",
-    "closeCard": "Kaartje sluiten"
+    "closeCard": "Kaartje sluiten",
+    "teaser": "Verken de camping"
   },
   "testimonials": {
-    "via": "op {source}"
+    "via": "op {source}",
+    "reviews": "{count, plural, one {# beoordeling} other {# beoordelingen}}",
+    "score": "{rating} van {scale}",
+    "seeOn": "Beoordelingen op {platform}"
   },
   "footer": {
     "contact": "Contact",
