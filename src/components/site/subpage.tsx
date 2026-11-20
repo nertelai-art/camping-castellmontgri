@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { routing, type Locale } from "@/i18n/routing";
@@ -33,8 +32,7 @@ export function assertLocale(locale: string): Locale {
 }
 
 export async function Subpage({ locale, children }: { locale: Locale; children: ReactNode }) {
-  const [t, settings, accreditations, flags] = await Promise.all([
-    getTranslations("accommodation"),
+  const [settings, accreditations, flags] = await Promise.all([
     getSiteSettings(locale),
     getMediaByFolder("accreditations", locale),
     getMediaByFolder("flags", locale),
@@ -43,11 +41,6 @@ export async function Subpage({ locale, children }: { locale: Locale; children: 
     <>
       <SiteHeader settings={settings} locale={locale} flags={flags} home={false} />
       <main id="main">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-base font-bold text-terra hover:underline">
-            {t("backHome")}
-          </Link>
-        </div>
         {children}
       </main>
       <SiteFooter settings={settings} accreditations={accreditations} locale={locale} />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ImageGallery } from "@/components/site/image-gallery";
-import { SectionHeading } from "@/components/site/section-heading";
+import { SubpageHero } from "@/components/site/subpage-hero";
 import { assertLocale, Subpage, subpageMetadata } from "@/components/site/subpage";
 import { getSections } from "@/lib/supabase/content";
 
@@ -17,8 +17,8 @@ export default async function GalleryPage({ params }: PageProps<"/[locale]/galle
   if (!section || section.gallery.length === 0) notFound();
   return (
     <Subpage locale={locale}>
-      <section data-edit="sections:gallery" aria-labelledby="gallery-title" className="mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 lg:px-8 lg:pb-32">
-        <SectionHeading id="gallery-title" eyebrow={section.eyebrow} title={section.title} body={section.body} highlight={section.highlight} level={1} />
+      <SubpageHero section={section} id="gallery-title" />
+      <section aria-labelledby="gallery-title" className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
         <ImageGallery photos={section.gallery} />
       </section>
     </Subpage>

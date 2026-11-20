@@ -205,6 +205,9 @@ client es pugen a Supabase Storage amb el script de seed.
 ## Pàgines
 
 - La portada és curta, com holacamp.net. Instal·lacions (amb piscines i tobogans), animació (amb el programa setmanal), gastronomia, entorn i galeria tenen pàgina pròpia (`/[locale]/services`, `entertainment`, `gastronomy`, `surroundings`, `gallery`, embolcall a `subpage.tsx`).
+  Totes comencen amb `SubpageHero`: la ruta, la foto de la secció en gran amb el títol a sobre (zoom suau en entrar, `.subpage-hero-photo`) i el text a sota.
+  Després, targetes netes sobre fons blanc: activitats (`ActivityExplorer`, filtre per a qui són, horari i descripció curta), serveis (amb foto i icona, o només icona),
+  restaurants per zona i les fotos de l'entorn. Les descripcions llargues, tres línies i «Leer más» (`ExpandableText`).
   A la portada, cadascuna és un bloc amb foto, descripció curta (el text de la secció, tallat) i enllaç (`explore.tsx`); a la galeria només s'hi arriba pel menú. El menú ho sap a `PAGES` (`site-header.tsx`) i el mapa del web, a `sitemap.ts`.
 - `data-scroll-behavior="smooth"` a `<html>` és el que fa que Next desactivi el scroll suau en canviar de pàgina: sense, la pàgina nova es quedava a baix de tot.
 - A aquestes pàgines no hi ha mapa: «Veure al mapa» no hi surt.
@@ -247,14 +250,21 @@ Res de vídeo ni de models externs si es pot modelar per codi.
 - **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
 - **Allotjaments** (`accommodation-explorer.tsx`): se n'ensenyen 9 (`PAGE_SIZE`) i «Ver más» n'afegeix 9 més fins a l'últim; canviar un filtre torna a començar. Les noves pugen per ordre (`.accommodation-card`)
   i el focus va a la primera nova. Cada targeta porta a la pàgina de l'allotjament (`accommodationHref`).
+- **De la targeta a la pàgina de l'allotjament**: la foto de la targeta i la foto gran de la pàgina porten el mateix `<ViewTransition>` de React
+  (`accommodationPhotoTransition(slug)`, classe `accommodation-photo`). En clicar, la navegació de Next és una transició i la foto vola fins al seu lloc
+  mentre la pàgina es construeix al voltant (`.accommodation-build`). A Next 16.3 no cal cap opció a `next.config.ts`. Amb moviment reduït, sense animació.
 - **Pàgina de l'allotjament** (`/[locale]/accommodations/[slug]`, com la d'holacamp): fotos en mosaic (`AccommodationGallery`, obre `Lightbox`), dades amb icona (`accommodation-parts.tsx`),
   distribució dels llits i equipament amb icona (`bedLayout` i `amenities` a `src/lib/content/equipment.ts`, amb proves: paraules clau en els 5 idiomes; el que no reconeix porta la icona genèrica),
   el càmping (text de la benvinguda), els serveis, la zona i altres allotjaments del mateix tipus. La reserva va al costat i fixa a l'escriptori, i en una barra a baix al mòbil.
   Es construeix per ordre (`.accommodation-build`, només desplaçament: la primera foto pot ser l'LCP). És al mapa del web (`sitemap.ts`).
 - **«Més que dormir»** (`explore.tsx`, `.explore-*` a `globals.css`): en arribar-hi, la foto s'obre des del centre (`clip-path`) mentre s'aparta el zoom, la ratlla es dibuixa i el text puja per ordre;
   en baixar, la foto es desplaça una mica (`ExploreParallax`: `--shift` només a les que són a la vista, un `requestAnimationFrame` per scroll). Amb moviment reduït, quiet.
-- **«Explora el càmping»** (`map-teaser.tsx`): la imatge flotant del mapa a baix a la dreta. Surt després del hero i s'amaga amb el mapa o el peu a la vista; amb el ratolí s'obre l'etiqueta,
-  i en clicar obre el mapa a pantalla completa (`openMapView`, esdeveniment `camping:map-open` a `src/lib/map/events.ts`).
+- **Mapa flotant** (`map-teaser.tsx`, al layout de `[locale]`: surt a totes les pàgines, sempre): un quadre a baix a la dreta amb la maqueta 3D girant.
+  No és three.js (pesaria a cada pàgina) sinó la volta de la maqueta capturada en 36 fotogrames (`public/map/teaser.webp`, 180 KB; es baixa quan el navegador
+  està ociós; abans i amb moviment reduït, `teaser-still.webp`). Es refà amb `scripts/map-teaser.mjs` si canvia la maqueta. Amb el ratolí surt «Explorar mapa»
+  (al mòbil, sempre). A la portada obre el mapa (`openMapView`, esdeveniment `camping:map-open`); a les altres pàgines porta a `/<idioma>#explora`, i el mapa
+  s'obre en carregar i treu el `#explora` de l'adreça (`src/lib/map/events.ts`). Amb la barra de reservar del mòbil (`.booking-dock`) s'hi posa a sobre.
+  El peu deixa espai a baix a la dreta perquè no tapi els textos legals.
 - three.js no entra a la càrrega inicial: el mapa es carrega amb `dynamic()` quan és a prop **i** qui visita ja
   ha fet alguna cosa (`useInteracted`). Fins llavors fa de fons el plànol dibuixat.
 - El que bloquejava el fil principal i com s'ha resolt (mesurat amb Long Animation Frames i perfil de CPU):

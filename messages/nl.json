@@ -70,7 +70,8 @@
       "food": "Om te eten",
       "icecream": "IJs",
       "drinks": "Om te drinken"
-    }
+    },
+    "places": "Restaurants en bars"
   },
   "pools": {
     "eyebrow": "Water en zon"
@@ -85,7 +86,10 @@
       "title": "Deze week",
       "days": "Kies de dag",
       "empty": "Op deze dag zijn er geen activiteiten."
-    }
+    },
+    "all": "Alle",
+    "activities": "Activiteiten",
+    "filter": "Voor wie"
   },
   "map": {
     "viewer": "Interactieve 3D-kaart van de camping",
@@ -130,7 +134,7 @@
     },
     "back": "Kaart verlaten",
     "closeCard": "Kaartje sluiten",
-    "teaser": "Verken de camping"
+    "teaser": "Verken de kaart"
   },
   "testimonials": {
     "via": "op {source}",
@@ -222,5 +226,8 @@
   },
   "explore": {
     "cta": "Meer bekijken"
+  },
+  "services": {
+    "title": "Alles op de camping"
   }
 }
