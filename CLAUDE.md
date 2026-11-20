@@ -67,7 +67,9 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
   Cada targeta porta el logo de la plataforma (`PlatformLogo`; quina és, pel nom, a `src/lib/content/review-platforms.ts`, amb proves): Google i Tripadvisor, dibuixos de
   Simple Icons (CC0); Booking.com i Campings.com, una insígnia amb la inicial i el seu color; la resta, la inicial sobre gris.
   Cap nota al codi; tampoc copiem ressenyes senceres de Google o Tripadvisor (són text de tercers): les opinions les tria i les escriu el client.
-  De les cinc opinions del web antic, tres són en esborrany a propòsit (parlen de la COVID, d'una mascareta o es queixen d'un operador): no es publiquen.
+  Les opinions van en carrusel (`ReviewCarousel`: tres a la vista a l'escriptori, una i mig al mòbil, fletxes que avancen una targeta i que no surten si totes hi caben)
+  i només hi surten les de cinc estrelles (tria de disseny, a `testimonials.tsx`). De les cinc del web antic, les de Roko G i Jasmina T es van publicar retallades amb «[…]»
+  (sense una queixa d'un operador i un comentari d'una mascareta); la d'Estepada continua en esborrany (sense la COVID diria una altra cosa).
 - **Contacte** (`contact.tsx`, secció `contact`, l'últim bloc de la portada): el menú «Contacte» hi porta (el peu és `#footer`). Títol i frase de la secció;
   telèfon, correus, adreça i temporada de les dades generals, i el botó de reservar.
 - **«El teu viatge»** llegeix la web des de `brandSiteUrl` (`src/lib/site-url.ts`): el domini del càmping, no `siteUrl`, que a Vercel sense domini és
@@ -272,7 +274,7 @@ Res de vídeo ni de models externs si es pot modelar per codi.
 - **«Més que dormir»** (`explore.tsx`, `.explore-*` a `globals.css`): en arribar-hi, la foto s'obre des del centre (`clip-path`) mentre s'aparta el zoom, la ratlla es dibuixa i el text puja per ordre;
   en baixar, la foto es desplaça una mica (`ExploreParallax`: `--shift` només a les que són a la vista, un `requestAnimationFrame` per scroll). Amb moviment reduït, quiet.
 - **Mapa flotant** (`map-teaser.tsx`, al layout de `[locale]`: surt a totes les pàgines, sempre): un quadre a baix a la dreta amb la maqueta 3D girant.
-  No és three.js (pesaria a cada pàgina) sinó la volta de la maqueta capturada en 120 fotogrames i feta vídeo (`public/map/teaser.mp4`, 120 KB, 30 fps;
+  No és three.js (pesaria a cada pàgina) sinó la volta de la maqueta capturada en 240 fotogrames i feta vídeo (`public/map/teaser.mp4`, 140 KB, 24 fps: una volta cada 10 s;
   es posa quan el navegador està ociós; abans i amb moviment reduït, `teaser-still.webp`). Vídeo i no WebP animat: el vídeo el descodifica el xip
   del mòbil; el WebP, el processador fotograma a fotograma, i anava a salts. Es refà amb `scripts/map-teaser.mjs` si canvia la maqueta. Amb el ratolí surt «Explorar mapa»
   (al mòbil, sempre). A la portada obre el mapa (`openMapView`, esdeveniment `camping:map-open`); a les altres pàgines porta a `/<idioma>#explora`, i el mapa

@@ -140,7 +140,9 @@
     "via": "a {source}",
     "reviews": "{count, plural, one {# opinió} other {# opinions}}",
     "score": "{rating} de {scale}",
-    "seeOn": "Opinions a {platform}"
+    "seeOn": "Opinions a {platform}",
+    "previous": "Opinió anterior",
+    "next": "Opinió següent"
   },
   "footer": {
     "contact": "Contacte",
