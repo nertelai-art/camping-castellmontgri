@@ -1,5 +1,7 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { LEGAL_PAGES, type LegalSlug } from "@/lib/content/legal";
+import { nertelCreditUrl } from "@/lib/nertel-credit";
 import { MediaImage } from "@/components/media-image";
 import { bookingLink } from "@/lib/booking/link";
 import { directionsUrl, formatDayMonth } from "@/lib/content/format";
@@ -97,6 +99,19 @@ export async function SiteFooter({ settings, accreditations, locale }: { setting
             {t("license")}: {settings.licenseCode}
           </p>
         )}
+      </div>
+
+      {/* Qui ha fet la web. Franja pròpia sota el peu, discreta, que porta a nertel.ai. */}
+      <div className="border-t border-on-dark/10 bg-black/20">
+        <div className="mx-auto flex max-w-7xl justify-center px-4 py-4 sm:px-6 lg:px-8">
+          <a href={nertelCreditUrl(locale)} target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-xs text-on-dark/70 transition hover:text-on-dark">
+            <span>{t("madeBy")}</span>
+            {/* El blau marí del símbol és per a fons clars: sobre l'oliva fosc del peu s'aclareix perquè es vegi sencer. */}
+            <Image src="/images/logos/nertel-mark.png" alt="" width={116} height={96} className="h-6 w-auto brightness-[2.2] saturate-[1.2]" />
+            {/* Lato només es carrega a 400 i 700: res de seminegreta. */}
+            <span className="text-sm font-bold tracking-tight text-on-dark">Nertel</span>
+          </a>
+        </div>
       </div>
     </footer>
   );
