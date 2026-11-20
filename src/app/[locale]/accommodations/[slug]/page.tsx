@@ -99,7 +99,7 @@ export default async function AccommodationPage({ params }: PageProps<"/[locale]
           </ol>
         </nav>
 
-        <AccommodationGallery photos={photos} name={a.name} />
+        <AccommodationGallery photos={photos} name={a.name} slug={a.slug} />
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-16">
           <div className="min-w-0">
@@ -301,7 +301,7 @@ export default async function AccommodationPage({ params }: PageProps<"/[locale]
 
       {/* Al mòbil, la reserva sempre a mà. */}
       {settings.bookingUrl && (
-        <div className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-4 border-t border-line bg-card/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
+        <div className="booking-dock fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-4 border-t border-line bg-card/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur lg:hidden">
           <Price value={a.priceFrom} />
           <a href={bookingLink(settings.bookingUrl, { locale })} target="_blank" rel="noopener" className="ml-auto rounded-full bg-band-olive px-6 py-3 font-bold text-on-dark">
             {tNav("book")}

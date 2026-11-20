@@ -12,7 +12,7 @@ import { RichText } from "@/components/rich-text";
 import type { MapViewerHandle } from "@/components/scene/MapScene";
 import { WebGLBoundary } from "@/components/scene/webgl-boundary";
 import { useInteracted, useNearViewport, useReducedMotion, useRenderMode } from "@/components/scene/scroll-scene";
-import { MAP_FOCUS_EVENT, MAP_OPEN_EVENT, targetKey } from "@/lib/map/events";
+import { MAP_FOCUS_EVENT, MAP_OPEN_EVENT, MAP_OPEN_HASH, targetKey } from "@/lib/map/events";
 import { KIND_COLOR, MAP_KINDS as KINDS, type MapKind as Kind } from "@/lib/map/kinds";
 import type { MapPlot } from "@/lib/map/plots";
 import type { MapPoint, MapTarget } from "@/lib/supabase/content";
@@ -214,6 +214,11 @@ export function MapExplorer({ image, points, places, heading }: Props) {
     };
     window.addEventListener(MAP_FOCUS_EVENT, onFocus);
     window.addEventListener(MAP_OPEN_EVENT, openMap);
+    // Arribar des del mapa flotant d'una altra pàgina (`/es#explora`): s'obre de seguida i l'adreça queda neta.
+    if (window.location.hash === `#${MAP_OPEN_HASH}`) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      openMap();
+    }
     return () => {
       window.removeEventListener(MAP_FOCUS_EVENT, onFocus);
       window.removeEventListener(MAP_OPEN_EVENT, openMap);

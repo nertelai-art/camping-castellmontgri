@@ -12,7 +12,6 @@ import { CampgroundJsonLd } from "@/components/site/json-ld";
 import { TripPlanner } from "@/components/site/trip-planner";
 import type { Place } from "@/components/site/map-explorer";
 import { MapSection } from "@/components/site/map-section";
-import { MapTeaser } from "@/components/site/map-teaser";
 import { RevealOnScroll } from "@/components/site/reveal-on-scroll";
 import { SectionHeading } from "@/components/site/section-heading";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -121,7 +120,6 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         {homeBlocks(Object.keys(sections)).map((key) => render[key]())}
       </main>
       <SiteFooter settings={settings} accreditations={accreditations} locale={locale} />
-      {sections.map && sections.map.media && <MapTeaser />}
       <RevealOnScroll />
       <AnchorSettle />
     </>

@@ -15,7 +15,7 @@ export default async function EntertainmentPage({ params }: PageProps<"/[locale]
   if (!sections.entertainment) notFound();
   return (
     <Subpage locale={locale}>
-      <Entertainment section={sections.entertainment} activities={activities} level={1} />
+      <Entertainment section={sections.entertainment} activities={activities} />
     </Subpage>
   );
 }

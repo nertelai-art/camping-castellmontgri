@@ -70,7 +70,8 @@
       "food": "To eat",
       "icecream": "Ice cream",
       "drinks": "To drink"
-    }
+    },
+    "places": "Restaurants and bars"
   },
   "pools": {
     "eyebrow": "Water and sun"
@@ -85,7 +86,10 @@
       "title": "This week",
       "days": "Choose the day",
       "empty": "There are no activities on this day."
-    }
+    },
+    "all": "All",
+    "activities": "Activities",
+    "filter": "Who it's for"
   },
   "map": {
     "viewer": "Interactive 3D campsite map",
@@ -130,7 +134,7 @@
     },
     "back": "Leave the map",
     "closeCard": "Close the card",
-    "teaser": "Explore the campsite"
+    "teaser": "Explore the map"
   },
   "testimonials": {
     "via": "on {source}",
@@ -222,5 +226,8 @@
   },
   "explore": {
     "cta": "See more"
+  },
+  "services": {
+    "title": "Everything at the campsite"
   }
 }

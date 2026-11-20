@@ -70,7 +70,8 @@
       "food": "Para comer",
       "icecream": "Helados",
       "drinks": "Para beber"
-    }
+    },
+    "places": "Restaurantes y bares"
   },
   "pools": {
     "eyebrow": "Agua y sol"
@@ -85,7 +86,10 @@
       "title": "Esta semana",
       "days": "Elige el día",
       "empty": "Este día no hay ninguna actividad."
-    }
+    },
+    "all": "Todas",
+    "activities": "Actividades",
+    "filter": "Para quién"
   },
   "map": {
     "viewer": "Mapa interactivo del camping en 3D",
@@ -130,7 +134,7 @@
     },
     "back": "Salir del mapa",
     "closeCard": "Cerrar la ficha",
-    "teaser": "Explora el camping"
+    "teaser": "Explorar mapa"
   },
   "testimonials": {
     "via": "en {source}",
@@ -222,5 +226,8 @@
   },
   "explore": {
     "cta": "Ver más"
+  },
+  "services": {
+    "title": "Todo lo que hay en el camping"
   }
 }

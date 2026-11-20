@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useRef, useState, ViewTransition } from "react";
+import { accommodationPhotoTransition } from "@/lib/content/accommodation";
 import type { MediaRef } from "@/lib/supabase/media";
 import { Lightbox } from "./image-gallery";
 
@@ -10,7 +11,7 @@ import { Lightbox } from "./image-gallery";
  * Les fotos de la pàgina d'un allotjament: a l'escriptori, una de gran i quatre de petites al costat; al mòbil, una tira que llisca.
  * Qualsevol foto, o «Veure les N fotos», obre la galeria a pantalla completa.
  */
-export function AccommodationGallery({ photos, name }: { photos: MediaRef[]; name: string }) {
+export function AccommodationGallery({ photos, name, slug }: { photos: MediaRef[]; name: string; slug: string }) {
   const t = useTranslations("accommodation");
   const dialog = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0);
@@ -35,15 +36,29 @@ export function AccommodationGallery({ photos, name }: { photos: MediaRef[]; nam
               aria-label={t("photo", { index: i + 1, total: photos.length })}
               className="group relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-3xl bg-paper-2 md:aspect-auto md:h-full md:rounded-none"
             >
-              <Image
-                src={photo.src}
-                alt={i === 0 ? photo.alt : ""}
-                fill
-                priority={i === 0}
-                sizes={i === 0 ? "(min-width: 768px) 50vw, 85vw" : "(min-width: 768px) 25vw, 85vw"}
-                className="object-cover transition duration-700 group-hover:scale-105"
-                style={{ objectPosition: photo.position }}
-              />
+              {i === 0 ? (
+                // La foto de la targeta arriba volant aquí (mateix nom de transició).
+                <ViewTransition name={accommodationPhotoTransition(slug)} share="accommodation-photo">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    priority
+                    sizes="(min-width: 768px) 50vw, 85vw"
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    style={{ objectPosition: photo.position }}
+                  />
+                </ViewTransition>
+              ) : (
+                <Image
+                  src={photo.src}
+                  alt=""
+                  fill
+                  sizes="(min-width: 768px) 25vw, 85vw"
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                  style={{ objectPosition: photo.position }}
+                />
+              )}
             </button>
           </li>
         ))}

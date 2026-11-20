@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
-import { useId, useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState, ViewTransition } from "react";
 import { bookingLink } from "@/lib/booking/link";
-import { accommodationHref } from "@/lib/content/accommodation";
+import { accommodationHref, accommodationPhotoTransition } from "@/lib/content/accommodation";
 import { Price, Specs } from "./accommodation-parts";
 import { ShowOnMapButton } from "./show-on-map-button";
 import type { Accommodation, AccommodationCategory, MapTarget } from "@/lib/supabase/content";
@@ -122,14 +122,17 @@ export function AccommodationExplorer({ categories, bookingUrl, onMap = [] }: Pr
                 >
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-paper-2">
                     {a.cover && (
-                      <Image
-                        src={a.cover.src}
-                        alt=""
-                        fill
-                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                        className="object-cover transition duration-700 group-hover/card:scale-105"
-                        style={{ objectPosition: a.cover.position }}
-                      />
+                      // La mateixa transició que la foto gran de la pàgina de l'allotjament: en clicar, la foto hi vola.
+                      <ViewTransition name={accommodationPhotoTransition(a.slug)} share="accommodation-photo">
+                        <Image
+                          src={a.cover.src}
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                          className="object-cover transition duration-700 group-hover/card:scale-105"
+                          style={{ objectPosition: a.cover.position }}
+                        />
+                      </ViewTransition>
                     )}
                     {a.isAccessible && (
                       <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-1 text-xs font-bold text-olive">{t("accessible")}</span>
