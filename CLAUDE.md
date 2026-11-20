@@ -274,7 +274,7 @@ Res de vídeo ni de models externs si es pot modelar per codi.
 - **«Més que dormir»** (`explore.tsx`, `.explore-*` a `globals.css`): en arribar-hi, la foto s'obre des del centre (`clip-path`) mentre s'aparta el zoom, la ratlla es dibuixa i el text puja per ordre;
   en baixar, la foto es desplaça una mica (`ExploreParallax`: `--shift` només a les que són a la vista, un `requestAnimationFrame` per scroll). Amb moviment reduït, quiet.
 - **Mapa flotant** (`map-teaser.tsx`, al layout de `[locale]`: surt a totes les pàgines, sempre): un quadre a baix a la dreta amb la maqueta 3D girant.
-  No és three.js (pesaria a cada pàgina) sinó la volta de la maqueta capturada en 240 fotogrames i feta vídeo (`public/map/teaser.mp4`, 140 KB, 24 fps: una volta cada 10 s;
+  No és three.js (pesaria a cada pàgina) sinó la volta de la maqueta capturada en 360 fotogrames (un per grau) i feta vídeo (`public/map/teaser.mp4`, 160 KB, 18 fps: una volta cada 20 s;
   es posa quan el navegador està ociós; abans i amb moviment reduït, `teaser-still.webp`). Vídeo i no WebP animat: el vídeo el descodifica el xip
   del mòbil; el WebP, el processador fotograma a fotograma, i anava a salts. Es refà amb `scripts/map-teaser.mjs` si canvia la maqueta. Amb el ratolí surt «Explorar mapa»
   (al mòbil, sempre). A la portada obre el mapa (`openMapView`, esdeveniment `camping:map-open`); a les altres pàgines porta a `/<idioma>#explora`, i el mapa
