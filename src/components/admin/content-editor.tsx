@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { addGalleryImageAction, deleteContentAction, moveGalleryImageAction, removeGalleryImageAction, replaceImageAction, saveContentAction } from "@/app/admin/actions";
+import { addGalleryImageAction, deleteContentAction, moveGalleryImageAction, removeGalleryImageAction, removeImageAction, replaceImageAction, saveContentAction } from "@/app/admin/actions";
 import type { EntityName } from "@/lib/admin/entities";
 import { editorConfig } from "@/lib/admin/sections";
 import { getGallery, type ContentDetail } from "@/lib/supabase/admin-content";
@@ -34,7 +34,17 @@ export async function ContentEditor({ entity, content, canDelete = true }: { ent
           )}
         </div>
       )}
-      {config.image && <ImageField action={replaceImageAction.bind(null, entity, id)} label={config.image.label} help={config.image.help} current={content.image} />}
+      {config.image && (
+        <ImageField
+          // Quan la foto canvia al servidor (s'ha tret o se n'ha posat una altra), el camp torna a començar amb la nova.
+          key={content.image?.src ?? "sense-foto"}
+          action={replaceImageAction.bind(null, entity, id)}
+          remove={removeImageAction.bind(null, entity, id)}
+          label={config.image.label}
+          help={config.image.help}
+          current={content.image}
+        />
+      )}
       {config.gallery && (
         <GalleryField
           label={config.gallery.label}

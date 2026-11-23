@@ -213,6 +213,16 @@ export async function replaceImage(entity: EntityName, id: string, file: Uploade
 }
 
 /** Mou el punt que no s'ha de retallar de la foto actual. La foto surt de la fila, no del que digui el navegador. */
+/** Treu la foto principal d'un contingut. El fitxer i la fila de `media` es queden: els pot fer servir un altre contingut. */
+export async function removeImage(entity: EntityName, id: string): Promise<string | null> {
+  const config: EntityConfig = ENTITIES[entity];
+  if (!config.image) return "Aquest contingut no té foto.";
+  const { data, error } = await (await db()).from(config.table).update({ [config.image.column]: null }).eq(config.key, id).select(config.key);
+  if (error) return error.message;
+  if (!data?.length) return "No tens permís per modificar aquest contingut, o ja no existeix.";
+  return null;
+}
+
 export async function setImageFocus(entity: EntityName, id: string, focus: Position): Promise<string | null> {
   const config: EntityConfig = ENTITIES[entity];
   if (!config.image) return "Aquest contingut no té foto.";
