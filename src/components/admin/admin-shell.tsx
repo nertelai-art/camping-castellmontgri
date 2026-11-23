@@ -78,7 +78,7 @@ export function AdminShell({ editor, signOut, initialCollapsed, children }: { ed
           </button>
         </div>
 
-        <nav aria-label="Continguts" className="min-h-0 flex-1 overflow-y-auto px-3 py-4 [scrollbar-width:thin]">
+        <nav aria-label="Continguts" className="admin-nav-scroll min-h-0 flex-1 overflow-y-auto px-3 py-4">
           <NavLink href="/admin" title="Tauler" icon="home" current={current === "/admin"} collapsed={collapsed} onClick={close} />
           {NAV_GROUPS.map((group) => (
             <div key={group.title} className="mt-5">

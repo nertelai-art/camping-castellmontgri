@@ -15,3 +15,14 @@ export type TripType = (typeof TRIP_TYPES)[number];
 export const MIN_NIGHTS = 1;
 export const MAX_NIGHTS = 14;
 export const clampNights = (nights: number) => Math.min(MAX_NIGHTS, Math.max(MIN_NIGHTS, nights));
+
+/**
+ * Les peces que el text de cada assistent (editat al panell) pot portar entre claus. Els noms són en català, com el panell.
+ * `{nits}` ja porta la paraula («3 nits», «1 nuit»), perquè el plural depèn de l'idioma.
+ */
+export const TRIP_PLACEHOLDERS = ["nits", "camping", "lloc", "web", "tipus"] as const;
+export type TripPlaceholder = (typeof TRIP_PLACEHOLDERS)[number];
+
+/** Omple el text de l'assistent. Una clau que no és de la llista es deixa tal com està: el panell ja no deixa desar-la. */
+export const fillPrompt = (template: string, values: Record<TripPlaceholder, string>) =>
+  template.replace(/\{([^{}]+)\}/g, (match, name: string) => (Object.hasOwn(values, name) ? values[name as TripPlaceholder] : match));

@@ -33,6 +33,7 @@ import {
   getServices,
   getSiteSettings,
   getTestimonials,
+  getTripAssistants,
   type Section,
 } from "@/lib/supabase/content";
 
@@ -41,7 +42,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  const [settings, sections, categories, services, restaurants, activities, testimonials, platforms, accreditations, mapPoints, flags] =
+  const [settings, sections, categories, services, restaurants, activities, testimonials, platforms, accreditations, mapPoints, flags, assistants] =
     await Promise.all([
       getSiteSettings(locale),
       getSections(locale),
@@ -54,6 +55,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       getAccreditations(locale),
       getMapPoints(locale),
       getMediaByFolder("flags", locale),
+      getTripAssistants(locale),
     ]);
 
   // Fitxes del plànol: el que cal mostrar de cada lloc enllaçat (sense repetir consultes).
@@ -107,7 +109,10 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
     map: () => sections.map && <MapSection key="map" section={sections.map} points={mapPoints} places={places} />,
     directions: () => sections.directions && <Directions key="directions" section={sections.directions} settings={settings} />,
     trip: () =>
-      sections.trip && <TripPlanner key="trip" section={sections.trip} camping={settings.brandName} place={settings.address.locality} url={`${brandSiteUrl}/${locale}`} />,
+      sections.trip &&
+      assistants?.length !== 0 && (
+        <TripPlanner key="trip" section={sections.trip} texts={assistants} camping={settings.brandName} place={settings.address.locality} url={`${brandSiteUrl}/${locale}`} />
+      ),
     contact: () => sections.contact && <Contact key="contact" section={sections.contact} settings={settings} />,
     testimonials: () =>
       sections.testimonials && <Testimonials key="testimonials" section={sections.testimonials} testimonials={testimonials} platforms={platforms} />,
@@ -115,7 +120,15 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
 
   return (
     <>
-      <CampgroundJsonLd settings={settings} url={`${siteUrl}/${locale}`} image={sections.hero?.media?.src} />
+      <CampgroundJsonLd
+        settings={settings}
+        url={`${siteUrl}/${locale}`}
+        image={sections.hero?.media?.src}
+        description={settings.seo.description}
+        // Una cerca de Google Maps no és la fitxa del càmping: no diu quin lloc és.
+        sameAs={platforms.flatMap((p) => (p.url && !p.url.includes("/search") ? [p.url] : []))}
+        amenities={services.map((s) => s.name)}
+      />
       <SiteHeader settings={settings} locale={locale} flags={flags} />
       <main id="main">
         {sections.hero && <Hero section={sections.hero} settings={settings} />}

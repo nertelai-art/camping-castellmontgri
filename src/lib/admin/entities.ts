@@ -5,6 +5,7 @@
 import { routing } from "@/i18n/routing";
 import { MAP_ICONS, type MapIcon } from "@/lib/map/icons";
 import { MAP_KINDS, type MapKind } from "@/lib/map/kinds";
+import { TRIP_PLACEHOLDERS } from "@/lib/trip/assistants";
 
 export const LOCALES = routing.locales;
 export type Locale = (typeof LOCALES)[number];
@@ -20,6 +21,8 @@ type TextField = {
   list?: boolean;
   /** L'adreça d'un PDF que es pot pujar des del formulari, a aquesta carpeta del bucket. */
   pdfFolder?: string;
+  /** Les úniques paraules que el text pot portar entre claus («{nits}»): la web les omple. */
+  placeholders?: readonly string[];
 };
 export type BaseField =
   | { name: string; label: string; help?: string; kind: "text"; required?: boolean; long?: boolean }
@@ -66,14 +69,15 @@ export type EntityConfig = {
   /** L'ordre de la llista és el de la web (`sort_order`) i es pot canviar des del panell. */
   sortable?: boolean;
   /** La foto principal: la columna de la taula base que apunta a `media`. */
-  image?: { column: string; label: string };
+  image?: { column: string; label: string; help?: string };
   /** La galeria de fotos: la taula que lliga el contingut amb `media` (amb `media_id` i `sort_order`). */
   gallery?: {
     table: string;
     foreignKey: string;
     label: string;
-    /** Només aquestes files tenen galeria (de les seccions, només la que ensenya la galeria). */
-    only?: readonly string[];
+    help?: string;
+    /** Quantes fotos hi caben a la web. Sense, totes. */
+    max?: number;
   };
   /** Etiquetes de caché que s'invaliden en desar: les taules des d'on la web llegeix aquest contingut. */
   tags: readonly string[];
@@ -140,7 +144,8 @@ export const ENTITIES = {
     description: "El títol i el text de cada bloc de la portada, de cada pàgina del web i de les pàgines legals. A les pàgines legals, un paràgraf que comença amb «## » és un títol i amb «### », un subtítol.",
     table: "sections",
     image: { column: "media_id", label: "Foto de la secció" },
-    gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria", only: ["gallery", "welcome"] },
+    // Quina foto, quina galeria i quins textos fa servir cada secció ho diu `SECTION_LAYOUTS` (sections.ts).
+    gallery: { table: "section_media", foreignKey: "section_key", label: "Fotos de la galeria" },
     key: "key",
     translations: "section_translations",
     foreignKey: "section_key",
@@ -149,7 +154,6 @@ export const ENTITIES = {
       { name: "title", label: "Títol", required: true },
       { name: "body", label: "Text", long: true, help: RICH },
       { name: "highlight", label: "Frase destacada" },
-      { name: "cta_label", label: "Text del botó" },
     ],
     base: [{ name: "is_visible", label: "Es veu a la web", kind: "boolean" }],
     tags: ["sections"],
@@ -335,6 +339,29 @@ export const ENTITIES = {
     create: { defaults: { platform: "Plataforma nova", rating: 10, scale: 10 } },
     tags: ["review_platforms"],
   },
+  trip_assistants: {
+    title: "Assistents d'IA",
+    singular: "assistent",
+    description: "«El teu viatge, amb la IA», a la portada: el text de la finestra de ChatGPT, Claude i Gemini. Un assistent en esborrany no hi surt.",
+    table: "trip_assistants",
+    sortable: true,
+    key: "key",
+    nameField: "name",
+    translations: "trip_assistant_translations",
+    foreignKey: "assistant_key",
+    text: [
+      { name: "greeting", label: "Salutació", required: true, help: "La frase gran de la finestra, com «Què planifiquem?»." },
+      {
+        name: "prompt",
+        label: "Text que s'envia a l'assistent",
+        long: true,
+        placeholders: TRIP_PLACEHOLDERS,
+        help: "La web hi posa el que ha triat qui visita: {nits} («3 nits»), {camping} (el nom), {lloc} (la població), {web} (l'adreça de la web) i {tipus} («En família»…). Buit: el text de sempre.",
+      },
+    ],
+    base: [{ name: "name", label: "Nom al botó", kind: "text", required: true, help: "Com surt al botó: «ChatGPT», «Claude», «Gemini»." }, STATUS],
+    tags: ["trip_assistants"],
+  },
   site_settings: {
     title: "Dades generals",
     singular: "dades",
@@ -475,6 +502,10 @@ export function parseContent(config: EntityConfig, form: FormData): ParseResult 
       if (field.required && !values[field.name]) errors.push(`${LOCALE_NAMES[locale]}: falta «${field.label}».`);
       if (field.name.endsWith("_url") && values[field.name] && !/^https?:\/\//.test(values[field.name]!)) {
         errors.push(`${LOCALE_NAMES[locale]}: «${field.label}» ha de començar per https://`);
+      }
+      if (field.placeholders) {
+        const unknown = [...values[field.name]!.matchAll(/\{([^{}]*)\}/g)].map((m) => m[1]!).filter((name) => !field.placeholders!.includes(name));
+        if (unknown.length) errors.push(`${LOCALE_NAMES[locale]}: a «${field.label}», ${unknown.map((name) => `{${name}}`).join(", ")} no és cap de les paraules que la web omple.`);
       }
     }
     translations[locale] = values;

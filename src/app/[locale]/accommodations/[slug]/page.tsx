@@ -13,10 +13,12 @@ import { RevealOnScroll } from "@/components/site/reveal-on-scroll";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { routing } from "@/i18n/routing";
+import { metaDescription, pageMetadata } from "@/lib/seo/metadata";
+import { siteUrl } from "@/lib/site-url";
+import { AccommodationJsonLd, BreadcrumbJsonLd } from "@/components/site/json-ld";
 import { bookingLink } from "@/lib/booking/link";
 import { accommodationHref } from "@/lib/content/accommodation";
 import { amenities, bedLayout } from "@/lib/content/equipment";
-import { paragraphs } from "@/lib/content/rich-text";
 import {
   getAccommodationCategories,
   getAccreditations,
@@ -43,16 +45,14 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/accommod
   const [{ brandName }, found] = await Promise.all([getSiteSettings(locale), findAccommodation(locale, slug)]);
   if (!found) return {};
   const { accommodation: a } = found;
-  const path = `accommodations/${slug}`;
-  return {
+  return pageMetadata({
+    locale,
+    path: `accommodations/${slug}`,
     title: `${a.name} · ${brandName}`,
-    description: paragraphs(a.description)[0]?.replace(/\*\*/g, "") ?? undefined,
-    alternates: {
-      canonical: `/${locale}/${path}`,
-      languages: { ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}/${path}`])), "x-default": `/${routing.defaultLocale}/${path}` },
-    },
-    openGraph: a.cover ? { images: [{ url: a.cover.src }] } : undefined,
-  };
+    description: metaDescription(a.description),
+    image: a.cover?.src,
+    siteName: brandName,
+  });
 }
 
 export default async function AccommodationPage({ params }: PageProps<"/[locale]/accommodations/[slug]">) {
@@ -85,6 +85,19 @@ export default async function AccommodationPage({ params }: PageProps<"/[locale]
   return (
     <>
       <SiteHeader settings={settings} locale={locale} flags={flags} home={false} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: t("home"), url: `${siteUrl}/${locale}` },
+          { name: tNav("accommodation"), url: `${siteUrl}/${locale}/accommodations` },
+          { name: a.name },
+        ]}
+      />
+      <AccommodationJsonLd
+        accommodation={a}
+        url={`${siteUrl}/${locale}/accommodations/${a.slug}`}
+        description={metaDescription(a.description, 300)}
+        amenities={equipment.map((item) => item.text)}
+      />
       <main id="main" data-edit={`accommodations:${a.slug}`} className="mx-auto max-w-7xl px-4 pb-24 pt-6 sm:px-6 lg:px-8 lg:pb-32">
         <nav aria-label={t("breadcrumb")} className="mb-5 text-sm text-muted">
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -95,7 +108,7 @@ export default async function AccommodationPage({ params }: PageProps<"/[locale]
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link href={`/${locale}#accommodation`} className="hover:text-olive hover:underline">
+              <Link href={`/${locale}/accommodations`} className="hover:text-olive hover:underline">
                 {tNav("accommodation")}
               </Link>
             </li>
