@@ -3,7 +3,7 @@
 // La foto d'un contingut: ensenya la que hi ha, en deixa triar una de nova (reduïda al navegador, `to-jpeg.ts`) i
 // deixa marcar-hi el punt que no s'ha de retallar. Al costat es veu com queda en les proporcions que fa servir la web.
 
-import { startTransition, useActionState, useEffect, useRef, useState } from "react";
+import { startTransition, useActionState, useEffect, useRef, useState, useTransition } from "react";
 import type { FormState } from "@/app/admin/actions";
 import { toJpeg, type Picked } from "./to-jpeg";
 import { CENTER, focusPosition } from "@/lib/content/focus";
@@ -15,6 +15,8 @@ type Props = {
   label: string;
   /** Què és aquesta foto a la web. */
   help?: string;
+  /** Treu la foto del contingut (el fitxer es queda a `media`). */
+  remove?: () => Promise<FormState>;
   current: { src: string; width: number | null; height: number | null; focus: Position } | null;
 };
 
@@ -24,7 +26,7 @@ const CROPS = [
   { name: "Mòbil", className: "aspect-[3/4]" },
 ];
 
-export function ImageField({ action, label, help, current }: Props) {
+export function ImageField({ action, label, help, remove, current }: Props) {
   const [state, submit, pending] = useActionState<FormState, FormData>(action, {});
   const [picked, setPicked] = useState<Picked | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
@@ -32,6 +34,10 @@ export function ImageField({ action, label, help, current }: Props) {
   // L'últim que s'ha enviat: si s'ha desat bé, és el que ja hi ha a la web.
   const [sent, setSent] = useState<{ picked: Picked | null; focus: Position } | null>(null);
   const input = useRef<HTMLInputElement>(null);
+  // Treure la foto: dos clics, perquè no es faci sense voler.
+  const [confirming, setConfirming] = useState(false);
+  const [removing, startRemoving] = useTransition();
+  const [removeError, setRemoveError] = useState<string[] | null>(null);
 
   useEffect(() => {
     if (state.savedAt) window.dispatchEvent(new Event(SAVED_EVENT));
@@ -118,6 +124,33 @@ export function ImageField({ action, label, help, current }: Props) {
             <button type="button" onClick={() => input.current?.click()} className="rounded-full border border-line px-5 py-2.5 font-bold transition hover:border-olive">
               {current || picked ? "Tria una altra foto" : "Tria una foto"}
             </button>
+            {remove && current && !dirty && !confirming && (
+              <button type="button" disabled={removing} onClick={() => setConfirming(true)} className="font-bold text-terra hover:underline">
+                Treu la foto
+              </button>
+            )}
+            {remove && current && !dirty && confirming && (
+              <>
+                <button
+                  type="button"
+                  disabled={removing}
+                  onClick={() =>
+                    startRemoving(async () => {
+                      const result = await remove();
+                      setConfirming(false);
+                      setRemoveError(result.errors ?? null);
+                      if (!result.errors) window.dispatchEvent(new Event(SAVED_EVENT));
+                    })
+                  }
+                  className="rounded-full bg-band-terra px-5 py-2.5 font-bold text-on-dark transition hover:brightness-110 disabled:opacity-60"
+                >
+                  {removing ? "Traient…" : "Sí, treu-la"}
+                </button>
+                <button type="button" disabled={removing} onClick={() => setConfirming(false)} className="font-bold text-muted hover:underline">
+                  No
+                </button>
+              </>
+            )}
             {dirty && (
               <>
                 <button
@@ -156,7 +189,13 @@ export function ImageField({ action, label, help, current }: Props) {
               </p>
             )}
             {saved && <p className="text-olive">Foto desada. Ja es veu a la web.</p>}
+            {confirming && !removing && <p className="font-normal text-muted">La foto deixarà de sortir a la web. El fitxer no s&apos;esborra: la pots tornar a pujar.</p>}
             {problem && <p className="text-terra">{problem}</p>}
+            {removeError?.map((error) => (
+              <p key={error} className="text-terra">
+                {error}
+              </p>
+            ))}
             {state.errors?.map((error) => (
               <p key={error} className="text-terra">
                 {error}
