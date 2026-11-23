@@ -100,6 +100,35 @@ body {
   }
 }
 
+/* La barra de scroll del menú del panell: el fons és el del menú (verd fosc) i la barra, clara i fina. Igual que la de la pàgina,
+   `scrollbar-width` i `scrollbar-color` només per a qui no sap fer `::-webkit-scrollbar`. */
+@supports selector(::-webkit-scrollbar) {
+  .admin-nav-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .admin-nav-scroll::-webkit-scrollbar-track {
+    background: var(--band-olive);
+  }
+
+  .admin-nav-scroll::-webkit-scrollbar-thumb {
+    border: 3px solid var(--band-olive);
+    border-radius: 999px;
+    background: rgb(251 251 248 / 0.28);
+  }
+
+  .admin-nav-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgb(251 251 248 / 0.5);
+  }
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .admin-nav-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(251 251 248 / 0.35) var(--band-olive);
+  }
+}
+
 .font-display {
   font-family: var(--font-display);
   font-variation-settings: "SOFT" 100;
