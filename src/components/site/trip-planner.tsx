@@ -2,9 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { ASSISTANTS, clampNights, MAX_NIGHTS, MIN_NIGHTS, TRIP_TYPES, type AssistantKey, type TripType } from "@/lib/trip/assistants";
+import { ASSISTANTS, clampNights, fillPrompt, MAX_NIGHTS, MIN_NIGHTS, TRIP_TYPES, type AssistantKey, type TripType } from "@/lib/trip/assistants";
 import { AssistantLogo } from "./ai-logos";
-import type { Section } from "@/lib/supabase/content";
+import type { Section, TripAssistantText } from "@/lib/supabase/content";
 import { SectionHeading } from "./section-heading";
 
 // Icones dels tipus de viatge (traç de 24 px).
@@ -15,15 +15,34 @@ const TYPE_ICON: Record<TripType, string> = {
   culture: "M4 20h16M5 10h14M12 4l8 6H4zM7 10v10M12 10v10M17 10v10",
 };
 
+type Props = {
+  section: Section;
+  /** El text de cada assistent, del panell, en l'ordre i només els que es veuen. `null`: els de `messages/`, per a tots tres. */
+  texts: TripAssistantText[] | null;
+  camping: string;
+  place: string | null;
+  url: string;
+};
+
 /** «El teu viatge, amb la IA»: tria nits i tipus de viatge, i el text va a l'assistent de cadascú. No s'envia res a cap servidor nostre. */
-export function TripPlanner({ section, camping, place, url }: { section: Section; camping: string; place: string | null; url: string }) {
+export function TripPlanner({ section, texts, camping, place, url }: Props) {
   const t = useTranslations("trip");
+  const assistants = texts
+    ? texts.flatMap((text) => {
+        const assistant = ASSISTANTS.find((a) => a.key === text.key);
+        return assistant ? [{ ...assistant, name: text.name, greeting: text.greeting, template: text.prompt }] : [];
+      })
+    : ASSISTANTS.map((assistant) => ({ ...assistant, greeting: t("greeting"), template: null }));
   const [nights, setNights] = useState(3);
   const [type, setType] = useState<TripType>("family");
-  const [assistantKey, setAssistantKey] = useState<AssistantKey>("chatgpt");
+  const [assistantKey, setAssistantKey] = useState<AssistantKey>(assistants[0]?.key ?? "chatgpt");
   const [copied, setCopied] = useState(false);
-  const assistant = ASSISTANTS.find((a) => a.key === assistantKey) ?? ASSISTANTS[0];
-  const prompt = t("prompt", { nights, camping, place: place ?? "", url, type: t(`types.${type}`) });
+  const assistant = assistants.find((a) => a.key === assistantKey) ?? assistants[0];
+  if (!assistant) return null;
+  const tripType = t(`types.${type}`);
+  const prompt = assistant.template
+    ? fillPrompt(assistant.template, { nits: `${nights} ${t("nightsLabel", { count: nights })}`, camping, lloc: place ?? "", web: url, tipus: tripType })
+    : t("prompt", { nights, camping, place: place ?? "", url, type: tripType });
 
   const copy = async () => {
     // Sense permís per copiar, el text continua a la vista i es pot seleccionar.
@@ -78,7 +97,7 @@ export function TripPlanner({ section, camping, place, url }: { section: Section
 
         <div className="reveal">
           <div role="group" aria-label={t("chooseAssistant")} className="mb-3 flex gap-1.5 rounded-full border border-line bg-card p-1.5">
-            {ASSISTANTS.map((a) => (
+            {assistants.map((a) => (
               <button
                 key={a.key}
                 type="button"
@@ -93,12 +112,14 @@ export function TripPlanner({ section, camping, place, url }: { section: Section
           </div>
 
           {/* Una finestra amb l'aspecte de l'assistent triat, amb el text a punt d'enviar. */}
-          <div data-assistant={assistant.key} className="trip-chat flex min-h-[27rem] flex-col rounded-[2rem] p-5 shadow-[0_30px_60px_-30px_rgb(35_42_20/.6)] sm:p-7">
+          <div data-assistant={assistant.key} data-edit={texts ? `trip_assistants:${assistant.key}` : undefined} className="trip-chat flex min-h-[27rem] flex-col rounded-[2rem] p-5 shadow-[0_30px_60px_-30px_rgb(35_42_20/.6)] sm:p-7">
             <div className="flex items-center gap-2.5 font-bold">
               <AssistantLogo assistant={assistant.key} className="size-6 text-[var(--chat-logo)]" />
               {assistant.name}
             </div>
-            <p className="trip-greeting font-display mt-6 text-2xl sm:text-3xl">{t("greeting")}</p>
+            <p data-edit-field="greeting" className="trip-greeting font-display mt-6 text-2xl sm:text-3xl">
+              {assistant.greeting}
+            </p>
 
             <p aria-live="polite" className="mt-5 ml-auto max-w-[94%] rounded-3xl rounded-br-md bg-[var(--chat-bubble)] px-5 py-4 text-[0.95rem] leading-relaxed">
               {prompt}

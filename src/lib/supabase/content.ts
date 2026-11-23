@@ -71,13 +71,12 @@ export type Section = {
   title: string;
   body: string | null;
   highlight: string | null;
-  ctaLabel: string | null;
   media: MediaRef | null;
   /** Les fotos de la secció, si en té (la galeria de la portada). */
   gallery: MediaRef[];
 };
 
-const SECTION = `key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, eyebrow, title, body, highlight, cta_label), section_media(sort_order, media(${MEDIA}))`;
+const SECTION = `key, sort_order, media:media!sections_media_id_fkey(${MEDIA}), section_translations(locale, eyebrow, title, body, highlight), section_media(sort_order, media(${MEDIA}))`;
 
 /** Seccions visibles, indexades per clau (`hero`, `welcome`, `gastronomy`…). */
 export async function getSections(locale: Locale): Promise<Record<string, Section>> {
@@ -101,7 +100,7 @@ export async function getSection(locale: Locale, key: string): Promise<Section |
   return toSections(unwrap(result, `la secció ${key}`), locale)[key] ?? null;
 }
 
-type RawSection = { key: string; media: Parameters<typeof toMedia>[0]; section_translations: { locale: string; eyebrow: string | null; title: string; body: string | null; highlight: string | null; cta_label: string | null }[]; section_media: { sort_order: number; media: Parameters<typeof toMedia>[0] }[] };
+type RawSection = { key: string; media: Parameters<typeof toMedia>[0]; section_translations: { locale: string; eyebrow: string | null; title: string; body: string | null; highlight: string | null }[]; section_media: { sort_order: number; media: Parameters<typeof toMedia>[0] }[] };
 
 function toSections(rows: RawSection[], locale: Locale): Record<string, Section> {
   const sections: Record<string, Section> = {};
@@ -114,7 +113,6 @@ function toSections(rows: RawSection[], locale: Locale): Record<string, Section>
       title: t.title,
       body: t.body,
       highlight: t.highlight,
-      ctaLabel: t.cta_label,
       media: toMedia(s.media, locale, t.title),
       gallery: [...s.section_media]
         .sort((x, y) => x.sort_order - y.sort_order)
@@ -309,6 +307,25 @@ export async function getReviewPlatforms() {
   }));
 }
 export type ReviewPlatform = Awaited<ReturnType<typeof getReviewPlatforms>>[number];
+
+// ─── «El teu viatge, amb la IA» ──────────────────────────────────────────────
+/**
+ * El text de cada assistent (ChatGPT, Claude, Gemini) en aquest idioma, en l'ordre del panell i només els que es veuen.
+ * `null` si la base de dades encara no té la taula (la migració 20261123100000 no s'hi ha aplicat): la web fa servir els textos de `messages/`.
+ */
+export async function getTripAssistants(locale: Locale) {
+  const result = await contentClient()
+    .from("trip_assistants")
+    .select("key, name, trip_assistant_translations(locale, greeting, prompt)")
+    .in("trip_assistant_translations.locale", localesFor(locale))
+    .order("sort_order");
+  if (result.error?.code === "PGRST205") return null;
+  return unwrap(result, "els assistents del viatge").flatMap((a) => {
+    const t = pickTranslation(a.trip_assistant_translations, locale);
+    return t ? [{ key: a.key, name: a.name, greeting: t.greeting, prompt: t.prompt || null }] : [];
+  });
+}
+export type TripAssistantText = NonNullable<Awaited<ReturnType<typeof getTripAssistants>>>[number];
 
 // ─── Imatges soltes per carpeta (entorn, acreditacions) ─────────────────────
 export async function getMediaByFolder(folder: string, locale: Locale) {

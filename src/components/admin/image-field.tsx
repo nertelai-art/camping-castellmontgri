@@ -13,6 +13,8 @@ import { nudge, pointerPosition, type Position } from "@/lib/map/position";
 type Props = {
   action: (state: FormState, form: FormData) => Promise<FormState>;
   label: string;
+  /** Què és aquesta foto a la web. */
+  help?: string;
   current: { src: string; width: number | null; height: number | null; focus: Position } | null;
 };
 
@@ -22,7 +24,7 @@ const CROPS = [
   { name: "Mòbil", className: "aspect-[3/4]" },
 ];
 
-export function ImageField({ action, label, current }: Props) {
+export function ImageField({ action, label, help, current }: Props) {
   const [state, submit, pending] = useActionState<FormState, FormData>(action, {});
   const [picked, setPicked] = useState<Picked | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
@@ -53,6 +55,7 @@ export function ImageField({ action, label, current }: Props) {
   return (
     <section aria-label={label} className="@container mt-8 max-w-3xl rounded-3xl border border-line bg-card p-6">
       <h2 className="text-sm font-bold uppercase tracking-[0.18em] text-muted">{label}</h2>
+      {help && <p className="mt-2 text-base text-muted">{help}</p>}
       <div className="mt-4 grid gap-5 @xl:grid-cols-[minmax(0,18rem)_1fr] @xl:items-start">
         {src && shown ? (
           <div

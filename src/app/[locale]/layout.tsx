@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { MapTeaser } from "@/components/site/map-teaser";
 import { routing } from "@/i18n/routing";
+import { pageMetadata } from "@/lib/seo/metadata";
 import { siteUrl } from "@/lib/site-url";
 import { getSections, getSiteSettings } from "@/lib/supabase/content";
 import { body, display } from "../fonts";
@@ -22,24 +23,9 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const [{ seo, brandName }, sections] = await Promise.all([getSiteSettings(locale), getSections(locale)]);
-  const image = sections.hero?.media?.src;
   return {
     metadataBase: new URL(siteUrl),
-    title: seo.title,
-    description: seo.description,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: { ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])), "x-default": `/${routing.defaultLocale}` },
-    },
-    openGraph: {
-      type: "website",
-      siteName: brandName,
-      title: seo.title,
-      description: seo.description ?? undefined,
-      locale,
-      url: `/${locale}`,
-      images: image ? [{ url: image }] : undefined,
-    },
+    ...pageMetadata({ locale, path: "", title: seo.title, description: seo.description, image: sections.hero?.media?.src, siteName: brandName }),
   };
 }
 

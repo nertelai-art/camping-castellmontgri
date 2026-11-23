@@ -83,6 +83,10 @@ el mateix prefix d'URL (`/es`, `/ca`…), perquè no es perdi el posicionament.
 - **Text de sobre el títol** (`section_translations.eyebrow`, «On som», «Planifica l'escapada»…): és contingut de cada secció i s'edita al panell. Buit, no surt.
   El camp principal d'una entitat (el que li dona nom i diu si falta traduir) és el primer obligatori (`mainField`), no el primer del formulari.
   Només el de les piscines (`pools.eyebrow`) continua a `messages/`: aquell bloc surt dels serveis, no d'una secció.
+- **Què fa servir cada secció** és a `src/lib/admin/sections.ts` (`SECTION_LAYOUTS`, amb proves): quins textos pinta el seu bloc, si té foto i si té galeria
+  (i quantes fotos hi caben: la benvinguda, 7; el panell no en deixa posar més ni pujar-ne cap de sobrant). `editorConfig` ho aplica al formulari i a les accions
+  de desar (un camp que no s'ensenya no es toca). Si un bloc de la web comença a pintar un camp o una foto, s'ha d'afegir aquí. Una secció que no pinta cap
+  pàgina (`accommodation-intro`) no surt al panell; «Text del botó» (`cta_label`) no el pinta cap bloc i ja no s'edita.
 - **Què s'edita** és a `src/lib/admin/entities.ts`: taula, taula de traduccions i camps de cada entitat. El formulari,
   la validació (`parseContent`, amb proves) i el desat surten d'allà: un camp editable nou és una línia nova.
 - En desar s'invaliden les etiquetes de caché de l'entitat (`tags`: les taules des d'on la web la llegeix; els allotjaments,
@@ -222,8 +226,10 @@ client es pugen a Supabase Storage amb el script de seed.
   en visitar la web. En clicar-hi s'obre Google Maps. La llicència d'OpenStreetMap demana l'atribució: un «© OpenStreetMap» petit al racó, que no es treu.
   Si canvien les coordenades del càmping, es torna a fer la imatge.
   Un cop carregat, no agafa el ratolí fins que s'hi clica (si no, la roda faria zoom en lloc de baixar la pàgina).
-- **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text (`trip.prompt` a `messages/`) que s'obre a ChatGPT o Claude per l'adreça;
-  Gemini no ho accepta, i es copia abans d'obrir-lo. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
+- **El teu viatge, amb la IA** (`trip-planner.tsx`, `src/lib/trip/assistants.ts`): nits i tipus de viatge generen un text que s'obre a ChatGPT o Claude per l'adreça;
+  Gemini no ho accepta, i es copia abans d'obrir-lo. La salutació i el text de cada assistent s'editen al panell («Assistents d'IA», `trip_assistants`), en 5 idiomes;
+  el text porta `{nits}`, `{camping}`, `{lloc}`, `{web}` i `{tipus}` (`fillPrompt`; el panell no deixa desar-ne d'altres). Buit, o sense la taula, el de `messages/`.
+  Quins assistents hi ha i com s'hi obre el text continua sent codi: al panell només s'editen o s'amaguen. No passa per cap servidor nostre. La finestra imita l'aplicació de cada assistent (`.trip-chat` a `globals.css`: colors seus, no tokens) i els logos són a `ai-logos.tsx`.
 
 ## Pàgines
 
@@ -241,6 +247,16 @@ client es pugen a Supabase Storage amb el script de seed.
   L'avís legal i les condicions de reserva continuen sent les del web antic.
 - **Redireccions del web antic** (`src/lib/seo/redirects.ts`, amb proves, a `next.config.ts`): cada adreça de `src/lib/seo/old-urls.json` (generat de `reference/content/site-map.json` amb `node scripts/build-old-urls.ts`: `reference/` no puja a Vercel) va a la pàgina nova equivalent, en el mateix idioma;
   el que no en té (esdeveniments, treballa amb nosaltres, canal de denúncies) va a la portada.
+
+## SEO i GEO
+
+- Les metadades de cada pàgina surten de `pageMetadata` (`src/lib/seo/metadata.ts`, amb proves): canònica, `hreflang` dels 5 idiomes, Open Graph i targeta
+  de cada pàgina (no la de la portada). La descripció és el primer paràgraf del text de la secció, net de `**` i de títols i tallat a 160 (`metaDescription`).
+- Dades estructurades (`json-ld.tsx`): `Campground` a la portada (temporada, serveis, enllaç de reserves, fitxes a Booking i altres plataformes a `sameAs`),
+  `Accommodation` a cada allotjament (lligat al càmping per `@id`) i `BreadcrumbList` a les pàgines. Les notes de les plataformes no hi van com a `aggregateRating`.
+- `/llms.txt` (`src/app/llms.txt/route.ts`): el web resumit per als assistents d'IA, del contingut del panell en castellà.
+- El títol i la descripció de la portada són a «Dades generals» (`seo_title`, `seo_description`). `scripts/seo-content.ts` hi va posar els de 23/11/2026 i les
+  paraules clau en negreta dels textos de les seccions (per defecte només ensenya els canvis; `--apply` els escriu).
 
 ## Disseny
 
@@ -270,7 +286,7 @@ Res de vídeo ni de models externs si es pot modelar per codi.
   `reference/images/food-ai/` (fora del git) i `pnpm food:build` en treu el fons blanc i les retalla.
   Falten les del pas «Per beure» (copa, taronja, menta, canya) i la bola de xocolata: el crèdit gratuït
   mensual de Hugging Face es va acabar a la desena imatge.
-- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4). Es canvien des del panell.
+- **Benvinguda** (`welcome.tsx`, `.welcome` a `globals.css`): sense animació de scroll. El text entre fotos, amb la carena del Montgrí (`MontgriLine`, la del peu) de paisatge. La primera foto de la galeria de la secció és la del mig; les altres, les del voltant (fins a 6, al mòbil 4): en total, 7. Es canvien des del panell.
 - **Allotjaments** (`accommodation-explorer.tsx`): se n'ensenyen 9 (`PAGE_SIZE`) i «Ver más» n'afegeix 9 més fins a l'últim; canviar un filtre torna a començar. Les noves pugen per ordre (`.accommodation-card`)
   i el focus va a la primera nova. Cada targeta porta a la pàgina de l'allotjament (`accommodationHref`).
 - **De la targeta a la pàgina de l'allotjament**: la foto de la targeta i la foto gran de la pàgina porten el mateix `<ViewTransition>` de React

@@ -2,6 +2,7 @@ import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { moveItem, moveWithin, renumber } from "@/lib/admin/gallery";
 import { displayName, ENTITIES, LOCALES, missingLocales, toList, type ContentInput, type EntityConfig, type EntityName, type Locale, type Translations } from "@/lib/admin/entities";
+import { isSectionInUse } from "@/lib/admin/sections";
 import { CENTER } from "@/lib/content/focus";
 import { HOME_BLOCKS, isHomeBlock, type HomeBlock } from "@/lib/content/home";
 import { addDays, shortTime, type SessionInput } from "@/lib/content/programme";
@@ -70,7 +71,8 @@ function baseOf(config: EntityConfig, row: Record<string, unknown>) {
 export async function listContent(entity: EntityName): Promise<ContentListItem[]> {
   const config: EntityConfig = ENTITIES[entity];
   const supabase = await db();
-  const rows = await readRows(supabase, config);
+  // De les seccions, només les que pinta alguna pàgina del web (`SECTION_LAYOUTS`): una que no surt enlloc no s'ha d'editar.
+  const rows = (await readRows(supabase, config)).filter((row) => entity !== "sections" || isSectionInUse(String(row[config.key])));
   // Les miniatures: una sola consulta per a totes les fotos de la llista.
   const paths = new Map<string, string>();
   const mediaIds = config.image ? [...new Set(rows.map((row) => row[config.image!.column]).filter((id): id is string => typeof id === "string"))] : [];

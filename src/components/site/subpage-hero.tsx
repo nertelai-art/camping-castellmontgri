@@ -2,7 +2,9 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import { MediaImage } from "@/components/media-image";
 import { RichText } from "@/components/rich-text";
+import { siteUrl } from "@/lib/site-url";
 import type { Section } from "@/lib/supabase/content";
+import { BreadcrumbJsonLd } from "./json-ld";
 
 /**
  * La capçalera de les pàgines del web (instal·lacions, animació, gastronomia, entorn, galeria): la ruta, la foto de la secció en gran
@@ -23,6 +25,7 @@ export async function SubpageHero({ section, id }: { section: Section; id: strin
 
   return (
     <header data-edit={`sections:${section.key}`} className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <BreadcrumbJsonLd items={[{ name: t("home"), url: `${siteUrl}/${locale}` }, { name: section.title }]} />
       <nav aria-label={t("breadcrumb")} className="text-sm text-muted">
         <ol className="flex flex-wrap items-center gap-x-2">
           <li>
