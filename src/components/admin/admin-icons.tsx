@@ -2,6 +2,7 @@
 
 import {
   BedDouble,
+  Bot,
   CalendarDays,
   ConciergeBell,
   Cookie,
@@ -53,6 +54,7 @@ const ICONS: Record<NavIcon, LucideIcon> = {
   file: FileText,
   settings: Settings,
   history: History,
+  bot: Bot,
 };
 
 export function AdminIcon({ name, ...props }: { name: NavIcon } & LucideProps) {

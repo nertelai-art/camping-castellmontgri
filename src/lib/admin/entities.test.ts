@@ -25,6 +25,15 @@ describe("formulari de contingut", () => {
     });
   });
 
+  it("el text d'un assistent només pot portar les paraules entre claus que la web omple", () => {
+    const base = { name: "ChatGPT", status: "published", "es.greeting": "¿Qué planificamos?" };
+    expect(parseContent(ENTITIES.trip_assistants, form({ ...base, "es.prompt": "{nits} en {camping} ({lloc}), {tipus}: {web}" })).ok).toBe(true);
+    expect(parseContent(ENTITIES.trip_assistants, form({ ...base, "es.prompt": "{noches} en {camping} y {precio}" }))).toEqual({
+      ok: false,
+      errors: ["Castellà: a «Text que s'envia a l'assistent», {noches}, {precio} no és cap de les paraules que la web omple."],
+    });
+  });
+
   it("un idioma buit del tot no es desa, però el castellà és obligatori", () => {
     const result = parseContent(ENTITIES.services, form({ status: "draft", "ca.name": "Recepció" }));
     expect(result).toEqual({ ok: false, errors: ["Castellà: falta «Nom»."] });

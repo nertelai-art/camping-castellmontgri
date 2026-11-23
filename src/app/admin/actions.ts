@@ -4,6 +4,7 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { displayName, ENTITIES, isEntity, parseBaseValue, parseContent, type EntityConfig, type EntityName } from "@/lib/admin/entities";
 import { PROGRAMME_HREF } from "@/lib/admin/nav";
+import { editorConfig, galleryHasRoom } from "@/lib/admin/sections";
 import { parseFocus } from "@/lib/content/focus";
 import { isHomeBlock, moveHomeBlock } from "@/lib/content/home";
 import { isDay, mondayOf, parseSession } from "@/lib/content/programme";
@@ -15,6 +16,7 @@ import {
   createContent,
   deleteContent,
   getContent,
+  getGallery,
   listHomeBlocks,
   logChange,
   moveContent,
@@ -74,7 +76,8 @@ export async function saveContentAction(entity: string, id: string, _: FormState
   if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
   if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
 
-  const config: EntityConfig = ENTITIES[entity];
+  // Només els camps que aquest contingut fa servir: els altres no es toquen.
+  const config = editorConfig(entity, id);
   const parsed = parseContent(config, form);
   if (!parsed.ok) return { errors: parsed.errors };
 
@@ -102,6 +105,8 @@ export async function replaceImageAction(entity: string, id: string, _: FormStat
   const editor = await currentEditor();
   if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
   if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
+
+  if (!editorConfig(entity, id).image) return { errors: ["Aquest contingut no té foto."] };
 
   const focus = parseFocus(form.get("focus_x"), form.get("focus_y"));
   if (!focus) return { errors: ["El punt de la foto no és vàlid."] };
@@ -171,6 +176,11 @@ async function galleryChange(entity: string, id: string, change: (entity: Entity
 }
 
 export async function addGalleryImageAction(entity: string, id: string, form: FormData): Promise<FormState> {
+  if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
+  const config = editorConfig(entity, id);
+  if (!config.gallery) return { errors: ["Aquest contingut no té galeria."] };
+  // A la web només en caben `max`: una més no es veuria.
+  if (!galleryHasRoom(config, (await getGallery(entity, id)).length)) return { errors: [`Ja hi ha les ${config.gallery.max} fotos que hi caben.`] };
   const image = await readImage(form);
   if ("errors" in image) return image;
   return galleryChange(entity, id, (name) => addToGallery(name, id, image));

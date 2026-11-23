@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { routing, type Locale } from "@/i18n/routing";
+import { metaDescription, pageMetadata } from "@/lib/seo/metadata";
 import { getAccreditations, getMediaByFolder, getSection, getSiteSettings } from "@/lib/supabase/content";
 import { RevealOnScroll } from "./reveal-on-scroll";
 import { SiteFooter } from "./site-footer";
@@ -14,15 +15,15 @@ import { SiteHeader } from "./site-header";
 export async function subpageMetadata(locale: string, path: string, sectionKey: string): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) return {};
   const [{ brandName, seo }, section] = await Promise.all([getSiteSettings(locale), getSection(locale, sectionKey)]);
-  return {
+  return pageMetadata({
+    locale,
+    path,
     title: section ? `${section.title} · ${brandName}` : brandName,
     // Una secció sense text (la galeria) es queda amb la descripció general del web.
-    description: section?.body?.split("\n\n")[0] || seo.description || undefined,
-    alternates: {
-      canonical: `/${locale}/${path}`,
-      languages: { ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}/${path}`])), "x-default": `/${routing.defaultLocale}/${path}` },
-    },
-  };
+    description: metaDescription(section?.body) ?? seo.description,
+    image: section?.media?.src,
+    siteName: brandName,
+  });
 }
 
 export function assertLocale(locale: string): Locale {

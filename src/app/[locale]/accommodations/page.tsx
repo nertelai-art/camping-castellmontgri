@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/site/section-heading";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { routing } from "@/i18n/routing";
+import { metaDescription, pageMetadata } from "@/lib/seo/metadata";
 import { getAccommodationCategories, getAccreditations, getMediaByFolder, getSections, getSiteSettings } from "@/lib/supabase/content";
 
 // Tots els allotjaments, en una pàgina a part (el menú hi porta des de les pàgines que no són la portada).
@@ -16,16 +17,16 @@ import { getAccommodationCategories, getAccreditations, getMediaByFolder, getSec
 export async function generateMetadata({ params }: PageProps<"/[locale]/accommodations">): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const [{ brandName }, sections] = await Promise.all([getSiteSettings(locale), getSections(locale)]);
+  const [{ brandName, seo }, sections] = await Promise.all([getSiteSettings(locale), getSections(locale)]);
   const section = sections.accommodation;
-  return {
+  return pageMetadata({
+    locale,
+    path: "accommodations",
     title: section ? `${section.title} · ${brandName}` : brandName,
-    description: section?.body?.split("\n\n")[0] ?? undefined,
-    alternates: {
-      canonical: `/${locale}/accommodations`,
-      languages: { ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}/accommodations`])), "x-default": `/${routing.defaultLocale}/accommodations` },
-    },
-  };
+    description: metaDescription(section?.body) ?? seo.description,
+    image: section?.media?.src,
+    siteName: brandName,
+  });
 }
 
 export default async function Accommodations({ params }: PageProps<"/[locale]/accommodations">) {

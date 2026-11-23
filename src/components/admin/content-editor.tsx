@@ -1,24 +1,45 @@
+import Link from "next/link";
 import { addGalleryImageAction, deleteContentAction, moveGalleryImageAction, removeGalleryImageAction, replaceImageAction, saveContentAction } from "@/app/admin/actions";
-import { ENTITIES, type EntityConfig, type EntityName } from "@/lib/admin/entities";
+import type { EntityName } from "@/lib/admin/entities";
+import { editorConfig } from "@/lib/admin/sections";
 import { getGallery, type ContentDetail } from "@/lib/supabase/admin-content";
 import { ContentForm } from "./content-form";
 import { DeleteButton } from "./delete-button";
 import { GalleryField } from "./gallery-field";
 import { ImageField } from "./image-field";
 
-/** Tot el que es pot fer amb un contingut: foto, galeria, textos i esborrar. */
+/** Tot el que es pot fer amb un contingut: foto, galeria, textos i esborrar. Només el que aquell contingut fa servir a la web (`editorConfig`). */
 export async function ContentEditor({ entity, content, canDelete = true }: { entity: EntityName; content: ContentDetail; canDelete?: boolean }) {
-  const config: EntityConfig = ENTITIES[entity];
   const { id } = content;
-  const hasGallery = config.gallery && (!config.gallery.only || config.gallery.only.includes(id));
-  const gallery = hasGallery ? await getGallery(entity, id) : [];
+  const config = editorConfig(entity, id);
+  const gallery = config.gallery ? await getGallery(entity, id) : [];
 
   return (
     <>
-      {config.image && <ImageField action={replaceImageAction.bind(null, entity, id)} label={config.image.label} current={content.image} />}
-      {hasGallery && config.gallery && (
+      {(config.where || config.related?.length) && (
+        <div className="max-w-3xl rounded-3xl bg-paper-2 px-6 py-4 text-base">
+          {config.where && <p>{config.where}</p>}
+          {config.related && config.related.length > 0 && (
+            <p className="mt-1 text-muted">
+              També s&apos;edita a part:{" "}
+              {config.related.map((link, i) => (
+                <span key={link.href}>
+                  {i > 0 && " · "}
+                  <Link href={link.href} className="font-bold text-olive underline underline-offset-4">
+                    {link.label}
+                  </Link>
+                </span>
+              ))}
+            </p>
+          )}
+        </div>
+      )}
+      {config.image && <ImageField action={replaceImageAction.bind(null, entity, id)} label={config.image.label} help={config.image.help} current={content.image} />}
+      {config.gallery && (
         <GalleryField
           label={config.gallery.label}
+          help={config.gallery.help}
+          max={config.gallery.max}
           items={gallery}
           add={addGalleryImageAction.bind(null, entity, id)}
           remove={removeGalleryImageAction.bind(null, entity, id)}
