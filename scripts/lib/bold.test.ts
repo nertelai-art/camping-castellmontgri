@@ -11,8 +11,14 @@ describe("paraules clau en negreta", () => {
     expect(boldPhrases(once, ["càmping"])).toEqual({ text: once, missing: [] });
   });
 
-  it("si ja és dins d'una negreta més llarga, no la parteix", () => {
-    expect(boldPhrases("**Benvinguts a Camping Castell** i Camping", ["Camping"]).text).toBe("**Benvinguts a Camping Castell** i **Camping**");
+  it("tornar-lo a passar no canvia res, encara que la frase surti dues vegades", () => {
+    const once = boldPhrases("Costa Brava al nord i Costa Brava al sud", ["Costa Brava"]).text;
+    expect(once).toBe("**Costa Brava** al nord i Costa Brava al sud");
+    expect(boldPhrases(once, ["Costa Brava"]).text).toBe(once);
+  });
+
+  it("si ja és dins d'una negreta més llarga, ja hi és destacada: no la parteix ni la repeteix", () => {
+    expect(boldPhrases("**Benvinguts a Camping Castell** i Camping", ["Camping"]).text).toBe("**Benvinguts a Camping Castell** i Camping");
     expect(boldPhrases("**Benvinguts a Camping Castell**", ["Camping"])).toEqual({ text: "**Benvinguts a Camping Castell**", missing: [] });
   });
 
