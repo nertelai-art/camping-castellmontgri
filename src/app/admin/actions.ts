@@ -22,6 +22,7 @@ import {
   moveContent,
   moveInGallery,
   removeFromGallery,
+  removeImage,
   removeSession,
   replaceImage,
   saveContent,
@@ -126,6 +127,23 @@ export async function replaceImageAction(entity: string, id: string, _: FormStat
 
   const config: EntityConfig = ENTITIES[entity];
   for (const tag of newPhoto ? config.tags : ["content"]) revalidateTag(tag, { expire: 0 });
+  return { savedAt: Date.now() };
+}
+
+/** Treu la foto principal d'un contingut: deixa de sortir a la web. El fitxer no s'esborra. */
+export async function removeImageAction(entity: string, id: string): Promise<FormState> {
+  const editor = await currentEditor();
+  if (!editor) return { errors: ["La sessió ha caducat. Torna a iniciar sessió."] };
+  if (!isEntity(entity)) return { errors: ["Aquest contingut no existeix."] };
+  if (!editorConfig(entity, id).image) return { errors: ["Aquest contingut no té foto."] };
+
+  const error = await removeImage(entity, id);
+  if (error) return { errors: [`No s'ha pogut treure la foto: ${error}`] };
+  await record(editor, entity, id, "image");
+
+  for (const tag of ENTITIES[entity].tags) revalidateTag(tag, { expire: 0 });
+  // La fitxa oberta (o l'editor visual) es torna a pintar sense la foto.
+  revalidatePath("/admin", "layout");
   return { savedAt: Date.now() };
 }
 
